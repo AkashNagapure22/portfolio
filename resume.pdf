@@ -1,0 +1,84 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources <<
+/Font <<
+/F1 4 0 R
+>>
+>>
+/MediaBox [0 0 612 792]
+/Content 5 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+5 0 obj
+<< /Length 280 >>
+stream
+BT
+/F1 18 Tf
+70 700 Td
+(AKASH NAGAPURE - INTUNE SYSTEMS ENGINEER) Tj
+/F1 11 Tf
+0 -30 Td
+(Email: akashnagapure@gmail.com  |  Location: India  |  Portfolio: Online) Tj
+0 -25 Td
+(Modern Endpoint Workplace & Systems Security Expert) Tj
+0 -25 Td
+(-------------------------------------------------------------------------) Tj
+0 -25 Td
+(Professional summary:) Tj
+0 -20 Td
+(Specialized in Microsoft Endpoint Manager, Intune, SCCM / MECM,) Tj
+0 -15 Td
+(Windows Autopilot, and cloud-native automation via Microsoft Graph API.) Tj
+0 -25 Td
+(Key Competencies:) Tj
+0 -20 Td
+(- Modern Device Management & Co-Management) Tj
+0 -15 Td
+(- Windows Autopilot Zero-Touch Provisioning) Tj
+0 -15 Td
+(- PowerShell System Scripting & Win32 App Packaging) Tj
+0 -25 Td
+(Please visit the live website for the complete technical resume details.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000018 00000 n 
+0000000073 00000 n 
+0000000130 00000 n 
+0000000262 00000 n 
+0000000346 00000 n 
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+690
+%%EOF
