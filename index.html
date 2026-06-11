@@ -1813,26 +1813,26 @@
     ];
 
     const hobbyDatabase = [
-      {
-        title: "Self-Hosted Homelab Cluster",
-        desc: "My homelab acts as a dedicated system testbed outside active production environments. It hosts localized Windows Server directory services, nested Hyper-V clusters, custom software delivery staging targets, and test routing parameters to emulate complex, secure enterprise networks safely.",
-        img: "./images/hobby_homelab.png"
-      },
-      {
-        title: "Strategic & Tactical Gaming",
-        desc: "I enjoy immersive strategy and analytical multiplayer gaming systems. Navigating resource allocations, real-time mechanics mapping, and tactical coordination scenarios serves as a great offline sandbox to exercise split-second troubleshooting logic and team dynamics.",
-        img: "./images/hobby_gaming.png"
-      },
-      {
-        title: "Analytical & Non-Fiction Reading",
-        desc: "I regularly read books centered around technological histories, systems design thinking, engineering case models, and problem-solving metrics. This habit keeps me consistently informed, open-minded, and prepared to process design updates smoothly.",
-        img: "./images/hobby_reading.png"
-      },
-      {
-        title: "Numismatics & Coin Collection",
-        desc: "I collect rare, historical, and structural global coins. Dissecting mint marks, government record token architectures, and physical currency preservation timelines acts as a fascinating bridge into historical ledger integrity and engineering across eras.",
-        img: "./images/hobby_coins.png"
-      }
+     {
+      title: "Self-Hosted Homelab Cluster",
+      desc: "My homelab acts as a dedicated system testbed outside active production environments. It hosts localized Windows Server directory services, nested Hyper-V clusters, custom software delivery staging targets, and test routing parameters.",
+      img: "./images/hobby_homelab.png" // Verify this exact filename exists
+    },
+    {
+      title: "Strategic & Tactical Gaming",
+      desc: "I enjoy immersive strategy and analytical multiplayer gaming systems. Navigating resource allocations and tactical coordination serves as a great offline sandbox.",
+      img: "./images/hobby_gaming.png" // Ensure you have this file in your images folder
+    },
+    {
+      title: "Analytical & Non-Fiction Reading",
+      desc: "I regularly read books centered around technological histories, systems design thinking, engineering case models, and problem-solving metrics.",
+      img: "./images/hobby_reading.png"
+    },
+    {
+      title: "Coin Collection",
+      desc: "Enthusiastic about collecting rare and historical coins, with an interest in their history, design, and cultural value.",
+      img: "./images/hobby_coins.png"
+    }
     ];
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -1859,13 +1859,24 @@
 
     function openHobbyModal(index) {
       const targetData = hobbyDatabase[index];
-      if (targetData) {
-        document.getElementById("hobby-modal-title").innerText = targetData.title;
-        document.getElementById("hobby-modal-desc").innerText = targetData.desc;
-        // This line is what updates the image dynamically
-        document.getElementById("hobby-modal-img").src = targetData.img; 
-        document.getElementById("hobby-modal").classList.remove("hidden");
-        document.body.classList.add("overflow-hidden");
+    if (targetData) {
+      // 1. Set the Title and Description
+      document.getElementById("hobby-modal-title").innerText = targetData.title;
+      document.getElementById("hobby-modal-desc").innerText = targetData.desc;
+      
+      // 2. Set the Image Source
+      const imgElement = document.getElementById("hobby-modal-img");
+      imgElement.src = targetData.img;
+      
+      // 3. Optional: Add an error check if the image fails to load
+      imgElement.onerror = function() {
+        console.error("Image failed to load: " + targetData.img);
+        this.src = "./images/placeholder.png"; // Optional fallback image
+      };
+
+      document.getElementById("hobby-modal").classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+
     }
     }
 
