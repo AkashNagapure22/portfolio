@@ -1821,7 +1821,7 @@
       {
         title: "Strategic & Tactical Gaming",
         desc: "I enjoy immersive strategy and analytical multiplayer gaming systems. Navigating resource allocations, real-time mechanics mapping, and tactical coordination scenarios serves as a great offline sandbox to exercise split-second troubleshooting logic and team dynamics.",
-        img: "./images/hobby_homelab.png"
+        img: "./images/hobby_gaming.png"
       },
       {
         title: "Analytical & Non-Fiction Reading",
@@ -1862,10 +1862,11 @@
       if (targetData) {
         document.getElementById("hobby-modal-title").innerText = targetData.title;
         document.getElementById("hobby-modal-desc").innerText = targetData.desc;
-        document.getElementById("hobby-modal-img").src = targetData.img;
+        // This line is what updates the image dynamically
+        document.getElementById("hobby-modal-img").src = targetData.img; 
         document.getElementById("hobby-modal").classList.remove("hidden");
         document.body.classList.add("overflow-hidden");
-      }
+    }
     }
 
     // Modal interface control handler
