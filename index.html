@@ -476,6 +476,14 @@
         </div>
 
         <!-- Course Completion Track Module -->
+      Here is the upgraded, high-fidelity snippet for your `trainings` module.
+
+To create a unified user experience, this layout applies the exact same **3D Y-axis flipping mechanism** used in your primary certifications block. The descriptions are pushed to the back face, significantly reducing the vertical footprint on the front side and creating a much cleaner grid structure that balances your page neatly.
+
+Replace your `<div id="trainings">` block completely with this code:
+
+```html
+        <!-- Course Completion Track Module -->
         <div id="trainings" class="border-t border-slate-800/80 pt-16 text-left">
           <div class="flex items-center space-x-3 mb-8">
             <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i>
@@ -484,177 +492,309 @@
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">UDEMY</span>
-                  <span class="text-slate-500">April 2026</span>
+            <!-- Course Item 1: Azure VM -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">UDEMY</span>
+                      <span class="text-slate-500">April 2026</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Azure Deep Dive : Complete Virtual Machine (VM) Course
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Azure Deep Dive : Complete Virtual Machine (VM) Course
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">I have completed a comprehensive architectural track focused on the deployment, compute scaling, and lifecycle governance of Microsoft Azure Virtual Machines. This deep dive maps enterprise-level compute topologies, high-availability architecture across availability zones, and secure operational baselines. It directly translates to my hands-on practice building resilient on-premises, hybrid, and native cloud environments.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">I have completed a comprehensive architectural track focused on the deployment, compute scaling, and lifecycle governance of Microsoft Azure Virtual Machines. This deep dive maps enterprise-level compute topologies, high-availability architecture across availability zones, and secure operational baselines. It directly translates to my hands-on practice building resilient on-premises, hybrid, and native cloud environments.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Dec 2025</span>
+            <!-- Course Item 2: MD-102 Prep -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Dec 2025</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep by Microsoft Press
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep by Microsoft Press
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">An official, deep-dive examination preparation track mapping the core layout of modern endpoint administration. This training validates advanced capabilities in planning device deployment strategies, enforcing granular client security baselines, and maintaining unified endpoint compliance across enterprise tenants.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">An official, deep-dive examination preparation track mapping the core layout of modern endpoint administration. This training validates advanced capabilities in planning device deployment strategies, enforcing granular client security baselines, and maintaining unified endpoint compliance across enterprise tenants.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">March 2025</span>
+            <!-- Course Item 3: Power BI -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">March 2025</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Learning Power BI Desktop
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Learning Power BI Desktop
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">A targeted data analytics track focused on transforming raw system metrics into interactive, visual telemetry dashboards. This course covers structured data ingestion, modeling, and dashboard creation, directly translating into the ability to build advanced device health and patch compliance reporting loops.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">A targeted data analytics track focused on transforming raw system metrics into interactive, visual telemetry dashboards. This course covers structured data ingestion, modeling, and dashboard creation, directly translating into the ability to build advanced device health and patch compliance reporting loops.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">MICROSOFT</span>
-                  <span class="text-slate-500">Jan 2024</span>
+            <!-- Course Item 4: Co-Management -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">MICROSOFT</span>
+                      <span class="text-slate-500">Jan 2024</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      WorkshopPLUS - Microsoft Intune and Configuration Manager: Co-Management and Cloud Services
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  WorkshopPLUS - Microsoft Intune and Configuration Manager: Co-Management and Cloud Services
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">An elite, vendor-native training blueprint detailing the architecture of bridge infrastructure between on-premises and cloud environments. It focuses on setting up cloud attach features, tenant attaching MECM distribution points, and shifting workloads progressively to Microsoft Intune without endpoint interruption.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">An elite, vendor-native training blueprint detailing the architecture of bridge infrastructure between on-premises and cloud environments. It focuses on setting up cloud attach features, tenant attaching MECM distribution points, and shifting workloads progressively to Microsoft Intune without endpoint interruption.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Jan 2024</span>
+            <!-- Course Item 5: Problem Solving -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Jan 2024</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Problem-Solving Techniques
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Problem-Solving Techniques
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">A structured professional development course focused on isolating system root causes, building systematic logic trees, and handling critical escalation paths. This course maps out methods to expedite issue resolution frames across complex enterprise system failures.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">A structured professional development course focused on isolating system root causes, building systematic logic trees, and handling critical escalation paths. This course maps out methods to expedite issue resolution frames across complex enterprise system failures.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Aug 2024</span>
+            <!-- Course Item 6: Identity Management -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Aug 2024</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      M365 Endpoint Administrator (MD-102) Cert Prep: 2 Manage Identity and Compliance
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep: 2 Manage Identity and Compliance
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">An identity-focused engineering runbook targeting zero-trust access metrics. This course handles the deployment of Microsoft Entra ID conditional access policies, data protection guidelines, and active compliance boundaries necessary to safeguard corporate data across remote device fleets.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">An identity-focused engineering runbook targeting zero-trust access metrics. This course handles the deployment of Microsoft Entra ID conditional access policies, data protection guidelines, and active compliance boundaries necessary to safeguard corporate data across remote device fleets.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Jul 2024</span>
+            <!-- Course Item 7: Critical Thinking -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Jul 2024</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Critical Thinking
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Critical Thinking
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">An analytical methodology course focused on data-driven decision-making and stripping cognitive biases from systemic troubleshooting workflows. It sharpens the ability to evaluate complex system architectures and navigate high-pressure production incidents with structured, logical solutions.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">An analytical methodology course focused on data-driven decision-making and stripping cognitive biases from systemic troubleshooting workflows. It sharpens the ability to evaluate complex system architectures and navigate high-pressure production incidents with structured, logical solutions.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Jun 2024</span>
+            <!-- Course Item 8: Client Deployment -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Jun 2024</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      M365 Endpoint Administrator (MD-102) Cert Prep: 1 Deploy Windows Client
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep: 1 Deploy Windows Client
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">A specialized operating system lifecycle track focusing on modern deployment strategies. This course covers the staging, customization, and deployment of Windows client images, mapping out seamless enterprise OS upgrade tracks and state migration frameworks.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">A specialized operating system lifecycle track focusing on modern deployment strategies. This course covers the staging, customization, and deployment of Windows client images, mapping out seamless enterprise OS upgrade tracks and state migration frameworks.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">UDEMY</span>
-                  <span class="text-slate-500">Mar 2024</span>
+            <!-- Course Item 9: MECM masterclass -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">UDEMY</span>
+                      <span class="text-slate-500">Mar 2024</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Microsoft Endpoint Configuration Manager (MECM) Training
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Microsoft Endpoint Configuration Manager (MECM) Training
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">A comprehensive infrastructure masterclass focused on on-premises fleet management via SCCM. This track covers site server installation configurations, boundary group optimization, distribution point management, task sequence scripting, and mass software distribution mechanisms.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">A comprehensive infrastructure masterclass focused on on-premises fleet management via SCCM. This track covers site server installation configurations, boundary group optimization, distribution point management, task sequence scripting, and mass software distribution mechanisms.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Dec 2023</span>
+            <!-- Course Item 10: Autopilot -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Dec 2023</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Windows Autopilot Essential Training
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Windows Autopilot Essential Training
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">A pure cloud-native provisioning course detailing zero-touch out-of-box hardware onboarding workflows. It maps out hardware hash harvesting pipelines, deployment profile packaging, and initial out-of-box experience configurations required to ship hardware directly from factory floor to end-user desk.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">A pure cloud-native provisioning course detailing zero-touch out-of-box hardware onboarding workflows. It maps out hardware hash harvesting pipelines, deployment profile packaging, and initial out-of-box experience configurations required to ship hardware directly from factory floor to end-user desk.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Dec 2023</span>
+            <!-- Course Item 11: Copilot AI -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Dec 2023</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Streamlining Your Work with Copilot (formerly Bing Chat Enterprise)
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Streamlining Your Work with Copilot (formerly Bing Chat Enterprise)
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">An AI-integration framework course focused on leveraging large language model prompts to expedite engineering routines. This track emphasizes secure generative AI practices, using corporate-data-protected interfaces to accelerate code debugging, PowerShell scripting, and documentation formatting.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">An AI-integration framework course focused on leveraging large language model prompts to expedite engineering routines. This track emphasizes secure generative AI practices, using corporate-data-protected interfaces to accelerate code debugging, PowerShell scripting, and documentation formatting.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">LINKEDIN</span>
-                  <span class="text-slate-500">Dec 2023</span>
+            <!-- Course Item 12: Cloud PC -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">LINKEDIN</span>
+                      <span class="text-slate-500">Dec 2023</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      Windows 365: Deploy, Provision, and Manage
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  Windows 365: Deploy, Provision, and Manage
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">An architectural training track covering Cloud PC virtualization solutions. It bridges virtual desktop infrastructure (VDI) design with cloud provisioning pipelines, focusing on custom image management, network connection routing, and virtual user workspace state preservation.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">An architectural training track covering Cloud PC virtualization solutions. It bridges virtual desktop infrastructure (VDI) design with cloud provisioning pipelines, focusing on custom image management, network connection routing, and virtual user workspace state preservation.</p>
             </div>
 
-            <div class="bg-slate-950/40 border border-slate-800 p-5 rounded-xl flex flex-col justify-between group hover:border-slate-700/80 transition-colors">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-sky-400">PLURALSIGHT</span>
-                  <span class="text-slate-500">July 2024</span>
+            <!-- Course Item 13: VMware Stacks -->
+            <div class="flip-card-container h-[200px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner w-full h-full">
+                <!-- Front -->
+                <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-sky-400">PLURALSIGHT</span>
+                      <span class="text-slate-500">July 2024</span>
+                    </div>
+                    <h4 class="text-white font-sans font-bold text-base line-clamp-2">
+                      VMware Horizon & vSphere Architecture Stacks
+                    </h4>
+                  </div>
+                  <span class="font-mono text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider block">Click to expand details</span>
                 </div>
-                <h4 class="text-white font-sans font-bold text-base group-hover:text-sky-400 transition-colors">
-                  VMware Horizon & vSphere Architecture Stacks
-                </h4>
+                <!-- Back -->
+                <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">Configuring hypervisor matrices, clustering virtualization resources, and managing virtual desktop profiles for large corporate infrastructure fleets.</p>
+                </div>
               </div>
-              <p class="text-slate-400 text-xs mt-3 leading-relaxed">Configuring hypervisor matrices, clustering virtualization resources, and managing virtual desktop profiles for large corporate infrastructure fleets.</p>
             </div>
 
           </div>
         </div>
+
+```
     </section>
 
     <!-- Skills Matrix Section -->
