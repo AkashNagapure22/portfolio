@@ -1007,95 +1007,87 @@
       </div>
     </section>
 
-    <section id="hobbies" class="py-24 bg-slate-950 text-left relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="max-w-3xl mb-12">
-          <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
-            <i data-lucide="compass" class="w-4 h-4"></i>
-            <span>Extracurricular focus</span>
-          </div>
-          <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Interests & Hobbies
-          </h2>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div onclick="openHobbyModal(0)" class="bg-slate-900 border border-slate-800 hover:border-sky-500/40 p-6 rounded-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px] cursor-pointer">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 group-hover:bg-slate-950/60 group-hover:border-sky-400/20 transition-all">
-                  <i data-lucide="hard-drive" class="w-5 h-5"></i>
-                </div>
-                <span class="font-mono text-[9px] text-slate-500 font-bold tracking-widest uppercase">COMPUTE_NODE</span>
-              </div>
-              <h3 class="font-sans font-bold text-lg text-white mb-2 group-hover:text-sky-400 transition-colors">
-                Self-Hosted Homelab
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
-                Running a cluster of dedicated virtual machines, testing nested Hyper-V clusters, domain controller policies, and trial configurations.
-              </p>
-            </div>
-            <div class="font-mono text-[8px] text-sky-400 uppercase mt-4">Click to view snapshot →</div>
-          </div>
+<section id="hobbies" class="py-24 bg-slate-950 text-left relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-3xl mb-12">
+      <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
+        <i data-lucide="compass" class="w-4 h-4"></i>
+        <span>Extracurricular focus</span>
+      </div>
+      <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Interests & Hobbies
+      </h2>
+    </div>
 
-          <div onclick="openHobbyModal(1)" class="bg-slate-900 border border-slate-800 hover:border-sky-500/40 p-6 rounded-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px] cursor-pointer">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 group-hover:bg-slate-950/60 group-hover:border-sky-400/20 transition-all">
-                  <i data-lucide="terminal" class="w-5 h-5"></i>
-                </div>
-                <span class="font-mono text-[9px] text-slate-500 font-bold tracking-widest uppercase">SHELL_CRAFT</span>
-              </div>
-              <h3 class="font-sans font-bold text-lg text-white mb-2 group-hover:text-sky-400 transition-colors">
-                Gaming
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
-                Enjoy strategic and immersive gaming experiences that enhance problem-solving, teamwork, and decision-making skills.
-              </p>
-            </div>
-            <div class="font-mono text-[8px] text-sky-400 uppercase mt-4">Click to view snapshot →</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <div class="flip-card-container h-[350px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front bg-slate-900 border border-slate-800 p-6 rounded-lg flex flex-col justify-between h-full">
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 w-fit"><i data-lucide="hard-drive"></i></div>
+            <h3 class="font-sans font-bold text-lg text-white mt-4">Self-Hosted Homelab</h3>
+            <p class="text-slate-400 text-sm mt-2">Dedicated system testbed for virtual environments.</p>
+            <span class="font-mono text-[10px] text-sky-400 mt-4 block">Click to flip →</span>
           </div>
-
-          <div onclick="openHobbyModal(2)" class="bg-slate-900 border border-slate-800 hover:border-sky-500/40 p-6 rounded-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px] cursor-pointer">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 group-hover:bg-slate-950/60 group-hover:border-sky-400/20 transition-all">
-                  <i data-lucide="keyboard" class="w-5 h-5"></i>
-                </div>
-                <span class="font-mono text-[9px] text-slate-500 font-bold tracking-widest uppercase">Tactile_IO</span>
-              </div>
-              <h3 class="font-sans font-bold text-lg text-white mb-2 group-hover:text-sky-400 transition-colors">
-                Reading
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
-                Reading books helps me stay curious, informed, and committed to lifelong learning.
-              </p>
-            </div>
-            <div class="font-mono text-[8px] text-sky-400 uppercase mt-4">Click to view snapshot →</div>
-          </div>
-          
-          <div onclick="openHobbyModal(3)" class="bg-slate-900 border border-slate-800 hover:border-sky-500/40 p-6 rounded-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px] cursor-pointer">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 group-hover:bg-slate-950/60 group-hover:border-sky-400/20 transition-all">
-                  <i data-lucide="coins" class="w-5 h-5"></i>
-                </div>
-                <span class="font-mono text-[9px] text-slate-500 font-bold tracking-widest uppercase">Antic</span>
-              </div>
-              <h3 class="font-sans font-bold text-lg text-white mb-2 group-hover:text-sky-400 transition-colors">
-                Coin Collection
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
-                Enthusiastic about collecting rare and historical coins, with an interest in their history, design, and cultural value.
-              </p>
-            </div>
-            <div class="font-mono text-[8px] text-sky-400 uppercase mt-4">Click to view snapshot →</div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col overflow-hidden h-full">
+            <img src="./images/hobby_homelab.png" class="w-full h-32 object-cover rounded mb-4" />
+            <p class="text-slate-300 text-xs">Testing nested Hyper-V clusters, domain controller policies, and trial configurations to emulate enterprise networks.</p>
           </div>
         </div>
       </div>
-    </section>
 
+      <div class="flip-card-container h-[350px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front bg-slate-900 border border-slate-800 p-6 rounded-lg flex flex-col justify-between h-full">
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 w-fit"><i data-lucide="terminal"></i></div>
+            <h3 class="font-sans font-bold text-lg text-white mt-4">Gaming</h3>
+            <p class="text-slate-400 text-sm mt-2">Strategic and immersive gaming experiences.</p>
+            <span class="font-mono text-[10px] text-sky-400 mt-4 block">Click to flip →</span>
+          </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col overflow-hidden h-full">
+            <img src="./images/hobby_gaming.png" class="w-full h-32 object-cover rounded mb-4" />
+            <p class="text-slate-300 text-xs">I focus on strategy/coordination games that exercise split-second troubleshooting, team dynamics, and complex resource allocation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[350px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front bg-slate-900 border border-slate-800 p-6 rounded-lg flex flex-col justify-between h-full">
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 w-fit"><i data-lucide="keyboard"></i></div>
+            <h3 class="font-sans font-bold text-lg text-white mt-4">Reading</h3>
+            <p class="text-slate-400 text-sm mt-2">Curiosity-driven non-fiction exploration.</p>
+            <span class="font-mono text-[10px] text-sky-400 mt-4 block">Click to flip →</span>
+          </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col overflow-hidden h-full">
+            <img src="./images/hobby_reading.png" class="w-full h-32 object-cover rounded mb-4" />
+            <p class="text-slate-300 text-xs">Deep dives into technological history and systems design thinking to maintain a baseline of lifelong learning.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[350px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front bg-slate-900 border border-slate-800 p-6 rounded-lg flex flex-col justify-between h-full">
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded text-sky-400 w-fit"><i data-lucide="coins"></i></div>
+            <h3 class="font-sans font-bold text-lg text-white mt-4">Coin Collection</h3>
+            <p class="text-slate-400 text-sm mt-2">Numismatics and historical ledger integrity.</p>
+            <span class="font-mono text-[10px] text-sky-400 mt-4 block">Click to flip →</span>
+          </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col overflow-hidden h-full">
+            <img src="./images/hobby_coins.png" class="w-full h-32 object-cover rounded mb-4" />
+            <p class="text-slate-300 text-xs">I study mint marks and currency design to understand historical government token architectures and physical ledger evolution.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    
     <section id="projects" class="py-24 bg-slate-900 border-b border-slate-800 text-left relative">
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.03),transparent)] pointer-events-none"></div>
 
