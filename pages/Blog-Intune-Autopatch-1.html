@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows Autopatch A-to-Z | Akash Nagapure</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-300 font-sans selection:bg-sky-500/20">
+
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    <!-- Navigation -->
+    <a href="../index.html" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i>
+      <span>Back to Main Site</span>
+    </a>
+
+    <!-- Header -->
+    <header class="mb-12">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-widest">Technical Guide</span>
+      <h1 class="text-4xl font-extrabold text-white mt-2 mb-6">Microsoft Autopatch: The A-to-Z Deployment</h1>
+    </header>
+
+    <article class="space-y-8 text-slate-300 leading-relaxed">
+      
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">1. Prerequisites & Activation</h2>
+        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). You need <strong>Global Administrator</strong> access for initial consent and <strong>Intune Administrator</strong> access to configure the service. Enable Delivery Optimization and diagnostic data collection under your Tenant Administration settings.</p>
+        <p class="mt-4">Navigate to <em>Tenant administration → Windows Autopatch</em> to activate the service. Once activated, the dashboard will confirm your status.</p>
+        <img src="../images/placeholder.png" alt="Autopatch Activation Screen" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">2. Installing the Client Broker</h2>
+        <p>The Client Broker maintains your Autopatch service. Navigate to <em>Tenant Management</em> under the Autopatch menu, click <strong>Manage Client Broker</strong>, and select <strong>Install</strong>. The status will transition from "Not started" to "In progress."</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">3. Creating Deployment Rings</h2>
+        <p>Planning your rings is critical. While default "First" and "Last" rings exist, you can create additional deployment groups. If using dynamic distribution, ensure your ring percentages sum to exactly 100%.</p>
+        <img src="../images/placeholder.png" alt="Autopatch Deployment Rings" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">4. Configuring Release Schedules</h2>
+        <p>Define your update behavior by setting Deferral days, Deadline days, and Grace periods. For your Test ring, use 0 deferral days for immediate verification. For production rings, allow a 2-day buffer for compatibility signals.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">5. Verification & User Experience</h2>
+        <p>On your target devices, navigate to <em>Settings → Accounts → Work or School → Info</em>. Under <strong>Policies</strong>, you will see the applied Autopatch configurations. In Windows 11, verify these under <em>Windows Update → Advanced options → Configured update policies</em>.</p>
+      </section>
+
+      <section class="border-t border-slate-800 pt-8 mt-12">
+        <h3 class="text-lg font-bold text-white mb-4">Official References</h3>
+        <ul class="space-y-2 text-sm text-sky-400 underline">
+          <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/prepare/windows-autopatch-prerequisites" target="_blank">Windows Autopatch Prerequisites</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/operate/windows-autopatch-groups" target="_blank">Managing Autopatch Groups</a></li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
