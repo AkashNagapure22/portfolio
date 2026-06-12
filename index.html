@@ -1552,16 +1552,27 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
-         <article class="bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col justify-between group">
-  <!-- ... existing content ... -->
-  <div class="p-6 pt-0 flex items-center justify-between border-t border-slate-950/40 mt-4 pt-4">
-    <!-- CHANGE THIS BUTTON TO AN ANCHOR TAG -->
-    <button onclick="openBlogModal(0)" class="font-mono text-[11px] text-sky-400 hover:text-sky-300 transition-colors bg-transparent border-none outline-none cursor-pointer">
-      Read System Runbook →
-    </button>
-    <!-- ... -->
-  </div>
-</article>
+          <article class="bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div class="p-6 space-y-4">
+              <div class="flex items-center justify-between text-xs font-mono text-sky-400">
+                <span>INTUNE // ARCHITECTURE</span>
+                <span>June 2026</span>
+              </div>
+              <h3 class="font-sans text-xl font-bold text-white group-hover:text-sky-400 transition-colors leading-snug">
+                Deep-Dive: Handling Win32 App Dependency Chains in Intune
+              </h3>
+              <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                An architectural strategy guide mapping complex installation structures inside Intune Management Extension.
+              </p>
+            </div>
+            <div class="p-6 pt-0 flex items-center justify-between border-t border-slate-950/40 mt-4 pt-4">
+              <button onclick="openBlogModal(0)" class="font-mono text-[11px] text-sky-400 hover:text-sky-300 transition-colors bg-transparent border-none outline-none cursor-pointer">Read System Runbook →</button>
+              <div class="flex space-x-1.5 text-slate-600 text-xs">
+                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                <span class="font-mono text-[10px]">6 min read</span>
+              </div>
+            </div>
+          </article>
 
           <article class="bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col justify-between group">
             <div class="p-6 space-y-4">
