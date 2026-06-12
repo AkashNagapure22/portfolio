@@ -1533,46 +1533,39 @@
               
     </section>
 
-    <section id="blogs" class="py-24 bg-slate-950 text-left relative border-b border-slate-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-800 gap-4">
-          <div>
-            <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
-              <i data-lucide="book-open" class="w-4 h-4"></i>
-              <span>Engineering Matrix Documentation</span>
-            </div>
-            <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Technical Blogs</h2>
-          </div>
-          <div class="flex items-center space-x-2 font-mono text-xs text-slate-400 bg-slate-900 p-2 border border-slate-800 rounded">
-            <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-            <span>Category: Microsoft Intune</span>
-          </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          <article class="bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col justify-between group">
-            <div class="p-6 space-y-4">
-              <div class="flex items-center justify-between text-xs font-mono text-sky-400">
-                <span>INTUNE // ARCHITECTURE</span>
-                <span>June 2026</span>
-              </div>
-              <h3 class="font-sans text-xl font-bold text-white group-hover:text-sky-400 transition-colors leading-snug">
-                Deep-Dive: Handling Win32 App Dependency Chains in Intune
-              </h3>
-              <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                An architectural strategy guide mapping complex installation structures inside Intune Management Extension.
-              </p>
-            </div>
-            <div class="p-6 pt-0 flex items-center justify-between border-t border-slate-950/40 mt-4 pt-4">
-              <button onclick="openBlogModal(0)" class="font-mono text-[11px] text-sky-400 hover:text-sky-300 transition-colors bg-transparent border-none outline-none cursor-pointer">Read System Runbook →</button>
-              <div class="flex space-x-1.5 text-slate-600 text-xs">
-                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-                <span class="font-mono text-[10px]">6 min read</span>
-              </div>
-            </div>
-          </article>
+
+
+<!-- Wrap the whole article in an <a> tag -->
+<a href="pages/Blog-Intune-Autopatch-1.html" class="block bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 group">
+  <article class="flex flex-col justify-between h-full p-6 space-y-4">
+    <div class="space-y-4">
+      <div class="flex items-center justify-between text-xs font-mono text-sky-400">
+        <span>SECURITY // AUTOPATCH</span>
+        <span>June 2026</span>
+      </div>
+      <h3 class="font-sans text-xl font-bold text-white group-hover:text-sky-400 transition-colors leading-snug">
+        Microsoft Autopatch: The A-to-Z Deployment
+      </h3>
+      <p class="font-sans text-slate-400 text-sm leading-relaxed">
+        A comprehensive A-to-Z guide for architecting an automated, ring-based update delivery model for your enterprise.
+      </p>
+    </div>
+    <div class="pt-4 border-t border-slate-950/40">
+      <span class="font-mono text-[11px] text-sky-400 group-hover:text-sky-300 transition-colors">Read System Runbook →</span>
+    </div>
+  </article>
+</a>
+
+
+
+
+
+
+
+
+
+    
 
           <article class="bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col justify-between group">
             <div class="p-6 space-y-4">
