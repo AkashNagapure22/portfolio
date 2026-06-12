@@ -1534,32 +1534,43 @@
     </section>
 
 
-
-
-<!-- Wrap the whole article in an <a> tag -->
-<a href="pages/Blog-Intune-Autopatch-1.html" class="block bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 group">
-  <article class="flex flex-col justify-between h-full p-6 space-y-4">
-    <div class="space-y-4">
-      <div class="flex items-center justify-between text-xs font-mono text-sky-400">
-        <span>SECURITY // AUTOPATCH</span>
-        <span>June 2026</span>
-      </div>
-      <h3 class="font-sans text-xl font-bold text-white group-hover:text-sky-400 transition-colors leading-snug">
-        Microsoft Autopatch: The A-to-Z Deployment
-      </h3>
-      <p class="font-sans text-slate-400 text-sm leading-relaxed">
-        A comprehensive A-to-Z guide for architecting an automated, ring-based update delivery model for your enterprise.
-      </p>
+<section id="blogs" class="py-24 bg-slate-950 text-left relative border-b border-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+    
+    <!-- Header remains the same -->
+    <div class="mb-12 border-b border-slate-800 pb-6">
+       <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white">Technical Blogs</h2>
     </div>
-    <div class="pt-4 border-t border-slate-950/40">
-      <span class="font-mono text-[11px] text-sky-400 group-hover:text-sky-300 transition-colors">Read System Runbook →</span>
+
+    <!-- THIS IS THE GRID YOU MUST UPDATE -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- BLOG TILE 1 -->
+      <a href="pages/Blog-Intune-Autopatch-1.html" class="block bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 group">
+        <article class="p-6 h-full flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-mono text-sky-400">
+              <span>SECURITY // AUTOPATCH</span>
+              <span>June 2026</span>
+            </div>
+            <h3 class="font-sans text-lg font-bold text-white group-hover:text-sky-400 leading-snug">
+              Microsoft Autopatch: The A-to-Z Deployment
+            </h3>
+            <p class="font-sans text-slate-400 text-sm leading-relaxed">
+              A comprehensive A-to-Z guide for architecting an automated, ring-based update delivery model.
+            </p>
+          </div>
+          <div class="pt-6 mt-4 border-t border-slate-800">
+            <span class="font-mono text-[11px] text-sky-400 group-hover:text-sky-300">Read System Runbook →</span>
+          </div>
+        </article>
+      </a>
+
+      <!-- Repeat this <a> block for other blogs -->
+      
     </div>
-  </article>
-</a>
-
-
-
-
+  </div>
+</section>
 
 
 
