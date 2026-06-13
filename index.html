@@ -38,7 +38,16 @@
       scroll-padding-top: 5rem;
     }
 
-    
+    @media (max-width: 1023px) {
+  #portfolio-navbar {
+    position: relative !important; /* Pushes content down on mobile */
+  }
+  
+  /* Adds space so the first section doesn't jump when the nav is relative */
+  main {
+    padding-top: 0 !important;
+  }
+}
 /* Construction Banner Animation */
 @keyframes scrollLeft {
   0% { transform: translateX(100%); }
@@ -190,7 +199,7 @@
 
   <main class="flex-grow">
     
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+<section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 mt-4">
       <div class="absolute inset-0 grid-bg-overlay opacity-20 pointer-events-none"></div>
       <div class="absolute top-20 right-[10%] w-96 h-96 rounded-full bg-sky-500/10 blur-[100px] pointer-events-none"></div>
       <div class="absolute bottom-20 left-[5%] w-80 h-80 rounded-full bg-indigo-500/10 blur-[80px] pointer-events-none"></div>
