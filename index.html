@@ -37,7 +37,13 @@
       scroll-behavior: smooth;
       scroll-padding-top: 5rem;
     }
-
+@media (min-width: 1024px) {
+  .nav-item-link {
+    white-space: nowrap; /* Prevents text from wrapping inside the button */
+    padding-left: 0.5rem !important; /* Reduces side padding to fit more links */
+    padding-right: 0.5rem !important;
+  }
+}
     /* Fix horizontal scroll and responsive containers */
   body {
     overflow-x: hidden;
