@@ -39,16 +39,14 @@
     }
 
   /* Replace your existing mobile media query with this */
-@media (max-width: 1023px) {
-  #portfolio-navbar {
-    position: fixed !important; /* Keep it locked to the top */
-    top: 0;
-  }
-  
-  /* Create the 'safe zone' so content starts below the fixed header */
-  body {
-    padding-top: 100px; 
-  }
+/* Forces the navbar to move with the page content */
+#portfolio-navbar {
+  position: relative !important;
+}
+
+/* Ensures no forced top spacing is applied */
+body {
+  padding-top: 0 !important;
 }
   
   /* Adds space so the first section doesn't jump when the nav is relative */
@@ -143,7 +141,7 @@
 
 
   
-<nav id="portfolio-navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-slate-950/95 backdrop-blur-md py-2 md:py-3 shadow-md">
+<nav id="portfolio-navbar" class="relative w-full z-50 transition-all duration-300 bg-slate-950/95 backdrop-blur-md py-2 md:py-3 shadow-md">
   
   <!-- Banner now spans the full screen width -->
 <div class="w-full overflow-hidden mb-4">
@@ -2003,48 +2001,43 @@
     const backToTopBtn = document.getElementById("back-to-top-btn");
     const navbar = document.getElementById("portfolio-navbar");
 
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 20) {
-        navbar.classList.remove("bg-transparent", "py-5");
-        navbar.classList.add("bg-slate-900/80", "backdrop-blur-md", "border-b", "border-white/10", "py-3", "shadow-lg");
-      } else {
-        navbar.classList.add("bg-transparent", "py-5");
-        navbar.classList.remove("bg-slate-900/80", "backdrop-blur-md", "border-b", "border-white/10", "py-3", "shadow-lg");
+  window.addEventListener("scroll", () => {
+  // Navigation is now relative and moves with the page; no class toggling needed.
+  
+  // Only handle back-to-top button visibility
+  if (window.scrollY > 400) {
+    backToTopBtn.classList.remove("hidden");
+  } else {
+    backToTopBtn.classList.add("hidden");
+  }
+
+  // Active link tracking
+  const sectionIds = ["home", "about", "certifications", "trainings", "skills", "experience", "education", "hobbies", "projects", "blogs", "contact"];
+  const scrollPosition = window.scrollY + 240; 
+
+  let currentActiveId = "home";
+  for (const id of sectionIds) {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.offsetTop;
+      const height = el.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        currentActiveId = id;
+        break;
       }
+    }
+  }
 
-      if (window.scrollY > 400) {
-        backToTopBtn.classList.remove("hidden");
-      } else {
-        backToTopBtn.classList.add("hidden");
-      }
-
-      // Recompiled precise element tracking sequence list
-      const sectionIds = ["home", "about", "certifications", "trainings", "skills", "experience", "education", "hobbies", "projects", "blogs", "contact"];
-      const scrollPosition = window.scrollY + 240; 
-
-      let currentActiveId = "home";
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            currentActiveId = id;
-            break;
-          }
-        }
-      }
-
-      const desktopLinks = document.querySelectorAll(".nav-item-link");
-      desktopLinks.forEach(link => {
-        const href = link.getAttribute("href");
-        if (href === `#${currentActiveId}`) {
-          link.className = "nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/40 border border-sky-400/20";
-        } else {
-          link.className = "nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent";
-        }
-      });
-    });
+  const desktopLinks = document.querySelectorAll(".nav-item-link");
+  desktopLinks.forEach(link => {
+    const href = link.getAttribute("href");
+    if (href === `#${currentActiveId}`) {
+      link.className = "nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/40 border border-sky-400/20";
+    } else {
+      link.className = "nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent";
+    }
+  });
+});
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
