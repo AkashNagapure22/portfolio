@@ -345,7 +345,7 @@ body {
                 <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">Verified Metric</span>
               </div>
               <div class="space-y-1 mt-auto">
-             <div class="font-sans font-extrabold text-3xl sm:text-4xl text-sky-400 tracking-tight leading-tight">
+         <div class="font-sans font-extrabold text-3xl sm:text-4xl text-sky-400 tracking-tight leading-tight">
   <span class="metric-value" data-target="10">0</span>+
 </div>
 <div class="font-mono text-[11px] text-white font-bold uppercase tracking-wider block">YEARS EXPERIENCE</div>
@@ -1902,36 +1902,35 @@ body {
   <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-md bg-slate-900/60 border border-slate-700/80 text-sky-400 hover:text-white backdrop-blur-md shadow-2xl transition-all duration-300 z-50 cursor-pointer" aria-label="Scroll Back To Top">
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </button>
+<script>
+  const blogDatabase = [
+    {
+      category: "INTUNE // ARCHITECTURE",
+      title: "Deep-Dive: Handling Win32 App Dependency Chains in Intune",
+      content: `<p class="font-semibold text-sky-300 font-mono mb-2">[CONTEXT_DIAGNOSTIC]</p><p>Managing software installations inside large device fleets requires rigorous dependency design. When configuring the Intune Management Extension (IME), unmanaged sequencing blocks cause execution timeouts or state failure signals.</p><div class="bg-slate-950 p-4 border border-slate-800 rounded font-mono text-xs my-3"># Rule Mapping Scenario<br>App_A (Core Framework) &lt;-- App_B (Plugin Pack) &lt;-- App_C (Custom Registry Config)</div><p class="font-semibold text-sky-300 font-mono mb-2">[RESOLUTION_ARCHITECTURES]</p><p>1. <strong>Strict Detection Rules:</strong> Ensure child apps utilize file or registry version checks that exclusively flip true after parent initialization tracks close entirely.</p><p>2. <strong>Graceful Exit Codes:</strong> Code wrapper installations to throw specialized exit codes (e.g., 3010 for soft reboot) rather than unmapped failures, forcing IME to re-evaluate structural dependencies without triggering infinite timing backoffs.</p>`
+    },
+    {
+      category: "POWERSHELL // GRAPH-API",
+      title: "Automating Intune Policy Baselines via Graph API",
+      content: `<p class="font-semibold text-sky-300 font-mono mb-2">[AUTOMATION_VECTOR]</p><p>Manual management via Microsoft Endpoint Manager portal introduces human configuration variation. Moving configurations into standard code pipelines using the Microsoft Graph API guarantees atomic tenant parity deployments.</p><div class="bg-slate-950 p-4 border border-slate-800 rounded font-mono text-xs my-3 text-emerald-400">Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations" -Body $jsonPayload</div><p>By capturing settings inside JSON payloads, configurations can be handled inside source control pipelines, allowing engineering teams to run tracking validations across test environments before applying updates onto active production grids.</p>`
+    },
+    {
+      category: "SECURITY // AUTOPILOT",
+      title: "Debugging Hardware Hash Import Failures in Autopilot",
+      content: `<p class="font-semibold text-sky-300 font-mono mb-2">[DIAGNOSTIC_BREAKDOWN]</p><p>During massive zero-touch hardware refreshes, capturing and importing unique device hashes frequently causes cryptographic serialization conflicts when processed via older OS templates.</p><p>If hardware registration returns error string '806 - Device Already Assigned', the physical profile is bound within a secondary Azure AD tenant or stale legacy objects.</p><p><strong>Systematic Resolution Runbook:</strong> Run specialized PowerShell diagnostics via administrative OOBE terminal blocks using <code>Get-WindowsAutopilotInfo.ps1</code> with direct <code>-Online</code> pipeline commands to forcefully clear parent metadata states and reset modern tenant assignment flags safely.</p>`
+    }
+  ];
 
-  <script>
-    const blogDatabase = [
-      {
-        category: "INTUNE // ARCHITECTURE",
-        title: "Deep-Dive: Handling Win32 App Dependency Chains in Intune",
-        content: `<p class="font-semibold text-sky-300 font-mono mb-2">[CONTEXT_DIAGNOSTIC]</p><p>Managing software installations inside large device fleets requires rigorous dependency design. When configuring the Intune Management Extension (IME), unmanaged sequencing blocks cause execution timeouts or state failure signals.</p><div class="bg-slate-950 p-4 border border-slate-800 rounded font-mono text-xs my-3"># Rule Mapping Scenario<br>App_A (Core Framework) &lt;-- App_B (Plugin Pack) &lt;-- App_C (Custom Registry Config)</div><p class="font-semibold text-sky-300 font-mono mb-2">[RESOLUTION_ARCHITECTURES]</p><p>1. <strong>Strict Detection Rules:</strong> Ensure child apps utilize file or registry version checks that exclusively flip true after parent initialization tracks close entirely.</p><p>2. <strong>Graceful Exit Codes:</strong> Code wrapper installations to throw specialized exit codes (e.g., 3010 for soft reboot) rather than unmapped failures, forcing IME to re-evaluate structural dependencies without triggering infinite timing backoffs.</p>`
-      },
-      {
-        category: "POWERSHELL // GRAPH-API",
-        title: "Automating Intune Policy Baselines via Graph API",
-        content: `<p class="font-semibold text-sky-300 font-mono mb-2">[AUTOMATION_VECTOR]</p><p>Manual management via Microsoft Endpoint Manager portal introduces human configuration variation. Moving configurations into standard code pipelines using the Microsoft Graph API guarantees atomic tenant parity deployments.</p><div class="bg-slate-950 p-4 border border-slate-800 rounded font-mono text-xs my-3 text-emerald-400">Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations" -Body $jsonPayload</div><p>By capturing settings inside JSON payloads, configurations can be handled inside source control pipelines, allowing engineering teams to run tracking validations across test environments before applying updates onto active production grids.</p>`
-      },
-      {
-        category: "SECURITY // AUTOPILOT",
-        title: "Debugging Hardware Hash Import Failures in Autopilot",
-        content: `<p class="font-semibold text-sky-300 font-mono mb-2">[DIAGNOSTIC_BREAKDOWN]</p><p>During massive zero-touch hardware refreshes, capturing and importing unique device hashes frequently causes cryptographic serialization conflicts when processed via older OS templates.</p><p>If hardware registration returns error string '806 - Device Already Assigned', the physical profile is bound within a secondary Azure AD tenant or stale legacy objects.</p><p><strong>Systematic Resolution Runbook:</strong> Run specialized PowerShell diagnostics via administrative OOBE terminal blocks using <code>Get-WindowsAutopilotInfo.ps1</code> with direct <code>-Online</code> pipeline commands to forcefully clear parent metadata states and reset modern tenant assignment flags safely.</p>`
-      }
-    ];
-
-    const hobbyDatabase = [
-     {
+  const hobbyDatabase = [
+    {
       title: "Self-Hosted Homelab Cluster",
       desc: "My homelab acts as a dedicated system testbed outside active production environments. It hosts localized Windows Server directory services, nested Hyper-V clusters, custom software delivery staging targets, and test routing parameters.",
-      img: "./images/hobby_homelab.png" // Verify this exact filename exists
+      img: "./images/hobby_homelab.png"
     },
     {
       title: "Strategic & Tactical Gaming",
       desc: "I enjoy immersive strategy and analytical multiplayer gaming systems. Navigating resource allocations and tactical coordination serves as a great offline sandbox.",
-      img: "./images/hobby_gaming.png" // Ensure you have this file in your images folder
+      img: "./images/hobby_gaming.png"
     },
     {
       title: "Analytical & Non-Fiction Reading",
@@ -1943,294 +1942,42 @@ body {
       desc: "Enthusiastic about collecting rare and historical coins, with an interest in their history, design, and cultural value.",
       img: "./images/hobby_coins.png"
     }
-    ];
+  ];
 
-    document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
-      loadTransmissionHistory();
-    });
+  document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+    loadTransmissionHistory();
 
-    function openBlogModal(index) {
-      const targetData = blogDatabase[index];
-      if (targetData) {
-        document.getElementById("modal-blog-category").innerText = targetData.category;
-        document.getElementById("modal-blog-title").innerText = targetData.title;
-        document.getElementById("modal-blog-body").innerHTML = targetData.content;
-        document.getElementById("blog-modal").classList.remove("hidden");
-        document.body.classList.add("overflow-hidden");
-        lucide.createIcons();
-      }
-    }
-
-    function closeBlogModal() {
-      document.getElementById("blog-modal").classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    function openHobbyModal(index) {
-      const targetData = hobbyDatabase[index];
-    if (targetData) {
-      // 1. Set the Title and Description
-      document.getElementById("hobby-modal-title").innerText = targetData.title;
-      document.getElementById("hobby-modal-desc").innerText = targetData.desc;
-      
-      // 2. Set the Image Source
-      const imgElement = document.getElementById("hobby-modal-img");
-      imgElement.src = targetData.img;
-      
-      // 3. Optional: Add an error check if the image fails to load
-      imgElement.onerror = function() {
-        console.error("Image failed to load: " + targetData.img);
-        this.src = "./images/placeholder.png"; // Optional fallback image
-      };
-
-      document.getElementById("hobby-modal").classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-
-    }
-    }
-
-    // Modal interface control handler
-    function closeHobbyModal() {
-      document.getElementById("hobby-modal").classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-    const mobileMenuDrawer = document.getElementById("mobile-menu-drawer");
-
-    mobileMenuBtn.addEventListener("click", () => {
-      const isHidden = mobileMenuDrawer.classList.contains("hidden");
-      if (isHidden) {
-        mobileMenuDrawer.classList.remove("hidden");
-        mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
-      } else {
-        mobileMenuDrawer.classList.add("hidden");
-        mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
-      }
-      lucide.createIcons();
-    });
-
-    function scrollToSection(event, id) {
-      event.preventDefault();
-      mobileMenuDrawer.classList.add("hidden");
-      mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
-      lucide.createIcons();
-
-      if (id === "home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+    // --- Animation Logic ---
+    const counters = document.querySelectorAll('.metric-value');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseInt(counter.getAttribute('data-target'));
+          let current = 0;
+          const increment = Math.ceil(target / 50);
+          
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              counter.innerText = target;
+              clearInterval(timer);
+            } else {
+              counter.innerText = current;
+            }
+          }, 40);
+          
+          observer.unobserve(counter);
         }
-      }
-    }
+      });
+    }, { threshold: 0.5 });
 
-    const backToTopBtn = document.getElementById("back-to-top-btn");
-    const navbar = document.getElementById("portfolio-navbar");
-
-  window.addEventListener("scroll", () => {
-  // Navigation is now relative and moves with the page; no class toggling needed.
-  
-  // Only handle back-to-top button visibility
-  if (window.scrollY > 400) {
-    backToTopBtn.classList.remove("hidden");
-  } else {
-    backToTopBtn.classList.add("hidden");
-  }
-
-  // Active link tracking
-  const sectionIds = ["home", "about", "certifications", "trainings", "skills", "experience", "education", "hobbies", "projects", "blogs", "contact"];
-  const scrollPosition = window.scrollY + 240; 
-
-  let currentActiveId = "home";
-  for (const id of sectionIds) {
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.offsetTop;
-      const height = el.offsetHeight;
-      if (scrollPosition >= top && scrollPosition < top + height) {
-        currentActiveId = id;
-        break;
-      }
-    }
-  }
-
-  const desktopLinks = document.querySelectorAll(".nav-item-link");
-  desktopLinks.forEach(link => {
-    const href = link.getAttribute("href");
-    if (href === `#${currentActiveId}`) {
-      link.className = "nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/40 border border-sky-400/20";
-    } else {
-      link.className = "nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent";
-    }
+    counters.forEach(counter => observer.observe(counter));
   });
-});
 
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function transmitPayload(event) {
-      event.preventDefault();
-
-      const form = document.getElementById("secure-contact-form");
-      const nameVal = document.getElementById("fullname_input").value;
-      const emailVal = document.getElementById("email_input").value;
-      const subjVal = document.getElementById("subject_input").value || "No Specific Subject";
-      const msgVal = document.getElementById("message_input").value;
-
-      if (!nameVal || !emailVal || !msgVal) {
-        alert("ALERT: Crucial data registers are incomplete.");
-        return;
-      }
-
-      const submitBtn = document.getElementById("submit-btn");
-      const uplinkConsole = document.getElementById("uplink-console");
-      const consoleStatus = document.getElementById("console-status");
-      const logsStack = document.getElementById("console-logs-stack");
-
-      submitBtn.disabled = true;
-      uplinkConsole.classList.remove("hidden");
-      consoleStatus.innerText = "connecting";
-      consoleStatus.className = "text-[10px] uppercase font-bold text-sky-400 animate-pulse";
-      logsStack.innerHTML = "<p>> INITIALIZING CHANNEL...</p><p>> REQUESTING COMPLIANCE HANDSHAKE...</p>";
-
-      setTimeout(() => {
-        consoleStatus.innerText = "encrypting";
-        consoleStatus.className = "text-[10px] uppercase font-bold text-indigo-400 animate-pulse";
-        logsStack.innerHTML += "<p>> HANDSHAKE COMPLETED.</p><p>> AES-256 PARSING SECURE PAYLOAD...</p>";
-
-        setTimeout(() => {
-          const formData = new FormData(form);
-          fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          }).then(response => {
-            const uniqueTxID = `TX-${Math.floor(100000 + Math.random() * 900000)}`;
-            const transmissionObj = {
-              id: uniqueTxID,
-              senderName: nameVal,
-              senderEmail: emailVal,
-              subject: subjVal,
-              message: msgVal,
-              timestamp: new Date().toISOString()
-            };
-
-            let currentList = [];
-            try {
-              const savedData = localStorage.getItem("akash_transmissions");
-              if (savedData) currentList = JSON.parse(savedData);
-            } catch(e) {}
-
-            currentList.unshift(transmissionObj);
-            try {
-              localStorage.setItem("akash_transmissions", JSON.stringify(currentList));
-            } catch(e) {}
-
-            consoleStatus.innerText = "success";
-            consoleStatus.className = "text-[10px] uppercase font-bold text-emerald-400";
-            logsStack.innerHTML += `<p class='text-emerald-400'>> EMAIL PAYLOAD ROUTED TO CLOUD INTERCEPT.</p><p class='text-emerald-400'>> BROADCAST RECEIVED VIA LIVE BOX!</p><p class='text-sky-300 font-bold'>> REGISTERED ID: ${uniqueTxID}</p>`;
-
-            loadTransmissionHistory();
-
-            document.getElementById("fullname_input").value = "";
-            document.getElementById("email_input").value = "";
-            document.getElementById("subject_input").value = "";
-            document.getElementById("message_input").value = "";
-            submitBtn.disabled = false;
-          }).catch(error => {
-            consoleStatus.innerText = "failure";
-            consoleStatus.className = "text-[10px] uppercase font-bold text-rose-500";
-            logsStack.innerHTML += "<p>> TRANSMISSION EXCEPTION ERROR TO INBOX REPLICATOR.</p>";
-            submitBtn.disabled = false;
-          });
-        }, 1200);
-      }, 1000);
-    }
-
-    function loadTransmissionHistory() {
-      const historyBox = document.getElementById("history-box");
-      const historyCountEl = document.getElementById("history-count");
-      const historyList = document.getElementById("history-list");
-
-      let listData = [];
-      try {
-        const cached = localStorage.getItem("akash_transmissions");
-        if (cached) listData = JSON.parse(cached);
-      } catch (e) {}
-
-      if (listData.length > 0) {
-        historyBox.classList.remove("hidden");
-        historyCountEl.innerText = listData.length;
-        
-        let htmlStack = "";
-        listData.forEach(tx => {
-          htmlStack += `
-            <div class="text-left font-sans text-xs bg-slate-900/50 p-3 rounded border border-slate-900 flex flex-col space-y-1">
-              <div class="flex items-center justify-between text-slate-400 font-mono text-[9px] border-b border-slate-950 pb-1.5 mb-1">
-                <span class="text-sky-400 font-bold">${tx.id}</span>
-                <span>${new Date(tx.timestamp).toLocaleString()}</span>
-              </div>
-              <p class="text-white font-semibold">${escapeHtml(tx.senderName)} (${escapeHtml(tx.senderEmail)})</p>
-              <p class="font-mono text-[10px] text-sky-300">Subject: <span class="text-slate-300 font-sans">${escapeHtml(tx.subject)}</span></p>
-              <p class="text-slate-400 mt-1 italic">"${escapeHtml(tx.message)}"</p>
-            </div>
-          `;
-        });
-        historyList.innerHTML = htmlStack;
-      } else {
-        historyBox.classList.add("hidden");
-      }
-    }
-
-    function clearTransmissionHistory() {
-      try {
-        localStorage.removeItem("akash_transmissions");
-      } catch(e) {}
-      loadTransmissionHistory();
-    }
-
-    function escapeHtml(text) {
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-  </script>
-  <script>
-  const counters = document.querySelectorAll('.metric-value');
-
-  const animateCounter = (counter) => {
-    const target = +counter.getAttribute('data-target');
-    const updateCount = () => {
-      const current = +counter.innerText;
-      const increment = target / 100; // Adjust '100' to change speed (higher = slower)
-
-      if (current < target) {
-        counter.innerText = Math.ceil(current + increment);
-        setTimeout(updateCount, 20);
-      } else {
-        counter.innerText = target;
-      }
-    };
-    updateCount();
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(counter => observer.observe(counter));
+  // [Include your existing openBlogModal, closeBlogModal, transmitPayload, etc., here]
+  // Note: I omitted them for brevity in this block, keep your existing functions for these.
 </script>
 </body>
 </html>
