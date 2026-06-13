@@ -1902,53 +1902,19 @@ body {
   <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-md bg-slate-900/60 border border-slate-700/80 text-sky-400 hover:text-white backdrop-blur-md shadow-2xl transition-all duration-300 z-50 cursor-pointer" aria-label="Scroll Back To Top">
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </button>
-<script>
-  const blogDatabase = [
-    {
-      category: "INTUNE // ARCHITECTURE",
-      title: "Deep-Dive: Handling Win32 App Dependency Chains in Intune",
-      content: `<p class="font-semibold text-sky-300 font-mono mb-2">[CONTEXT_DIAGNOSTIC]</p><p>Managing software installations inside large device fleets requires rigorous dependency design. When configuring the Intune Management Extension (IME), unmanaged sequencing blocks cause execution timeouts or state failure signals.</p><div class="bg-slate-950 p-4 border border-slate-800 rounded font-mono text-xs my-3"># Rule Mapping Scenario<br>App_A (Core Framework) &lt;-- App_B (Plugin Pack) &lt;-- App_C (Custom Registry Config)</div><p class="font-semibold text-sky-300 font-mono mb-2">[RESOLUTION_ARCHITECTURES]</p><p>1. <strong>Strict Detection Rules:</strong> Ensure child apps utilize file or registry version checks that exclusively flip true after parent initialization tracks close entirely.</p><p>2. <strong>Graceful Exit Codes:</strong> Code wrapper installations to throw specialized exit codes (e.g., 3010 for soft reboot) rather than unmapped failures, forcing IME to re-evaluate structural dependencies without triggering infinite timing backoffs.</p>`
-    },
-    {
-      category: "POWERSHELL // GRAPH-API",
-      title: "Automating Intune Policy Baselines via Graph API",
-      content: `<p class="font-semibold text-sky-300 font-mono mb-2">[AUTOMATION_VECTOR]</p><p>Manual management via Microsoft Endpoint Manager portal introduces human configuration variation. Moving configurations into standard code pipelines using the Microsoft Graph API guarantees atomic tenant parity deployments.</p><div class="bg-slate-950 p-4 border border-slate-800 rounded font-mono text-xs my-3 text-emerald-400">Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations" -Body $jsonPayload</div><p>By capturing settings inside JSON payloads, configurations can be handled inside source control pipelines, allowing engineering teams to run tracking validations across test environments before applying updates onto active production grids.</p>`
-    },
-    {
-      category: "SECURITY // AUTOPILOT",
-      title: "Debugging Hardware Hash Import Failures in Autopilot",
-      content: `<p class="font-semibold text-sky-300 font-mono mb-2">[DIAGNOSTIC_BREAKDOWN]</p><p>During massive zero-touch hardware refreshes, capturing and importing unique device hashes frequently causes cryptographic serialization conflicts when processed via older OS templates.</p><p>If hardware registration returns error string '806 - Device Already Assigned', the physical profile is bound within a secondary Azure AD tenant or stale legacy objects.</p><p><strong>Systematic Resolution Runbook:</strong> Run specialized PowerShell diagnostics via administrative OOBE terminal blocks using <code>Get-WindowsAutopilotInfo.ps1</code> with direct <code>-Online</code> pipeline commands to forcefully clear parent metadata states and reset modern tenant assignment flags safely.</p>`
-    }
-  ];
 
-  const hobbyDatabase = [
-    {
-      title: "Self-Hosted Homelab Cluster",
-      desc: "My homelab acts as a dedicated system testbed outside active production environments. It hosts localized Windows Server directory services, nested Hyper-V clusters, custom software delivery staging targets, and test routing parameters.",
-      img: "./images/hobby_homelab.png"
-    },
-    {
-      title: "Strategic & Tactical Gaming",
-      desc: "I enjoy immersive strategy and analytical multiplayer gaming systems. Navigating resource allocations and tactical coordination serves as a great offline sandbox.",
-      img: "./images/hobby_gaming.png"
-    },
-    {
-      title: "Analytical & Non-Fiction Reading",
-      desc: "I regularly read books centered around technological histories, systems design thinking, engineering case models, and problem-solving metrics.",
-      img: "./images/hobby_reading.png"
-    },
-    {
-      title: "Coin Collection",
-      desc: "Enthusiastic about collecting rare and historical coins, with an interest in their history, design, and cultural value.",
-      img: "./images/hobby_coins.png"
-    }
-  ];
+  
+  <script>
+  // --- Data Databases ---
+  const blogDatabase = [ /* ... keep your existing blogDatabase content ... */ ];
+  const hobbyDatabase = [ /* ... keep your existing hobbyDatabase content ... */ ];
 
+  // --- Core Lifecycle ---
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
     loadTransmissionHistory();
 
-    // --- Animation Logic ---
+    // 1. Counter Animation Logic
     const counters = document.querySelectorAll('.metric-value');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1956,8 +1922,7 @@ body {
           const counter = entry.target;
           const target = parseInt(counter.getAttribute('data-target'));
           let current = 0;
-          const increment = Math.ceil(target / 50);
-          
+          const increment = Math.ceil(target / 40);
           const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
@@ -1966,20 +1931,41 @@ body {
             } else {
               counter.innerText = current;
             }
-          }, 40);
-          
+          }, 50);
           observer.unobserve(counter);
         }
       });
     }, { threshold: 0.5 });
-
     counters.forEach(counter => observer.observe(counter));
   });
 
-  // [Include your existing openBlogModal, closeBlogModal, transmitPayload, etc., here]
-  // Note: I omitted them for brevity in this block, keep your existing functions for these.
+  // --- 2. Navigation & Scroll Logic ---
+  window.addEventListener("scroll", () => {
+    const backToTopBtn = document.getElementById("back-to-top-btn");
+    if (!backToTopBtn) return;
+    // Show button after 400px of scrolling
+    window.scrollY > 400 ? backToTopBtn.classList.remove("hidden") : backToTopBtn.classList.add("hidden");
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // --- 3. Existing Helpers ---
+  function openBlogModal(index) { /* ... keep your existing code ... */ }
+  function closeBlogModal() { /* ... keep your existing code ... */ }
+  function openHobbyModal(index) { /* ... keep your existing code ... */ }
+  function closeHobbyModal() { /* ... keep your existing code ... */ }
+  function scrollToSection(event, id) { event.preventDefault(); document.getElementById(id).scrollIntoView({ behavior: "smooth" }); }
+  function transmitPayload(event) { /* ... keep your existing code ... */ }
+  function loadTransmissionHistory() { /* ... keep your existing code ... */ }
+  function clearTransmissionHistory() { localStorage.removeItem("akash_transmissions"); loadTransmissionHistory(); }
+  function escapeHtml(text) { return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
 </script>
-</body>
+
+<button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-md bg-slate-900/60 border border-slate-700/80 text-sky-400 hover:text-white backdrop-blur-md shadow-2xl transition-all duration-300 z-50 cursor-pointer" aria-label="Scroll Back To Top">
+  <i data-lucide="arrow-up" class="w-5 h-5"></i>
+</button></body>
 </html>
 
 ```
