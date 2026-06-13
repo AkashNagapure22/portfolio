@@ -37,30 +37,8 @@
       scroll-behavior: smooth;
       scroll-padding-top: 5rem;
     }
-@media (min-width: 1024px) {
-  .nav-item-link {
-    white-space: nowrap; /* Prevents text from wrapping inside the button */
-    padding-left: 0.5rem !important; /* Reduces side padding to fit more links */
-    padding-right: 0.5rem !important;
-  }
-}
-    /* Fix horizontal scroll and responsive containers */
-  body {
-    overflow-x: hidden;
-    width: 100vw;
-  }
-  
-  /* Fix mobile menu drawer to stay within screen height */
-  #mobile-menu-drawer {
-    max-height: 80vh;
-    overflow-y: auto;
-  }
 
-  /* Ensure long words/titles wrap instead of expanding the screen */
-  h1, h2, h3 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
+    
 /* Construction Banner Animation */
 @keyframes scrollLeft {
   0% { transform: translateX(100%); }
@@ -142,15 +120,10 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
 
-<nav id="portfolio-navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent py-3 md:py-5">
+  <nav id="portfolio-navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-5">
     <!-- Rolling Construction Banner -->
-<div class="w-full max-w-full overflow-hidden">
-  <div class="bg-slate-900 border-b border-slate-800 py-2 overflow-hidden z-[60] relative">
-    <div class="animate-scroll whitespace-nowrap">
-      ...
-    </div>
-  </div>
-</div>  <div class="animate-scroll whitespace-nowrap">
+<div class="w-full bg-slate-900 border-b border-slate-800 py-2 overflow-hidden z-[60] relative">
+  <div class="animate-scroll whitespace-nowrap">
     <span class="text-xs md:text-sm text-slate-400 font-mono">
       <span class="text-amber-400 mx-3">🚧</span> The website is still under construction and a work in progress, but the foundation is taking shape.
     </span>
@@ -173,11 +146,7 @@
           </div>
         </a>
 
-       <!-- Ensure the parent container allows for responsive behavior -->
-<div class="hidden lg:flex items-center space-x-1 flex-wrap justify-center">
-  <a href="#home" ...>Home</a>
-  <!-- ... remaining links ... -->
-</div>
+        <div class="hidden lg:flex items-center space-x-1">
           <a href="#home" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/40 border border-sky-400/20" onclick="scrollToSection(event, 'home')">Home</a>
           <a href="#about" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'about')">About</a>
           <a href="#certifications" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'certifications')">Certifications</a>
