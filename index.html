@@ -1535,48 +1535,53 @@
 
 
 
-
-    
-
 <section id="blogs" class="py-24 bg-slate-950 text-left relative border-b border-slate-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
     
-    <!-- Header remains the same -->
     <div class="mb-12 border-b border-slate-800 pb-6">
        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white">Technical Blogs</h2>
     </div>
 
-    <!-- THIS IS THE GRID YOU MUST UPDATE -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- BLOG TILE 1 -->
-      <a href="Autopatchblog.html" class="block bg-slate-900 border border-slate-800 hover:border-sky-500/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 group">
-        <article class="p-6 h-full flex flex-col justify-between">
+      <!-- BLOG TILE -->
+      <a href="Autopatchblog.html" class="block bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:border-orange-500/50 group relative">
+        
+        <!-- BROWNN TAB (Category) -->
+        <div class="absolute top-0 left-0 bg-orange-600 text-white text-xs font-bold px-4 py-1 rounded-br-lg z-20">
+          Intune
+        </div>
+
+        <!-- GROWTH EFFECT BACKGROUND LAYER -->
+        <div class="absolute inset-0 bg-orange-600/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+        <article class="p-6 h-full flex flex-col justify-between relative z-10 pt-12">
           <div class="space-y-4">
-            <div class="flex items-center justify-between text-xs font-mono text-sky-400">
-              <span>SECURITY // AUTOPATCH</span>
-              <span>June 2026</span>
-            </div>
-            <h3 class="font-sans text-lg font-bold text-white group-hover:text-sky-400 leading-snug">
+            <h3 class="font-sans text-lg font-bold text-white leading-snug">
               Microsoft Autopatch: The A-to-Z Deployment
             </h3>
             <p class="font-sans text-slate-400 text-sm leading-relaxed">
               A comprehensive A-to-Z guide for architecting an automated, ring-based update delivery model.
             </p>
           </div>
-          <div class="pt-6 mt-4 border-t border-slate-800">
-            <span class="font-mono text-[11px] text-sky-400 group-hover:text-sky-300">Read System Runbook →</span>
+
+          <!-- AUTHOR AND DATE FOOTER -->
+          <div class="flex items-center gap-4 mt-6 text-slate-400 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="path-to-profile-image.jpg" alt="Author" class="w-6 h-6 rounded-full object-cover">
+              <span class="hover:text-white transition-colors">Prajwal Desai</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span>🕒</span> <!-- Placeholder for clock icon -->
+              <span>June 2026</span>
+            </div>
           </div>
         </article>
       </a>
 
-      <!-- Repeat this <a> block for other blogs -->
-      
     </div>
   </div>
 </section>
-
-
 
 
 
