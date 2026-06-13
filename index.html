@@ -167,7 +167,11 @@
           </div>
         </a>
 
-        <div class="hidden lg:flex items-center space-x-1">
+       <!-- Ensure the parent container allows for responsive behavior -->
+<div class="hidden lg:flex items-center space-x-1 flex-wrap justify-center">
+  <a href="#home" ...>Home</a>
+  <!-- ... remaining links ... -->
+</div>
           <a href="#home" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/40 border border-sky-400/20" onclick="scrollToSection(event, 'home')">Home</a>
           <a href="#about" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'about')">About</a>
           <a href="#certifications" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'certifications')">Certifications</a>
