@@ -1,0 +1,41 @@
+# Paths
+$SourceDir    = $PSScriptRoot   # folder where script is running
+$InstallDir   = "$env:ProgramData\DesktopInfo"
+$ExePath      = "$InstallDir\DesktopInfo.exe"
+$IniPath      = "$InstallDir\desktopinfo.ini"
+$ShortcutPath = "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\DesktopInfo.lnk"
+
+# 1. Kill existing instances
+Stop-Process -Name "DesktopInfo" -Force -ErrorAction SilentlyContinue
+
+# 2. Setup Directories and Copy Files
+if (!(Test-Path $InstallDir)) {
+    New-Item -Path $InstallDir -ItemType Directory | Out-Null
+}
+
+Copy-Item -Path "$SourceDir\DesktopInfo.exe" -Destination $ExePath -Force
+Copy-Item -Path "$SourceDir\desktopinfo.ini" -Destination $IniPath -Force
+
+# 3. Set folder permissions: Users = Read/Execute, Admins = FullControl
+$acl = Get-Acl $InstallDir
+$ruleUsers  = New-Object System.Security.AccessControl.FileSystemAccessRule("Users","ReadAndExecute","ContainerInherit,ObjectInherit","None","Allow")
+$ruleAdmins = New-Object System.Security.AccessControl.FileSystemAccessRule("Administrators","FullControl","ContainerInherit,ObjectInherit","None","Allow")
+$acl.SetAccessRuleProtection($true,$false) # disable inheritance
+$acl.ResetAccessRule($ruleUsers)
+$acl.AddAccessRule($ruleAdmins)
+Set-Acl $InstallDir $acl
+
+# 4. Create Startup Shortcut for ALL users
+$WshShell  = New-Object -ComObject WScript.Shell
+$Shortcut  = $WshShell.CreateShortcut($ShortcutPath)
+$Shortcut.TargetPath       = $ExePath
+$Shortcut.Arguments        = "-c `"$IniPath`""
+$Shortcut.WorkingDirectory = $InstallDir
+$Shortcut.WindowStyle      = 1  # Normal window
+$Shortcut.IconLocation     = $ExePath
+$Shortcut.Save()
+
+# 5. Launch immediately (optional, will only show for current interactive user)
+Start-Process -FilePath $ExePath -ArgumentList "-c `"$IniPath`"" -WindowStyle Hidden
+
+Write-Host "Deployment Complete. DesktopInfo copied to ProgramData and set to run for all users at logon." -ForegroundColor Green
