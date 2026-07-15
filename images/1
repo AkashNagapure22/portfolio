@@ -1,1 +1,20 @@
 
+[options]
+font-face=Segoe UI
+font-size=13
+formcolor=000000
+margin-top=40
+[items]
+; --- Header ---
+
+; --- Identity ---
+; Use the specific HOST and USER items, not variables
+HOST=text:Computer Name
+USER=text:User Name
+; --- OS & Boot ---
+; This matches your working syntax
+OSBUILD2=text:OS Version,display:%operating_system%
+BOOTTIME=text:Last Boot,display:%short_date% %short_time%
+; --- Network ----
+NETWORKINTERFACES=interval:10,operstatus:1,iftype:6 71,hide-no-result:1,filter:(%8 ne 0.0.0.0),row-text:%2 IP,replace:"Ethernet":"LAN","Ethernet 2":"LAN","Local Area Connection":"LAN",display:%8
+; --- Footer ---
