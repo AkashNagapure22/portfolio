@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Geist:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "secondary-fixed-dim": "#ebb2ff",
+                            "primary-container": "#00f2ff",
+                            "tertiary": "#f9f5ff",
+                            "on-secondary-fixed-variant": "#74009f",
+                            "secondary": "#ebb2ff",
+                            "on-tertiary-fixed": "#07006c",
+                            "on-primary-fixed-variant": "#004f54",
+                            "on-primary": "#00363a",
+                            "on-surface-variant": "#b9cacb",
+                            "primary-fixed": "#74f5ff",
+                            "surface-variant": "#353437",
+                            "on-secondary-fixed": "#320047",
+                            "surface": "#131315",
+                            "on-tertiary-container": "#4241f5",
+                            "on-surface": "#e5e1e4",
+                            "surface-container-lowest": "#0e0e10",
+                            "tertiary-container": "#d8d7ff",
+                            "background": "#131315",
+                            "inverse-surface": "#e5e1e4",
+                            "outline": "#849495",
+                            "inverse-primary": "#00696f",
+                            "error": "#ffb4ab",
+                            "surface-container-high": "#2a2a2c",
+                            "on-tertiary-fixed-variant": "#2316de",
+                            "secondary-container": "#b600f8",
+                            "on-error": "#690005",
+                            "surface-bright": "#39393b",
+                            "on-tertiary": "#1100a9",
+                            "primary": "#e1fdff",
+                            "on-primary-container": "#006a71",
+                            "surface-container-highest": "#353437",
+                            "on-secondary-container": "#fff6fc",
+                            "surface-tint": "#00dbe7",
+                            "error-container": "#93000a",
+                            "on-secondary": "#520072",
+                            "on-error-container": "#ffdad6",
+                            "surface-container-low": "#1c1b1d",
+                            "surface-container": "#201f21",
+                            "outline-variant": "#3a494b",
+                            "primary-fixed-dim": "#00dbe7",
+                            "inverse-on-surface": "#313032",
+                            "on-primary-fixed": "#002022",
+                            "secondary-fixed": "#f8d8ff",
+                            "tertiary-fixed": "#e1e0ff",
+                            "surface-dim": "#131315",
+                            "tertiary-fixed-dim": "#c0c1ff",
+                            "on-background": "#e5e1e4"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "section-gap": "64px",
+                            "base": "8px",
+                            "container-margin": "24px",
+                            "gutter": "16px"
+                        },
+                        "fontFamily": {
+                            "body-lg": ["Inter"],
+                            "display-lg-mobile": ["Space Grotesk"],
+                            "label-sm": ["Geist"],
+                            "headline-md": ["Space Grotesk"],
+                            "body-md": ["Inter"],
+                            "display-lg": ["Space Grotesk"]
+                        },
+                        "fontSize": {
+                            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                            "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                            "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                        }
+                    },
+                },
+            }
+        } catch (_e) {}
+    </script>
+<style>
+        .slider-container {
+            display: flex;
+            transition: transform 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+            width: 300%;
+        }
+        .slider-item {
+            width: 33.333333%;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<header class="fixed top-0 w-full z-50 bg-surface/15 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_0_20px_rgba(0,219,231,0.1)]">
+<nav class="flex justify-between items-center px-container-margin py-4 w-full">
+<div class="font-display-lg text-primary uppercase tracking-tighter flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div class="hidden md:flex items-center gap-gutter">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#games-finished">Library</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#games-finished">Achievements</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#footer">Community</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all active:scale-95">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A futuristic gaming avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBky_IukZYqaUhVPonq1ElKAsJPlM3nS3fP_ob4zCLFRl8ob-2ueJrBmjxAUw66Ns2c5fqp0T8VaL7X9uUG1zCi8B4lCxBAreIEbu4KAeoQZHkye3TlFMohH8na8iJPymYCyOPMGhiJi7zDR07WCJ8aXlYnMa8GIf1e8XM2FGt02c0dvu7RSoierHuktFGHCEOu6hg0titnLCfYpaUlPTiB_wEQh_325NLItAbH1ajaN_3KIh4x6o4CZRD_rK28bVsuGsh7F1rg-fk"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-section-gap px-container-margin max-w-7xl mx-auto">
+<!-- HEADER TITLE -->
+<section class="mb-section-gap">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary uppercase tracking-tighter mb-2">Protocol: My Gaming Journey</h1>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="font-label-sm uppercase tracking-widest bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">System Status: Logged In</span>
+<span class="font-label-sm uppercase tracking-widest">Active Archive v2.4</span>
+</div>
+</section>
+<!-- CURRENTLY PLAYING GAMES (AUTO-SLIDER) -->
+<section class="mb-section-gap overflow-hidden">
+<div class="flex items-center gap-2 mb-gutter">
+<span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+<h2 class="font-label-sm uppercase tracking-widest text-primary">Currently Playing Games</h2>
+</div>
+<div class="relative overflow-hidden group">
+<div class="slider-container" id="game-slider">
+<!-- Slide 1: Elden Ring -->
+<div class="slider-item">
+<div class="glass-panel relative overflow-hidden h-[500px] border border-outline-variant/30" style="background: rgba(19, 19, 21, 0.6);">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Elden Ring Shadow of the Erdtree" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzvODrzKkpP--0wxBb-D8cEMbRRLyfr2sBz9KCUPwuDbDJ2z6YIMzZbviX76RqQocGnhJEJ_N1iOBuDAxKiIG6e7IEOHZE2C3RptZTOptfcn2bywt2zXLPspeDd5oPM8I8j-z_prI3qp00E1oxdGASxDN85qx89RqW3iSQb4s1h-xCeHg3EgNO3AwsfAmqdysI3kiLrF4Aa7RBdG5WFlP78hnRb0IaZjH3BJWcN8B4LEgXSHkTi3ApbOb498WWLWP7gh5JlmUVkyA"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent z-10"></div>
+<div class="relative z-20 p-8 h-full flex flex-col justify-end">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-4xl text-primary mb-2">Elden Ring: Shadow of the Erdtree</h3>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-widest">RPG // FromSoftware</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-primary uppercase">Mission Status</p>
+<p class="font-label-sm text-on-surface">Exploring Shadow Realm</p>
+</div>
+</div>
+<div class="bg-surface-container/50 backdrop-blur-md p-6 border border-outline-variant/30 mb-6">
+<div class="flex justify-between font-label-sm mb-2">
+<span class="text-on-surface-variant uppercase">Sync Progress</span>
+<span class="text-primary">82%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant overflow-hidden relative">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest/50 p-4 border border-outline-variant/20">
+<p class="font-label-sm text-on-surface-variant uppercase">Hours Logged</p>
+<p class="font-display-lg-mobile text-primary">144.5</p>
+</div>
+<div class="bg-surface-container-lowest/50 p-4 border border-outline-variant/20">
+<p class="font-label-sm text-on-surface-variant uppercase">Personal Log</p>
+<p class="text-on-surface text-sm italic">"The difficulty spike is real. Messmer's fight was a masterpiece of design."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 2: Cyberpunk -->
+<div class="slider-item">
+<div class="glass-panel relative overflow-hidden h-[500px] border border-outline-variant/30" style="background: rgba(19, 19, 21, 0.6);">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Cyberpunk 2077" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd6Of6E6yId2k3LO_iukKAwT8lqHjokNCNlputUCY8dZgEZ4i8nGiMmdj1H5TdWAauu8SHH4xg7sStyf8qP0qujaz1xTBpX-wp82eYKi6yrXvrUaSRlecR1Au5_kezDmV3kYu3gdt6ewqqnIFodFpO1oCkLhuk30YCs7Zpx5I95YyZxVefVjpURuoydUr00w2HgLVJ7ZWZVQ9nryRnFDX6MD7N_XqpmFIMbQgoVUDPHVZ9gNDcbPIFZw8o8JOvih00woGj8LrKvKI"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent z-10"></div>
+<div class="relative z-20 p-8 h-full flex flex-col justify-end">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-4xl text-primary mb-2">Cyberpunk 2077</h3>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-widest">Action-RPG // CDPR</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-primary uppercase">Mission Status</p>
+<p class="font-label-sm text-on-surface">Phantom Liberty DLC</p>
+</div>
+</div>
+<div class="bg-surface-container/50 backdrop-blur-md p-6 border border-outline-variant/30 mb-6">
+<div class="flex justify-between font-label-sm mb-2">
+<span class="text-on-surface-variant uppercase">Sync Progress</span>
+<span class="text-primary">45%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant overflow-hidden relative">
+<div class="h-full bg-primary" style="width: 45%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest/50 p-4 border border-outline-variant/20">
+<p class="font-label-sm text-on-surface-variant uppercase">Hours Logged</p>
+<p class="font-display-lg-mobile text-primary">89.2</p>
+</div>
+<div class="bg-surface-container-lowest/50 p-4 border border-outline-variant/20">
+<p class="font-label-sm text-on-surface-variant uppercase">Personal Log</p>
+<p class="text-on-surface text-sm italic">"Dogtown is an incredible technical achievement. The atmosphere is unmatched."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 3: Hades II -->
+<div class="slider-item">
+<div class="glass-panel relative overflow-hidden h-[500px] border border-outline-variant/30" style="background: rgba(19, 19, 21, 0.6);">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Hades II" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8e4JYcfHWxN-9VRY7Jer4RG0QzwwIuKFC00032wS9NAgiGKDzGa46iDfg_8J1yQNy0w0xcuUgBs5r8wMWTlD7eyKM0MEFp0g7zAbfHSV6OV-sgcyq576K6Rvhr_5w_c36seQTVzxyWyz7gED0r0jiLc4sAqd9Lsly8n9v-ogWT1uyMGA-2S3VUAapMzKylQ6MEAe8q1LknGlhM1aZU2-vgQN2vucOD654-QS3FQYNZFg6WkxsnlYnhcENYykr9YDyFOCef8bMnoY"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent z-10"></div>
+<div class="relative z-20 p-8 h-full flex flex-col justify-end">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-4xl text-primary mb-2">Hades II</h3>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-widest">Roguelike // Supergiant</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-primary uppercase">Mission Status</p>
+<p class="font-label-sm text-on-surface">Early Access // Deep Depths</p>
+</div>
+</div>
+<div class="bg-surface-container/50 backdrop-blur-md p-6 border border-outline-variant/30 mb-6">
+<div class="flex justify-between font-label-sm mb-2">
+<span class="text-on-surface-variant uppercase">Sync Progress</span>
+<span class="text-primary">22%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant overflow-hidden relative">
+<div class="h-full bg-primary" style="width: 22%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest/50 p-4 border border-outline-variant/20">
+<p class="font-label-sm text-on-surface-variant uppercase">Hours Logged</p>
+<p class="font-display-lg-mobile text-primary">24.8</p>
+</div>
+<div class="bg-surface-container-lowest/50 p-4 border border-outline-variant/20">
+<p class="font-label-sm text-on-surface-variant uppercase">Personal Log</p>
+<p class="text-on-surface text-sm italic">"Melinoë's moveset feels so distinct from Zagreus. The magic system is deep."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slider Controls -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+<div class="w-3 h-3 bg-primary rounded-full slider-dot opacity-100 transition-opacity cursor-pointer" onclick="goToSlide(0)"></div>
+<div class="w-3 h-3 bg-primary/30 rounded-full slider-dot opacity-30 transition-opacity cursor-pointer" onclick="goToSlide(1)"></div>
+<div class="w-3 h-3 bg-primary/30 rounded-full slider-dot opacity-30 transition-opacity cursor-pointer" onclick="goToSlide(2)"></div>
+</div>
+</div>
+</section>
+<!-- GAMES FINISHED -->
+<section class="mb-section-gap" id="games-finished">
+<div class="flex justify-between items-end mb-gutter">
+<div>
+<h2 class="font-label-sm uppercase tracking-widest text-primary">Games Finished</h2>
+<p class="text-on-surface-variant text-sm mt-1">Stored entries of completed missions.</p>
+</div>
+<button class="font-label-sm text-on-surface hover:text-primary transition-colors flex items-center gap-1 uppercase">
+                View Full Database <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Game Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-video overflow-hidden border border-outline-variant/30 mb-3">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="The Last of Us Part II" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4j-PrMyM11oGXUdj6hw0mVipHL9uRA5vWDc1cWwEfIECvGzGb5fJ8qHSXIKWVULUNa-ODwz_ujhSWlP1InfmxX55mqSU0Pm5MhmZevZxuUK972uk0lCF867VeB8MNNzeoD3xYg-T2k5VtVOIZYoCvMackcc5KSNQbDPauDtH6hFdPD8xeqbn6yCmcPXmg97EkEZ45KQtgOMy4AmyYNFqVcRi241bIKeNQzyDf4xf2kSH6XwY735jPOXq40LaMyoEb3Gmf-3BrtuQ"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary font-label-sm px-2 py-0.5 rounded shadow-lg uppercase">Masterpiece</div>
+</div>
+<h4 class="font-headline-md text-on-surface uppercase truncate">The Last of Us Part II</h4>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[12px] text-on-surface-variant font-label-sm uppercase">100% Completion</span>
+<span class="text-primary text-[14px] font-bold">10/10</span>
+</div>
+</div>
+<!-- Game Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-video overflow-hidden border border-outline-variant/30 mb-3">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="God of War" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT18TvZB1rvOkhONXG_qgbqOUc0syfee_OEQaYfhf43R_Kpmwd6d0ueP3HS6w_JkNBxrCZsnvBRMfOJIAVuB5Sx5TdCDloIQXBFTRQsHJSlC_SVRpuxSqxZ-sWdSa-_2wh9NjMuGDrNsa61_ZWSpZ0-6qQ-oG9RHcQcoPHxuqW1C6QM9IfBiaxiOnI6t3SSNikzqwkqx2Gy6AHbTDUgcdoG6P0HOiCcmUP-gcJnLn6C-_ZoG55qyaM1d2x8pWsL79YawKrUAazqwo"/>
+<div class="absolute top-2 right-2 bg-secondary text-on-secondary font-label-sm px-2 py-0.5 rounded shadow-lg uppercase">Must Play</div>
+</div>
+<h4 class="font-headline-md text-on-surface uppercase truncate">God of War</h4>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[12px] text-on-surface-variant font-label-sm uppercase">Platinum Trophy</span>
+<span class="text-primary text-[14px] font-bold">9.5/10</span>
+</div>
+</div>
+<!-- Game Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-video overflow-hidden border border-outline-variant/30 mb-3">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Red Dead Redemption 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4j-PrMyM11oGXUdj6hw0mVipHL9uRA5vWDc1cWwEfIECvGzGb5fJ8qHSXIKWVULUNa-ODwz_ujhSWlP1InfmxX55mqSU0Pm5MhmZevZxuUK972uk0lCF867VeB8MNNzeoD3xYg-T2k5VtVOIZYoCvMackcc5KSNQbDPauDtH6hFdPD8xeqbn6yCmcPXmg97EkEZ45KQtgOMy4AmyYNFqVcRi241bIKeNQzyDf4xf2kSH6XwY735jPOXq40LaMyoEb3Gmf-3BrtuQ"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary font-label-sm px-2 py-0.5 rounded shadow-lg uppercase">Masterpiece</div>
+</div>
+<h4 class="font-headline-md text-on-surface uppercase truncate">Red Dead Redemption 2</h4>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[12px] text-on-surface-variant font-label-sm uppercase">Story Complete</span>
+<span class="text-primary text-[14px] font-bold">10/10</span>
+</div>
+</div>
+</div>
+</section>
+<!-- DEEP REVIEWS -->
+<section class="mb-section-gap">
+<h2 class="font-label-sm uppercase tracking-widest text-primary mb-gutter">System Logs // Deep Reviews</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Review 1: Cyberpunk -->
+<div class="glass-panel p-6 border-l-4 border-l-primary" style="background: rgba(19, 19, 21, 0.6);">
+<div class="relative aspect-video overflow-hidden mb-4">
+<img alt="Cyberpunk 2077" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd6Of6E6yId2k3LO_iukKAwT8lqHjokNCNlputUCY8dZgEZ4i8nGiMmdj1H5TdWAauu8SHH4xg7sStyf8qP0qujaz1xTBpX-wp82eYKi6yrXvrUaSRlecR1Au5_kezDmV3kYu3gdt6ewqqnIFodFpO1oCkLhuk30YCs7Zpx5I95YyZxVefVjpURuoydUr00w2HgLVJ7ZWZVQ9nryRnFDX6MD7N_XqpmFIMbQgoVUDPHVZ9gNDcbPIFZw8o8JOvih00woGj8LrKvKI"/>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="font-headline-md text-primary">Cyberpunk 2077</h3>
+</div>
+<div class="space-y-4">
+<div>
+<p class="font-label-sm text-primary uppercase mb-1">The Good</p>
+<p class="text-sm text-on-surface">Night City is the most immersive open world ever built. The path tracing tech is a glimpse into the future.</p>
+</div>
+<div>
+<p class="font-label-sm text-on-secondary-fixed uppercase mb-1">The Bad</p>
+<p class="text-sm text-on-surface">Initial performance issues were a hurdle, and some RPG systems could be more reactive.</p>
+</div>
+<div class="bg-surface-container-low p-3">
+<p class="font-label-sm text-on-surface-variant uppercase mb-1">Memorable Moment</p>
+<p class="text-xs text-on-surface italic">"The entire Phantom Liberty ending sequence in the spaceport. High-stakes espionage at its peak."</p>
+</div>
+</div>
+</div>
+<!-- Review 2: Ghost of Tsushima -->
+<div class="glass-panel p-6 border-l-4 border-l-secondary" style="background: rgba(19, 19, 21, 0.6);">
+<div class="relative aspect-video overflow-hidden mb-4">
+<img alt="Ghost of Tsushima" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT18TvZB1rvOkhONXG_qgbqOUc0syfee_OEQaYfhf43R_Kpmwd6d0ueP3HS6w_JkNBxrCZsnvBRMfOJIAVuB5Sx5TdCDloIQXBFTRQsHJSlC_SVRpuxSqxZ-sWdSa-_2wh9NjMuGDrNsa61_ZWSpZ0-6qQ-oG9RHcQcoPHxuqW1C6QM9IfBiaxiOnI6t3SSNikzqwkqx2Gy6AHbTDUgcdoG6P0HOiCcmUP-gcJnLn6C-_ZoG55qyaM1d2x8pWsL79YawKrUAazqwo"/>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary">analytics</span>
+<h3 class="font-headline-md text-secondary">Ghost of Tsushima</h3>
+</div>
+<div class="space-y-4">
+<div>
+<p class="font-label-sm text-secondary uppercase mb-1">The Good</p>
+<p class="text-sm text-on-surface">The wind-based navigation is a stroke of genius. Combat feels like a lethal dance.</p>
+</div>
+<div>
+<p class="font-label-sm text-on-secondary-fixed uppercase mb-1">The Bad</p>
+<p class="text-sm text-on-surface">The side quest structure can become repetitive towards the third act.</p>
+</div>
+<div class="bg-surface-container-low p-3">
+<p class="font-label-sm text-on-surface-variant uppercase mb-1">Memorable Moment</p>
+<p class="text-xs text-on-surface italic">"The final duel against Lord Shimura. The music, the red leaves, and the emotional weight were perfect."</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- WISHLIST -->
+<section class="mb-section-gap">
+<div class="flex items-center gap-2 mb-gutter">
+<span class="material-symbols-outlined text-primary">priority_high</span>
+<h2 class="font-label-sm uppercase tracking-widest text-primary">Wishlist</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Wishlist Card 1 -->
+<div class="relative group h-64 overflow-hidden rounded border border-outline-variant/30 cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="GTA VI" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMwqEvVC6Nk4VvqMPEbnEgn9-6lvzUY9Yjju3fOnyF3fXFrC1EdXJU7vPtQza_MTVdXTJYKL3P_jfhplKEtMmL2at3auQTXKw_HIVjet3p1rxlkzznNK57XSvBIqp4MzIBSfCfBS6aFzNJ0giQWmE1pilfNiusHTp4Aq6JUtuCVX19ZJS8tKhyc6gjpzIwTaLc9-KVNGt6L99fX7FSLLKmw-I35H3bB-Stb-PbcUdgK1SgiRk2sJSnm9vQeOWgeotqunBR61hwyGM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent z-10"></div>
+<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+<h4 class="font-headline-md text-primary text-2xl mb-2">Grand Theft Auto VI</h4>
+<div class="flex justify-between items-center font-label-sm mb-2">
+<span class="text-on-surface uppercase opacity-70">Excitement Level</span>
+<span class="text-primary font-bold">MAX</span>
+</div>
+<div class="w-full h-1 bg-surface-variant/50">
+<div class="h-full bg-primary shadow-[0_0_10px_#00dbe7]" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<!-- Wishlist Card 2 -->
+<div class="relative group h-64 overflow-hidden rounded border border-outline-variant/30 cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Metroid Prime 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDut9Zsxk_d5L_771oeJyXZHVQ3z97W6um-ZT-Mou6eytKc0fOfwQmypfl7uhTVX62CxYWMKTdTMpQah41fqg_krDOYFH2sTJlAJMgt51B_bKNMaJ69StWljQnz8PmbkJrnF8yQthTxyVKblJq6jPkALq1EbKzSf3zJd893IOPKJGHh0gUE48p2QRqUZdzDB9VT9Sh5dwB_KGn24d0yaRG67oGea7hyG75ZF01e9N7A6HvSYxP6OIz_nAQpsi2AGAaJUc2KsB3pSOo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent z-10"></div>
+<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+<h4 class="font-headline-md text-secondary text-2xl mb-2">Metroid Prime 4</h4>
+<div class="flex justify-between items-center font-label-sm mb-2">
+<span class="text-on-surface uppercase opacity-70">Excitement Level</span>
+<span class="text-secondary font-bold">HIGH</span>
+</div>
+<div class="w-full h-1 bg-surface-variant/50">
+<div class="h-full bg-secondary shadow-[0_0_10px_#ebb2ff]" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<!-- Wishlist Card 3 -->
+<div class="relative group h-64 overflow-hidden rounded border border-outline-variant/30 cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Black Myth Wukong" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZt5bBNJ0Zd3BRlrVkMSSUYDHC8XCP_CFUx8A-EVl_C2njZakT3RrV5xDsg1wY4gwA7DWAegnU01dCOOdBu2vtlyX5rlEcJA35u3w0-2zv4PV-zRlZODamxnr0D_poW_lYL-BlZM6iNX086Jl9TpDMsVenTnwh56EcvKA_SV8f7va6shs1LI123Cy5TIt_tL5Ywj8DrJipufF0xVGF3oLZauTCHUQX4MATH58Y0JI4pvpByfRUbjfYZGZIYzqEvJthVA66l15OYsg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent z-10"></div>
+<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+<h4 class="font-headline-md text-on-surface text-2xl mb-2">Black Myth: Wukong</h4>
+<div class="flex justify-between items-center font-label-sm mb-2">
+<span class="text-on-surface uppercase opacity-70">Excitement Level</span>
+<span class="text-on-surface-variant font-bold">STABLE</span>
+</div>
+<div class="w-full h-1 bg-surface-variant/50">
+<div class="h-full bg-outline" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-background w-full mt-section-gap border-t border-outline-variant/20" id="footer">
+<div class="flex flex-col md:flex-row justify-between items-center px-container-margin py-base w-full max-w-7xl mx-auto">
+<p class="font-label-sm text-on-surface-variant uppercase">© 2024 Gaming Protocol Archive // Terminal v2.4.8</p>
+</div>
+</footer>
+<div class="fixed inset-0 -z-10 pointer-events-none">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,219,231,0.05),transparent)]"></div>
+</div>
+<script>
+    // Slider functionality
+    const slider = document.getElementById('game-slider');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentIndex = 0;
+    const totalSlides = 3;
+    const intervalTime = 20000; // 20 seconds as requested
+
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentIndex * (100 / totalSlides)}%)`;
+        dots.forEach((dot, idx) => {
+            dot.style.opacity = idx === currentIndex ? '1' : '0.3';
+            dot.classList.toggle('bg-primary', idx === currentIndex);
+            dot.classList.toggle('bg-primary/30', idx !== currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlider();
+        resetInterval();
+    }
+
+    let sliderInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+    }, intervalTime);
+
+    function resetInterval() {
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider();
+        }, intervalTime);
+    }
+
+    // Micro-interactions for glass panels spotlight effect
+    document.querySelectorAll('.glass-panel').forEach(panel => {
+        panel.addEventListener('mousemove', (e) => {
+            const rect = panel.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            panel.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(0, 219, 231, 0.05), rgba(19, 19, 21, 0.6))`;
+        });
+        panel.addEventListener('mouseleave', () => {
+            panel.style.background = `rgba(19, 19, 21, 0.6)`;
+        });
+    });
+</script>
+</body></html>
