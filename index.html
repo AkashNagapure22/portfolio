@@ -1115,22 +1115,39 @@ body {
         </div>
       </div>
 
-      <div class="flip-card-container h-[380px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-        <div class="flip-card-inner">
-          <div class="flip-card-front bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex flex-col h-full">
-            <div class="p-4 bg-slate-900 border-b border-slate-800">
-              <h3 class="font-bold text-white text-lg">Strategic Gaming</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to read details →</span>
-            </div>
-            <img src="./images/hobby_gaming.png" alt="Strategic Gaming" class="w-full h-full object-cover">
-          </div>
-          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-center h-full">
-            <p class="text-slate-300 text-sm leading-relaxed">
-              <strong>What I do:</strong> I don't just play games; I treat them like virtual masterclasses in problem-solving and strategy. Whether I'm diving into an intense tactical campaign or exploring massive open-world economies, gaming is my ultimate mental reset. It’s like stepping into a beautifully designed sandbox where you have to think on your feet, adapt to chaotic situations in real-time, and outsmart the system. Plus, honestly, keeping up with the latest gaming tech and mechanics is just incredibly fun.
-            </p>
-          </div>
-        </div>
+    <div class="flip-card-container h-[380px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+  <div class="flip-card-inner">
+
+    <!-- Front -->
+    <div class="flip-card-front bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex flex-col h-full">
+      <div class="p-4 bg-slate-900 border-b border-slate-800">
+        <h3 class="font-bold text-white text-lg">Strategic Gaming</h3>
+        <span class="font-mono text-[10px] text-sky-400 mt-1 block">
+          Click to read details →
+        </span>
       </div>
+      <img src="./images/hobby_gaming.png" alt="Strategic Gaming" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Back -->
+    <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between h-full">
+      
+      <p class="text-slate-300 text-sm leading-relaxed">
+        <strong>What I do:</strong> I don't just play games; I treat them like virtual masterclasses in problem-solving and strategy. Whether I'm diving into an intense tactical campaign or exploring massive open-world economies, gaming is my ultimate mental reset. It’s like stepping into a beautifully designed sandbox where you have to think on your feet, adapt to chaotic situations in real-time, and outsmart the system. Plus, honestly, keeping up with the latest gaming tech and mechanics is just incredibly fun.
+      </p>
+
+      <div class="mt-5 text-center">
+        <a href="./pages/game.html"
+           onclick="event.stopPropagation();"
+           class="inline-block px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg transition duration-200">
+          🎮 Games I Played
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
       <div class="flip-card-container h-[380px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner">
