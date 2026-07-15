@@ -1,1 +1,3 @@
-.
+; --- Network ----
+NETWORKINTERFACES=interval:10,operstatus:1,iftype:6 71,hide-no-result:1,filter:(%8 ne 0.0.0.0),row-text:%2 IP,replace:"Ethernet":"LAN","Ethernet 2":"LAN","Local Area Connection":"LAN",display:%8
+; --- Footer ---
