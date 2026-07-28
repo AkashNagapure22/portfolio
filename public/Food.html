@@ -53,7 +53,7 @@
         transform: translateY(-4px) scale(1.01);
     }
 
-    /* 3D Flip Card Styles - ONLY FLIP ON CLICK */
+    /* 3D Flip Card Styles - ONLY FLIPS WHEN CLICKED */
     .flip-card {
         perspective: 1000px;
     }
@@ -64,7 +64,7 @@
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform-style: preserve-3d;
     }
-    /* Trigger flip ONLY via .flipped class on click */
+    /* Flips strictly via .flipped class toggled by click */
     .flip-card.flipped .flip-card-inner {
         transform: rotateY(180deg);
     }
@@ -247,7 +247,7 @@
         </div>
     </section>
 
-    <!-- Food To-Do / Bucket List (FLIP ONLY ON CLICK) -->
+    <!-- Food To-Do / Bucket List (PUNE & AMRAVATI ONLY - ROTATE ON CLICK ONLY) -->
     <section id="todo-list" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">FOOD BUCKET LIST</h2>
@@ -255,17 +255,17 @@
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
             
-            <!-- Item 1 -->
+            <!-- Pune Item 1: Puneri Misal Pav -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
-                        <img alt="Truffle Pasta" class="w-full h-full object-cover" src="images/Black_Truffle_Tagliatelle.jpg"/>
+                        <img alt="Puneri Misal Pav" class="w-full h-full object-cover" src="images/Misal_Pav.jpg"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                         <div class="absolute top-2 right-2">
-                            <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
+                            <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">MUST TRY</span>
                         </div>
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
-                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Black Truffle Tagliatelle</div>
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Puneri Misal Pav</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
@@ -274,27 +274,27 @@
                     <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
                         <div class="space-y-2 mt-2">
                             <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
-                            <h4 class="font-bold text-xs text-amber-300">Black Truffle Tagliatelle</h4>
+                            <h4 class="font-bold text-xs text-amber-300">Puneri Misal Pav</h4>
                             <div class="h-px bg-white/10 w-full my-2"></div>
-                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Osteria Francescana</p>
-                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Modena, Italy</p>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Kattakirr Misal</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Pune, Maharashtra</p>
                         </div>
-                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Must-Visit</span>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Pune Special</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 2 -->
+            <!-- Pune Item 2: SPDP (Sev Puri Dahi Puri) -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
-                        <img alt="A5 Wagyu" class="w-full h-full object-cover" src="images/A5_Miyazaki_Wagyu.jpg"/>
+                        <img alt="SPDP Vaishali" class="w-full h-full object-cover" src="images/SPDP.jpg"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                         <div class="absolute top-2 right-2">
                             <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
                         </div>
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
-                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">A5 Miyazaki Wagyu</div>
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">SPDP (Sev Puri Dahi Puri)</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
@@ -303,27 +303,27 @@
                     <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
                         <div class="space-y-2 mt-2">
                             <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
-                            <h4 class="font-bold text-xs text-amber-300">A5 Miyazaki Wagyu</h4>
+                            <h4 class="font-bold text-xs text-amber-300">SPDP (Dahi Puri)</h4>
                             <div class="h-px bg-white/10 w-full my-2"></div>
-                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Kobe Beef Kaiseki 511</p>
-                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Tokyo, Japan</p>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Vaishali Restaurant</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> FC Road, Pune</p>
                         </div>
-                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Bucket List</span>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Iconic Chaat</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 3 -->
+            <!-- Pune Item 3: Mango Mastani -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
-                        <img alt="Peking Duck" class="w-full h-full object-cover" src="images/Peking_Duck.jpg"/>
+                        <img alt="Mango Mastani" class="w-full h-full object-cover" src="images/Mango_Mastani.jpg"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                         <div class="absolute top-2 right-2">
-                            <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">NORMAL</span>
+                            <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">FAVORITE</span>
                         </div>
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
-                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Authentic Peking Duck</div>
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Mango Mastani</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
@@ -332,56 +332,27 @@
                     <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
                         <div class="space-y-2 mt-2">
                             <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
-                            <h4 class="font-bold text-xs text-amber-300">Authentic Peking Duck</h4>
+                            <h4 class="font-bold text-xs text-amber-300">Mango Mastani</h4>
                             <div class="h-px bg-white/10 w-full my-2"></div>
-                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Da Dong Roast Duck</p>
-                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Beijing, China</p>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Sujata Mastani</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Sadashiv Peth, Pune</p>
                         </div>
-                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Crispy Special</span>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Thick Shake</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 4 -->
+            <!-- Amravati Item 1: Sambhar Vadi & Gila Vada -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
-                        <img alt="Seafood Paella" class="w-full h-full object-cover" src="images/Valencia_Paella.jpg"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                        <div class="absolute top-2 right-2">
-                            <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
-                        </div>
-                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
-                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Valencia Paella</div>
-                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
-                        <div class="space-y-2 mt-2">
-                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
-                            <h4 class="font-bold text-xs text-amber-300">Valencia Paella</h4>
-                            <div class="h-px bg-white/10 w-full my-2"></div>
-                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Casa Carmela</p>
-                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Valencia, Spain</p>
-                        </div>
-                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Authentic</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 5 -->
-            <div class="flip-card aspect-[2/3] cursor-pointer">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front glass-card overflow-hidden">
-                        <img alt="Tacos Al Pastor" class="w-full h-full object-cover" src="images/Tacos_Al_Pastor.jpg"/>
+                        <img alt="Sambhar Vadi Amravati" class="w-full h-full object-cover" src="images/Sambhar_Vadi.jpg"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                         <div class="absolute top-2 right-2">
                             <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
                         </div>
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
-                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Street Tacos Al Pastor</div>
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Sambhar Vadi & Gila Vada</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
@@ -390,27 +361,27 @@
                     <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
                         <div class="space-y-2 mt-2">
                             <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
-                            <h4 class="font-bold text-xs text-amber-300">Street Tacos Al Pastor</h4>
+                            <h4 class="font-bold text-xs text-amber-300">Sambhar Vadi & Gila Vada</h4>
                             <div class="h-px bg-white/10 w-full my-2"></div>
-                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> El Vilsito</p>
-                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Mexico City, Mexico</p>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Raghuvir Sweets</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Rajkamal Chowk, Amravati</p>
                         </div>
-                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Street Master</span>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Amravati Legend</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 6 -->
+            <!-- Amravati Item 2: Aaloo Bonda with Rassa -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
-                        <img alt="Matcha Dessert" class="w-full h-full object-cover" src="images/Uji_Matcha_Parfait.jpg"/>
+                        <img alt="Aaloo Bonda Rassa" class="w-full h-full object-cover" src="images/Aaloo_Bonda.jpg"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                         <div class="absolute top-2 right-2">
-                            <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">SEASONAL</span>
+                            <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
                         </div>
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
-                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Uji Matcha Parfait</div>
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Aaloo Bonda with Rassa</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
@@ -419,12 +390,41 @@
                     <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
                         <div class="space-y-2 mt-2">
                             <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
-                            <h4 class="font-bold text-xs text-amber-300">Uji Matcha Parfait</h4>
+                            <h4 class="font-bold text-xs text-amber-300">Aaloo Bonda Rassa</h4>
                             <div class="h-px bg-white/10 w-full my-2"></div>
-                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Tsujiri Honten</p>
-                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Kyoto, Japan</p>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Panchavati Chowk Stall</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Panchavati, Amravati</p>
                         </div>
-                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Sweet Craving</span>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Spicy Street</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amravati Item 3: Amravati Gup Chup -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Amravati Gup Chup" class="w-full h-full object-cover" src="images/Gup_Chup.jpg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">POPULAR</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Amravati Special Gup Chup</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
+                            <h4 class="font-bold text-xs text-amber-300">Amravati Gup Chup</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Farshi Stop Chaat</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Deep Nagar, Amravati</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Tangy Puris</span>
                     </div>
                 </div>
             </div>
@@ -432,7 +432,7 @@
         </div>
     </section>
 
-    <!-- Hall of Fame (FLIP ONLY ON CLICK) -->
+    <!-- Hall of Fame -->
     <section id="favorites" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">HALL OF FAME DISHES</h2>
