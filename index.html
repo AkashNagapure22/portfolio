@@ -15,7 +15,7 @@
 
   <script>
     tailwind.config = {
-      theme: {
+      theme: {gaming
         extend: {
           fontFamily: {
             sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
@@ -1115,22 +1115,19 @@ body {
         </div>
       </div>
 
-      <div class="flip-card-container h-[380px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-        <div class="flip-card-inner">
-          <div class="flip-card-front bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex flex-col h-full">
-            <div class="p-4 bg-slate-900 border-b border-slate-800">
-              <h3 class="font-bold text-white text-lg">Strategic Gaming</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to read details →</span>
-            </div>
-            <img src="./images/hobby_gaming.png" alt="Strategic Gaming" class="w-full h-full object-cover">
-          </div>
-          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-center h-full">
-            <p class="text-slate-300 text-sm leading-relaxed">
-              <strong>What I do:</strong> I don't just play games; I treat them like virtual masterclasses in problem-solving and strategy. Whether I'm diving into an intense tactical campaign or exploring massive open-world economies, gaming is my ultimate mental reset. It’s like stepping into a beautifully designed sandbox where you have to think on your feet, adapt to chaotic situations in real-time, and outsmart the system. Plus, honestly, keeping up with the latest gaming tech and mechanics is just incredibly fun.
-            </p>
-          </div>
-        </div>
-      </div>
+  <a href="pages/Game.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-sky-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
+  <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+    <div>
+      <h3 class="font-bold text-white text-lg group-hover:text-sky-400 transition-colors">Strategic Gaming</h3>
+      <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Gaming Portfolio →</span>
+    </div>
+    <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+  </div>
+  <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+    <img src="./images/hobby_gaming.png" alt="Strategic Gaming Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+  </div>
+</a>
 
       <div class="flip-card-container h-[380px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner">
