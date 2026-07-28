@@ -45,17 +45,19 @@
         background: rgba(22, 20, 18, 0.7);
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
+    
+    /* Hover glow without any movement/scaling */
     .glass-card:hover {
         border-color: rgba(255, 153, 0, 0.5);
         box-shadow: 0 0 20px rgba(255, 153, 0, 0.15);
-        transform: translateY(-4px) scale(1.01);
     }
 
-    /* 3D Flip Card Styles - ONLY FLIPS WHEN CLICKED */
+    /* 3D Flip Card Styles - STRICTLY CLICK-ONLY ROTATION */
     .flip-card {
         perspective: 1000px;
+        user-select: none;
     }
     .flip-card-inner {
         position: relative;
@@ -63,11 +65,17 @@
         height: 100%;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform-style: preserve-3d;
+        pointer-events: none; /* Ignore pointer events on inner wrapper */
     }
-    /* Flips strictly via .flipped class toggled by click */
+    .flip-card * {
+        pointer-events: auto; /* Re-enable pointer events for card content */
+    }
+    
+    /* Strictly trigger flip via .flipped JS class ONLY */
     .flip-card.flipped .flip-card-inner {
         transform: rotateY(180deg);
     }
+    
     .flip-card-front, .flip-card-back {
         position: absolute;
         width: 100%;
@@ -206,7 +214,7 @@
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
         
-        <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
+        <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card">
             <!-- Slide 1 -->
             <div class="carousel-slide active absolute inset-0">
                 <img alt="Mutton Curry" class="w-full h-full object-cover" src="images/Mutton_Curry.jpg"/>
@@ -247,7 +255,7 @@
         </div>
     </section>
 
-    <!-- Food To-Do / Bucket List (PUNE & AMRAVATI ONLY - ROTATE ON CLICK ONLY) -->
+    <!-- Food To-Do / Bucket List (PUNE & AMRAVATI ONLY - ONLY ROTATES ON CLICK) -->
     <section id="todo-list" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">FOOD BUCKET LIST</h2>
@@ -255,7 +263,7 @@
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
             
-            <!-- Pune Item 1: Puneri Misal Pav -->
+            <!-- Pune Item 1 -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
@@ -284,7 +292,7 @@
                 </div>
             </div>
 
-            <!-- Pune Item 2: SPDP (Sev Puri Dahi Puri) -->
+            <!-- Pune Item 2 -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
@@ -313,7 +321,7 @@
                 </div>
             </div>
 
-            <!-- Pune Item 3: Mango Mastani -->
+            <!-- Pune Item 3 -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
@@ -342,7 +350,7 @@
                 </div>
             </div>
 
-            <!-- Amravati Item 1: Sambhar Vadi & Gila Vada -->
+            <!-- Amravati Item 1 -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
@@ -371,7 +379,7 @@
                 </div>
             </div>
 
-            <!-- Amravati Item 2: Aaloo Bonda with Rassa -->
+            <!-- Amravati Item 2 -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
@@ -400,7 +408,7 @@
                 </div>
             </div>
 
-            <!-- Amravati Item 3: Amravati Gup Chup -->
+            <!-- Amravati Item 3 -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
                     <div class="flip-card-front glass-card overflow-hidden">
@@ -793,7 +801,8 @@
 
     // Flip card toggle EXCLUSIVELY ON CLICK
     document.querySelectorAll('.flip-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
             this.classList.toggle('flipped');
         });
     });
