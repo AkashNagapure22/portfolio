@@ -53,7 +53,7 @@
         transform: translateY(-4px) scale(1.01);
     }
 
-    /* 3D Flip Card Styles */
+    /* 3D Flip Card Styles - ONLY FLIP ON CLICK */
     .flip-card {
         perspective: 1000px;
     }
@@ -64,7 +64,7 @@
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform-style: preserve-3d;
     }
-    .flip-card:hover .flip-card-inner,
+    /* Trigger flip ONLY via .flipped class on click */
     .flip-card.flipped .flip-card-inner {
         transform: rotateY(180deg);
     }
@@ -247,7 +247,7 @@
         </div>
     </section>
 
-    <!-- Food To-Do / Bucket List (FLIP CARDS WITH RESTAURANTS) -->
+    <!-- Food To-Do / Bucket List (FLIP ONLY ON CLICK) -->
     <section id="todo-list" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">FOOD BUCKET LIST</h2>
@@ -258,7 +258,6 @@
             <!-- Item 1 -->
             <div class="flip-card aspect-[2/3] cursor-pointer">
                 <div class="flip-card-inner">
-                    <!-- Front -->
                     <div class="flip-card-front glass-card overflow-hidden">
                         <img alt="Truffle Pasta" class="w-full h-full object-cover" src="images/Black_Truffle_Tagliatelle.jpg"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
@@ -268,11 +267,10 @@
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
                             <div class="font-label-caps text-xs text-amber-300 mb-0.5">Black Truffle Tagliatelle</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
                         </div>
                     </div>
-                    <!-- Back -->
                     <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
                         <div class="space-y-2 mt-2">
                             <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
@@ -298,7 +296,7 @@
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
                             <div class="font-label-caps text-xs text-amber-300 mb-0.5">A5 Miyazaki Wagyu</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
                         </div>
                     </div>
@@ -327,7 +325,7 @@
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
                             <div class="font-label-caps text-xs text-amber-300 mb-0.5">Authentic Peking Duck</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
                         </div>
                     </div>
@@ -356,7 +354,7 @@
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
                             <div class="font-label-caps text-xs text-amber-300 mb-0.5">Valencia Paella</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
                         </div>
                     </div>
@@ -385,7 +383,7 @@
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
                             <div class="font-label-caps text-xs text-amber-300 mb-0.5">Street Tacos Al Pastor</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
                         </div>
                     </div>
@@ -414,7 +412,7 @@
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
                             <div class="font-label-caps text-xs text-amber-300 mb-0.5">Uji Matcha Parfait</div>
                             <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
                             </div>
                         </div>
                     </div>
@@ -434,7 +432,7 @@
         </div>
     </section>
 
-    <!-- Hall of Fame (Favorites with Flip Side) -->
+    <!-- Hall of Fame (FLIP ONLY ON CLICK) -->
     <section id="favorites" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">HALL OF FAME DISHES</h2>
@@ -445,7 +443,6 @@
             <!-- Dish 1 -->
             <div class="flip-card h-36 cursor-pointer">
                 <div class="flip-card-inner">
-                    <!-- Front -->
                     <div class="flip-card-front glass-card p-4 flex gap-4 rounded-lg">
                         <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
                             <img alt="Butter Chicken" class="w-full h-full object-cover" src="images/Butter_Chicken.jpg"/>
@@ -461,7 +458,6 @@
                             <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">PERFECT 10/10</div>
                         </div>
                     </div>
-                    <!-- Back -->
                     <div class="flip-card-back glass-card p-4 flex flex-col justify-center items-center text-center rounded-lg border border-amber-500/40 bg-slate-900/95">
                         <span class="material-symbols-outlined text-amber-400 mb-1">pin_drop</span>
                         <h4 class="font-bold text-xs text-amber-300">Old Delhi Butter Chicken</h4>
@@ -559,12 +555,11 @@
         </div>
     </section>
 
-    <!-- Spotlights: Favorite Cuisines & Street Food (UPDATED ITEMS) -->
+    <!-- Spotlights: Favorite Cuisines & Street Food -->
     <section id="spotlight" class="grid grid-cols-1 lg:grid-cols-2 gap-8 scroll-mt-24">
         <div>
             <h2 class="font-headline-sm text-lg sm:text-headline-sm text-amber-400 mb-6 italic font-bold">GO-TO CUISINES</h2>
             <div class="space-y-4">
-                <!-- Puran Poli -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-amber-500/30 flex-shrink-0 group-hover:border-amber-400">
                         <img alt="Puran Poli" class="w-full h-full object-cover" src="images/Puran_Poli.jpg"/>
@@ -574,7 +569,6 @@
                         <p class="italic text-slate-300 text-xs sm:text-sm">"Traditional sweet flatbread stuffed with spiced chana dal, jaggery & topped with melted pure ghee."</p>
                     </div>
                 </div>
-                <!-- Sambarwadi -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-amber-500/30 flex-shrink-0 group-hover:border-amber-400">
                         <img alt="Sambarwadi" class="w-full h-full object-cover" src="images/Sambarwadi.jpg"/>
@@ -590,7 +584,6 @@
         <div>
             <h2 class="font-headline-sm text-lg sm:text-headline-sm text-rose-400 mb-6 italic font-bold">STREET FOOD LEGENDS</h2>
             <div class="space-y-4">
-                <!-- Samosa -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-rose-500/30 flex-shrink-0 group-hover:border-rose-400">
                         <img alt="Crispy Samosa" class="w-full h-full object-cover" src="images/Samosa.jpg"/>
@@ -600,7 +593,6 @@
                         <p class="italic text-slate-300 text-xs sm:text-sm">"Golden fried pastry filled with spiced potato-pea mixture, served with tamarind chutney."</p>
                     </div>
                 </div>
-                <!-- Pani Puri -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-rose-500/30 flex-shrink-0 group-hover:border-rose-400">
                         <img alt="Pani Puri" class="w-full h-full object-cover" src="images/Pani_Puri.jpg"/>
@@ -614,7 +606,7 @@
         </div>
     </section>
 
-    <!-- Reviews Section (UPDATED: RESTAURANT & LOCATION TAB + CHICKEN BIRYANI & MUTTON CURRY) -->
+    <!-- Reviews Section -->
     <section id="reviews" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">CRITIC REVIEWS</h2>
@@ -630,7 +622,6 @@
                         <div class="bg-amber-500/10 border border-amber-500 text-amber-400 px-2.5 py-0.5 font-bold text-lg rounded">9.9</div>
                     </div>
                     
-                    <!-- Restaurant & Location Badge Tag -->
                     <div class="inline-flex items-center gap-2 bg-white/5 border border-amber-500/30 px-3 py-1 rounded text-xs mb-4 text-slate-300">
                         <span class="material-symbols-outlined text-amber-400 text-sm">storefront</span>
                         <span><strong class="text-amber-300">Bawarchi Biryani</strong> — RTC X Roads, Hyderabad</span>
@@ -656,7 +647,6 @@
                     </div>
                 </div>
 
-                <!-- Expandable Full Review -->
                 <div id="review-1-detail" class="review-details border-t border-white/10 pt-4 mt-2">
                     <h4 class="font-bold text-amber-300 mb-2 text-sm sm:text-base">Flavor Breakdown</h4>
                     <p class="text-xs text-slate-400 mb-4 leading-relaxed">
@@ -683,7 +673,6 @@
                         <div class="bg-amber-500/10 border border-amber-500 text-amber-400 px-2.5 py-0.5 font-bold text-lg rounded">9.8</div>
                     </div>
 
-                    <!-- Restaurant & Location Badge Tag -->
                     <div class="inline-flex items-center gap-2 bg-white/5 border border-amber-500/30 px-3 py-1 rounded text-xs mb-4 text-slate-300">
                         <span class="material-symbols-outlined text-amber-400 text-sm">storefront</span>
                         <span><strong class="text-amber-300">Saoji Bhojanalaya</strong> — Nagpur, Maharashtra</span>
@@ -709,7 +698,6 @@
                     </div>
                 </div>
 
-                <!-- Expandable Full Review -->
                 <div id="review-2-detail" class="review-details border-t border-white/10 pt-4 mt-2">
                     <h4 class="font-bold text-amber-300 mb-2 text-sm sm:text-base">Flavor Breakdown</h4>
                     <p class="text-xs text-slate-400 mb-4 leading-relaxed">
@@ -803,7 +791,7 @@
         }
     }
 
-    // Flip card toggle for touch/mobile devices
+    // Flip card toggle EXCLUSIVELY ON CLICK
     document.querySelectorAll('.flip-card').forEach(card => {
         card.addEventListener('click', function() {
             this.classList.toggle('flipped');
