@@ -52,7 +52,33 @@
         box-shadow: 0 0 20px rgba(255, 153, 0, 0.15);
         transform: translateY(-4px) scale(1.01);
     }
-    .text-glow { text-shadow: 0 0 10px rgba(255, 153, 0, 0.5); }
+
+    /* 3D Flip Card Styles */
+    .flip-card {
+        perspective: 1000px;
+    }
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 0.5rem;
+    }
+    .flip-card-back {
+        transform: rotateY(180deg);
+    }
 
     /* Carousel */
     .carousel-slide { display: none; }
@@ -183,11 +209,11 @@
         <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
             <!-- Slide 1 -->
             <div class="carousel-slide active absolute inset-0">
-                <img alt="Authentic Woodfired Pizza" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"/>
+                <img alt="Mutton Curry" class="w-full h-full object-cover" src="images/Mutton_Curry.jpg"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">WEEKEND OBSESSION</span>
-                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">Mutton curry</h3>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">Mutton Curry</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Succulent goat meat simmered in a fiery, aromatic thick masala sauce.</p>
                     <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-lg">Rating: 9.8/10</span>
@@ -198,7 +224,7 @@
 
             <!-- Slide 2 -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="Authentic Ramen" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1200&auto=format&fit=crop"/>
+                <img alt="Chicken Biryani" class="w-full h-full object-cover" src="images/Chicken_Biryani.jpg"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">MIDNIGHT COMFORT</span>
@@ -221,7 +247,7 @@
         </div>
     </section>
 
-    <!-- Food To-Do / Bucket List -->
+    <!-- Food To-Do / Bucket List (FLIP CARDS WITH RESTAURANTS) -->
     <section id="todo-list" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">FOOD BUCKET LIST</h2>
@@ -229,82 +255,186 @@
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
             
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Truffle Pasta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1621996346565-e3def616403c?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2 flex flex-col gap-1 items-end">
-                    <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Black Truffle Tagliatelle</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Target: Italy Trip</div>
-                </div>
-            </div>
-
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="A5 Wagyu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">A5 Miyazaki Wagyu</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Target: Tokyo</div>
-                </div>
-            </div>
-
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Peking Duck" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">NORMAL</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Authentic Peking Duck</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Target: Beijing</div>
+            <!-- Item 1 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <!-- Front -->
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Truffle Pasta" class="w-full h-full object-cover" src="images/Black_Truffle_Tagliatelle.jpg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Black Truffle Tagliatelle</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Back -->
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
+                            <h4 class="font-bold text-xs text-amber-300">Black Truffle Tagliatelle</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Osteria Francescana</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Modena, Italy</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Must-Visit</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Seafood Paella" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1534080564583-6be75777b70a?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Valencia Paella</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Target: Spain</div>
+            <!-- Item 2 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="A5 Wagyu" class="w-full h-full object-cover" src="images/A5_Miyazaki_Wagyu.jpg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">A5 Miyazaki Wagyu</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
+                            <h4 class="font-bold text-xs text-amber-300">A5 Miyazaki Wagyu</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Kobe Beef Kaiseki 511</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Tokyo, Japan</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Bucket List</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Tacos Al Pastor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Street Tacos Al Pastor</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Target: Mexico City</div>
+            <!-- Item 3 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Peking Duck" class="w-full h-full object-cover" src="images/Peking_Duck.jpg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">NORMAL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Authentic Peking Duck</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
+                            <h4 class="font-bold text-xs text-amber-300">Authentic Peking Duck</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Da Dong Roast Duck</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Beijing, China</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Crispy Special</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Matcha Dessert" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">SEASONAL</span>
+            <!-- Item 4 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Seafood Paella" class="w-full h-full object-cover" src="images/Valencia_Paella.jpg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Valencia Paella</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
+                            <h4 class="font-bold text-xs text-amber-300">Valencia Paella</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Casa Carmela</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Valencia, Spain</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Authentic</span>
+                    </div>
                 </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Uji Matcha Parfait</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Target: Kyoto</div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Tacos Al Pastor" class="w-full h-full object-cover" src="images/Tacos_Al_Pastor.jpg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Street Tacos Al Pastor</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
+                            <h4 class="font-bold text-xs text-amber-300">Street Tacos Al Pastor</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> El Vilsito</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Mexico City, Mexico</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Street Master</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Matcha Dessert" class="w-full h-full object-cover" src="images/Uji_Matcha_Parfait.jpg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">SEASONAL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Uji Matcha Parfait</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">sync_alt</span> Flip for details
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">restaurant</span>
+                            <h4 class="font-bold text-xs text-amber-300">Uji Matcha Parfait</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">TARGET SPOT:</strong> Tsujiri Honten</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">LOCATION:</strong> Kyoto, Japan</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Sweet Craving</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Hall of Fame (Favorites) -->
+    <!-- Hall of Fame (Favorites with Flip Side) -->
     <section id="favorites" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">HALL OF FAME DISHES</h2>
@@ -312,94 +442,146 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="Butter Chicken" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">Old Delhi Butter Chicken</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Smoky Gravy</span></div>
-                            <div class="flex justify-between"><span>Location</span><span class="text-amber-400">Delhi, India</span></div>
+            <!-- Dish 1 -->
+            <div class="flip-card h-36 cursor-pointer">
+                <div class="flip-card-inner">
+                    <!-- Front -->
+                    <div class="flip-card-front glass-card p-4 flex gap-4 rounded-lg">
+                        <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
+                            <img alt="Butter Chicken" class="w-full h-full object-cover" src="images/Butter_Chicken.jpg"/>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-amber-300 mb-1">Old Delhi Butter Chicken</h4>
+                                <div class="space-y-1 text-[10px] text-slate-400">
+                                    <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Smoky Gravy</span></div>
+                                    <div class="flex justify-between"><span>City</span><span class="text-amber-400">Delhi, India</span></div>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">PERFECT 10/10</div>
                         </div>
                     </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">PERFECT 10/10</div>
+                    <!-- Back -->
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-center items-center text-center rounded-lg border border-amber-500/40 bg-slate-900/95">
+                        <span class="material-symbols-outlined text-amber-400 mb-1">pin_drop</span>
+                        <h4 class="font-bold text-xs text-amber-300">Old Delhi Butter Chicken</h4>
+                        <div class="text-[11px] text-slate-300 mt-1"><strong>Spot:</strong> Moti Mahal Deluxe</div>
+                        <div class="text-[10px] text-slate-400">Daryaganj, Old Delhi, India</div>
+                        <span class="mt-2 text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">VISITED & APPROVED</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="Sushi Platter" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">Otoro Nigiri Omakese</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Fatty Tuna</span></div>
-                            <div class="flex justify-between"><span>Location</span><span class="text-amber-400">Tokyo</span></div>
+            <!-- Dish 2 -->
+            <div class="flip-card h-36 cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card p-4 flex gap-4 rounded-lg">
+                        <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
+                            <img alt="Otoro Nigiri" class="w-full h-full object-cover" src="images/Otoro_Nigiri.jpg"/>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-amber-300 mb-1">Otoro Nigiri Omakase</h4>
+                                <div class="space-y-1 text-[10px] text-slate-400">
+                                    <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Fatty Tuna</span></div>
+                                    <div class="flex justify-between"><span>City</span><span class="text-amber-400">Tokyo, Japan</span></div>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">SUPREME FRESHNESS</div>
                         </div>
                     </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">SUPREME FRESHNESS</div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-center items-center text-center rounded-lg border border-amber-500/40 bg-slate-900/95">
+                        <span class="material-symbols-outlined text-amber-400 mb-1">pin_drop</span>
+                        <h4 class="font-bold text-xs text-amber-300">Otoro Nigiri Omakase</h4>
+                        <div class="text-[11px] text-slate-300 mt-1"><strong>Spot:</strong> Ginza Kyubey</div>
+                        <div class="text-[10px] text-slate-400">Chuo-ku, Tokyo, Japan</div>
+                        <span class="mt-2 text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">VISITED & APPROVED</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="Hyderabadi Biryani" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">Dum Mutton Biryani</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Slow Cooked</span></div>
-                            <div class="flex justify-between"><span>Location</span><span class="text-amber-400">Hyderabad</span></div>
+            <!-- Dish 3 -->
+            <div class="flip-card h-36 cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card p-4 flex gap-4 rounded-lg">
+                        <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
+                            <img alt="Mutton Biryani" class="w-full h-full object-cover" src="images/Mutton_Biryani.jpg"/>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-amber-300 mb-1">Dum Mutton Biryani</h4>
+                                <div class="space-y-1 text-[10px] text-slate-400">
+                                    <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Slow Cooked</span></div>
+                                    <div class="flex justify-between"><span>City</span><span class="text-amber-400">Hyderabad, India</span></div>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">LEGENDARY AROMA</div>
                         </div>
                     </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">LEGENDARY AROMA</div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-center items-center text-center rounded-lg border border-amber-500/40 bg-slate-900/95">
+                        <span class="material-symbols-outlined text-amber-400 mb-1">pin_drop</span>
+                        <h4 class="font-bold text-xs text-amber-300">Dum Mutton Biryani</h4>
+                        <div class="text-[11px] text-slate-300 mt-1"><strong>Spot:</strong> Bawarchi Restaurant</div>
+                        <div class="text-[10px] text-slate-400">RTC X Roads, Hyderabad</div>
+                        <span class="mt-2 text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">VISITED & APPROVED</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="Classic Cheeseburger" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">Double Smash Burger</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Crispy Edges</span></div>
-                            <div class="flex justify-between"><span>Location</span><span class="text-amber-400">Local Craft</span></div>
+            <!-- Dish 4 -->
+            <div class="flip-card h-36 cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card p-4 flex gap-4 rounded-lg">
+                        <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
+                            <img alt="Smash Burger" class="w-full h-full object-cover" src="images/Double_Smash_Burger.jpg"/>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-amber-300 mb-1">Double Smash Burger</h4>
+                                <div class="space-y-1 text-[10px] text-slate-400">
+                                    <div class="flex justify-between"><span>Style</span><span class="text-amber-400">Crispy Edges</span></div>
+                                    <div class="flex justify-between"><span>City</span><span class="text-amber-400">Local Craft</span></div>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">JUICY MASTERPIECE</div>
                         </div>
                     </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">JUICY MASTERPIECE</div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-center items-center text-center rounded-lg border border-amber-500/40 bg-slate-900/95">
+                        <span class="material-symbols-outlined text-amber-400 mb-1">pin_drop</span>
+                        <h4 class="font-bold text-xs text-amber-300">Double Smash Burger</h4>
+                        <div class="text-[11px] text-slate-300 mt-1"><strong>Spot:</strong> Burger Craft House</div>
+                        <div class="text-[10px] text-slate-400">Downtown Food Hub</div>
+                        <span class="mt-2 text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">VISITED & APPROVED</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Spotlights: Favorite Cuisines & Street Food -->
+    <!-- Spotlights: Favorite Cuisines & Street Food (UPDATED ITEMS) -->
     <section id="spotlight" class="grid grid-cols-1 lg:grid-cols-2 gap-8 scroll-mt-24">
         <div>
             <h2 class="font-headline-sm text-lg sm:text-headline-sm text-amber-400 mb-6 italic font-bold">GO-TO CUISINES</h2>
             <div class="space-y-4">
+                <!-- Puran Poli -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-amber-500/30 flex-shrink-0 group-hover:border-amber-400">
-                        <img alt="North Indian Cuisine" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=400&auto=format&fit=crop"/>
+                        <img alt="Puran Poli" class="w-full h-full object-cover" src="images/Puran_Poli.jpg"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-amber-300 mb-1 font-bold">North Indian & Mughlai</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"Rich tandoori flavors, aromatic masalas, and perfectly baked garlic naans."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-amber-300 mb-1 font-bold">Puran Poli</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Traditional sweet flatbread stuffed with spiced chana dal, jaggery & topped with melted pure ghee."</p>
                     </div>
                 </div>
+                <!-- Sambarwadi -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-amber-500/30 flex-shrink-0 group-hover:border-amber-400">
-                        <img alt="Japanese Cuisine" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=80&w=400&auto=format&fit=crop"/>
+                        <img alt="Sambarwadi" class="w-full h-full object-cover" src="images/Sambarwadi.jpg"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-amber-300 mb-1 font-bold">Japanese Precision</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"Minimalist ingredient showcase focusing on umami, texture, and knife skill."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-amber-300 mb-1 font-bold">Sambarwadi (Pudachi Wadi)</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Spicy Maharashtrian fried roll stuffed with coriander, coconut, and roasted spices."</p>
                     </div>
                 </div>
             </div>
@@ -408,29 +590,31 @@
         <div>
             <h2 class="font-headline-sm text-lg sm:text-headline-sm text-rose-400 mb-6 italic font-bold">STREET FOOD LEGENDS</h2>
             <div class="space-y-4">
+                <!-- Samosa -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-rose-500/30 flex-shrink-0 group-hover:border-rose-400">
-                        <img alt="Pani Puri" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=400&auto=format&fit=crop"/>
+                        <img alt="Crispy Samosa" class="w-full h-full object-cover" src="images/Samosa.jpg"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-rose-300 mb-1 font-bold">Mumbai Pani Puri</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"Crispy hollow puris filled with spicy mint water, sweet tamarind, and ragda."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-rose-300 mb-1 font-bold">Crispy Potato Samosa</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Golden fried pastry filled with spiced potato-pea mixture, served with tamarind chutney."</p>
                     </div>
                 </div>
+                <!-- Pani Puri -->
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-rose-500/30 flex-shrink-0 group-hover:border-rose-400">
-                        <img alt="Shawarma" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=400&auto=format&fit=crop"/>
+                        <img alt="Pani Puri" class="w-full h-full object-cover" src="images/Pani_Puri.jpg"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-rose-300 mb-1 font-bold">Slow-Roasted Shawarma</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"Juicy marinated chicken wrapped with punchy toum garlic sauce and pickles."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-rose-300 mb-1 font-bold">Spicy Pani Puri</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Crispy hollow puris filled with spicy mint-coriander water, sweet tamarind, and ragda."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews Section -->
+    <!-- Reviews Section (UPDATED: RESTAURANT & LOCATION TAB + CHICKEN BIRYANI & MUTTON CURRY) -->
     <section id="reviews" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">CRITIC REVIEWS</h2>
@@ -438,27 +622,34 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <!-- Review Card 1 -->
+            <!-- Review Card 1: Chicken Biryani -->
             <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-start mb-4 sm:mb-6">
-                        <h3 class="font-headline-sm text-base sm:text-xl text-amber-300 font-bold">Smoked Texas Beef Brisket</h3>
-                        <div class="bg-amber-500/10 border border-amber-500 text-amber-400 px-2.5 py-0.5 font-bold text-lg rounded">9.7</div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-headline-sm text-base sm:text-xl text-amber-300 font-bold">Chicken Dum Biryani</h3>
+                        <div class="bg-amber-500/10 border border-amber-500 text-amber-400 px-2.5 py-0.5 font-bold text-lg rounded">9.9</div>
                     </div>
+                    
+                    <!-- Restaurant & Location Badge Tag -->
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-amber-500/30 px-3 py-1 rounded text-xs mb-4 text-slate-300">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">storefront</span>
+                        <span><strong class="text-amber-300">Bawarchi Biryani</strong> — RTC X Roads, Hyderabad</span>
+                    </div>
+
                     <div class="space-y-4 text-slate-300 text-xs sm:text-sm mb-6">
-                        <p>Smoked for 16 hours over post oak wood. The bark is jet black and crispy, yielding to melt-in-your-mouth rendering.</p>
+                        <p>Slow-cooked in dum style with long-grain basmati rice, tender marination, saffron, and aromatic spices.</p>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <span class="text-amber-400 font-bold block mb-1">PROS</span>
                                 <ul class="list-disc list-inside text-xs space-y-1 text-slate-400">
-                                    <li>Deep smoke ring</li>
-                                    <li>Perfect fat render</li>
+                                    <li>Flavorsome rice layering</li>
+                                    <li>Melt-in-mouth chicken</li>
                                 </ul>
                             </div>
                             <div>
                                 <span class="text-rose-400 font-bold block mb-1">CONS</span>
                                 <ul class="list-disc list-inside text-xs space-y-1 text-slate-400">
-                                    <li>Requires long wait times</li>
+                                    <li>Very heavy portion</li>
                                 </ul>
                             </div>
                         </div>
@@ -469,12 +660,12 @@
                 <div id="review-1-detail" class="review-details border-t border-white/10 pt-4 mt-2">
                     <h4 class="font-bold text-amber-300 mb-2 text-sm sm:text-base">Flavor Breakdown</h4>
                     <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                        The pepper-to-salt ratio on the rub is spot-on. Every bite balances deep hickory smoke with render-rich beef fat. Sauce is entirely optional because the meat carries itself effortlessly.
+                        The rice grains are perfectly separated and infused with saffron and ghee. The masala blend reaches deep into the chicken, giving every mouthful a rich, savory aroma without being overly oily.
                     </p>
                     <div class="grid grid-cols-3 gap-2 text-center text-xs mb-4">
-                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Tenderness</span> 10/10</div>
-                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Smoke</span> 9.5/10</div>
-                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Value</span> 9.0/10</div>
+                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Aroma</span> 10/10</div>
+                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Tenderness</span> 9.8/10</div>
+                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Spice Level</span> 9.5/10</div>
                     </div>
                 </div>
 
@@ -484,27 +675,34 @@
                 </button>
             </div>
 
-            <!-- Review Card 2 -->
+            <!-- Review Card 2: Mutton Curry -->
             <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-start mb-4 sm:mb-6">
-                        <h3 class="font-headline-sm text-base sm:text-xl text-amber-300 font-bold">Authentic Thai Khao Soi</h3>
-                        <div class="bg-amber-500/10 border border-amber-500 text-amber-400 px-2.5 py-0.5 font-bold text-lg rounded">9.2</div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-headline-sm text-base sm:text-xl text-amber-300 font-bold">Saoji Mutton Curry</h3>
+                        <div class="bg-amber-500/10 border border-amber-500 text-amber-400 px-2.5 py-0.5 font-bold text-lg rounded">9.8</div>
                     </div>
+
+                    <!-- Restaurant & Location Badge Tag -->
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-amber-500/30 px-3 py-1 rounded text-xs mb-4 text-slate-300">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">storefront</span>
+                        <span><strong class="text-amber-300">Saoji Bhojanalaya</strong> — Nagpur, Maharashtra</span>
+                    </div>
+
                     <div class="space-y-4 text-slate-300 text-xs sm:text-sm mb-6">
-                        <p>Northern Thai coconut curry noodle soup topped with crispy deep-fried egg noodles, pickled mustard greens, and lime.</p>
+                        <p>Fiery Maharashtrian curry simmered slow with black spices, coconut, and tender bone-in goat meat.</p>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <span class="text-amber-400 font-bold block mb-1">PROS</span>
                                 <ul class="list-disc list-inside text-xs space-y-1 text-slate-400">
-                                    <li>Complex broth layers</li>
-                                    <li>Great texture interplay</li>
+                                    <li>Intense spice punch</li>
+                                    <li>Rich gelatinous gravy</li>
                                 </ul>
                             </div>
                             <div>
                                 <span class="text-rose-400 font-bold block mb-1">CONS</span>
                                 <ul class="list-disc list-inside text-xs space-y-1 text-slate-400">
-                                    <li>Can be quite heavy</li>
+                                    <li>High spice tolerance needed</li>
                                 </ul>
                             </div>
                         </div>
@@ -515,12 +713,12 @@
                 <div id="review-2-detail" class="review-details border-t border-white/10 pt-4 mt-2">
                     <h4 class="font-bold text-amber-300 mb-2 text-sm sm:text-base">Flavor Breakdown</h4>
                     <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                        The sweetness of the coconut cream cuts through the sharp, earthy heat of dry red chilis and lemongrass. The contrast between soft boiled egg noodles inside and crunchy fried noodles on top makes it an unforgettable dish.
+                        A legendary dish for lovers of heat. The roasted masala paste coats every piece of mutton, yielding a savory, dark, and complex flavor that pairs perfectly with bhakri or roti.
                     </p>
                     <div class="grid grid-cols-3 gap-2 text-center text-xs mb-4">
-                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Broth</span> 9.5/10</div>
-                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Aroma</span> 9.0/10</div>
-                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Balance</span> 9.0/10</div>
+                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Gravy Depth</span> 10/10</div>
+                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Heat</span> 9.9/10</div>
+                        <div class="p-2 bg-white/5 rounded border border-white/5"><span class="block text-amber-400 font-bold">Authenticity</span> 10/10</div>
                     </div>
                 </div>
 
@@ -604,6 +802,13 @@
             icon.style.transform = "rotate(180deg)";
         }
     }
+
+    // Flip card toggle for touch/mobile devices
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
 
     // Scroll Reveal Animation
     const observerOptions = { threshold: 0.05 };
