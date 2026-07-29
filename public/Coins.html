@@ -142,7 +142,8 @@
             <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link active-link py-1">Overview</a>
             <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Banknotes</a>
             <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Proof &amp; UNC Sets</a>
-            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Coin Inventory</a>
+            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Indian Coins</a>
+            <a href="#foreign-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Foreign Coins</a>
             <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Target Hunt</a>
             <a href="#valuation-guide" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Authentication</a>
             <a href="#mint-marks" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Mint Marks</a>
@@ -163,7 +164,8 @@
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Overview</a>
         <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Banknotes</a>
         <a href="#special-commemorative" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Proof &amp; UNC Sets</a>
-        <a href="#indian-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Coin Inventory</a>
+        <a href="#indian-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Indian Coins</a>
+        <a href="#foreign-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Foreign Coins</a>
         <a href="#wishlist" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Target Hunt</a>
         <a href="#valuation-guide" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Authentication</a>
         <a href="#mint-marks" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2">Mint Marks &amp; Locations</a>
@@ -172,7 +174,6 @@
 
 <!-- Floating Fast Navigation / Scroll to Top Widget -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
-    <!-- Quick Jump Menu Overlay -->
     <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-amber-500/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
         <a href="index.html" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
@@ -188,20 +189,16 @@
             <span class="material-symbols-outlined text-sm">workspace_premium</span> Proof &amp; UNC Sets
         </a>
         <a href="#indian-coins" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">monetization_on</span> Coin Inventory
+            <span class="material-symbols-outlined text-sm">monetization_on</span> Indian Coins
+        </a>
+        <a href="#foreign-coins" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">public</span> Foreign Coins
         </a>
         <a href="#wishlist" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">explore</span> Target Hunt
         </a>
-        <a href="#valuation-guide" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">verified</span> Authentication
-        </a>
-        <a href="#mint-marks" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">location_on</span> Mint Marks
-        </a>
     </div>
 
-    <!-- Combined Floating Controller -->
     <div class="flex items-center gap-2">
         <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center">
             <span class="material-symbols-outlined text-xl">segment</span>
@@ -218,13 +215,13 @@
     <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-24">
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
             <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">paid</span>
-            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">25+</div>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">85+</div>
             <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Active Inventory Pieces</div>
         </div>
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
-            <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">history_edu</span>
-            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">4</div>
-            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Historical Eras</div>
+            <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">public</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">Global</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">India, Hungary, EU, Australia</div>
         </div>
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
             <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">workspace_premium</span>
@@ -246,7 +243,6 @@
         </div>
         
         <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
-            <!-- Slide 1 -->
             <div class="carousel-slide active absolute inset-0">
                 <img alt="RBI 1000 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
@@ -261,7 +257,6 @@
                 </div>
             </div>
 
-            <!-- Slide 2 -->
             <div class="carousel-slide absolute inset-0">
                 <img alt="British India 10 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
@@ -276,7 +271,6 @@
                 </div>
             </div>
 
-            <!-- Controls -->
             <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="prevSlide()">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
             </button>
@@ -286,7 +280,7 @@
         </div>
     </section>
 
-    <!-- RESTRUCTURED SECTION: Special Non-Circulating Commemorative Sets (Enlarged Hero Layout) -->
+    <!-- Special Commemorative Sets -->
     <section id="special-commemorative" class="scroll-mt-24 space-y-8">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">workspace_premium</span>
@@ -297,10 +291,7 @@
         </div>
 
         <div class="grid grid-cols-1 gap-8">
-            <!-- Maharana Pratap 475th Birth Anniversary Collector Set -->
             <div class="glass-card p-6 sm:p-8 rounded-xl border-2 border-red-900/40 bg-gradient-to-b from-red-950/20 via-slate-900/80 to-slate-950 flex flex-col gap-6 hover:border-amber-400/50 transition-all shadow-[0_0_25px_rgba(153,27,27,0.15)]">
-                
-                <!-- TOP HEADER: Title & Status Header -->
                 <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
                     <div>
                         <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/20">SPECIAL ISSUE — 2015 AD</span>
@@ -312,10 +303,9 @@
                     </div>
                 </div>
 
-                <!-- MIDDLE HERO IMAGE DISPLAY: Full-Width & Enlarged Showcase -->
                 <div class="w-full space-y-3">
                     <div class="w-full h-80 sm:h-96 md:h-[450px] rounded-xl border-2 border-amber-500/40 bg-black/60 overflow-hidden relative shadow-2xl group">
-                 <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/Notes_And_Coins/maharana.png"/>
+                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/Notes_And_Coins/maharana.png"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         <span class="absolute top-3 right-3 text-[10px] font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded uppercase shadow-lg tracking-wider">OFFICIAL MINT FOLDER SHOWCASE</span>
                         <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
@@ -328,7 +318,6 @@
                     </div>
                 </div>
 
-                <!-- BOTTOM TECHNICAL SPECIFICATIONS GRID -->
                 <div class="space-y-4">
                     <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 text-xs bg-black/40 p-4 rounded-lg border border-white/5">
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Denomination</strong><span class="text-slate-200 font-semibold">₹10 (Ten Rupees)</span></div>
@@ -347,7 +336,6 @@
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Market Value</strong><span class="text-amber-400 font-bold">Premium Collector Pack</span></div>
                     </div>
 
-                    <!-- Extended Descriptions & Historical Significance -->
                     <div class="space-y-2 text-xs text-slate-300 pt-2 border-t border-white/5">
                         <p><strong>Obverse Design:</strong> Lion Capital of Ashoka Pillar with motto "Satyameva Jayate" in Hindi, flanked by "BHARAT" in Devanagari and "INDIA" in English with Rupee symbol ₹10.</p>
                         <p><strong>Reverse Design:</strong> Dynamic portrait bust of Rajput warrior king Maharana Pratap in traditional armor holding a spear riding his legendary warhorse Chetak, with bi-lingual legend "475th BIRTH ANNIVERSARY OF MAHARANA PRATAP - 2015".</p>
@@ -358,30 +346,28 @@
         </div>
     </section>
 
-    <!-- SECTION: Categorized Coin Inventory with Detailed Reverse Flip Side -->
+    <!-- SECTION: Categorized Indian Coin Inventory -->
     <section id="indian-coins" class="scroll-mt-24 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">collections_bookmark</span>
             <div>
-                <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">MY COIN INVENTORY (BY PERIODS)</h2>
-                <p class="text-xs text-slate-400">Click any card to flip and view the reverse side with historical context &amp; minting occasion</p>
+                <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">INDIAN COIN INVENTORY (BY PERIODS)</h2>
+                <p class="text-xs text-slate-400">Click any card to flip and view the reverse side with historical context &amp; minting details</p>
             </div>
         </div>
 
-        <!-- CATEGORY 1: ANCIENT PERIOD -->
+        <!-- CATEGORY 1: ANCIENT & MEDIEVAL PERIOD -->
         <div class="space-y-6">
             <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
                 <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
                     <span class="material-symbols-outlined text-amber-400">account_balance</span>
-                    1. Ancient Period (600 BC – 500 AD)
+                    1. Ancient &amp; Medieval Period (600 BC – 1757 AD)
                 </h3>
             </div>
 
             <div class="grid grid-cols-1 gap-6">
-                <!-- Ancient Item 1 -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <!-- FRONT SIDE -->
                         <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
                             <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
                                 <img alt="Mauryan Silver Karshapana Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png"/>
@@ -407,7 +393,6 @@
                             </div>
                         </div>
                         
-                        <!-- BACK SIDE: Extended Context & Purpose -->
                         <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
@@ -441,119 +426,590 @@
                 </h3>
             </div>
 
-            <div class="grid grid-cols-1 gap-6">
-                <!-- Colonial Item 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Colonial Item 1: Queen Victoria 1/4 Rupee -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <!-- FRONT SIDE -->
-                        <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                            <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
-                                <img alt="1862 Victoria 1/4 Rupee Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png"/>
-                                <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
-                                <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
-                            </div>
-                            <div class="flex-grow space-y-3 w-full">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-200 text-lg sm:text-xl">1862 Queen Victoria 1/4 Rupee</h4>
-                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
-                                </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
-                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong><span class="text-slate-200">1/4 Rupee</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Issuer / Ruler:</strong><span class="text-amber-300">Queen Victoria</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong><span class="text-slate-200">1862</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong><span class="text-slate-200">Silver (0.916)</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Weight:</strong><span class="text-slate-200">2.9 g</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong><span class="text-amber-300">Calcutta</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">Available</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Market Value:</strong><span class="text-amber-400 font-bold">Standard Silver</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- BACK SIDE: Extended Context & Purpose -->
-                        <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Numismatic History &amp; Minting Context</h4>
-                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                                    <h4 class="font-bold text-amber-200 text-base sm:text-lg">1862 Queen Victoria 1/4 Rupee</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
-                                    <div><strong class="text-slate-400 block text-[9px]">Coin Type:</strong> Regular Standard Issue</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Occasion / Purpose:</strong> Transfer of Power to British Crown</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Minting System:</strong> Steam Press Milled</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Pre-Independence Historic</div>
-                                </div>
-                                <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                    <p><strong>Why It Was Minted:</strong> Struck to mark the assumption of direct governance over India by Queen Victoria and the British Crown following the Government of India Act of 1858.</p>
-                                    <p><strong>Design Symbolism:</strong> Replaced East India Company titles with Queen Victoria's royal bust wearing an elaborate regal mantle.</p>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1/4 Rupee</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong> 1862</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Silver (0.916)</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Calcutta</div>
                                 </div>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-Independence Crown Currency</span>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">British Crown Issue</span>
+                        </div>
+
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Historical Context</h4>
+                                <p class="text-xs text-slate-300">Struck to mark the assumption of direct governance over India by Queen Victoria and the British Crown following the Government of India Act of 1858.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-Independence Currency</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonial Item 2: British India 1 Pice -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-base sm:text-lg">British India 1 Pice</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1 Pice</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Era:</strong> Pre-1947 Colonial</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Bronze / Copper</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Feature:</strong> Holed / Crown Issue</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Colonial Fractional Currency</span>
+                        </div>
+
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Historical Context</h4>
+                                <p class="text-xs text-slate-300">Standard fractional coinage issued during the British Raj for daily small-value transactions across the Indian subcontinent.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-1947 British India</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- CATEGORY 3: MODERN / REPUBLIC INDIA PERIOD -->
+        <!-- CATEGORY 3: MODERN / REPUBLIC INDIA PERIOD (CATALOGED FROM IMAGE DATA) -->
         <div class="space-y-6">
             <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
                 <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
                     <span class="material-symbols-outlined text-amber-400">flag</span>
-                    3. Modern Period (1950 AD – Present)
+                    3. Modern Period (Republic of India: 1950 AD – Present)
                 </h3>
             </div>
 
-            <div class="grid grid-cols-1 gap-6">
-                <!-- Modern Item 1 -->
+            <!-- Modern Sub-Group 1: 50 Paise Coins -->
+            <div class="glass-card p-5 rounded-xl space-y-4">
+                <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400 text-base">pie_chart</span> 50 Paise Issues
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Anna Series)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 1957 - 1963</span>
+                        <span class="text-[10px] text-slate-400">Regular Issue</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Naya Paise Era)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 1964 - 1971</span>
+                        <span class="text-[10px] text-slate-400">Regular Issue</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Cupro-Nickel)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 1988 - 2007</span>
+                        <span class="text-[10px] text-slate-400">Regular Issue</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Ferritic Stainless)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1997</span>
+                        <span class="text-[10px] text-slate-400">Regular Issue</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Small Size Series)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 2008 - 2010</span>
+                        <span class="text-[10px] text-slate-400">Regular Issue</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern Sub-Group 2: 1 Rupee Coins -->
+            <div class="glass-card p-5 rounded-xl space-y-4">
+                <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400 text-base">monetization_on</span> 1 Rupee Issues
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">1 Rupee (50th Anniv. Independence)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1997</span>
+                        <span class="text-[10px] text-slate-400">Commemorative / Regular</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">1 Rupee (Cross / Unity Series)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2004</span>
+                        <span class="text-[10px] text-slate-400">Regular Issue</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">1 Rupee (Rupee Symbol Series)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2010</span>
+                        <span class="text-[10px] text-slate-400">Regular Issue</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern Sub-Group 3: 2 Rupees Coins -->
+            <div class="glass-card p-5 rounded-xl space-y-4">
+                <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400 text-base">counter_2</span> 2 Rupees Issues
+                </h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (National Integration)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1982</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (National Integration)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1993</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Cupro-Nickel)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1995</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Cupro-Nickel)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1996</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1997</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1998</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Chhatrapati Shivaji)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1999</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2000</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2001</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2002</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2003</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">2 Rupees (Hand Gesture Series)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2009</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern Sub-Group 4: 5 Rupees Coins -->
+            <div class="glass-card p-5 rounded-xl space-y-4">
+                <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400 text-base">counter_5</span> 5 Rupees Issues
+                </h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Indira Gandhi)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1985</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Cupro-Nickel Thick)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1994</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Cupro-Nickel Thick)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1995</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Cupro-Nickel Thick)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 1996</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2006 (x2)</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2007 (x2)</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Brass / Nickel-Brass)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2009 (x3)</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Nickel-Brass Series)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2010 (x4)</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Rupee Symbol Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2011</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2012 (x3)</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">5 Rupees (Regular Issue)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2013 (x2)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern Sub-Group 5: 10 Rupees Coins -->
+            <div class="glass-card p-5 rounded-xl space-y-4">
+                <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400 text-base">payments</span> 10 Rupees Issues
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">10 Rupees (Bi-Metallic 15 Rays)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 2008 - 2010</span>
+                        <span class="text-[10px] text-slate-400">Regular Bi-Metallic</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">10 Rupees (Bi-Metallic 10 Rays)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2010</span>
+                        <span class="text-[10px] text-slate-400">Regular Bi-Metallic</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">10 Rupees (Bi-Metallic Rupee Symbol)</strong>
+                        <span class="text-slate-300 block mt-0.5">Year: 2015</span>
+                        <span class="text-[10px] text-slate-400">Regular Bi-Metallic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: FOREIGN COINS INVENTORY -->
+    <section id="foreign-coins" class="scroll-mt-24 space-y-12">
+        <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
+            <span class="material-symbols-outlined text-amber-400 text-3xl">public</span>
+            <div>
+                <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">FOREIGN COIN INVENTORY (BY COUNTRY)</h2>
+                <p class="text-xs text-slate-400">International coinage from Hungary, Eurozone, Australia, and worldwide mints</p>
+            </div>
+        </div>
+
+        <!-- 1. HUNGARY (FORINT SERIES) -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">travel_explore</span>
+                    1. Hungary (Forint - HUF)
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 10 Forint -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <!-- FRONT SIDE -->
-                        <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                            <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
-                                <img alt="₹2 Chhatrapati Shivaji Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png"/>
-                                <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
-                                <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
-                            </div>
-                            <div class="flex-grow space-y-3 w-full">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-200 text-lg sm:text-xl">₹2 Chhatrapati Shivaji Commemorative</h4>
-                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
-                                </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
-                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong><span class="text-slate-200">₹2</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Issuer / Ruler:</strong><span class="text-amber-300">Republic of India</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong><span class="text-slate-200">1999</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong><span class="text-slate-200">Cupro-Nickel</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Weight:</strong><span class="text-slate-200">6.0 g</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong><span class="text-amber-300">Mumbai, Hyderabad, Noida</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">Yes</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">Available</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Market Value:</strong><span class="text-amber-400 font-bold">Commemorative</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- BACK SIDE: Extended Context & Purpose -->
-                        <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Numismatic History &amp; Minting Context</h4>
-                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                                    <h4 class="font-bold text-amber-200 text-lg">10 Forint</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
-                                    <div><strong class="text-slate-400 block text-[9px]">Coin Type:</strong> Circulating Commemorative</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Occasion / Purpose:</strong> Tribute to Maratha Emperor</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Minting System:</strong> Republic Minted</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> In Circulation / Legal Tender</div>
-                                </div>
-                                <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                    <p><strong>Why It Was Minted:</strong> Issued in 1999 to honor the legacy, statecraft, and naval foresight of Chhatrapati Shivaji Maharaj in Indian history.</p>
-                                    <p><strong>Design Symbolism:</strong> Captures the iconic bust of the Maratha ruler in coronation attire with Hindi &amp; English inscriptions.</p>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Country:</strong> Hungary</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> HUF</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Cupro-Nickel</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Circulating</div>
                                 </div>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Sovereign Republic Commemorative Coin</span>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Hungarian Mint</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Features the Coat of Arms of Hungary on the obverse. Standard circulation coin of the Republic of Hungary.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Central European Issue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 20 Forint -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">20 Forint</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Country:</strong> Hungary</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> HUF</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Brass / Cu-Ni-Zn</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Circulating</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Hungarian Mint</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Features the Hungarian Iris (Iris Variegata) flower motif on the reverse, symbolizing native Hungarian flora.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Central European Issue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 50 Forint -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">50 Forint</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Country:</strong> Hungary</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> HUF</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Cupro-Nickel</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Circulating</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Hungarian Mint</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Features the Saker Falcon (Kerecsensólyom), a revered bird of prey in ancient Hungarian mythology and heraldry.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Central European Issue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 200 Forint -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">200 Forint</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Country:</strong> Hungary</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> HUF</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Bi-Metallic</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Circulating</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Bi-Metallic High Denomination</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Bi-metallic coin introduced in 2009 featuring the famous Chain Bridge (Lánchíd) over the Danube River in Budapest.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Central European Bi-Metal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. EUROZONE (EURO COINS) -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">euro</span>
+                    2. Eurozone (European Union)
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 10 Euro Cent -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">10 Euro Cent</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Region:</strong> Eurozone</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Nordic Gold</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Edge:</strong> Shaped Edge</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Active Legal Tender</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Nordic Gold Alloy</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Features the common map design of Europe alongside member-state national obverse motifs. Made of copper-aluminum alloy.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">European Union Currency</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 20 Euro Cent -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">20 Euro Cent</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Region:</strong> Eurozone</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Nordic Gold</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Edge:</strong> Spanish Flower Edge</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Active Legal Tender</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Nordic Gold Alloy</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Features 7 distinct indentations around the rim ("Spanish Flower" shape) for easy tactile recognition by the visually impaired.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">European Union Currency</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 50 Euro Cent -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">50 Euro Cent</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Region:</strong> Eurozone</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Nordic Gold</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Edge:</strong> Indented Milling</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Active Legal Tender</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Nordic Gold Alloy</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Heavyweight denomination representing 50 European Cents, featuring European map layout and national obverse heraldry.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">European Union Currency</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1 Euro Bi-Metallic -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">1 Euro (Bi-Metallic)</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Region:</strong> Eurozone</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Bi-Metallic</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Ring/Core:</strong> Brass / Cupro-Nickel</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Active Legal Tender</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Flagship Bi-Metallic Issue</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Bi-metallic construction with cupro-nickel central disk inside a nickel-brass outer ring, engineered for advanced anti-counterfeiting security.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">European Union Currency</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. AUSTRALIA (AUSTRALIAN DOLLAR SERIES) -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">south_america</span>
+                    3. Australia (Commonwealth Currency)
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- 20 Cents Piece -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">Australian 20 Cents Piece</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Country:</strong> Australia</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> AUD</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Cupro-Nickel</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Royal Australian Mint</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Platypus Motif</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Features Stuart Devlin's iconic design of a platypus swimming underwater on the reverse, with monarch effigy on the obverse.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Commonwealth of Australia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Australian 1 Dollar -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg">Australian 1 Dollar ($1)</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Country:</strong> Australia</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> AUD</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Aluminum-Bronze</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Royal Australian Mint</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Five Kangaroos Motif</span>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Coin Details</h4>
+                                <p class="text-xs text-slate-300">Introduced in 1984 to replace the $1 note. Features the iconic reverse design of Five Kangaroos by Stuart Devlin.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Commonwealth of Australia</span>
                         </div>
                     </div>
                 </div>
