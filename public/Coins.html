@@ -38,12 +38,10 @@
 <style>
     html { scroll-padding-top: 80px; }
     
-    /* Custom Scrollbar for Page & Nav Menu */
     ::-webkit-scrollbar { height: 4px; width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(to right, #e6b800, #b8860b); border-radius: 4px; }
     
-    /* Hide Scrollbar for clean menu scrolling on touch devices */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -54,7 +52,6 @@
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* 3D Flip Card Styles for Inventory Tiles */
     .inventory-flip-card {
         perspective: 1200px;
         user-select: none;
@@ -84,16 +81,13 @@
         transform: rotateY(180deg);
     }
 
-    /* Collapsible Category Hidden State */
     .extra-coins { display: none; }
     .extra-coins.expanded { display: grid; animation: fadeIn 0.5s ease-out forwards; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Carousel */
     .carousel-slide { display: none; }
     .carousel-slide.active { display: block; animation: fadeIn 0.8s ease-out; }
 
-    /* Active Nav Class */
     .nav-link.active-link {
         color: #fff2d1 !important;
         border-bottom: 2px solid #e6b800;
@@ -137,15 +131,18 @@
 <nav class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)]">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
-        <!-- Brand Title -->
-        <div class="font-headline-sm text-base sm:text-2xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-2 flex-shrink-0">
-            <span class="material-symbols-outlined text-amber-400 text-xl sm:text-2xl">monetization_on</span>
-            Akash Nagapure
-        </div>
+        <!-- Brand Title Redirects to Main Site Index -->
+        <a href="index.html" class="font-headline-sm text-base sm:text-2xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-2 flex-shrink-0 group">
+            <span class="material-symbols-outlined text-amber-400 text-xl sm:text-2xl group-hover:scale-110 transition-transform">monetization_on</span>
+            <span>Akash Nagapure</span>
+        </a>
 
-        <!-- Desktop Horizontally Scrollable Menu (Fixes Skipping Issues) -->
+        <!-- Desktop Horizontally Scrollable Menu -->
         <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link active-link py-1">Home</a>
+            <a href="index.html" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
+                <span class="material-symbols-outlined text-sm">home</span> Main Hub
+            </a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link active-link py-1">Overview</a>
             <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Banknotes</a>
             <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Coin Inventory</a>
             <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Target Hunt</a>
@@ -162,7 +159,10 @@
 
     <!-- Mobile Slide-down Drawer -->
     <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-amber-500/20 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
-        <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Home</a>
+        <a href="index.html" class="block font-label-caps text-xs text-amber-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
+        </a>
+        <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Overview</a>
         <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Banknotes</a>
         <a href="#indian-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Coin Inventory</a>
         <a href="#wishlist" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Target Hunt</a>
@@ -176,8 +176,11 @@
     <!-- Quick Jump Menu Overlay -->
     <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-amber-500/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
+        <a href="index.html" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
+            <span class="material-symbols-outlined text-sm">home</span> Main Site Hub
+        </a>
         <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">home</span> Top / Dashboard
+            <span class="material-symbols-outlined text-sm">analytics</span> Overview
         </a>
         <a href="#crown-jewels" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">payments</span> Banknotes
@@ -475,7 +478,7 @@
         </div>
     </section>
 
-    <!-- Target Hunt / Wishlist (Interactive Flip Cards) -->
+    <!-- Target Hunt / Wishlist -->
     <section id="wishlist" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">TARGET HUNT (FLIP FOR LOCATION &amp; DETAILS)</h2>
@@ -650,7 +653,6 @@
 </footer>
 
 <script>
-    // Mobile Drawer Navigation Toggle
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu-drawer');
         const icon = document.getElementById('menu-icon');
@@ -670,18 +672,15 @@
         icon.textContent = 'menu';
     }
 
-    // Scroll-to-Top Action
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Floating Jump Menu Overlay Toggle
     function toggleQuickJump() {
         const jumpMenu = document.getElementById('quick-jump-menu');
         jumpMenu.classList.toggle('hidden');
     }
 
-    // Hero Carousel Logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
 
@@ -702,7 +701,6 @@
 
     setInterval(nextSlide, 7000);
 
-    // Active Navigation Highlight on Scroll
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
