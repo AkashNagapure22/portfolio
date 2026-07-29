@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Akash Nagapure | Coin Collection Portfolio</title>
+<title>Akash Nagapure | Numismatic & Banknote Portfolio</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -26,10 +26,10 @@
                     "gutter": "24px"
                 },
                 "fontFamily": {
-                    "headline-md": ["Geist"],
-                    "label-caps": ["Geist"],
-                    "body-md": ["Inter"],
-                    "display-lg": ["Geist"]
+                    "headline-md": ["Geist", "sans-serif"],
+                    "label-caps": ["Geist", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "display-lg": ["Geist", "sans-serif"]
                 }
             }
         }
@@ -50,9 +50,40 @@
     .glass-card:hover {
         border-color: rgba(230, 184, 0, 0.5);
         box-shadow: 0 0 20px rgba(230, 184, 0, 0.15);
-        transform: translateY(-4px) scale(1.01);
     }
-    .text-glow { text-shadow: 0 0 10px rgba(230, 184, 0, 0.5); }
+
+    /* 3D Flip Card Styles */
+    .flip-card {
+        perspective: 1000px;
+        user-select: none;
+    }
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+        pointer-events: none;
+    }
+    .flip-card * {
+        pointer-events: auto;
+    }
+    
+    .flip-card.flipped .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+    
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 0.5rem;
+    }
+    .flip-card-back {
+        transform: rotateY(180deg);
+    }
 
     /* Carousel */
     .carousel-slide { display: none; }
@@ -123,10 +154,10 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex gap-8" id="nav-menu">
             <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link active-link">Home</a>
-            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">Crown Jewels</a>
+            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">Banknote Collection</a>
+            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">Indian Coins</a>
             <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">Target Hunt</a>
-            <a href="#vault" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">The Vault</a>
-            <a href="#eras" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">Historical Eras</a>
+            <a href="#foreign-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">Foreign Coins</a>
             <a href="#reviews" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link">Appraisals</a>
         </div>
 
@@ -139,10 +170,10 @@
     <!-- Mobile Slide-down Drawer -->
     <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/95 border-b border-amber-500/10 backdrop-blur-2xl px-6 py-4 space-y-3">
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Home</a>
-        <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Crown Jewels</a>
+        <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Banknote Collection</a>
+        <a href="#indian-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Indian Coins</a>
         <a href="#wishlist" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Target Hunt</a>
-        <a href="#vault" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">The Vault</a>
-        <a href="#eras" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Historical Eras</a>
+        <a href="#foreign-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Foreign Coins</a>
         <a href="#reviews" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2">Appraisals</a>
     </div>
 </nav>
@@ -153,60 +184,75 @@
     <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-24">
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
             <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">paid</span>
-            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">250+</div>
-            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Coins Cataloged</div>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">320+</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Coins &amp; Notes Cataloged</div>
         </div>
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
             <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">history_edu</span>
-            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">12</div>
-            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Dynasties Covered</div>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">14</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Dynasties &amp; Eras</div>
         </div>
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
             <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">public</span>
-            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">85% / 15%</div>
-            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Indian vs. World</div>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">80% / 20%</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Indian vs. Foreign</div>
         </div>
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
             <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">verified</span>
-            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">1500+ Yrs</div>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">2000+ Yrs</div>
             <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Timeline Span</div>
         </div>
     </section>
 
-    <!-- Crown Jewels Section (Featured Hero Banner Carousel) -->
+    <!-- Crown Jewels Section (Featured Note Collection Carousel) -->
     <section id="crown-jewels" class="overflow-hidden scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
-            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">CROWN JEWELS</h2>
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">CROWN JEWELS — BANKNOTE COLLECTION</h2>
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
         
         <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
-            <!-- Slide 1: Mughal Silver Rupee -->
+            <!-- Slide 1: Historic Reserve Bank ₹1000 Note -->
             <div class="carousel-slide active absolute inset-0">
-                <img alt="Mughal Empire Silver Rupee" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=1200&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent"></div>
+                <img alt="RBI 1000 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
-                    <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">MUGHAL EMPIRE (1605–1627 AD)</span>
-                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">Jahangir Silver Rupee</h3>
-                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Minted in Lahore. High-grade silver featuring intricate Persian calligraphy and regal couplets.</p>
+                    <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">RESERVE BANK OF INDIA (1954–1978)</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">₹1000 Tanjore Temple Note</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Features the majestic Brihadishvara Temple of Tanjore. Large format currency issued under Governor B. Rama Rau.</p>
                     <div class="flex items-center gap-4">
-                        <span class="text-amber-400 font-bold text-sm sm:text-base">Metal: 96% Pure Silver</span>
-                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded border border-amber-500/30">Extremely Rare</span>
+                        <span class="text-amber-400 font-bold text-sm sm:text-base">Watermark: Ashoka Pillar</span>
+                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded border border-amber-500/30">Rare Demonetized Issue</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Slide 2: British India King George V -->
+            <!-- Slide 2: British India King George VI 10 Rupee -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="British India Silver Coin" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1200&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent"></div>
+                <img alt="British India 10 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
-                    <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">BRITISH INDIA (1918)</span>
-                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">King George V One Rupee</h3>
-                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Bombay Mint mark (Dot). High relief portrait with complete original mint luster.</p>
+                    <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">BRITISH INDIA (1938–1947)</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">King George VI ₹10 Note</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Signed by C.D. Deshmukh, first Indian RBI Governor. Features profile portrait of King George VI and dhow boat reverse motif.</p>
                     <div class="flex items-center gap-4">
-                        <span class="text-amber-400 font-bold text-sm sm:text-base">Grade: Uncirculated (UNC)</span>
-                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded border border-amber-500/30">91.6% Silver</span>
+                        <span class="text-amber-400 font-bold text-sm sm:text-base">Condition: Crisp Uncirculated</span>
+                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded border border-amber-500/30">Pre-Independence</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Republic India Early ₹1 Re-issue -->
+            <div class="carousel-slide absolute inset-0">
+                <img alt="Republic India One Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
+                    <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">REPUBLIC OF INDIA (1950)</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">First Republic ₹1 Banknote</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Issued directly by Government of India with K.R.K. Menon signature. Represents the inaugural currency note of sovereign India.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-amber-400 font-bold text-sm sm:text-base">Signatory: Finance Secretary</span>
+                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded border border-amber-500/30">Historic First</span>
                     </div>
                 </div>
             </div>
@@ -221,209 +267,344 @@
         </div>
     </section>
 
-    <!-- Target Hunt / Wishlist -->
+    <!-- Indian Coins Section (Categorized Grid with Unique Custom Display) -->
+    <section id="indian-coins" class="scroll-mt-24 space-y-12">
+        <div class="flex items-center gap-4">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">INDIAN COINS THROUGH THE AGES</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+
+        <!-- 1. Ancient Period -->
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold text-amber-300/90 flex items-center gap-2 border-l-2 border-amber-400 pl-3">
+                <span class="material-symbols-outlined text-amber-400 text-base">account_balance</span>
+                1. Ancient Period
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Coin Card -->
+                <div class="glass-card p-5 rounded-xl border border-amber-500/20 flex flex-col justify-between space-y-4 hover:border-amber-400/50 transition-all">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-amber-500/30 flex-shrink-0 bg-black/40">
+                            <img alt="Punch Marked Coin" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">600 BC - 300 BC</span>
+                            <h4 class="font-bold text-amber-200 text-base mt-1">Mauryan Silver Karshapana</h4>
+                            <p class="text-[11px] text-slate-400">Punch-marked silver with 5 distinct symbols including sun, elephant, and arched hill.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/30 p-2.5 rounded border border-white/5 text-[10px] space-y-1">
+                        <div class="flex justify-between"><span class="text-slate-400">Dynasty:</span> <span class="text-amber-300 font-semibold">Maurya Empire</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Metal &amp; Weight:</span> <span class="text-slate-200">Silver / 3.4g</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Rarity:</span> <span class="text-amber-400 font-bold">Scarce</span></div>
+                    </div>
+                </div>
+
+                <!-- Coin Card -->
+                <div class="glass-card p-5 rounded-xl border border-amber-500/20 flex flex-col justify-between space-y-4 hover:border-amber-400/50 transition-all">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-amber-500/30 flex-shrink-0 bg-black/40">
+                            <img alt="Gupta Gold Dinar" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">335 AD - 380 AD</span>
+                            <h4 class="font-bold text-amber-200 text-base mt-1">Samudragupta Archer Type</h4>
+                            <p class="text-[11px] text-slate-400">Golden Dinar depicting king holding bow and arrow with Goddess Lakshmi on reverse.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/30 p-2.5 rounded border border-white/5 text-[10px] space-y-1">
+                        <div class="flex justify-between"><span class="text-slate-400">Dynasty:</span> <span class="text-amber-300 font-semibold">Gupta Dynasty</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Metal &amp; Weight:</span> <span class="text-slate-200">Gold / 7.6g</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Rarity:</span> <span class="text-amber-400 font-bold">Very Rare</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Medieval Period -->
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold text-amber-300/90 flex items-center gap-2 border-l-2 border-amber-400 pl-3">
+                <span class="material-symbols-outlined text-amber-400 text-base">fort</span>
+                2. Medieval Period
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Coin Card -->
+                <div class="glass-card p-5 rounded-xl border border-amber-500/20 flex flex-col justify-between space-y-4 hover:border-amber-400/50 transition-all">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-amber-500/30 flex-shrink-0 bg-black/40">
+                            <img alt="Akbar Square Silver Rupee" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">1556 AD - 1605 AD</span>
+                            <h4 class="font-bold text-amber-200 text-base mt-1">Akbar Square "Ilahi" Rupee</h4>
+                            <p class="text-[11px] text-slate-400">Square silver rupee minted during the introduction of Akbar's Din-i-Ilahi era.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/30 p-2.5 rounded border border-white/5 text-[10px] space-y-1">
+                        <div class="flex justify-between"><span class="text-slate-400">Dynasty:</span> <span class="text-amber-300 font-semibold">Mughal Empire</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Metal &amp; Weight:</span> <span class="text-slate-200">Pure Silver / 11.4g</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Rarity:</span> <span class="text-amber-400 font-bold">Rare</span></div>
+                    </div>
+                </div>
+
+                <!-- Coin Card -->
+                <div class="glass-card p-5 rounded-xl border border-amber-500/20 flex flex-col justify-between space-y-4 hover:border-amber-400/50 transition-all">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-amber-500/30 flex-shrink-0 bg-black/40">
+                            <img alt="Maratha Gold Hon" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">1674 AD</span>
+                            <h4 class="font-bold text-amber-200 text-base mt-1">Chhatrapati Shivaji Gold Hon</h4>
+                            <p class="text-[11px] text-slate-400">Coronation issue bearing Nagari legend "Chhatrapati" on obverse and "Shri Raja" on reverse.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/30 p-2.5 rounded border border-white/5 text-[10px] space-y-1">
+                        <div class="flex justify-between"><span class="text-slate-400">Dynasty:</span> <span class="text-amber-300 font-semibold">Maratha Empire</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Metal &amp; Weight:</span> <span class="text-slate-200">Gold / 2.8g</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Rarity:</span> <span class="text-amber-400 font-bold">Extremely Rare</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Colonial Period -->
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold text-amber-300/90 flex items-center gap-2 border-l-2 border-amber-400 pl-3">
+                <span class="material-symbols-outlined text-amber-400 text-base">domain</span>
+                3. Colonial Period
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Coin Card -->
+                <div class="glass-card p-5 rounded-xl border border-amber-500/20 flex flex-col justify-between space-y-4 hover:border-amber-400/50 transition-all">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-amber-500/30 flex-shrink-0 bg-black/40">
+                            <img alt="Queen Victoria Rupee" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">1862 AD</span>
+                            <h4 class="font-bold text-amber-200 text-base mt-1">Queen Victoria 1 Rupee</h4>
+                            <p class="text-[11px] text-slate-400">First crown currency issue after direct rule passed to British Crown following 1857.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/30 p-2.5 rounded border border-white/5 text-[10px] space-y-1">
+                        <div class="flex justify-between"><span class="text-slate-400">Ruler:</span> <span class="text-amber-300 font-semibold">British India</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Metal &amp; Mint:</span> <span class="text-slate-200">0.916 Silver / Calcutta</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Rarity:</span> <span class="text-amber-400 font-bold">Scarce</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Republic/Modern India -->
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold text-amber-300/90 flex items-center gap-2 border-l-2 border-amber-400 pl-3">
+                <span class="material-symbols-outlined text-amber-400 text-base">flag</span>
+                4. Republic / Modern India
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Coin Card -->
+                <div class="glass-card p-5 rounded-xl border border-amber-500/20 flex flex-col justify-between space-y-4 hover:border-amber-400/50 transition-all">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-amber-500/30 flex-shrink-0 bg-black/40">
+                            <img alt="1950 Anna Coin Set" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">1950 AD</span>
+                            <h4 class="font-bold text-amber-200 text-base mt-1">1950 Republic Inaugural Coinage</h4>
+                            <p class="text-[11px] text-slate-400">Inaugural coinage of independent India depicting Ashoka Lion Capital and corn sheaves.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/30 p-2.5 rounded border border-white/5 text-[10px] space-y-1">
+                        <div class="flex justify-between"><span class="text-slate-400">Era:</span> <span class="text-amber-300 font-semibold">Anna Series</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Composition:</span> <span class="text-slate-200">Cupro-Nickel / Bronze</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Condition:</span> <span class="text-amber-400 font-bold">Uncirculated</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Hunt / Wishlist (Interactive Flip Cards) -->
     <section id="wishlist" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
-            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">TARGET HUNT (WISHLIST)</h2>
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">TARGET HUNT (FLIP FOR LOCATION &amp; DETAILS)</h2>
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
             
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Chhatrapati Shivaji Maharaj Hon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2 flex flex-col gap-1 items-end">
-                    <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">GRAIL</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Shivaji Maharaj Gold Hon</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Maratha Empire (1674)</div>
-                </div>
-            </div>
-
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Gupta Empire Gold Dinar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Samudragupta Gold Dinar</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Gupta Dynasty (335 AD)</div>
-                </div>
-            </div>
-
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="King George VI 1939 Rupee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">1939 Silver Rupee</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">British India Key Date</div>
+            <!-- Wishlist Flip Card 1 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Shivaji Maharaj Gold Hon" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">GRAIL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Shivaji Gold Hon</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">location_on</span>
+                            <h4 class="font-bold text-xs text-amber-300">Shivaji Gold Hon</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">WHERE TO FIND:</strong> Premium Numismatic Auctions (Todywalla / Classical Numismatic Gallery)</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">ESTIMATED PRICE:</strong> ₹5,00,000+</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Maratha Empire</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Morgan Silver Dollar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">WORLD</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">1893-S Morgan Dollar</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">USA Classic</div>
+            <!-- Wishlist Flip Card 2 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Samudragupta Gold Dinar" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Gupta Gold Dinar</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">location_on</span>
+                            <h4 class="font-bold text-xs text-amber-300">Lyrist Type Dinar</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">WHERE TO FIND:</strong> Mumbai / Delhi Coin Fairs &amp; Certified Dealers</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">ESTIMATED PRICE:</strong> ₹1,50,000+</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">Gupta Dynasty</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Akbar Zodiac Mohur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-amber-500/20 text-amber-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">HIGH</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Jahangir Leo Zodiac Mohur</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Mughal Gold</div>
+            <!-- Wishlist Flip Card 3 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="1939 Silver Rupee" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-red-600 text-white px-1.5 sm:px-2 py-0.5 rounded-full font-bold">CRITICAL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">1939 Silver Rupee</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">location_on</span>
+                            <h4 class="font-bold text-xs text-amber-300">1939 Key Date Rupee</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">WHERE TO FIND:</strong> Marudhar Arts / Bombay Coin Society Exhibition</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">ESTIMATED PRICE:</strong> ₹3,00,000</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">British India</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
-                <img alt="Roman Silver Denarius" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                <div class="absolute top-2 right-2">
-                    <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">WORLD</span>
-                </div>
-                <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <div class="font-label-caps text-xs text-amber-300 mb-0.5">Julius Caesar Denarius</div>
-                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase">Roman Republic</div>
+            <!-- Wishlist Flip Card 4 -->
+            <div class="flip-card aspect-[2/3] cursor-pointer">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card overflow-hidden">
+                        <img alt="Morgan Silver Dollar" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] sm:text-[9px] bg-white/10 text-slate-300 px-1.5 sm:px-2 py-0.5 rounded-full font-bold">WORLD</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">1893-S Morgan Dollar</div>
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-amber-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">location_on</span>
+                            <h4 class="font-bold text-xs text-amber-300">1893-S Silver Dollar</h4>
+                            <div class="h-px bg-white/10 w-full my-2"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block mb-0.5">WHERE TO FIND:</strong> Heritage Auctions / US Certified Dealers (NGC/PCGS)</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block mb-0.5">ESTIMATED PRICE:</strong> $3,000+</p>
+                        </div>
+                        <span class="text-[8px] bg-amber-500/20 text-amber-300 py-1 rounded border border-amber-500/30 uppercase font-bold">USA Numismatics</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- The Vault (Cataloged Collection) -->
-    <section id="vault" class="scroll-mt-24">
-        <div class="flex items-center gap-4 mb-6 md:mb-8">
-            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">THE VAULT (FEATURED DISPLAY)</h2>
-            <div class="h-px flex-grow bg-white/10"></div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="Queen Victoria Silver Coin" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">1862 Queen Victoria Rupee</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Mint</span><span class="text-amber-400">Calcutta (No Dots)</span></div>
-                            <div class="flex justify-between"><span>Metal</span><span class="text-amber-400">0.916 Silver</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">GRADE: XF-AU</div>
-                </div>
-            </div>
-
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="Princely State Gwalior Copper" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">Gwalior State Cobra Paisa</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Ruler</span><span class="text-amber-400">Madho Rao Scindia</span></div>
-                            <div class="flex justify-between"><span>Metal</span><span class="text-amber-400">Copper</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">SYMBOLIC COBRA</div>
-                </div>
-            </div>
-
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="1947 Independence Rupee" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">1947 Tiger One Rupee</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Significance</span><span class="text-amber-400">Last British India</span></div>
-                            <div class="flex justify-between"><span>Metal</span><span class="text-amber-400">Pure Nickel</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">HISTORIC TRANSITION</div>
-                </div>
-            </div>
-
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
-                <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
-                    <img alt="Austrian Maria Theresa Thaler" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=400&auto=format&fit=crop"/>
-                </div>
-                <div class="flex-grow flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-amber-300 mb-1">1780 Maria Theresa Thaler</h4>
-                        <div class="space-y-1 text-[10px] text-slate-400">
-                            <div class="flex justify-between"><span>Origin</span><span class="text-amber-400">Austria Trade Coin</span></div>
-                            <div class="flex justify-between"><span>Metal</span><span class="text-amber-400">0.833 Silver</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-2 text-[9px] font-bold text-amber-400 inline-block px-2 py-0.5 border border-amber-500/30 w-fit">WORLD BULLION LEGEND</div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Eras & Categories -->
-    <section id="eras" class="grid grid-cols-1 lg:grid-cols-2 gap-8 scroll-mt-24">
+    <!-- Foreign Coins Section (US Coins & Europe Coins) -->
+    <section id="foreign-coins" class="grid grid-cols-1 lg:grid-cols-2 gap-8 scroll-mt-24">
+        <!-- US Coins -->
         <div>
-            <h2 class="font-headline-md text-lg sm:text-2xl text-amber-400 mb-6 italic font-bold">INDIAN NUMISMATIC ERAS</h2>
+            <h2 class="font-headline-md text-lg sm:text-2xl text-yellow-500 mb-6 italic font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-yellow-400">public</span>
+                UNITED STATES COINS
+            </h2>
             <div class="space-y-4">
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-amber-500/30 flex-shrink-0 group-hover:border-amber-400">
-                        <img alt="Ancient Punch Marked" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=400&auto=format&fit=crop"/>
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-yellow-500/30 flex-shrink-0 group-hover:border-yellow-400 bg-black/40">
+                        <img alt="Morgan Dollar" class="w-full h-full object-cover" src="images/placeholder.png"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-amber-300 mb-1 font-bold">Ancient & Medieval Dynasties</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"Mauryan Punch-marked coins, Kushan Gold, and Chola copper kasu pieces."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-yellow-300 mb-1 font-bold">Morgan Silver Dollar (1878–1904)</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Classic American 90% silver crown with Liberty head obverse and heraldic eagle reverse."</p>
                     </div>
                 </div>
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-amber-500/30 flex-shrink-0 group-hover:border-amber-400">
-                        <img alt="British India & Republic" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=400&auto=format&fit=crop"/>
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-yellow-500/30 flex-shrink-0 group-hover:border-yellow-400 bg-black/40">
+                        <img alt="Walking Liberty Half Dollar" class="w-full h-full object-cover" src="images/placeholder.png"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-amber-300 mb-1 font-bold">British India & Republic Minting</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"East India Company silver, Victoria Empress series, and modern commemorative ₹100/₹125 proof sets."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-yellow-300 mb-1 font-bold">Walking Liberty Half Dollar</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Renowned Weinman design, minted from 1916 to 1947 in 90% fine silver."</p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Europe Coins -->
         <div>
-            <h2 class="font-headline-md text-lg sm:text-2xl text-yellow-500 mb-6 italic font-bold">WORLD COINS & BULLION</h2>
+            <h2 class="font-headline-md text-lg sm:text-2xl text-yellow-500 mb-6 italic font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-yellow-400">euro_symbol</span>
+                EUROPEAN COINS
+            </h2>
             <div class="space-y-4">
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-yellow-500/30 flex-shrink-0 group-hover:border-yellow-400">
-                        <img alt="World Silver Crowns" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=400&auto=format&fit=crop"/>
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-yellow-500/30 flex-shrink-0 group-hover:border-yellow-400 bg-black/40">
+                        <img alt="Maria Theresa Thaler" class="w-full h-full object-cover" src="images/placeholder.png"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-yellow-300 mb-1 font-bold">World Silver Crown Size Coins</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"US Morgan Dollars, British Silver Crowns, and Ottoman Empire silver kuruş pieces."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-yellow-300 mb-1 font-bold">Austrian Maria Theresa Thaler (1780)</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Historical silver bullion trade coin used extensively across Europe, the Middle East, and Asia."</p>
                     </div>
                 </div>
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-yellow-500/30 flex-shrink-0 group-hover:border-yellow-400">
-                        <img alt="Commemorative Proof Sets" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop"/>
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-yellow-500/30 flex-shrink-0 group-hover:border-yellow-400 bg-black/40">
+                        <img alt="British Silver Crown" class="w-full h-full object-cover" src="images/placeholder.png"/>
                     </div>
                     <div>
-                        <h4 class="font-headline-sm text-base sm:text-lg text-yellow-300 mb-1 font-bold">Rare Proof & UNC Mint Sets</h4>
-                        <p class="italic text-slate-300 text-xs sm:text-sm">"Mint-direct packaged proof sets celebrating historic national anniversaries and icons."</p>
+                        <h4 class="font-headline-sm text-base sm:text-lg text-yellow-300 mb-1 font-bold">British Victoria "Gothic" Crown</h4>
+                        <p class="italic text-slate-300 text-xs sm:text-sm">"Widely considered one of the most beautiful coins ever struck in 19th century Europe."</p>
                     </div>
                 </div>
             </div>
@@ -498,7 +679,7 @@
                                 <span class="text-amber-400 font-bold block mb-1">PROS</span>
                                 <ul class="list-disc list-inside text-xs space-y-1 text-slate-400">
                                     <li>Birth coin of Indian Rupee name</li>
-                                    <li>Clear Arabic & Nagari scripts</li>
+                                    <li>Clear Arabic &amp; Nagari scripts</li>
                                 </ul>
                             </div>
                             <div>
@@ -604,6 +785,14 @@
             icon.style.transform = "rotate(180deg)";
         }
     }
+
+    // Flip card toggle EXCLUSIVELY ON CLICK
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.toggle('flipped');
+        });
+    });
 
     // Scroll Reveal Animation
     const observerOptions = { threshold: 0.05 };
