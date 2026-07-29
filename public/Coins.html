@@ -81,12 +81,9 @@
         transform: rotateY(180deg);
     }
 
-    .extra-coins { display: none; }
-    .extra-coins.expanded { display: grid; animation: fadeIn 0.5s ease-out forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
     .carousel-slide { display: none; }
     .carousel-slide.active { display: block; animation: fadeIn 0.8s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .nav-link.active-link {
         color: #fff2d1 !important;
@@ -284,13 +281,13 @@
         </div>
     </section>
 
-    <!-- SECTION: Categorized Coin Inventory with 3D Flip & "See More" Controls -->
+    <!-- SECTION: Categorized Coin Inventory with Detailed Reverse Flip Side -->
     <section id="indian-coins" class="scroll-mt-24 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">collections_bookmark</span>
             <div>
                 <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">MY COIN INVENTORY (BY PERIODS)</h2>
-                <p class="text-xs text-slate-400">Click any card to flip and view full design specifications &amp; reverse details</p>
+                <p class="text-xs text-slate-400">Click any card to flip and view the reverse side with historical context &amp; minting occasion</p>
             </div>
         </div>
 
@@ -307,6 +304,7 @@
                 <!-- Ancient Item 1 -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
+                        <!-- FRONT SIDE -->
                         <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
                             <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
                                 <img alt="Mauryan Silver Karshapana Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png"/>
@@ -331,24 +329,26 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- BACK SIDE: Extended Context & Purpose -->
                         <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Detailed Breakdown — Karshapana</h4>
+                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Numismatic History &amp; Minting Context</h4>
                                     <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                                 </div>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
-                                    <div><strong class="text-slate-400 block text-[9px]">Period:</strong> Ancient Period</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> Punch-Marked System</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Standard Trade Issue</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Shape / Edge:</strong> Square Irregular / Raw</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Coin Type:</strong> Regular Circulation</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Occasion / Purpose:</strong> Trade &amp; Imperial Economy</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint Technique:</strong> Hand-Punched Flan</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Historical Artifact</div>
                                 </div>
                                 <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                    <p><strong>Obverse Description:</strong> Struck with 5 punch symbols including Sun, 3-arched hill, elephant, and arched crest.</p>
-                                    <p><strong>Reverse Description:</strong> Mint verification counter-marks punched on a plain silver blank flan.</p>
+                                    <p><strong>Why It Was Minted:</strong> Struck as standardized currency across the Magadha/Mauryan territories under Chandragupta and Ashoka for empire-wide trade and army payroll.</p>
+                                    <p><strong>Design Symbolism:</strong> Features 5 official punches (Sun symbol of royalty, 3-arched hill with crescent, elephant, taurine, and branch/tree).</p>
                                 </div>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Verified Authentic Ancient Piece</span>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Verified Authentic Ancient Imperial Issue</span>
                         </div>
                     </div>
                 </div>
@@ -368,6 +368,7 @@
                 <!-- Colonial Item 1 -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
+                        <!-- FRONT SIDE -->
                         <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
                             <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
                                 <img alt="1862 Victoria 1/4 Rupee Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png"/>
@@ -392,24 +393,26 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- BACK SIDE: Extended Context & Purpose -->
                         <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Detailed Breakdown — 1/4 Rupee 1862</h4>
+                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Numismatic History &amp; Minting Context</h4>
                                     <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                                 </div>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
-                                    <div><strong class="text-slate-400 block text-[9px]">Period:</strong> Colonial Period</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> Rupee System</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Crown Coinage</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Shape / Edge:</strong> Round / Milled</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Coin Type:</strong> Regular Standard Issue</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Occasion / Purpose:</strong> Transfer of Power to British Crown</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Minting System:</strong> Steam Press Milled</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Pre-Independence Historic</div>
                                 </div>
                                 <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                    <p><strong>Obverse Description:</strong> Crowned bust of Queen Victoria facing left with legend "VICTORIA QUEEN".</p>
-                                    <p><strong>Reverse Description:</strong> Value "1/4 RUPEE INDIA 1862" framed by floral wreath.</p>
+                                    <p><strong>Why It Was Minted:</strong> Struck to mark the assumption of direct governance over India by Queen Victoria and the British Crown following the Government of India Act of 1858.</p>
+                                    <p><strong>Design Symbolism:</strong> Replaced East India Company titles with Queen Victoria's royal bust wearing an elaborate regal mantle.</p>
                                 </div>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-Independence British India Silver</span>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-Independence Crown Currency</span>
                         </div>
                     </div>
                 </div>
@@ -429,6 +432,7 @@
                 <!-- Modern Item 1 -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
+                        <!-- FRONT SIDE -->
                         <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
                             <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
                                 <img alt="₹2 Chhatrapati Shivaji Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png"/>
@@ -453,21 +457,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- BACK SIDE: Extended Context & Purpose -->
                         <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Detailed Breakdown — ₹2 Shivaji</h4>
+                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Numismatic History &amp; Minting Context</h4>
                                     <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                                 </div>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
-                                    <div><strong class="text-slate-400 block text-[9px]">Period:</strong> Modern / Republic</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Currency:</strong> Decimal Rupee</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Commemorative</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Shape / Edge:</strong> 11 Sided / Plain</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Coin Type:</strong> Circulating Commemorative</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Occasion / Purpose:</strong> Tribute to Maratha Emperor</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Minting System:</strong> Republic Minted</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> In Circulation / Legal Tender</div>
                                 </div>
                                 <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                    <p><strong>Obverse Description:</strong> Lion Capital of Ashoka Pillar with denomination 2 below.</p>
-                                    <p><strong>Reverse Description:</strong> Bust profile of Chhatrapati Shivaji in royal crown and warrior armor.</p>
+                                    <p><strong>Why It Was Minted:</strong> Issued in 1999 to honor the legacy, statecraft, and naval foresight of Chhatrapati Shivaji Maharaj in Indian history.</p>
+                                    <p><strong>Design Symbolism:</strong> Captures the iconic bust of the Maratha ruler in coronation attire with Hindi &amp; English inscriptions.</p>
                                 </div>
                             </div>
                             <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Sovereign Republic Commemorative Coin</span>
