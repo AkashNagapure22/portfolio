@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akash Nagapure | Games & Puzzles Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "primary": "#d1c4ff",
+                    "primary-glow": "#7000ff",
+                    "secondary": "#a855f7",
+                    "on-surface-variant": "#cbd5e1",
+                    "surface-container": "#181420",
+                    "background": "#0d0b12",
+                    "surface-dim": "#0d0b12"
+                },
+                "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "gutter": "24px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Geist", "sans-serif"],
+                    "label-caps": ["Geist", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "display-lg": ["Geist", "sans-serif"]
+                }
+            }
+        }
+    }
+</script>
+<style>
+    html { scroll-padding-top: 80px; }
+    
+    ::-webkit-scrollbar { height: 4px; width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(to right, #7000ff, #a855f7); border-radius: 4px; }
+    
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .glass-card {
+        background: rgba(24, 20, 32, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(112, 0, 255, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+        border-color: rgba(168, 85, 247, 0.5);
+        box-shadow: 0 0 20px rgba(112, 0, 255, 0.2);
+    }
+
+    .inventory-flip-card {
+        perspective: 1200px;
+        user-select: none;
+        min-height: 280px;
+    }
+    .inventory-flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+    }
+    .inventory-flip-card.flipped .inventory-flip-inner {
+        transform: rotateY(180deg);
+    }
+    .inventory-flip-front, .inventory-flip-back {
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 0.75rem;
+    }
+    .inventory-flip-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: rotateY(180deg);
+    }
+
+    .carousel-slide { display: none; }
+    .carousel-slide.active { display: block; animation: fadeIn 0.8s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .nav-link.active-link {
+        color: #d1c4ff !important;
+        border-bottom: 2px solid #7000ff;
+    }
+</style>
+</head>
+<body class="bg-background text-slate-100 overflow-x-hidden font-body-md">
+
+<!-- Background Shader Canvas -->
+<div class="fixed inset-0 w-full h-full -z-10 bg-black overflow-hidden pointer-events-none">
+    <canvas class="w-full h-full opacity-50" id="ambient-canvas"></canvas>
+</div>
+<script>
+(function() {
+    const canvas = document.getElementById('ambient-canvas');
+    function syncSize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', syncSize);
+    syncSize();
+
+    const gl = canvas.getContext('webgl');
+    if (!gl) return;
+    const vs = `attribute vec2 a_position; varying vec2 v_texCoord; void main() { v_texCoord = a_position * 0.5 + 0.5; gl_Position = vec4(a_position, 0.0, 1.0); }`;
+    const fs = `precision highp float; varying vec2 v_texCoord; uniform float u_time; uniform vec2 u_resolution; void main() { vec2 uv = v_texCoord; vec2 p = (uv * 2.0 - 1.0) * vec2(u_resolution.x / u_resolution.y, 1.0); float noise = 0.0; vec2 q = p * 0.8; for(float i = 1.0; i < 4.0; i++) { q += vec2(cos(q.y + u_time * 0.15 + i), sin(q.x + u_time * 0.08 + i)); noise += 1.0 / i * (0.5 + 0.5 * sin(length(q) + u_time * 0.08)); } vec3 color1 = vec3(0.05, 0.02, 0.08); vec3 color2 = vec3(0.12, 0.03, 0.18); vec3 color3 = vec3(0.04, 0.01, 0.09); vec3 finalColor = mix(color1, color2, noise * 0.5); finalColor = mix(finalColor, color3, clamp(length(p) * 0.3, 0.0, 1.0)); gl_FragColor = vec4(finalColor, 1.0); }`;
+    const cs = (t, s) => { const sh = gl.createShader(t); gl.shaderSource(sh, s); gl.compileShader(sh); return sh; };
+    const prog = gl.createProgram();
+    gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog); gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+    const pos = gl.getAttribLocation(prog, 'a_position'); gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+    const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uRes = gl.getUniformLocation(prog, 'u_resolution');
+    function r(t) { gl.viewport(0, 0, canvas.width, canvas.height); gl.uniform1f(uTime, t * 0.001); gl.uniform2f(uRes, canvas.width, canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); requestAnimationFrame(r); }
+    r(0);
+})();
+</script>
+
+<!-- Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-purple-500/20 shadow-[0_0_20px_rgba(112,0,255,0.15)]">
+    <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
+        
+        <!-- Brand Title Redirects to Main Site Index -->
+        <a href="index.html" class="font-headline-sm text-base sm:text-2xl font-bold tracking-tighter text-purple-400 italic flex items-center gap-2 flex-shrink-0 group">
+            <span class="material-symbols-outlined text-purple-400 text-xl sm:text-2xl group-hover:scale-110 transition-transform">extension</span>
+            <span>Akash Nagapure</span>
+        </a>
+
+        <!-- Desktop Horizontally Scrollable Menu -->
+        <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
+            <a href="index.html" class="font-label-caps text-xs text-purple-400 hover:text-purple-200 transition-colors py-1 flex items-center gap-1 border-r border-purple-500/20 pr-4">
+                <span class="material-symbols-outlined text-sm">home</span> Main Hub
+            </a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link active-link py-1">Overview</a>
+            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Crown Jewels</a>
+            <a href="#twisty-cubes" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Twisty Cubes</a>
+            <a href="#brain-teasers" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Brain Teasers</a>
+            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Puzzle Wishlist</a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded text-purple-400 hover:bg-white/5 focus:outline-none flex items-center gap-1 border border-purple-500/20">
+            <span class="text-xs font-bold uppercase tracking-wider">Menu</span>
+            <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
+        </button>
+    </div>
+
+    <!-- Mobile Slide-down Drawer -->
+    <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-purple-500/20 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
+        <a href="index.html" class="block font-label-caps text-xs text-purple-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
+        </a>
+        <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Overview</a>
+        <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Crown Jewels</a>
+        <a href="#twisty-cubes" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Twisty Cubes</a>
+        <a href="#brain-teasers" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Brain Teasers</a>
+        <a href="#wishlist" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2">Puzzle Wishlist</a>
+    </div>
+</nav>
+
+<!-- Floating Fast Navigation / Scroll to Top Widget -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <!-- Quick Jump Menu Overlay -->
+    <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-purple-500/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
+        <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
+        <a href="index.html" class="text-xs text-purple-300 font-bold hover:text-purple-200 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
+            <span class="material-symbols-outlined text-sm">home</span> Main Site Hub
+        </a>
+        <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">analytics</span> Overview
+        </a>
+        <a href="#crown-jewels" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">workspace_premium</span> Crown Jewels
+        </a>
+        <a href="#twisty-cubes" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">grid_view</span> Twisty Cubes
+        </a>
+        <a href="#brain-teasers" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">psychology</span> Brain Teasers
+        </a>
+        <a href="#wishlist" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">explore</span> Wishlist
+        </a>
+    </div>
+
+    <!-- Combined Floating Controller -->
+    <div class="flex items-center gap-2">
+        <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-purple-500/20 text-purple-400 border border-purple-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">segment</span>
+        </button>
+        <button onclick="scrollToTop()" class="p-3 bg-purple-600 text-slate-950 hover:bg-purple-500 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">arrow_upward</span>
+        </button>
+    </div>
+</div>
+
+<main class="relative pt-24 md:pt-32 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
+
+    <!-- Dashboard Metrics -->
+    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-24">
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-purple-400 text-3xl sm:text-4xl mb-1 sm:mb-2">extension</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-purple-400 font-bold">35+</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Cubes &amp; Puzzles</div>
+        </div>
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-purple-400 text-3xl sm:text-4xl mb-1 sm:mb-2">timer</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-purple-400 font-bold">14.2s</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">3x3 Personal Record</div>
+        </div>
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-purple-400 text-3xl sm:text-4xl mb-1 sm:mb-2">grid_4x4</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-purple-400 font-bold">11x11</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Largest Layer Solved</div>
+        </div>
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-purple-400 text-3xl sm:text-4xl mb-1 sm:mb-2">psychology</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-purple-400 font-bold">Level 10</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Max Brain Teaser Rank</div>
+        </div>
+    </section>
+
+    <!-- Crown Jewels Carousel (Hero Banner) -->
+    <section id="crown-jewels" class="overflow-hidden scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6 md:mb-8">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-purple-400 italic tracking-tight font-bold">CROWN JEWELS — HIGHLIGHT PUZZLES</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+        
+        <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
+            <!-- Slide 1: 11x11 Monstrous Cube -->
+            <div class="carousel-slide active absolute inset-0">
+                <img alt="11x11 Speedcube" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
+                    <span class="text-purple-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">EXTREME HIGH-ORDER CUBE</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-purple-200 mb-2 font-extrabold leading-none">11x11x11 Monstrous Cube</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Stickerless magnetic monster cube containing 726 individual moveable pieces. Requires reduction method and parity resolution algorithms.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-purple-400 font-bold text-sm sm:text-base">Solve Time: ~42 Mins</span>
+                        <span class="px-2 py-0.5 bg-purple-500/20 text-purple-300 text-xs rounded border border-purple-500/30">Master Class</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Megaminx 12-Sided Dodecahedron -->
+            <div class="carousel-slide absolute inset-0">
+                <img alt="Megaminx Dodecahedron Cube" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
+                    <span class="text-purple-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">DODECAHEDRON SPEEDCUBE</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-purple-200 mb-2 font-extrabold leading-none">GAN Megaminx Magnetic</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">12-sided puzzle with 50 moveable pieces and concave edge grip. Features magnetic positioning and custom tension springs.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-purple-400 font-bold text-sm sm:text-base">Solve Time: 1m 48s</span>
+                        <span class="px-2 py-0.5 bg-purple-500/20 text-purple-300 text-xs rounded border border-purple-500/30">Magnetic Core</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="prevSlide()">
+                <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
+            </button>
+            <button class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="nextSlide()">
+                <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_right</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION 1: TWISTY CUBES INVENTORY (Interactive 3D Flipping Cards) -->
+    <section id="twisty-cubes" class="scroll-mt-24 space-y-12">
+        <div class="flex items-center gap-4 border-b border-purple-500/20 pb-4">
+            <span class="material-symbols-outlined text-purple-400 text-3xl">grid_view</span>
+            <div>
+                <h2 class="font-headline-md text-xl sm:text-3xl text-purple-400 italic tracking-tight font-bold">TWISTY CUBES &amp; SPEEDCUBES INVENTORY</h2>
+                <p class="text-xs text-slate-400">Click any card to flip and view algorithm breakdown, mechanism type &amp; personal records</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6">
+
+            <!-- Item 1: 2x2 Speedcube -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="2x2 Speedcube Solved and Scrambled View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">2x2 Pocket Speedcube</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">2x2x2 Pocket Cube</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">MoYu MGC 2x2 Magnetic</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Beginner (2/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-purple-300 font-bold">2.84 Seconds</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Stickerless ABS</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Internal Magnetic Core</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Lubricated &amp; Tuned</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — 2x2</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> Ortega / EG-1</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Avg Move Count:</strong> 15-20 Turns</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Corner Cutting:</strong> 45 Degrees</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 65g</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Algorithm Mechanics:</strong> Solved by building a first face (regardless of side color match), orienting the top layer (OLL), and simultaneously permuting both layers (PBL).</p>
+                                <p><strong>Personal Notes:</strong> MGC magnetic positioning prevents lockups during high-speed finger tricks.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">Speedcube Competition Ready</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Item 2: 3x3 Speedcube -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="3x3 Speedcube Solved and Scrambled View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">3x3 Flagship Speedcube</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">3x3x3 Standard</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">GAN 12 MagLev UV</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Intermediate (5/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-purple-300 font-bold">14.20 Seconds</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">UV Coated Stickerless</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">MagLev Repulsion + Core Magnets</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">4 Pcs</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Pro Competition Spec</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — 3x3</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> CFOP (Fridrich)</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Avg Move Count:</strong> 55-60 TPS</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Magnet Elasticity:</strong> 6 Level MagLev</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 66g Ultra Light</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Algorithm Mechanics:</strong> Solved sequentially: Cross -&gt; First 2 Layers (F2L) -&gt; Orienting Last Layer (OLL) -&gt; Permuting Last Layer (PLL).</p>
+                                <p><strong>Personal Notes:</strong> MagLev magnetic repulsion replaces traditional springs, eliminating mechanical friction completely.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">WCA Competition Main Puzzle</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Item 3: 4x4 Revenge Cube -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="4x4 Speedcube Solved and Scrambled View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">4x4 Revenge Speedcube</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">4x4x4 Master Cube</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">YJ Aosu WR M 4x4</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Hard (6/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-purple-300 font-bold">58.4 Seconds</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Stickerless ABS</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Factory Magnetic Positioning</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Tuned &amp; Parity Ready</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — 4x4</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> Yau Method / Yau-4</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Parities:</strong> OLL &amp; PLL Parity</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Corner Cutting:</strong> 40 Degrees</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 118g</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Algorithm Mechanics:</strong> Uses Yau method: Solve 2 opposite centers -&gt; Solve 3 cross edges -&gt; Solve remaining 4 centers -&gt; Finish edge pairing -&gt; Solve like 3x3 while handling OLL/PLL parity algorithms.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">Even-Layer High Speed Puzzle</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Item 4: Pyraminx (Pyramid Cube) -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Pyraminx Pyramid Cube Solved and Scrambled View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">Pyraminx (Pyramid Speedcube)</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">Tetrahedron Pyraminx</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">GAN Pyraminx M Magnetic</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Easy (3/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-purple-300 font-bold">4.12 Seconds</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Primary Core ABS</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">GES Elasticity + Core Magnets</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Ultralight Tuned</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — Pyraminx</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> L4E (Last 4 Edges) / Oka</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Sides:</strong> 4 Triangular Faces</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Movable Tips:</strong> 4 Independent Tips</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 64g</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Algorithm Mechanics:</strong> Align 4 trivial corner tips -&gt; Solve 3 center pieces around one face -&gt; Solve first layer edges -&gt; Apply L4E algorithm to solve remaining edges in 1 step.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">WCA Official Pyramid Puzzle</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Item 5: Snake Cube (Rubik's Snake) -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Snake Cube Folded Ball and Straight Snake View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">FOLDED BALL</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">STRAIGHT</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">Twist Snake Puzzle (Rubik's Snake)</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">24 / 36 Prism Twist Snake</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">ShengShou 24-Piece Twist</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Freeform (3/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Ball Shape Time:</strong><span class="text-purple-300 font-bold">12.5 Seconds</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Spring-Loaded ABS Prisms</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Rotational Spring-Detent Bolts</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Smooth Spring Click</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Shape Mechanics &amp; Geometry Breakdown — Snake Puzzle</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Prism Count:</strong> 24 Triangular Wedges</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Possible Shapes:</strong> 100+ Geometric Forms</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Degrees of Turn:</strong> 90 / 180 / 270 Deg</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 90g</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Geometry Mechanics:</strong> Composed of 24 right-angled isosceles triangular prisms connected by spring bolts. Can be transformed into a sphere, cobra snake, dog, swan, or rocket.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">Classic Mechanical Morphing Puzzle</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Item 6: Megaminx (12-Sided Dodecahedron) -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Megaminx Dodecahedron Solved and Scrambled View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">Megaminx 12-Sided Dodecahedron</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">12-Face Pentagonal Dodecahedron</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">YJ YuHu V2 M Megaminx</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Hard (7/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-purple-300 font-bold">1m 48s</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Stickerless Sculpted Ridges</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">120 Neodymium Magnets</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Sculpted Ridge Grip</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — Megaminx</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> S2L + LL (Westlund)</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Total Pieces:</strong> 50 Moveable Pieces</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Colors:</strong> 12 Unique Color Faces</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 145g</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Algorithm Mechanics:</strong> Extensions of 3x3 CFOP method: Star -&gt; F2L -&gt; S2L (Second 2 Layers) -&gt; Orient Last Layer (OLL) -&gt; Permute Last Layer (PLL).</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">WCA Official Dodecahedron Event</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Item 7: 11x11 Monstrous Cube -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="11x11 Speedcube Solved and Scrambled View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">11x11 Monstrous Speedcube</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">11x11x11 High-Order Cube</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">ShengShou / Yuxin 11x11</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-red-400 font-bold">Extreme Master (10/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-purple-300 font-bold">42m 15s</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Pillowed Stickerless ABS</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Multi-Tiered Internal Core</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Pillowed High Stability</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Solving Method &amp; Complexity Breakdown — 11x11</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> Reduction Method</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Center Pieces:</strong> 486 Center Tiles</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Edge Pieces:</strong> 108 Edge Blocks</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 850g Heavyweight</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Algorithm Mechanics:</strong> Requires systematic reduction: Solve 9x9 inner center blocks for all 6 faces -&gt; Pair up 9-piece edge strips -&gt; Reduce to a simulated 3x3 state while avoiding corner twist popping.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">Ultimate High-Order Speedcube Marvel</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: BRAIN TEASERS & MECHANICAL PUZZLES -->
+    <section id="brain-teasers" class="scroll-mt-24 space-y-12">
+        <div class="flex items-center gap-4 border-b border-purple-500/20 pb-4">
+            <span class="material-symbols-outlined text-purple-400 text-3xl">psychology</span>
+            <div>
+                <h2 class="font-headline-md text-xl sm:text-3xl text-purple-400 italic tracking-tight font-bold">BRAIN TEASERS &amp; MECHANICAL LOCK PUZZLES</h2>
+                <p class="text-xs text-slate-400">Metal cast disentanglement puzzles, wooden burr blocks, and 3D assembly challenges</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6">
+
+            <!-- Teaser 1: Hanayama Cast Metal Puzzle -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Hanayama Cast Metal Enigma Puzzle" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">ASSEMBLED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">DISASSEMBLED</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">Hanayama Cast Enigma (Level 6)</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">Cast Zinc Disentanglement</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Brand:</strong><span class="text-purple-300">Hanayama Japan</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-red-400 font-bold">Grand Master (Level 6/6)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Solve Time:</strong><span class="text-purple-300 font-bold">2 Hours 10 Mins</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Cast Zinc Alloy Metal</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Interlocking Spiral Grooves</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Polished Metallic</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Disentanglement Logic — Hanayama Enigma</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Pieces:</strong> 3 Interlocking Spirals</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Key Action:</strong> Rotational Path Alignment</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Patented Design:</strong> Eldon Vaughn</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 180g Solid Metal</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Puzzle Logic:</strong> Separate the three interwoven metallic swirl pieces without applying force. Re-assembly requires precise reverse path tracing along hidden internal grooves.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">Master Class Japanese Metalwork Challenge</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Teaser 2: Wooden Burr Lock Puzzle -->
+            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Wooden Burr Puzzle Assembled and Disassembled View" class="w-full h-full object-contain bg-slate-900/60 rounded" src="images/placeholder.png"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">ASSEMBLED</span>
+                            <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">PIECES</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-lg sm:text-xl">Wooden 12-Piece Interlocking Burr</h4>
+                                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">12-Piece Interlocking Wood Burr</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Craftsmanship:</strong><span class="text-purple-300">Teak / Rosewood Finish</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Advanced (5/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Solve Time:</strong><span class="text-purple-300 font-bold">18 Minutes</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Hand-carved Natural Wood</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Notched Key Piece Lock</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Smooth Waxed Finish</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-300 text-base sm:text-lg">Interlocking Wood Assembly Logic</h4>
+                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                <div><strong class="text-slate-400 block text-[9px]">Notched Sticks:</strong> 12 Interlocking Sticks</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Key Piece:</strong> 1 Solid Un-notched Key</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Origin:</strong> Traditional Chinese / European</div>
+                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 110g</div>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                <p><strong>Assembly Mechanics:</strong> 11 notched sticks form a 3D cage structure, held tightly together by a single smooth key stick that slides out first to unlock the entire burr cluster.</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase">Classic Handcrafted Woodwork Puzzle</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: TARGET HUNT / PUZZLE WISHLIST (3D Flip Cards) -->
+    <section id="wishlist" class="scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6 md:mb-8">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-purple-400 italic tracking-tight font-bold">TARGET HUNT — PUZZLE WISHLIST</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+            
+            <!-- Wishlist Card 1: 21x21 Cubic Monster -->
+            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card overflow-hidden relative">
+                        <img alt="21x21 Speedcube" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] bg-red-600 text-white px-2 py-0.5 rounded-full font-bold">HOLY GRAIL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <div class="font-label-caps text-xs text-purple-300 mb-0.5">ShengShou 21x21</div>
+                            <div class="text-[9px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-purple-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between border border-purple-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-purple-400 text-2xl">shopping_cart</span>
+                            <h4 class="font-bold text-xs text-purple-300">21x21 Monster Cube</h4>
+                            <div class="h-px bg-white/10 w-full my-1"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-purple-400 block">WHERE TO FIND:</strong> Cubicle / SpeedCubeShop</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block">EST. PRICE:</strong> $1,200+</p>
+                        </div>
+                        <span class="text-[8px] bg-purple-500/20 text-purple-300 py-1 rounded border border-purple-500/30 uppercase font-bold">2700+ Movable Pieces</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishlist Card 2: Square-1 Speedcube -->
+            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card overflow-hidden relative">
+                        <img alt="Square-1 Speedcube" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full font-bold">HIGH</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <div class="font-label-caps text-xs text-purple-300 mb-0.5">X-Man Volt Square-1</div>
+                            <div class="text-[9px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-purple-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between border border-purple-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-purple-400 text-2xl">shopping_cart</span>
+                            <h4 class="font-bold text-xs text-purple-300">Square-1 Shape Shifter</h4>
+                            <div class="h-px bg-white/10 w-full my-1"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-purple-400 block">WHERE TO FIND:</strong> Cubelelo India / SpeedCubeShop</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block">EST. PRICE:</strong> ₹1,800</p>
+                        </div>
+                        <span class="text-[8px] bg-purple-500/20 text-purple-300 py-1 rounded border border-purple-500/30 uppercase font-bold">WCA Official Shape-Shifter</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishlist Card 3: Clock Puzzle -->
+            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card overflow-hidden relative">
+                        <img alt="ShengShou Magnetic Clock" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full font-bold">HIGH</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <div class="font-label-caps text-xs text-purple-300 mb-0.5">QiYi Magnetic Clock</div>
+                            <div class="text-[9px] text-slate-400 uppercase flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] text-purple-400">touch_app</span> Click to Flip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between border border-purple-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-purple-400 text-2xl">shopping_cart</span>
+                            <h4 class="font-bold text-xs text-purple-300">Magnetic Rubik's Clock</h4>
+                            <div class="h-px bg-white/10 w-full my-1"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-purple-400 block">WHERE TO FIND:</strong> Cubelelo / SpeedCubeShop</p>
+                            <p class="text-[10px] text-slate-400"><strong class="text-slate-300 block">EST. PRICE:</strong> ₹2,200</p>
+                        </div>
+                        <span class="text-[8px] bg-purple-500/20 text-purple-300 py-1 rounded border border-purple-500/30 uppercase font-bold">WCA Official Clock Event</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="w-full py-8 sm:py-12 bg-surface-dim border-t border-white/5 text-center">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4">
+        <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
+        <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">© 2026. All Rights Reserved. Cataloged with Logic &amp; Precision.</span>
+    </div>
+</footer>
+
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu-drawer');
+        const icon = document.getElementById('menu-icon');
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            icon.textContent = 'close';
+        } else {
+            menu.classList.add('hidden');
+            icon.textContent = 'menu';
+        }
+    }
+
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobile-menu-drawer');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.add('hidden');
+        icon.textContent = 'menu';
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleQuickJump() {
+        const jumpMenu = document.getElementById('quick-jump-menu');
+        jumpMenu.classList.toggle('hidden');
+    }
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 7000);
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    const navObserverOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 };
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    }, navObserverOptions);
+
+    sections.forEach(section => navObserver.observe(section));
+</script>
+</body>
+</html>
