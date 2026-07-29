@@ -26,10 +26,10 @@
                     "gutter": "24px"
                 },
                 "fontFamily": {
-                    "headline-md": ["Geist"],
-                    "label-caps": ["JetBrains Mono"],
-                    "body-md": ["Inter"],
-                    "display-lg": ["Geist"]
+                    "headline-md": ["Geist", "sans-serif"],
+                    "label-caps": ["JetBrains Mono", "monospace"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "display-lg": ["Geist", "sans-serif"]
                 }
             }
         }
@@ -37,10 +37,16 @@
 </script>
 <style>
     html { scroll-padding-top: 80px; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #10b981, #065f46); border-radius: 4px; }
     
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { height: 4px; width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(to right, #10b981, #065f46); border-radius: 4px; }
+    
+    /* Hide Scrollbar for clean horizontal menu scrolling */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
     .glass-card {
         background: rgba(13, 23, 20, 0.75);
         backdrop-filter: blur(20px);
@@ -114,30 +120,31 @@
 
 <!-- Navigation Shell -->
 <nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
-    <div class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-4 max-w-container-max mx-auto">
-        <div class="font-headline-sm text-lg sm:text-2xl font-bold tracking-tighter text-emerald-400 italic flex items-center gap-2">
-            <span class="material-symbols-outlined text-emerald-400">dns</span>
+    <div class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
+        <div class="font-headline-sm text-lg sm:text-2xl font-bold tracking-tighter text-emerald-400 italic flex items-center gap-2 flex-shrink-0">
+            <span class="material-symbols-outlined text-emerald-400 text-xl sm:text-2xl">dns</span>
             Akash Nagapure
         </div>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex gap-8" id="nav-menu">
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link active-link">Overview</a>
-            <a href="#active-labs" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link">Active Labs</a>
-            <a href="#roadmap" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link">Lab Roadmap</a>
-            <a href="#topology" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link">Core Topologies</a>
-            <a href="#hardware" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link">Hypervisor Stack</a>
-            <a href="#reviews" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link">Architecture Notes</a>
+        <!-- Scrollable Top Menu (Fixed Skipping Issue) -->
+        <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link active-link py-1">Overview</a>
+            <a href="#active-labs" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link py-1">Active Labs</a>
+            <a href="#roadmap" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link py-1">Lab Roadmap</a>
+            <a href="#topology" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link py-1">Core Topologies</a>
+            <a href="#hardware" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link py-1">Hypervisor Stack</a>
+            <a href="#reviews" class="font-label-caps text-xs text-slate-300 hover:text-emerald-300 transition-colors nav-link py-1">Architecture Notes</a>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded text-emerald-400 hover:bg-white/5 focus:outline-none">
-            <span class="material-symbols-outlined text-2xl" id="menu-icon">menu</span>
+        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded text-emerald-400 hover:bg-white/5 focus:outline-none flex items-center gap-1 border border-emerald-500/20">
+            <span class="text-xs font-bold uppercase tracking-wider font-mono">Menu</span>
+            <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
         </button>
     </div>
 
     <!-- Mobile Slide-down Drawer -->
-    <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/95 border-b border-emerald-500/10 backdrop-blur-2xl px-6 py-4 space-y-3">
+    <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/95 border-b border-emerald-500/10 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-emerald-400 py-2 border-b border-white/5">Overview</a>
         <a href="#active-labs" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-emerald-400 py-2 border-b border-white/5">Active Labs</a>
         <a href="#roadmap" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-emerald-400 py-2 border-b border-white/5">Lab Roadmap</a>
@@ -146,6 +153,42 @@
         <a href="#reviews" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-emerald-400 py-2">Architecture Notes</a>
     </div>
 </nav>
+
+<!-- Floating Fast Navigation / Scroll to Top Widget -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <!-- Quick Jump Menu Overlay -->
+    <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-emerald-500/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
+        <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest font-mono px-2 border-b border-white/10 pb-1">Jump To Section</span>
+        <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-emerald-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 font-mono">
+            <span class="material-symbols-outlined text-sm">grid_view</span> Overview
+        </a>
+        <a href="#active-labs" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-emerald-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 font-mono">
+            <span class="material-symbols-outlined text-sm">computer</span> Active Labs
+        </a>
+        <a href="#roadmap" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-emerald-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 font-mono">
+            <span class="material-symbols-outlined text-sm">alt_route</span> Lab Roadmap
+        </a>
+        <a href="#topology" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-emerald-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 font-mono">
+            <span class="material-symbols-outlined text-sm">hub</span> Core Topologies
+        </a>
+        <a href="#hardware" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-emerald-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 font-mono">
+            <span class="material-symbols-outlined text-sm">memory</span> Hypervisor Stack
+        </a>
+        <a href="#reviews" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-emerald-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 font-mono">
+            <span class="material-symbols-outlined text-sm">description</span> Architecture
+        </a>
+    </div>
+
+    <!-- Combined Controller Buttons -->
+    <div class="flex items-center gap-2">
+        <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">segment</span>
+        </button>
+        <button onclick="scrollToTop()" class="p-3 bg-emerald-500 text-slate-950 hover:bg-emerald-400 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">arrow_upward</span>
+        </button>
+    </div>
+</div>
 
 <main class="relative pt-24 md:pt-32 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
 
@@ -453,7 +496,6 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <!-- Architecture Card 1 -->
             <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-start mb-4 sm:mb-6">
@@ -480,7 +522,6 @@
                     </div>
                 </div>
 
-                <!-- Expandable Full Architecture Detail -->
                 <div id="review-1-detail" class="review-details border-t border-white/10 pt-4 mt-2">
                     <h4 class="font-bold text-emerald-300 mb-2 text-sm sm:text-base">Technical Configuration Notes</h4>
                     <p class="text-xs text-slate-400 mb-4 leading-relaxed font-mono">
@@ -499,7 +540,6 @@
                 </button>
             </div>
 
-            <!-- Architecture Card 2 -->
             <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-start mb-4 sm:mb-6">
@@ -526,7 +566,6 @@
                     </div>
                 </div>
 
-                <!-- Expandable Full Architecture Detail -->
                 <div id="review-2-detail" class="review-details border-t border-white/10 pt-4 mt-2">
                     <h4 class="font-bold text-emerald-300 mb-2 text-sm sm:text-base">Technical Configuration Notes</h4>
                     <p class="text-xs text-slate-400 mb-4 leading-relaxed font-mono">
@@ -580,6 +619,17 @@
         const icon = document.getElementById('menu-icon');
         menu.classList.add('hidden');
         icon.textContent = 'menu';
+    }
+
+    // Scroll-to-Top Action
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Floating Jump Menu Overlay Toggle
+    function toggleQuickJump() {
+        const jumpMenu = document.getElementById('quick-jump-menu');
+        jumpMenu.classList.toggle('hidden');
     }
 
     // Hero Carousel Logic
