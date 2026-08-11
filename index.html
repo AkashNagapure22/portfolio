@@ -1336,6 +1336,7 @@
 
     // Fetch and render projects dynamically
     fetchAndRenderProjects();
+    loadTransmissionHistory();
   });
 
   // Default fallback data matching existing case studies
@@ -1548,8 +1549,129 @@
     }
   }
 
-  function transmitPayload(event) {
-    // Basic handler placeholder to allow standard Formspree action
+  // Contact Form Database Payload Transmission Function
+  async function transmitPayload(event) {
+    event.preventDefault();
+
+    const form = document.getElementById("secure-contact-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const consoleBox = document.getElementById("uplink-console");
+    const consoleLogs = document.getElementById("console-logs-stack");
+    const consoleStatus = document.getElementById("console-status");
+
+    const payload = {
+      name: document.getElementById("fullname_input").value,
+      email: document.getElementById("email_input").value,
+      _subject: document.getElementById("subject_input").value || "Consultation Request",
+      message: document.getElementById("message_input").value
+    };
+
+    submitBtn.disabled = true;
+    consoleBox.classList.remove("hidden");
+    consoleLogs.innerHTML = "";
+    consoleStatus.innerText = "TRANSMITTING";
+    consoleStatus.className = "text-[10px] uppercase font-bold text-amber-400 animate-pulse";
+
+    appendConsoleLog("INITIATING DB UPLINK TRANSMISSION...", "sky");
+
+    try {
+      // Step 1: Attempt to store submission into PostgreSQL Neon Database
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        appendConsoleLog("DATABASE ACKNOWLEDGED: Transmission logged to contact_submissions.", "emerald");
+        consoleStatus.innerText = "SUCCESS";
+        consoleStatus.className = "text-[10px] uppercase font-bold text-emerald-400";
+        saveTransmissionLocally(payload);
+        form.reset();
+      } else {
+        throw new Error("Neon API Route Error - Falling back to Formspree");
+      }
+    } catch (error) {
+      console.warn("DB Endpoint unreachable, executing Formspree fallback...", error);
+      appendConsoleLog("PRIMARY DB ROUTE UNAVAILABLE. FALLING BACK TO FORMSPREE...", "amber");
+
+      try {
+        const fallbackRes = await fetch("https://formspree.io/f/mzdqkayz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (fallbackRes.ok) {
+          appendConsoleLog("FORMSPREE TRANSMISSION CONFIRMED.", "emerald");
+          consoleStatus.innerText = "SUCCESS";
+          consoleStatus.className = "text-[10px] uppercase font-bold text-emerald-400";
+          saveTransmissionLocally(payload);
+          form.reset();
+        } else {
+          throw new Error("Formspree fallback also failed.");
+        }
+      } catch (err) {
+        appendConsoleLog("TRANSMISSION ERROR: Unable to route payload.", "rose");
+        consoleStatus.innerText = "FAILED";
+        consoleStatus.className = "text-[10px] uppercase font-bold text-rose-400";
+      }
+    } finally {
+      submitBtn.disabled = false;
+    }
+  }
+
+  function appendConsoleLog(msg, color) {
+    const stack = document.getElementById("console-logs-stack");
+    if (!stack) return;
+    const line = document.createElement("div");
+    const colors = {
+      sky: "text-sky-400",
+      emerald: "text-emerald-400",
+      amber: "text-amber-400",
+      rose: "text-rose-400"
+    };
+    line.className = `${colors[color] || "text-slate-300"} font-mono text-[11px]`;
+    line.innerText = `> ${msg}`;
+    stack.appendChild(line);
+  }
+
+  function saveTransmissionLocally(data) {
+    const history = JSON.parse(localStorage.getItem("transmissions_cache") || "[]");
+    history.unshift({ ...data, date: new Date().toLocaleTimeString() });
+    localStorage.setItem("transmissions_cache", JSON.stringify(history.slice(0, 10)));
+    loadTransmissionHistory();
+  }
+
+  function loadTransmissionHistory() {
+    const historyBox = document.getElementById("history-box");
+    const historyList = document.getElementById("history-list");
+    const historyCount = document.getElementById("history-count");
+
+    if (!historyBox || !historyList) return;
+
+    const history = JSON.parse(localStorage.getItem("transmissions_cache") || "[]");
+    if (history.length === 0) {
+      historyBox.classList.add("hidden");
+      return;
+    }
+
+    historyBox.classList.remove("hidden");
+    historyCount.innerText = history.length;
+    historyList.innerHTML = history.map(item => `
+      <div class="border-b border-slate-900 pb-2 text-left">
+        <div class="flex justify-between text-[10px] font-mono text-sky-400 font-bold">
+          <span>${item.name} (${item.email})</span>
+          <span>${item.date}</span>
+        </div>
+        <p class="text-xs text-slate-300 font-sans mt-1 line-clamp-1">${item._subject}: ${item.message}</p>
+      </div>
+    `).join('');
+  }
+
+  function clearTransmissionHistory() {
+    localStorage.removeItem("transmissions_cache");
+    loadTransmissionHistory();
   }
 </script>
 </body>
