@@ -64,7 +64,7 @@
       <section class="border-t border-slate-800 pt-8 mt-12">
         <h2 class="text-2xl font-bold text-white mb-6">Discussion & Q&A</h2>
 
-        <!-- Main New Comment Form -->
+        <!-- Form -->
         <form id="comment-form" class="space-y-4 mb-10 bg-slate-900/40 p-6 border border-slate-800/80 rounded-xl">
           <h3 class="text-lg font-semibold text-white">Start a Discussion</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -101,7 +101,7 @@
           </button>
         </form>
 
-        <!-- Dynamic Comments Feed -->
+        <!-- Feed -->
         <div id="comments-container" class="space-y-6">
           <p class="text-slate-500 text-sm">Loading discussion...</p>
         </div>
@@ -128,7 +128,6 @@
           return;
         }
 
-        // Build threaded tree
         const commentMap = {};
         const topLevelComments = [];
 
@@ -144,7 +143,6 @@
           }
         });
 
-        // Render recursive comment tree
         container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
         lucide.createIcons();
       } catch (err) {
@@ -152,10 +150,19 @@
       }
     }
 
-    function renderCommentNode(comment, isReply = false) {
+    function renderCommentNode(comment) {
+      const formattedDate = new Date(comment.created_at).toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+
       const repliesHTML = comment.replies.length > 0 
         ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-slate-800 space-y-4">
-            ${comment.replies.map(reply => renderCommentNode(reply, true)).join('')}
+            ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
            </div>`
         : '';
 
@@ -163,17 +170,39 @@
         <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
           <div class="flex items-center justify-between text-xs text-slate-400">
             <span class="font-bold text-sky-400 text-sm">${escapeHTML(comment.author)}</span>
-            <span>${new Date(comment.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+            <span class="text-slate-500">${formattedDate}</span>
           </div>
+          
           <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
           
-          <button 
-            onclick="toggleReplyForm(${comment.id})" 
-            class="inline-flex items-center space-x-1 text-xs text-sky-400 hover:text-sky-300 font-semibold"
-          >
-            <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
-            <span>Reply</span>
-          </button>
+          <div class="flex items-center space-x-4 text-xs pt-1">
+            <!-- Like -->
+            <button 
+              onclick="handleVote(${comment.id}, 'like')" 
+              class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors"
+            >
+              <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+              <span>${comment.likes || 0}</span>
+            </button>
+
+            <!-- Dislike -->
+            <button 
+              onclick="handleVote(${comment.id}, 'dislike')" 
+              class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors"
+            >
+              <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
+              <span>${comment.dislikes || 0}</span>
+            </button>
+
+            <!-- Reply -->
+            <button 
+              onclick="toggleReplyForm(${comment.id})" 
+              class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors"
+            >
+              <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
+              <span>Reply</span>
+            </button>
+          </div>
 
           <!-- Hidden Reply Form -->
           <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800/80">
@@ -228,6 +257,19 @@
       form.classList.toggle('hidden');
     }
 
+    async function handleVote(id, action) {
+      try {
+        const res = await fetch(API_URL, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, action })
+        });
+        if (res.ok) await loadComments();
+      } catch (err) {
+        console.error('Failed to vote');
+      }
+    }
+
     async function postReply(parentId) {
       const author = document.getElementById(`reply-author-${parentId}`).value;
       const email = document.getElementById(`reply-email-${parentId}`).value;
@@ -255,7 +297,6 @@
       }
     }
 
-    // Main Form Submit Listener
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
