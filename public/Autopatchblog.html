@@ -11,7 +11,7 @@
 
   <main class="max-w-4xl mx-auto px-6 py-16">
     <!-- Navigation -->
-    <a href="/" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
+    <a href="../index.html" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
       <i data-lucide="arrow-left" class="w-4 h-4"></i>
       <span>Back to Main Site</span>
     </a>
@@ -23,245 +23,45 @@
     </header>
 
     <article class="space-y-8 text-slate-300 leading-relaxed">
+      
       <section>
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">1. Prerequisites & Activation</h2>
-        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). Enable Delivery Optimization and diagnostic data collection under your Tenant Administration settings.</p>
+        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). You need <strong>Global Administrator</strong> access for initial consent and <strong>Intune Administrator</strong> access to configure the service. Enable Delivery Optimization and diagnostic data collection under your Tenant Administration settings.</p>
+        <p class="mt-4">Navigate to <em>Tenant administration → Windows Autopatch</em> to activate the service. Once activated, the dashboard will confirm your status.</p>
+        <img src="/images/placeholder.png" alt="Autopatch Activation Screen" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
       </section>
 
-      <!-- Threaded Discussion Section -->
-      <section class="border-t border-slate-800/80 pt-8 mt-12">
-        <h2 class="text-2xl font-bold text-white mb-6">Discussion & Q&A</h2>
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">2. Installing the Client Broker</h2>
+        <p>The Client Broker maintains your Autopatch service. Navigate to <em>Tenant Management</em> under the Autopatch menu, click <strong>Manage Client Broker</strong>, and select <strong>Install</strong>. The status will transition from "Not started" to "In progress."</p>
+      </section>
 
-        <!-- Form -->
-        <form id="comment-form" class="space-y-4 mb-10 bg-[#070b15] p-6 border border-slate-800/80 rounded-xl shadow-2xl">
-          <h3 class="text-base font-bold text-white">Start a Discussion</h3>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input 
-              type="text" 
-              id="author" 
-              placeholder="Your Name *" 
-              required 
-              class="w-full p-3 bg-slate-100 text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all text-sm font-medium"
-            />
-            <input 
-              type="email" 
-              id="email" 
-              placeholder="Your Email Address *" 
-              required 
-              class="w-full p-3 bg-slate-100 text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all text-sm font-medium"
-            />
-          </div>
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">3. Creating Deployment Rings</h2>
+        <p>Planning your rings is critical. While default "First" and "Last" rings exist, you can create additional deployment groups. If using dynamic distribution, ensure your ring percentages sum to exactly 100%.</p>
+        <img src="/images/placeholder.png" alt="Autopatch Deployment Rings" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
+      </section>
 
-          <div>
-            <textarea 
-              id="content" 
-              rows="3" 
-              placeholder="Write your comment..." 
-              required 
-              class="w-full p-3 bg-[#0c1322] border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-all text-sm"
-            ></textarea>
-          </div>
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">4. Configuring Release Schedules</h2>
+        <p>Define your update behavior by setting Deferral days, Deadline days, and Grace periods. For your Test ring, use 0 deferral days for immediate verification. For production rings, allow a 2-day buffer for compatibility signals.</p>
+      </section>
 
-          <button 
-            type="submit" 
-            id="submit-btn"
-            class="px-6 py-2.5 bg-[#0ea5e9] hover:bg-sky-400 text-slate-950 font-bold rounded-lg transition-colors text-sm shadow-md"
-          >
-            Post Comment
-          </button>
-        </form>
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">5. Verification & User Experience</h2>
+        <p>On your target devices, navigate to <em>Settings → Accounts → Work or School → Info</em>. Under <strong>Policies</strong>, you will see the applied Autopatch configurations. In Windows 11, verify these under <em>Windows Update → Advanced options → Configured update policies</em>.</p>
+      </section>
 
-        <!-- Dynamic Feed Container -->
-        <div id="comments-container" class="space-y-6">
-          <p class="text-slate-500 text-sm">Loading discussion...</p>
-        </div>
+      <section class="border-t border-slate-800 pt-8 mt-12">
+        <h3 class="text-lg font-bold text-white mb-4">Official References</h3>
+        <ul class="space-y-2 text-sm text-sky-400 underline">
+          <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/prepare/windows-autopatch-prerequisites" target="_blank">Windows Autopatch Prerequisites</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/operate/windows-autopatch-groups" target="_blank">Managing Autopatch Groups</a></li>
+        </ul>
       </section>
     </article>
   </main>
 
-  <script>
-    lucide.createIcons();
-
-    // Unique Identifier for Autopatch Page
-    const ARTICLE_ID = 'autopatchblog';
-    const API_URL = '/api/comments';
-
-    async function loadComments() {
-      const container = document.getElementById('comments-container');
-      try {
-        const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
-        const comments = await response.json();
-
-        if (!response.ok) throw new Error();
-
-        if (!comments || comments.length === 0) {
-          container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet for this guide. Be the first to start the discussion!</p>';
-          return;
-        }
-
-        const commentMap = {};
-        const topLevelComments = [];
-
-        comments.forEach(comment => {
-          comment.replies = [];
-          commentMap[comment.id] = comment;
-          if (comment.parent_id) {
-            if (commentMap[comment.parent_id]) {
-              commentMap[comment.parent_id].replies.push(comment);
-            }
-          } else {
-            topLevelComments.push(comment);
-          }
-        });
-
-        container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
-        lucide.createIcons();
-      } catch (err) {
-        container.innerHTML = '<p class="text-red-400 text-sm">Unable to load discussion thread.</p>';
-      }
-    }
-
-    function renderCommentNode(comment) {
-      const formattedDate = new Date(comment.created_at).toLocaleString('en-US', {
-        month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true
-      });
-
-      const repliesHTML = comment.replies.length > 0 
-        ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-slate-800 space-y-4">
-            ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
-           </div>`
-        : '';
-
-      return `
-        <div class="p-4 bg-[#070b15] border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
-          <div class="flex items-center justify-between text-xs text-slate-400">
-            <span class="font-bold text-sky-400 text-sm">${escapeHTML(comment.author)}</span>
-            <span class="text-slate-500">${formattedDate}</span>
-          </div>
-          
-          <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
-          
-          <div class="flex items-center space-x-4 text-xs pt-1">
-            <button onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors">
-              <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
-              <span>${comment.likes || 0}</span>
-            </button>
-            <button onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors">
-              <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
-              <span>${comment.dislikes || 0}</span>
-            </button>
-            <button onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors">
-              <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
-              <span>Reply</span>
-            </button>
-          </div>
-
-          <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800/80">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2 bg-slate-100 text-slate-900 rounded text-xs font-medium" />
-              <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2 bg-slate-100 text-slate-900 rounded text-xs font-medium" />
-            </div>
-            <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2 bg-[#0c1322] border border-slate-800 rounded text-xs text-white"></textarea>
-            <div class="flex space-x-2">
-              <button type="button" onclick="postReply(${comment.id})" class="px-3 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded">Submit Reply</button>
-              <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded">Cancel</button>
-            </div>
-          </form>
-
-          ${repliesHTML}
-        </div>
-      `;
-    }
-
-    function toggleReplyForm(commentId) {
-      document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
-    }
-
-    async function handleVote(id, action) {
-      try {
-        const res = await fetch(API_URL, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id, action })
-        });
-        if (res.ok) await loadComments();
-      } catch (err) {
-        console.error('Failed to vote');
-      }
-    }
-
-    async function postReply(parentId) {
-      const author = document.getElementById(`reply-author-${parentId}`).value;
-      const email = document.getElementById(`reply-email-${parentId}`).value;
-      const content = document.getElementById(`reply-content-${parentId}`).value;
-
-      if (!author.trim() || !email.trim() || !content.trim()) {
-        alert('Please fill out all required fields.');
-        return;
-      }
-
-      try {
-        const res = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
-        });
-
-        if (res.ok) {
-          await loadComments();
-        } else {
-          alert('Failed to post reply.');
-        }
-      } catch (err) {
-        alert('Network error.');
-      }
-    }
-
-    document.getElementById('comment-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      const author = document.getElementById('author');
-      const email = document.getElementById('email');
-      const content = document.getElementById('content');
-
-      btn.disabled = true;
-      btn.innerText = 'Posting...';
-
-      try {
-        const res = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            author: author.value, 
-            email: email.value, 
-            content: content.value, 
-            parent_id: null,
-            article_id: ARTICLE_ID 
-          })
-        });
-
-        if (res.ok) {
-          author.value = '';
-          email.value = '';
-          content.value = '';
-          await loadComments();
-        } else {
-          alert('Failed to post comment.');
-        }
-      } catch (err) {
-        alert('Network error.');
-      } finally {
-        btn.disabled = false;
-        btn.innerText = 'Post Comment';
-      }
-    });
-
-    function escapeHTML(str) {
-      return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
-    }
-
-    loadComments();
-  </script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
