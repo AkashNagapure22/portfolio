@@ -157,8 +157,7 @@
 <nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-purple-500/20 shadow-[0_0_25px_rgba(112,0,255,0.15)]">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
-        <!-- Brand Title Redirects to Main Site Index -->
-        <a href="index.html" class="font-headline-md text-base sm:text-2xl font-bold tracking-tighter text-purple-300 flex items-center gap-2.5 flex-shrink-0 group">
+        <a href="#" class="font-headline-md text-base sm:text-2xl font-bold tracking-tighter text-purple-300 flex items-center gap-2.5 flex-shrink-0 group">
             <span class="material-symbols-outlined text-sky-400 text-xl sm:text-2xl group-hover:rotate-180 transition-transform duration-500">deployed_code</span>
             <span class="bg-gradient-to-r from-purple-300 via-purple-100 to-sky-400 bg-clip-text text-transparent">Akash Nagapure</span>
             <span class="hidden sm:inline-block text-[10px] font-label-caps px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/30 text-purple-300">PUZZLE VAULT</span>
@@ -166,7 +165,7 @@
 
         <!-- Desktop Horizontally Scrollable Menu -->
         <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
-            <a href="index.html" class="font-label-caps text-xs text-sky-400 hover:text-sky-200 transition-colors py-1 flex items-center gap-1.5 border-r border-purple-500/20 pr-4">
+            <a href="#" class="font-label-caps text-xs text-sky-400 hover:text-sky-200 transition-colors py-1 flex items-center gap-1.5 border-r border-purple-500/20 pr-4">
                 <span class="material-symbols-outlined text-sm">home</span> Main Hub
             </a>
             <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link active-link py-1">Overview</a>
@@ -187,7 +186,7 @@
 
     <!-- Mobile Slide-down Drawer -->
     <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-purple-500/20 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
-        <a href="index.html" class="block font-label-caps text-xs text-sky-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
+        <a href="#" class="block font-label-caps text-xs text-sky-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
         </a>
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Overview</a>
@@ -204,7 +203,7 @@
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
     <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-purple-500/40 shadow-2xl flex flex-col gap-2 min-w-[200px] mb-2 transition-all">
         <span class="text-[10px] font-label-caps font-bold text-purple-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
-        <a href="index.html" class="text-xs text-sky-300 font-bold hover:text-sky-200 px-2 py-1.5 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/10 pb-2">
+        <a href="#" class="text-xs text-sky-300 font-bold hover:text-sky-200 px-2 py-1.5 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/10 pb-2">
             <span class="material-symbols-outlined text-sm">home</span> Main Site Hub
         </a>
         <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
@@ -288,31 +287,26 @@
                 <!-- Virtual Cube Faces Preview Matrix -->
                 <div class="grid grid-cols-3 gap-3 p-4 bg-black/60 rounded-xl border border-purple-500/20 shadow-inner">
                     <div></div>
-                    <!-- Up Face -->
                     <div class="flex flex-col items-center">
                         <span class="text-[9px] font-label-caps text-slate-400 mb-1">UP (U)</span>
                         <div class="cube-face" id="face-U"></div>
                     </div>
                     <div></div>
 
-                    <!-- Left Face -->
                     <div class="flex flex-col items-center">
                         <span class="text-[9px] font-label-caps text-slate-400 mb-1">LEFT (L)</span>
                         <div class="cube-face" id="face-L"></div>
                     </div>
-                    <!-- Front Face -->
                     <div class="flex flex-col items-center">
                         <span class="text-[9px] font-label-caps text-slate-400 mb-1">FRONT (F)</span>
                         <div class="cube-face" id="face-F"></div>
                     </div>
-                    <!-- Right Face -->
                     <div class="flex flex-col items-center">
                         <span class="text-[9px] font-label-caps text-slate-400 mb-1">RIGHT (R)</span>
                         <div class="cube-face" id="face-R"></div>
                     </div>
 
                     <div></div>
-                    <!-- Down Face -->
                     <div class="flex flex-col items-center">
                         <span class="text-[9px] font-label-caps text-slate-400 mb-1">DOWN (D)</span>
                         <div class="cube-face" id="face-D"></div>
@@ -1054,7 +1048,7 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            container.innerHTML = '<p class="text-red-400 text-sm font-label-caps">Unable to load discussion thread.</p>';
+            container.innerHTML = '<p class="text-slate-500 text-sm font-label-caps">No comments yet. Be the first to start the discussion!</p>';
         }
     }
 
@@ -1084,7 +1078,6 @@
                 <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
                 
                 <div class="flex items-center space-x-4 text-xs pt-1">
-                    <!-- Like -->
                     <button 
                         onclick="handleVote(${comment.id}, 'like')" 
                         class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors"
@@ -1093,7 +1086,6 @@
                         <span>${comment.likes || 0}</span>
                     </button>
 
-                    <!-- Dislike -->
                     <button 
                         onclick="handleVote(${comment.id}, 'dislike')" 
                         class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors"
@@ -1102,7 +1094,6 @@
                         <span>${comment.dislikes || 0}</span>
                     </button>
 
-                    <!-- Reply -->
                     <button 
                         onclick="toggleReplyForm(${comment.id})" 
                         class="inline-flex items-center space-x-1 text-purple-300 hover:text-purple-200 font-semibold transition-colors font-label-caps"
@@ -1112,7 +1103,6 @@
                     </button>
                 </div>
 
-                <!-- Hidden Reply Form -->
                 <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <input 
@@ -1238,7 +1228,7 @@
             }
         } catch (err) {
             alert('Network error.');
-        } fontally {
+        } finally {
             btn.disabled = false;
             btn.innerText = 'Post Comment';
         }
@@ -1324,15 +1314,6 @@
     sections.forEach(section => navObserver.observe(section));
 
     // Interactive Virtual Cube State Engine
-    const colors = {
-        'U': '#ffffff', // White
-        'D': '#yellow',  // Yellow
-        'F': '#green',   // Green
-        'B': '#blue',    // Blue
-        'L': '#orange',  // Orange
-        'R': '#red'      // Red
-    };
-
     const colorHex = {
         'U': '#f8fafc',
         'D': '#facc15',
@@ -1370,7 +1351,7 @@
         const s = cubeState[face];
         cubeState[face] = [s[6], s[3], s[0], s[7], s[4], s[1], s[8], s[5], s[2]];
 
-        // Simple layer shifts simulation
+        // Layer shifts simulation
         if(face === 'F') {
             const temp = [cubeState['U'][6], cubeState['U'][7], cubeState['U'][8]];
             cubeState['U'][6] = cubeState['L'][8]; cubeState['U'][7] = cubeState['L'][5]; cubeState['U'][8] = cubeState['L'][2];
