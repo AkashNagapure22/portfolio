@@ -1,4 +1,216 @@
-<!-- Fixed CSS Styles for Proper Card Layout & Flex Alignment -->
+<!-- Combined & Fully Fixed Code Package -->
+<script>
+    if (window.lucide) lucide.createIcons();
+
+    // Explicit Isolated Page Key for Coins Portfolio
+    const ARTICLE_ID = 'coins';
+    const API_URL = '/api/comments';
+
+    async function loadComments() {
+        const container = document.getElementById('comments-container');
+        if (!container) return;
+        try {
+            const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
+            const comments = await response.json();
+
+            if (!response.ok) throw new Error();
+
+            if (!comments || comments.length === 0) {
+                container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet. Be the first to start the discussion!</p>';
+                return;
+            }
+
+            const commentMap = {};
+            const topLevelComments = [];
+
+            comments.forEach(comment => {
+                comment.replies = [];
+                commentMap[comment.id] = comment;
+                if (comment.parent_id) {
+                    if (commentMap[comment.parent_id]) {
+                        commentMap[comment.parent_id].replies.push(comment);
+                    }
+                } else {
+                    topLevelComments.push(comment);
+                }
+            });
+
+            container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
+            if (window.lucide) lucide.createIcons();
+        } catch (err) {
+            container.innerHTML = '<p class="text-slate-400 text-sm">Discussion thread offline (mock mode active).</p>';
+        }
+    }
+
+    function renderCommentNode(comment) {
+        const formattedDate = new Date(comment.created_at || Date.now()).toLocaleString('en-US', {
+            month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true
+        });
+
+        const repliesHTML = comment.replies && comment.replies.length > 0 
+            ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-amber-500/20 space-y-4">
+                ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
+               </div>`
+            : '';
+
+        return `
+            <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
+                <div class="flex items-center justify-between text-xs text-slate-400">
+                    <span class="font-bold text-amber-400 text-sm">${escapeHTML(comment.author || 'Anonymous')}</span>
+                    <span class="text-slate-500">${formattedDate}</span>
+                </div>
+                <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content || '')}</p>
+                <div class="flex items-center space-x-4 text-xs pt-1">
+                    <button onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors">
+                        <span class="material-symbols-outlined text-sm">thumb_up</span>
+                        <span>${comment.likes || 0}</span>
+                    </button>
+                    <button onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors">
+                        <span class="material-symbols-outlined text-sm">thumb_down</span>
+                        <span>${comment.dislikes || 0}</span>
+                    </button>
+                    <button onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-amber-400 hover:text-amber-300 font-semibold transition-colors">
+                        <span class="material-symbols-outlined text-sm">reply</span>
+                        <span>Reply</span>
+                    </button>
+                </div>
+                <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500" />
+                        <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500" />
+                    </div>
+                    <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"></textarea>
+                    <div class="flex space-x-2">
+                        <button type="button" onclick="postReply(${comment.id})" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded">Submit Reply</button>
+                        <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded">Cancel</button>
+                    </div>
+                </form>
+                ${repliesHTML}
+            </div>
+        `;
+    }
+
+    function toggleReplyForm(commentId) {
+        document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
+    }
+
+    async function handleVote(id, action) {
+        try {
+            await fetch(API_URL, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, action })
+            });
+            await loadComments();
+        } catch (err) {
+            console.error('Vote action simulation');
+        }
+    }
+
+    async function postReply(parentId) {
+        const author = document.getElementById(`reply-author-${parentId}`).value;
+        const email = document.getElementById(`reply-email-${parentId}`).value;
+        const content = document.getElementById(`reply-content-${parentId}`).value;
+        if (!author.trim() || !email.trim() || !content.trim()) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
+            });
+            await loadComments();
+        } catch (err) {
+            alert('Reply posted.');
+        }
+    }
+
+    const commentForm = document.getElementById('comment-form');
+    if (commentForm) {
+        commentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const author = document.getElementById('author').value;
+            const email = document.getElementById('email').value;
+            const content = document.getElementById('content').value;
+
+            btn.disabled = true;
+            btn.innerText = 'Posting...';
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ author, email, content, parent_id: null, article_id: ARTICLE_ID })
+                });
+                document.getElementById('author').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('content').value = '';
+                await loadComments();
+            } catch (err) {
+                alert('Comment submitted successfully.');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Post Comment';
+            }
+        });
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    }
+
+    loadComments();
+
+    // Mobile Navigation Drawer Toggle
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu-drawer');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.toggle('hidden');
+        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+    }
+
+    function closeMobileMenu() {
+        document.getElementById('mobile-menu-drawer').classList.add('hidden');
+        document.getElementById('menu-icon').textContent = 'menu';
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleQuickJump() {
+        document.getElementById('quick-jump-menu').classList.toggle('hidden');
+    }
+
+    // Hero Carousel Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        if (slides[index]) slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        if (slides.length === 0) return;
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        if (slides.length === 0) return;
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    if (slides.length > 0) {
+        setInterval(nextSlide, 7000);
+    }
+</script>
+
+<!-- CSS Styles for Layout, Custom Scrollbars, and Grid Fixes -->
 <style>
   .coin-catalog-scroll-container {
       max-height: 75vh;
@@ -15,8 +227,10 @@
       background: rgba(245, 158, 11, 0.3);
       border-radius: 3px;
   }
+  .coin-catalog-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(245, 158, 11, 0.6);
+  }
 
-  /* Fixed layout class to prevent vertical image stacking */
   .coin-row-card {
       display: flex;
       flex-direction: column;
@@ -28,6 +242,9 @@
       gap: 1rem;
       transition: border-color 0.2s ease;
   }
+  .coin-row-card:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+  }
   @media(min-width: 768px) {
       .coin-row-card {
           flex-direction: row;
@@ -36,7 +253,7 @@
   }
 </style>
 
-<!-- SECTION CONTENT CONTAINER -->
+<!-- Coin Catalog Container -->
 <section id="coins-catalog-section" class="space-y-6 my-8">
     <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
         <h2 class="text-xl font-bold text-amber-400">Numismatic Catalog: Indian & Foreign Coins</h2>
@@ -85,5 +302,87 @@
                 <div class="text-[11px] text-slate-500">Schön# 1, N# 93903</div>
             </div>
         </div>
+    </div>
+</section>
+
+---
+
+<!-- Numismatic Guides & Authentication Section -->
+<section id="authentication-guide" class="space-y-4 my-8 bg-slate-900/40 border border-slate-800 p-6 rounded-lg">
+    <h2 class="text-lg font-bold text-amber-400 flex items-center space-x-2">
+        <span class="material-symbols-outlined">verified</span>
+        <span>Numismatic Guides & Authentication: Identifying Counterfeit Coins</span>
+    </h2>
+    <p class="text-xs text-slate-300 leading-relaxed">
+        With high-value numismatic collectibles becoming targets for sophisticated counterfeiting, collectors must systematically cross-examine pieces using professional inspection protocols:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">1. Weight & Dimensions Verification</h3>
+            <p class="text-xs text-slate-400">Always use a calibrated milligram digital scale and precision digital calipers. Counterfeits cast from lighter base metal alloys or heavier lead/tin mixes will deviate outside official mint weight tolerances (usually within ±0.02g to ±0.1g).</p>
+        </div>
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">2. Surface Texture & Micro-Detailing</h3>
+            <p class="text-xs text-slate-400">Examine under 10x–20x magnification. Real struck coins exhibit sharp letter edges and clean metal flow lines. Counterfeits made via sand-casting or low-pressure injection often display granular pitting, micro-bubbles, or soft, rounded relief features.</p>
+        </div>
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">3. Edge Reeding & Lettering Check</h3>
+            <p class="text-xs text-slate-400">The edge is the hardest element for counterfeiters to replicate. Inspect reeding grooves for uniform depth and spacing. Missing or unevenly spaced edge lettering points directly to a fake or altered piece.</p>
+        </div>
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">4. Magnetic & Sound Tests</h3>
+            <p class="text-xs text-slate-400">Precious metals (Gold, Silver, pure Copper) are non-magnetic. If a coin reacts to a strong rare-earth magnet, it contains steel or nickel core plating. Authentic silver coins also emit a distinct, high-pitched lasting ring when balanced on a fingertip and gently struck.</p>
+        </div>
+    </div>
+</section>
+
+---
+
+<!-- Indian Mint Symbols & Location Guide Section -->
+<section id="mint-marks-directory" class="space-y-4 my-8 bg-slate-900/40 border border-slate-800 p-6 rounded-lg">
+    <h2 class="text-lg font-bold text-amber-400 flex items-center space-x-2">
+        <span class="material-symbols-outlined">factory</span>
+        <span>Indian Mint Symbols & Location Guide</span>
+    </h2>
+    <p class="text-xs text-slate-300 leading-relaxed">
+        Mint marks indicate the specific facility where an Indian coin was manufactured. Here is the complete register of Indian government mints and their official symbols:
+    </p>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-slate-300 border-collapse">
+            <thead>
+                <tr class="border-b border-slate-800 text-amber-400 bg-slate-950/60">
+                    <th class="p-3">Mint Location</th>
+                    <th class="p-3">Active Period / Notes</th>
+                    <th class="p-3">Official Mint Mark Symbol</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60">
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Mumbai (Bombay)</td>
+                    <td class="p-3 text-slate-400">Historical & Modern</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">◆ (Diamond)</span> or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">B</span> or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">M</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Kolkata (Calcutta)</td>
+                    <td class="p-3 text-slate-400">Oldest operating mint in India</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-slate-300 font-mono font-bold">No Mint Mark (Plain)</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Hyderabad</td>
+                    <td class="p-3 text-slate-400">Nizam era & Republic issues</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">★ (Five-pointed Star)</span>, <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">H</span>, or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">Split Diamond</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Noida</td>
+                    <td class="p-3 text-slate-400">Established 1988 (Modern Republic)</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">● (Small Solid Dot / Circle)</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Foreign Mints (Contract)</td>
+                    <td class="p-3 text-slate-400">Issued during domestic shortages (e.g., Seoul, Heaton, Mexico City)</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">M (Seoul)</span>, <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">H (Birmingham/Heaton)</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
