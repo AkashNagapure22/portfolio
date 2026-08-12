@@ -10,8 +10,8 @@
 <body class="bg-slate-950 text-slate-300 font-sans selection:bg-sky-500/20">
 
   <main class="max-w-4xl mx-auto px-6 py-16">
-    <!-- Navigation -->
-    <a href="../index.html" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
+    <!-- Navigation -> Points to root index.html -->
+    <a href="/" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
       <i data-lucide="arrow-left" class="w-4 h-4"></i>
       <span>Back to Main Site</span>
     </a>
@@ -59,9 +59,117 @@
           <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/operate/windows-autopatch-groups" target="_blank">Managing Autopatch Groups</a></li>
         </ul>
       </section>
+
+      <!-- Comments Section -->
+      <section class="border-t border-slate-800 pt-8 mt-12">
+        <h2 class="text-2xl font-bold text-white mb-6">Discussion</h2>
+
+        <form id="comment-form" class="space-y-4 mb-8">
+          <div>
+            <input 
+              type="text" 
+              id="author" 
+              placeholder="Your Name" 
+              required 
+              class="w-full md:w-1/2 p-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors"
+            />
+          </div>
+          <div>
+            <textarea 
+              id="content" 
+              rows="4" 
+              placeholder="Join the discussion..." 
+              required 
+              class="w-full p-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors"
+            ></textarea>
+          </div>
+          <button 
+            type="submit" 
+            id="submit-btn"
+            class="px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold rounded-lg transition-colors disabled:opacity-50"
+          >
+            Post Comment
+          </button>
+        </form>
+
+        <div id="comments-container" class="space-y-4">
+          <p class="text-slate-500 text-sm">Loading comments...</p>
+        </div>
+      </section>
+
     </article>
   </main>
 
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+
+    // Absolute path to your Vercel serverless function
+    const API_URL = '/api/comments';
+
+    async function loadComments() {
+      const container = document.getElementById('comments-container');
+      try {
+        const response = await fetch(API_URL);
+        const comments = await response.json();
+
+        if (!response.ok) throw new Error();
+
+        if (comments.length === 0) {
+          container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet. Be the first to start the conversation!</p>';
+          return;
+        }
+
+        container.innerHTML = comments.map(comment => `
+          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-lg space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-400">
+              <span class="font-bold text-sky-400 text-sm">${escapeHTML(comment.author)}</span>
+              <span>${new Date(comment.created_at).toLocaleDateString()}</span>
+            </div>
+            <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = '<p class="text-red-400 text-sm">Unable to load comments.</p>';
+      }
+    }
+
+    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const author = document.getElementById('author');
+      const content = document.getElementById('content');
+
+      btn.disabled = true;
+      btn.innerText = 'Posting...';
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ author: author.value, content: content.value })
+        });
+
+        if (res.ok) {
+          content.value = '';
+          await loadComments();
+        } else {
+          alert('Failed to post comment.');
+        }
+      } catch (err) {
+        alert('Network error.');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Post Comment';
+      }
+    });
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    loadComments();
+  </script>
 </body>
 </html>
