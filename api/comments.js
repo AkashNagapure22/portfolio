@@ -1,7 +1,7 @@
 import { sql } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
-  // Global CORS Headers
+  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST');
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. GET COMMENTS FOR A SPECIFIC PAGE
+    // 1. GET COMMENTS FOR SPECIFIC PAGE
     if (req.method === 'GET') {
       const article_id = req.query.article_id || 'general';
 
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       return res.status(200).json(comments || []);
     }
 
-    // 2. POST NEW COMMENT OR REPLY (SINGLE STATEMENT ONLY)
+    // 2. POST NEW COMMENT (BROKEN INTO 2 SEPARATE QUERIES)
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
@@ -39,10 +39,19 @@ export default async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
-      const [newComment] = await sql`
+      // QUERY 1: Execute INSERT alone
+      await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
-        RETURNING id, author, email, content, parent_id, likes, dislikes, created_at, article_id
+      `;
+
+      // QUERY 2: Execute SELECT alone to retrieve the inserted row
+      const [newComment] = await sql`
+        SELECT id, author, email, content, parent_id, likes, dislikes, created_at, article_id
+        FROM comments
+        WHERE email = ${email} AND article_id = ${targetArticle}
+        ORDER BY id DESC
+        LIMIT 1
       `;
 
       return res.status(200).json(newComment);
