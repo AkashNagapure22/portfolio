@@ -25,14 +25,14 @@
     <article class="space-y-8 text-slate-300 leading-relaxed">
       <section>
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">1. Prerequisites & Activation</h2>
-        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). You need Global Administrator access for initial consent and Intune Administrator access to configure the service.</p>
+        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). Enable Delivery Optimization and diagnostic data collection under your Tenant Administration settings.</p>
       </section>
 
       <!-- Threaded Discussion Section -->
       <section class="border-t border-slate-800/80 pt-8 mt-12">
         <h2 class="text-2xl font-bold text-white mb-6">Discussion & Q&A</h2>
 
-        <!-- Form Styled to Match Reference UI -->
+        <!-- Form -->
         <form id="comment-form" class="space-y-4 mb-10 bg-[#070b15] p-6 border border-slate-800/80 rounded-xl shadow-2xl">
           <h3 class="text-base font-bold text-white">Start a Discussion</h3>
           
@@ -83,7 +83,7 @@
   <script>
     lucide.createIcons();
 
-    // Specific identity for this subpage
+    // Unique Identifier for Autopatch Page
     const ARTICLE_ID = 'autopatchblog';
     const API_URL = '/api/comments';
 
@@ -96,7 +96,7 @@
         if (!response.ok) throw new Error();
 
         if (!comments || comments.length === 0) {
-          container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet. Be the first to start the discussion!</p>';
+          container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet for this guide. Be the first to start the discussion!</p>';
           return;
         }
 
