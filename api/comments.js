@@ -1,7 +1,6 @@
 import { sql } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
-  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST');
@@ -15,7 +14,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. GET: Fetch isolated comments for a specific page
+    // 1. GET: Fetch comments strictly for the requested page
     if (req.method === 'GET') {
       const article_id = req.query.article_id || 'general';
 
@@ -29,7 +28,7 @@ export default async function handler(req, res) {
       return res.status(200).json(comments || []);
     }
 
-    // 2. POST: Insert comment using two separate, sequential statements
+    // 2. POST: Insert comment in two clean sequential statements
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
@@ -39,13 +38,13 @@ export default async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
-      // Statement 1: Insert row
+      // Query 1: INSERT
       await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
       `;
 
-      // Statement 2: Retrieve the newly inserted comment
+      // Query 2: SELECT
       const [newComment] = await sql`
         SELECT id, author, email, content, parent_id, likes, dislikes, created_at, article_id
         FROM comments
