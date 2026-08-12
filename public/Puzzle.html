@@ -5,6 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Akash Nagapure | Games & Puzzles Portfolio</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
     tailwind.config = {
@@ -174,6 +175,7 @@
             <a href="#twisty-cubes" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Twisty Cubes</a>
             <a href="#brain-teasers" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Brain Teasers</a>
             <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Wishlist</a>
+            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Discussion</a>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
@@ -193,7 +195,8 @@
         <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Crown Jewels</a>
         <a href="#twisty-cubes" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Twisty Cubes</a>
         <a href="#brain-teasers" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Brain Teasers</a>
-        <a href="#wishlist" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2">Puzzle Wishlist</a>
+        <a href="#wishlist" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Puzzle Wishlist</a>
+        <a href="#discussion" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2">Discussion &amp; Q&amp;A</a>
     </div>
 </nav>
 
@@ -221,6 +224,9 @@
         </a>
         <a href="#wishlist" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">explore</span> Wishlist
+        </a>
+        <a href="#discussion" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">forum</span> Discussion
         </a>
     </div>
 
@@ -951,6 +957,56 @@
         </div>
     </section>
 
+    <!-- THREADED DISCUSSION & COMMENTS SECTION -->
+    <section id="discussion" class="scroll-mt-24 border-t border-purple-500/20 pt-12 mt-16 space-y-8">
+        <div class="flex items-center gap-4">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-purple-300 italic tracking-tight font-bold">PUZZLER DISCUSSION &amp; Q&amp;A</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+
+        <!-- Comment Form -->
+        <form id="comment-form" class="glass-card p-6 rounded-xl border border-purple-500/30 space-y-4">
+            <h3 class="text-lg font-semibold text-purple-200 font-label-caps">Join the Conversation</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input 
+                    type="text" 
+                    id="author" 
+                    placeholder="Your Name *" 
+                    required 
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm font-label-caps"
+                />
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="Your Email Address *" 
+                    required 
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm font-label-caps"
+                />
+            </div>
+            <div>
+                <textarea 
+                    id="content" 
+                    rows="3" 
+                    placeholder="Share a speedcube algorithm, ask about puzzle mechanisms, or leave a message..." 
+                    required 
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm"
+                ></textarea>
+            </div>
+            <button 
+                type="submit" 
+                id="submit-btn"
+                class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 text-sm font-label-caps shadow-md"
+            >
+                Post Comment
+            </button>
+        </form>
+
+        <!-- Dynamic Comments Feed -->
+        <div id="comments-container" class="space-y-6">
+            <p class="text-slate-500 text-sm font-label-caps">Loading discussion...</p>
+        </div>
+    </section>
+
 </main>
 
 <footer class="w-full py-8 sm:py-12 bg-surface-dim border-t border-white/5 text-center">
@@ -961,6 +1017,241 @@
 </footer>
 
 <script>
+    if (window.lucide) lucide.createIcons();
+
+    // Explicit Isolated Page Key for Games & Puzzles Page
+    const ARTICLE_ID = 'puzzle';
+    const API_URL = '/api/comments';
+
+    async function loadComments() {
+        const container = document.getElementById('comments-container');
+        try {
+            const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
+            const comments = await response.json();
+
+            if (!response.ok) throw new Error();
+
+            if (!comments || comments.length === 0) {
+                container.innerHTML = '<p class="text-slate-500 text-sm font-label-caps">No comments yet. Be the first to start the discussion!</p>';
+                return;
+            }
+
+            const commentMap = {};
+            const topLevelComments = [];
+
+            comments.forEach(comment => {
+                comment.replies = [];
+                commentMap[comment.id] = comment;
+                if (comment.parent_id) {
+                    if (commentMap[comment.parent_id]) {
+                        commentMap[comment.parent_id].replies.push(comment);
+                    }
+                } else {
+                    topLevelComments.push(comment);
+                }
+            });
+
+            container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
+            if (window.lucide) lucide.createIcons();
+        } catch (err) {
+            container.innerHTML = '<p class="text-red-400 text-sm font-label-caps">Unable to load discussion thread.</p>';
+        }
+    }
+
+    function renderCommentNode(comment) {
+        const formattedDate = new Date(comment.created_at).toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        });
+
+        const repliesHTML = comment.replies.length > 0 
+            ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-purple-500/20 space-y-4">
+                ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
+               </div>`
+            : '';
+
+        return `
+            <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
+                <div class="flex items-center justify-between text-xs text-slate-400">
+                    <span class="font-bold text-purple-300 text-sm font-label-caps">${escapeHTML(comment.author)}</span>
+                    <span class="text-slate-500 font-label-caps">${formattedDate}</span>
+                </div>
+                
+                <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
+                
+                <div class="flex items-center space-x-4 text-xs pt-1">
+                    <!-- Like -->
+                    <button 
+                        onclick="handleVote(${comment.id}, 'like')" 
+                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors"
+                    >
+                        <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+                        <span>${comment.likes || 0}</span>
+                    </button>
+
+                    <!-- Dislike -->
+                    <button 
+                        onclick="handleVote(${comment.id}, 'dislike')" 
+                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors"
+                    >
+                        <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
+                        <span>${comment.dislikes || 0}</span>
+                    </button>
+
+                    <!-- Reply -->
+                    <button 
+                        onclick="toggleReplyForm(${comment.id})" 
+                        class="inline-flex items-center space-x-1 text-purple-300 hover:text-purple-200 font-semibold transition-colors font-label-caps"
+                    >
+                        <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
+                        <span>Reply</span>
+                    </button>
+                </div>
+
+                <!-- Hidden Reply Form -->
+                <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input 
+                            type="text" 
+                            id="reply-author-${comment.id}" 
+                            placeholder="Your Name *" 
+                            required 
+                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 font-label-caps"
+                        />
+                        <input 
+                            type="email" 
+                            id="reply-email-${comment.id}" 
+                            placeholder="Your Email *" 
+                            required 
+                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 font-label-caps"
+                        />
+                    </div>
+                    <textarea 
+                        id="reply-content-${comment.id}" 
+                        rows="2" 
+                        placeholder="Write a reply..." 
+                        required 
+                        class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                    ></textarea>
+                    <div class="flex space-x-2">
+                        <button 
+                            type="button" 
+                            onclick="postReply(${comment.id})" 
+                            class="px-3 py-1.5 bg-purple-600 hover:bg-purple-500 text-slate-950 text-xs font-bold rounded font-label-caps"
+                        >
+                            Submit Reply
+                        </button>
+                        <button 
+                            type="button" 
+                            onclick="toggleReplyForm(${comment.id})" 
+                            class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded font-label-caps"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+
+                ${repliesHTML}
+            </div>
+        `;
+    }
+
+    function toggleReplyForm(commentId) {
+        const form = document.getElementById(`reply-form-${commentId}`);
+        form.classList.toggle('hidden');
+    }
+
+    async function handleVote(id, action) {
+        try {
+            const res = await fetch(API_URL, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, action })
+            });
+            if (res.ok) await loadComments();
+        } catch (err) {
+            console.error('Failed to vote');
+        }
+    }
+
+    async function postReply(parentId) {
+        const author = document.getElementById(`reply-author-${parentId}`).value;
+        const email = document.getElementById(`reply-email-${parentId}`).value;
+        const content = document.getElementById(`reply-content-${parentId}`).value;
+
+        if (!author.trim() || !email.trim() || !content.trim()) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+
+        try {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
+            });
+
+            if (res.ok) {
+                await loadComments();
+            } else {
+                alert('Failed to post reply.');
+            }
+        } catch (err) {
+            alert('Network error.');
+        }
+    }
+
+    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const author = document.getElementById('author');
+        const email = document.getElementById('email');
+        const content = document.getElementById('content');
+
+        btn.disabled = true;
+        btn.innerText = 'Posting...';
+
+        try {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    author: author.value, 
+                    email: email.value, 
+                    content: content.value, 
+                    parent_id: null,
+                    article_id: ARTICLE_ID
+                })
+            });
+
+            if (res.ok) {
+                author.value = '';
+                email.value = '';
+                content.value = '';
+                await loadComments();
+            } else {
+                alert('Failed to post comment.');
+            }
+        } catch (err) {
+            alert('Network error.');
+        } fontally {
+            btn.disabled = false;
+            btn.innerText = 'Post Comment';
+        }
+    });
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+    }
+
+    loadComments();
+
     // Navigation Drawer Logic
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu-drawer');
