@@ -1,4 +1,668 @@
-<!-- Combined & Fully Fixed Code Package -->
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akash Nagapure | Numismatic & Banknote Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "primary": "#fff2d1",
+                    "primary-glow": "#e6b800",
+                    "secondary": "#f3e5ab",
+                    "on-surface-variant": "#cbd5e1",
+                    "surface-container": "#1d1a14",
+                    "background": "#12100d",
+                    "surface-dim": "#12100d"
+                },
+                "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "gutter": "24px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Geist", "sans-serif"],
+                    "label-caps": ["Geist", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "display-lg": ["Geist", "sans-serif"]
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    html { scroll-padding-top: 80px; }
+    
+    ::-webkit-scrollbar { height: 4px; width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(to right, #e6b800, #b8860b); border-radius: 4px; }
+    
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .glass-card {
+        background: rgba(26, 23, 18, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 215, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .inventory-flip-card {
+        perspective: 1200px;
+        user-select: none;
+        min-height: 280px;
+    }
+    .inventory-flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+    }
+    .inventory-flip-card.flipped .inventory-flip-inner {
+        transform: rotateY(180deg);
+    }
+    .inventory-flip-front, .inventory-flip-back {
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 0.75rem;
+    }
+    .inventory-flip-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: rotateY(180deg);
+    }
+
+    .carousel-slide { display: none; }
+    .carousel-slide.active { display: block; animation: fadeIn 0.8s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .nav-link.active-link {
+        color: #fff2d1 !important;
+        border-bottom: 2px solid #e6b800;
+    }
+</style>
+</head>
+<body class="bg-background text-slate-100 overflow-x-hidden font-body-md">
+
+<!-- Background Shader Canvas -->
+<div class="fixed inset-0 w-full h-full -z-10 bg-black overflow-hidden pointer-events-none">
+    <canvas class="w-full h-full opacity-50" id="ambient-canvas"></canvas>
+</div>
+<script>
+(function() {
+    const canvas = document.getElementById('ambient-canvas');
+    function syncSize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', syncSize);
+    syncSize();
+
+    const gl = canvas.getContext('webgl');
+    if (!gl) return;
+    const vs = `attribute vec2 a_position; varying vec2 v_texCoord; void main() { v_texCoord = a_position * 0.5 + 0.5; gl_Position = vec4(a_position, 0.0, 1.0); }`;
+    const fs = `precision highp float; varying vec2 v_texCoord; uniform float u_time; uniform vec2 u_resolution; void main() { vec2 uv = v_texCoord; vec2 p = (uv * 2.0 - 1.0) * vec2(u_resolution.x / u_resolution.y, 1.0); float noise = 0.0; vec2 q = p * 0.8; for(float i = 1.0; i < 4.0; i++) { q += vec2(cos(q.y + u_time * 0.15 + i), sin(q.x + u_time * 0.1 + i)); noise += 1.0 / i * (0.5 + 0.5 * sin(length(q) + u_time * 0.08)); } vec3 color1 = vec3(0.06, 0.05, 0.02); vec3 color2 = vec3(0.15, 0.11, 0.03); vec3 color3 = vec3(0.08, 0.04, 0.01); vec3 finalColor = mix(color1, color2, noise * 0.5); finalColor = mix(finalColor, color3, clamp(length(p) * 0.3, 0.0, 1.0)); gl_FragColor = vec4(finalColor, 1.0); }`;
+    const cs = (t, s) => { const sh = gl.createShader(t); gl.shaderSource(sh, s); gl.compileShader(sh); return sh; };
+    const prog = gl.createProgram();
+    gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog); gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+    const pos = gl.getAttribLocation(prog, 'a_position'); gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+    const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uRes = gl.getUniformLocation(prog, 'u_resolution');
+    function r(t) { gl.viewport(0, 0, canvas.width, canvas.height); gl.uniform1f(uTime, t * 0.001); gl.uniform2f(uRes, canvas.width, canvas.height); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); requestAnimationFrame(r); }
+    r(0);
+})();
+</script>
+
+<!-- Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)]">
+    <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
+        
+        <!-- Brand Title Redirects to Main Site Index -->
+        <a href="/" class="font-headline-sm text-base sm:text-2xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-2 flex-shrink-0 group">
+            <span class="material-symbols-outlined text-amber-400 text-xl sm:text-2xl group-hover:scale-110 transition-transform">monetization_on</span>
+            <span>Akash Nagapure</span>
+        </a>
+
+        <!-- Desktop Horizontally Scrollable Menu -->
+        <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
+            <a href="/" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
+                <span class="material-symbols-outlined text-sm">home</span> Main Hub
+            </a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link active-link py-1">Overview</a>
+            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Banknotes</a>
+            <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Proof &amp; UNC Sets</a>
+            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Indian Coins</a>
+            <a href="#foreign-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Foreign Coins</a>
+            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Target Hunt</a>
+            <a href="#valuation-guide" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Authentication</a>
+            <a href="#mint-marks" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Mint Marks</a>
+            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Discussion</a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded text-amber-400 hover:bg-white/5 focus:outline-none flex items-center gap-1 border border-amber-500/20">
+            <span class="text-xs font-bold uppercase tracking-wider">Menu</span>
+            <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
+        </button>
+    </div>
+
+    <!-- Mobile Slide-down Drawer -->
+    <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-amber-500/20 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
+        <a href="/" class="block font-label-caps text-xs text-amber-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
+        </a>
+        <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Overview</a>
+        <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Banknotes</a>
+        <a href="#special-commemorative" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Proof &amp; UNC Sets</a>
+        <a href="#indian-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Indian Coins</a>
+        <a href="#foreign-coins" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Foreign Coins</a>
+        <a href="#wishlist" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Target Hunt</a>
+        <a href="#valuation-guide" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Authentication</a>
+        <a href="#mint-marks" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Mint Marks &amp; Locations</a>
+        <a href="#discussion" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2">Discussion &amp; Q&amp;A</a>
+    </div>
+</nav>
+
+<!-- Floating Fast Navigation / Scroll to Top Widget -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-amber-500/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
+        <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
+        <a href="/" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
+            <span class="material-symbols-outlined text-sm">home</span> Main Site Hub
+        </a>
+        <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">analytics</span> Overview
+        </a>
+        <a href="#crown-jewels" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">payments</span> Banknotes
+        </a>
+        <a href="#special-commemorative" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">workspace_premium</span> Proof &amp; UNC Sets
+        </a>
+        <a href="#indian-coins" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">monetization_on</span> Indian Coins
+        </a>
+        <a href="#foreign-coins" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">public</span> Foreign Coins
+        </a>
+        <a href="#wishlist" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">explore</span> Target Hunt
+        </a>
+        <a href="#discussion" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">forum</span> Discussion
+        </a>
+    </div>
+
+    <div class="flex items-center gap-2">
+        <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">segment</span>
+        </button>
+        <button onclick="scrollToTop()" class="p-3 bg-amber-500 text-slate-950 hover:bg-amber-400 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">arrow_upward</span>
+        </button>
+    </div>
+</div>
+
+<main class="relative pt-24 md:pt-32 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
+
+    <!-- Dashboard Metrics -->
+    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-24">
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">paid</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">85+</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Active Inventory Pieces</div>
+        </div>
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">public</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">Global</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">India, Hungary, EU, Australia</div>
+        </div>
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">workspace_premium</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">Proof / UNC</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Special Mint Sets</div>
+        </div>
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+            <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">verified</span>
+            <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">1862–2022</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Timeline Span</div>
+        </div>
+    </section>
+
+    <!-- Banknote Collection Carousel -->
+    <section id="crown-jewels" class="overflow-hidden scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6 md:mb-8">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">CROWN JEWELS — BANKNOTE COLLECTION</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+        
+        <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
+            <div class="carousel-slide active absolute inset-0">
+                <img alt="RBI 1000 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
+                    <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">RESERVE BANK OF INDIA (1954–1978)</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">₹1000 Tanjore Temple Note</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Features the majestic Brihadishvara Temple of Tanjore. Large format currency issued under Governor B. Rama Rau.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-amber-400 font-bold text-sm sm:text-base">Watermark: Ashoka Pillar</span>
+                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded border border-amber-500/30">Rare Demonetized Issue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide absolute inset-0">
+                <img alt="British India 10 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
+                    <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">BRITISH INDIA (1938–1947)</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none">King George VI ₹10 Note</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">Signed by C.D. Deshmukh, first Indian RBI Governor. Features profile portrait of King George VI and dhow boat reverse motif.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-amber-400 font-bold text-sm sm:text-base">Condition: Crisp Uncirculated</span>
+                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded border border-amber-500/30">Pre-Independence</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="prevSlide()">
+                <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
+            </button>
+            <button class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="nextSlide()">
+                <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_right</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Special Commemorative Sets -->
+    <section id="special-commemorative" class="scroll-mt-24 space-y-8">
+        <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
+            <span class="material-symbols-outlined text-amber-400 text-3xl">workspace_premium</span>
+            <div>
+                <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">SPECIAL PROOF &amp; UNC COMMEMORATIVE SETS (NON-CIRCULATING)</h2>
+                <p class="text-xs text-slate-400">Minted-on-demand commemorative issues issued directly by India Government Mints in custom presentation folders &amp; collector booklets</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8">
+            <div class="glass-card p-6 sm:p-8 rounded-xl border-2 border-red-900/40 bg-gradient-to-b from-red-950/20 via-slate-900/80 to-slate-950 flex flex-col gap-6 hover:border-amber-400/50 transition-all shadow-[0_0_25px_rgba(153,27,27,0.15)]">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+                    <div>
+                        <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/20">SPECIAL ISSUE — 2015 AD</span>
+                        <h3 class="font-bold text-amber-200 text-2xl sm:text-3xl mt-2">475th Birth Anniversary of Maharana Pratap</h3>
+                    </div>
+                    <div class="text-left sm:text-right">
+                        <span class="text-xs text-amber-300 font-bold bg-amber-500/20 px-3 py-1 rounded border border-amber-500/30 inline-block">Non-Circulating Collector Issue</span>
+                        <span class="text-[10px] text-emerald-400 font-semibold block mt-1">In Collection: In-Hand Package</span>
+                    </div>
+                </div>
+
+                <div class="w-full space-y-3">
+                    <div class="w-full h-80 sm:h-96 md:h-[450px] rounded-xl border-2 border-amber-500/40 bg-black/60 overflow-hidden relative shadow-2xl group">
+                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/Notes_And_Coins/maharana.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[10px] font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded uppercase shadow-lg tracking-wider">OFFICIAL MINT FOLDER SHOWCASE</span>
+                        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-amber-300 font-bold block">475th Birth Anniversary — 2015</span>
+                                <span class="text-[10px] text-slate-300">Printed Card Folder &amp; Stamp Envelope Presentation</span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 bg-black/80 px-2.5 py-1 rounded border border-white/10 hidden sm:inline-block">India Government Mint Specimen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 text-xs bg-black/40 p-4 rounded-lg border border-white/5">
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Denomination</strong><span class="text-slate-200 font-semibold">₹10 (Ten Rupees)</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Structure</strong><span class="text-slate-200 font-semibold">Bi-Metallic</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Weight</strong><span class="text-slate-200 font-semibold">7.71 grams</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Diameter</strong><span class="text-slate-200 font-semibold">27 mm</span></div>
+
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Shape</strong><span class="text-slate-200 font-semibold">Circular / Round</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Issuer</strong><span class="text-amber-300 font-semibold">India Government Mint</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Distribution Type</strong><span class="text-slate-200 font-semibold">On-Demand Minting</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Circulation Status</strong><span class="text-rose-400 font-semibold">Non-Circulating</span></div>
+
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Outer Ring Alloy</strong><span class="text-slate-200 font-semibold">Aluminum-Bronze</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Center Core Alloy</strong><span class="text-slate-200 font-semibold">Cupro-Nickel</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Category</strong><span class="text-slate-200 font-semibold">Minratna Category-I</span></div>
+                        <div><strong class="text-slate-400 block text-[10px] uppercase">Market Value</strong><span class="text-amber-400 font-bold">Premium Collector Pack</span></div>
+                    </div>
+
+                    <div class="space-y-2 text-xs text-slate-300 pt-2 border-t border-white/5">
+                        <p><strong>Obverse Design:</strong> Lion Capital of Ashoka Pillar with motto "Satyameva Jayate" in Hindi, flanked by "BHARAT" in Devanagari and "INDIA" in English with Rupee symbol ₹10.</p>
+                        <p><strong>Reverse Design:</strong> Dynamic portrait bust of Rajput warrior king Maharana Pratap in traditional armor holding a spear riding his legendary warhorse Chetak, with bi-lingual legend "475th BIRTH ANNIVERSARY OF MAHARANA PRATAP - 2015".</p>
+                        <p><strong>Package &amp; Provenance:</strong> Issued by Security Printing and Minting Corporation of India Limited (SPMCIL) in a crimson commemorative presentation folder complete with a commemorative postage stamp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Categorized Indian Coin Inventory -->
+    <section id="indian-coins" class="scroll-mt-24 space-y-16">
+        <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
+            <span class="material-symbols-outlined text-amber-400 text-3xl">collections_bookmark</span>
+            <div>
+                <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">INDIAN COIN INVENTORY (BY PERIODS)</h2>
+                <p class="text-xs text-slate-400">Click any card to flip and view the reverse side with historical context &amp; minting details</p>
+            </div>
+        </div>
+
+        <!-- CATEGORY 1: ANCIENT & MEDIEVAL PERIOD -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">account_balance</span>
+                    1. Ancient &amp; Medieval Period (600 BC – 1757 AD)
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                            <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
+                                <img alt="Mauryan Silver Karshapana Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png"/>
+                                <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
+                            </div>
+                            <div class="flex-grow space-y-3 w-full">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-lg sm:text-xl">Mauryan Silver Karshapana</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong><span class="text-slate-200">Karshapana</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Issuer / Ruler:</strong><span class="text-amber-300">Maurya Empire</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong><span class="text-slate-200">300 BC</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong><span class="text-slate-200">Silver</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Weight:</strong><span class="text-slate-200">3.4 g</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong><span class="text-amber-300">Ancient Pataliputra</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">Available</span></div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Market Value:</strong><span class="text-amber-400 font-bold">Scarce Antique</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Numismatic History &amp; Minting Context</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
+                                    <div><strong class="text-slate-400 block text-[9px]">Coin Type:</strong> Regular Circulation</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Occasion / Purpose:</strong> Trade &amp; Imperial Economy</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint Technique:</strong> Hand-Punched Flan</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Historical Artifact</div>
+                                </div>
+                                <div class="space-y-2 text-xs text-slate-300 pt-1">
+                                    <p><strong>Why It Was Minted:</strong> Struck as standardized currency across the Magadha/Mauryan territories under Chandragupta and Ashoka for empire-wide trade and army payroll.</p>
+                                    <p><strong>Design Symbolism:</strong> Features 5 official punches (Sun symbol of royalty, 3-arched hill with crescent, elephant, taurine, and branch/tree).</p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Verified Authentic Ancient Imperial Issue</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY 2: COLONIAL PERIOD -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">domain</span>
+                    2. Colonial Period (1757 AD – 1947 AD)
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Colonial Item 1 -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-base sm:text-lg">1862 Queen Victoria 1/4 Rupee</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1/4 Rupee</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong> 1862</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Silver (0.916)</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Calcutta</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">British Crown Issue</span>
+                        </div>
+
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Historical Context</h4>
+                                <p class="text-xs text-slate-300">Struck to mark the assumption of direct governance over India by Queen Victoria and the British Crown following the Government of India Act of 1858.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-Independence Currency</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonial Item 2 -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-200 text-base sm:text-lg">British India 1 Pice</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1 Pice</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Era:</strong> Pre-1947 Colonial</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Bronze / Copper</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Feature:</strong> Holed / Crown Issue</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Colonial Fractional Currency</span>
+                        </div>
+
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Historical Context</h4>
+                                <p class="text-xs text-slate-300">Standard fractional coinage issued during the British Raj for daily small-value transactions across the Indian subcontinent.</p>
+                            </div>
+                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-1947 British India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY 3: MODERN / REPUBLIC INDIA PERIOD -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">flag</span>
+                    3. Modern Period (Republic of India: 1950 AD – Present)
+                </h3>
+            </div>
+
+            <div class="glass-card p-5 rounded-xl space-y-4">
+                <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400 text-base">pie_chart</span> 50 Paise Issues
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Anna Series)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 1957 - 1963</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Naya Paise Era)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 1964 - 1971</span>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded border border-white/5 text-xs">
+                        <strong class="text-amber-300 block">50 Paise (Cupro-Nickel)</strong>
+                        <span class="text-slate-300 block mt-0.5">Years: 1988 - 2007</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Hunt / Wishlist -->
+    <section id="wishlist" class="scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6 md:mb-8">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">TARGET HUNT (FLIP FOR LOCATION &amp; DETAILS)</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card overflow-hidden relative">
+                        <img alt="Shivaji Maharaj Gold Hon" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                        <div class="absolute top-2 right-2">
+                            <span class="text-[8px] bg-red-600 text-white px-2 py-0.5 rounded-full font-bold">GRAIL</span>
+                        </div>
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <div class="font-label-caps text-xs text-amber-300 mb-0.5">Shivaji Gold Hon</div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between border border-amber-500/40 bg-slate-900/95 text-center">
+                        <div class="space-y-2 mt-2">
+                            <span class="material-symbols-outlined text-amber-400 text-2xl">location_on</span>
+                            <h4 class="font-bold text-xs text-amber-300">Shivaji Gold Hon</h4>
+                            <div class="h-px bg-white/10 w-full my-1"></div>
+                            <p class="text-[11px] text-slate-300"><strong class="text-amber-400 block">WHERE TO FIND:</strong> Premium Auctions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coin Valuation & Fake Detection Guides -->
+    <section id="valuation-guide" class="scroll-mt-24 space-y-8">
+        <div class="flex items-center gap-4">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">NUMISMATIC GUIDES &amp; AUTHENTICATION</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="glass-card p-6 sm:p-8 rounded-xl border border-amber-500/30 space-y-5">
+                <div class="flex items-center gap-3 border-b border-white/10 pb-4">
+                    <span class="material-symbols-outlined text-amber-400 text-3xl">analytics</span>
+                    <div>
+                        <h3 class="font-bold text-amber-300 text-lg sm:text-xl">Determining Face Value vs. Market Value</h3>
+                    </div>
+                </div>
+                <ul class="space-y-4 text-xs sm:text-sm text-slate-300">
+                    <li class="flex gap-3 items-start">
+                        <span class="material-symbols-outlined text-amber-400 text-lg flex-shrink-0 mt-0.5">price_change</span>
+                        <div><strong class="text-amber-200 block">1. Intrinsic / Melt Value</strong> Spot value of metal.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indian Mint Symbols & Locations -->
+    <section id="mint-marks" class="scroll-mt-24 space-y-8">
+        <div class="flex items-center gap-4">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">INDIAN MINT SYMBOLS &amp; MINT LOCATIONS</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card p-5 rounded-xl border border-amber-500/20 flex flex-col justify-between space-y-3">
+                <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-amber-400">diamond</span>
+                        <h3 class="font-bold text-amber-200 text-base">Mumbai Mint</h3>
+                    </div>
+                    <span class="text-xs font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Diamond / B / M</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">Look for a <strong>Diamond symbol</strong> under the date.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- THREADED DISCUSSION & COMMENTS SECTION -->
+    <section id="discussion" class="scroll-mt-24 border-t border-amber-500/20 pt-12 mt-16 space-y-8">
+        <div class="flex items-center gap-4">
+            <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">DISCUSSION &amp; COLLECTOR Q&amp;A</h2>
+            <div class="h-px flex-grow bg-white/10"></div>
+        </div>
+
+        <!-- Comment Form -->
+        <form id="comment-form" class="glass-card p-6 rounded-xl border border-amber-500/30 space-y-4">
+            <h3 class="text-lg font-semibold text-amber-300">Join the Conversation</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input 
+                    type="text" 
+                    id="author" 
+                    placeholder="Your Name *" 
+                    required 
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+                />
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="Your Email Address *" 
+                    required 
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+                />
+            </div>
+            <div>
+                <textarea 
+                    id="content" 
+                    rows="3" 
+                    placeholder="Ask a question about coin identification, market values, or leave a message..." 
+                    required 
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+                ></textarea>
+            </div>
+            <button 
+                type="submit" 
+                id="submit-btn"
+                class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50"
+            >
+                Post Comment
+            </button>
+        </form>
+
+        <!-- Dynamic Comments Feed -->
+        <div id="comments-container" class="space-y-6">
+            <p class="text-slate-500 text-sm">Loading discussion...</p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="w-full py-8 sm:py-12 bg-surface-dim border-t border-white/5 text-center">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4">
+        <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
+        <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">© 2026. All Rights Reserved. Cataloged with Precision.</span>
+    </div>
+</footer>
+
 <script>
     if (window.lucide) lucide.createIcons();
 
@@ -8,7 +672,6 @@
 
     async function loadComments() {
         const container = document.getElementById('comments-container');
-        if (!container) return;
         try {
             const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
             const comments = await response.json();
@@ -38,16 +701,21 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            container.innerHTML = '<p class="text-slate-400 text-sm">Discussion thread offline (mock mode active).</p>';
+            container.innerHTML = '<p class="text-red-400 text-sm">Unable to load discussion thread.</p>';
         }
     }
 
     function renderCommentNode(comment) {
-        const formattedDate = new Date(comment.created_at || Date.now()).toLocaleString('en-US', {
-            month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true
+        const formattedDate = new Date(comment.created_at).toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
         });
 
-        const repliesHTML = comment.replies && comment.replies.length > 0 
+        const repliesHTML = comment.replies.length > 0 
             ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-amber-500/20 space-y-4">
                 ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
                </div>`
@@ -56,54 +724,104 @@
         return `
             <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
                 <div class="flex items-center justify-between text-xs text-slate-400">
-                    <span class="font-bold text-amber-400 text-sm">${escapeHTML(comment.author || 'Anonymous')}</span>
+                    <span class="font-bold text-amber-400 text-sm">${escapeHTML(comment.author)}</span>
                     <span class="text-slate-500">${formattedDate}</span>
                 </div>
-                <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content || '')}</p>
+                
+                <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
+                
                 <div class="flex items-center space-x-4 text-xs pt-1">
-                    <button onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors">
-                        <span class="material-symbols-outlined text-sm">thumb_up</span>
+                    <!-- Like -->
+                    <button 
+                        onclick="handleVote(${comment.id}, 'like')" 
+                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors"
+                    >
+                        <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
                         <span>${comment.likes || 0}</span>
                     </button>
-                    <button onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors">
-                        <span class="material-symbols-outlined text-sm">thumb_down</span>
+
+                    <!-- Dislike -->
+                    <button 
+                        onclick="handleVote(${comment.id}, 'dislike')" 
+                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors"
+                    >
+                        <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
                         <span>${comment.dislikes || 0}</span>
                     </button>
-                    <button onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-amber-400 hover:text-amber-300 font-semibold transition-colors">
-                        <span class="material-symbols-outlined text-sm">reply</span>
+
+                    <!-- Reply -->
+                    <button 
+                        onclick="toggleReplyForm(${comment.id})" 
+                        class="inline-flex items-center space-x-1 text-amber-400 hover:text-amber-300 font-semibold transition-colors"
+                    >
+                        <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
                         <span>Reply</span>
                     </button>
                 </div>
+
+                <!-- Hidden Reply Form -->
                 <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500" />
-                        <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500" />
+                        <input 
+                            type="text" 
+                            id="reply-author-${comment.id}" 
+                            placeholder="Your Name *" 
+                            required 
+                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                        />
+                        <input 
+                            type="email" 
+                            id="reply-email-${comment.id}" 
+                            placeholder="Your Email *" 
+                            required 
+                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                        />
                     </div>
-                    <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"></textarea>
+                    <textarea 
+                        id="reply-content-${comment.id}" 
+                        rows="2" 
+                        placeholder="Write a reply..." 
+                        required 
+                        class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                    ></textarea>
                     <div class="flex space-x-2">
-                        <button type="button" onclick="postReply(${comment.id})" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded">Submit Reply</button>
-                        <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded">Cancel</button>
+                        <button 
+                            type="button" 
+                            onclick="postReply(${comment.id})" 
+                            class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded"
+                        >
+                            Submit Reply
+                        </button>
+                        <button 
+                            type="button" 
+                            onclick="toggleReplyForm(${comment.id})" 
+                            class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded"
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </form>
+
                 ${repliesHTML}
             </div>
         `;
     }
 
     function toggleReplyForm(commentId) {
-        document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
+        const form = document.getElementById(`reply-form-${commentId}`);
+        form.classList.toggle('hidden');
     }
 
     async function handleVote(id, action) {
         try {
-            await fetch(API_URL, {
+            const res = await fetch(API_URL, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, action })
             });
-            await loadComments();
+            if (res.ok) await loadComments();
         } catch (err) {
-            console.error('Vote action simulation');
+            console.error('Failed to vote');
         }
     }
 
@@ -111,69 +829,93 @@
         const author = document.getElementById(`reply-author-${parentId}`).value;
         const email = document.getElementById(`reply-email-${parentId}`).value;
         const content = document.getElementById(`reply-content-${parentId}`).value;
+
         if (!author.trim() || !email.trim() || !content.trim()) {
             alert('Please fill out all required fields.');
             return;
         }
+
         try {
-            await fetch(API_URL, {
+            const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
             });
-            await loadComments();
+
+            if (res.ok) {
+                await loadComments();
+            } else {
+                alert('Failed to post reply.');
+            }
         } catch (err) {
-            alert('Reply posted.');
+            alert('Network error.');
         }
     }
 
-    const commentForm = document.getElementById('comment-form');
-    if (commentForm) {
-        commentForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            const author = document.getElementById('author').value;
-            const email = document.getElementById('email').value;
-            const content = document.getElementById('content').value;
+    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const author = document.getElementById('author');
+        const email = document.getElementById('email');
+        const content = document.getElementById('content');
 
-            btn.disabled = true;
-            btn.innerText = 'Posting...';
-            try {
-                await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ author, email, content, parent_id: null, article_id: ARTICLE_ID })
-                });
-                document.getElementById('author').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('content').value = '';
+        btn.disabled = true;
+        btn.innerText = 'Posting...';
+
+        try {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    author: author.value, 
+                    email: email.value, 
+                    content: content.value, 
+                    parent_id: null,
+                    article_id: ARTICLE_ID
+                })
+            });
+
+            if (res.ok) {
+                author.value = '';
+                email.value = '';
+                content.value = '';
                 await loadComments();
-            } catch (err) {
-                alert('Comment submitted successfully.');
-            } finally {
-                btn.disabled = false;
-                btn.innerText = 'Post Comment';
+            } else {
+                alert('Failed to post comment.');
             }
-        });
-    }
+        } catch (err) {
+            alert('Network error.');
+        } finally {
+            btn.disabled = false;
+            btn.innerText = 'Post Comment';
+        }
+    });
 
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
     }
 
     loadComments();
 
-    // Mobile Navigation Drawer Toggle
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu-drawer');
         const icon = document.getElementById('menu-icon');
-        menu.classList.toggle('hidden');
-        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            icon.textContent = 'close';
+        } else {
+            menu.classList.add('hidden');
+            icon.textContent = 'menu';
+        }
     }
 
     function closeMobileMenu() {
-        document.getElementById('mobile-menu-drawer').classList.add('hidden');
-        document.getElementById('menu-icon').textContent = 'menu';
+        const menu = document.getElementById('mobile-menu-drawer');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.add('hidden');
+        icon.textContent = 'menu';
     }
 
     function scrollToTop() {
@@ -181,208 +923,29 @@
     }
 
     function toggleQuickJump() {
-        document.getElementById('quick-jump-menu').classList.toggle('hidden');
+        const jumpMenu = document.getElementById('quick-jump-menu');
+        jumpMenu.classList.toggle('hidden');
     }
 
-    // Hero Carousel Logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
 
     function showSlide(index) {
         slides.forEach(s => s.classList.remove('active'));
-        if (slides[index]) slides[index].classList.add('active');
+        slides[index].classList.add('active');
     }
 
     function nextSlide() {
-        if (slides.length === 0) return;
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
     }
 
     function prevSlide() {
-        if (slides.length === 0) return;
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(currentSlide);
     }
 
-    if (slides.length > 0) {
-        setInterval(nextSlide, 7000);
-    }
+    setInterval(nextSlide, 7000);
 </script>
-
-<!-- CSS Styles for Layout, Custom Scrollbars, and Grid Fixes -->
-<style>
-  .coin-catalog-scroll-container {
-      max-height: 75vh;
-      overflow-y: auto;
-      padding-right: 4px;
-  }
-  .coin-catalog-scroll-container::-webkit-scrollbar {
-      width: 6px;
-  }
-  .coin-catalog-scroll-container::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.6);
-  }
-  .coin-catalog-scroll-container::-webkit-scrollbar-thumb {
-      background: rgba(245, 158, 11, 0.3);
-      border-radius: 3px;
-  }
-  .coin-catalog-scroll-container::-webkit-scrollbar-thumb:hover {
-      background: rgba(245, 158, 11, 0.6);
-  }
-
-  .coin-row-card {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid rgba(51, 65, 85, 0.6);
-      border-radius: 0.5rem;
-      padding: 1rem;
-      gap: 1rem;
-      transition: border-color 0.2s ease;
-  }
-  .coin-row-card:hover {
-      border-color: rgba(245, 158, 11, 0.4);
-  }
-  @media(min-width: 768px) {
-      .coin-row-card {
-          flex-direction: row;
-          align-items: center;
-      }
-  }
-</style>
-
-<!-- Coin Catalog Container -->
-<section id="coins-catalog-section" class="space-y-6 my-8">
-    <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
-        <h2 class="text-xl font-bold text-amber-400">Numismatic Catalog: Indian & Foreign Coins</h2>
-        <span class="text-xs text-slate-400">Scrollable Archive View</span>
-    </div>
-
-    <div class="coin-catalog-scroll-container space-y-4">
-        <!-- Republic India Card -->
-        <div class="coin-row-card">
-            <div class="flex items-center space-x-3 shrink-0 justify-center">
-                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner shrink-0">
-                    <span class="text-[10px] text-slate-500">Obverse</span>
-                </div>
-                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner shrink-0">
-                    <span class="text-[10px] text-slate-500">Reverse</span>
-                </div>
-            </div>
-            <div class="flex-1 space-y-1">
-                <div class="flex items-center space-x-2 flex-wrap gap-y-1">
-                    <span class="text-xs font-semibold px-2 py-0.5 bg-amber-500/10 text-amber-400 rounded border border-amber-500/20">Republic India</span>
-                    <h3 class="text-sm font-bold text-white">5 Rupees - Indira Gandhi Commemorative</h3>
-                </div>
-                <p class="text-xs text-slate-400">Year: 1917–1984 (Issued 1985) • Mint: Bombay</p>
-                <p class="text-xs text-slate-300">Cupro-Nickel • 12.28 g • ⌀ 28 mm • Round with security edge</p>
-                <div class="text-[11px] text-slate-500">KM# 84, S# 352</div>
-            </div>
-        </div>
-
-        <!-- Foreign Coin Card -->
-        <div class="coin-row-card">
-            <div class="flex items-center space-x-3 shrink-0 justify-center">
-                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner shrink-0">
-                    <span class="text-[10px] text-slate-500">Obverse</span>
-                </div>
-                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner shrink-0">
-                    <span class="text-[10px] text-slate-500">Reverse</span>
-                </div>
-            </div>
-            <div class="flex-1 space-y-1">
-                <div class="flex items-center space-x-2 flex-wrap gap-y-1">
-                    <span class="text-xs font-semibold px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded border border-blue-500/20">Foreign Coin</span>
-                    <h3 class="text-sm font-bold text-white">10 Apsars - Victory (Abkhazia)</h3>
-                </div>
-                <p class="text-xs text-slate-400">Year: 2008 • Non-circulating commemorative legal tender</p>
-                <p class="text-xs text-slate-300">Silver (.925) • 33.94 g • ⌀ 39 mm</p>
-                <div class="text-[11px] text-slate-500">Schön# 1, N# 93903</div>
-            </div>
-        </div>
-    </div>
-</section>
-
----
-
-<!-- Numismatic Guides & Authentication Section -->
-<section id="authentication-guide" class="space-y-4 my-8 bg-slate-900/40 border border-slate-800 p-6 rounded-lg">
-    <h2 class="text-lg font-bold text-amber-400 flex items-center space-x-2">
-        <span class="material-symbols-outlined">verified</span>
-        <span>Numismatic Guides & Authentication: Identifying Counterfeit Coins</span>
-    </h2>
-    <p class="text-xs text-slate-300 leading-relaxed">
-        With high-value numismatic collectibles becoming targets for sophisticated counterfeiting, collectors must systematically cross-examine pieces using professional inspection protocols:
-    </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
-            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">1. Weight & Dimensions Verification</h3>
-            <p class="text-xs text-slate-400">Always use a calibrated milligram digital scale and precision digital calipers. Counterfeits cast from lighter base metal alloys or heavier lead/tin mixes will deviate outside official mint weight tolerances (usually within ±0.02g to ±0.1g).</p>
-        </div>
-        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
-            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">2. Surface Texture & Micro-Detailing</h3>
-            <p class="text-xs text-slate-400">Examine under 10x–20x magnification. Real struck coins exhibit sharp letter edges and clean metal flow lines. Counterfeits made via sand-casting or low-pressure injection often display granular pitting, micro-bubbles, or soft, rounded relief features.</p>
-        </div>
-        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
-            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">3. Edge Reeding & Lettering Check</h3>
-            <p class="text-xs text-slate-400">The edge is the hardest element for counterfeiters to replicate. Inspect reeding grooves for uniform depth and spacing. Missing or unevenly spaced edge lettering points directly to a fake or altered piece.</p>
-        </div>
-        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
-            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">4. Magnetic & Sound Tests</h3>
-            <p class="text-xs text-slate-400">Precious metals (Gold, Silver, pure Copper) are non-magnetic. If a coin reacts to a strong rare-earth magnet, it contains steel or nickel core plating. Authentic silver coins also emit a distinct, high-pitched lasting ring when balanced on a fingertip and gently struck.</p>
-        </div>
-    </div>
-</section>
-
----
-
-<!-- Indian Mint Symbols & Location Guide Section -->
-<section id="mint-marks-directory" class="space-y-4 my-8 bg-slate-900/40 border border-slate-800 p-6 rounded-lg">
-    <h2 class="text-lg font-bold text-amber-400 flex items-center space-x-2">
-        <span class="material-symbols-outlined">factory</span>
-        <span>Indian Mint Symbols & Location Guide</span>
-    </h2>
-    <p class="text-xs text-slate-300 leading-relaxed">
-        Mint marks indicate the specific facility where an Indian coin was manufactured. Here is the complete register of Indian government mints and their official symbols:
-    </p>
-    <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs text-slate-300 border-collapse">
-            <thead>
-                <tr class="border-b border-slate-800 text-amber-400 bg-slate-950/60">
-                    <th class="p-3">Mint Location</th>
-                    <th class="p-3">Active Period / Notes</th>
-                    <th class="p-3">Official Mint Mark Symbol</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-800/60">
-                <tr class="hover:bg-slate-950/40">
-                    <td class="p-3 font-semibold text-white">Mumbai (Bombay)</td>
-                    <td class="p-3 text-slate-400">Historical & Modern</td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">◆ (Diamond)</span> or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">B</span> or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">M</span></td>
-                </tr>
-                <tr class="hover:bg-slate-950/40">
-                    <td class="p-3 font-semibold text-white">Kolkata (Calcutta)</td>
-                    <td class="p-3 text-slate-400">Oldest operating mint in India</td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-slate-300 font-mono font-bold">No Mint Mark (Plain)</span></td>
-                </tr>
-                <tr class="hover:bg-slate-950/40">
-                    <td class="p-3 font-semibold text-white">Hyderabad</td>
-                    <td class="p-3 text-slate-400">Nizam era & Republic issues</td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">★ (Five-pointed Star)</span>, <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">H</span>, or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">Split Diamond</span></td>
-                </tr>
-                <tr class="hover:bg-slate-950/40">
-                    <td class="p-3 font-semibold text-white">Noida</td>
-                    <td class="p-3 text-slate-400">Established 1988 (Modern Republic)</td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">● (Small Solid Dot / Circle)</span></td>
-                </tr>
-                <tr class="hover:bg-slate-950/40">
-                    <td class="p-3 font-semibold text-white">Foreign Mints (Contract)</td>
-                    <td class="p-3 text-slate-400">Issued during domestic shortages (e.g., Seoul, Heaton, Mexico City)</td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">M (Seoul)</span>, <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">H (Birmingham/Heaton)</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+</body>
+</html>
