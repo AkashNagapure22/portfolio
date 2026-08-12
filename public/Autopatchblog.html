@@ -25,14 +25,14 @@
     <article class="space-y-8 text-slate-300 leading-relaxed">
       <section>
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">1. Prerequisites & Activation</h2>
-        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). Enable Delivery Optimization and diagnostic data collection under your Tenant Administration settings.</p>
+        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). You need Global Administrator access for initial consent and Intune Administrator access to configure the service.</p>
       </section>
 
       <!-- Threaded Discussion Section -->
       <section class="border-t border-slate-800/80 pt-8 mt-12">
         <h2 class="text-2xl font-bold text-white mb-6">Discussion & Q&A</h2>
 
-        <!-- Form -->
+        <!-- Form Styled to Match Reference UI -->
         <form id="comment-form" class="space-y-4 mb-10 bg-[#070b15] p-6 border border-slate-800/80 rounded-xl shadow-2xl">
           <h3 class="text-base font-bold text-white">Start a Discussion</h3>
           
@@ -47,7 +47,7 @@
             <input 
               type="email" 
               id="email" 
-              placeholder="Your Email *" 
+              placeholder="Your Email Address *" 
               required 
               class="w-full p-3 bg-slate-100 text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all text-sm font-medium"
             />
@@ -72,7 +72,7 @@
           </button>
         </form>
 
-        <!-- Feed Container -->
+        <!-- Dynamic Feed Container -->
         <div id="comments-container" class="space-y-6">
           <p class="text-slate-500 text-sm">Loading discussion...</p>
         </div>
@@ -83,7 +83,7 @@
   <script>
     lucide.createIcons();
 
-    // Isolated ID for Autopatch page
+    // Specific identity for this subpage
     const ARTICLE_ID = 'autopatchblog';
     const API_URL = '/api/comments';
 
@@ -159,8 +159,8 @@
 
           <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800/80">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2 bg-slate-100 text-slate-900 rounded text-xs" />
-              <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2 bg-slate-100 text-slate-900 rounded text-xs" />
+              <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2 bg-slate-100 text-slate-900 rounded text-xs font-medium" />
+              <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2 bg-slate-100 text-slate-900 rounded text-xs font-medium" />
             </div>
             <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2 bg-[#0c1322] border border-slate-800 rounded text-xs text-white"></textarea>
             <div class="flex space-x-2">
