@@ -1,68 +1,66 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
+import { sql } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
   const { method } = req;
 
-  // FETCH COMMENTS FOR A SPECIFIC ARTICLE
-  if (method === 'GET') {
-    const { article_id } = req.query;
+  try {
+    // 1. GET COMMENTS FOR SPECIFIC ARTICLE
+    if (method === 'GET') {
+      const { article_id } = req.query;
 
-    if (!article_id) {
-      return res.status(400).json({ error: 'Missing article_id parameter' });
+      // Fallback if article_id is missing so it doesn't break old links
+      const targetArticle = article_id || 'general';
+
+      const comments = await sql`
+        SELECT * FROM comments 
+        WHERE article_id = ${targetArticle} 
+        ORDER BY created_at ASC
+      `;
+
+      return res.status(200).json(comments);
     }
 
-    const { data, error } = await supabase
-      .from('comments')
-      .select('*')
-      .eq('article_id', article_id)
-      .order('created_at', { ascending: true });
+    // 2. POST NEW COMMENT / REPLY
+    if (method === 'POST') {
+      const { author, email, content, parent_id, article_id } = req.body;
 
-    if (error) return res.status(500).json({ error: error.message });
-    return res.status(200).json(data);
-  }
+      if (!author || !email || !content) {
+        return res.status(400).json({ error: 'Author, email, and content are required.' });
+      }
 
-  // POST A NEW COMMENT OR REPLY
-  if (method === 'POST') {
-    const { author, email, content, parent_id, article_id } = req.body;
+      const targetArticle = article_id || 'general';
 
-    if (!author || !email || !content || !article_id) {
-      return res.status(400).json({ error: 'Missing required fields' });
+      const [newComment] = await sql`
+        INSERT INTO comments (author, email, content, parent_id, article_id)
+        VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
+        RETURNING *
+      `;
+
+      return res.status(201).json(newComment);
     }
 
-    const { data, error } = await supabase
-      .from('comments')
-      .insert([{ author, email, content, parent_id: parent_id || null, article_id }])
-      .select();
+    // 3. HANDLE VOTE (LIKE / DISLIKE)
+    if (method === 'PATCH') {
+      const { id, action } = req.body;
 
-    if (error) return res.status(500).json({ error: error.message });
-    return res.status(201).json(data[0]);
-  }
+      if (!id || !['like', 'dislike'].includes(action)) {
+        return res.status(400).json({ error: 'Invalid vote parameters.' });
+      }
 
-  // HANDLE VOTES (LIKE / DISLIKE)
-  if (method === 'PATCH') {
-    const { id, action } = req.body;
+      if (action === 'like') {
+        await sql`UPDATE comments SET likes = COALESCE(likes, 0) + 1 WHERE id = ${id}`;
+      } else {
+        await sql`UPDATE comments SET dislikes = COALESCE(dislikes, 0) + 1 WHERE id = ${id}`;
+      }
 
-    if (!id || !['like', 'dislike'].includes(action)) {
-      return res.status(400).json({ error: 'Invalid parameters' });
+      return res.status(200).json({ success: true });
     }
 
-    const field = action === 'like' ? 'likes' : 'dislikes';
-    
-    // Increment the column value in the database
-    const { data, error } = await supabase.rpc('increment_vote', {
-      comment_id: id,
-      vote_type: field
-    });
+    res.setHeader('Allow', ['GET', 'POST', 'PATCH']);
+    return res.status(405).json({ error: `Method ${method} Not Allowed` });
 
-    if (error) return res.status(500).json({ error: error.message });
-    return res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Database Error:', error);
+    return res.status(500).json({ error: error.message || 'Internal Server Error' });
   }
-
-  res.setHeader('Allow', ['GET', 'POST', 'PATCH']);
-  return res.status(405).end(`Method ${method} Not Allowed`);
 }
