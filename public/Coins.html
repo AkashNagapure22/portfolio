@@ -504,7 +504,6 @@
                 </h3>
             </div>
 
-            <!-- Sub-groups omitted for brevity, preserving original content... -->
             <div class="glass-card p-5 rounded-xl space-y-4">
                 <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
                     <span class="material-symbols-outlined text-amber-400 text-base">pie_chart</span> 50 Paise Issues
@@ -665,15 +664,16 @@
 </footer>
 
 <script>
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
 
-    // Vercel Serverless Endpoint
+    // Explicit Isolated Page Key for Coins Portfolio
+    const ARTICLE_ID = 'coins';
     const API_URL = '/api/comments';
 
     async function loadComments() {
         const container = document.getElementById('comments-container');
         try {
-            const response = await fetch(API_URL);
+            const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
             const comments = await response.json();
 
             if (!response.ok) throw new Error();
@@ -699,7 +699,7 @@
             });
 
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
-            lucide.createIcons();
+            if (window.lucide) lucide.createIcons();
         } catch (err) {
             container.innerHTML = '<p class="text-red-400 text-sm">Unable to load discussion thread.</p>';
         }
@@ -839,7 +839,7 @@
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ author, email, content, parent_id: parentId })
+                body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
             });
 
             if (res.ok) {
@@ -870,7 +870,8 @@
                     author: author.value, 
                     email: email.value, 
                     content: content.value, 
-                    parent_id: null 
+                    parent_id: null,
+                    article_id: ARTICLE_ID
                 })
             });
 
