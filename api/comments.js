@@ -1,22 +1,21 @@
 import { sql } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  // Allow CORS
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
   try {
-    // 1. GET COMMENTS FOR SPECIFIC ARTICLE
+    // 1. GET: Fetch isolated comments for the page
     if (req.method === 'GET') {
       const article_id = req.query.article_id || 'general';
 
@@ -30,7 +29,7 @@ export default async function handler(req, res) {
       return res.status(200).json(comments || []);
     }
 
-    // 2. POST NEW COMMENT / REPLY
+    // 2. POST: Insert comment (SINGLE STATEMENT ONLY)
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
@@ -40,6 +39,7 @@ export default async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
+      // SINGLE SQL INSERT statement returning the new comment row
       const [newComment] = await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       return res.status(200).json(newComment);
     }
 
-    // 3. VOTES (LIKE / DISLIKE)
+    // 3. PATCH: Update votes
     if (req.method === 'PATCH') {
       const { id, action } = req.body;
 
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
 
   } catch (error) {
-    console.error('API Error:', error);
+    console.error('Database Error:', error);
     return res.status(500).json({ error: error.message || 'Internal Server Error' });
   }
 }
