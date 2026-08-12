@@ -10,7 +10,7 @@
 <body class="bg-slate-950 text-slate-300 font-sans selection:bg-sky-500/20">
 
   <main class="max-w-4xl mx-auto px-6 py-16">
-    <!-- Navigation -> Points to root index.html -->
+    <!-- Navigation -->
     <a href="/" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
       <i data-lucide="arrow-left" class="w-4 h-4"></i>
       <span>Back to Main Site</span>
@@ -60,25 +60,34 @@
         </ul>
       </section>
 
-      <!-- Comments Section -->
+      <!-- Threaded Discussion Section -->
       <section class="border-t border-slate-800 pt-8 mt-12">
-        <h2 class="text-2xl font-bold text-white mb-6">Discussion</h2>
+        <h2 class="text-2xl font-bold text-white mb-6">Discussion & Q&A</h2>
 
-        <form id="comment-form" class="space-y-4 mb-8">
-          <div>
+        <!-- Main New Comment Form -->
+        <form id="comment-form" class="space-y-4 mb-10 bg-slate-900/40 p-6 border border-slate-800/80 rounded-xl">
+          <h3 class="text-lg font-semibold text-white">Start a Discussion</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input 
               type="text" 
               id="author" 
-              placeholder="Your Name" 
+              placeholder="Your Name *" 
               required 
-              class="w-full md:w-1/2 p-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors"
+              class="w-full p-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors"
+            />
+            <input 
+              type="email" 
+              id="email" 
+              placeholder="Your Email Address *" 
+              required 
+              class="w-full p-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors"
             />
           </div>
           <div>
             <textarea 
               id="content" 
-              rows="4" 
-              placeholder="Join the discussion..." 
+              rows="3" 
+              placeholder="Ask a question or leave a message..." 
               required 
               class="w-full p-3 bg-slate-900 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors"
             ></textarea>
@@ -92,8 +101,9 @@
           </button>
         </form>
 
-        <div id="comments-container" class="space-y-4">
-          <p class="text-slate-500 text-sm">Loading comments...</p>
+        <!-- Dynamic Comments Feed -->
+        <div id="comments-container" class="space-y-6">
+          <p class="text-slate-500 text-sm">Loading discussion...</p>
         </div>
       </section>
 
@@ -103,7 +113,6 @@
   <script>
     lucide.createIcons();
 
-    // Absolute path to your Vercel serverless function
     const API_URL = '/api/comments';
 
     async function loadComments() {
@@ -114,29 +123,144 @@
 
         if (!response.ok) throw new Error();
 
-        if (comments.length === 0) {
+        if (!comments || comments.length === 0) {
           container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet. Be the first to start the conversation!</p>';
           return;
         }
 
-        container.innerHTML = comments.map(comment => `
-          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-lg space-y-2">
-            <div class="flex items-center justify-between text-xs text-slate-400">
-              <span class="font-bold text-sky-400 text-sm">${escapeHTML(comment.author)}</span>
-              <span>${new Date(comment.created_at).toLocaleDateString()}</span>
-            </div>
-            <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
-          </div>
-        `).join('');
+        // Build threaded tree
+        const commentMap = {};
+        const topLevelComments = [];
+
+        comments.forEach(comment => {
+          comment.replies = [];
+          commentMap[comment.id] = comment;
+          if (comment.parent_id) {
+            if (commentMap[comment.parent_id]) {
+              commentMap[comment.parent_id].replies.push(comment);
+            }
+          } else {
+            topLevelComments.push(comment);
+          }
+        });
+
+        // Render recursive comment tree
+        container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
+        lucide.createIcons();
       } catch (err) {
-        container.innerHTML = '<p class="text-red-400 text-sm">Unable to load comments.</p>';
+        container.innerHTML = '<p class="text-red-400 text-sm">Unable to load discussion.</p>';
       }
     }
 
+    function renderCommentNode(comment, isReply = false) {
+      const repliesHTML = comment.replies.length > 0 
+        ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-slate-800 space-y-4">
+            ${comment.replies.map(reply => renderCommentNode(reply, true)).join('')}
+           </div>`
+        : '';
+
+      return `
+        <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span class="font-bold text-sky-400 text-sm">${escapeHTML(comment.author)}</span>
+            <span>${new Date(comment.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+          </div>
+          <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
+          
+          <button 
+            onclick="toggleReplyForm(${comment.id})" 
+            class="inline-flex items-center space-x-1 text-xs text-sky-400 hover:text-sky-300 font-semibold"
+          >
+            <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
+            <span>Reply</span>
+          </button>
+
+          <!-- Hidden Reply Form -->
+          <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800/80">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <input 
+                type="text" 
+                id="reply-author-${comment.id}" 
+                placeholder="Your Name *" 
+                required 
+                class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
+              />
+              <input 
+                type="email" 
+                id="reply-email-${comment.id}" 
+                placeholder="Your Email *" 
+                required 
+                class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
+              />
+            </div>
+            <textarea 
+              id="reply-content-${comment.id}" 
+              rows="2" 
+              placeholder="Write a reply..." 
+              required 
+              class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
+            ></textarea>
+            <div class="flex space-x-2">
+              <button 
+                type="button" 
+                onclick="postReply(${comment.id})" 
+                class="px-3 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-semibold rounded"
+              >
+                Submit Reply
+              </button>
+              <button 
+                type="button" 
+                onclick="toggleReplyForm(${comment.id})" 
+                class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+
+          ${repliesHTML}
+        </div>
+      `;
+    }
+
+    function toggleReplyForm(commentId) {
+      const form = document.getElementById(`reply-form-${commentId}`);
+      form.classList.toggle('hidden');
+    }
+
+    async function postReply(parentId) {
+      const author = document.getElementById(`reply-author-${parentId}`).value;
+      const email = document.getElementById(`reply-email-${parentId}`).value;
+      const content = document.getElementById(`reply-content-${parentId}`).value;
+
+      if (!author.trim() || !email.trim() || !content.trim()) {
+        alert('Please fill out all fields.');
+        return;
+      }
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ author, email, content, parent_id: parentId })
+        });
+
+        if (res.ok) {
+          await loadComments();
+        } else {
+          alert('Failed to post reply.');
+        }
+      } catch (err) {
+        alert('Network error.');
+      }
+    }
+
+    // Main Form Submit Listener
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
       const author = document.getElementById('author');
+      const email = document.getElementById('email');
       const content = document.getElementById('content');
 
       btn.disabled = true;
@@ -146,10 +270,17 @@
         const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ author: author.value, content: content.value })
+          body: JSON.stringify({ 
+            author: author.value, 
+            email: email.value, 
+            content: content.value, 
+            parent_id: null 
+          })
         });
 
         if (res.ok) {
+          author.value = '';
+          email.value = '';
           content.value = '';
           await loadComments();
         } else {
