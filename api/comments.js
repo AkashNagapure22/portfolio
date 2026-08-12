@@ -1,6 +1,6 @@
-const { sql } = require('@neondatabase/serverless');
+import { sql } from '@neondatabase/serverless';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,7 +15,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // 1. GET COMMENTS FOR SPECIFIC PAGE
+    // 1. GET: Fetch isolated comments for a specific page
     if (req.method === 'GET') {
       const article_id = req.query.article_id || 'general';
 
@@ -29,7 +29,7 @@ module.exports = async function handler(req, res) {
       return res.status(200).json(comments || []);
     }
 
-    // 2. POST NEW COMMENT (2 SEPARATE QUERIES)
+    // 2. POST: Insert comment using two separate, sequential statements
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
@@ -39,13 +39,13 @@ module.exports = async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
-      // QUERY 1: Execute INSERT
+      // Statement 1: Insert row
       await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
       `;
 
-      // QUERY 2: Execute SELECT to fetch inserted comment
+      // Statement 2: Retrieve the newly inserted comment
       const [newComment] = await sql`
         SELECT id, author, email, content, parent_id, likes, dislikes, created_at, article_id
         FROM comments
@@ -57,7 +57,7 @@ module.exports = async function handler(req, res) {
       return res.status(200).json(newComment);
     }
 
-    // 3. VOTES (LIKE / DISLIKE)
+    // 3. PATCH: Update likes / dislikes
     if (req.method === 'PATCH') {
       const { id, action } = req.body;
 
@@ -80,4 +80,4 @@ module.exports = async function handler(req, res) {
     console.error('Database Error:', error);
     return res.status(500).json({ error: error.message || 'Internal Server Error' });
   }
-};
+}
