@@ -1,7 +1,7 @@
 import { sql } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
-  // CORS Headers to allow requests from your front-end domain
+  // Global CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST');
@@ -10,13 +10,12 @@ export default async function handler(req, res) {
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
-  // Pre-flight handling for OPTIONS requests
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
   try {
-    // 1. GET: Fetch comments filtered strictly by article_id
+    // 1. GET COMMENTS FOR A SPECIFIC PAGE
     if (req.method === 'GET') {
       const article_id = req.query.article_id || 'general';
 
@@ -30,17 +29,16 @@ export default async function handler(req, res) {
       return res.status(200).json(comments || []);
     }
 
-    // 2. POST: Insert comment or reply using a single RETURNING query
+    // 2. POST NEW COMMENT OR REPLY (SINGLE STATEMENT ONLY)
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
       if (!author || !email || !content) {
-        return res.status(400).json({ error: 'Author, email, and content are required fields.' });
+        return res.status(400).json({ error: 'Author, email, and content are required.' });
       }
 
       const targetArticle = article_id || 'general';
 
-      // Executing a SINGLE parameterized statement prevents the prepared statement error
       const [newComment] = await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
@@ -50,7 +48,7 @@ export default async function handler(req, res) {
       return res.status(200).json(newComment);
     }
 
-    // 3. PATCH: Increment like or dislike votes
+    // 3. VOTES (LIKE / DISLIKE)
     if (req.method === 'PATCH') {
       const { id, action } = req.body;
 
