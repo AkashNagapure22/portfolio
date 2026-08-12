@@ -1,16 +1,17 @@
-import { neon } from '@neondatabase/serverless';
+export default function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Type', 'application/json');
 
-export default async function handler(req, res) {
-  // Connects securely using the POSTGRES_URL environment variable from Vercel
-  const sql = neon(process.env.POSTGRES_URL);
+  const projects = [
+    {
+      id: "CASE_01",
+      title: "Windows Autopatch A-to-Z",
+      description: "Enterprise deployment framework for automated OS updates.",
+      image: "/autopatch-thumbnail.png", // Ensure this path points to a valid image in public/
+      link: "/Autopatchblog.html"
+    }
+    // Add your other original project objects here...
+  ];
 
-  try {
-    // Fetch data from your database table
-    const projects = await sql`SELECT * FROM projects;`;
-    
-    // Send data back as JSON to your static HTML page
-    return res.status(200).json(projects);
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
+  return res.status(200).json(projects);
 }
