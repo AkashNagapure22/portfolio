@@ -113,18 +113,20 @@
   <script>
     lucide.createIcons();
 
+    // Isolated article identifier for this page
+    const ARTICLE_ID = 'autopatchblog';
     const API_URL = '/api/comments';
 
     async function loadComments() {
       const container = document.getElementById('comments-container');
       try {
-        const response = await fetch(API_URL);
+        const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
         const comments = await response.json();
 
         if (!response.ok) throw new Error();
 
         if (!comments || comments.length === 0) {
-          container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet. Be the first to start the conversation!</p>';
+          container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet for this article. Be the first to start the discussion!</p>';
           return;
         }
 
@@ -284,7 +286,7 @@
         const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ author, email, content, parent_id: parentId })
+          body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
         });
 
         if (res.ok) {
@@ -315,7 +317,8 @@
             author: author.value, 
             email: email.value, 
             content: content.value, 
-            parent_id: null 
+            parent_id: null,
+            article_id: ARTICLE_ID
           })
         });
 
