@@ -5,9 +5,8 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      // Fetch all comments ordered by creation date
       const comments = await sql`
-        SELECT id, author, email, content, parent_id, created_at 
+        SELECT id, author, email, content, parent_id, likes, dislikes, created_at 
         FROM comments 
         ORDER BY created_at ASC
       `;
@@ -28,7 +27,23 @@ export default async function handler(req, res) {
         VALUES (${author.trim()}, ${email.trim()}, ${content.trim()}, ${parentIdValue})
       `;
 
-      return res.status(201).json({ message: 'Comment or reply posted successfully.' });
+      return res.status(201).json({ message: 'Comment or reply posted.' });
+    }
+
+    if (req.method === 'PATCH') {
+      const { id, action } = req.body; // action: 'like' or 'dislike'
+
+      if (!id || !['like', 'dislike'].includes(action)) {
+        return res.status(400).json({ error: 'Invalid parameters.' });
+      }
+
+      if (action === 'like') {
+        await sql`UPDATE comments SET likes = COALESCE(likes, 0) + 1 WHERE id = ${id}`;
+      } else {
+        await sql`UPDATE comments SET dislikes = COALESCE(dislikes, 0) + 1 WHERE id = ${id}`;
+      }
+
+      return res.status(200).json({ message: 'Vote recorded.' });
     }
 
     return res.status(405).json({ error: 'Method Not Allowed' });
