@@ -4,23 +4,21 @@ export default async function handler(req, res) {
   const { method } = req;
 
   try {
-    // 1. GET COMMENTS FOR SPECIFIC ARTICLE
+    // 1. GET COMMENTS FOR A SPECIFIC ARTICLE
     if (method === 'GET') {
-      const { article_id } = req.query;
-
-      // Fallback if article_id is missing so it doesn't break old links
-      const targetArticle = article_id || 'general';
+      const article_id = req.query.article_id || 'general';
 
       const comments = await sql`
-        SELECT * FROM comments 
-        WHERE article_id = ${targetArticle} 
+        SELECT id, author, email, content, parent_id, likes, dislikes, created_at, article_id
+        FROM comments
+        WHERE article_id = ${article_id}
         ORDER BY created_at ASC
       `;
 
       return res.status(200).json(comments);
     }
 
-    // 2. POST NEW COMMENT / REPLY
+    // 2. POST A NEW COMMENT OR REPLY
     if (method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
@@ -30,16 +28,17 @@ export default async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
+      // Single clean INSERT returning the new row
       const [newComment] = await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
-        RETURNING *
+        RETURNING id, author, email, content, parent_id, likes, dislikes, created_at, article_id
       `;
 
-      return res.status(201).json(newComment);
+      return res.status(200).json(newComment);
     }
 
-    // 3. HANDLE VOTE (LIKE / DISLIKE)
+    // 3. VOTES (LIKE / DISLIKE)
     if (method === 'PATCH') {
       const { id, action } = req.body;
 
