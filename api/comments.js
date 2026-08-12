@@ -1,11 +1,23 @@
 import { sql } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
-  const { method } = req;
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST,PUT,DELETE');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
 
   try {
-    // 1. GET COMMENTS FOR A SPECIFIC ARTICLE
-    if (method === 'GET') {
+    // 1. GET COMMENTS FOR SPECIFIC ARTICLE
+    if (req.method === 'GET') {
       const article_id = req.query.article_id || 'general';
 
       const comments = await sql`
@@ -15,11 +27,11 @@ export default async function handler(req, res) {
         ORDER BY created_at ASC
       `;
 
-      return res.status(200).json(comments);
+      return res.status(200).json(comments || []);
     }
 
-    // 2. POST A NEW COMMENT OR REPLY
-    if (method === 'POST') {
+    // 2. POST NEW COMMENT / REPLY
+    if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
       if (!author || !email || !content) {
@@ -28,7 +40,6 @@ export default async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
-      // Single clean INSERT returning the new row
       const [newComment] = await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
@@ -39,7 +50,7 @@ export default async function handler(req, res) {
     }
 
     // 3. VOTES (LIKE / DISLIKE)
-    if (method === 'PATCH') {
+    if (req.method === 'PATCH') {
       const { id, action } = req.body;
 
       if (!id || !['like', 'dislike'].includes(action)) {
@@ -55,11 +66,10 @@ export default async function handler(req, res) {
       return res.status(200).json({ success: true });
     }
 
-    res.setHeader('Allow', ['GET', 'POST', 'PATCH']);
-    return res.status(405).json({ error: `Method ${method} Not Allowed` });
+    return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
 
   } catch (error) {
-    console.error('Database Error:', error);
+    console.error('API Error:', error);
     return res.status(500).json({ error: error.message || 'Internal Server Error' });
   }
 }
