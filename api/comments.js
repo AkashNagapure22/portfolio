@@ -1,6 +1,10 @@
-import { sql } from '@neondatabase/serverless';
+import { neon } from '@neondatabase/serverless';
+
+// Initialize the SQL client with your Neon DATABASE_URL environment variable
+const sql = neon(process.env.DATABASE_URL);
 
 export default async function handler(req, res) {
+  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST');
@@ -14,7 +18,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. GET: Fetch comments strictly for the requested page
+    // 1. GET: Fetch comments strictly for the active page
     if (req.method === 'GET') {
       const article_id = req.query.article_id || 'general';
 
@@ -28,7 +32,7 @@ export default async function handler(req, res) {
       return res.status(200).json(comments || []);
     }
 
-    // 2. POST: Insert comment in two clean sequential statements
+    // 2. POST: Insert comment and return the newly inserted row
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
@@ -38,14 +42,14 @@ export default async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
-      // Query 1: INSERT
+      // Execute INSERT
       await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
       `;
 
-      // Query 2: SELECT
-      const [newComment] = await sql`
+      // Fetch inserted record
+      const rows = await sql`
         SELECT id, author, email, content, parent_id, likes, dislikes, created_at, article_id
         FROM comments
         WHERE email = ${email} AND article_id = ${targetArticle}
@@ -53,10 +57,10 @@ export default async function handler(req, res) {
         LIMIT 1
       `;
 
-      return res.status(200).json(newComment);
+      return res.status(200).json(rows[0]);
     }
 
-    // 3. PATCH: Update likes / dislikes
+    // 3. PATCH: Handle like/dislike counts
     if (req.method === 'PATCH') {
       const { id, action } = req.body;
 
