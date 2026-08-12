@@ -7,6 +7,7 @@
 
     async function loadComments() {
         const container = document.getElementById('comments-container');
+        if (!container) return;
         try {
             const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
             const comments = await response.json();
@@ -207,3 +208,184 @@
         setInterval(nextSlide, 7000);
     }
 </script>
+
+<!-- CSS & Layout Framework Additions for Scroll & Card Views -->
+<style>
+  /* Fix vertical overflow scrolling container for catalog lists */
+  .coin-catalog-scroll-container {
+      max-height: 75vh;
+      overflow-y: auto;
+      padding-right: 4px;
+  }
+  .coin-catalog-scroll-container::-webkit-scrollbar {
+      width: 6px;
+  }
+  .coin-catalog-scroll-container::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+  }
+  .coin-catalog-scroll-container::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.3);
+      border-radius: 3px;
+  }
+  .coin-catalog-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(245, 158, 11, 0.6);
+  }
+
+  /* Dual-side Coin Card Match Reference UI */
+  .coin-row-card {
+      display: flex;
+      flex-direction: column;
+      md-flex-direction: row;
+      align-items: flex-start;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      gap: 1rem;
+      transition: border-color 0.2s ease;
+  }
+  .coin-row-card:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+  }
+  @media(min-width: 768px) {
+      .coin-row-card {
+          flex-direction: row;
+          align-items: center;
+      }
+  }
+</style>
+
+<!-- SECTION CONTENT EXPANSIONS -->
+
+<!-- 1. INDIAN COINS & FOREIGN COINS CATALOG CONTAINER (Scroll Fix Applied) -->
+<section id="coins-catalog-section" class="space-y-6 my-8">
+    <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
+        <h2 class="text-xl font-bold text-amber-400">Numismatic Catalog: Indian & Foreign Coins</h2>
+        <span class="text-xs text-slate-400">Scrollable Archive View</span>
+    </div>
+
+    <div class="coin-catalog-scroll-container space-y-4">
+        <!-- Sample Card Item matching layout pattern -->
+        <div class="coin-row-card">
+            <div class="flex items-center space-x-3 shrink-0">
+                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner">
+                    <span class="text-[10px] text-slate-500">Obverse</span>
+                </div>
+                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner">
+                    <span class="text-[10px] text-slate-500">Reverse</span>
+                </div>
+            </div>
+            <div class="flex-1 space-y-1">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-semibold px-2 py-0.5 bg-amber-500/10 text-amber-400 rounded border border-amber-500/20">Republic India</span>
+                    <h3 class="text-sm font-bold text-white">5 Rupees - Indira Gandhi Commemorative</h3>
+                </div>
+                <p class="text-xs text-slate-400">Year: 1917–1984 (Issued 1985) • Mint: Bombay</p>
+                <p class="text-xs text-slate-300">Cupro-Nickel • 12.28 g • ⌀ 28 mm • Round with security edge</p>
+                <div class="text-[11px] text-slate-500">KM# 84, S# 352</div>
+            </div>
+        </div>
+
+        <div class="coin-row-card">
+            <div class="flex items-center space-x-3 shrink-0">
+                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner">
+                    <span class="text-[10px] text-slate-500">Obverse</span>
+                </div>
+                <div class="w-16 h-16 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shadow-inner">
+                    <span class="text-[10px] text-slate-500">Reverse</span>
+                </div>
+            </div>
+            <div class="flex-1 space-y-1">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-semibold px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded border border-blue-500/20">Foreign Coin</span>
+                    <h3 class="text-sm font-bold text-white">10 Apsars - Victory (Abkhazia)</h3>
+                </div>
+                <p class="text-xs text-slate-400">Year: 2008 • Non-circulating commemorative legal tender</p>
+                <p class="text-xs text-slate-300">Silver (.925) • 33.94 g • ⌀ 39 mm</p>
+                <div class="text-[11px] text-slate-500">Schön# 1, N# 93903</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+---
+
+<!-- 2. NUMISMATIC GUIDES & AUTHENTICATION (Expanded Details: How to Identify Fake Coins) -->
+<section id="authentication-guide" class="space-y-4 my-8 bg-slate-900/40 border border-slate-800 p-6 rounded-lg">
+    <h2 class="text-lg font-bold text-amber-400 flex items-center space-x-2">
+        <span class="material-symbols-outlined">verified</span>
+        <span>Numismatic Guides & Authentication: Identifying Counterfeit Coins</span>
+    </h2>
+    <p class="text-xs text-slate-300 leading-relaxed">
+        With high-value numismatic collectibles becoming targets for sophisticated counterfeiting, collectors must systematically cross-examine pieces using professional inspection protocols:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">1. Weight & Dimensions Verification</h3>
+            <p class="text-xs text-slate-400">Always use a calibrated milligram digital scale and precision digital calipers. Counterfeits cast from lighter base metal alloys or heavier lead/tin mixes will deviate outside official mint weight tolerances (usually within ±0.02g to ±0.1g).</p>
+        </div>
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">2. Surface Texture & Micro-Detailing</h3>
+            <p class="text-xs text-slate-400">Examine under 10x–20x magnification. Real struck coins exhibit sharp letter edges and clean metal flow lines. Counterfeits made via sand-casting or low-pressure injection often display granular pitting, micro-bubbles, or soft, rounded relief features.</p>
+        </div>
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">3. Edge Reeding & Lettering Check</h3>
+            <p class="text-xs text-slate-400">The edge is the hardest element for counterfeiters to replicate. Inspect reeding grooves for uniform depth and spacing. Missing or unevenly spaced edge lettering points directly to a fake or altered piece.</p>
+        </div>
+        <div class="p-4 bg-slate-950 border border-slate-800 rounded space-y-2">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">4. Magnetic & Sound Tests</h3>
+            <p class="text-xs text-slate-400">Precious metals (Gold, Silver, pure Copper) are non-magnetic. If a coin reacts to a strong rare-earth magnet, it contains steel or nickel core plating. Authentic silver coins also emit a distinct, high-pitched lasting ring when balanced on a fingertip and gently struck.</p>
+        </div>
+    </div>
+</section>
+
+---
+
+<!-- 3. INDIAN MINT SYMBOLS & MINT LOCATIONS (Complete All-India Directory) -->
+<section id="mint-marks-directory" class="space-y-4 my-8 bg-slate-900/40 border border-slate-800 p-6 rounded-lg">
+    <h2 class="text-lg font-bold text-amber-400 flex items-center space-x-2">
+        <span class="material-symbols-outlined">factory</span>
+        <span>Indian Mint Symbols & Location Guide</span>
+    </h2>
+    <p class="text-xs text-slate-300 leading-relaxed">
+        Mint marks indicate the specific facility where an Indian coin was manufactured. Here is the complete register of Indian government mints and their official symbols:
+    </p>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-slate-300 border-collapse">
+            <thead>
+                <tr class="border-b border-slate-800 text-amber-400 bg-slate-950/60">
+                    <th class="p-3">Mint Location</th>
+                    <th class="p-3">Active Period / Notes</th>
+                    <th class="p-3">Official Mint Mark Symbol</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60">
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Mumbai (Bombay)</td>
+                    <td class="p-3 text-slate-400">Historical & Modern</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">◆ (Diamond)</span> or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">B</span> or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">M</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Kolkata (Calcutta)</td>
+                    <td class="p-3 text-slate-400">Oldest operating mint in India</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-slate-300 font-mono font-bold">No Mint Mark (Plain)</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Hyderabad</td>
+                    <td class="p-3 text-slate-400">Nizam era & Republic issues</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">★ (Five-pointed Star)</span>, <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">H</span>, or <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">Split Diamond</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Noida</td>
+                    <td class="p-3 text-slate-400">Established 1988 (Modern Republic)</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">● (Small Solid Dot / Circle)</span></td>
+                </tr>
+                <tr class="hover:bg-slate-950/40">
+                    <td class="p-3 font-semibold text-white">Foreign Mints (Contract)</td>
+                    <td class="p-3 text-slate-400">Issued during domestic shortages (e.g., Seoul, Heaton, Mexico City)</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">M (Seoul)</span>, <span class="px-2 py-0.5 bg-slate-800 rounded text-amber-300 font-mono font-bold">H (Birmingham/Heaton)</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
