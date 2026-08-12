@@ -1,6 +1,6 @@
-import { sql } from '@neondatabase/serverless';
+const { sql } = require('@neondatabase/serverless');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       return res.status(200).json(comments || []);
     }
 
-    // 2. POST NEW COMMENT (BROKEN INTO 2 SEPARATE QUERIES)
+    // 2. POST NEW COMMENT (2 SEPARATE QUERIES)
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id } = req.body;
 
@@ -39,13 +39,13 @@ export default async function handler(req, res) {
 
       const targetArticle = article_id || 'general';
 
-      // QUERY 1: Execute INSERT alone
+      // QUERY 1: Execute INSERT
       await sql`
         INSERT INTO comments (author, email, content, parent_id, article_id)
         VALUES (${author}, ${email}, ${content}, ${parent_id || null}, ${targetArticle})
       `;
 
-      // QUERY 2: Execute SELECT alone to retrieve the inserted row
+      // QUERY 2: Execute SELECT to fetch inserted comment
       const [newComment] = await sql`
         SELECT id, author, email, content, parent_id, likes, dislikes, created_at, article_id
         FROM comments
@@ -80,4 +80,4 @@ export default async function handler(req, res) {
     console.error('Database Error:', error);
     return res.status(500).json({ error: error.message || 'Internal Server Error' });
   }
-}
+};
