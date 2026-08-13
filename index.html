@@ -49,12 +49,6 @@
       padding-top: 0 !important;
     }
 
-    /* Vibrant Bold Logo Enhancements */
-    .logo-vibrant {
-      filter: saturate(1.8) contrast(1.4) brightness(1.1);
-      mix-blend-mode: screen;
-    }
-
     /* Construction Banner Animation */
     @keyframes scrollLeft {
       0% { transform: translateX(100%); }
@@ -152,9 +146,9 @@
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-12">
-      <a href="#home" class="flex items-center space-x-3 group cursor-pointer" onclick="scrollToSection(event, 'home')">
-        <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+      <a href="#home" class="flex items-center space-x-2.5 group cursor-pointer" onclick="scrollToSection(event, 'home')">
+        <div class="p-1.5 rounded-md bg-sky-950/80 border-2 border-sky-400/50 text-sky-400 group-hover:border-sky-400 transition-all shadow-md shadow-sky-500/10">
+          <img src="public/Main_page_data/Logo.png" alt="Akash Nagapure Logo" class="w-6 h-6 object-contain font-bold filter drop-shadow-[0_0_2px_rgba(56,189,248,0.8)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col">
           <span class="font-sans font-bold text-lg text-white tracking-tight leading-none">
@@ -282,15 +276,15 @@
               </div>
             </div>
 
-            <div class="absolute -top-4 -left-4 bg-slate-950/90 border border-slate-700/80 backdrop-blur-md rounded-lg p-3 shadow-lg hidden sm:flex items-center space-x-2 hover:border-slate-500 transition-colors">
+          <div class="absolute -top-4 -left-4 bg-slate-950/90 border border-slate-700/80 backdrop-blur-md rounded-lg p-3 shadow-lg hidden sm:flex items-center space-x-2 hover:border-slate-500 transition-colors">
               <i data-lucide="cpu" class="w-4 h-4 text-indigo-400"></i>
               <span class="font-mono text-[10px] text-slate-300 font-medium">Modern Workplace Architect</span>
             </div>
-          </div>
         </div>
-
       </div>
+
     </div>
+  </div>
   </section>
 
   <section id="about" class="py-24 bg-slate-950 text-left relative">
@@ -385,7 +379,7 @@
                 <p class="font-mono text-[10px] text-slate-500 font-semibold tracking-wider uppercase">Endpoint Administrator Associate</p>
               </div>
               <div class="mt-4 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded font-mono text-[10px] text-sky-400">MD-102 Certified</div>
-            </div>
+          </div>
             <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col items-center justify-center text-center">
               <i data-lucide="award" class="w-10 h-10 text-sky-400 mb-3"></i>
               <h4 class="font-sans font-bold text-white text-sm mb-1">MD-102 Verification</h4>
@@ -405,7 +399,7 @@
                 <p class="font-mono text-[10px] text-slate-500 font-semibold tracking-wider uppercase">ITIL Foundation</p>
               </div>
               <div class="mt-4 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded font-mono text-[10px] text-sky-400">ITIL 4 Certified</div>
-            </div>
+          </div>
             <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col items-center justify-center text-center">
               <i data-lucide="award" class="w-10 h-10 text-sky-400 mb-3"></i>
               <h4 class="font-sans font-bold text-white text-sm mb-1">ITIL V4 Blueprint</h4>
@@ -425,7 +419,7 @@
                 <p class="font-mono text-[10px] text-slate-500 font-semibold tracking-wider uppercase">Azure Administrator Associate</p>
               </div>
               <div class="mt-4 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded font-mono text-[10px] text-sky-400">AZ-104 Certified</div>
-            </div>
+          </div>
             <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col items-center justify-center text-center">
               <i data-lucide="award" class="w-10 h-10 text-sky-400 mb-3"></i>
               <h4 class="font-sans font-bold text-white text-sm mb-1">Azure Infrastructure</h4>
@@ -445,7 +439,7 @@
                 <p class="font-mono text-[10px] text-slate-500 font-semibold tracking-wider uppercase">Azure Fundamentals</p>
               </div>
               <div class="mt-4 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded font-mono text-[10px] text-sky-400">AZ-900 Certified</div>
-            </div>
+          </div>
             <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col items-center justify-center text-center">
               <i data-lucide="award" class="w-10 h-10 text-sky-400 mb-3"></i>
               <h4 class="font-sans font-bold text-white text-sm mb-1">Cloud Core Principles</h4>
@@ -465,7 +459,7 @@
                 <p class="font-mono text-[10px] text-slate-500 font-semibold tracking-wider uppercase">Microsoft 365 Administrator</p>
               </div>
               <div class="mt-4 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded font-mono text-[10px] text-sky-400">MS-102 Certified</div>
-            </div>
+          </div>
             <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col items-center justify-center text-center">
               <i data-lucide="award" class="w-10 h-10 text-sky-400 mb-3"></i>
               <h4 class="font-sans font-bold text-white text-sm mb-1">M365 Tenant Admin</h4>
@@ -474,6 +468,325 @@
           </div>
         </div>
       </div>
+      
+      <div id="trainings" class="border-t border-slate-800/80 pt-16 text-left">
+        <div class="flex items-center space-x-3 mb-8">
+          <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i>
+          <h3 class="font-sans font-bold text-xl text-white tracking-tight">Advanced Academy & Training Tracks</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">April 2026</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Azure Deep Dive : Complete Virtual Machine (VM) Course</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Comprehensive track covering compute topologies, high-availability architecture across availability zones, and secure hypervisor baselines.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2025</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Official preparation blueprint focused on modern system deployment, software delivery profiles, and global tenant policy enforcement rules.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Mar 2025</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Learning Power BI Desktop</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Data visualization training built to convert raw server infrastructure logs into interactive real-time patch compliance dashboard grids.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">MICROSOFT</span><span class="text-slate-500">Jan 2024</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">WorkshopPLUS - Intune and Configuration Manager: Co-Management</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Advanced engineering modules focused on co-management attaches, boundary group linking, and shifting legacy configurations straight to Intune.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jan 2024</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Problem-Solving Techniques</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Systematic diagnostic methodology maps used to map root-cause failures, isolate log metrics, and streamline multi-tier escalation streams.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Aug 2024</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 2 Manage Identity and Compliance</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Zero-trust access modeling rules targeting Entra ID configuration frameworks, conditional access parameters, and endpoint security baselines.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jul 2024</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Critical Thinking</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Logic parsing modules built to eradicate data bias during system debugging routines, improving response times for active live production incidents.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jun 2024</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 1 Deploy Windows Client</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Focuses on structural OS provisioning channels, data state preservation profiles, and seamless enterprise image distribution tracks.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">Mar 2024</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft Endpoint Configuration Manager (MECM) Training</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Mastery course tracking boundaries, deployment task sequences, SCCM packaging pipelines, and site client synchronization optimization.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows Autopilot Essential Training</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Zero-touch onboarding strategies mapping corporate hardware hash data aggregation straight into operational factory configuration frameworks.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Streamlining Your Work with Copilot</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Generative AI prompt design engineering geared toward expediting PowerShell scripting pipelines, rule formatting, and automated code review routines.</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows 365: Deploy, Provision, and Manage</h4>
+              </div>
+              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+          </div>
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+              <p class="text-slate-300 text-xs leading-normal">Cloud VDI provisioning maps handling network connection configurations, custom system image scaling, and persistent user virtualization workspaces.</p>
+          </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+  </section>
+
+  <section id="skills" class="py-24 bg-slate-950 text-left relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-slate-800 pb-6 gap-4">
+        <div>
+          <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
+            <i data-lucide="settings-2" class="w-4 h-4"></i>
+            <span>Technical Arsenal</span>
+          </div>
+          <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Core Competencies & Stack
+          </h2>
+        </div>
+        <div class="font-mono text-xs text-slate-500 font-bold uppercase tracking-wider">
+          Engineering // Ops // Security
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="bg-slate-900 border border-slate-800 hover:border-slate-700/80 rounded-lg p-6 transition-all duration-300 group hover:-translate-y-1 relative">
+        <div class="flex items-center space-x-4 mb-6 pb-4 border-b border-slate-800">
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-md text-sky-400">
+            <i data-lucide="smartphone" class="w-6 h-6"></i>
+          </div>
+          <div class="flex flex-col text-left">
+            <h3 class="font-sans font-bold text-white text-lg tracking-tight">Modern Management</h3>
+            <span class="font-mono text-[9px] text-sky-400 tracking-wider uppercase mt-1">ENDPOINT ENROLLMENT & CONTROL</span>
+          </div>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Microsoft Intune (MEM)</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Configuration Manager (SCCM/MECM)</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Mobile Device Management (MDM)</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Windows Autopilot</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>VMware vSphere & vCenter</span>
+          </li>
+        </ul>
+        <div class="absolute bottom-3 right-3 font-mono text-[9px] text-slate-700 select-none group-hover:text-slate-500 transition-colors">ROLE_01</div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 hover:border-slate-700/80 rounded-lg p-6 transition-all duration-300 group hover:-translate-y-1 relative">
+        <div class="flex items-center space-x-4 mb-6 pb-4 border-b border-slate-800">
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-md text-sky-400">
+            <i data-lucide="server" class="w-6 h-6"></i>
+          </div>
+          <div class="flex flex-col text-left">
+            <h3 class="font-sans font-bold text-white text-lg tracking-tight">Identity & Network Infrastructure</h3>
+            <span class="font-mono text-[9px] text-sky-400 tracking-wider uppercase mt-1">IDENTITY & FLEET ARCHITECTURE</span>
+          </div>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Microsoft Entra ID (Azure AD)</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Active Directory (AD DS)</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Group Policy Objects (GPO) Design</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Network Core (DHCP, DNS, Hybrid Connectivity)</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>FSLogix Profile Management</span>
+          </li>
+        </ul>
+        <div class="absolute bottom-3 right-3 font-mono text-[9px] text-slate-700 select-none group-hover:text-slate-500 transition-colors">ROLE_02</div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 hover:border-slate-700/80 rounded-lg p-6 transition-all duration-300 group hover:-translate-y-1 relative">
+        <div class="flex items-center space-x-4 mb-6 pb-4 border-b border-slate-800">
+          <div class="p-3 bg-slate-950 border border-slate-800 rounded-md text-sky-400">
+            <i data-lucide="terminal" class="w-6 h-6"></i>
+          </div>
+          <div class="flex flex-col text-left">
+            <h3 class="font-sans font-bold text-white text-lg tracking-tight">Automation, Security & Data</h3>
+            <span class="font-mono text-[9px] text-sky-400 tracking-wider uppercase mt-1">CODE & VALUE ENGINEERING</span>
+          </div>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Advanced PowerShell System Scripting</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Microsoft Graph API Integration</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>Microsoft Graph API Workflows Integration</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>ServiceNow ITSM Integration</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+            <span>SharePoint & OneDrive Migration</span>
+          </li>
+        </ul>
+        <div class="absolute bottom-3 right-3 font-mono text-[9px] text-slate-700 select-none group-hover:text-slate-500 transition-colors">ROLE_03</div>
+      </div>
+    </div>
+
     </div>
   </section>
 
@@ -485,10 +798,10 @@
       </div>
 
       <div class="space-y-12 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[1px] before:bg-slate-800">
-        
+         
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Architect – EUC</h3>
@@ -512,7 +825,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Specialist – EUC</h3>
@@ -536,7 +849,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Senior Administrator – EUC</h3>
@@ -558,7 +871,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Administrator – EUC</h3>
@@ -580,7 +893,7 @@
         
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Process Associate</h3>
@@ -602,7 +915,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Customer Support Engineer</h3>
@@ -622,7 +935,7 @@
           </div>
         </div>
 
-      </div>
+    </div>
     </div>
   </section>
 
@@ -651,22 +964,22 @@
                 <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                 <span>2010 - 2014</span>
               </div>
-            </div>
-
-            <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-4">
-              <div class="flex items-center space-x-1">
-                <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-500"></i>
-                <span>IBSS College of Engineering</span>
-              </div>
-              <div class="flex items-center space-x-1">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
-                <span>Amravati University</span>
-              </div>
-            </div>
-            <p class="font-sans text-slate-300 text-sm leading-relaxed border-t border-slate-900 pt-4">
-              Specialized in computer science, Enterprise Computer Networks, Database Architectures.
-            </p>
           </div>
+
+          <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-4">
+            <div class="flex items-center space-x-1">
+              <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>IBSS College of Engineering</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Amravati University</span>
+            </div>
+        </div>
+          <p class="font-sans text-slate-300 text-sm leading-relaxed border-t border-slate-900 pt-4">
+            Specialized in computer science, Enterprise Computer Networks, Database Architectures.
+          </p>
+        </div>
         </div>
 
         <div class="relative pl-12 sm:pl-16 group">
@@ -681,24 +994,24 @@
                 <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                 <span>2010</span>
               </div>
-            </div>
-
-            <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-4">
-              <div class="flex items-center space-x-1">
-                <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-500"></i>
-                <span>Maharashtra Board</span>
-              </div>
-              <div class="flex items-center space-x-1">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
-                <span>State Board</span>
-              </div>
-            </div>
-            <p class="font-sans text-slate-300 text-sm leading-relaxed border-t border-slate-900 pt-4">
-              12th Board - State Exams.
-            </p>
           </div>
+
+          <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-4">
+            <div class="flex items-center space-x-1">
+              <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Maharashtra Board</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>State Board</span>
+            </div>
         </div>
-      </div>
+          <p class="font-sans text-slate-300 text-sm leading-relaxed border-t border-slate-900 pt-4">
+            12th Board - State Exams.
+          </p>
+        </div>
+        </div>
+    </div>
 
     </div>
   </section>
@@ -715,7 +1028,7 @@
 
       <!-- 6 Hobby Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
+         
         <!-- 1. Self-Hosted Homelab -->
         <a href="Sub_Pages/HomeLab.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-emerald-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
           <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
@@ -806,7 +1119,7 @@
           </div>
         </a>
 
-      </div>
+    </div>
     </div>
   </section>
 
@@ -824,7 +1137,7 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+         
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
             <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
@@ -843,394 +1156,394 @@
                     Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability for the global workforce.
                   </p>
                 </div>
-              </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 6 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Successfully resolved migration-related driver and resource issues for 3,000+ VDIs, ensuring a smooth transition to modern OS standards..</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">VMware Horizon, AppVolumes, vSphere</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Old legacy application needs to be tested with never versiona and OS compatibility.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
+            <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
           </div>
-        </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+            <div class="space-y-4 overflow-y-auto pr-1">
               <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_sccm_1781110806653.png" alt="SCCM to Intune Migration (Hybrid Join)" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_02</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>SCCM to Intune Migration (Hybrid Join)</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Architected a Hybrid Azure AD Join environment, enabling a phased migration from on-premises SCCM management to cloud-native Intune.
-                  </p>
-                </div>
+                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+                <p class="text-white text-sm font-semibold mt-0.5">Duration: 6 Months</p>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 8 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Enabled gradual shift of device management authority without stripping critical on-premises security controls..</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">AAD Connect, Co-management Workloads, Hybrid Join.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Identity sync (AAD Connect) health is the absolute priority. Never attempt to shift workloads until your hybrid identity state is 100% verified.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_autopilot_1781110823628.png" alt="Autopilot Zero-Touch" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_03</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>Autopilot Zero-Touch</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Architected a custom global factory-to-user operating system provisioning model utilizing dynamic application packaging matrices and automated deployment tracking parameters.
-                  </p>
-                </div>
+                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+                <p class="text-slate-300 text-xs leading-relaxed">Successfully resolved migration-related driver and resource issues for 3,000+ VDIs, ensuring a smooth transition to modern OS standards..</p>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 4 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Slashed traditional hardware configuration tracks down from 4 hours into under 30 minutes, omitting physical tech staging benchmarks.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">Windows Autopilot, Advanced PowerShell System Staging, Win32 Wrappers</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Enforcing structured application dependency sequences blocks potential timing exceptions during critical early Esp status checks.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_Windows-365.png" alt="Windows 365 Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_04</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>Windows 365 Setup</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Deployed Windows 365 Cloud PCs to provide flexible, persistent, and secure virtual workspaces for a modern, remote-first global workforce.
-                  </p>
-                </div>
+                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+                <p class="text-slate-300 text-xs font-mono mt-0.5">VMware Horizon, AppVolumes, vSphere</p>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Improved user login speeds by 30% and enabled high-performance computing for remote staff.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">Windows 365 Enterprise, Intune.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Network latency is the primary factor in VDI user satisfaction. Optimize local network access and regional gateways before scaling.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_Modern-GPO-Alternatives.jpeg" alt="Onprem GPO to Intune Configuration profiles" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_05</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>Onprem GPO to Intune Configuration profiles</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Modernized management by migrating complex legacy Group Policies (GPOs) to cloud-native Intune Configuration Profiles using Policy Analytics.
-                  </p>
-                </div>
+                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+                <p class="text-slate-300 text-xs leading-relaxed">Old legacy application needs to be tested with never versiona and OS compatibility.</p>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Centralized management of settings, resulting in a 50% reduction in policy conflict tickets..</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">Mapped legacy AD policies to Intune Settings Catalog and Administrative Templates.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Don't "lift-and-shift" blindly. Many legacy GPOs are technical debt; clean them up rather than replicating them in the cloud.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
           </div>
+          <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
         </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
-              <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_H_Drive_Migration.jpeg" alt="H-Drive to OneDrive/SharePoint Migration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_06</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>H-Drive to OneDrive/SharePoint Migration</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Directed a massive data migration, moving critical user data from legacy on-premises H: Drives to secure, cloud-based OneDrive and SharePoint environments.
-                  </p>
-                </div>
-              </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Freed up TBs of data center storage and enabled universal file access across the global workforce..</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">Sharepoint portal, AD.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">User communication is as vital as the tech. Clear documentation on "Known Folder Move" prevents panic over seemingly "missing" files.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
-          </div>
         </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
-              <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_ServiceNow.png" alt="ServiceNow & Intune Integration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_07</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>ServiceNow & Intune Integration</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Integrated Microsoft Intune with ServiceNow, automating asset management, CI syncing, and incident workflows across platforms.
-                  </p>
-                </div>
-              </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Achieved real-time asset inventory accuracy, drastically reducing manual tracking errors.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">Microsoft Graph API, ServiceNow CMDB.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">API rate limits will break your sync scripts. Always build robust error handling and queuing into your integration to ensure data integrity.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
-              <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_windows_autopatch.png" alt="Microsoft Autopatch Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_08</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>Microsoft Autopatch Setup</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Configured and launched Microsoft Autopatch, moving the enterprise to an automated, ring-based update delivery model for security compliance.
-                  </p>
-                </div>
-              </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Reached 99% patch compliance within 72 hours of release with zero manual intervention.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">Managed ring-based delivery (Test/Fast/Broad).</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Trust the automation, but strictly monitor the "Test" ring. One specific enterprise app update conflict is all it takes to halt a rollout.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
-              <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_Patch-Management-Lifecycle.webp" alt="Vulnerability Reduction Initiative" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_09</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>Vulnerability Reduction Initiative</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Spearheaded a targeted vulnerability reduction initiative by identifying and patching high-risk security gaps across the enterprise endpoint fleet.
-                  </p>
-                </div>
-              </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-            </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-              <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Achieved a 60% reduction in critical vulnerability exposure and passed all security audit benchmarks..</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-300 text-xs font-mono mt-0.5">Mapped legacy AD policies to Intune Settings Catalog and Administrative Templates.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-300 text-xs leading-relaxed">Vulnerability management is not a one-time fix; it requires a persistent, automated reporting loop to maintain an audit-ready security posture.</p>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
-            </div>
-          </div>
-        </div>
-        
       </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_sccm_1781110806653.png" alt="SCCM to Intune Migration (Hybrid Join)" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_02</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>SCCM to Intune Migration (Hybrid Join)</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Architected a Hybrid Azure AD Join environment, enabling a phased migration from on-premises SCCM management to cloud-native Intune.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 8 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Enabled gradual shift of device management authority without stripping critical on-premises security controls..</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">AAD Connect, Co-management Workloads, Hybrid Join.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Identity sync (AAD Connect) health is the absolute priority. Never attempt to shift workloads until your hybrid identity state is 100% verified.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_autopilot_1781110823628.png" alt="Autopilot Zero-Touch" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_03</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>Autopilot Zero-Touch</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Architected a custom global factory-to-user operating system provisioning model utilizing dynamic application packaging matrices and automated deployment tracking parameters.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 4 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Slashed traditional hardware configuration tracks down from 4 hours into under 30 minutes, omitting physical tech staging benchmarks.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">Windows Autopilot, Advanced PowerShell System Staging, Win32 Wrappers</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Enforcing structured application dependency sequences blocks potential timing exceptions during critical early Esp status checks.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_Windows-365.png" alt="Windows 365 Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_04</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>Windows 365 Setup</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Deployed Windows 365 Cloud PCs to provide flexible, persistent, and secure virtual workspaces for a modern, remote-first global workforce.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Improved user login speeds by 30% and enabled high-performance computing for remote staff.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">Windows 365 Enterprise, Intune.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Network latency is the primary factor in VDI user satisfaction. Optimize local network access and regional gateways before scaling.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_Modern-GPO-Alternatives.jpeg" alt="Onprem GPO to Intune Configuration profiles" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_05</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>Onprem GPO to Intune Configuration profiles</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Modernized management by migrating complex legacy Group Policies (GPOs) to cloud-native Intune Configuration Profiles using Policy Analytics.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Centralized management of settings, resulting in a 50% reduction in policy conflict tickets..</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">Mapped legacy AD policies to Intune Settings Catalog and Administrative Templates.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Don't "lift-and-shift" blindly. Many legacy GPOs are technical debt; clean them up rather than replicating them in the cloud.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_H_Drive_Migration.jpeg" alt="H-Drive to OneDrive/SharePoint Migration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_06</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>H-Drive to OneDrive/SharePoint Migration</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Directed a massive data migration, moving critical user data from legacy on-premises H: Drives to secure, cloud-based OneDrive and SharePoint environments.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Freed up TBs of data center storage and enabled universal file access across the global workforce..</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">Sharepoint portal, AD.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">User communication is as vital as the tech. Clear documentation on "Known Folder Move" prevents panic over seemingly "missing" files.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_ServiceNow.png" alt="ServiceNow & Intune Integration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_07</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>ServiceNow & Intune Integration</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Integrated Microsoft Intune with ServiceNow, automating asset management, CI syncing, and incident workflows across platforms.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Achieved real-time asset inventory accuracy, drastically reducing manual tracking errors.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">Microsoft Graph API, ServiceNow CMDB.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">API rate limits will break your sync scripts. Always build robust error handling and queuing into your integration to ensure data integrity.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_windows_autopatch.png" alt="Microsoft Autopatch Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_08</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>Microsoft Autopatch Setup</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Configured and launched Microsoft Autopatch, moving the enterprise to an automated, ring-based update delivery model for security compliance.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Reached 99% patch compliance within 72 hours of release with zero manual intervention.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">Managed ring-based delivery (Test/Fast/Broad).</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Trust the automation, but strictly monitor the "Test" ring. One specific enterprise app update conflict is all it takes to halt a rollout.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+
+      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_Patch-Management-Lifecycle.webp" alt="Vulnerability Reduction Initiative" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_09</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>Vulnerability Reduction Initiative</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Spearheaded a targeted vulnerability reduction initiative by identifying and patching high-risk security gaps across the enterprise endpoint fleet.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 3 Months</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Achieved a 60% reduction in critical vulnerability exposure and passed all security audit benchmarks..</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">Mapped legacy AD policies to Intune Settings Catalog and Administrative Templates.</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Vulnerability management is not a one-time fix; it requires a persistent, automated reporting loop to maintain an audit-ready security posture.</p>
+            </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+      </div>
+        </div>
+      </div>
+        
+    </div>
     </div>
   </section>
 
@@ -1299,61 +1612,61 @@
                 <span class="font-sans text-white font-semibold text-sm group-hover:text-sky-400 transition-colors">www.linkedin.com/in/anagapure</span>
               </div>
             </a>
+        </div>
+    </div>
+
+    <div class="lg:col-span-7 bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-xl shadow-2xl relative">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+            <span class="font-mono text-xs text-slate-400 ml-2 font-semibold">DIRECT_MAIL_TERMINAL</span>
           </div>
+          <span class="font-mono text-[10px] text-sky-400 bg-sky-950 border border-sky-400/20 px-2 py-0.5 rounded">Contact me</span>
         </div>
 
-        <div class="lg:col-span-7 bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-xl shadow-2xl relative">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
-            <div class="flex items-center space-x-2">
-              <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-              <span class="font-mono text-xs text-slate-400 ml-2 font-semibold">DIRECT_MAIL_TERMINAL</span>
-            </div>
-            <span class="font-mono text-[10px] text-sky-400 bg-sky-950 border border-sky-400/20 px-2 py-0.5 rounded">Contact me</span>
-          </div>
-
-          <div class="space-y-6">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div class="space-y-2">
-                <label for="direct_name" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Full Name</label>
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
-              </div>
-              <div class="space-y-2">
-                <label for="direct_email" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Your Email Address</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
-              </div>
-            </div>
-
+        <div class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div class="space-y-2">
-              <label for="direct_subject" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Subject</label>
-              <input id="direct_subject" type="text" placeholder="Consultation Request" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
+              <label for="direct_name" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Full Name</label>
+              <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
             </div>
-
             <div class="space-y-2">
-              <label for="direct_message" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Message</label>
-              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none resize-none"></textarea>
+              <label for="direct_email" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Your Email Address</label>
+              <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
             </div>
-
-            <div class="pt-2">
-              <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-sky-400 hover:bg-sky-500 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded shadow transition-all duration-200 active:scale-95 cursor-pointer">
-                <i data-lucide="mail" class="w-4 h-4"></i>
-                <span>Send Email</span>
-              </button>
-            </div>
-
-            <!-- Dynamic Success Notification Box -->
-            <div id="success-banner" class="hidden p-4 bg-emerald-950/40 border border-emerald-500/30 rounded-lg flex items-center space-x-3 transition-all animate-fade-in">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
-              <p class="font-mono text-xs text-emerald-300">
-                Thank you for reaching out! I will review your message and get back to you shortly.
-              </p>
-            </div>
-          </div>
         </div>
 
+        <div class="space-y-2">
+          <label for="direct_subject" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Subject</label>
+          <input id="direct_subject" type="text" placeholder="Consultation Request" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
+        </div>
+
+        <div class="space-y-2">
+          <label for="direct_message" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Message</label>
+          <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none resize-none"></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-sky-400 hover:bg-sky-500 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded shadow transition-all duration-200 active:scale-95 cursor-pointer">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>Send Email</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Success Notification Box -->
+        <div id="success-banner" class="hidden p-4 bg-emerald-950/40 border border-emerald-500/30 rounded-lg flex items-center space-x-3 transition-all animate-fade-in">
+          <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+          <p class="font-mono text-xs text-emerald-300">
+            Thank you for reaching out! I will review your message and get back to you shortly.
+          </p>
+        </div>
       </div>
     </div>
+
+    </div>
+  </div>
   </section>
 </main>
 
@@ -1361,18 +1674,20 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-3.5 text-center md:text-left">
-        <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="p-2 bg-slate-900 border border-slate-800 rounded">
+          <i data-lucide="shield-check" class="w-5 h-5 text-sky-400"></i>
         </div>
         <div class="flex flex-col items-start">
           <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
           <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">
             © 2026. All Rights Reserved. Engineered with Precision.
-          </span>
+        </span>
+
         </div>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-mono text-xs">
         <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-sky-400 transition-colors">LinkedIn</a>
+
         <a href="mailto:akashnagapure@live.com" class="text-slate-400 hover:text-sky-400 transition-colors">Email</a>
       </div>
     </div>
@@ -1434,6 +1749,7 @@
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
     }
+    // Close mobile menu if open
     const drawer = document.getElementById("mobile-menu-drawer");
     if (drawer && !drawer.classList.contains("hidden")) {
       drawer.classList.add("hidden");
@@ -1447,6 +1763,7 @@
     }
   }
 
+  // Form Validation to enable/disable button
   function checkFormValidity() {
     const name = document.getElementById("direct_name").value.trim();
     const email = document.getElementById("direct_email").value.trim();
@@ -1460,6 +1777,7 @@
     }
   }
 
+  // Direct Mail Generation Logic with Success Banner Display
   function launchDirectMail() {
     const name = document.getElementById("direct_name").value.trim();
     const email = document.getElementById("direct_email").value.trim();
@@ -1471,13 +1789,15 @@
     body += `Sender Name: ${name}\n`;
     body += `Sender Email: ${email}\n`;
 
-    const encodedSubject = encodeURIComponent(subjectStr = subjectVal);
+    const encodedSubject = encodeURIComponent(subjectVal);
     const encodedBody = encodeURIComponent(body);
 
+    // Show confirmation response banner
     const banner = document.getElementById("success-banner");
     banner.classList.remove("hidden");
     lucide.createIcons();
 
+    // Open native mail app client
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
   }
 </script>
