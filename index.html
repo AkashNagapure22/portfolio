@@ -50,14 +50,14 @@
       padding-top: 0 !important;
     }
 
-    /* Seamless adaptive logo background removal & contrast enhancement */
+    /* Crisp Logo Adaptation for Light & Dark Backgrounds */
     .logo-adaptive {
       mix-blend-mode: multiply;
-      filter: contrast(1.2);
+      filter: contrast(1.3) brightness(0.95);
     }
     .dark .logo-adaptive {
       mix-blend-mode: screen;
-      filter: invert(1) brightness(1.8) contrast(1.5);
+      filter: invert(1) brightness(2.2) contrast(1.8) drop-shadow(0 0 2px rgba(56, 189, 248, 0.5));
     }
 
     /* Construction Banner Animation */
@@ -162,11 +162,11 @@
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-14">
+    <div class="flex items-center justify-between h-16">
       <div class="flex items-center space-x-3">
         <a href="#home" class="flex items-center space-x-3 group cursor-pointer" onclick="scrollToSection(event, 'home')">
-          <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-adaptive" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          <div class="h-12 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
+            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-adaptive scale-110" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex flex-col">
             <span class="font-sans font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-none">
@@ -1703,8 +1703,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-3.5 text-center md:text-left">
-        <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-adaptive" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="h-12 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
+          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-adaptive scale-110" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col items-start">
           <span class="font-sans font-extrabold text-sm text-slate-900 dark:text-white">Akash Nagapure</span>
