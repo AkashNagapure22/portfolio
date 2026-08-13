@@ -129,13 +129,25 @@
 })();
 </script>
 
-<!-- Navigation Shell (Fixed position changed to absolute/sticky or properly flowing so it scrolls away if desired, or kept sticky without covering content) -->
+<!-- Navigation Shell -->
 <header class="w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)] relative">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
-        <!-- Brand Title with Logo Redirects to Main Site Index -->
-        <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-2.5 flex-shrink-0 group">
-            <img src="public/Main_page_data/Logo.png" alt="Logo" class="w-8 h-8 rounded-lg object-contain bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(230,184,0,0.2)]" onerror="this.src='images/placeholder.png'"/>
+        <!-- Brand Title with Updated Logo Graphic -->
+        <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3 flex-shrink-0 group">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/40 shadow-[0_0_15px_rgba(168,85,247,0.25)] group-hover:scale-105 transition-transform overflow-hidden relative p-1">
+                <svg viewBox="0 0 100 100" class="w-full h-full object-contain filter drop-shadow">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#c084fc"/>
+                            <stop offset="50%" stop-color="#a855f7"/>
+                            <stop offset="100%" stop-color="#fb923c"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Monogram 'AN' stylized line art matching user request -->
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="url(#logoGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
             <span class="flex flex-col">
                 <span class="text-sm sm:text-base font-extrabold tracking-tight text-amber-200">Akash Nagapure</span>
                 <span class="text-[9px] uppercase tracking-widest text-amber-400/80 font-mono">Numismatic Vault</span>
@@ -257,7 +269,7 @@
         
         <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
             <div class="carousel-slide active absolute inset-0">
-                <img alt="RBI 1000 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <img alt="RBI 1000 Rupee Note" class="w-full h-full object-cover" src="public/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">RESERVE BANK OF INDIA (1954–1978)</span>
@@ -271,7 +283,7 @@
             </div>
 
             <div class="carousel-slide absolute inset-0">
-                <img alt="British India 10 Rupee Note" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                <img alt="British India 10 Rupee Note" class="w-full h-full object-cover" src="public/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/50 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">BRITISH INDIA (1938–1947)</span>
@@ -318,7 +330,7 @@
 
                 <div class="w-full space-y-3">
                     <div class="w-full h-80 sm:h-96 md:h-[450px] rounded-xl border-2 border-amber-500/40 bg-black/60 overflow-hidden relative shadow-2xl group">
-                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="public/images/Notes_And_Coins/maharan.png" onerror="this.src='images/placeholder.png'"/>
+                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="public/images/Notes_And_Coins/maharan.png" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         <span class="absolute top-3 right-3 text-[10px] font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded uppercase shadow-lg tracking-wider">OFFICIAL MINT FOLDER SHOWCASE</span>
                         <span class="absolute bottom-3 left-3 text-[9px] font-bold bg-black/80 px-2 py-1 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
@@ -376,7 +388,6 @@
                 </h3>
             </div>
 
-            <!-- 2-Column Row Layout for Coins -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Coin 1: Mauryan Silver Karshapana -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
@@ -389,7 +400,7 @@
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip Card</span>
                                 </div>
                                 <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
-                                    <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
+                                    <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded" src="public/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                                 </div>
@@ -457,7 +468,7 @@
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
-                                    <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
+                                    <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded" src="public/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                                 </div>
@@ -500,7 +511,7 @@
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
-                                    <img alt="British India 1 Pice" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
+                                    <img alt="British India 1 Pice" class="w-full h-full object-contain rounded" src="public/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                                 </div>
@@ -549,9 +560,8 @@
                     <span class="material-symbols-outlined text-amber-400 text-base">workspace_premium</span> Commemorative Issues
                 </h4>
                 
-                <!-- 2-Column Row Layout including Compact Dr. Syama Prasad Mookerjee 2 Rupees -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees (Compact Flippable Card) -->
+                    <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees -->
                     <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                         <div class="inventory-flip-inner">
                             <!-- FRONT SIDE -->
@@ -562,7 +572,7 @@
                                         <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                     </div>
                                     <div class="w-full h-32 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
-                                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="public/images/Notes_And_Coins/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.src='images/placeholder.png'"/>
+                                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="public/images/Notes_And_Coins/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                                         <span class="absolute top-2 left-2 text-[8px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded uppercase shadow">Commemorative</span>
                                         <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                         <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
@@ -658,7 +668,7 @@
                                 <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                             </div>
                             <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
-                                <img alt="Foreign Coin Specimen" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
+                                <img alt="Foreign Coin Specimen" class="w-full h-full object-contain rounded" src="public/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                                 <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                 <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                             </div>
@@ -711,7 +721,7 @@
             <div class="inventory-flip-card cursor-pointer aspect-[2/3]" style="min-height: 280px;" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card overflow-hidden relative">
-                        <img alt="Shivaji Maharaj Gold Hon" class="w-full h-full object-cover" src="images/placeholder.png"/>
+                        <img alt="Shivaji Maharaj Gold Hon" class="w-full h-full object-cover" src="public/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                         <div class="absolute top-2 right-2">
                             <span class="text-[8px] bg-red-600 text-white px-2 py-0.5 rounded-full font-bold">GRAIL</span>
@@ -834,7 +844,11 @@
 <footer class="w-full py-8 sm:py-12 bg-surface-dim border-t border-white/5 text-center">
     <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2">
         <div class="flex items-center gap-2">
-            <img src="public/Main_page_data/Logo.png" alt="Logo" class="w-6 h-6 rounded object-contain bg-amber-500/10 border border-amber-500/30" onerror="this.style.display='none'"/>
+            <div class="w-5 h-5 rounded flex items-center justify-center bg-black border border-purple-500/40 p-0.5">
+                <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
             <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
         </div>
         <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">© 2026. All Rights Reserved. Cataloged with Precision.</span>
