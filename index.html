@@ -147,11 +147,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-12">
       <a href="#home" class="flex items-center space-x-2.5 group cursor-pointer" onclick="scrollToSection(event, 'home')">
-        <div class="p-1.5 rounded-md bg-sky-950/80 border-2 border-sky-400/50 text-sky-400 group-hover:border-sky-400 transition-all shadow-md shadow-sky-500/10">
-          <img src="public/Main_page_data/Logo.png" alt="Akash Nagapure Logo" class="w-6 h-6 object-contain font-bold filter drop-shadow-[0_0_2px_rgba(56,189,248,0.8)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-        </div>
         <div class="flex flex-col">
-          <span class="font-sans font-bold text-lg text-white tracking-tight leading-none">
+          <span class="font-sans font-extrabold text-lg text-white tracking-tight leading-none flex items-center gap-1.5">
             Akash Nagapure
           </span>
           <span class="font-mono text-[10px] text-sky-400 font-medium tracking-widest mt-1">
@@ -223,8 +220,9 @@
           </div>
 
           <div class="space-y-2">
-            <h1 id="hero-display-name" class="font-sans text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight select-none">
-              Akash Nagapure
+            <h1 id="hero-display-name" class="font-sans text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight select-none flex items-center gap-3">
+              <span>Akash Nagapure</span>
+              <img src="public/Main_page_data/Logo.png" alt="Logo" class="w-12 h-12 sm:w-16 sm:h-16 object-contain inline-block filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]" onerror="this.style.display='none';" />
             </h1>
             <p class="font-mono text-lg sm:text-xl font-medium text-sky-400 tracking-wide">
               Microsoft Intune & VMware Architect | Endpoint Security Specialist
@@ -322,32 +320,32 @@
             <div class="space-y-1 mt-auto">
               <div class="font-sans font-extrabold text-3xl sm:text-4xl text-sky-400 tracking-tight leading-tight"><span class="metric-value" data-target="10">0</span>+</div>
               <div class="font-mono text-[11px] text-white font-bold uppercase tracking-wider block">YEARS EXPERIENCE</div>
-            </div>
           </div>
-          <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-5 rounded-lg transition-all duration-200 group relative flex flex-col justify-between min-h-[160px]">
+        </div>
+        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-5 rounded-lg transition-all duration-200 group relative flex flex-col justify-between min-h-[160px]">
             <div class="flex items-center justify-between mb-4"><i data-lucide="refresh-cw" class="w-5 h-5 text-sky-400"></i><span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest">Verified Metric</span></div>
             <div class="space-y-1 mt-auto">
               <div class="font-sans font-extrabold text-3xl sm:text-4xl text-sky-400 tracking-tight leading-tight"><span class="metric-value" data-target="15">0</span>+</div>
               <div class="font-mono text-[11px] text-white font-bold uppercase tracking-wider block">LARGE MIGRATIONS</div>
-            </div>
           </div>
-          <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-5 rounded-lg transition-all duration-200 group relative flex flex-col justify-between min-h-[160px]">
+        </div>
+        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-5 rounded-lg transition-all duration-200 group relative flex flex-col justify-between min-h-[160px]">
             <div class="flex items-center justify-between mb-4"><i data-lucide="award" class="w-5 h-5 text-sky-400"></i><span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest">Verified Metric</span></div>
             <div class="space-y-1 mt-auto">
               <div class="font-sans font-extrabold text-3xl sm:text-4xl text-sky-400 tracking-tight leading-tight"><span class="metric-value" data-target="10">0</span>+</div>
               <div class="font-mono text-[11px] text-white font-bold uppercase tracking-wider block">CLOUD CERTS</div>
-            </div>
           </div>
-          <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-5 rounded-lg transition-all duration-200 group relative flex flex-col justify-between min-h-[160px]">
+        </div>
+        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 p-5 rounded-lg transition-all duration-200 group relative flex flex-col justify-between min-h-[160px]">
             <div class="flex items-center justify-between mb-4"><i data-lucide="activity" class="w-5 h-5 text-sky-400"></i><span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest">Verified Metric</span></div>
             <div class="space-y-1 mt-auto">
               <div class="font-sans font-extrabold text-3xl sm:text-4xl text-sky-400 tracking-tight leading-tight"><span class="metric-value" data-target="99">0</span>%</div>
               <div class="font-mono text-[11px] text-white font-bold uppercase tracking-wider block">UPTIME FOCUS</div>
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </section>
 
   <section id="certifications" class="py-24 bg-slate-900 border-y border-slate-800 text-center relative">
@@ -385,13 +383,13 @@
               <h4 class="font-sans font-bold text-white text-sm mb-1">MD-102 Verification</h4>
               <p class="font-sans text-slate-300 text-xs leading-relaxed">Validates skills in deploying operating systems, managing apps, and implementing configuration profiles & tenant balance security targets.</p>
             </div>
-          </div>
         </div>
+      </div>
 
         <div class="flip-card-container h-[240px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
-              <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
+            <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
                 <i data-lucide="tablet" class="w-8 h-8"></i>
               </div>
               <div class="space-y-1.5 mt-4">
@@ -405,13 +403,13 @@
               <h4 class="font-sans font-bold text-white text-sm mb-1">ITIL V4 Blueprint</h4>
               <p class="font-sans text-slate-300 text-xs leading-relaxed">Leverages structural frameworks to align core digital workspace delivery with business scaling matrices and low-risk change management controls.</p>
             </div>
-          </div>
         </div>
+      </div>
 
         <div class="flip-card-container h-[240px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
-              <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
+            <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
                 <i data-lucide="cpu" class="w-8 h-8"></i>
               </div>
               <div class="space-y-1.5 mt-4">
@@ -425,13 +423,13 @@
               <h4 class="font-sans font-bold text-white text-sm mb-1">Azure Infrastructure</h4>
               <p class="font-sans text-slate-300 text-xs leading-relaxed">Validates capabilities managing virtual networks, cloud storage nodes, structural compute profiles, identity governance, and hybrid connectivity metrics.</p>
             </div>
-          </div>
         </div>
+      </div>
 
         <div class="flip-card-container h-[240px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
-              <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
+            <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
                 <i data-lucide="cloud" class="w-8 h-8"></i>
               </div>
               <div class="space-y-1.5 mt-4">
@@ -445,13 +443,13 @@
               <h4 class="font-sans font-bold text-white text-sm mb-1">Cloud Core Principles</h4>
               <p class="font-sans text-slate-300 text-xs leading-relaxed">Validates clear high-level understanding of cloud concepts, security matrix models, privacy protocols, and standard Azure governance frameworks.</p>
             </div>
-          </div>
         </div>
+      </div>
 
         <div class="flip-card-container h-[240px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
-              <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-6 rounded-lg flex flex-col items-center justify-between text-center">
+            <div class="w-16 h-16 rounded-lg bg-sky-950/60 border border-sky-400/10 flex items-center justify-center text-sky-400">
                 <i data-lucide="layout-grid" class="w-8 h-8"></i>
               </div>
               <div class="space-y-1.5 mt-4">
@@ -465,199 +463,199 @@
               <h4 class="font-sans font-bold text-white text-sm mb-1">M365 Tenant Admin</h4>
               <p class="font-sans text-slate-300 text-xs leading-relaxed">Validates structural capacity evaluating, planning, and managing tenant identity services, modern access security layers, and corporate endpoints compliance.</p>
             </div>
-          </div>
         </div>
+      </div>
+    </div>
+      
+    <div id="trainings" class="border-t border-slate-800/80 pt-16 text-left">
+      <div class="flex items-center space-x-3 mb-8">
+        <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i>
+        <h3 class="font-sans font-bold text-xl text-white tracking-tight">Advanced Academy & Training Tracks</h3>
       </div>
       
-      <div id="trainings" class="border-t border-slate-800/80 pt-16 text-left">
-        <div class="flex items-center space-x-3 mb-8">
-          <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i>
-          <h3 class="font-sans font-bold text-xl text-white tracking-tight">Advanced Academy & Training Tracks</h3>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">April 2026</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Azure Deep Dive : Complete Virtual Machine (VM) Course</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Comprehensive track covering compute topologies, high-availability architecture across availability zones, and secure hypervisor baselines.</p>
-          </div>
+        <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">April 2026</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Azure Deep Dive : Complete Virtual Machine (VM) Course</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+        </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Comprehensive track covering compute topologies, high-availability architecture across availability zones, and secure hypervisor baselines.</p>
+        </div>
         </div>
         </div>
 
           <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2025</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Official preparation blueprint focused on modern system deployment, software delivery profiles, and global tenant policy enforcement rules.</p>
-          </div>
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2025</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
         </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Official preparation blueprint focused on modern system deployment, software delivery profiles, and global tenant policy enforcement rules.</p>
         </div>
-
-          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Mar 2025</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Learning Power BI Desktop</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Data visualization training built to convert raw server infrastructure logs into interactive real-time patch compliance dashboard grids.</p>
-          </div>
         </div>
         </div>
 
           <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">MICROSOFT</span><span class="text-slate-500">Jan 2024</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">WorkshopPLUS - Intune and Configuration Manager: Co-Management</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Advanced engineering modules focused on co-management attaches, boundary group linking, and shifting legacy configurations straight to Intune.</p>
-          </div>
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Mar 2025</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Learning Power BI Desktop</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
         </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Data visualization training built to convert raw server infrastructure logs into interactive real-time patch compliance dashboard grids.</p>
         </div>
-
-          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jan 2024</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Problem-Solving Techniques</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Systematic diagnostic methodology maps used to map root-cause failures, isolate log metrics, and streamline multi-tier escalation streams.</p>
-          </div>
         </div>
         </div>
 
           <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Aug 2024</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 2 Manage Identity and Compliance</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Zero-trust access modeling rules targeting Entra ID configuration frameworks, conditional access parameters, and endpoint security baselines.</p>
-          </div>
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">MICROSOFT</span><span class="text-slate-500">Jan 2024</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">WorkshopPLUS - Intune and Configuration Manager: Co-Management</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
         </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Advanced engineering modules focused on co-management attaches, boundary group linking, and shifting legacy configurations straight to Intune.</p>
         </div>
-
-          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jul 2024</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Critical Thinking</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Logic parsing modules built to eradicate data bias during system debugging routines, improving response times for active live production incidents.</p>
-          </div>
         </div>
         </div>
 
           <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jun 2024</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 1 Deploy Windows Client</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Focuses on structural OS provisioning channels, data state preservation profiles, and seamless enterprise image distribution tracks.</p>
-          </div>
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jan 2024</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Problem-Solving Techniques</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
         </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Systematic diagnostic methodology maps used to map root-cause failures, isolate log metrics, and streamline multi-tier escalation streams.</p>
         </div>
-
-          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">Mar 2024</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft Endpoint Configuration Manager (MECM) Training</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Mastery course tracking boundaries, deployment task sequences, SCCM packaging pipelines, and site client synchronization optimization.</p>
-          </div>
         </div>
         </div>
 
           <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows Autopilot Essential Training</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Zero-touch onboarding strategies mapping corporate hardware hash data aggregation straight into operational factory configuration frameworks.</p>
-          </div>
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Aug 2024</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 2 Manage Identity and Compliance</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
         </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Zero-trust access modeling rules targeting Entra ID configuration frameworks, conditional access parameters, and endpoint security baselines.</p>
         </div>
-
-          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Streamlining Your Work with Copilot</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Generative AI prompt design engineering geared toward expediting PowerShell scripting pipelines, rule formatting, and automated code review routines.</p>
-          </div>
         </div>
         </div>
 
           <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
-                <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows 365: Deploy, Provision, and Manage</h4>
-              </div>
-              <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
-          </div>
-            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
-              <p class="text-slate-300 text-xs leading-normal">Cloud VDI provisioning maps handling network connection configurations, custom system image scaling, and persistent user virtualization workspaces.</p>
-          </div>
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jul 2024</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Critical Thinking</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+        </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Logic parsing modules built to eradicate data bias during system debugging routines, improving response times for active live production incidents.</p>
+        </div>
         </div>
         </div>
 
-      </div>
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jun 2024</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 1 Deploy Windows Client</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+        </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Focuses on structural OS provisioning channels, data state preservation profiles, and seamless enterprise image distribution tracks.</p>
+        </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">Mar 2024</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft Endpoint Configuration Manager (MECM) Training</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+        </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Mastery course tracking boundaries, deployment task sequences, SCCM packaging pipelines, and site client synchronization optimization.</p>
+        </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows Autopilot Essential Training</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+        </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Zero-touch onboarding strategies mapping corporate hardware hash data aggregation straight into operational factory configuration frameworks.</p>
+        </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Streamlining Your Work with Copilot</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+        </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Generative AI prompt design engineering geared toward expediting PowerShell scripting pipelines, rule formatting, and automated code review routines.</p>
+        </div>
+        </div>
+        </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+              <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows 365: Deploy, Provision, and Manage</h4>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+        </div>
+          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+            <p class="text-slate-300 text-xs leading-normal">Cloud VDI provisioning maps handling network connection configurations, custom system image scaling, and persistent user virtualization workspaces.</p>
+        </div>
+        </div>
+        </div>
+
+    </div>
     </div>
 
     </div>
@@ -1026,97 +1024,97 @@
         <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Interests & Hobbies</h2>
       </div>
 
-      <!-- 6 Hobby Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- 6 Hobby Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
          
         <!-- 1. Self-Hosted Homelab -->
         <a href="Sub_Pages/HomeLab.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-emerald-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-          <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-lg group-hover:text-emerald-400 transition-colors">Self-Hosted Homelab</h3>
-              <span class="font-mono text-[10px] text-emerald-400 mt-1 block">Click to view Homelab Architecture →</span>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-white text-lg group-hover:text-emerald-400 transition-colors">Self-Hosted Homelab</h3>
+            <span class="font-mono text-[10px] text-emerald-400 mt-1 block">Click to view Homelab Architecture →</span>
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_homelab.png" alt="Homelab Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-          </div>
+          <i data-lucide="external-link" class="w-5 h-5 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </div>
+        <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+          <img src="./images/Main_Page_Images/hobby_homelab.png" alt="Homelab Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+        </div>
         </a>
 
         <!-- 2. Strategic Gaming -->
         <a href="Sub_Pages/Game.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-sky-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-          <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-lg group-hover:text-sky-400 transition-colors">Strategic Gaming</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Gaming Portfolio →</span>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-white text-lg group-hover:text-sky-400 transition-colors">Strategic Gaming</h3>
+            <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Gaming Portfolio →</span>
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_gaming.png" alt="Strategic Gaming Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-          </div>
+          <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </div>
+        <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+          <img src="./images/Main_Page_Images/hobby_gaming.png" alt="Strategic Gaming Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+        </div>
         </a>
 
         <!-- 3. Culinary & Foodie -->
         <a href="Sub_Pages/Food.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-amber-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-          <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-lg group-hover:text-amber-400 transition-colors">Culinary & Foodie</h3>
-              <span class="font-mono text-[10px] text-amber-400 mt-1 block">Click to view Food Portfolio →</span>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 text-amber-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-white text-lg group-hover:text-amber-400 transition-colors">Culinary & Foodie</h3>
+            <span class="font-mono text-[10px] text-amber-400 mt-1 block">Click to view Food Portfolio →</span>
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/Food_Poster.avif" alt="Food Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-          </div>
+          <i data-lucide="external-link" class="w-5 h-5 text-amber-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </div>
+        <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+          <img src="./images/Main_Page_Images/Food_Poster.avif" alt="Food Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+        </div>
         </a>
 
         <!-- 4. Reading -->
         <a href="Sub_Pages/Reading.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-indigo-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-          <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-lg group-hover:text-indigo-400 transition-colors">Reading</h3>
-              <span class="font-mono text-[10px] text-indigo-400 mt-1 block">Click to view Literary Portfolio →</span>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 text-indigo-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-white text-lg group-hover:text-indigo-400 transition-colors">Reading</h3>
+            <span class="font-mono text-[10px] text-indigo-400 mt-1 block">Click to view Literary Portfolio →</span>
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_reading.png" alt="Reading Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-          </div>
+          <i data-lucide="external-link" class="w-5 h-5 text-indigo-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </div>
+        <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+          <img src="./images/Main_Page_Images/hobby_reading.png" alt="Reading Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+        </div>
         </a>
 
         <!-- 5. Coin Collection -->
         <a href="Sub_Pages/Coins.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-yellow-500/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-          <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-lg group-hover:text-yellow-400 transition-colors">Coin Collection</h3>
-              <span class="font-mono text-[10px] text-yellow-400 mt-1 block">Click to view Numismatic Vault →</span>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 text-yellow-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-white text-lg group-hover:text-yellow-400 transition-colors">Coin Collection</h3>
+            <span class="font-mono text-[10px] text-yellow-400 mt-1 block">Click to view Numismatic Vault →</span>
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_coins.png" alt="Coin Collection Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-          </div>
+          <i data-lucide="external-link" class="w-5 h-5 text-yellow-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </div>
+        <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+          <img src="./images/Main_Page_Images/hobby_coins.png" alt="Coin Collection Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+        </div>
         </a>
 
         <!-- 6. Rubik's Cube & Puzzles -->
         <a href="Sub_Pages/Puzzle.html" class="block h-[380px] bg-slate-900 border border-slate-800 hover:border-rose-400/50 rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-          <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-lg group-hover:text-rose-400 transition-colors">Speedcubing & Puzzles</h3>
-              <span class="font-mono text-[10px] text-rose-400 mt-1 block">Click to view Puzzle Hub →</span>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 text-rose-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <div class="p-4 bg-slate-900 border-b border-slate-800 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-white text-lg group-hover:text-rose-400 transition-colors">Speedcubing & Puzzles</h3>
+            <span class="font-mono text-[10px] text-rose-400 mt-1 block">Click to view Puzzle Hub →</span>
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/3_3_Cube.jpg" alt="Rubik's Cube Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-          </div>
+          <i data-lucide="external-link" class="w-5 h-5 text-rose-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </div>
+        <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+          <img src="./images/Main_Page_Images/3_3_Cube.jpg" alt="Rubik's Cube Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+        </div>
         </a>
 
     </div>
@@ -1136,54 +1134,54 @@
         <p class="font-sans text-slate-400 text-base sm:text-lg">Case studies of engineered solutions and successful enterprise deployments. (Click cards to spin)</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
          
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
-          <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
-              <div>
-                <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
-                  <img src="./images/Main_Page_Images/project_intune_1781110786338.png" alt="VDI Migration (Windows 7 to 10)" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_01</div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>VDI Migration (Windows 7 to 10)</span>
-                    <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
-                  </h3>
-                  <p class="font-sans text-slate-400 text-sm leading-relaxed">
-                    Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability for the global workforce.
-                  </p>
-                </div>
+        <div class="flip-card-inner w-full h-full">
+          <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-video overflow-hidden border-b border-slate-900 bg-slate-900">
+                <img src="./images/Main_Page_Images/project_intune_1781110786338.png" alt="VDI Migration (Windows 7 to 10)" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-slate-800 backdrop-blur-sm rounded text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_01</div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                  <span>VDI Migration (Windows 7 to 10)</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-500"></i>
+                </h3>
+                <p class="font-sans text-slate-400 text-sm leading-relaxed">
+                  Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability for the global workforce.
+                </p>
+              </div>
+          </div>
+          <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+        </div>
+        <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
+          <div class="space-y-4 overflow-y-auto pr-1">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+              <p class="text-white text-sm font-semibold mt-0.5">Duration: 6 Months</p>
             </div>
-            <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
-          </div>
-          <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left">
-            <div class="space-y-4 overflow-y-auto pr-1">
-              <div>
-                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                <p class="text-white text-sm font-semibold mt-0.5">Duration: 6 Months</p>
-              </div>
-              <div>
-                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                <p class="text-slate-300 text-xs leading-relaxed">Successfully resolved migration-related driver and resource issues for 3,000+ VDIs, ensuring a smooth transition to modern OS standards..</p>
-              </div>
-              <div>
-                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                <p class="text-slate-300 text-xs font-mono mt-0.5">VMware Horizon, AppVolumes, vSphere</p>
-              </div>
-              <div>
-                <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                <p class="text-slate-300 text-xs leading-relaxed">Old legacy application needs to be tested with never versiona and OS compatibility.</p>
-              </div>
-          </div>
-          <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Successfully resolved migration-related driver and resource issues for 3,000+ VDIs, ensuring a smooth transition to modern OS standards..</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+              <p class="text-slate-300 text-xs font-mono mt-0.5">VMware Horizon, AppVolumes, vSphere</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+              <p class="text-slate-300 text-xs leading-relaxed">Old legacy application needs to be tested with never versiona and OS compatibility.</p>
+            </div>
         </div>
-        </div>
+        <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
+        </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1226,9 +1224,9 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1271,9 +1269,9 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1316,9 +1314,9 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1361,9 +1359,9 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1406,9 +1404,9 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1451,9 +1449,9 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1496,9 +1494,9 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
 
-      <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
         <div class="flip-card-inner w-full h-full">
           <div class="flip-card-front bg-slate-950 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div>
@@ -1541,7 +1539,7 @@
         <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
       </div>
         </div>
-      </div>
+        </div>
         
     </div>
     </div>
@@ -1639,20 +1637,20 @@
         </div>
 
         <div class="space-y-2">
-          <label for="direct_subject" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Subject</label>
-          <input id="direct_subject" type="text" placeholder="Consultation Request" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
+        <label for="direct_subject" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Subject</label>
+        <input id="direct_subject" type="text" placeholder="Consultation Request" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none" />
         </div>
 
         <div class="space-y-2">
-          <label for="direct_message" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Message</label>
-          <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none resize-none"></textarea>
+        <label for="direct_message" class="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider block">Message</label>
+        <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-slate-950 border border-slate-800 focus:border-sky-400 px-4 py-3 rounded text-sm text-white placeholder-slate-600 transition-colors focus:outline-none resize-none"></textarea>
         </div>
 
         <div class="pt-2">
-          <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-sky-400 hover:bg-sky-500 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded shadow transition-all duration-200 active:scale-95 cursor-pointer">
-            <i data-lucide="mail" class="w-4 h-4"></i>
-            <span>Send Email</span>
-          </button>
+        <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-sky-400 hover:bg-sky-500 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded shadow transition-all duration-200 active:scale-95 cursor-pointer">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>Send Email</span>
+        </button>
         </div>
 
         <!-- Dynamic Success Notification Box -->
@@ -1674,15 +1672,11 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-3.5 text-center md:text-left">
-        <div class="p-2 bg-slate-900 border border-slate-800 rounded">
-          <i data-lucide="shield-check" class="w-5 h-5 text-sky-400"></i>
-        </div>
         <div class="flex flex-col items-start">
-          <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
-          <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">
-            © 2026. All Rights Reserved. Engineered with Precision.
-        </span>
-
+          <span class="font-sans font-extrabold text-sm text-white flex items-center gap-1.5">
+            Akash Nagapure© 2026. All Rights Reserved. Engineered with Precision.
+            <img src="public/Main_page_data/Logo.png" alt="Logo" class="w-5 h-5 object-contain inline-block ml-1 filter drop-shadow-[0_0_4px_rgba(56,189,248,0.5)] align-middle" onerror="this.style.display='none';" />
+          </span>
         </div>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-mono text-xs">
