@@ -155,8 +155,8 @@
     <div class="flex items-center justify-between h-14">
       <div class="flex items-center space-x-3">
         <a href="#home" class="flex items-center space-x-3 group cursor-pointer" onclick="scrollToSection(event, 'home')">
-          <div class="w-10 h-10 rounded-lg overflow-hidden border border-sky-500/40 shadow-sm flex items-center justify-center bg-slate-900 shrink-0">
-            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shrink-0 bg-transparent">
+            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex flex-col">
             <span class="font-sans font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-none">
@@ -167,12 +167,6 @@
             </span>
           </div>
         </a>
-
-        <!-- Dark / White Theme Toggle Switch -->
-        <button onclick="toggleTheme()" class="ml-3 p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all shadow-sm" aria-label="Toggle Theme" title="Switch Theme">
-          <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-          <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        </button>
       </div>
 
       <div class="hidden lg:flex items-center space-x-1">
@@ -187,9 +181,19 @@
         <a href="#projects" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'projects')">Projects</a>
         <a href="#blogs" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'blogs')">Blogs</a>
         <a href="#contact" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'contact')">Contact</a>
+        
+        <!-- Dark / White Theme Toggle Switch Moved to End of Nav -->
+        <button onclick="toggleTheme()" class="ml-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all shadow-sm" aria-label="Toggle Theme" title="Switch Theme">
+          <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
       </div>
 
-      <div class="flex items-center lg:hidden">
+      <div class="flex items-center space-x-2 lg:hidden">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all shadow-sm" aria-label="Toggle Theme" title="Switch Theme">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
         <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Toggle Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
@@ -1689,8 +1693,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-3.5 text-center md:text-left">
-        <div class="p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded shadow-sm">
-          <i data-lucide="shield-check" class="w-5 h-5 text-sky-600 dark:text-sky-400"></i>
+        <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shrink-0 bg-transparent">
+          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col items-start">
           <span class="font-sans font-extrabold text-sm text-slate-900 dark:text-white">Akash Nagapure</span>
