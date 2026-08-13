@@ -58,7 +58,7 @@
     .inventory-flip-card {
         perspective: 1200px;
         user-select: none;
-        min-height: 380px;
+        min-height: 440px;
         width: 100%;
     }
     .inventory-flip-inner {
@@ -133,9 +133,9 @@
 <header class="w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)] relative">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
-        <!-- Brand Title with Updated Logo Graphic -->
-        <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3 flex-shrink-0 group">
-            <div class="w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/40 shadow-[0_0_15px_rgba(168,85,247,0.25)] group-hover:scale-105 transition-transform overflow-hidden relative p-1">
+        <!-- Brand Title with Bigger Updated Logo Graphic -->
+        <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3.5 flex-shrink-0 group">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/40 shadow-[0_0_20px_rgba(168,85,247,0.3)] group-hover:scale-105 transition-transform overflow-hidden relative p-1.5">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain filter drop-shadow">
                     <defs>
                         <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -144,7 +144,6 @@
                             <stop offset="100%" stop-color="#fb923c"/>
                         </linearGradient>
                     </defs>
-                    <!-- Monogram 'AN' stylized line art matching user request -->
                     <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="url(#logoGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
@@ -154,11 +153,8 @@
             </span>
         </a>
 
-        <!-- Desktop Horizontally Scrollable Menu -->
+        <!-- Desktop Horizontally Scrollable Menu (Main Hub Tab Removed) -->
         <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
-            <a href="/" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
-                <span class="material-symbols-outlined text-sm">home</span> Main Hub
-            </a>
             <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Overview</a>
             <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Banknotes</a>
             <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Proof &amp; UNC Sets</a>
@@ -179,9 +175,6 @@
 
     <!-- Mobile Slide-down Drawer -->
     <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-amber-500/20 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
-        <a href="/" class="block font-label-caps text-xs text-amber-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
-        </a>
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Overview</a>
         <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Banknotes</a>
         <a href="#special-commemorative" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Proof &amp; UNC Sets</a>
@@ -198,9 +191,6 @@
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
     <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-amber-500/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
-        <a href="/" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
-            <span class="material-symbols-outlined text-sm">home</span> Main Site Hub
-        </a>
         <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">analytics</span> Overview
         </a>
@@ -330,7 +320,7 @@
 
                 <div class="w-full space-y-3">
                     <div class="w-full h-80 sm:h-96 md:h-[450px] rounded-xl border-2 border-amber-500/40 bg-black/60 overflow-hidden relative shadow-2xl group">
-                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="public/images/Notes_And_Coins/maharan.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="../images/Notes_And_Coins/maharan.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         <span class="absolute top-3 right-3 text-[10px] font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded uppercase shadow-lg tracking-wider">OFFICIAL MINT FOLDER SHOWCASE</span>
                         <span class="absolute bottom-3 left-3 text-[9px] font-bold bg-black/80 px-2 py-1 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
@@ -561,7 +551,7 @@
                 </h4>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees -->
+                    <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees (Corrected Image Path) -->
                     <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                         <div class="inventory-flip-inner">
                             <!-- FRONT SIDE -->
@@ -571,12 +561,14 @@
                                         <h4 class="font-bold text-amber-200 text-base sm:text-lg">₹2 Dr. Syama P. Mookerjee</h4>
                                         <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                     </div>
-                                    <div class="w-full h-32 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
-                                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="public/images/Notes_And_Coins/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    
+                                    <div class="w-full h-44 sm:h-52 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
+                                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-cover rounded" src="../images/Notes_And_Coins/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                         <span class="absolute top-2 left-2 text-[8px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded uppercase shadow">Commemorative</span>
                                         <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                         <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                                     </div>
+
                                     <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
                                         <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 2 Rupees</div>
                                         <div><strong class="text-slate-400 block text-[9px]">Years:</strong> 2001 - 2013</div>
@@ -618,7 +610,7 @@
                     </div>
 
                     <!-- Placeholder for Second Coin in Republic Row -->
-                    <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[350px]">
+                    <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[440px]">
                         <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
                         <h4 class="font-bold text-slate-400 text-sm">Next Republic Coin Slot</h4>
                         <p class="text-[11px] text-slate-500 mt-1">Ready for pairing with another modern commemorative piece.</p>
@@ -703,7 +695,7 @@
             </div>
 
             <!-- Placeholder for Second Foreign Coin slot -->
-            <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[350px]">
+            <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[440px]">
                 <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
                 <h4 class="font-bold text-slate-400 text-sm">Next Foreign Coin Slot</h4>
                 <p class="text-[11px] text-slate-500 mt-1">Ready for cataloging international currency additions.</p>
@@ -844,7 +836,7 @@
 <footer class="w-full py-8 sm:py-12 bg-surface-dim border-t border-white/5 text-center">
     <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2">
         <div class="flex items-center gap-2">
-            <div class="w-5 h-5 rounded flex items-center justify-center bg-black border border-purple-500/40 p-0.5">
+            <div class="w-6 h-6 rounded flex items-center justify-center bg-black border border-purple-500/40 p-0.5">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
                     <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
