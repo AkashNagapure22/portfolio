@@ -50,13 +50,14 @@
       padding-top: 0 !important;
     }
 
-    /* Seamless Logo Blending to remove white bounding box */
-    .logo-blend {
+    /* Seamless adaptive logo background removal & contrast enhancement */
+    .logo-adaptive {
       mix-blend-mode: multiply;
+      filter: contrast(1.2);
     }
-    .dark .logo-blend {
+    .dark .logo-adaptive {
       mix-blend-mode: screen;
-      filter: brightness(1.2) contrast(1.1);
+      filter: invert(1) brightness(1.8) contrast(1.5);
     }
 
     /* Construction Banner Animation */
@@ -165,7 +166,7 @@
       <div class="flex items-center space-x-3">
         <a href="#home" class="flex items-center space-x-3 group cursor-pointer" onclick="scrollToSection(event, 'home')">
           <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-blend" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-adaptive" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex flex-col">
             <span class="font-sans font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-none">
@@ -1703,7 +1704,7 @@
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-3.5 text-center md:text-left">
         <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-blend" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-adaptive" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col items-start">
           <span class="font-sans font-extrabold text-sm text-slate-900 dark:text-white">Akash Nagapure</span>
