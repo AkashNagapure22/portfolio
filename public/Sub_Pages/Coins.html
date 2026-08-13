@@ -58,7 +58,7 @@
     .inventory-flip-card {
         perspective: 1200px;
         user-select: none;
-        min-height: 440px;
+        min-height: 380px;
         width: 100%;
     }
     .inventory-flip-inner {
@@ -133,9 +133,9 @@
 <header class="w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)] relative">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
-        <!-- Brand Title with Bigger Updated Logo Graphic -->
-        <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3.5 flex-shrink-0 group">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/40 shadow-[0_0_20px_rgba(168,85,247,0.3)] group-hover:scale-105 transition-transform overflow-hidden relative p-1.5">
+        <!-- Brand Title with Big Updated Logo Graphic -->
+        <a href="#stats" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-4 flex-shrink-0 group">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/40 shadow-[0_0_25px_rgba(168,85,247,0.4)] group-hover:scale-105 transition-transform overflow-hidden relative p-2">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain filter drop-shadow">
                     <defs>
                         <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -148,8 +148,8 @@
                 </svg>
             </div>
             <span class="flex flex-col">
-                <span class="text-sm sm:text-base font-extrabold tracking-tight text-amber-200">Akash Nagapure</span>
-                <span class="text-[9px] uppercase tracking-widest text-amber-400/80 font-mono">Numismatic Vault</span>
+                <span class="text-base sm:text-lg font-extrabold tracking-tight text-amber-200">Akash Nagapure</span>
+                <span class="text-[10px] uppercase tracking-widest text-amber-400/80 font-mono">Numismatic Vault</span>
             </span>
         </a>
 
@@ -319,9 +319,9 @@
                 </div>
 
                 <div class="w-full space-y-3">
-                    <div class="w-full h-80 sm:h-96 md:h-[450px] rounded-xl border-2 border-amber-500/40 bg-black/60 overflow-hidden relative shadow-2xl group">
-                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="../images/Notes_And_Coins/maharana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div class="w-full h-80 sm:h-96 md:h-[450px] rounded-xl border-2 border-amber-500/40 bg-black/60 overflow-hidden relative shadow-2xl group flex items-center justify-center p-4">
+                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="../images/Notes_And_Coins/maharana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
                         <span class="absolute top-3 right-3 text-[10px] font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded uppercase shadow-lg tracking-wider">OFFICIAL MINT FOLDER SHOWCASE</span>
                         <span class="absolute bottom-3 left-3 text-[9px] font-bold bg-black/80 px-2 py-1 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                         <span class="absolute bottom-3 right-3 text-[9px] font-bold bg-black/80 px-2 py-1 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
@@ -394,11 +394,6 @@
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                                 </div>
-                                <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
-                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong><span class="text-slate-200">Karshapana</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong><span class="text-slate-200">300 BC</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong><span class="text-slate-200">Silver</span></div>
-                                </div>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/5">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -414,6 +409,9 @@
                                     <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> Karshapana</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong> 300 BC</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Silver</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Issuer:</strong> Maurya Empire</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 3.4 g</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Pataliputra</div>
@@ -462,11 +460,6 @@
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                                 </div>
-                                <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
-                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1/4 Rupee</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong> 1862</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Silver</div>
-                                </div>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/5">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available</span>
@@ -477,10 +470,13 @@
                         <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-sm">Historical Context</h4>
+                                    <h4 class="font-bold text-amber-300 text-sm">Historical Context &amp; Specs</h4>
                                     <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1/4 Rupee</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Year:</strong> 1862</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Silver</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Calcutta</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Composition:</strong> 0.916 Silver</div>
                                 </div>
@@ -505,11 +501,6 @@
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
                                 </div>
-                                <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
-                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1 Pice</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Era:</strong> Pre-1947</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Bronze</div>
-                                </div>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/5">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available</span>
@@ -520,10 +511,13 @@
                         <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-sm">Historical Context</h4>
+                                    <h4 class="font-bold text-amber-300 text-sm">Historical Context &amp; Specs</h4>
                                     <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1 Pice</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Era:</strong> Pre-1947</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Bronze</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Feature:</strong> Holed / Crown Issue</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Fractional Coinage</div>
                                 </div>
@@ -551,7 +545,7 @@
                 </h4>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees (Corrected Image Path) -->
+                    <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees (Corrected Image Path & Scaled Image) -->
                     <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                         <div class="inventory-flip-inner">
                             <!-- FRONT SIDE -->
@@ -562,17 +556,11 @@
                                         <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                     </div>
                                     
-                                    <div class="w-full h-44 sm:h-52 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
-                                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-cover rounded" src="../images/Notes_And_Coins/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <div class="w-full h-36 sm:h-40 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
+                                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                         <span class="absolute top-2 left-2 text-[8px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded uppercase shadow">Commemorative</span>
                                         <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                         <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
-                                    </div>
-
-                                    <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
-                                        <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 2 Rupees</div>
-                                        <div><strong class="text-slate-400 block text-[9px]">Years:</strong> 2001 - 2013</div>
-                                        <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Cu-Ni</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/5">
@@ -589,6 +577,9 @@
                                         <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
                                     </div>
                                     <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-2.5 rounded border border-white/5">
+                                        <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 2 Rupees</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Years:</strong> 2001 - 2013</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Cu-Ni</div>
                                         <div><strong class="text-slate-400 block text-[9px]">Issuer:</strong> India</div>
                                         <div><strong class="text-slate-400 block text-[9px]">Period:</strong> Republic (1950-date)</div>
                                         <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 6.24 g</div>
@@ -610,7 +601,7 @@
                     </div>
 
                     <!-- Placeholder for Second Coin in Republic Row -->
-                    <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[440px]">
+                    <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[380px]">
                         <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
                         <h4 class="font-bold text-slate-400 text-sm">Next Republic Coin Slot</h4>
                         <p class="text-[11px] text-slate-500 mt-1">Ready for pairing with another modern commemorative piece.</p>
@@ -638,67 +629,291 @@
         </div>
     </section>
 
-    <!-- SECTION: FOREIGN COIN INVENTORY -->
+    <!-- SECTION: FOREIGN COIN INVENTORY (Europe & Hungary Sub-sections) -->
     <section id="foreign-coins" class="scroll-mt-28 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">public</span>
             <div>
                 <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">FOREIGN COIN INVENTORY (INTERNATIONAL VAULT)</h2>
-                <p class="text-xs text-slate-400">Global pieces from Europe, UK, Hungary, and international territories</p>
+                <p class="text-xs text-slate-400">Global pieces categorized by regions: Europe &amp; Hungary</p>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Foreign Coin Item 1 -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <!-- FRONT SIDE -->
-                    <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
-                                <h4 class="font-bold text-amber-200 text-base sm:text-lg">Hungarian Forint / Euro Specimen</h4>
-                                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+        <!-- CATEGORY: EUROPE -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">public</span>
+                    Europe (Euro Zone Currency)
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1 Euro -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base">1 Euro Specimen</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="1 Euro" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                </div>
                             </div>
-                            <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
-                                <img alt="Foreign Coin Specimen" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                                <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
-                                <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
-                            </div>
-                            <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
-                                <div><strong class="text-slate-400 block text-[9px]">Origin:</strong> Hungary / EU</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Circulating</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Cataloged</div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between pt-2 border-t border-white/5">
-                            <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
-                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Back Details →</span>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">1 Euro Specs</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1 Euro</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Region:</strong> Euro Zone</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Composition:</strong> Bi-metallic</div>
+                                </div>
+                                <p class="text-xs text-slate-300">Standard European Union circulation coinage featuring the common European side.</p>
+                            </div>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">European Acquisition</span>
                         </div>
                     </div>
+                </div>
 
-                    <!-- BACK SIDE -->
-                    <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-amber-300 text-sm">International Provenance</h4>
-                                <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                <!-- 2 Euro -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base">2 Euro Specimen</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="2 Euro" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
-                                <div><strong class="text-slate-400 block text-[9px]">Region:</strong> Central Europe</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Composition:</strong> Mixed Alloy</div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
                             </div>
-                            <p class="text-xs text-slate-300">Representative piece from European international acquisition series, curated for global numismatic variance.</p>
                         </div>
-                        <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">Global Acquisition</span>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">2 Euro Specs</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 2 Euro</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Region:</strong> Euro Zone</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Composition:</strong> Bi-metallic</div>
+                                </div>
+                                <p class="text-xs text-slate-300">High-denomination bi-metallic coin representing European monetary union.</p>
+                            </div>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">European Acquisition</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 50 Euro Cent -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base">50 Euro Cent</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="50 Euro Cent" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            </div>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">50 Euro Cent Specs</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 50 Cent</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Composition:</strong> Nordic Gold</div>
+                                </div>
+                                <p class="text-xs text-slate-300">North Gold alloy fractional euro coin minted for pan-European distribution.</p>
+                            </div>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">European Acquisition</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10 Euro Cent -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base">10 Euro Cent</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="10 Euro Cent" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            </div>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">10 Euro Cent Specs</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 10 Cent</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Composition:</strong> Nordic Gold</div>
+                                </div>
+                                <p class="text-xs text-slate-300">Small denomination fractional euro currency piece.</p>
+                            </div>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">European Acquisition</span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Placeholder for Second Foreign Coin slot -->
-            <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[440px]">
-                <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
-                <h4 class="font-bold text-slate-400 text-sm">Next Foreign Coin Slot</h4>
-                <p class="text-[11px] text-slate-500 mt-1">Ready for cataloging international currency additions.</p>
+        <!-- CATEGORY: HUNGARY -->
+        <div class="space-y-6">
+            <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
+                <h3 class="text-lg sm:text-xl font-bold text-amber-300 italic flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400">payments</span>
+                    Hungary (Hungarian Forint)
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 10 Forint -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base">10 Forint</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="10 Forint" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            </div>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">10 Forint Specs</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 10 Forint</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Issuer:</strong> Hungary</div>
+                                </div>
+                                <p class="text-xs text-slate-300">Standard circulating Hungarian Forint coin issued by Magyar Nemzeti Bank.</p>
+                            </div>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">Central European Vault</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 20 Forint -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base">20 Forint</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="20 Forint" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            </div>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">20 Forint Specs</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 20 Forint</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Issuer:</strong> Hungary</div>
+                                </div>
+                                <p class="text-xs text-slate-300">Circulating coin featuring traditional Hungarian architectural motifs or coat of arms.</p>
+                            </div>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">Central European Vault</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 50 Forint -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base">50 Forint</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="50 Forint" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            </div>
+                        </div>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">50 Forint Specs</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 50 Forint</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Issuer:</strong> Hungary</div>
+                                </div>
+                                <p class="text-xs text-slate-300">Hungarian Forint coin depicting wildlife (Falcon) on the reverse side.</p>
+                            </div>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">Central European Vault</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
