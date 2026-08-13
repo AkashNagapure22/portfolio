@@ -129,15 +129,13 @@
 })();
 </script>
 
-<!-- Navigation Shell -->
-<nav class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)]">
+<!-- Navigation Shell (Fixed position changed to absolute/sticky or properly flowing so it scrolls away if desired, or kept sticky without covering content) -->
+<header class="w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)] relative">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
         <!-- Brand Title with Logo Redirects to Main Site Index -->
         <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-2.5 flex-shrink-0 group">
-            <span class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(230,184,0,0.2)]">
-                <span class="material-symbols-outlined text-lg">monetization_on</span>
-            </span>
+            <img src="public/Main_page_data/Logo.png" alt="Logo" class="w-8 h-8 rounded-lg object-contain bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(230,184,0,0.2)]" onerror="this.src='images/placeholder.png'"/>
             <span class="flex flex-col">
                 <span class="text-sm sm:text-base font-extrabold tracking-tight text-amber-200">Akash Nagapure</span>
                 <span class="text-[9px] uppercase tracking-widest text-amber-400/80 font-mono">Numismatic Vault</span>
@@ -182,7 +180,7 @@
         <a href="#mint-marks" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Mint Marks &amp; Locations</a>
         <a href="#discussion" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2">Discussion &amp; Q&amp;A</a>
     </div>
-</nav>
+</header>
 
 <!-- Floating Fast Navigation / Scroll to Top Widget -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
@@ -224,7 +222,7 @@
     </div>
 </div>
 
-<main class="relative pt-24 md:pt-32 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
+<main class="relative pt-12 md:pt-16 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
 
     <!-- Dashboard Metrics -->
     <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-28">
@@ -390,7 +388,7 @@
                                     <h4 class="font-bold text-amber-200 text-base sm:text-lg">Mauryan Silver Karshapana</h4>
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip Card</span>
                                 </div>
-                                <div class="w-full h-40 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
                                     <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
@@ -458,7 +456,7 @@
                                     <h4 class="font-bold text-amber-200 text-base sm:text-lg">1862 Queen Victoria 1/4 Rupee</h4>
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
-                                <div class="w-full h-40 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
                                     <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
@@ -501,7 +499,7 @@
                                     <h4 class="font-bold text-amber-200 text-base sm:text-lg">British India 1 Pice</h4>
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
-                                <div class="w-full h-40 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
                                     <img alt="British India 1 Pice" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
                                     <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                     <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
@@ -563,7 +561,7 @@
                                         <h4 class="font-bold text-amber-200 text-base sm:text-lg">₹2 Dr. Syama P. Mookerjee</h4>
                                         <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                     </div>
-                                    <div class="w-full h-40 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
+                                    <div class="w-full h-32 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
                                         <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="public/images/Notes_And_Coins/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.src='images/placeholder.png'"/>
                                         <span class="absolute top-2 left-2 text-[8px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded uppercase shadow">Commemorative</span>
                                         <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
@@ -610,7 +608,7 @@
                     </div>
 
                     <!-- Placeholder for Second Coin in Republic Row -->
-                    <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[380px]">
+                    <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[350px]">
                         <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
                         <h4 class="font-bold text-slate-400 text-sm">Next Republic Coin Slot</h4>
                         <p class="text-[11px] text-slate-500 mt-1">Ready for pairing with another modern commemorative piece.</p>
@@ -649,7 +647,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Foreign Coin Item 1: Example Hungarian / European Coin -->
+            <!-- Foreign Coin Item 1 -->
             <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <!-- FRONT SIDE -->
@@ -659,7 +657,7 @@
                                 <h4 class="font-bold text-amber-200 text-base sm:text-lg">Hungarian Forint / Euro Specimen</h4>
                                 <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                             </div>
-                            <div class="w-full h-40 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                            <div class="w-full h-32 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
                                 <img alt="Foreign Coin Specimen" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
                                 <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                                 <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
@@ -695,7 +693,7 @@
             </div>
 
             <!-- Placeholder for Second Foreign Coin slot -->
-            <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[380px]">
+            <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[350px]">
                 <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
                 <h4 class="font-bold text-slate-400 text-sm">Next Foreign Coin Slot</h4>
                 <p class="text-[11px] text-slate-500 mt-1">Ready for cataloging international currency additions.</p>
@@ -834,8 +832,11 @@
 </main>
 
 <footer class="w-full py-8 sm:py-12 bg-surface-dim border-t border-white/5 text-center">
-    <div class="flex flex-col items-center justify-center text-center w-full px-4">
-        <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2">
+        <div class="flex items-center gap-2">
+            <img src="public/Main_page_data/Logo.png" alt="Logo" class="w-6 h-6 rounded object-contain bg-amber-500/10 border border-amber-500/30" onerror="this.style.display='none'"/>
+            <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
+        </div>
         <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">© 2026. All Rights Reserved. Cataloged with Precision.</span>
     </div>
 </footer>
@@ -857,7 +858,6 @@
                 container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet. Be the first to start the discussion!</p>';
                 return;
             }
-            // Render comments if available...
         } catch (err) {
             container.innerHTML = '<p class="text-slate-400 text-sm">No active comment server detected. Discussion thread initialized locally.</p>';
         }
