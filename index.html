@@ -155,12 +155,12 @@
     <div class="flex items-center justify-between h-14">
       <div class="flex items-center space-x-3">
         <a href="#home" class="flex items-center space-x-3 group cursor-pointer" onclick="scrollToSection(event, 'home')">
-          <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shrink-0 bg-transparent">
-            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent">
+            <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain dark:brightness-125 dark:contrast-125 transition-all" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex flex-col">
             <span class="font-sans font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-none">
-              Akash Nagapure
+              AKASH NAGAPURE
             </span>
             <span class="font-mono text-[10px] text-sky-600 dark:text-sky-400 font-medium tracking-widest mt-1">
               Fleet Architect
@@ -182,7 +182,7 @@
         <a href="#blogs" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'blogs')">Blogs</a>
         <a href="#contact" class="nav-item-link px-3 py-1.5 rounded-md font-sans text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50 border border-transparent" onclick="scrollToSection(event, 'contact')">Contact</a>
         
-        <!-- Dark / White Theme Toggle Switch Moved to End of Nav -->
+        <!-- Dark / White Theme Toggle Switch Moved to Last Position -->
         <button onclick="toggleTheme()" class="ml-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all shadow-sm" aria-label="Toggle Theme" title="Switch Theme">
           <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
@@ -1268,26 +1268,26 @@
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-600 dark:text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back bg-slate-100 dark:bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left shadow-md">
+            <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-6 rounded-lg flex flex-col justify-between text-left shadow-md">
               <div class="space-y-4 overflow-y-auto pr-1">
                 <div>
-                  <span class="text-[10px] font-mono text-sky-600 dark:text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-slate-900 dark:text-white text-sm font-semibold mt-0.5">Duration: 4 Months</p>
+                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
+                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 4 Months</p>
                 </div>
                 <div>
-                  <span class="text-[10px] font-mono text-sky-600 dark:text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-700 dark:text-slate-300 text-xs leading-relaxed">Slashed traditional hardware configuration tracks down from 4 hours into under 30 minutes, omitting physical tech staging benchmarks.</p>
+                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
+                  <p class="text-slate-300 text-xs leading-relaxed">Slashed traditional hardware configuration tracks down from 4 hours into under 30 minutes, omitting physical tech staging benchmarks.</p>
                 </div>
                 <div>
-                  <span class="text-[10px] font-mono text-sky-600 dark:text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-700 dark:text-slate-300 text-xs font-mono mt-0.5">Windows Autopilot, Advanced PowerShell System Staging, Win32 Wrappers</p>
+                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
+                  <p class="text-slate-300 text-xs font-mono mt-0.5">Windows Autopilot, Advanced PowerShell System Staging, Win32 Wrappers</p>
                 </div>
                 <div>
-                  <span class="text-[10px] font-mono text-sky-600 dark:text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-700 dark:text-slate-300 text-xs leading-relaxed">Enforcing structured application dependency sequences blocks potential timing exceptions during critical early Esp status checks.</p>
+                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
+                  <p class="text-slate-300 text-xs leading-relaxed">Enforcing structured application dependency sequences blocks potential timing exceptions during critical early Esp status checks.</p>
                 </div>
               </div>
-              <div class="pt-4 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
+              <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">Click anywhere to flip front</div>
             </div>
           </div>
         </div>
@@ -1693,8 +1693,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-3.5 text-center md:text-left">
-        <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shrink-0 bg-transparent">
-          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent">
+          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain filter dark:brightness-125 dark:contrast-125 transition-all" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col items-start">
           <span class="font-sans font-extrabold text-sm text-slate-900 dark:text-white">Akash Nagapure</span>
