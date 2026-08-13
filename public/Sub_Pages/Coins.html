@@ -39,7 +39,7 @@
 </script>
 
 <style>
-    html { scroll-padding-top: 80px; }
+    html { scroll-padding-top: 100px; scroll-behavior: smooth; }
     
     ::-webkit-scrollbar { height: 4px; width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -58,30 +58,32 @@
     .inventory-flip-card {
         perspective: 1200px;
         user-select: none;
-        min-height: 280px;
+        min-height: 420px;
+        width: 100%;
     }
     .inventory-flip-inner {
         position: relative;
         width: 100%;
         height: 100%;
-        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform-style: preserve-3d;
     }
     .inventory-flip-card.flipped .inventory-flip-inner {
         transform: rotateY(180deg);
     }
     .inventory-flip-front, .inventory-flip-back {
+        position: absolute;
         width: 100%;
         height: 100%;
+        top: 0;
+        left: 0;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         border-radius: 0.75rem;
     }
     .inventory-flip-back {
-        position: absolute;
-        top: 0;
-        left: 0;
         transform: rotateY(180deg);
+        overflow-y: auto;
     }
 
     .carousel-slide { display: none; }
@@ -131,18 +133,23 @@
 <nav class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-amber-500/20 shadow-[0_0_20px_rgba(230,184,0,0.15)]">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
-        <!-- Brand Title Redirects to Main Site Index -->
-        <a href="/" class="font-headline-sm text-base sm:text-2xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-2 flex-shrink-0 group">
-            <span class="material-symbols-outlined text-amber-400 text-xl sm:text-2xl group-hover:scale-110 transition-transform">monetization_on</span>
-            <span>Akash Nagapure</span>
+        <!-- Brand Title with Logo Redirects to Main Site Index -->
+        <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-2.5 flex-shrink-0 group">
+            <span class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(230,184,0,0.2)]">
+                <span class="material-symbols-outlined text-lg">monetization_on</span>
+            </span>
+            <span class="flex flex-col">
+                <span class="text-sm sm:text-base font-extrabold tracking-tight text-amber-200">Akash Nagapure</span>
+                <span class="text-[9px] uppercase tracking-widest text-amber-400/80 font-mono">Numismatic Vault</span>
+            </span>
         </a>
 
-        <!-- Desktop Horizontally Scrollable Menu -->
+        <!-- Desktop Horizontally Scrollable Menu with proper scroll anchors -->
         <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
             <a href="/" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
                 <span class="material-symbols-outlined text-sm">home</span> Main Hub
             </a>
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link active-link py-1">Overview</a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Overview</a>
             <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Banknotes</a>
             <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Proof &amp; UNC Sets</a>
             <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Indian Coins</a>
@@ -220,7 +227,7 @@
 <main class="relative pt-24 md:pt-32 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
 
     <!-- Dashboard Metrics -->
-    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-24">
+    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-28">
         <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
             <span class="material-symbols-outlined text-amber-400 text-3xl sm:text-4xl mb-1 sm:mb-2">paid</span>
             <div class="font-headline-md text-2xl sm:text-3xl text-amber-400 font-bold">85+</div>
@@ -244,7 +251,7 @@
     </section>
 
     <!-- Banknote Collection Carousel -->
-    <section id="crown-jewels" class="overflow-hidden scroll-mt-24">
+    <section id="crown-jewels" class="overflow-hidden scroll-mt-28">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">CROWN JEWELS — BANKNOTE COLLECTION</h2>
             <div class="h-px flex-grow bg-white/10"></div>
@@ -289,7 +296,7 @@
     </section>
 
     <!-- Special Commemorative Sets -->
-    <section id="special-commemorative" class="scroll-mt-24 space-y-8">
+    <section id="special-commemorative" class="scroll-mt-28 space-y-8">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">workspace_premium</span>
             <div>
@@ -355,12 +362,12 @@
     </section>
 
     <!-- SECTION: Categorized Indian Coin Inventory -->
-    <section id="indian-coins" class="scroll-mt-24 space-y-16">
+    <section id="indian-coins" class="scroll-mt-28 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">collections_bookmark</span>
             <div>
                 <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold">INDIAN COIN INVENTORY (BY PERIODS)</h2>
-                <p class="text-xs text-slate-400">Click any card to flip and view the reverse side with historical context &amp; minting details</p>
+                <p class="text-xs text-slate-400">Click any card to flip and view complete details &amp; historical context</p>
             </div>
         </div>
 
@@ -373,54 +380,63 @@
                 </h3>
             </div>
 
-            <div class="grid grid-cols-1 gap-6">
+            <!-- 2-Column Row Layout for Coins -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Coin 1: Mauryan Silver Karshapana -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-amber-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                            <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(230,184,0,0.15)] relative">
-                                <img alt="Mauryan Silver Karshapana Obverse and Reverse" class="w-full h-full object-contain bg-slate-200 rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
-                                <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
-                                <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
-                            </div>
-                            <div class="flex-grow space-y-3 w-full">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-200 text-lg sm:text-xl">Mauryan Silver Karshapana</h4>
-                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                        <!-- FRONT SIDE -->
+                        <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                    <h4 class="font-bold text-amber-200 text-base sm:text-lg">Mauryan Silver Karshapana</h4>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip Card</span>
                                 </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div class="w-full h-40 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                    <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
                                     <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong><span class="text-slate-200">Karshapana</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Issuer / Ruler:</strong><span class="text-amber-300">Maurya Empire</span></div>
                                     <div><strong class="text-slate-400 block text-[9px]">Year:</strong><span class="text-slate-200">300 BC</span></div>
                                     <div><strong class="text-slate-400 block text-[9px]">Metal:</strong><span class="text-slate-200">Silver</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Weight:</strong><span class="text-slate-200">3.4 g</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong><span class="text-amber-300">Ancient Pataliputra</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">Available</span></div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Market Value:</strong><span class="text-amber-400 font-bold">Scarce Antique</span></div>
                                 </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Back Details →</span>
                             </div>
                         </div>
                         
-                        <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <!-- BACK SIDE -->
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                    <h4 class="font-bold text-amber-300 text-base sm:text-lg">Numismatic History &amp; Minting Context</h4>
-                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                                    <h4 class="font-bold text-amber-300 text-sm">Mauryan Karshapana — Full Specifications</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
                                 </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded">
-                                    <div><strong class="text-slate-400 block text-[9px]">Coin Type:</strong> Regular Circulation</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Occasion / Purpose:</strong> Trade &amp; Imperial Economy</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Mint Technique:</strong> Hand-Punched Flan</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Status:</strong> Historical Artifact</div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Issuer:</strong> Maurya Empire</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 3.4 g</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Pataliputra</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Technique:</strong> Hand-Punched</div>
                                 </div>
-                                <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                    <p><strong>Why It Was Minted:</strong> Struck as standardized currency across the Magadha/Mauryan territories under Chandragupta and Ashoka for empire-wide trade and army payroll.</p>
-                                    <p><strong>Design Symbolism:</strong> Features 5 official punches (Sun symbol of royalty, 3-arched hill with crescent, elephant, taurine, and branch/tree).</p>
+                                <div class="space-y-1.5 text-xs text-slate-300">
+                                    <p><strong>Historical Context:</strong> Struck as standardized currency across Magadha and Mauryan territories under Chandragupta and Ashoka for empire-wide trade and army payroll.</p>
+                                    <p><strong>Design Symbolism:</strong> Features 5 official punches including the Sun symbol of royalty and the 3-arched hill with crescent.</p>
                                 </div>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Verified Authentic Ancient Imperial Issue</span>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">Verified Authentic Ancient Imperial Issue</span>
                         </div>
                     </div>
+                </div>
+
+                <!-- Placeholder 2nd Coin slot in row if needed, or other ancient item -->
+                <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60">
+                    <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
+                    <h4 class="font-bold text-slate-400 text-sm">Next Ancient Inventory Slot</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">Ready for cataloging additional medieval or ancient artifacts.</p>
                 </div>
             </div>
         </div>
@@ -435,60 +451,88 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Colonial Item 1 -->
+                <!-- Colonial Item 1: 1862 Queen Victoria -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
                                     <h4 class="font-bold text-amber-200 text-base sm:text-lg">1862 Queen Victoria 1/4 Rupee</h4>
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div class="w-full h-40 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                    <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
                                     <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1/4 Rupee</div>
                                     <div><strong class="text-slate-400 block text-[9px]">Year:</strong> 1862</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Silver (0.916)</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Calcutta</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Silver</div>
                                 </div>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">British Crown Issue</span>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Back Details →</span>
+                            </div>
                         </div>
 
-                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
-                            <div class="space-y-2">
-                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Historical Context</h4>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">Historical Context</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Mint:</strong> Calcutta</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Composition:</strong> 0.916 Silver</div>
+                                </div>
                                 <p class="text-xs text-slate-300">Struck to mark the assumption of direct governance over India by Queen Victoria and the British Crown following the Government of India Act of 1858.</p>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-Independence Currency</span>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">British Crown Issue</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Colonial Item 2 -->
+                <!-- Colonial Item 2: British India 1 Pice -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-5 border border-amber-500/20 flex flex-col justify-between">
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                            <div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
                                     <h4 class="font-bold text-amber-200 text-base sm:text-lg">British India 1 Pice</h4>
                                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
+                                <div class="w-full h-40 rounded-lg border border-amber-500/30 bg-black/50 overflow-hidden relative mb-3 flex items-center justify-center p-2">
+                                    <img alt="British India 1 Pice" class="w-full h-full object-contain rounded" src="images/placeholder.png" onerror="this.src='images/placeholder.png'"/>
+                                    <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                    <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
                                     <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 1 Pice</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Era:</strong> Pre-1947 Colonial</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Bronze / Copper</div>
-                                    <div><strong class="text-slate-400 block text-[9px]">Feature:</strong> Holed / Crown Issue</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Era:</strong> Pre-1947</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Bronze</div>
                                 </div>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Colonial Fractional Currency</span>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available</span>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Back Details →</span>
+                            </div>
                         </div>
 
-                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-900/98 flex flex-col justify-between">
-                            <div class="space-y-2">
-                                <h4 class="font-bold text-amber-300 text-sm border-b border-white/10 pb-1">Historical Context</h4>
+                        <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                    <h4 class="font-bold text-amber-300 text-sm">Historical Context</h4>
+                                    <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-3 rounded border border-white/5">
+                                    <div><strong class="text-slate-400 block text-[9px]">Feature:</strong> Holed / Crown Issue</div>
+                                    <div><strong class="text-slate-400 block text-[9px]">Type:</strong> Fractional Coinage</div>
+                                </div>
                                 <p class="text-xs text-slate-300">Standard fractional coinage issued during the British Raj for daily small-value transactions across the Indian subcontinent.</p>
                             </div>
-                            <span class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Pre-1947 British India</span>
+                            <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">Pre-1947 British India</span>
                         </div>
                     </div>
                 </div>
@@ -504,48 +548,74 @@
                 </h3>
             </div>
 
-            <div class="glass-card p-5 rounded-xl space-y-4">
+            <div class="space-y-4">
                 <h4 class="text-amber-200 font-bold text-sm border-b border-white/10 pb-2 flex items-center gap-2">
                     <span class="material-symbols-outlined text-amber-400 text-base">workspace_premium</span> Commemorative Issues
                 </h4>
                 
-                <!-- Dr. Syama Prasad Mookerjee 2 Rupees Commemorative Tile (Single Tile, No Rotation) -->
-                <div class="glass-card p-5 border border-amber-500/30 rounded-xl flex flex-col lg:flex-row gap-6 items-center bg-slate-900/90">
-                    <div class="w-full lg:w-80 sm:w-72 h-56 rounded-lg border-2 border-amber-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-2 relative shadow-[0_0_15px_rgba(230,184,0,0.15)]">
-                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain bg-slate-950 rounded" src="public/images/Notes_And_Coins/2 Rupees Dr. Syama P. Mookerjee.png" onerror="this.src='images/placeholder.png'"/>
-                        <span class="absolute top-2 left-2 text-[8px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded uppercase shadow">Commemorative</span>
-                        <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
-                        <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
+                <!-- 2-Column Row Layout including Dr. Syama Prasad Mookerjee 2 Rupees -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees (Flippable Card with Front Image/Basic Info and Back Detailed Info) -->
+                    <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="inventory-flip-inner">
+                            <!-- FRONT SIDE -->
+                            <div class="inventory-flip-front glass-card p-5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90">
+                                <div>
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+                                        <h4 class="font-bold text-amber-200 text-base sm:text-lg">₹2 Dr. Syama P. Mookerjee</h4>
+                                        <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                    </div>
+                                    <div class="w-full h-40 rounded-lg border border-amber-500/40 bg-slate-950 overflow-hidden relative mb-3 flex items-center justify-center p-2 shadow">
+                                        <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="public/images/Notes_And_Coins/2 Rupees Dr. Syama P. Mookerjee.png" onerror="this.src='images/placeholder.png'"/>
+                                        <span class="absolute top-2 left-2 text-[8px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded uppercase shadow">Commemorative</span>
+                                        <span class="absolute bottom-2 left-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
+                                        <span class="absolute bottom-2 right-2 text-[8px] font-bold bg-black/80 px-1.5 py-0.5 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2 text-xs bg-black/40 p-2.5 rounded-lg border border-white/5">
+                                        <div><strong class="text-slate-400 block text-[9px]">Denomination:</strong> 2 Rupees</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Years:</strong> 2001 - 2013</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Metal:</strong> Cu-Ni</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                                    <span class="text-[10px] text-emerald-400 font-bold">Status: In Collection</span>
+                                    <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Full Specs →</span>
+                                </div>
+                            </div>
+                            
+                            <!-- BACK SIDE -->
+                            <div class="inventory-flip-back glass-card p-5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between">
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                        <h4 class="font-bold text-amber-300 text-sm">Complete Specifications</h4>
+                                        <span class="text-[10px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 text-xs bg-black/50 p-2.5 rounded border border-white/5">
+                                        <div><strong class="text-slate-400 block text-[9px]">Issuer:</strong> India</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Period:</strong> Republic (1950-date)</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 6.24 g</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Diameter:</strong> 25.7 mm</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Thickness:</strong> 1.56 mm</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Shape:</strong> Hendecagonal (11-sided)</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Technique:</strong> Milled</div>
+                                        <div><strong class="text-slate-400 block text-[9px]">Edge:</strong> Plain</div>
+                                    </div>
+                                    <div class="space-y-1 text-xs text-slate-300">
+                                        <p><strong>Commemorative Issue:</strong> 100th Anniversary Birth of Dr. Syama P. Mookerjee.</p>
+                                        <p><strong>Obverse:</strong> Lion Capital of Ashoka Pillar with legends "भारत INDIA", "सत्यमेव जयते", and "रुपया 2 RUPEES".</p>
+                                        <p><strong>Reverse:</strong> Portrait of Dr. Syama Prasad Mookerjee, founder of Bharatiya Jana Sangh.</p>
+                                    </div>
+                                </div>
+                                <span class="text-[9px] text-amber-400 font-bold tracking-widest uppercase text-center pt-2">Republic India Commemorative Issue</span>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="flex-grow space-y-3 w-full">
-                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                            <h4 class="font-bold text-amber-200 text-lg sm:text-xl">₹2 Dr. Syama Prasad Mookerjee Centenary</h4>
-                            <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded border border-amber-500/30">Republic India Issue</span>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs bg-black/40 p-3.5 rounded-lg border border-white/5">
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Issuer:</strong><span class="text-slate-200">India</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Period:</strong><span class="text-slate-200">Republic (1950-date)</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Years Minted:</strong><span class="text-amber-300">2001 - 2013</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Value:</strong><span class="text-slate-200">2 Rupees (2 INR)</span></div>
 
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Composition:</strong><span class="text-slate-200">Copper-nickel</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Weight:</strong><span class="text-slate-200">6.24 g</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Diameter:</strong><span class="text-slate-200">25.7 mm</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Thickness:</strong><span class="text-slate-200">1.56 mm</span></div>
-
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Shape:</strong><span class="text-slate-200">Hendecagonal (11-sided)</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Technique:</strong><span class="text-slate-200">Milled</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Edge:</strong><span class="text-slate-200">Plain</span></div>
-                            <div><strong class="text-slate-400 block text-[9px] uppercase">Orientation:</strong><span class="text-slate-200">Medal alignment ↑↑</span></div>
-                        </div>
-
-                        <div class="space-y-1.5 text-xs text-slate-300 pt-1">
-                            <p><strong>Commemorative Issue:</strong> 100th Anniversary Birth of Dr. Syama P. Mookerjee (Series: Birth Anniversary of Dr. Syama P. Mookerjee).</p>
-                            <p><strong>Obverse:</strong> Lion Capital of Ashoka Pillar with legends "भारत INDIA", "सत्यमेव जयते", and "रुपया 2 RUPEES".</p>
-                            <p><strong>Reverse:</strong> Portrait of Dr. Syama Prasad Mookerjee, prominent Indian politician, thinker, and founder of the Bharatiya Jana Sangh, inscribed with "डॉ. श्यामा प्रसाद मुखर्जी / DR. SYAMA PRASAD MOOKERJEE" and "जन्मशती 2001 CENTENARY".</p>
-                        </div>
+                    <!-- Placeholder for Second Coin in Republic Row -->
+                    <div class="glass-card p-5 border border-amber-500/10 flex flex-col items-center justify-center text-center opacity-60 min-h-[420px]">
+                        <span class="material-symbols-outlined text-amber-400/50 text-4xl mb-2">add_circle</span>
+                        <h4 class="font-bold text-slate-400 text-sm">Next Republic Coin Slot</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">Ready for pairing with another modern commemorative piece.</p>
                     </div>
                 </div>
 
@@ -571,13 +641,13 @@
     </section>
 
     <!-- Target Hunt / Wishlist -->
-    <section id="wishlist" class="scroll-mt-24">
+    <section id="wishlist" class="scroll-mt-28">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">TARGET HUNT (FLIP FOR LOCATION &amp; DETAILS)</h2>
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
-            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
+            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" style="min-height: 280px;" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card overflow-hidden relative">
                         <img alt="Shivaji Maharaj Gold Hon" class="w-full h-full object-cover" src="images/placeholder.png"/>
@@ -603,7 +673,7 @@
     </section>
 
     <!-- Coin Valuation & Fake Detection Guides -->
-    <section id="valuation-guide" class="scroll-mt-24 space-y-8">
+    <section id="valuation-guide" class="scroll-mt-28 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">NUMISMATIC GUIDES &amp; AUTHENTICATION</h2>
             <div class="h-px flex-grow bg-white/10"></div>
@@ -628,7 +698,7 @@
     </section>
 
     <!-- Indian Mint Symbols & Locations -->
-    <section id="mint-marks" class="scroll-mt-24 space-y-8">
+    <section id="mint-marks" class="scroll-mt-28 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">INDIAN MINT SYMBOLS &amp; MINT LOCATIONS</h2>
             <div class="h-px flex-grow bg-white/10"></div>
@@ -649,7 +719,7 @@
     </section>
 
     <!-- THREADED DISCUSSION & COMMENTS SECTION -->
-    <section id="discussion" class="scroll-mt-24 border-t border-amber-500/20 pt-12 mt-16 space-y-8">
+    <section id="discussion" class="scroll-mt-28 border-t border-amber-500/20 pt-12 mt-16 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">DISCUSSION &amp; COLLECTOR Q&amp;A</h2>
             <div class="h-px flex-grow bg-white/10"></div>
