@@ -49,12 +49,6 @@
       padding-top: 0 !important;
     }
 
-    /* Vibrant Bold Logo Enhancements */
-    .logo-vibrant {
-      filter: saturate(1.8) contrast(1.4) brightness(1.1);
-      mix-blend-mode: screen;
-    }
-
     /* Construction Banner Animation */
     @keyframes scrollLeft {
       0% { transform: translateX(100%); }
@@ -152,9 +146,9 @@
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-12">
-      <a href="#home" class="flex items-center space-x-3 group cursor-pointer" onclick="scrollToSection(event, 'home')">
-        <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+      <a href="#home" class="flex items-center space-x-2 group cursor-pointer" onclick="scrollToSection(event, 'home')">
+        <div class="p-2 rounded-md bg-sky-950/80 border border-sky-400/30 text-sky-400 group-hover:border-sky-400 transition-all">
+          <i data-lucide="shield" class="w-5 h-5"></i>
         </div>
         <div class="flex flex-col">
           <span class="font-sans font-bold text-lg text-white tracking-tight leading-none">
@@ -474,6 +468,325 @@
           </div>
         </div>
       </div>
+      
+      <div id="trainings" class="border-t border-slate-800/80 pt-16 text-left">
+        <div class="flex items-center space-x-3 mb-8">
+          <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i>
+          <h3 class="font-sans font-bold text-xl text-white tracking-tight">Advanced Academy & Training Tracks</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">April 2026</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Azure Deep Dive : Complete Virtual Machine (VM) Course</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Comprehensive track covering compute topologies, high-availability architecture across availability zones, and secure hypervisor baselines.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2025</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft 365 Endpoint Administrator Associate (MD-102) Cert Prep</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Official preparation blueprint focused on modern system deployment, software delivery profiles, and global tenant policy enforcement rules.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Mar 2025</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Learning Power BI Desktop</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Data visualization training built to convert raw server infrastructure logs into interactive real-time patch compliance dashboard grids.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">MICROSOFT</span><span class="text-slate-500">Jan 2024</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">WorkshopPLUS - Intune and Configuration Manager: Co-Management</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Advanced engineering modules focused on co-management attaches, boundary group linking, and shifting legacy configurations straight to Intune.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jan 2024</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Problem-Solving Techniques</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Systematic diagnostic methodology maps used to map root-cause failures, isolate log metrics, and streamline multi-tier escalation streams.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Aug 2024</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 2 Manage Identity and Compliance</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Zero-trust access modeling rules targeting Entra ID configuration frameworks, conditional access parameters, and endpoint security baselines.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jul 2024</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Critical Thinking</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Logic parsing modules built to eradicate data bias during system debugging routines, improving response times for active live production incidents.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Jun 2024</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">MD-102 Cert Prep: 1 Deploy Windows Client</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Focuses on structural OS provisioning channels, data state preservation profiles, and seamless enterprise image distribution tracks.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">UDEMY</span><span class="text-slate-500">Mar 2024</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Microsoft Endpoint Configuration Manager (MECM) Training</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Mastery course tracking boundaries, deployment task sequences, SCCM packaging pipelines, and site client synchronization optimization.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows Autopilot Essential Training</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Zero-touch onboarding strategies mapping corporate hardware hash data aggregation straight into operational factory configuration frameworks.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Streamlining Your Work with Copilot</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Generative AI prompt design engineering geared toward expediting PowerShell scripting pipelines, rule formatting, and automated code review routines.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container h-[160px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner w-full h-full">
+              <div class="flip-card-front bg-slate-950/60 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-xs font-mono"><span class="text-sky-400">LINKEDIN</span><span class="text-slate-500">Dec 2023</span></div>
+                  <h4 class="text-white font-sans font-bold text-base line-clamp-2">Windows 365: Deploy, Provision, and Manage</h4>
+                </div>
+                <span class="font-mono text-[10px] text-slate-500">Click to expand details</span>
+              </div>
+              <div class="flip-card-back bg-slate-850 border border-sky-500/50 p-5 rounded-xl flex flex-col justify-center overflow-y-auto">
+                <p class="text-slate-300 text-xs leading-normal">Cloud VDI provisioning maps handling network connection configurations, custom system image scaling, and persistent user virtualization workspaces.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills" class="py-24 bg-slate-950 text-left relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-slate-800 pb-6 gap-4">
+        <div>
+          <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
+            <i data-lucide="settings-2" class="w-4 h-4"></i>
+            <span>Technical Arsenal</span>
+          </div>
+          <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Core Competencies & Stack
+          </h2>
+        </div>
+        <div class="font-mono text-xs text-slate-500 font-bold uppercase tracking-wider">
+          Engineering // Ops // Security
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700/80 rounded-lg p-6 transition-all duration-300 group hover:-translate-y-1 relative">
+          <div class="flex items-center space-x-4 mb-6 pb-4 border-b border-slate-800">
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-md text-sky-400">
+              <i data-lucide="smartphone" class="w-6 h-6"></i>
+            </div>
+            <div class="flex flex-col text-left">
+              <h3 class="font-sans font-bold text-white text-lg tracking-tight">Modern Management</h3>
+              <span class="font-mono text-[9px] text-sky-400 tracking-wider uppercase mt-1">ENDPOINT ENROLLMENT & CONTROL</span>
+            </div>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Microsoft Intune (MEM)</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Configuration Manager (SCCM/MECM)</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Mobile Device Management (MDM)</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Windows Autopilot</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>VMware vSphere & vCenter</span>
+            </li>
+          </ul>
+          <div class="absolute bottom-3 right-3 font-mono text-[9px] text-slate-700 select-none group-hover:text-slate-500 transition-colors">ROLE_01</div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700/80 rounded-lg p-6 transition-all duration-300 group hover:-translate-y-1 relative">
+          <div class="flex items-center space-x-4 mb-6 pb-4 border-b border-slate-800">
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-md text-sky-400">
+              <i data-lucide="server" class="w-6 h-6"></i>
+            </div>
+            <div class="flex flex-col text-left">
+              <h3 class="font-sans font-bold text-white text-lg tracking-tight">Identity & Network Infrastructure</h3>
+              <span class="font-mono text-[9px] text-sky-400 tracking-wider uppercase mt-1">IDENTITY & FLEET ARCHITECTURE</span>
+            </div>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Microsoft Entra ID (Azure AD)</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Active Directory (AD DS)</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Group Policy Objects (GPO) Design</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Network Core (DHCP, DNS, Hybrid Connectivity)</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>FSLogix Profile Management</span>
+            </li>
+          </ul>
+          <div class="absolute bottom-3 right-3 font-mono text-[9px] text-slate-700 select-none group-hover:text-slate-500 transition-colors">ROLE_02</div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700/80 rounded-lg p-6 transition-all duration-300 group hover:-translate-y-1 relative">
+          <div class="flex items-center space-x-4 mb-6 pb-4 border-b border-slate-800">
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-md text-sky-400">
+              <i data-lucide="terminal" class="w-6 h-6"></i>
+            </div>
+            <div class="flex flex-col text-left">
+              <h3 class="font-sans font-bold text-white text-lg tracking-tight">Automation, Security & Data</h3>
+              <span class="font-mono text-[9px] text-sky-400 tracking-wider uppercase mt-1">CODE & VALUE ENGINEERING</span>
+            </div>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Advanced PowerShell System Scripting</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Microsoft Graph API Integration</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>Microsoft Graph API Workflows Integration</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>ServiceNow ITSM Integration</span>
+            </li>
+            <li class="flex items-start space-x-3 text-slate-300 text-sm">
+              <i data-lucide="check-circle" class="w-5 h-5 text-sky-500/80 shrink-0 mt-0.5"></i>
+              <span>SharePoint & OneDrive Migration</span>
+            </li>
+          </ul>
+          <div class="absolute bottom-3 right-3 font-mono text-[9px] text-slate-700 select-none group-hover:text-slate-500 transition-colors">ROLE_03</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -488,7 +801,7 @@
         
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Architect – EUC</h3>
@@ -512,7 +825,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Specialist – EUC</h3>
@@ -536,7 +849,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Senior Administrator – EUC</h3>
@@ -558,7 +871,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Administrator – EUC</h3>
@@ -580,7 +893,7 @@
         
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Process Associate</h3>
@@ -602,7 +915,7 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-sm">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Customer Support Engineer</h3>
@@ -1229,7 +1542,7 @@
             </div>
           </div>
         </div>
-        
+          
       </div>
     </div>
   </section>
@@ -1361,18 +1674,20 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-3.5 text-center md:text-left">
-        <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden">
-          <img src="public/Main_page_data/Logo.png" alt="AN Logo" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="p-2 bg-slate-900 border border-slate-800 rounded">
+          <i data-lucide="shield-check" class="w-5 h-5 text-sky-400"></i>
         </div>
         <div class="flex flex-col items-start">
           <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
           <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">
             © 2026. All Rights Reserved. Engineered with Precision.
           </span>
+
         </div>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-mono text-xs">
         <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-sky-400 transition-colors">LinkedIn</a>
+
         <a href="mailto:akashnagapure@live.com" class="text-slate-400 hover:text-sky-400 transition-colors">Email</a>
       </div>
     </div>
@@ -1434,6 +1749,7 @@
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
     }
+    // Close mobile menu if open
     const drawer = document.getElementById("mobile-menu-drawer");
     if (drawer && !drawer.classList.contains("hidden")) {
       drawer.classList.add("hidden");
@@ -1447,6 +1763,7 @@
     }
   }
 
+  // Form Validation to enable/disable button
   function checkFormValidity() {
     const name = document.getElementById("direct_name").value.trim();
     const email = document.getElementById("direct_email").value.trim();
@@ -1460,6 +1777,7 @@
     }
   }
 
+  // Direct Mail Generation Logic with Success Banner Display
   function launchDirectMail() {
     const name = document.getElementById("direct_name").value.trim();
     const email = document.getElementById("direct_email").value.trim();
@@ -1471,13 +1789,15 @@
     body += `Sender Name: ${name}\n`;
     body += `Sender Email: ${email}\n`;
 
-    const encodedSubject = encodeURIComponent(subjectStr = subjectVal);
+    const encodedSubject = encodeURIComponent(subjectVal);
     const encodedBody = encodeURIComponent(body);
 
+    // Show confirmation response banner
     const banner = document.getElementById("success-banner");
     banner.classList.remove("hidden");
     lucide.createIcons();
 
+    // Open native mail app client
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
   }
 </script>
