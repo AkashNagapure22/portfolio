@@ -262,7 +262,7 @@
         </div>
     </section>
 
-    <!-- Crown Jewels — Banknote Collection Carousel (1, 2, 5, 10, 50, 100, 500 Rs Notes + Historical Vault Banknotes rotating every 15s) -->
+    <!-- Crown Jewels — Banknote Collection Carousel (15s Rotation) -->
     <section id="crown-jewels" class="overflow-hidden scroll-mt-28">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold">CROWN JEWELS — BANKNOTE COLLECTION</h2>
@@ -415,7 +415,7 @@
         </div>
     </section>
 
-    <!-- Special Commemorative Sets -->
+    <!-- Special Commemorative Sets (Reduced Height Container) -->
     <section id="special-commemorative" class="scroll-mt-28 space-y-8">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">workspace_premium</span>
@@ -426,11 +426,11 @@
         </div>
 
         <div class="grid grid-cols-1 gap-8">
-            <div class="glass-card p-6 sm:p-8 rounded-xl border-2 border-red-900/40 bg-gradient-to-b from-red-950/20 via-slate-900/80 to-slate-950 flex flex-col gap-6 hover:border-amber-400/50 transition-all shadow-[0_0_25px_rgba(153,27,27,0.15)]">
-                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div class="glass-card p-4 sm:p-6 rounded-xl border-2 border-red-900/40 bg-gradient-to-b from-red-950/20 via-slate-900/80 to-slate-950 flex flex-col gap-4 hover:border-amber-400/50 transition-all shadow-[0_0_25px_rgba(153,27,27,0.15)]">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-3">
                     <div>
                         <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/20">SPECIAL ISSUE — 2015 AD</span>
-                        <h3 class="font-bold text-amber-200 text-2xl sm:text-3xl mt-2">475th Birth Anniversary of Maharana Pratap</h3>
+                        <h3 class="font-bold text-amber-200 text-xl sm:text-2xl mt-1.5">475th Birth Anniversary of Maharana Pratap</h3>
                     </div>
                     <div class="text-left sm:text-right">
                         <span class="text-xs text-amber-300 font-bold bg-amber-500/20 px-3 py-1 rounded border border-amber-500/30 inline-block">Non-Circulating Collector Issue</span>
@@ -439,20 +439,17 @@
                 </div>
 
                 <div class="w-full space-y-3">
-                    <div class="w-full h-80 sm:h-96 md:h-[450px] rounded-xl border-2 border-amber-500/40 bg-black overflow-hidden relative shadow-2xl group flex items-center justify-center p-0">
+                    <div class="w-full h-64 sm:h-72 md:h-80 rounded-xl border-2 border-amber-500/40 bg-black overflow-hidden relative shadow-2xl group flex items-center justify-center p-0">
                         <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-contain" src="../images/Notes_And_Coins/Indian_Coins/UNC_Coin/maharana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
                         <span class="absolute top-3 right-3 text-[10px] font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded uppercase shadow-lg tracking-wider">OFFICIAL MINT FOLDER SHOWCASE</span>
                         <span class="absolute bottom-3 left-3 text-[9px] font-bold bg-black/80 px-2 py-1 rounded text-amber-300 border border-amber-500/30">FRONT (OBVERSE)</span>
                         <span class="absolute bottom-3 right-3 text-[9px] font-bold bg-black/80 px-2 py-1 rounded text-amber-300 border border-amber-500/30">REAR (REVERSE)</span>
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 hidden sm:block">
-                            <span class="text-xs text-amber-300 font-bold">475th Birth Anniversary — 2015</span>
-                        </div>
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 text-xs bg-black/40 p-4 rounded-lg border border-white/5">
+                <div class="space-y-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 text-xs bg-black/40 p-3 rounded-lg border border-white/5">
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Denomination</strong><span class="text-slate-200 font-semibold">₹10 (Ten Rupees)</span></div>
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Structure</strong><span class="text-slate-200 font-semibold">Bi-Metallic</span></div>
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Weight</strong><span class="text-slate-200 font-semibold">7.71 grams</span></div>
@@ -462,17 +459,6 @@
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Issuer</strong><span class="text-amber-300 font-semibold">India Government Mint</span></div>
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Distribution Type</strong><span class="text-slate-200 font-semibold">On-Demand Minting</span></div>
                         <div><strong class="text-slate-400 block text-[10px] uppercase">Circulation Status</strong><span class="text-rose-400 font-semibold">Non-Circulating</span></div>
-
-                        <div><strong class="text-slate-400 block text-[10px] uppercase">Outer Ring Alloy</strong><span class="text-slate-200 font-semibold">Aluminum-Bronze</span></div>
-                        <div><strong class="text-slate-400 block text-[10px] uppercase">Center Core Alloy</strong><span class="text-slate-200 font-semibold">Cupro-Nickel</span></div>
-                        <div><strong class="text-slate-400 block text-[10px] uppercase">Category</strong><span class="text-slate-200 font-semibold">Minratna Category-I</span></div>
-                        <div><strong class="text-slate-400 block text-[10px] uppercase">Market Value</strong><span class="text-amber-400 font-bold">Premium Collector Pack</span></div>
-                    </div>
-
-                    <div class="space-y-2 text-xs text-slate-300 pt-2 border-t border-white/5">
-                        <p><strong>Obverse Design:</strong> Lion Capital of Ashoka Pillar with motto "Satyameva Jayate" in Hindi, flanked by "BHARAT" in Devanagari and "INDIA" in English with Rupee symbol ₹10.</p>
-                        <p><strong>Reverse Design:</strong> Dynamic portrait bust of Rajput warrior king Maharana Pratap in traditional armor holding a spear riding his legendary warhorse Chetak, with bi-lingual legend "475th BIRTH ANNIVERSARY OF MAHARANA PRATAP - 2015".</p>
-                        <p><strong>Package &amp; Provenance:</strong> Issued by Security Printing and Minting Corporation of India Limited (SPMCIL) in a crimson commemorative presentation folder complete with a commemorative postage stamp.</p>
                     </div>
                 </div>
             </div>
@@ -505,11 +491,11 @@
                         <!-- FRONT SIDE -->
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">Karshapana</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">ANCIENT</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">Karshapana</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">ANCIENT</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -569,11 +555,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">1/4 Rupee</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">COLONIAL</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1/4 Rupee</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">COLONIAL</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -626,22 +612,62 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
-                <!-- Colonial Item 1: 1862 Queen Victoria -->
+                <!-- 1/2 Pice 1929 George V -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">1 Pice</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">BRITISH RAJ</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1/2 Pice (1929)</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">BRITISH RAJ</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
-                                <img alt="British India 1 Pice" class="w-full h-full object-contain rounded" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="1/2 Pice George V" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-1 border-t border-white/5">
                                 <span class="text-[9px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
+                                <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
+                            </div>
+                        </div>
+
+                        <div class="inventory-flip-back glass-card p-2.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-0.5">
+                                    <h4 class="font-bold text-amber-300 text-xs">1/2 Pice Specs</h4>
+                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-1 text-[9.5px] text-slate-200 bg-black/40 p-1.5 rounded border border-white/5">
+                                    <div><strong>Denom:</strong> 1/2 Pice</div>
+                                    <div><strong>Ruler:</strong> George V</div>
+                                    <div><strong>Year:</strong> 1929</div>
+                                    <div><strong>Metal:</strong> Bronze</div>
+                                    <div><strong>Type:</strong> Fractional</div>
+                                </div>
+                                <p class="text-[9.5px] text-slate-300 leading-tight">Issued during the reign of King-Emperor George V across British India.</p>
+                            </div>
+                            <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-0.5">British India Issue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- British India 1 Pice George VI -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Pice (George VI)</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">BRITISH RAJ</span>
+                                </div>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                            </div>
+                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
+                                <img alt="British India 1 Pice George VI" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <span class="text-[9px] text-emerald-400 font-bold">Status: Available (3 Pcs)</span>
                                 <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
                             </div>
                         </div>
@@ -654,12 +680,52 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-1 text-[9.5px] text-slate-200 bg-black/40 p-1.5 rounded border border-white/5">
                                     <div><strong>Denom:</strong> 1 Pice</div>
-                                    <div><strong>Era:</strong> Pre-1947</div>
+                                    <div><strong>Ruler:</strong> George VI</div>
+                                    <div><strong>Year:</strong> 1943</div>
                                     <div><strong>Metal:</strong> Bronze</div>
-                                    <div><strong>Feature:</strong> Holed / Crown</div>
+                                    <div><strong>Feature:</strong> Holed Coin</div>
                                     <div><strong>Type:</strong> Fractional</div>
                                 </div>
-                                <p class="text-[9.5px] text-slate-300 leading-tight">Standard fractional coinage issued during the British Raj for small transactions.</p>
+                                <p class="text-[9.5px] text-slate-300 leading-tight">Holed bronze 1 Pice coin issued during World War II under King George VI (1943).</p>
+                            </div>
+                            <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-0.5">Wartime British Issue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- British India 1 Quarter Anna Bronze -->
+                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="inventory-flip-inner">
+                        <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1/4 Anna Bronze</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">BRITISH RAJ</span>
+                                </div>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                            </div>
+                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
+                                <img alt="British India 1 Quarter Anna Bronze" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/british_india_1_quarter_anna_bronze.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <span class="text-[9px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
+                                <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
+                            </div>
+                        </div>
+
+                        <div class="inventory-flip-back glass-card p-2.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-0.5">
+                                    <h4 class="font-bold text-amber-300 text-xs">1/4 Anna Specs</h4>
+                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-1 text-[9.5px] text-slate-200 bg-black/40 p-1.5 rounded border border-white/5">
+                                    <div><strong>Denom:</strong> 1/4 Anna</div>
+                                    <div><strong>Era:</strong> British Raj</div>
+                                    <div><strong>Metal:</strong> Bronze</div>
+                                    <div><strong>Type:</strong> Fractional</div>
+                                </div>
+                                <p class="text-[9.5px] text-slate-300 leading-tight">Standard fractional bronze coinage used for daily trade across British India.</p>
                             </div>
                             <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-0.5">Pre-1947 British India</span>
                         </div>
@@ -698,14 +764,14 @@
                             <!-- FRONT SIDE -->
                             <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                    <div class="flex items-center gap-1.5 mx-auto">
-                                        <h4 class="font-bold text-amber-200 text-xs">Dr. Syama Prasad Mookerjee</h4>
-                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">COMMEMORATIVE</span>
+                                    <div class="flex items-center gap-1.5 flex-grow">
+                                        <h4 class="font-bold text-amber-200 text-xs truncate">Dr. Syama Prasad Mookerjee</h4>
+                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">COMMEMORATIVE</span>
                                     </div>
-                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
-                                    <img alt="2 Rupees Dr. Syama P. Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <img alt="2 Rupees Dr. Syama Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-1 border-t border-white/5">
                                     <span class="text-[9px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -743,14 +809,14 @@
                             <!-- FRONT SIDE -->
                             <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                    <div class="flex items-center gap-1.5 mx-auto">
-                                        <h4 class="font-bold text-amber-200 text-xs">Indira Gandhi</h4>
-                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">COMMEMORATIVE</span>
+                                    <div class="flex items-center gap-1.5 flex-grow">
+                                        <h4 class="font-bold text-amber-200 text-xs truncate">Indira Gandhi</h4>
+                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">COMMEMORATIVE</span>
                                     </div>
-                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
-                                    <img alt="5 Rupees Indira Gandhi Commemorative Coin" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <img alt="5 Rupees Indira Gandhi Commemorative Coin" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-1 border-t border-white/5">
                                     <span class="text-[9px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -781,12 +847,94 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Coin 3: 1953 Republic of India 1 Pice (Horse Pice) -->
+                    <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="inventory-flip-inner">
+                            <!-- FRONT SIDE -->
+                            <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                    <div class="flex items-center gap-1.5 flex-grow">
+                                        <h4 class="font-bold text-amber-200 text-xs truncate">1 Pice (Horse Pice)</h4>
+                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">REPUBLIC</span>
+                                    </div>
+                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
+                                    <img alt="1 Pice Horse Pice" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                </div>
+                                <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                    <span class="text-[9px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
+                                    <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
+                                </div>
+                            </div>
+                            
+                            <!-- BACK SIDE -->
+                            <div class="inventory-flip-back glass-card p-2.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                                <div class="space-y-1">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-0.5">
+                                        <h4 class="font-bold text-amber-300 text-xs">1 Pice (1953) Specs</h4>
+                                        <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1 text-[9.5px] text-slate-200 bg-black/40 p-1.5 rounded border border-white/5">
+                                        <div><strong>Denom:</strong> 1 Pice</div>
+                                        <div><strong>Year:</strong> 1953</div>
+                                        <div><strong>Metal:</strong> Bronze</div>
+                                        <div><strong>Type:</strong> Circulation</div>
+                                    </div>
+                                    <p class="text-[9.5px] text-slate-300 leading-tight">Vintage Republic of India bronze coin featuring the horse motif.</p>
+                                </div>
+                                <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-0.5">Early Republic Issue</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coin 4: 1 Naya Paisa -->
+                    <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="inventory-flip-inner">
+                            <!-- FRONT SIDE -->
+                            <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                    <div class="flex items-center gap-1.5 flex-grow">
+                                        <h4 class="font-bold text-amber-200 text-xs truncate">1 Naya Paisa</h4>
+                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">DECIMAL</span>
+                                    </div>
+                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                </div>
+                                <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
+                                    <img alt="1 Naya Paisa" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                </div>
+                                <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                    <span class="text-[9px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
+                                    <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
+                                </div>
+                            </div>
+                            
+                            <!-- BACK SIDE -->
+                            <div class="inventory-flip-back glass-card p-2.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                                <div class="space-y-1">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-0.5">
+                                        <h4 class="font-bold text-amber-300 text-xs">1 Naya Paisa Specs</h4>
+                                        <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1 text-[9.5px] text-slate-200 bg-black/40 p-1.5 rounded border border-white/5">
+                                        <div><strong>Denom:</strong> 1 Naya Paisa</div>
+                                        <div><strong>Era:</strong> Post-1957</div>
+                                        <div><strong>Metal:</strong> Bronze</div>
+                                        <div><strong>Type:</strong> Decimal Coin</div>
+                                    </div>
+                                    <p class="text-[9.5px] text-slate-300 leading-tight">Introduced April 1, 1957 during India's shift to decimal currency.</p>
+                                </div>
+                                <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-0.5">Decimal Series</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: FOREIGN COIN INVENTORY (Europe, Hungary, UAE, Singapore, China, Nepal Sub-sections) -->
+    <!-- SECTION: FOREIGN COIN INVENTORY -->
     <section id="foreign-coins" class="scroll-mt-28 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl">public</span>
@@ -811,11 +959,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">5 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">HUNGARY</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">5 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="5 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -853,11 +1001,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">10 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">HUNGARY</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="10 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -895,11 +1043,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">20 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">HUNGARY</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">20 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="20 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -937,11 +1085,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">50 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">HUNGARY</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">50 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="50 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.jpeg" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -979,11 +1127,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">200 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">HUNGARY</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">200 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="200 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1033,11 +1181,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">2 Euros (1st map)</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">GERMANY</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">2 Euros (1st map)</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">GERMANY</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="2 Euros 1st map" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1075,11 +1223,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">1 Euro (Juan Carlos)</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">SPAIN</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Euro (Juan Carlos)</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">SPAIN</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="1 Euro Juan Carlos" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1117,11 +1265,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">50 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">EUROPE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">50 Euro Cent</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">EUROPE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="50 Euro Cent" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1157,11 +1305,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">20 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">EUROPE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">20 Euro Cent</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">EUROPE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="20 Euro Cent" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1197,11 +1345,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">10 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">EUROPE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Euro Cent</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">EUROPE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="10 Euro Cent" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1237,11 +1385,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">2 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">EUROPE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">2 Euro Cent</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">EUROPE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="2 Euro Cent" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1277,11 +1425,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">1 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">EUROPE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Euro Cent</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">EUROPE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="1 Euro Cent" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1329,11 +1477,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">25 Fils</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">UAE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">25 Fils</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">UAE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="25 Fils" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1369,11 +1517,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">50 Fils</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">UAE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">50 Fils</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">UAE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="50 Fils" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1409,11 +1557,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">1 Dirham</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">UAE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Dirham</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">UAE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="1 Dirham" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1461,11 +1609,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">10 Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">SINGAPORE</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Cent</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">SINGAPORE</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="10 Cent Singapore" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1513,11 +1661,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">1 Yuan</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">CHINA</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Yuan</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">CHINA</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="China 1 Yuan" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -1565,11 +1713,11 @@
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-2.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
-                                <div class="flex items-center gap-1.5 mx-auto">
-                                    <h4 class="font-bold text-amber-200 text-xs">10 Rupees</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">NEPAL</span>
+                                <div class="flex items-center gap-1.5 flex-grow">
+                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Rupees</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow flex-shrink-0">NEPAL</span>
                                 </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 160px;">
                                 <img alt="Nepal 10 Rupees" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
@@ -2079,7 +2227,7 @@
 
     loadComments();
 
-    // Mobile Navigation Drawer Toggle
+    // Mobile Navigation Drawer Navigation Toggle
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu-drawer');
         const icon = document.getElementById('menu-icon');
@@ -2120,13 +2268,6 @@
             slides[index].classList.add('active');
         }
     }
-
-    fn = nextSlide = function() {
-        if (slides.length > 0) {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-    };
 
     function nextSlide() {
         if (slides.length > 0) {
