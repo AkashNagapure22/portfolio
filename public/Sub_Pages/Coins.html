@@ -791,6 +791,18 @@
     }
 </style>
 
+     <style>
+    .inventory-flip-card {
+        perspective: 1200px;
+        user-select: none;
+        height: 320px;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
         <!-- CATEGORY: HUNGARY -->
         <div class="space-y-6">
             <div class="flex justify-between items-center border-l-4 border-amber-400 pl-3">
@@ -800,45 +812,45 @@
                 </h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
                 <!-- 5 Forint -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-1.5 mb-1.5">
-                                <div class="flex items-center gap-2">
-                                    <h4 class="font-bold text-amber-200 text-sm">5 Forint</h4>
-                                    <span class="text-[8px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow">Hungary</span>
+                        <div class="inventory-flip-front glass-card p-3 border border-amber-500/20 flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                <div class="flex items-center gap-1.5">
+                                    <h4 class="font-bold text-amber-200 text-xs sm:text-sm">5 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">Hungary</span>
                                 </div>
-                                <span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 200px;">
+                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 180px;">
                                 <img alt="5 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/5_Forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
-                            <div class="flex items-center justify-between pt-1.5 border-t border-white/5">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <span class="text-[9px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
                             </div>
                         </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
+                        <div class="inventory-flip-back glass-card p-3 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                            <div class="space-y-1.5">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">5 Forint Specs &amp; Details</h4>
-                                    <span class="text-[9px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                    <h4 class="font-bold text-amber-300 text-xs">5 Forint Specs</h4>
+                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-200 bg-black/40 p-2.5 rounded border border-white/5">
+                                <div class="grid grid-cols-2 gap-1 text-[10px] text-slate-200 bg-black/40 p-2 rounded border border-white/5">
                                     <div><strong>Denom:</strong> 5 Forint</div>
-                                    <div><strong>Issuer:</strong> Hungary (MNB)</div>
+                                    <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 21.2 mm</div>
                                     <div><strong>Weight:</strong> 4.2 g</div>
                                     <div><strong>Thick:</strong> 1.6 mm</div>
                                     <div><strong>Comp:</strong> Nickel Brass</div>
                                     <div><strong>Edge:</strong> Plain</div>
-                                    <div><strong>Design:</strong> Great White Egret</div>
+                                    <div><strong>Design:</strong> Egret</div>
                                 </div>
-                                <p class="text-[11px] text-slate-300 leading-tight">Features Great White Egret (István Kósa) and underlined numeral five (Bartos István).</p>
+                                <p class="text-[10px] text-slate-300 leading-tight">Features Great White Egret (István Kósa) and underlined numeral five.</p>
                             </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
+                            <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
                         </div>
                     </div>
                 </div>
@@ -846,41 +858,41 @@
                 <!-- 10 Forint -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-1.5 mb-1.5">
-                                <div class="flex items-center gap-2">
-                                    <h4 class="font-bold text-amber-200 text-sm">10 Forint</h4>
-                                    <span class="text-[8px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow">Hungary</span>
+                        <div class="inventory-flip-front glass-card p-3 border border-amber-500/20 flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                <div class="flex items-center gap-1.5">
+                                    <h4 class="font-bold text-amber-200 text-xs sm:text-sm">10 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">Hungary</span>
                                 </div>
-                                <span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 200px;">
+                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 180px;">
                                 <img alt="10 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/10_Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
-                            <div class="flex items-center justify-between pt-1.5 border-t border-white/5">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <span class="text-[9px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
                             </div>
                         </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
+                        <div class="inventory-flip-back glass-card p-3 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                            <div class="space-y-1.5">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">10 Forint Specs &amp; Details</h4>
-                                    <span class="text-[9px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                    <h4 class="font-bold text-amber-300 text-xs">10 Forint Specs</h4>
+                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-200 bg-black/40 p-2.5 rounded border border-white/5">
+                                <div class="grid grid-cols-2 gap-1 text-[10px] text-slate-200 bg-black/40 p-2 rounded border border-white/5">
                                     <div><strong>Denom:</strong> 10 Forint</div>
-                                    <div><strong>Issuer:</strong> Hungary (MNB)</div>
+                                    <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 24.8 mm</div>
                                     <div><strong>Weight:</strong> 6.1 g</div>
                                     <div><strong>Thick:</strong> 1.7 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni Alloy</div>
-                                    <div><strong>Edge:</strong> Milled &amp; Smooth</div>
+                                    <div><strong>Comp:</strong> Cu-Ni</div>
+                                    <div><strong>Edge:</strong> Milled</div>
                                     <div><strong>Design:</strong> Coat of Arms</div>
                                 </div>
-                                <p class="text-[11px] text-slate-300 leading-tight">Displays official coat of arms of Hungary with "MAGYARORSZÁG" and "BP." mint mark.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight">Displays official coat of arms of Hungary with "MAGYARORSZÁG" and "BP." mark.</p>
                             </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
+                            <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
                         </div>
                     </div>
                 </div>
@@ -888,31 +900,31 @@
                 <!-- 20 Forint -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-1.5 mb-1.5">
-                                <div class="flex items-center gap-2">
-                                    <h4 class="font-bold text-amber-200 text-sm">20 Forint</h4>
-                                    <span class="text-[8px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow">Hungary</span>
+                        <div class="inventory-flip-front glass-card p-3 border border-amber-500/20 flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                <div class="flex items-center gap-1.5">
+                                    <h4 class="font-bold text-amber-200 text-xs sm:text-sm">20 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">Hungary</span>
                                 </div>
-                                <span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 200px;">
+                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 180px;">
                                 <img alt="20 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/20+Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
-                            <div class="flex items-center justify-between pt-1.5 border-t border-white/5">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <span class="text-[9px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
                             </div>
                         </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
+                        <div class="inventory-flip-back glass-card p-3 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                            <div class="space-y-1.5">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">20 Forint Specs &amp; Details</h4>
-                                    <span class="text-[9px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                    <h4 class="font-bold text-amber-300 text-xs">20 Forint Specs</h4>
+                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-200 bg-black/40 p-2.5 rounded border border-white/5">
+                                <div class="grid grid-cols-2 gap-1 text-[10px] text-slate-200 bg-black/40 p-2 rounded border border-white/5">
                                     <div><strong>Denom:</strong> 20 Forint</div>
-                                    <div><strong>Issuer:</strong> Hungary (MNB)</div>
+                                    <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 26.3 mm</div>
                                     <div><strong>Weight:</strong> 6.9 g</div>
                                     <div><strong>Thick:</strong> 1.8 mm</div>
@@ -920,9 +932,9 @@
                                     <div><strong>Edge:</strong> Reeded</div>
                                     <div><strong>Design:</strong> Stool Iris</div>
                                 </div>
-                                <p class="text-[11px] text-slate-300 leading-tight">Features the Stool Iris (Iris aphylla) flower on the obverse designed by István Kósa.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight">Features the Stool Iris (Iris aphylla) flower on the obverse designed by István Kósa.</p>
                             </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
+                            <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
                         </div>
                     </div>
                 </div>
@@ -930,41 +942,41 @@
                 <!-- 50 Forint -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-1.5 mb-1.5">
-                                <div class="flex items-center gap-2">
-                                    <h4 class="font-bold text-amber-200 text-sm">50 Forint</h4>
-                                    <span class="text-[8px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow">Hungary</span>
+                        <div class="inventory-flip-front glass-card p-3 border border-amber-500/20 flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                <div class="flex items-center gap-1.5">
+                                    <h4 class="font-bold text-amber-200 text-xs sm:text-sm">50 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">Hungary</span>
                                 </div>
-                                <span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 200px;">
+                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 180px;">
                                 <img alt="50 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/50_fornit.jpeg" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
-                            <div class="flex items-center justify-between pt-1.5 border-t border-white/5">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <span class="text-[9px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
                             </div>
                         </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
+                        <div class="inventory-flip-back glass-card p-3 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                            <div class="space-y-1.5">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">50 Forint Specs &amp; Details</h4>
-                                    <span class="text-[9px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                    <h4 class="font-bold text-amber-300 text-xs">50 Forint Specs</h4>
+                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-200 bg-black/40 p-2.5 rounded border border-white/5">
+                                <div class="grid grid-cols-2 gap-1 text-[10px] text-slate-200 bg-black/40 p-2 rounded border border-white/5">
                                     <div><strong>Denom:</strong> 50 Forint</div>
-                                    <div><strong>Issuer:</strong> Hungary (MNB)</div>
+                                    <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 27.4 mm</div>
                                     <div><strong>Weight:</strong> 7.7 g</div>
                                     <div><strong>Thick:</strong> 1.8 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni Alloy</div>
+                                    <div><strong>Comp:</strong> Cu-Ni</div>
                                     <div><strong>Edge:</strong> Smooth</div>
                                     <div><strong>Design:</strong> Saker Falcon</div>
                                 </div>
-                                <p class="text-[11px] text-slate-300 leading-tight">Standard circulation coin depicting the protected Saker Falcon (Falco cherrug).</p>
+                                <p class="text-[10px] text-slate-300 leading-tight">Standard circulation coin depicting the protected Saker Falcon (Falco cherrug).</p>
                             </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
+                            <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
                         </div>
                     </div>
                 </div>
@@ -972,31 +984,31 @@
                 <!-- 200 Forint -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-1.5 mb-1.5">
-                                <div class="flex items-center gap-2">
-                                    <h4 class="font-bold text-amber-200 text-sm">200 Forint</h4>
-                                    <span class="text-[8px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow">Hungary</span>
+                        <div class="inventory-flip-front glass-card p-3 border border-amber-500/20 flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-1 mb-1">
+                                <div class="flex items-center gap-1.5">
+                                    <h4 class="font-bold text-amber-200 text-xs sm:text-sm">200 Forint</h4>
+                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1 py-0.2 rounded uppercase shadow">Hungary</span>
                                 </div>
-                                <span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Flip</span>
+                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 200px;">
+                            <div class="w-full flex-grow rounded-lg overflow-hidden relative flex items-center justify-center bg-transparent my-1" style="height: 180px;">
                                 <img alt="200 Forint" class="w-full h-full object-contain rounded" src="../images/Notes_And_Coins/200+forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
-                            <div class="flex items-center justify-between pt-1.5 border-t border-white/5">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: In Vault</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Click for Specs →</span>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <span class="text-[9px] text-emerald-400 font-bold">Status: In Vault</span>
+                                <span class="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
                             </div>
                         </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
+                        <div class="inventory-flip-back glass-card p-3 border border-amber-500/40 bg-slate-950 flex flex-col justify-between h-full">
+                            <div class="space-y-1.5">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">200 Forint Specs &amp; Details</h4>
-                                    <span class="text-[9px] text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Return</span>
+                                    <h4 class="font-bold text-amber-300 text-xs">200 Forint Specs</h4>
+                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
                                 </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-200 bg-black/40 p-2.5 rounded border border-white/5">
+                                <div class="grid grid-cols-2 gap-1 text-[10px] text-slate-200 bg-black/40 p-2 rounded border border-white/5">
                                     <div><strong>Denom:</strong> 200 Forint</div>
-                                    <div><strong>Issuer:</strong> Hungary (MNB)</div>
+                                    <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 28.3 mm</div>
                                     <div><strong>Weight:</strong> 9.0 g</div>
                                     <div><strong>Thick:</strong> 2.0 mm</div>
@@ -1004,9 +1016,9 @@
                                     <div><strong>Edge:</strong> Segmented</div>
                                     <div><strong>Mint:</strong> Budapest</div>
                                 </div>
-                                <p class="text-[11px] text-slate-300 leading-tight">Features the iconic Széchenyi Chain Bridge of Budapest on the obverse.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight">Features the iconic Széchenyi Chain Bridge of Budapest on the obverse.</p>
                             </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
+                            <span class="text-[7px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
                         </div>
                     </div>
                 </div>
