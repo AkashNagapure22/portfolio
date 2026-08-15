@@ -59,24 +59,16 @@
         box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 
                     inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
                     inset 0 -1px 0 0 rgba(0, 0, 0, 0.5);
-        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
-        transform-style: preserve-3d;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
     }
 
     .glass-card:hover {
-        transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
-        box-shadow: 0 30px 60px -15px rgba(230, 184, 0, 0.15),
-                    0 0 30px rgba(230, 184, 0, 0.1);
         border-color: rgba(255, 215, 0, 0.4);
+        box-shadow: 0 25px 50px -15px rgba(230, 184, 0, 0.15),
+                    0 0 30px rgba(230, 184, 0, 0.1);
     }
 
-    /* 3D Interactive Tilt Elements */
-    .tilt-element {
-        transform-style: preserve-3d;
-        transform: perspective(1000px);
-    }
-
-    /* True 3D Flip Cards for Coins */
+    /* True 3D Flip Cards for Coins — Fixed on Scroll */
     .inventory-flip-card {
         perspective: 1500px;
         user-select: none;
@@ -151,7 +143,6 @@
 </div>
 
 <script>
-// Three.js Immersive 3D Background Particle Field & Floating Numismatic Rings
 let scene, camera, renderer, particles, ringGroup;
 function initThree() {
     const container = document.getElementById('webgl-container');
@@ -164,7 +155,6 @@ function initThree() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Create Golden Particle Vault Field
     const particleCount = 700;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -187,7 +177,6 @@ function initThree() {
     particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    // Create Floating 3D Gold Rings (Numismatic Metaphors)
     ringGroup = new THREE.Group();
     const ringGeo = new THREE.TorusGeometry(3, 0.08, 16, 100);
     const ringMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, wireframe: true, transparent: true, opacity: 0.25 });
@@ -1944,7 +1933,7 @@ window.addEventListener('DOMContentLoaded', () => {
                             <span class="text-[10px] bg-red-600 text-white px-2.5 py-1 rounded-lg font-bold shadow">Hard to find</span>
                         </div>
                         <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 270px;">
-                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/WishList/Hon.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/WishList/hon_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                         </div>
                         <div class="flex items-center justify-between pt-3 border-t border-white/10">
                             <span class="text-[11px] text-amber-400 font-bold">Target Wishlist Piece</span>
