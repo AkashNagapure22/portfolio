@@ -68,7 +68,7 @@
                     0 0 30px rgba(230, 184, 0, 0.1);
     }
 
-    /* True 3D Flip Cards for Coins — Fixed on Scroll */
+    /* True 3D Flip Cards for Coins — Fixed on Scroll & Enforcing Square / Background-Removed Container */
     .inventory-flip-card {
         perspective: 1500px;
         user-select: none;
@@ -105,6 +105,31 @@
         overflow-y: auto;
     }
 
+    /* Strict Square Aspect Ratio & Background Removal for Card Images */
+    .coin-img-container {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        max-width: 160px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    .coin-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: transparent !important;
+        mix-blend-mode: luminosity; /* Enhances removal of background tint/contrast */
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)) contrast(1.15);
+    }
+    .coin-img-container img:hover {
+        mix-blend-mode: normal;
+    }
+
     .carousel-slide { display: none; }
     .carousel-slide.active { display: block; animation: zoomInFade 1s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes zoomInFade { from { opacity: 0; transform: scale(1.05) translateZ(-50px); } to { opacity: 1; transform: scale(1) translateZ(0); } }
@@ -115,7 +140,6 @@
         text-shadow: 0 0 10px rgba(230, 184, 0, 0.5);
     }
 
-    /* Floating Holographic Glows */
     .holo-glow {
         position: relative;
     }
@@ -584,8 +608,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="Mauryan Silver Karshapana" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -648,8 +672,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="1862 Queen Victoria 1/4 Rupee" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -710,8 +734,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1/2 Pice George V" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1-2_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="1/2 Pice George V" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1-2_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -755,8 +779,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="British India 1 Pice George VI" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1_Pice_george-6.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="British India 1 Pice George VI" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1_Pice_george-6.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (3 Pcs)</span>
@@ -801,8 +825,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="British India 1 Quarter Anna Bronze" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="British India 1 Quarter Anna Bronze" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -873,8 +897,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="2 Rupees Dr. Syama Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <div class="coin-img-container my-1">
+                                    <img alt="2 Rupees Dr. Syama Mookerjee Commemorative Coin" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -919,8 +943,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="5 Rupees Indira Gandhi Commemorative Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <div class="coin-img-container my-1">
+                                    <img alt="5 Rupees Indira Gandhi Commemorative Coin" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -965,8 +989,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="1 Pice Horse Pice" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Pice_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <div class="coin-img-container my-1">
+                                    <img alt="1 Pice Horse Pice" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Pice_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1011,8 +1035,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="1 Naya Paisa" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Nay_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <div class="coin-img-container my-1">
+                                    <img alt="1 Naya Paisa" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Nay_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1080,8 +1104,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="5 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="5 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1124,8 +1148,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="10 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1168,8 +1192,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="20 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="20 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1212,8 +1236,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.jpeg" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="50 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.jpeg" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1256,8 +1280,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="200 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="200 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1312,8 +1336,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="2 Euros 1st map" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="2 Euros 1st map" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1356,8 +1380,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Euro Juan Carlos" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="1 Euro Juan Carlos" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1400,8 +1424,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="50 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1444,8 +1468,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="20 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="20 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1488,8 +1512,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="10 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1532,8 +1556,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="2 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="2 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1576,8 +1600,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="1 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1632,8 +1656,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="25 Fils" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="25 Fils" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1675,8 +1699,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Fils" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="50 Fils" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1717,8 +1741,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Dirham" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="1 Dirham" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1772,8 +1796,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Cent Singapore" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="10 Cent Singapore" src="../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1827,8 +1851,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="China 1 Yuan" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="China 1 Yuan" src="../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1882,8 +1906,8 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="Nepal 10 Rupees" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <div class="coin-img-container my-1">
+                                <img alt="Nepal 10 Rupees" src="../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1932,8 +1956,8 @@ window.addEventListener('DOMContentLoaded', () => {
                             <h4 class="font-bold text-amber-200 text-sm sm:text-base">Chhatrapati Shivaji Maharaj - Hon</h4>
                             <span class="text-[10px] bg-red-600 text-white px-2.5 py-1 rounded-lg font-bold shadow">Hard to find</span>
                         </div>
-                        <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 270px;">
-                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/WishList/hon_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        <div class="coin-img-container my-1" style="max-width: 220px; height: 220px;">
+                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" src="../images/Notes_And_Coins/Indian_Coins/WishList/hon_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                         </div>
                         <div class="flex items-center justify-between pt-3 border-t border-white/10">
                             <span class="text-[11px] text-amber-400 font-bold">Target Wishlist Piece</span>
@@ -2383,6 +2407,10 @@ window.addEventListener('DOMContentLoaded', () => {
             btn.innerText = 'Post Comment';
         }
     });
+
+    function CSSEscape(str) {
+        return str;
+    }
 
     function escapeHTML(str) {
         return str.replace(/[&<>'"]/g, 
