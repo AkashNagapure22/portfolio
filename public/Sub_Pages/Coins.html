@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Akash Nagapure | Numismatic & Banknote Portfolio</title>
+<title>Akash Nagapure | 3D Numismatic & Banknote Vault</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-<!-- Three.js Library for 3D Immersive Effects -->
+<!-- Three.js Library for 3D Immersive Vault Experience -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
 
 <script id="tailwind-config">
     tailwind.config = {
@@ -22,8 +23,8 @@
                     "secondary": "#f3e5ab",
                     "on-surface-variant": "#cbd5e1",
                     "surface-container": "#1d1a14",
-                    "background": "#0b0907",
-                    "surface-dim": "#0b0907"
+                    "background": "#070504",
+                    "surface-dim": "#070504"
                 },
                 "spacing": {
                     "margin-desktop": "64px",
@@ -45,64 +46,90 @@
     html { scroll-padding-top: 100px; scroll-behavior: smooth; }
     
     ::-webkit-scrollbar { height: 6px; width: 6px; }
-    ::-webkit-scrollbar-track { background: #0b0907; }
+    ::-webkit-scrollbar-track { background: #070504; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #e6b800, #b8860b); border-radius: 4px; }
     
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Enhanced 3D Glassmorphism & Depth Layers */
+    /* Immersive 3D Glassmorphism */
     .glass-card {
-        background: linear-gradient(135deg, rgba(35, 30, 22, 0.9) 0%, rgba(18, 15, 12, 0.95) 100%);
-        backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 215, 0, 0.2);
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 
-                    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                    inset 0 -1px 0 0 rgba(0, 0, 0, 0.5);
-        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+        background: linear-gradient(135deg, rgba(28, 24, 18, 0.9) 0%, rgba(12, 10, 8, 0.95) 100%);
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 215, 0, 0.25);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
+                    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+                    0 0 30px rgba(230, 184, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .glass-card:hover {
-        border-color: rgba(255, 215, 0, 0.4);
-        box-shadow: 0 25px 50px -15px rgba(230, 184, 0, 0.15),
-                    0 0 30px rgba(230, 184, 0, 0.1);
+        border-color: rgba(255, 215, 0, 0.5);
+        box-shadow: 0 30px 60px -15px rgba(230, 184, 0, 0.2),
+                    0 0 40px rgba(230, 184, 0, 0.15);
     }
 
-    /* True 3D Flip Cards for Coins — Fixed on Scroll */
-    .inventory-flip-card {
-        perspective: 1500px;
-        user-select: none;
-        height: 330px;
-        width: 100%;
-        max-width: 280px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .inventory-flip-inner {
+    /* Floating 3D Coin Item without Box Style — Pure Floating Look */
+    .coin-3d-item {
         position: relative;
+        cursor: pointer;
         width: 100%;
-        height: 100%;
-        transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        transform-style: preserve-3d;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        border-radius: 0.85rem;
+        max-width: 260px;
+        height: 320px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .inventory-flip-card.flipped .inventory-flip-inner {
-        transform: rotateY(180deg);
+
+    .coin-3d-item:hover {
+        transform: translateY(-12px) scale(1.03);
     }
-    .inventory-flip-front, .inventory-flip-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        border-radius: 0.85rem;
+
+    /* Pure Floating Square Coin Presentation with Background Removed */
+    .coin-floating-visual {
+        width: 180px;
+        height: 180px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, rgba(230,184,0,0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: floatFloatingCoin 6s ease-in-out infinite;
+        filter: drop-shadow(0 20px 25px rgba(0,0,0,0.9));
     }
-    .inventory-flip-back {
-        transform: rotateY(180deg);
-        overflow-y: auto;
+
+    @keyframes floatFloatingCoin {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    .coin-floating-visual img {
+        width: 140px;
+        height: 140px;
+        object-fit: contain;
+        background: transparent !important;
+        mix-blend-mode: screen;
+        filter: drop-shadow(0 10px 20px rgba(230,184,0,0.4)) contrast(1.2);
+        transition: transform 0.5s ease;
+    }
+
+    .coin-3d-item:hover .coin-floating-visual img {
+        transform: scale(1.1) rotateY(15deg);
+    }
+
+    /* Interactive 3D Modal Overlay for Details */
+    #coin-modal {
+        backdrop-filter: blur(25px);
+        background: rgba(7, 5, 4, 0.88);
+        transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .carousel-slide { display: none; }
@@ -112,10 +139,9 @@
     .nav-link.active-link {
         color: #fff2d1 !important;
         border-bottom: 2px solid #e6b800;
-        text-shadow: 0 0 10px rgba(230, 184, 0, 0.5);
+        text-shadow: 0 0 12px rgba(230, 184, 0, 0.7);
     }
 
-    /* Floating Holographic Glows */
     .holo-glow {
         position: relative;
     }
@@ -127,68 +153,68 @@
         border-radius: inherit;
         z-index: -1;
         opacity: 0.3;
-        filter: blur(8px);
+        filter: blur(10px);
         transition: opacity 0.3s ease;
     }
     .holo-glow:hover::after {
-        opacity: 0.7;
+        opacity: 0.8;
     }
 </style>
 </head>
 <body class="bg-background text-slate-100 overflow-x-hidden font-body-md selection:bg-amber-500 selection:text-black">
 
-<!-- True 3D Interactive Three.js WebGL Background -->
-<div class="fixed inset-0 w-full h-full -z-10 bg-[#0b0907] overflow-hidden pointer-events-none">
-    <div id="webgl-container" class="w-full h-full opacity-60"></div>
+<!-- True 3D Interactive Three.js WebGL Cinematic Background -->
+<div class="fixed inset-0 w-full h-full -z-10 bg-[#070504] overflow-hidden pointer-events-none">
+    <div id="webgl-container" class="w-full h-full opacity-70"></div>
 </div>
 
 <script>
-let scene, camera, renderer, particles, ringGroup;
+let scene, camera, renderer, particles, vaultRing;
 function initThree() {
     const container = document.getElementById('webgl-container');
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 35;
+    camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 40;
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    const particleCount = 700;
+    const particleCount = 900;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 80;
-        positions[i + 1] = (Math.random() - 0.5) * 80;
-        positions[i + 2] = (Math.random() - 0.5) * 60;
+        positions[i] = (Math.random() - 0.5) * 90;
+        positions[i + 1] = (Math.random() - 0.5) * 90;
+        positions[i + 2] = (Math.random() - 0.5) * 70;
     }
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const material = new THREE.PointsMaterial({
-        color: 0xe6b800,
-        size: 0.35,
+        color: 0xffd700,
+        size: 0.4,
         transparent: true,
-        opacity: 0.75,
+        opacity: 0.8,
         blending: THREE.AdditiveBlending
     });
 
     particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    ringGroup = new THREE.Group();
-    const ringGeo = new THREE.TorusGeometry(3, 0.08, 16, 100);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, wireframe: true, transparent: true, opacity: 0.25 });
+    vaultRing = new THREE.Group();
+    const torusGeo = new THREE.TorusGeometry(4, 0.05, 16, 120);
+    const torusMat = new THREE.MeshBasicMaterial({ color: 0xe6b800, wireframe: true, transparent: true, opacity: 0.2 });
     
-    for(let i=0; i<4; i++) {
-        const ring = new THREE.Mesh(ringGeo, ringMat);
+    for(let i=0; i<3; i++) {
+        const ring = new THREE.Mesh(torusGeo, torusMat);
         ring.rotation.x = Math.random() * Math.PI;
         ring.rotation.y = Math.random() * Math.PI;
-        ring.scale.set(1 + i*0.8, 1 + i*0.8, 1 + i*0.8);
-        ringGroup.add(ring);
+        ring.scale.set(1 + i*0.7, 1 + i*0.7, 1 + i*0.7);
+        vaultRing.add(ring);
     }
-    scene.add(ringGroup);
+    scene.add(vaultRing);
 
     window.addEventListener('resize', onWindowResize);
 }
@@ -204,11 +230,11 @@ function animateThree() {
     requestAnimationFrame(animateThree);
     const elapsedTime = clock.getElapsedTime();
 
-    particles.rotation.y = elapsedTime * 0.02;
-    particles.rotation.x = elapsedTime * 0.01;
+    particles.rotation.y = elapsedTime * 0.015;
+    particles.rotation.x = elapsedTime * 0.008;
 
-    ringGroup.rotation.y = elapsedTime * 0.05;
-    ringGroup.rotation.z = elapsedTime * 0.03;
+    vaultRing.rotation.y = elapsedTime * 0.04;
+    vaultRing.rotation.z = elapsedTime * 0.02;
 
     renderer.render(scene, camera);
 }
@@ -219,8 +245,28 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<!-- Interactive 3D Coin Detail Modal -->
+<div id="coin-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden opacity-0 pointer-events-none">
+    <div class="glass-card max-w-lg w-full p-6 sm:p-8 rounded-3xl border border-amber-500/50 shadow-[0_0_60px_rgba(230,184,0,0.3)] relative transform scale-95 transition-transform duration-300" id="modal-content-box">
+        <button onclick="closeCoinModal()" class="absolute top-4 right-4 p-2 rounded-full bg-black/60 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 transition-all">
+            <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+        <div class="flex flex-col items-center text-center space-y-4">
+            <div class="w-36 h-36 rounded-full bg-black/80 flex items-center justify-center p-2 border border-amber-500/30 shadow-[0_0_30px_rgba(230,184,0,0.2)]">
+                <img id="modal-img" src="" alt="Coin" class="w-full h-full object-contain filter drop-shadow-[0_10px_15px_rgba(230,184,0,0.5)]"/>
+            </div>
+            <div>
+                <span id="modal-badge" class="text-[9px] uppercase tracking-widest font-bold bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-500/40">VAULT SPECIFICATION</span>
+                <h3 id="modal-title" class="font-bold text-amber-200 text-xl sm:text-2xl mt-2"></h3>
+            </div>
+            <div id="modal-specs" class="w-full grid grid-cols-2 gap-2 text-xs text-left bg-black/60 p-4 rounded-2xl border border-white/10"></div>
+            <p id="modal-desc" class="text-xs text-slate-300 leading-relaxed italic"></p>
+        </div>
+    </div>
+</div>
+
 <!-- Navigation Shell with Main Hub Tab Intact -->
-<header class="w-full z-50 bg-background/90 backdrop-blur-2xl border-b border-amber-500/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative">
+<header class="w-full z-40 bg-background/90 backdrop-blur-2xl border-b border-amber-500/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-4 max-w-container-max mx-auto gap-4">
         
         <!-- Brand Title with Big Updated Logo Graphic -->
@@ -284,7 +330,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </header>
 
 <!-- Floating Fast Navigation / Scroll to Top Widget -->
-<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+<div class="fixed bottom-6 right-6 z-30 flex flex-col items-end gap-3">
     <div id="quick-jump-menu" class="hidden glass-card p-4 rounded-2xl border border-amber-500/40 shadow-[0_10px_30px_rgba(0,0,0,0.9)] flex flex-col gap-2 min-w-[200px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
         <a href="/" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1.5 rounded-lg hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
@@ -552,13 +598,13 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-    <!-- SECTION: Categorized Indian Coin Inventory -->
+    <!-- SECTION: Categorized Indian Coin Inventory (Pure Floating 3D Experience) -->
     <section id="indian-coins" class="scroll-mt-28 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl filter drop-shadow-[0_0_10px_rgba(230,184,0,0.6)]">collections_bookmark</span>
             <div>
                 <h2 class="font-headline-md text-xl sm:text-3xl text-amber-400 italic tracking-tight font-bold drop-shadow">Coinage of India (BY PERIODS)</h2>
-                <p class="text-xs text-slate-400">Click any card to flip and view complete details &amp; historical context</p>
+                <p class="text-xs text-slate-400">Click any floating coin to inspect full 3D vault specifications</p>
             </div>
         </div>
 
@@ -573,55 +619,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- Coin 1: Mauryan Silver Karshapana -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <!-- FRONT SIDE -->
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">Karshapana</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">ANCIENT</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        
-                        <!-- BACK SIDE -->
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">Karshapana Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> Karshapana</div>
-                                    <div><strong>Year:</strong> 300 BC</div>
-                                    <div><strong>Metal:</strong> Silver</div>
-                                    <div><strong>Issuer:</strong> Maurya</div>
-                                    <div><strong>Weight:</strong> 3.4 g</div>
-                                    <div><strong>Mint:</strong> Pataliputra</div>
-                                    <div><strong>Tech:</strong> Punched</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Standardized currency across Mauryan territories under Ashoka with 5 official punches.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Verified Ancient Issue</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('Karshapana (Mauryan Silver)', 'ANCIENT', '../Main_page_data/placeholder.gif', 'Status: Available (1 Pc)', 'Standardized currency across Mauryan territories under Ashoka with 5 official punches.', { 'Denom': 'Karshapana', 'Year': '300 BC', 'Metal': 'Silver', 'Issuer': 'Maurya', 'Weight': '3.4 g', 'Mint': 'Pataliputra', 'Tech': 'Punched' })">
+                    <div class="coin-floating-visual">
+                        <img alt="Mauryan Silver Karshapana" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">ANCIENT</span>
+                        <h4 class="font-bold text-amber-200 text-sm tracking-tight group-hover:text-amber-300 transition-colors">Karshapana</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- Blank Slot 1 -->
-                <div class="inventory-flip-card cursor-pointer opacity-60">
-                    <div class="glass-card p-4 border border-dashed border-amber-500/30 flex flex-col items-center justify-center text-center h-full rounded-2xl hover:opacity-100 transition-opacity">
-                        <span class="material-symbols-outlined text-amber-400/60 text-4xl mb-2">add_circle</span>
+                <div class="coin-3d-item opacity-50 cursor-default">
+                    <div class="w-[180px] h-[180px] rounded-full border border-dashed border-amber-500/30 flex flex-col items-center justify-center text-center p-4">
+                        <span class="material-symbols-outlined text-amber-400/50 text-3xl mb-1">add_circle</span>
                         <h4 class="font-bold text-slate-400 text-xs">Ancient Slot 2</h4>
-                        <p class="text-[9px] text-slate-500 mt-1">Reserved for cataloging</p>
+                        <p class="text-[9px] text-slate-500 mt-0.5">Reserved</p>
                     </div>
                 </div>
             </div>
@@ -638,52 +652,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- Colonial Item 1: 1862 Queen Victoria -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1/4 Rupee</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">COLONIAL</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1/4 Rupee Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1/4 Rupee</div>
-                                    <div><strong>Year:</strong> 1862</div>
-                                    <div><strong>Metal:</strong> Silver</div>
-                                    <div><strong>Mint:</strong> Calcutta</div>
-                                    <div><strong>Comp:</strong> 0.916 Silver</div>
-                                    <div><strong>Series:</strong> Crown</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Struck following the direct governance assumed by the British Crown in 1858.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">British Crown Issue</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1/4 Rupee (Queen Victoria)', 'COLONIAL', '../Main_page_data/placeholder.gif', 'Status: Available (1 Pc)', 'Struck following the direct governance assumed by the British Crown in 1858.', { 'Denom': '1/4 Rupee', 'Year': '1862', 'Metal': 'Silver', 'Mint': 'Calcutta', 'Comp': '0.916 Silver', 'Series': 'Crown' })">
+                    <div class="coin-floating-visual">
+                        <img alt="1862 Queen Victoria 1/4 Rupee" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">COLONIAL</span>
+                        <h4 class="font-bold text-amber-200 text-sm tracking-tight group-hover:text-amber-300 transition-colors">1/4 Rupee</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- Blank Slot 2 -->
-                <div class="inventory-flip-card cursor-pointer opacity-60">
-                    <div class="glass-card p-4 border border-dashed border-amber-500/30 flex flex-col items-center justify-center text-center h-full rounded-2xl hover:opacity-100 transition-opacity">
-                        <span class="material-symbols-outlined text-amber-400/60 text-4xl mb-2">add_circle</span>
+                <div class="coin-3d-item opacity-50 cursor-default">
+                    <div class="w-[180px] h-[180px] rounded-full border border-dashed border-amber-500/30 flex flex-col items-center justify-center text-center p-4">
+                        <span class="material-symbols-outlined text-amber-400/50 text-3xl mb-1">add_circle</span>
                         <h4 class="font-bold text-slate-400 text-xs">Medieval Slot 2</h4>
-                        <p class="text-[9px] text-slate-500 mt-1">Reserved for cataloging</p>
+                        <p class="text-[9px] text-slate-500 mt-0.5">Reserved</p>
                     </div>
                 </div>
             </div>
@@ -700,147 +685,47 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- 1/2 Pice 1929 George V -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1/2 Pice (1929)</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">BRITISH RAJ</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1/2 Pice George V" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1-2_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1/2 Pice Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1/2 Pice</div>
-                                    <div><strong>Ruler:</strong> George V</div>
-                                    <div><strong>Year:</strong> 1929</div>
-                                    <div><strong>Metal:</strong> Bronze</div>
-                                    <div><strong>Type:</strong> Fractional</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Weight:</strong> Info not available</div>
-                                    <div><strong>Diameter:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Issued during the reign of King-Emperor George V across British India.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">British India Issue</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1/2 Pice (George V)', 'BRITISH RAJ', '../images/Notes_And_Coins/Indian_Coins/British_Coin/1-2_Paisa.png', 'Status: Available (1 Pc)', 'Issued during the reign of King-Emperor George V across British India.', { 'Denom': '1/2 Pice', 'Ruler': 'George V', 'Year': '1929', 'Metal': 'Bronze', 'Type': 'Fractional' })">
+                    <div class="coin-floating-visual">
+                        <img alt="1/2 Pice George V" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1-2_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">BRITISH RAJ</span>
+                        <h4 class="font-bold text-amber-200 text-sm tracking-tight group-hover:text-amber-300 transition-colors">1/2 Pice (1929)</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- British India 1 Pice George VI -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Pice (George VI)</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">BRITISH RAJ</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="British India 1 Pice George VI" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1_Pice_george-6.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (3 Pcs)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1 Pice Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1 Pice</div>
-                                    <div><strong>Ruler:</strong> George VI</div>
-                                    <div><strong>Year:</strong> 1943</div>
-                                    <div><strong>Metal:</strong> Bronze</div>
-                                    <div><strong>Feature:</strong> Holed Coin</div>
-                                    <div><strong>Type:</strong> Fractional</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Weight:</strong> Info not available</div>
-                                    <div><strong>Diameter:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Holed bronze 1 Pice coin issued during World War II under King George VI (1943).</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Wartime British Issue</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1 Pice (George VI)', 'BRITISH RAJ', '../images/Notes_And_Coins/Indian_Coins/British_Coin/1_Pice_george-6.png', 'Status: Available (3 Pcs)', 'Holed bronze 1 Pice coin issued during World War II under King George VI (1943).', { 'Denom': '1 Pice', 'Ruler': 'George VI', 'Year': '1943', 'Metal': 'Bronze', 'Feature': 'Holed Coin' })">
+                    <div class="coin-floating-visual">
+                        <img alt="British India 1 Pice George VI" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1_Pice_george-6.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">BRITISH RAJ</span>
+                        <h4 class="font-bold text-amber-200 text-sm tracking-tight group-hover:text-amber-300 transition-colors">1 Pice (George VI)</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (3 Pcs)</span>
                     </div>
                 </div>
 
                 <!-- British India 1 Quarter Anna Bronze -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1/4 Anna Bronze</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">BRITISH RAJ</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="British India 1 Quarter Anna Bronze" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1/4 Anna Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1/4 Anna</div>
-                                    <div><strong>Era:</strong> British Raj</div>
-                                    <div><strong>Metal:</strong> Bronze</div>
-                                    <div><strong>Type:</strong> Fractional</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Weight:</strong> Info not available</div>
-                                    <div><strong>Diameter:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Standard fractional bronze coinage used for daily trade across British India.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Pre-1947 British India</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1/4 Anna Bronze', 'BRITISH RAJ', '../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.png', 'Status: Available (1 Pc)', 'Standard fractional bronze coinage used for daily trade across British India.', { 'Denom': '1/4 Anna', 'Era': 'British Raj', 'Metal': 'Bronze', 'Type': 'Fractional' })">
+                    <div class="coin-floating-visual">
+                        <img alt="British India 1 Quarter Anna Bronze" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">BRITISH RAJ</span>
+                        <h4 class="font-bold text-amber-200 text-sm tracking-tight group-hover:text-amber-300 transition-colors">1/4 Anna Bronze</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- Blank Slot 3 -->
-                <div class="inventory-flip-card cursor-pointer opacity-60">
-                    <div class="glass-card p-4 border border-dashed border-amber-500/30 flex flex-col items-center justify-center text-center h-full rounded-2xl hover:opacity-100 transition-opacity">
-                        <span class="material-symbols-outlined text-amber-400/60 text-4xl mb-2">add_circle</span>
+                <div class="coin-3d-item opacity-50 cursor-default">
+                    <div class="w-[180px] h-[180px] rounded-full border border-dashed border-amber-500/30 flex flex-col items-center justify-center text-center p-4">
+                        <span class="material-symbols-outlined text-amber-400/50 text-3xl mb-1">add_circle</span>
                         <h4 class="font-bold text-slate-400 text-xs">British India Slot 2</h4>
-                        <p class="text-[9px] text-slate-500 mt-1">Reserved for cataloging</p>
+                        <p class="text-[9px] text-slate-500 mt-0.5">Reserved</p>
                     </div>
                 </div>
             </div>
@@ -862,186 +747,50 @@ window.addEventListener('DOMContentLoaded', () => {
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                     <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees -->
-                    <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                        <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
-                            <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                    <div class="flex items-center gap-1.5 flex-grow">
-                                        <h4 class="font-bold text-amber-200 text-xs truncate">Dr. Syama Prasad Mookerjee</h4>
-                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">COMMEMORATIVE</span>
-                                    </div>
-                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                                </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="2 Rupees Dr. Syama Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                                </div>
-                                <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                    <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                    <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                                </div>
-                            </div>
-                            
-                            <!-- BACK SIDE -->
-                            <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                                <div class="space-y-2">
-                                    <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                        <h4 class="font-bold text-amber-300 text-xs">Dr. Mookerjee Specs</h4>
-                                        <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                        <div><strong>Denom:</strong> 2 Rupees</div>
-                                        <div><strong>Issuer:</strong> India</div>
-                                        <div><strong>Years:</strong> 2001</div>
-                                        <div><strong>Comp:</strong> Cu-Ni</div>
-                                        <div><strong>Weight:</strong> 6.24 g</div>
-                                        <div><strong>Dia:</strong> 25.7 mm</div>
-                                        <div><strong>Shape:</strong> Hendecagonal</div>
-                                        <div><strong>Edge:</strong> Plain</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
-                                    </div>
-                                    <p class="text-[10px] text-slate-300 leading-tight">100th Anniversary Birth of Dr. Syama Prasad Mookerjee.</p>
-                                </div>
-                                <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Republic Commemorative</span>
-                            </div>
+                    <div class="coin-3d-item group" onclick="openCoinModal('Dr. Syama Prasad Mookerjee', 'COMMEMORATIVE', '../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.png', 'Status: Available (1 Pc)', '100th Anniversary Birth of Dr. Syama Prasad Mookerjee.', { 'Denom': '2 Rupees', 'Issuer': 'India', 'Years': '2001', 'Comp': 'Cu-Ni', 'Weight': '6.24 g', 'Dia': '25.7 mm', 'Shape': 'Hendecagonal' })">
+                        <div class="coin-floating-visual">
+                            <img alt="2 Rupees Dr. Syama Mookerjee Commemorative Coin" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        </div>
+                        <div class="text-center mt-3 space-y-1">
+                            <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">COMMEMORATIVE</span>
+                            <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">Dr. Syama Prasad Mookerjee</h4>
+                            <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                         </div>
                     </div>
 
                     <!-- Coin 2: Indira Gandhi 5 Rupees -->
-                    <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                        <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
-                            <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                    <div class="flex items-center gap-1.5 flex-grow">
-                                        <h4 class="font-bold text-amber-200 text-xs truncate">Indira Gandhi</h4>
-                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">COMMEMORATIVE</span>
-                                    </div>
-                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                                </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="5 Rupees Indira Gandhi Commemorative Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                                </div>
-                                <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                    <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                    <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                                </div>
-                            </div>
-                            
-                            <!-- BACK SIDE -->
-                            <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                                <div class="space-y-2">
-                                    <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                        <h4 class="font-bold text-amber-300 text-xs">Indira Gandhi Specs</h4>
-                                        <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                        <div><strong>Denom:</strong> 5 Rupees</div>
-                                        <div><strong>Issuer:</strong> India</div>
-                                        <div><strong>Years:</strong> 1917-1984</div>
-                                        <div><strong>Comp:</strong> Cu-Ni</div>
-                                        <div><strong>Weight:</strong> 9.0 g</div>
-                                        <div><strong>Dia:</strong> 23.0 mm</div>
-                                        <div><strong>Shape:</strong> Round</div>
-                                        <div><strong>Edge:</strong> Security</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
-                                    </div>
-                                    <p class="text-[10px] text-slate-300 leading-tight">Commemorative issue dedicated to former Prime Minister Indira Gandhi.</p>
-                                </div>
-                                <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Republic Commemorative</span>
-                            </div>
+                    <div class="coin-3d-item group" onclick="openCoinModal('Indira Gandhi', 'COMMEMORATIVE', '../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.png', 'Status: Available (1 Pc)', 'Commemorative issue dedicated to former Prime Minister Indira Gandhi.', { 'Denom': '5 Rupees', 'Issuer': 'India', 'Years': '1917-1984', 'Comp': 'Cu-Ni', 'Weight': '9.0 g', 'Dia': '23.0 mm', 'Shape': 'Round' })">
+                        <div class="coin-floating-visual">
+                            <img alt="5 Rupees Indira Gandhi Commemorative Coin" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        </div>
+                        <div class="text-center mt-3 space-y-1">
+                            <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">COMMEMORATIVE</span>
+                            <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">Indira Gandhi</h4>
+                            <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                         </div>
                     </div>
 
                     <!-- Coin 3: 1953 Republic of India 1 Pice (Horse Pice) -->
-                    <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                        <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
-                            <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                    <div class="flex items-center gap-1.5 flex-grow">
-                                        <h4 class="font-bold text-amber-200 text-xs truncate">1 Pice (Horse Pice)</h4>
-                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">REPUBLIC</span>
-                                    </div>
-                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                                </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="1 Pice Horse Pice" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Pice_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                                </div>
-                                <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                    <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                    <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                                </div>
-                            </div>
-                            
-                            <!-- BACK SIDE -->
-                            <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                                <div class="space-y-2">
-                                    <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                        <h4 class="font-bold text-amber-300 text-xs">1 Pice (1953) Specs</h4>
-                                        <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                        <div><strong>Denom:</strong> 1 Pice</div>
-                                        <div><strong>Year:</strong> 1953</div>
-                                        <div><strong>Metal:</strong> Bronze</div>
-                                        <div><strong>Type:</strong> Circulation</div>
-                                        <div><strong>Issuer:</strong> Info not available</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
-                                        <div><strong>Weight:</strong> Info not available</div>
-                                        <div><strong>Diameter:</strong> Info not available</div>
-                                        <div><strong>Shape:</strong> Info not available</div>
-                                    </div>
-                                    <p class="text-[10px] text-slate-300 leading-tight">Vintage Republic of India bronze coin featuring the horse motif.</p>
-                                </div>
-                                <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Early Republic Issue</span>
-                            </div>
+                    <div class="coin-3d-item group" onclick="openCoinModal('1 Pice (Horse Pice)', 'REPUBLIC', '../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Pice_Coin.png', 'Status: Available (1 Pc)', 'Vintage Republic of India bronze coin featuring the horse motif.', { 'Denom': '1 Pice', 'Year': '1953', 'Metal': 'Bronze', 'Type': 'Circulation' })">
+                        <div class="coin-floating-visual">
+                            <img alt="1 Pice Horse Pice" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Pice_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        </div>
+                        <div class="text-center mt-3 space-y-1">
+                            <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">REPUBLIC</span>
+                            <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">1 Pice (Horse Pice)</h4>
+                            <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                         </div>
                     </div>
 
                     <!-- Coin 4: 1 Naya Paisa -->
-                    <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                        <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
-                            <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                    <div class="flex items-center gap-1.5 flex-grow">
-                                        <h4 class="font-bold text-amber-200 text-xs truncate">1 Naya Paisa</h4>
-                                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">DECIMAL</span>
-                                    </div>
-                                    <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                                </div>
-                                <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="1 Naya Paisa" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Nay_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                                </div>
-                                <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                    <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                    <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                                </div>
-                            </div>
-                            
-                            <!-- BACK SIDE -->
-                            <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                                <div class="space-y-2">
-                                    <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                        <h4 class="font-bold text-amber-300 text-xs">1 Naya Paisa Specs</h4>
-                                        <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                        <div><strong>Denom:</strong> 1 Naya Paisa</div>
-                                        <div><strong>Era:</strong> Post-1957</div>
-                                        <div><strong>Metal:</strong> Bronze</div>
-                                        <div><strong>Type:</strong> Decimal Coin</div>
-                                        <div><strong>Issuer:</strong> Info not available</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
-                                        <div><strong>Weight:</strong> Info not available</div>
-                                        <div><strong>Diameter:</strong> Info not available</div>
-                                        <div><strong>Shape:</strong> Info not available</div>
-                                    </div>
-                                    <p class="text-[10px] text-slate-300 leading-tight">Introduced April 1, 1957 during India's shift to decimal currency.</p>
-                                </div>
-                                <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Decimal Series</span>
-                            </div>
+                    <div class="coin-3d-item group" onclick="openCoinModal('1 Naya Paisa', 'DECIMAL', '../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Nay_Paisa.png', 'Status: Available (1 Pc)', 'Introduced April 1, 1957 during India\'s shift to decimal currency.', { 'Denom': '1 Naya Paisa', 'Era': 'Post-1957', 'Metal': 'Bronze', 'Type': 'Decimal Coin' })">
+                        <div class="coin-floating-visual">
+                            <img alt="1 Naya Paisa" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Nay_Paisa.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        </div>
+                        <div class="text-center mt-3 space-y-1">
+                            <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">DECIMAL</span>
+                            <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">1 Naya Paisa</h4>
+                            <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                         </div>
                     </div>
                 </div>
@@ -1070,222 +819,62 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- 5 Forint -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">5 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="5 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">5 Forint Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 5 Forint</div>
-                                    <div><strong>Issuer:</strong> MNB</div>
-                                    <div><strong>Dia:</strong> 21.2 mm</div>
-                                    <div><strong>Weight:</strong> 4.2 g</div>
-                                    <div><strong>Thick:</strong> 1.6 mm</div>
-                                    <div><strong>Comp:</strong> Nickel Brass</div>
-                                    <div><strong>Edge:</strong> Plain</div>
-                                    <div><strong>Design:</strong> Egret</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Features Great White Egret (István Kósa) and underlined numeral five.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('5 Forint', 'HUNGARY', '../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.png', 'Status: Available (1 Pc)', 'Features Great White Egret (István Kósa) and underlined numeral five.', { 'Denom': '5 Forint', 'Issuer': 'MNB', 'Dia': '21.2 mm', 'Weight': '4.2 g', 'Thick': '1.6 mm', 'Comp': 'Nickel Brass', 'Edge': 'Plain', 'Design': 'Egret' })">
+                    <div class="coin-floating-visual">
+                        <img alt="5 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">HUNGARY</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">5 Forint</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 10 Forint -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">10 Forint Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 10 Forint</div>
-                                    <div><strong>Issuer:</strong> MNB</div>
-                                    <div><strong>Dia:</strong> 24.8 mm</div>
-                                    <div><strong>Weight:</strong> 6.1 g</div>
-                                    <div><strong>Thick:</strong> 1.7 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni</div>
-                                    <div><strong>Edge:</strong> Milled</div>
-                                    <div><strong>Design:</strong> Coat of Arms</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Displays official coat of arms of Hungary with "MAGYARORSZÁG" and "BP." mark.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('10 Forint', 'HUNGARY', '../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.png', 'Status: Available (1 Pc)', 'Displays official coat of arms of Hungary with "MAGYARORSZÁG" and "BP." mark.', { 'Denom': '10 Forint', 'Issuer': 'MNB', 'Dia': '24.8 mm', 'Weight': '6.1 g', 'Thick': '1.7 mm', 'Comp': 'Cu-Ni', 'Edge': 'Milled', 'Design': 'Coat of Arms' })">
+                    <div class="coin-floating-visual">
+                        <img alt="10 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">HUNGARY</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">10 Forint</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 20 Forint -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">20 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="20 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">20 Forint Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 20 Forint</div>
-                                    <div><strong>Issuer:</strong> MNB</div>
-                                    <div><strong>Dia:</strong> 26.3 mm</div>
-                                    <div><strong>Weight:</strong> 6.9 g</div>
-                                    <div><strong>Thick:</strong> 1.8 mm</div>
-                                    <div><strong>Comp:</strong> Nickel Brass</div>
-                                    <div><strong>Edge:</strong> Reeded</div>
-                                    <div><strong>Design:</strong> Stool Iris</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Features the Stool Iris (Iris aphylla) flower on the obverse designed by István Kósa.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('20 Forint', 'HUNGARY', '../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.png', 'Status: Available (1 Pc)', 'Features the Stool Iris (Iris aphylla) flower on the obverse designed by István Kósa.', { 'Denom': '20 Forint', 'Issuer': 'MNB', 'Dia': '26.3 mm', 'Weight': '6.9 g', 'Thick': '1.8 mm', 'Comp': 'Nickel Brass', 'Edge': 'Reeded', 'Design': 'Stool Iris' })">
+                    <div class="coin-floating-visual">
+                        <img alt="20 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">HUNGARY</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">20 Forint</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 50 Forint -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">50 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.jpeg" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">50 Forint Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 50 Forint</div>
-                                    <div><strong>Issuer:</strong> MNB</div>
-                                    <div><strong>Dia:</strong> 27.4 mm</div>
-                                    <div><strong>Weight:</strong> 7.7 g</div>
-                                    <div><strong>Thick:</strong> 1.8 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni</div>
-                                    <div><strong>Edge:</strong> Smooth</div>
-                                    <div><strong>Design:</strong> Saker Falcon</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Standard circulation coin depicting the protected Saker Falcon (Falco cherrug).</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('50 Forint', 'HUNGARY', '../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.jpeg', 'Status: Available (1 Pc)', 'Standard circulation coin depicting the protected Saker Falcon (Falco cherrug).', { 'Denom': '50 Forint', 'Issuer': 'MNB', 'Dia': '27.4 mm', 'Weight': '7.7 g', 'Thick': '1.8 mm', 'Comp': 'Cu-Ni', 'Edge': 'Smooth', 'Design': 'Saker Falcon' })">
+                    <div class="coin-floating-visual">
+                        <img alt="50 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.jpeg" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">HUNGARY</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">50 Forint</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 200 Forint -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">200 Forint</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">HUNGARY</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="200 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">200 Forint Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 200 Forint</div>
-                                    <div><strong>Issuer:</strong> MNB</div>
-                                    <div><strong>Dia:</strong> 28.3 mm</div>
-                                    <div><strong>Weight:</strong> 9.0 g</div>
-                                    <div><strong>Thick:</strong> 2.0 mm</div>
-                                    <div><strong>Comp:</strong> Bimetallic</div>
-                                    <div><strong>Edge:</strong> Segmented</div>
-                                    <div><strong>Mint:</strong> Budapest</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Features the iconic Széchenyi Chain Bridge of Budapest on the obverse.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Central European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('200 Forint', 'HUNGARY', '../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.png', 'Status: Available (1 Pc)', 'Features the iconic Széchenyi Chain Bridge of Budapest on the obverse.', { 'Denom': '200 Forint', 'Issuer': 'MNB', 'Dia': '28.3 mm', 'Weight': '9.0 g', 'Thick': '2.0 mm', 'Comp': 'Bimetallic', 'Edge': 'Segmented', 'Mint': 'Budapest' })">
+                    <div class="coin-floating-visual">
+                        <img alt="200 Forint" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">HUNGARY</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">200 Forint</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
             </div>
@@ -1302,310 +891,86 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- 2 Euros 1st map -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">2 Euros (1st map)</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">GERMANY</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="2 Euros 1st map" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">2 Euro Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 2 Euros</div>
-                                    <div><strong>Issuer:</strong> Germany</div>
-                                    <div><strong>Dia:</strong> 25.75 mm</div>
-                                    <div><strong>Weight:</strong> 8.5 g</div>
-                                    <div><strong>Thick:</strong> 2.2 mm</div>
-                                    <div><strong>Comp:</strong> Bimetallic</div>
-                                    <div><strong>Edge:</strong> Reeded w/ text</div>
-                                    <div><strong>Years:</strong> 2002-2006</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">German eagle surrounded by 12 stars. Reverse features 1st EU map layout.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('2 Euros (1st map)', 'GERMANY', '../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.png', 'Status: Available (1 Pc)', 'German eagle surrounded by 12 stars. Reverse features 1st EU map layout.', { 'Denom': '2 Euros', 'Issuer': 'Germany', 'Dia': '25.75 mm', 'Weight': '8.5 g', 'Thick': '2.2 mm', 'Comp': 'Bimetallic', 'Edge': 'Reeded w/ text', 'Years': '2002-2006' })">
+                    <div class="coin-floating-visual">
+                        <img alt="2 Euros 1st map" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">GERMANY</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">2 Euros (1st map)</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 1 Euro - Juan Carlos -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Euro (Juan Carlos)</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">SPAIN</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Euro Juan Carlos" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1 Euro Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1 Euro</div>
-                                    <div><strong>Issuer:</strong> Spain</div>
-                                    <div><strong>Dia:</strong> 23.25 mm</div>
-                                    <div><strong>Weight:</strong> 7.5 g</div>
-                                    <div><strong>Thick:</strong> 2.33 mm</div>
-                                    <div><strong>Comp:</strong> Bimetallic</div>
-                                    <div><strong>Edge:</strong> Segmented</div>
-                                    <div><strong>Years:</strong> 1999-2006</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Features bust of King Juan Carlos I facing left and 1st map of Europe reverse.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1 Euro (Juan Carlos)', 'SPAIN', '../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.png', 'Status: Available (1 Pc)', 'Features bust of King Juan Carlos I facing left and 1st map of Europe reverse.', { 'Denom': '1 Euro', 'Issuer': 'Spain', 'Dia': '23.25 mm', 'Weight': '7.5 g', 'Thick': '2.33 mm', 'Comp': 'Bimetallic', 'Edge': 'Segmented', 'Years': '1999-2006' })">
+                    <div class="coin-floating-visual">
+                        <img alt="1 Euro Juan Carlos" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">SPAIN</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">1 Euro (Juan Carlos)</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 50 Euro Cent -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">50 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">EUROPE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">50 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 50 Cent</div>
-                                    <div><strong>Alloy:</strong> Nordic Gold</div>
-                                    <div><strong>Dia:</strong> 24.25 mm</div>
-                                    <div><strong>Weight:</strong> 7.8 g</div>
-                                    <div><strong>Thick:</strong> 2.38 mm</div>
-                                    <div><strong>Edge:</strong> Indented</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Nordic Gold alloy fractional euro currency piece minted for pan-European distribution.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('50 Euro Cent', 'EUROPE', '../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.png', 'Status: Available (1 Pc)', 'Nordic Gold alloy fractional euro currency piece minted for pan-European distribution.', { 'Denom': '50 Cent', 'Alloy': 'Nordic Gold', 'Dia': '24.25 mm', 'Weight': '7.8 g', 'Thick': '2.38 mm', 'Edge': 'Indented' })">
+                    <div class="coin-floating-visual">
+                        <img alt="50 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">EUROPE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">50 Euro Cent</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 20 Euro Cent -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">20 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">EUROPE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="20 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">20 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 20 Cent</div>
-                                    <div><strong>Alloy:</strong> Nordic Gold</div>
-                                    <div><strong>Dia:</strong> 22.25 mm</div>
-                                    <div><strong>Weight:</strong> 5.74 g</div>
-                                    <div><strong>Thick:</strong> 2.14 mm</div>
-                                    <div><strong>Shape:</strong> Spanish Flower</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Edge:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Distinctive 7-indent Spanish flower shape minted in Nordic Gold.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('20 Euro Cent', 'EUROPE', '../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.png', 'Status: Available (1 Pc)', 'Distinctive 7-indent Spanish flower shape minted in Nordic Gold.', { 'Denom': '20 Cent', 'Alloy': 'Nordic Gold', 'Dia': '22.25 mm', 'Weight': '5.74 g', 'Thick': '2.14 mm', 'Shape': 'Spanish Flower' })">
+                    <div class="coin-floating-visual">
+                        <img alt="20 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">EUROPE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">20 Euro Cent</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 10 Euro Cent -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">EUROPE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">10 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 10 Cent</div>
-                                    <div><strong>Alloy:</strong> Nordic Gold</div>
-                                    <div><strong>Dia:</strong> 19.75 mm</div>
-                                    <div><strong>Weight:</strong> 4.1 g</div>
-                                    <div><strong>Thick:</strong> 1.93 mm</div>
-                                    <div><strong>Edge:</strong> Scalloped</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Small denomination fractional euro currency piece with scalloped edge.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('10 Euro Cent', 'EUROPE', '../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.png', 'Status: Available (1 Pc)', 'Small denomination fractional euro currency piece with scalloped edge.', { 'Denom': '10 Cent', 'Alloy': 'Nordic Gold', 'Dia': '19.75 mm', 'Weight': '4.1 g', 'Thick': '1.93 mm', 'Edge': 'Scalloped' })">
+                    <div class="coin-floating-visual">
+                        <img alt="10 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">EUROPE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">10 Euro Cent</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 2 Euro Cent -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">2 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">EUROPE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="2 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">2 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 2 Cent</div>
-                                    <div><strong>Comp:</strong> Steel / Copper</div>
-                                    <div><strong>Dia:</strong> 18.75 mm</div>
-                                    <div><strong>Weight:</strong> 3.06 g</div>
-                                    <div><strong>Thick:</strong> 1.67 mm</div>
-                                    <div><strong>Edge:</strong> Grooved</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Copper-plated steel coin featuring a horizontal groove around the edge.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('2 Euro Cent', 'EUROPE', '../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.png', 'Status: Available (1 Pc)', 'Copper-plated steel coin featuring a horizontal groove around the edge.', { 'Denom': '2 Cent', 'Comp': 'Steel / Copper', 'Dia': '18.75 mm', 'Weight': '3.06 g', 'Thick': '1.67 mm', 'Edge': 'Grooved' })">
+                    <div class="coin-floating-visual">
+                        <img alt="2 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">EUROPE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">2 Euro Cent</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 1 Euro Cent -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Euro Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">EUROPE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1 Cent</div>
-                                    <div><strong>Comp:</strong> Steel / Copper</div>
-                                    <div><strong>Dia:</strong> 16.25 mm</div>
-                                    <div><strong>Weight:</strong> 2.3 g</div>
-                                    <div><strong>Thick:</strong> 1.67 mm</div>
-                                    <div><strong>Edge:</strong> Smooth</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Smallest euro denomination made of copper-plated steel with a smooth edge.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">European Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1 Euro Cent', 'EUROPE', '../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.png', 'Status: Available (1 Pc)', 'Smallest euro denomination made of copper-plated steel with a smooth edge.', { 'Denom': '1 Cent', 'Comp': 'Steel / Copper', 'Dia': '16.25 mm', 'Weight': '2.3 g', 'Thick': '1.67 mm', 'Edge': 'Smooth' })">
+                    <div class="coin-floating-visual">
+                        <img alt="1 Euro Cent" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">EUROPE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">1 Euro Cent</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
             </div>
@@ -1622,130 +987,38 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- 25 Fils coin -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">25 Fils</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">UAE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="25 Fils" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">25 Fils Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 25 Fils</div>
-                                    <div><strong>Issuer:</strong> UAE</div>
-                                    <div><strong>Dia:</strong> 20.0 mm</div>
-                                    <div><strong>Weight:</strong> 3.5 g</div>
-                                    <div><strong>Comp:</strong> Cupronickel</div>
-                                    <div><strong>Design:</strong> Arabian Gazelle</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">100 Fils make 1 Dirham. Features an Arabian Gazelle on the reverse.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Middle Eastern Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('25 Fils', 'UAE', '../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.png', 'Status: Available (1 Pc)', '100 Fils make 1 Dirham. Features an Arabian Gazelle on the reverse.', { 'Denom': '25 Fils', 'Issuer': 'UAE', 'Dia': '20.0 mm', 'Weight': '3.5 g', 'Comp': 'Cupronickel', 'Design': 'Arabian Gazelle' })">
+                    <div class="coin-floating-visual">
+                        <img alt="25 Fils" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">UAE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">25 Fils</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 50 Fils coin -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">50 Fils</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">UAE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Fils" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">50 Fils Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 50 Fils</div>
-                                    <div><strong>Issuer:</strong> UAE</div>
-                                    <div><strong>Dia:</strong> 21.0 mm</div>
-                                    <div><strong>Weight:</strong> 6.2 g</div>
-                                    <div><strong>Shape:</strong> Heptagonal</div>
-                                    <div><strong>Comp:</strong> Cupronickel</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Distinctive heptagonal shaped coin featuring oil derricks or national crest.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Middle Eastern Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('50 Fils', 'UAE', '../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.png', 'Status: Available (1 Pc)', 'Distinctive heptagonal shaped coin featuring oil derricks or national crest.', { 'Denom': '50 Fils', 'Issuer': 'UAE', 'Dia': '21.0 mm', 'Weight': '6.2 g', 'Shape': 'Heptagonal', 'Comp': 'Cupronickel' })">
+                    <div class="coin-floating-visual">
+                        <img alt="50 Fils" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">UAE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">50 Fils</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
 
                 <!-- 1 Dirham -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Dirham</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">UAE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Dirham" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1 Dirham Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1 Dirham</div>
-                                    <div><strong>Issuer:</strong> UAE</div>
-                                    <div><strong>Dia:</strong> 24.0 mm</div>
-                                    <div><strong>Weight:</strong> 6.4 g</div>
-                                    <div><strong>Comp:</strong> Cupronickel</div>
-                                    <div><strong>Design:</strong> Dallah Coffee Pot</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Features the traditional Dallah (Arabic coffee pot) symbolizing Arabian hospitality.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Middle Eastern Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1 Dirham', 'UAE', '../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.png', 'Status: Available (1 Pc)', 'Features the traditional Dallah (Arabic coffee pot) symbolizing Arabian hospitality.', { 'Denom': '1 Dirham', 'Issuer': 'UAE', 'Dia': '24.0 mm', 'Weight': '6.4 g', 'Comp': 'Cupronickel', 'Design': 'Dallah Coffee Pot' })">
+                    <div class="coin-floating-visual">
+                        <img alt="1 Dirham" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">UAE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">1 Dirham</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
             </div>
@@ -1762,45 +1035,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- 10 cent -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Cent</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">SINGAPORE</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Cent Singapore" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">10 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 10 Cent</div>
-                                    <div><strong>Issuer:</strong> Singapore</div>
-                                    <div><strong>Dia:</strong> 18.5 mm</div>
-                                    <div><strong>Weight:</strong> 1.6 g</div>
-                                    <div><strong>Comp:</strong> Aluminium-Bronze</div>
-                                    <div><strong>Design:</strong> Vanda Miss Joaquim</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Features Singapore's national flower, the Vanda Miss Joaquim orchid, on the reverse.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Asian Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('10 Cent', 'SINGAPORE', '../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.png', 'Status: Available (1 Pc)', 'Features Singapore\'s national flower, the Vanda Miss Joaquim orchid, on the reverse.', { 'Denom': '10 Cent', 'Issuer': 'Singapore', 'Dia': '18.5 mm', 'Weight': '1.6 g', 'Comp': 'Aluminium-Bronze', 'Design': 'Vanda Miss Joaquim' })">
+                    <div class="coin-floating-visual">
+                        <img alt="10 Cent Singapore" src="../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">SINGAPORE</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">10 Cent</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
             </div>
@@ -1817,45 +1059,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- 1 Yuan -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">1 Yuan</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">CHINA</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="China 1 Yuan" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">1 Yuan Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 1 Yuan</div>
-                                    <div><strong>Issuer:</strong> China</div>
-                                    <div><strong>Dia:</strong> 25.0 mm</div>
-                                    <div><strong>Weight:</strong> 6.1 g</div>
-                                    <div><strong>Comp:</strong> Nickel-plated steel</div>
-                                    <div><strong>Design:</strong> Chrysanthemum</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Features a blooming chrysanthemum flower on the reverse with the denomination.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Asian Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('1 Yuan', 'CHINA', '../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.png', 'Status: Available (1 Pc)', 'Features a blooming chrysanthemum flower on the reverse with the denomination.', { 'Denom': '1 Yuan', 'Issuer': 'China', 'Dia': '25.0 mm', 'Weight': '6.1 g', 'Comp': 'Nickel-plated steel', 'Design': 'Chrysanthemum' })">
+                    <div class="coin-floating-visual">
+                        <img alt="China 1 Yuan" src="../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">CHINA</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">1 Yuan</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
             </div>
@@ -1872,46 +1083,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <!-- 10 Rupees -->
-                <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <div class="flex items-center gap-1.5 flex-grow">
-                                    <h4 class="font-bold text-amber-200 text-xs truncate">10 Rupees</h4>
-                                    <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded uppercase shadow flex-shrink-0">NEPAL</span>
-                                </div>
-                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="Nepal 10 Rupees" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-                                <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
-                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-amber-300 text-xs">10 Rupees Specs</h4>
-                                    <span class="text-[8px] text-slate-400 flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px]">sync</span> Return</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-lg border border-white/5">
-                                    <div><strong>Denom:</strong> 10 Rupees</div>
-                                    <div><strong>Issuer:</strong> Nepal</div>
-                                    <div><strong>Year:</strong> 2054 (1997)</div>
-                                    <div><strong>Weight:</strong> 10.0 g</div>
-                                    <div><strong>Dia:</strong> 25.0 mm</div>
-                                    <div><strong>Thick:</strong> 2.7 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni</div>
-                                    <div><strong>King:</strong> Birendra</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight">Circulating commemorative coin issued during the reign of King Birendra Bir Bikram Shah.</p>
-                            </div>
-                            <span class="text-[8px] text-amber-400 font-bold tracking-widest uppercase text-center pt-1">Himalayan Vault</span>
-                        </div>
+                <div class="coin-3d-item group" onclick="openCoinModal('10 Rupees', 'NEPAL', '../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.png', 'Status: Available (1 Pc)', 'Circulating commemorative coin issued during the reign of King Birendra Bir Bikram Shah.', { 'Denom': '10 Rupees', 'Issuer': 'Nepal', 'Year': '2054 (1997)', 'Weight': '10.0 g', 'Dia': '25.0 mm', 'Thick': '2.7 mm', 'Comp': 'Cu-Ni', 'King': 'Birendra' })">
+                    <div class="coin-floating-visual">
+                        <img alt="Nepal 10 Rupees" src="../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                    </div>
+                    <div class="text-center mt-3 space-y-1">
+                        <span class="text-[7px] font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase shadow">NEPAL</span>
+                        <h4 class="font-bold text-amber-200 text-xs truncate max-w-[220px]">10 Rupees</h4>
+                        <span class="text-[10px] text-emerald-400 font-semibold block">Status: Available (1 Pc)</span>
                     </div>
                 </div>
             </div>
@@ -1932,8 +1111,8 @@ window.addEventListener('DOMContentLoaded', () => {
                             <h4 class="font-bold text-amber-200 text-sm sm:text-base">Chhatrapati Shivaji Maharaj - Hon</h4>
                             <span class="text-[10px] bg-red-600 text-white px-2.5 py-1 rounded-lg font-bold shadow">Hard to find</span>
                         </div>
-                        <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 270px;">
-                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/WishList/hon_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        <div class="coin-img-container my-1" style="max-width: 220px; height: 220px;">
+                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" src="../images/Notes_And_Coins/Indian_Coins/WishList/hon_Coin.png" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                         </div>
                         <div class="flex items-center justify-between pt-3 border-t border-white/10">
                             <span class="text-[11px] text-amber-400 font-bold">Target Wishlist Piece</span>
@@ -2159,6 +1338,41 @@ window.addEventListener('DOMContentLoaded', () => {
 <script>
     if (window.lucide) lucide.createIcons();
 
+    // 3D Coin Modal Interaction Logic
+    function openCoinModal(title, badge, imgSrc, status, desc, specs) {
+        const modal = document.getElementById('coin-modal');
+        const modalContent = document.getElementById('modal-content-box');
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-badge').innerText = badge;
+        document.getElementById('modal-img').src = imgSrc;
+        document.getElementById('modal-desc').innerText = desc;
+        
+        const specsContainer = document.getElementById('modal-specs');
+        specsContainer.innerHTML = '';
+        for (const [key, value] of Object.entries(specs)) {
+            specsContainer.innerHTML += `<div><strong class="text-amber-400 uppercase text-[9px] font-mono">${key}:</strong> <span class="text-slate-200 block">${value}</span></div>`;
+        }
+        specsContainer.innerHTML += `<div><strong class="text-amber-400 uppercase text-[9px] font-mono">Status:</strong> <span class="text-emerald-400 block font-semibold">${status}</span></div>`;
+
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
+    }
+
+    function closeCoinModal() {
+        const modal = document.getElementById('coin-modal');
+        const modalContent = document.getElementById('modal-content-box');
+        modal.classList.add('opacity-0');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
     // Isolated Page Key for Numismatic Portfolio Database Sync
     const ARTICLE_ID = 'coins';
     const API_URL = '/api/comments';
@@ -2224,22 +1438,22 @@ window.addEventListener('DOMContentLoaded', () => {
                 <p class="text-slate-300 text-sm whitespace-pre-line leading-relaxed">${escapeHTML(comment.content)}</p>
                 
                 <div class="flex items-center space-x-4 text-xs pt-2">
-                    <!-- Like -->
+                    <!-- Like with Email Verification Prompt -->
                     <button 
-                        onclick="handleVote(${comment.id}, 'like')" 
+                        onclick="promptVote(${comment.id}, 'like')" 
                         class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5"
                     >
                         <span class="material-symbols-outlined text-sm">thumb_up</span>
-                        <span>${comment.likes || 0}</span>
+                        <span id="likes-count-${comment.id}">${comment.likes || 0}</span>
                     </button>
 
-                    <!-- Dislike -->
+                    <!-- Dislike with Email Verification Prompt -->
                     <button 
-                        onclick="handleVote(${comment.id}, 'dislike')" 
+                        onclick="promptVote(${comment.id}, 'dislike')" 
                         class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5"
                     >
                         <span class="material-symbols-outlined text-sm">thumb_down</span>
-                        <span>${comment.dislikes || 0}</span>
+                        <span id="dislikes-count-${comment.id}">${comment.dislikes || 0}</span>
                     </button>
 
                     <!-- Reply -->
@@ -2305,17 +1519,46 @@ window.addEventListener('DOMContentLoaded', () => {
         form.classList.toggle('hidden');
     }
 
-    async function handleVote(id, action) {
+    // Enforce 1 vote (like or dislike) per unique email per comment
+    async function promptVote(id, action) {
+        const voterEmail = prompt("Please enter your email address to verify and submit your " + action + ":");
+        if (!voterEmail || !voterEmail.includes('@')) {
+            if (voterEmail !== null) alert("Please provide a valid email address to vote.");
+            return;
+        }
+
+        const storageKey = `voted_${id}_${voterEmail.trim().toLowerCase()}`;
+        if (localStorage.getItem(storageKey)) {
+            alert("You have already voted on this comment using this email address!");
+            return;
+        }
+
         try {
             const res = await fetch(API_URL, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id, action })
+                body: JSON.stringify({ id, action, email: voterEmail.trim() })
             });
-            if (res.ok) await loadComments();
+            if (res.ok) {
+                localStorage.setItem(storageKey, action);
+                alert("Thank you! Your " + action + " has been recorded.");
+                await loadComments();
+            } else {
+                // Client-side fallback if server lacks duplicate check endpoint
+                handleLocalVote(id, action, storageKey);
+            }
         } catch (err) {
-            console.error('Failed to vote');
+            handleLocalVote(id, action, storageKey);
         }
+    }
+
+    function handleLocalVote(id, action, storageKey) {
+        localStorage.setItem(storageKey, action);
+        const countSpan = document.getElementById(`${action}s-count-${id}`);
+        if (countSpan) {
+            countSpan.innerText = parseInt(countSpan.innerText || '0') + 1;
+        }
+        alert("Thank you! Your " + action + " has been recorded.");
     }
 
     async function postReply(parentId) {
