@@ -56,7 +56,7 @@
       padding-top: 0 !important;
     }
 
-    /* Cinematic 3D Canvas Background */
+    /* Cinematic 3D Canvas Background fixed across entire document height */
     #three-bg-canvas {
       position: fixed;
       top: 0;
@@ -95,7 +95,7 @@
       background: #38bdf8;
     }
     
-    /* True 3D Glassmorphism & Depth Layers */
+    /* True 3D Glassmorphism & Depth Layers applied to all major blocks */
     .glass-card-3d {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
       backdrop-filter: blur(25px);
@@ -1126,34 +1126,34 @@
 
           <div class="space-y-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div class="space-y-2">
+              <div class="space-y-2 relative z-20">
                 <label for="direct_name" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Full Name</label>
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full bg-black/60 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner" />
+                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner relative z-30" />
               </div>
-              <div class="space-y-2">
+              <div class="space-y-2 relative z-20">
                 <label for="direct_email" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Your Email Address</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full bg-black/60 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner" />
+                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner relative z-30" />
               </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 relative z-20">
               <label for="direct_subject" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Subject</label>
-              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full bg-black/60 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner" />
+              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner relative z-30" />
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 relative z-20">
               <label for="direct_message" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Message</label>
-              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-black/60 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none resize-none shadow-inner"></textarea>
+              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none resize-none shadow-inner relative z-30"></textarea>
             </div>
 
-            <div class="pt-2">
-              <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-200 active:scale-95 cursor-pointer">
+            <div class="pt-2 relative z-20">
+              <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-200 active:scale-95 cursor-pointer relative z-30">
                 <i data-lucide="mail" class="w-4 h-4"></i>
                 <span>Send Email</span>
               </button>
             </div>
 
-            <div id="success-banner" class="hidden p-4 bg-emerald-950/60 border border-emerald-500/40 rounded-xl flex items-center space-x-3 transition-all animate-fade-in shadow-xl">
+            <div id="success-banner" class="hidden p-4 bg-emerald-950/60 border border-emerald-500/40 rounded-xl flex items-center space-x-3 transition-all animate-fade-in shadow-xl relative z-20">
               <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
               <p class="font-mono text-xs text-emerald-300">
                 Thank you for reaching out! I will review your message and get back to you shortly.
