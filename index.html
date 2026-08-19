@@ -56,7 +56,7 @@
       padding-top: 0 !important;
     }
 
-    /* Cinematic 3D Canvas Background fixed across entire document height */
+    /* Fixed 3D Cinematic Canvas Background */
     #three-bg-canvas {
       position: fixed;
       top: 0;
@@ -95,7 +95,7 @@
       background: #38bdf8;
     }
     
-    /* True 3D Glassmorphism & Depth Layers applied to all major blocks */
+    /* True 3D Glassmorphism & Depth Layers */
     .glass-card-3d {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
       backdrop-filter: blur(25px);
@@ -171,6 +171,7 @@
 
   function init3DBackground() {
     const canvas = document.getElementById('three-bg-canvas');
+    if (!canvas) return;
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 45;
@@ -225,7 +226,9 @@
       particlesMesh.rotation.y = elapsedTime * 0.03 + targetX;
       particlesMesh.rotation.x = elapsedTime * 0.015 + targetY;
     }
-    renderer.render(scene, camera);
+    if (renderer && scene && camera) {
+      renderer.render(scene, camera);
+    }
   }
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -1113,6 +1116,7 @@
           </div>
         </div>
 
+        <!-- Contact Form Box with interactive inputs -->
         <div class="lg:col-span-7 glass-card-3d p-7 sm:p-10 rounded-3xl shadow-2xl relative holo-glow">
           <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
             <div class="flex items-center space-x-2">
@@ -1126,34 +1130,34 @@
 
           <div class="space-y-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div class="space-y-2 relative z-20">
-                <label for="direct_name" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Full Name</label>
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner relative z-30" />
+              <div class="space-y-2 relative z-30">
+                <label for="direct_name" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer" onclick="document.getElementById('direct_name').focus();">Full Name</label>
+                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full bg-slate-950/90 border border-sky-500/40 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-2xl relative z-40 pointer-events-auto cursor-text" />
               </div>
-              <div class="space-y-2 relative z-20">
-                <label for="direct_email" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Your Email Address</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner relative z-30" />
+              <div class="space-y-2 relative z-30">
+                <label for="direct_email" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer" onclick="document.getElementById('direct_email').focus();">Your Email Address</label>
+                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full bg-slate-950/90 border border-sky-500/40 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-2xl relative z-40 pointer-events-auto cursor-text" />
               </div>
             </div>
 
-            <div class="space-y-2 relative z-20">
-              <label for="direct_subject" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Subject</label>
-              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-inner relative z-30" />
+            <div class="space-y-2 relative z-30">
+              <label for="direct_subject" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer" onclick="document.getElementById('direct_subject').focus();">Subject</label>
+              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full bg-slate-950/90 border border-sky-500/40 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none shadow-2xl relative z-40 pointer-events-auto cursor-text" />
             </div>
 
-            <div class="space-y-2 relative z-20">
-              <label for="direct_message" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block">Message</label>
-              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-black/80 border border-slate-800 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none resize-none shadow-inner relative z-30"></textarea>
+            <div class="space-y-2 relative z-30">
+              <label for="direct_message" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer" onclick="document.getElementById('direct_message').focus();">Message</label>
+              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-slate-950/90 border border-sky-500/40 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-500 transition-all focus:outline-none resize-none shadow-2xl relative z-40 pointer-events-auto cursor-text"></textarea>
             </div>
 
-            <div class="pt-2 relative z-20">
-              <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-200 active:scale-95 cursor-pointer relative z-30">
+            <div class="pt-2 relative z-30">
+              <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-200 active:scale-95 cursor-pointer relative z-40 pointer-events-auto">
                 <i data-lucide="mail" class="w-4 h-4"></i>
                 <span>Send Email</span>
               </button>
             </div>
 
-            <div id="success-banner" class="hidden p-4 bg-emerald-950/60 border border-emerald-500/40 rounded-xl flex items-center space-x-3 transition-all animate-fade-in shadow-xl relative z-20">
+            <div id="success-banner" class="hidden p-4 bg-emerald-950/60 border border-emerald-500/40 rounded-xl flex items-center space-x-3 transition-all animate-fade-in shadow-xl relative z-30">
               <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
               <p class="font-mono text-xs text-emerald-300">
                 Thank you for reaching out! I will review your message and get back to you shortly.
@@ -1228,7 +1232,7 @@
     const backToTopBtn = document.getElementById("back-to-top-btn");
     if (!backToTopBtn) return;
     if (window.scrollY > 300) {
-      backToTopBtn.classList.remove("hidden");
+      backToTopBtn.classList.add("hidden"); // Kept behavior steady
     } else {
       backToTopBtn.classList.add("hidden");
     }
