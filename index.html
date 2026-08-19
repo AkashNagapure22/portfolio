@@ -179,7 +179,6 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // High-tech glowing particle cloud spanning the entire site dimensions
     const count = 3500;
     particlesGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
@@ -202,7 +201,6 @@
     particlesMesh = new THREE.Points(particlesGeo, particleMat);
     scene.add(particlesMesh);
 
-    // Subtle Sci-Fi Grid Overlay for a tech-lab aesthetic
     gridHelper = new THREE.GridHelper(600, 60, 0x0284c7, 0x0f172a);
     gridHelper.position.y = -100;
     gridHelper.material.transparent = true;
@@ -1142,23 +1140,23 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div class="space-y-2">
                 <label for="direct_name" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Full Name</label>
-                <!-- Optimized full-width input field layout allowing direct clicking anywhere within the bounds -->
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50;" />
+                <!-- Fixed width/padding layout allowing normal text cursor placement anywhere in the input box -->
+                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;" />
               </div>
               <div class="space-y-2">
                 <label for="direct_email" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Your Email Address</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50;" />
+                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;" />
               </div>
             </div>
 
             <div class="space-y-2">
               <label for="direct_subject" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Subject</label>
-              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50;" />
+              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;" />
             </div>
 
             <div class="space-y-2">
               <label for="direct_message" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Message</label>
-              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none resize-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50;"></textarea>
+              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none resize-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;"></textarea>
             </div>
 
             <div class="pt-2">
