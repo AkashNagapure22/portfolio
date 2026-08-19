@@ -7,11 +7,16 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Hobbies & Sub-Pages -->
+  <!-- Hobby & Sub-Pages -->
   <url>
     <loc>https://akashnagapure.in/Sub_Pages/Coins.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/Food.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://akashnagapure.in/Sub_Pages/Game.html</loc>
@@ -24,22 +29,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://akashnagapure.in/Sub_Pages/Reading.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://akashnagapure.in/Sub_Pages/Food.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://akashnagapure.in/Sub_Pages/Puzzle.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/Reading.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- Blog Posts -->
+  <!-- Blogs -->
   <url>
     <loc>https://akashnagapure.in/Blogs/Autopatchblog.html</loc>
     <changefreq>weekly</changefreq>
