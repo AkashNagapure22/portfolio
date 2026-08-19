@@ -96,7 +96,7 @@
     
     /* True 3D Glassmorphism & Depth Layers */
     .glass-card-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(2, 6, 23, 0.85) 100%);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
@@ -104,10 +104,9 @@
                   inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
                   0 0 30px rgba(56, 189, 248, 0.05);
       transform-style: preserve-3d;
-      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card-3d:hover {
-      transform: translateY(-8px) rotateX(3deg) rotateY(-3deg);
       border-color: rgba(56, 189, 248, 0.55);
       box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
                   0 0 50px rgba(56, 189, 248, 0.15);
@@ -132,7 +131,7 @@
       opacity: 0.8;
     }
 
-    /* 3D Card Flip Perspective Containers */
+    /* 3D Card Flip Perspective Containers (Static until clicked) */
     .flip-card-container {
       perspective: 1200px;
     }
@@ -159,7 +158,7 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
+<body class="bg-slate-950/80 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
 
 <!-- Full-Page 3D Cinematic Particle & Tech Grid Background -->
 <canvas id="three-bg-canvas"></canvas>
@@ -393,7 +392,7 @@
     </div>
   </section>
 
-  <section id="about" class="py-24 bg-slate-950 text-left relative">
+  <section id="about" class="py-24 bg-transparent text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex items-center space-x-4 mb-12">
         <div class="w-1.5 h-10 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
@@ -456,7 +455,7 @@
     </div>
   </section>
 
-  <section id="certifications" class="py-24 bg-slate-900/60 border-y border-sky-500/20 text-center relative">
+  <section id="certifications" class="py-24 bg-slate-900/30 border-y border-sky-500/20 text-center relative">
     <div class="absolute inset-0 bg-radial-gradient from-sky-500/5 via-transparent to-transparent pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -577,7 +576,7 @@
     </div>
   </section>
 
-  <section id="experience" class="py-24 bg-slate-950 text-left relative">
+  <section id="experience" class="py-24 bg-transparent text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex items-center space-x-4 mb-16">
         <i data-lucide="briefcase" class="w-8 h-8 text-sky-400"></i>
@@ -726,7 +725,7 @@
     </div>
   </section>
 
-  <section id="education" class="py-24 bg-slate-900/60 border-y border-sky-500/20 text-left relative">
+  <section id="education" class="py-24 bg-slate-900/30 border-y border-sky-500/20 text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex items-center space-x-4 mb-4">
         <i data-lucide="graduation-cap" class="w-8 h-8 text-sky-400"></i>
@@ -802,7 +801,7 @@
     </div>
   </section>
 
-  <section id="hobbies" class="py-24 bg-slate-950 text-left relative">
+  <section id="hobbies" class="py-24 bg-transparent text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mb-12">
         <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
@@ -814,7 +813,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <a href="Sub_Pages/HomeLab.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/HomeLab.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Self-Hosted Homelab</h3>
@@ -823,12 +822,12 @@
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
           <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_homelab.png" alt="Homelab Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <img src="public/images/hobby_homelab.png" alt="Homelab Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
           </div>
         </a>
 
-        <a href="Sub_Pages/Game.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Game.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Strategic Gaming</h3>
@@ -837,12 +836,12 @@
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
           <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_gaming.png" alt="Strategic Gaming Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <img src="public/images/hobby_gaming.png" alt="Strategic Gaming Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
           </div>
         </a>
 
-        <a href="Sub_Pages/Food.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Food.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Culinary & Foodie</h3>
@@ -851,12 +850,12 @@
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
           <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/Food_Poster.avif" alt="Food Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <img src="public/images/Food_Poster.avif" alt="Food Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
           </div>
         </a>
 
-        <a href="Sub_Pages/Reading.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Reading.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Reading</h3>
@@ -865,12 +864,12 @@
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
           <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_reading.png" alt="Reading Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <img src="public/images/hobby_reading.png" alt="Reading Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
           </div>
         </a>
 
-        <a href="Sub_Pages/Coins.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Coins.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Coin Collection</h3>
@@ -879,12 +878,12 @@
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
           <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/hobby_coins.png" alt="Coin Collection Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <img src="public/images/hobby_coins.png" alt="Coin Collection Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
           </div>
         </a>
 
-        <a href="Sub_Pages/Puzzle.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Puzzle.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Speedcubing & Puzzles</h3>
@@ -893,7 +892,7 @@
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
           <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
-            <img src="./images/Main_Page_Images/3_3_Cube.jpg" alt="Rubik's Cube Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <img src="public/images/3_3_Cube.jpg" alt="Rubik's Cube Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
           </div>
         </a>
@@ -902,7 +901,7 @@
     </div>
   </section>
 
-  <section id="projects" class="py-24 bg-slate-900/60 border-b border-sky-500/20 text-left relative">
+  <section id="projects" class="py-24 bg-slate-900/30 border-b border-sky-500/20 text-left relative">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.03),transparent)] pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -922,7 +921,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_intune_1781110786338.png" alt="VDI Migration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_intune_1781110786338.png" alt="VDI Migration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_01</div>
                 </div>
@@ -967,7 +966,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_sccm_1781110806653.png" alt="SCCM to Intune" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_sccm_1781110806653.png" alt="SCCM to Intune" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_02</div>
                 </div>
@@ -1012,7 +1011,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_autopilot_1781110823628.png" alt="Autopilot" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_autopilot_1781110823628.png" alt="Autopilot" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_03</div>
                 </div>
@@ -1057,7 +1056,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_Windows-365.png" alt="Windows 365 Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_Windows-365.png" alt="Windows 365 Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_04</div>
                 </div>
@@ -1102,7 +1101,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_Modern-GPO-Alternatives.jpeg" alt="Onprem GPO to Intune Configuration profiles" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_Modern-GPO-Alternatives.jpeg" alt="Onprem GPO to Intune Configuration profiles" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_05</div>
                 </div>
@@ -1147,7 +1146,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_H_Drive_Migration.jpeg" alt="H-Drive to OneDrive/SharePoint Migration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_H_Drive_Migration.jpeg" alt="H-Drive to OneDrive/SharePoint Migration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_06</div>
                 </div>
@@ -1192,7 +1191,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_ServiceNow.png" alt="ServiceNow & Intune Integration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_ServiceNow.png" alt="ServiceNow & Intune Integration" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_07</div>
                 </div>
@@ -1237,7 +1236,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_windows_autopatch.png" alt="Microsoft Autopatch Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_windows_autopatch.png" alt="Microsoft Autopatch Setup" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_08</div>
                 </div>
@@ -1282,7 +1281,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="./images/Main_Page_Images/project_Patch-Management-Lifecycle.webp" alt="Vulnerability Reduction Initiative" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
+                  <img src="public/images/project_Patch-Management-Lifecycle.webp" alt="Vulnerability Reduction Initiative" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_09</div>
                 </div>
@@ -1326,14 +1325,14 @@
     </div>
   </section>
 
-  <section id="blogs" class="py-24 bg-slate-950 text-left relative border-b border-sky-500/20">
+  <section id="blogs" class="py-24 bg-transparent text-left relative border-b border-sky-500/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
       <div class="mb-12 border-b border-white/10 pb-6">
         <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white">Technical Blogs</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a href="Blogs/Autopatchblog.html" class="block glass-card-3d rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:border-orange-500/60 group relative holo-glow">
+        <a href="public/Blogs/Autopatchblog.html" class="block glass-card-3d rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:border-orange-500/60 group relative holo-glow">
           <div class="absolute top-0 left-0 bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-br-xl z-20">Intune</div>
           <div class="absolute inset-0 bg-orange-600/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
           <article class="p-7 h-full flex flex-col justify-between relative z-10 pt-12">
@@ -1351,7 +1350,7 @@
     </div>
   </section>
 
-  <section id="contact" class="py-24 bg-slate-950 text-left relative overflow-hidden">
+  <section id="contact" class="py-24 bg-transparent text-left relative overflow-hidden">
     <div class="absolute inset-0 bg-radial-gradient from-indigo-500/5 via-transparent to-transparent pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1408,29 +1407,36 @@
 
           <div class="space-y-6 relative z-30">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div class="space-y-2">
+              <div class="space-y-2 relative">
                 <label for="direct_name" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Full Name</label>
-                <!-- Fully responsive input field layout allowing direct text focus anywhere inside the box boundary -->
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;" />
+                <div onclick="document.getElementById('direct_name').focus();" class="cursor-text w-full block bg-slate-900 border border-sky-500/50 hover:border-sky-400 rounded-xl p-0.5 shadow-xl transition-all relative z-50">
+                  <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" class="w-full bg-transparent border-none px-3.5 py-3 text-sm text-white placeholder-slate-400 focus:outline-none cursor-text pointer-events-auto" />
+                </div>
               </div>
-              <div class="space-y-2">
+              <div class="space-y-2 relative">
                 <label for="direct_email" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Your Email Address</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;" />
+                <div onclick="document.getElementById('direct_email').focus();" class="cursor-text w-full block bg-slate-900 border border-sky-500/50 hover:border-sky-400 rounded-xl p-0.5 shadow-xl transition-all relative z-50">
+                  <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" class="w-full bg-transparent border-none px-3.5 py-3 text-sm text-white placeholder-slate-400 focus:outline-none cursor-text pointer-events-auto" />
+                </div>
               </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 relative">
               <label for="direct_subject" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Subject</label>
-              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;" />
+              <div onclick="document.getElementById('direct_subject').focus();" class="cursor-text w-full block bg-slate-900 border border-sky-500/50 hover:border-sky-400 rounded-xl p-0.5 shadow-xl transition-all relative z-50">
+                <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full bg-transparent border-none px-3.5 py-3 text-sm text-white placeholder-slate-400 focus:outline-none cursor-text pointer-events-auto" />
+              </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 relative">
               <label for="direct_message" class="font-mono text-xs text-slate-300 font-semibold uppercase tracking-wider block cursor-pointer">Message</label>
-              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full block bg-slate-900 border border-sky-500/50 focus:border-sky-400 px-4 py-3.5 rounded-xl text-sm text-white placeholder-slate-400 transition-all focus:outline-none resize-none shadow-xl cursor-text pointer-events-auto" style="position: relative; z-index: 50; width: 100%; box-sizing: border-box;"></textarea>
+              <div onclick="document.getElementById('direct_message').focus();" class="cursor-text w-full block bg-slate-900 border border-sky-500/50 hover:border-sky-400 rounded-xl p-0.5 shadow-xl transition-all relative z-50">
+                <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" class="w-full bg-transparent border-none px-3.5 py-3 text-sm text-white placeholder-slate-400 focus:outline-none resize-none cursor-text pointer-events-auto"></textarea>
+              </div>
             </div>
 
             <div class="pt-2">
-              <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-200 active:scale-95 cursor-pointer pointer-events-auto" style="position: relative; z-index: 50;">
+              <button onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-200 active:scale-95 cursor-pointer pointer-events-auto relative z-50">
                 <i data-lucide="mail" class="w-4 h-4"></i>
                 <span>Send Email</span>
               </button>
