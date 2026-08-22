@@ -32,7 +32,8 @@
             slate: {
               850: "#0f172a", 
               950: "#020617", 
-            }
+            },
+            "surface-dim": "#0d0b12"
           }
         }
       }
@@ -224,14 +225,11 @@
         </div>
       </a>
 
-      <!-- Clean Main Menu -->
+      <!-- Simplified Main Menu (Home Only) -->
       <div class="hidden lg:flex items-center space-x-1">
-        <a href="../index.html" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all">Home</a>
-        <a href="../index.html#about" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all">About</a>
-        <a href="../index.html#certifications" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all">Certifications</a>
-        <a href="Projects.html" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all">Technical Blogs</a>
-        <a href="resume.html" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30 shadow-[0_0_10px_rgba(56,189,248,0.2)]">Resume / CV</a>
-        <a href="../index.html#contact" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all">Contact</a>
+        <a href="../index.html" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
+        </a>
       </div>
 
       <div class="flex items-center lg:hidden">
@@ -243,12 +241,9 @@
   </div>
 
   <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
-    <a href="../index.html" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Home</a>
-    <a href="../index.html#about" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">About</a>
-    <a href="../index.html#certifications" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Certifications</a>
-    <a href="Projects.html" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Technical Blogs</a>
-    <a href="resume.html" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-sky-400 bg-sky-950 border-l-4 border-sky-400">Resume / CV</a>
-    <a href="../index.html#contact" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Contact</a>
+    <a href="../index.html" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
+    </a>
   </div>
 </nav>
 </header>
@@ -475,7 +470,7 @@
 </main>
 
 <!-- Standardized Compact Footer with Icons -->
-<footer class="w-full py-6 sm:py-8 bg-slate-950 border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+<footer class="w-full py-6 sm:py-8 bg-surface-dim border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
     <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
         <div class="flex items-center gap-2.5">
             <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
