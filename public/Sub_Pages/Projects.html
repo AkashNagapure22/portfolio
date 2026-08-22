@@ -4,14 +4,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Akash Nagapure | Technical Blogs & Enterprise Labs</title>
-<meta name="description" content="Explore enterprise Microsoft 365, Intune, SCCM, PowerShell, VMware, and Active Directory architecture projects and technical blogs by Akash Nagapure." />
+<meta name="description" content="Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, IT administration, and cloud technologies by Akash Nagapure." />
 <link rel="canonical" href="https://www.akashnagapure.in/public/Sub_Pages/Projects.html" />
 
 <!-- Open Graph Meta Tags -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.akashnagapure.in/public/Sub_Pages/Projects.html">
 <meta property="og:title" content="Akash Nagapure | Technical Blogs & Enterprise Labs">
-<meta property="og:description" content="Explore enterprise Microsoft 365, Intune, SCCM, PowerShell, VMware, and Active Directory architecture projects.">
+<meta property="og:description" content="Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, and cloud technologies.">
 <meta property="og:image" content="https://www.akashnagapure.in/images/Main_Page_Images/hobby_homelab.avif">
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -92,6 +92,28 @@
     .nav-link.active-link {
         color: #38bdf8 !important;
         border-bottom: 2px solid #38bdf8;
+    }
+
+    /* Custom Blue Article Button matching user screenshot */
+    .btn-read-article {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #2563eb;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 10px 18px;
+        border-radius: 8px;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        transition: all 0.2s ease;
+    }
+    .btn-read-article:hover {
+        background-color: #1d4ed8;
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        transform: translateY(-1px);
     }
 </style>
 </head>
@@ -176,7 +198,7 @@
   });
 </script>
 
-<!-- Navigation Shell -->
+<!-- Navigation Shell (Clean & Simplified) -->
 <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
@@ -193,9 +215,6 @@
       <div class="hidden lg:flex items-center space-x-1">
         <a href="../../index.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Home</a>
         <a href="Projects.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30">Technical Blogs</a>
-        <a href="Skills.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Skills</a>
-        <a href="courses.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Courses</a>
-        <a href="HomeLab.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Homelab</a>
       </div>
 
       <div class="flex items-center lg:hidden">
@@ -209,20 +228,18 @@
   <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
     <a href="../../index.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Home</a>
     <a href="Projects.html" class="block px-4 py-3 rounded-md text-base font-medium text-sky-400 bg-sky-950">Technical Blogs</a>
-    <a href="Skills.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Skills</a>
-    <a href="courses.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Courses</a>
-    <a href="HomeLab.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Homelab</a>
   </div>
 </nav>
 
-<!-- Floating Fast Navigation / Scroll to Top Widget -->
+<!-- Floating Fast Navigation / Jump Widget -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
     <div id="quick-jump-menu" class="hidden glass-card-3d p-3 rounded-xl border border-sky-400/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-sky-400 uppercase tracking-widest font-mono px-2 border-b border-white/10 pb-1">Categories</span>
         <a href="#intune" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-300 px-2 py-1 rounded hover:bg-white/5 font-mono">Microsoft Intune</a>
         <a href="#sccm" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-300 px-2 py-1 rounded hover:bg-white/5 font-mono">SCCM / MECM</a>
         <a href="#powershell" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-300 px-2 py-1 rounded hover:bg-white/5 font-mono">PowerShell Automation</a>
-        <a href="#vmware" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-300 px-2 py-1 rounded hover:bg-white/5 font-mono">VMware & Virtualization</a>
+        <a href="#azure" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-300 px-2 py-1 rounded hover:bg-white/5 font-mono">Azure & AVD</a>
+        <a href="#vmware" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-300 px-2 py-1 rounded hover:bg-white/5 font-mono">VMware & VDI</a>
         <a href="#activedirectory" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-300 px-2 py-1 rounded hover:bg-white/5 font-mono">Active Directory</a>
     </div>
 
@@ -239,8 +256,9 @@
 <main class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 space-y-16 flex-grow w-full">
 
     <section class="projects-section">
+        <!-- Enhanced Hero with 10+ Years Professional Description -->
         <div class="glass-card-3d rounded-2xl p-8 sm:p-12 mb-12 relative overflow-hidden holo-glow">
-            <div class="max-w-2xl space-y-4">
+            <div class="max-w-3xl space-y-4">
                 <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-sky-950 border border-sky-500/30 rounded-full font-mono text-xs text-sky-400 uppercase tracking-wider">
                     Enterprise Infrastructure Knowledge Base
                 </div>
@@ -248,7 +266,7 @@
                     Technical Blogs & Architecture Labs
                 </h1>
                 <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed">
-                    Enterprise portfolio showcasing Microsoft Intune, SCCM, PowerShell Automation, VMware Virtualization, and Active Directory architecture built through real-world enterprise lab environments.
+                    Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, IT administration, and cloud technologies. With over 10 years of hands-on IT experience, I’m here to help IT professionals and tech enthusiasts stay ahead in an ever-evolving digital landscape.
                 </p>
                 <div class="flex flex-wrap gap-3 pt-2">
                     <span class="px-3 py-1 bg-slate-900 border border-sky-500/30 rounded-lg text-xs font-mono text-sky-300">6 Categorized Tracks</span>
@@ -257,7 +275,7 @@
             </div>
         </div>
 
-        <!-- PROJECT GRID ORGANIZED BY MAIN & SUB-CATEGORIES -->
+        <!-- PROJECT GRID ORGANIZED BY CATEGORIES WITH TILES & BUTTONS -->
         <div class="space-y-16">
 
             <!-- TRACK 1: MICROSOFT INTUNE -->
@@ -269,12 +287,14 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Intune Item 1 -->
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between p-6">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="px-3 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs rounded-full font-mono font-bold">✓ Completed</span>
-                                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Autopatch & Updates</span>
-                            </div>
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                            <img src="../../images/Blogs_Images/AutopatchA-Z.avif" alt="Microsoft Autopatch Deployment" width="600" height="337" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold rounded-lg uppercase">✓ Completed</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Autopatch & Updates</div>
                             <h3 class="font-sans text-xl font-bold text-white">Microsoft Autopatch: The A-to-Z Deployment</h3>
                             <p class="text-slate-300 text-sm leading-relaxed">
                                 Comprehensive architecture guide for automating Windows update rings, driver validation, and compliance tracking without manual intervention.
@@ -284,19 +304,23 @@
                                 <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">Autopatch</span>
                             </div>
                         </div>
-                        <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
-                            <span class="text-xs text-slate-400 font-mono">Published: June 2026</span>
-                            <a href="../Blogs/Autopatchblog.html" class="text-xs text-sky-400 font-bold hover:underline flex items-center gap-1">Read Architecture Guide →</a>
+                        <div class="p-6 pt-0 flex justify-between items-center">
+                            <span class="text-xs text-slate-400 font-mono">June 2026</span>
+                            <a href="../../Blogs/Autopatchblog.html" class="btn-read-article">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Intune Item 2 -->
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between p-6">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="px-3 py-1 bg-amber-950 text-amber-400 border border-amber-500/30 text-xs rounded-full font-mono font-bold">In Progress</span>
-                                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Provisioning</span>
-                            </div>
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                            <img src="../Main_page_data/placeholder.gif" alt="Windows Autopilot Zero-Touch" width="600" height="337" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 bg-amber-950 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold rounded-lg uppercase">In Progress</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Provisioning</div>
                             <h3 class="font-sans text-xl font-bold text-white">Windows Autopilot Zero-Touch Provisioning</h3>
                             <p class="text-slate-300 text-sm leading-relaxed">
                                 Factory-to-user device provisioning workflows, hardware hash collection, and automated Win32 application dependency wrappers.
@@ -306,9 +330,11 @@
                                 <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">OOBE</span>
                             </div>
                         </div>
-                        <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
+                        <div class="p-6 pt-0 flex justify-between items-center">
                             <span class="text-xs text-slate-400 font-mono">Target: Q3 2026</span>
-                            <span class="text-xs text-slate-500 font-mono">Coming Soon</span>
+                            <span class="btn-read-article opacity-50 cursor-not-allowed">
+                                Coming Soon <span class="material-symbols-outlined text-sm">schedule</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -322,12 +348,14 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between p-6">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="px-3 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs rounded-full font-mono font-bold">✓ Completed</span>
-                                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Hybrid Migration</span>
-                            </div>
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                            <img src="../Main_page_data/placeholder.gif" alt="SCCM Co-Management" width="600" height="337" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold rounded-lg uppercase">✓ Completed</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Hybrid Migration</div>
                             <h3 class="font-sans text-xl font-bold text-white">SCCM to Intune Co-Management Migration</h3>
                             <p class="text-slate-300 text-sm leading-relaxed">
                                 Step-by-step transition of workload authorities (Client Apps, Software Updates, Endpoint Protection) from on-prem SCCM to cloud Intune.
@@ -337,9 +365,11 @@
                                 <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">Co-Management</span>
                             </div>
                         </div>
-                        <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
-                            <span class="text-xs text-slate-400 font-mono">Published: May 2026</span>
-                            <span class="text-xs text-emerald-400 font-mono">Active Deployment</span>
+                        <div class="p-6 pt-0 flex justify-between items-center">
+                            <span class="text-xs text-slate-400 font-mono">May 2026</span>
+                            <button type="button" class="btn-read-article">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -353,12 +383,14 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between p-6">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="px-3 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs rounded-full font-mono font-bold">✓ Completed</span>
-                                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Graph API Scripting</span>
-                            </div>
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                            <img src="../Main_page_data/placeholder.gif" alt="PowerShell Automation" width="600" height="337" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold rounded-lg uppercase">✓ Completed</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Graph API Scripting</div>
                             <h3 class="font-sans text-xl font-bold text-white">Automated Multi-User DesktopInfo Delivery</h3>
                             <p class="text-slate-300 text-sm leading-relaxed">
                                 PowerShell initialization scripts and Win32 packaging wrappers to deploy real-time hardware telemetry overlays across enterprise VDI fleets.
@@ -368,59 +400,102 @@
                                 <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">Win32 Wrapper</span>
                             </div>
                         </div>
-                        <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
-                            <span class="text-xs text-slate-400 font-mono">Published: June 2026</span>
-                            <span class="text-xs text-emerald-400 font-mono">Production Tested</span>
+                        <div class="p-6 pt-0 flex justify-between items-center">
+                            <span class="text-xs text-slate-400 font-mono">June 2026</span>
+                            <button type="button" class="btn-read-article">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- TRACK 4: VMWARE & VIRTUALIZATION -->
+            <!-- TRACK 4: AZURE & AVD (Added Section) -->
+            <div id="azure" class="space-y-6 scroll-mt-28">
+                <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
+                    <span class="material-symbols-outlined text-sky-400 text-3xl">hub</span>
+                    <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">4. Azure Cloud & Azure Virtual Desktop (AVD)</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                            <img src="../Main_page_data/placeholder.gif" alt="Azure Virtual Desktop AVD" width="600" height="337" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold rounded-lg uppercase">✓ Completed</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Cloud Virtualization</div>
+                            <h3 class="font-sans text-xl font-bold text-white">Scaling Enterprise AVD & Windows 365 Cloud PCs</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Designing pooled and personal host pools, integrating FSLogix user profile disks with Azure Files, and establishing secure role-based access control.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">AVD</span>
+                                <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">Windows 365</span>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-between items-center">
+                            <span class="text-xs text-slate-400 font-mono">February 2026</span>
+                            <button type="button" class="btn-read-article">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRACK 5: VMWARE & VIRTUALIZATION -->
             <div id="vmware" class="space-y-6 scroll-mt-28">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">dns</span>
-                    <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">4. VMware & Virtual Desktop Infrastructure (VDI)</h2>
+                    <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">5. VMware & Virtual Desktop Infrastructure (VDI)</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between p-6">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="px-3 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs rounded-full font-mono font-bold">✓ Completed</span>
-                                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Horizon & AVD</span>
-                            </div>
-                            <h3 class="font-sans text-xl font-bold text-white">VMware Horizon & FSLogix Profile Optimization</h3>
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                            <img src="../Main_page_data/placeholder.gif" alt="VMware Horizon VDI" width="600" height="337" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold rounded-lg uppercase">✓ Completed</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Horizon & vSphere</div>
+                            <h3 class="font-sans text-xl font-bold text-white">VMware Horizon & vSphere Architecture</h3>
                             <p class="text-slate-300 text-sm leading-relaxed">
-                                Architecting persistent vs non-persistent VDI session pools, configuring FSLogix container profile redirection, and reducing login times by 30%.
+                                Architecting persistent vs non-persistent VDI session pools, configuring Instant Clones, and optimizing storage IOPS via vSAN caching tiers.
                             </p>
                             <div class="flex flex-wrap gap-2 pt-2">
                                 <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">VMware Horizon</span>
-                                <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">FSLogix</span>
+                                <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">vSphere</span>
                             </div>
                         </div>
-                        <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
-                            <span class="text-xs text-slate-400 font-mono">Published: April 2026</span>
-                            <span class="text-xs text-emerald-400 font-mono">Enterprise Proven</span>
+                        <div class="p-6 pt-0 flex justify-between items-center">
+                            <span class="text-xs text-slate-400 font-mono">January 2026</span>
+                            <button type="button" class="btn-read-article">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- TRACK 5: ACTIVE DIRECTORY -->
+            <!-- TRACK 6: ACTIVE DIRECTORY -->
             <div id="activedirectory" class="space-y-6 scroll-mt-28">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">account_tree</span>
-                    <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">5. Active Directory & GPO Modernization</h2>
+                    <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">6. Active Directory & GPO Modernization</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between p-6">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="px-3 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs rounded-full font-mono font-bold">✓ Completed</span>
-                                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Policy Analytics</span>
-                            </div>
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                            <img src="../Main_page_data/placeholder.gif" alt="GPO to Intune Migration" width="600" height="337" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold rounded-lg uppercase">✓ Completed</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="text-xs text-sky-400 font-mono uppercase tracking-widest">Sub-Cat: Policy Analytics</div>
                             <h3 class="font-sans text-xl font-bold text-white">Migrating Legacy GPOs to Intune Settings Catalog</h3>
                             <p class="text-slate-300 text-sm leading-relaxed">
                                 Utilizing Intune Policy Analytics to audit, clean up technical debt, and map on-premises Group Policies directly to cloud configuration profiles.
@@ -430,9 +505,11 @@
                                 <span class="px-2.5 py-1 bg-slate-900 border border-sky-500/30 rounded text-xs font-mono text-sky-300">Settings Catalog</span>
                             </div>
                         </div>
-                        <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
-                            <span class="text-xs text-slate-400 font-mono">Published: March 2026</span>
-                            <span class="text-xs text-emerald-400 font-mono">Production Tested</span>
+                        <div class="p-6 pt-0 flex justify-between items-center">
+                            <span class="text-xs text-slate-400 font-mono">March 2026</span>
+                            <button type="button" class="btn-read-article">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -441,7 +518,7 @@
         </div>
     </section>
 
-    <!-- THREADED DISCUSSION & COMMENTS SECTION (Wired to Neon API) -->
+    <!-- THREADED DISCUSSION & COMMENTS SECTION (Wired to Serverless Neon API) -->
     <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-14 mt-16 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-sky-400 italic tracking-tight font-bold">TECHNICAL DISCUSSION &amp; Q&amp;A</h2>
