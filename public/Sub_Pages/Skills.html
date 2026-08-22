@@ -171,29 +171,30 @@
   });
 </script>
 
-<!-- Navigation Shell -->
+<!-- Navigation Shell with Categories Included Directly in Top Menu -->
 <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="../../index.html" class="flex items-center space-x-3 group cursor-pointer">
+      <a href="../../index.html" class="flex items-center space-x-3 group cursor-pointer flex-shrink-0">
         <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
           <img src="../Main_page_data/Logo.avif" alt="Logo" width="36" height="30" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col">
           <span class="font-sans font-bold text-base text-white tracking-tight leading-none">Akash Nagapure</span>
-          <span class="font-mono text-[9px] text-sky-400 font-medium tracking-widest mt-1">Technical Arsenal & Skills</span>
+          <span class="font-mono text-[9px] text-sky-400 font-medium tracking-widest whitespace-nowrap mt-1">Technical Arsenal & Skills</span>
         </div>
       </a>
 
-      <div class="hidden lg:flex items-center space-x-1">
-        <a href="../../index.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Home</a>
-        <a href="Projects.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Technical Blogs</a>
-        <a href="Skills.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30">Skills</a>
-        <a href="courses.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Courses</a>
-        <a href="HomeLab.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Homelab</a>
+      <!-- Skills Categories on Top Menu (Single Line Safe) -->
+      <div class="hidden xl:flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
+        <a href="../../index.html" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all whitespace-nowrap">Home</a>
+        <a href="#endpoint" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Endpoint Mgmt</a>
+        <a href="#virtualization" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Virtualization</a>
+        <a href="#security" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Identity & Security</a>
+        <a href="#automation" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Automation</a>
       </div>
 
-      <div class="flex items-center lg:hidden">
+      <div class="flex items-center xl:hidden">
         <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Toggle Menu">
           <span class="material-symbols-outlined text-2xl" id="menu-icon">menu</span>
         </button>
@@ -201,12 +202,12 @@
     </div>
   </div>
 
-  <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
-    <a href="../../index.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Home</a>
-    <a href="Projects.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Technical Blogs</a>
-    <a href="Skills.html" class="block px-4 py-3 rounded-md text-base font-medium text-sky-400 bg-sky-950">Skills</a>
-    <a href="courses.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Courses</a>
-    <a href="HomeLab.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Homelab</a>
+  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1 font-mono text-xs">
+    <a href="../../index.html" class="block px-4 py-2.5 rounded-md text-slate-300 hover:bg-slate-800">Home</a>
+    <a href="#endpoint" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Endpoint Management</a>
+    <a href="#virtualization" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Virtualization & Cloud VDI</a>
+    <a href="#security" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Identity & Microsoft Security</a>
+    <a href="#automation" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Automation, Scripting & ITSM</a>
   </div>
 </nav>
 
@@ -235,11 +236,20 @@
             </div>
         </div>
 
+        <!-- TOP QUICK-SELECTION CATEGORY BAR -->
+        <div class="sticky top-20 z-40 bg-slate-950/85 backdrop-blur-md p-3 rounded-2xl border border-sky-500/30 shadow-xl mb-12 flex items-center gap-3 overflow-x-auto no-scrollbar">
+            <span class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider px-2 flex-shrink-0">Jump To Domain:</span>
+            <a href="#endpoint" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-sky-500/30 hover:border-sky-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">Endpoint Management</a>
+            <a href="#virtualization" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-sky-500/30 hover:border-sky-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">Virtualization & VDI</a>
+            <a href="#security" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-sky-500/30 hover:border-sky-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">Identity & Security</a>
+            <a href="#automation" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-sky-500/30 hover:border-sky-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">Automation & ITSM</a>
+        </div>
+
         <!-- SKILLS SECTIONS GRID -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             <!-- Endpoint Management -->
-            <div class="glass-card-3d p-7 rounded-2xl space-y-4">
+            <div id="endpoint" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
                 <div class="flex items-center gap-3 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">devices</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Endpoint Management & Modern Workplace</h2>
@@ -254,7 +264,7 @@
             </div>
 
             <!-- Virtualization & VDI -->
-            <div class="glass-card-3d p-7 rounded-2xl space-y-4">
+            <div id="virtualization" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
                 <div class="flex items-center gap-4 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">dns</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Virtualization & Cloud VDI</h2>
@@ -269,7 +279,7 @@
             </div>
 
             <!-- Identity & Security -->
-            <div class="glass-card-3d p-7 rounded-2xl space-y-4">
+            <div id="security" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
                 <div class="flex items-center gap-4 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">security</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Identity & Microsoft Security</h2>
@@ -284,7 +294,7 @@
             </div>
 
             <!-- Automation & Scripting -->
-            <div class="glass-card-3d p-7 rounded-2xl space-y-4">
+            <div id="automation" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
                 <div class="flex items-center gap-4 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">terminal</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Automation, Scripting & ITSM</h2>
