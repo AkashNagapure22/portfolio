@@ -253,13 +253,19 @@
 <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-4xl mx-auto space-y-8">
     
-    <!-- Resume Top Action Bar -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 glass-card-3d p-6 rounded-2xl holo-glow">
-      <div>
-        <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
-        <p class="font-mono text-xs text-sky-400 font-semibold uppercase tracking-wider mt-1">Microsoft Certified EUC & Intune Specialist</p>
+    <!-- Resume Top Action Bar with Photo -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6 glass-card-3d p-6 rounded-2xl holo-glow">
+      <div class="flex items-center space-x-5 text-center sm:text-left">
+        <div class="relative shrink-0">
+          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-40 blur-sm"></div>
+          <img src="../public/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="85" height="85" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner grayscale hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';" />
+        </div>
+        <div>
+          <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
+          <p class="font-mono text-xs text-sky-400 font-semibold uppercase tracking-wider mt-1">Microsoft Certified EUC & Intune Specialist</p>
+        </div>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 shrink-0">
         <a href="../Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all">
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Download PDF Resume</span>
