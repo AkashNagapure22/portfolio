@@ -4,11 +4,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Akash Nagapure | Numismatic & Banknote Portfolio</title>
+<link rel="canonical" href="https://www.akashnagapure.in/Sub_Pages/Coins.html" />
+
+<!-- Preload & Scripts -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-
-<!-- Three.js Library for 3D Immersive Effects -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script id="tailwind-config">
@@ -51,7 +52,6 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Enhanced 3D Glassmorphism & Depth Layers */
     .glass-card {
         background: linear-gradient(135deg, rgba(35, 30, 22, 0.9) 0%, rgba(18, 15, 12, 0.95) 100%);
         backdrop-filter: blur(25px);
@@ -68,7 +68,6 @@
                     0 0 30px rgba(230, 184, 0, 0.1);
     }
 
-    /* True 3D Flip Cards for Coins — Fixed on Scroll */
     .inventory-flip-card {
         perspective: 1500px;
         user-select: none;
@@ -109,13 +108,6 @@
     .carousel-slide.active { display: block; animation: zoomInFade 1s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes zoomInFade { from { opacity: 0; transform: scale(1.05) translateZ(-50px); } to { opacity: 1; transform: scale(1) translateZ(0); } }
 
-    .nav-link.active-link {
-        color: #fff2d1 !important;
-        border-bottom: 2px solid #e6b800;
-        text-shadow: 0 0 10px rgba(230, 184, 0, 0.5);
-    }
-
-    /* Floating Holographic Glows */
     .holo-glow {
         position: relative;
     }
@@ -219,12 +211,9 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- Navigation Shell with Main Hub Tab Intact -->
 <header class="w-full z-50 bg-background/90 backdrop-blur-2xl border-b border-amber-500/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-4 max-w-container-max mx-auto gap-4">
-        
-        <!-- Brand Title with Big Updated Logo Graphic -->
-        <a href="/" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3.5 flex-shrink-0 group">
+        <a href="../index.html" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3.5 flex-shrink-0 group">
             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.5)] group-hover:scale-110 transition-transform duration-500 overflow-hidden relative p-2">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(192,132,252,0.8)]">
                     <defs>
@@ -243,32 +232,29 @@ window.addEventListener('DOMContentLoaded', () => {
             </span>
         </a>
 
-        <!-- Desktop Horizontally Scrollable Menu with Main Hub Intact -->
         <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
-            <a href="/" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
+            <a href="../index.html" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
                 <span class="material-symbols-outlined text-sm">home</span> Main Hub
             </a>
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Overview</a>
-            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Banknotes</a>
-            <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Proof &amp; UNC Sets</a>
-            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Indian Coins</a>
-            <a href="#foreign-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Foreign Coins</a>
-            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Target Hunt</a>
-            <a href="#valuation-guide" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Authentication</a>
-            <a href="#mint-marks" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Mint Marks</a>
-            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Discussion</a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Overview</a>
+            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Banknotes</a>
+            <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Proof &amp; UNC Sets</a>
+            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Indian Coins</a>
+            <a href="#foreign-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Foreign Coins</a>
+            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Target Hunt</a>
+            <a href="#valuation-guide" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Authentication</a>
+            <a href="#mint-marks" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Mint Marks</a>
+            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Discussion</a>
         </div>
 
-        <!-- Mobile Menu Toggle Button -->
         <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-amber-400 bg-white/5 hover:bg-white/10 focus:outline-none flex items-center gap-1 border border-amber-500/30 shadow-lg">
             <span class="text-xs font-bold uppercase tracking-wider">Menu</span>
             <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
         </button>
     </div>
 
-    <!-- Mobile Slide-down Drawer -->
     <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-amber-500/30 backdrop-blur-3xl px-6 py-6 space-y-3 shadow-2xl">
-        <a href="/" class="block font-label-caps text-xs text-amber-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
+        <a href="../index.html" class="block font-label-caps text-xs text-amber-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
         </a>
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Overview</a>
@@ -283,11 +269,10 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
 </header>
 
-<!-- Floating Fast Navigation / Scroll to Top Widget -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
     <div id="quick-jump-menu" class="hidden glass-card p-4 rounded-2xl border border-amber-500/40 shadow-[0_10px_30px_rgba(0,0,0,0.9)] flex flex-col gap-2 min-w-[200px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
-        <a href="/" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1.5 rounded-lg hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
+        <a href="../index.html" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1.5 rounded-lg hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
             <span class="material-symbols-outlined text-sm">home</span> Main Site Hub
         </a>
         <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-amber-300 px-2 py-1.5 rounded-lg hover:bg-white/5 flex items-center gap-2">
@@ -349,7 +334,7 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-    <!-- Crown Jewels — Banknote Collection Carousel (15s Rotation) -->
+    <!-- Crown Jewels — Banknote Collection Carousel -->
     <section id="crown-jewels" class="overflow-hidden scroll-mt-28">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold drop-shadow">CROWN JEWELS — BANKNOTE COLLECTION</h2>
@@ -360,7 +345,7 @@ window.addEventListener('DOMContentLoaded', () => {
             
             <!-- Slide 1: ₹1 Rupee Note -->
             <div class="carousel-slide active absolute inset-0">
-                <img alt="1 Rupee Note" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="1 Rupee Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">GOVERNMENT OF INDIA (MINISTRY OF FINANCE)</span>
@@ -375,7 +360,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 2: ₹2 Banknote -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="2 Rupees Note" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="2 Rupees Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
@@ -390,7 +375,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 3: ₹5 Tractor Note -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="5 Rupees Note" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="5 Rupees Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
@@ -405,7 +390,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 4: ₹10 Banknote Series -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="10 Rupees Note" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="10 Rupees Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
@@ -420,7 +405,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 5: ₹50 Fluorescent Blue Note -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="50 Rupees Note" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="50 Rupees Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
@@ -435,7 +420,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 6: ₹100 Lavender Note -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="100 Rupees Note" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="100 Rupees Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
@@ -450,7 +435,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 7: ₹500 Stone Grey Note -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="500 Rupees Note" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="500 Rupees Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1200&auto=format&fit=crop" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
@@ -465,7 +450,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 8: ₹1000 Tanjore Temple Note -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="RBI 1000 Rupee Note" class="w-full h-full object-cover filter contrast-110" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="RBI 1000 Rupee Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA (1954–1978)</span>
@@ -480,7 +465,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             <!-- Slide 9: King George VI ₹10 Note -->
             <div class="carousel-slide absolute inset-0">
-                <img alt="British India 10 Rupee Note" class="w-full h-full object-cover filter contrast-110" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                <img alt="British India 10 Rupee Note" width="1200" height="428" loading="lazy" class="w-full h-full object-cover filter contrast-110" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">BRITISH INDIA (1938–1947)</span>
@@ -502,7 +487,7 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-    <!-- Special Commemorative Sets (Reduced Height Container) -->
+    <!-- Special Commemorative Sets -->
     <section id="special-commemorative" class="scroll-mt-28 space-y-8">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl filter drop-shadow-[0_0_10px_rgba(230,184,0,0.6)]">workspace_premium</span>
@@ -527,7 +512,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 <div class="w-full space-y-3">
                     <div class="w-full h-64 sm:h-72 md:h-80 rounded-2xl border-2 border-amber-500/40 bg-black/80 overflow-hidden relative shadow-[inset_0_0_40px_rgba(0,0,0,0.9)] group flex items-center justify-center p-0">
-                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" class="w-full h-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-700" src="../images/Notes_And_Coins/Indian_Coins/UNC_Coin/maharana.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                        <img alt="Maharana Pratap 475th Birth Anniversary Commemorative Folder" width="600" height="320" loading="lazy" class="w-full h-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-700" src="../images/Notes_And_Coins/Indian_Coins/UNC_Coin/maharana.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
                         <span class="absolute top-4 right-4 text-[10px] font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded-lg uppercase shadow-2xl tracking-wider">OFFICIAL MINT FOLDER SHOWCASE</span>
                         <span class="absolute bottom-4 left-4 text-[9px] font-bold bg-black/80 px-2.5 py-1 rounded text-amber-300 border border-amber-500/30 backdrop-blur-md">FRONT (OBVERSE)</span>
@@ -552,7 +537,7 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-    <!-- SECTION: Categorized Indian Coin Inventory -->
+    <!-- Categorized Indian Coin Inventory -->
     <section id="indian-coins" class="scroll-mt-28 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl filter drop-shadow-[0_0_10px_rgba(230,184,0,0.6)]">collections_bookmark</span>
@@ -575,7 +560,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 <!-- Coin 1: Mauryan Silver Karshapana -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
-                        <!-- FRONT SIDE -->
                         <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
                                 <div class="flex items-center gap-1.5 flex-grow">
@@ -585,7 +569,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="Mauryan Silver Karshapana" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="Mauryan Silver Karshapana" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -593,7 +577,6 @@ window.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                         
-                        <!-- BACK SIDE -->
                         <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
                             <div class="space-y-2">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-1">
@@ -649,7 +632,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1862 Queen Victoria 1/4 Rupee" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="1862 Queen Victoria 1/4 Rupee" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -711,7 +694,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1/2 Pice George V" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1-2_Paisa.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="1/2 Pice George V" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1-2_Paisa.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -731,11 +714,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Year:</strong> 1929</div>
                                     <div><strong>Metal:</strong> Bronze</div>
                                     <div><strong>Type:</strong> Fractional</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Weight:</strong> Info not available</div>
-                                    <div><strong>Diameter:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Issued during the reign of King-Emperor George V across British India.</p>
                             </div>
@@ -756,7 +734,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="British India 1 Pice George VI" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1_Pice_george-6.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="British India 1 Pice George VI" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/1_Pice_george-6.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (3 Pcs)</span>
@@ -776,12 +754,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Year:</strong> 1943</div>
                                     <div><strong>Metal:</strong> Bronze</div>
                                     <div><strong>Feature:</strong> Holed Coin</div>
-                                    <div><strong>Type:</strong> Fractional</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Weight:</strong> Info not available</div>
-                                    <div><strong>Diameter:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Holed bronze 1 Pice coin issued during World War II under King George VI (1943).</p>
                             </div>
@@ -802,7 +774,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="British India 1 Quarter Anna Bronze" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="British India 1 Quarter Anna Bronze" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/British_Coin/british_india_1_quarter_anna_bronze.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -821,12 +793,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Era:</strong> British Raj</div>
                                     <div><strong>Metal:</strong> Bronze</div>
                                     <div><strong>Type:</strong> Fractional</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Weight:</strong> Info not available</div>
-                                    <div><strong>Diameter:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Standard fractional bronze coinage used for daily trade across British India.</p>
                             </div>
@@ -864,7 +830,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     <!-- Coin 1: Dr. Syama Prasad Mookerjee 2 Rupees -->
                     <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                         <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
                             <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
                                     <div class="flex items-center gap-1.5 flex-grow">
@@ -874,7 +839,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="2 Rupees Dr. Syama Mookerjee Commemorative Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <img alt="2 Rupees Dr. Syama Mookerjee Commemorative Coin" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/2_RS/2_Rupees_Dr._Syama_Mookerjee.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -882,7 +847,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             
-                            <!-- BACK SIDE -->
                             <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
                                 <div class="space-y-2">
                                     <div class="flex justify-between items-center border-b border-white/10 pb-1">
@@ -897,8 +861,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                         <div><strong>Weight:</strong> 6.24 g</div>
                                         <div><strong>Dia:</strong> 25.7 mm</div>
                                         <div><strong>Shape:</strong> Hendecagonal</div>
-                                        <div><strong>Edge:</strong> Plain</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
                                     </div>
                                     <p class="text-[10px] text-slate-300 leading-tight">100th Anniversary Birth of Dr. Syama Prasad Mookerjee.</p>
                                 </div>
@@ -910,7 +872,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     <!-- Coin 2: Indira Gandhi 5 Rupees -->
                     <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                         <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
                             <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
                                     <div class="flex items-center gap-1.5 flex-grow">
@@ -920,7 +881,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="5 Rupees Indira Gandhi Commemorative Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <img alt="5 Rupees Indira Gandhi Commemorative Coin" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/5_RS/5_RS_Indira_Gandhi.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -928,7 +889,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             
-                            <!-- BACK SIDE -->
                             <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
                                 <div class="space-y-2">
                                     <div class="flex justify-between items-center border-b border-white/10 pb-1">
@@ -942,9 +902,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                         <div><strong>Comp:</strong> Cu-Ni</div>
                                         <div><strong>Weight:</strong> 9.0 g</div>
                                         <div><strong>Dia:</strong> 23.0 mm</div>
-                                        <div><strong>Shape:</strong> Round</div>
-                                        <div><strong>Edge:</strong> Security</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
                                     </div>
                                     <p class="text-[10px] text-slate-300 leading-tight">Commemorative issue dedicated to former Prime Minister Indira Gandhi.</p>
                                 </div>
@@ -956,7 +913,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     <!-- Coin 3: 1953 Republic of India 1 Pice (Horse Pice) -->
                     <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                         <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
                             <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
                                     <div class="flex items-center gap-1.5 flex-grow">
@@ -966,7 +922,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="1 Pice Horse Pice" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Pice_Coin.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <img alt="1 Pice Horse Pice" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Pice_Coin.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -974,7 +930,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             
-                            <!-- BACK SIDE -->
                             <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
                                 <div class="space-y-2">
                                     <div class="flex justify-between items-center border-b border-white/10 pb-1">
@@ -986,11 +941,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                         <div><strong>Year:</strong> 1953</div>
                                         <div><strong>Metal:</strong> Bronze</div>
                                         <div><strong>Type:</strong> Circulation</div>
-                                        <div><strong>Issuer:</strong> Info not available</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
-                                        <div><strong>Weight:</strong> Info not available</div>
-                                        <div><strong>Diameter:</strong> Info not available</div>
-                                        <div><strong>Shape:</strong> Info not available</div>
                                     </div>
                                     <p class="text-[10px] text-slate-300 leading-tight">Vintage Republic of India bronze coin featuring the horse motif.</p>
                                 </div>
@@ -1002,7 +952,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     <!-- Coin 4: 1 Naya Paisa -->
                     <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                         <div class="inventory-flip-inner">
-                            <!-- FRONT SIDE -->
                             <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/30 flex flex-col justify-between bg-slate-900/90 h-full">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
                                     <div class="flex items-center gap-1.5 flex-grow">
@@ -1012,7 +961,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                                 </div>
                                 <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                    <img alt="1 Naya Paisa" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Nay_Paisa.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                    <img alt="1 Naya Paisa" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/Republic_of_India/1_Nay_Paisa.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                                 </div>
                                 <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                     <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1020,7 +969,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             
-                            <!-- BACK SIDE -->
                             <div class="inventory-flip-back glass-card p-3.5 border border-amber-500/40 bg-slate-950/95 flex flex-col justify-between h-full">
                                 <div class="space-y-2">
                                     <div class="flex justify-between items-center border-b border-white/10 pb-1">
@@ -1032,11 +980,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                         <div><strong>Era:</strong> Post-1957</div>
                                         <div><strong>Metal:</strong> Bronze</div>
                                         <div><strong>Type:</strong> Decimal Coin</div>
-                                        <div><strong>Issuer:</strong> Info not available</div>
-                                        <div><strong>Mint:</strong> Info not available</div>
-                                        <div><strong>Weight:</strong> Info not available</div>
-                                        <div><strong>Diameter:</strong> Info not available</div>
-                                        <div><strong>Shape:</strong> Info not available</div>
                                     </div>
                                     <p class="text-[10px] text-slate-300 leading-tight">Introduced April 1, 1957 during India's shift to decimal currency.</p>
                                 </div>
@@ -1049,7 +992,7 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-    <!-- SECTION: FOREIGN COIN INVENTORY -->
+    <!-- Foreign Coin Inventory -->
     <section id="foreign-coins" class="scroll-mt-28 space-y-16">
         <div class="flex items-center gap-4 border-b border-amber-500/20 pb-4">
             <span class="material-symbols-outlined text-amber-400 text-3xl filter drop-shadow-[0_0_10px_rgba(230,184,0,0.6)]">public</span>
@@ -1081,7 +1024,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="5 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="5 Forint" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/5_Forint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1099,12 +1042,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 21.2 mm</div>
                                     <div><strong>Weight:</strong> 4.2 g</div>
-                                    <div><strong>Thick:</strong> 1.6 mm</div>
-                                    <div><strong>Comp:</strong> Nickel Brass</div>
-                                    <div><strong>Edge:</strong> Plain</div>
-                                    <div><strong>Design:</strong> Egret</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Features Great White Egret (István Kósa) and underlined numeral five.</p>
                             </div>
@@ -1125,7 +1062,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="10 Forint" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/10_Foint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1143,12 +1080,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 24.8 mm</div>
                                     <div><strong>Weight:</strong> 6.1 g</div>
-                                    <div><strong>Thick:</strong> 1.7 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni</div>
-                                    <div><strong>Edge:</strong> Milled</div>
-                                    <div><strong>Design:</strong> Coat of Arms</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Displays official coat of arms of Hungary with "MAGYARORSZÁG" and "BP." mark.</p>
                             </div>
@@ -1169,7 +1100,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="20 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="20 Forint" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/20+Foint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1187,12 +1118,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 26.3 mm</div>
                                     <div><strong>Weight:</strong> 6.9 g</div>
-                                    <div><strong>Thick:</strong> 1.8 mm</div>
-                                    <div><strong>Comp:</strong> Nickel Brass</div>
-                                    <div><strong>Edge:</strong> Reeded</div>
-                                    <div><strong>Design:</strong> Stool Iris</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Features the Stool Iris (Iris aphylla) flower on the obverse designed by István Kósa.</p>
                             </div>
@@ -1213,7 +1138,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="50 Forint" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1231,12 +1156,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 27.4 mm</div>
                                     <div><strong>Weight:</strong> 7.7 g</div>
-                                    <div><strong>Thick:</strong> 1.8 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni</div>
-                                    <div><strong>Edge:</strong> Smooth</div>
-                                    <div><strong>Design:</strong> Saker Falcon</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Standard circulation coin depicting the protected Saker Falcon (Falco cherrug).</p>
                             </div>
@@ -1257,7 +1176,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="200 Forint" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="200 Forint" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/200+forint.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1275,12 +1194,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> MNB</div>
                                     <div><strong>Dia:</strong> 28.3 mm</div>
                                     <div><strong>Weight:</strong> 9.0 g</div>
-                                    <div><strong>Thick:</strong> 2.0 mm</div>
-                                    <div><strong>Comp:</strong> Bimetallic</div>
-                                    <div><strong>Edge:</strong> Segmented</div>
-                                    <div><strong>Mint:</strong> Budapest</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Features the iconic Széchenyi Chain Bridge of Budapest on the obverse.</p>
                             </div>
@@ -1313,7 +1226,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="2 Euros 1st map" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="2 Euros 1st map" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1331,12 +1244,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> Germany</div>
                                     <div><strong>Dia:</strong> 25.75 mm</div>
                                     <div><strong>Weight:</strong> 8.5 g</div>
-                                    <div><strong>Thick:</strong> 2.2 mm</div>
-                                    <div><strong>Comp:</strong> Bimetallic</div>
-                                    <div><strong>Edge:</strong> Reeded w/ text</div>
-                                    <div><strong>Years:</strong> 2002-2006</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">German eagle surrounded by 12 stars. Reverse features 1st EU map layout.</p>
                             </div>
@@ -1357,7 +1264,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Euro Juan Carlos" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="1 Euro Juan Carlos" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Espana.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1375,12 +1282,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> Spain</div>
                                     <div><strong>Dia:</strong> 23.25 mm</div>
                                     <div><strong>Weight:</strong> 7.5 g</div>
-                                    <div><strong>Thick:</strong> 2.33 mm</div>
-                                    <div><strong>Comp:</strong> Bimetallic</div>
-                                    <div><strong>Edge:</strong> Segmented</div>
-                                    <div><strong>Years:</strong> 1999-2006</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Features bust of King Juan Carlos I facing left and 1st map of Europe reverse.</p>
                             </div>
@@ -1401,7 +1302,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="50 Euro Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/20_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1419,12 +1320,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Alloy:</strong> Nordic Gold</div>
                                     <div><strong>Dia:</strong> 24.25 mm</div>
                                     <div><strong>Weight:</strong> 7.8 g</div>
-                                    <div><strong>Thick:</strong> 2.38 mm</div>
-                                    <div><strong>Edge:</strong> Indented</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Nordic Gold alloy fractional euro currency piece minted for pan-European distribution.</p>
                             </div>
@@ -1445,7 +1340,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="20 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="20 Euro Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/50_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1463,12 +1358,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Alloy:</strong> Nordic Gold</div>
                                     <div><strong>Dia:</strong> 22.25 mm</div>
                                     <div><strong>Weight:</strong> 5.74 g</div>
-                                    <div><strong>Thick:</strong> 2.14 mm</div>
-                                    <div><strong>Shape:</strong> Spanish Flower</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Edge:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Distinctive 7-indent Spanish flower shape minted in Nordic Gold.</p>
                             </div>
@@ -1489,7 +1378,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="10 Euro Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1507,12 +1396,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Alloy:</strong> Nordic Gold</div>
                                     <div><strong>Dia:</strong> 19.75 mm</div>
                                     <div><strong>Weight:</strong> 4.1 g</div>
-                                    <div><strong>Thick:</strong> 1.93 mm</div>
-                                    <div><strong>Edge:</strong> Scalloped</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Small denomination fractional euro currency piece with scalloped edge.</p>
                             </div>
@@ -1533,7 +1416,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="2 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="2 Euro Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1551,12 +1434,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Comp:</strong> Steel / Copper</div>
                                     <div><strong>Dia:</strong> 18.75 mm</div>
                                     <div><strong>Weight:</strong> 3.06 g</div>
-                                    <div><strong>Thick:</strong> 1.67 mm</div>
-                                    <div><strong>Edge:</strong> Grooved</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Copper-plated steel coin featuring a horizontal groove around the edge.</p>
                             </div>
@@ -1577,7 +1454,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Euro Cent" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="1 Euro Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1595,12 +1472,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Comp:</strong> Steel / Copper</div>
                                     <div><strong>Dia:</strong> 16.25 mm</div>
                                     <div><strong>Weight:</strong> 2.3 g</div>
-                                    <div><strong>Thick:</strong> 1.67 mm</div>
-                                    <div><strong>Edge:</strong> Smooth</div>
-                                    <div><strong>Issuer:</strong> Info not available</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Smallest euro denomination made of copper-plated steel with a smooth edge.</p>
                             </div>
@@ -1621,7 +1492,7 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-                <!-- 25 Fils coin -->
+                <!-- 25 Fils -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
@@ -1633,7 +1504,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="25 Fils" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="25 Fils" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/25_FILS.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1651,11 +1522,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> UAE</div>
                                     <div><strong>Dia:</strong> 20.0 mm</div>
                                     <div><strong>Weight:</strong> 3.5 g</div>
-                                    <div><strong>Comp:</strong> Cupronickel</div>
-                                    <div><strong>Design:</strong> Arabian Gazelle</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">100 Fils make 1 Dirham. Features an Arabian Gazelle on the reverse.</p>
                             </div>
@@ -1664,7 +1530,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
 
-                <!-- 50 Fils coin -->
+                <!-- 50 Fils -->
                 <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-3.5 border border-amber-500/20 flex flex-col justify-between h-full">
@@ -1676,7 +1542,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="50 Fils" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="50 Fils" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/50_Fils.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1694,10 +1560,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> UAE</div>
                                     <div><strong>Dia:</strong> 21.0 mm</div>
                                     <div><strong>Weight:</strong> 6.2 g</div>
-                                    <div><strong>Shape:</strong> Heptagonal</div>
-                                    <div><strong>Comp:</strong> Cupronickel</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Distinctive heptagonal shaped coin featuring oil derricks or national crest.</p>
                             </div>
@@ -1718,7 +1580,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="1 Dirham" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="1 Dirham" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/UAE_Coins/1_Dirham.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1736,11 +1598,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> UAE</div>
                                     <div><strong>Dia:</strong> 24.0 mm</div>
                                     <div><strong>Weight:</strong> 6.4 g</div>
-                                    <div><strong>Comp:</strong> Cupronickel</div>
-                                    <div><strong>Design:</strong> Dallah Coffee Pot</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Features the traditional Dallah (Arabic coffee pot) symbolizing Arabian hospitality.</p>
                             </div>
@@ -1773,7 +1630,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="10 Cent Singapore" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="10 Cent Singapore" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Singapor_Coins/Singapore_10_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1791,11 +1648,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> Singapore</div>
                                     <div><strong>Dia:</strong> 18.5 mm</div>
                                     <div><strong>Weight:</strong> 1.6 g</div>
-                                    <div><strong>Comp:</strong> Aluminium-Bronze</div>
-                                    <div><strong>Design:</strong> Vanda Miss Joaquim</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Features Singapore's national flower, the Vanda Miss Joaquim orchid, on the reverse.</p>
                             </div>
@@ -1828,7 +1680,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="China 1 Yuan" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="China 1 Yuan" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/China_Coin/China_1_Yuhan.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1846,11 +1698,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> China</div>
                                     <div><strong>Dia:</strong> 25.0 mm</div>
                                     <div><strong>Weight:</strong> 6.1 g</div>
-                                    <div><strong>Comp:</strong> Nickel-plated steel</div>
-                                    <div><strong>Design:</strong> Chrysanthemum</div>
-                                    <div><strong>Year:</strong> Info not available</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Features a blooming chrysanthemum flower on the reverse with the denomination.</p>
                             </div>
@@ -1883,7 +1730,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <span class="text-[8px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-lg border border-amber-500/30 flex items-center gap-0.5 flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[10px]">sync</span> Flip</span>
                             </div>
                             <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 160px;">
-                                <img alt="Nepal 10 Rupees" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                                <img alt="Nepal 10 Rupees" width="200" height="160" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_8px_15px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Foreign_Coins/Nepal_Coin/Nepal_10_Rs.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-white/10">
                                 <span class="text-[10px] text-emerald-400 font-bold">Status: Available (1 Pc)</span>
@@ -1901,12 +1748,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Issuer:</strong> Nepal</div>
                                     <div><strong>Year:</strong> 2054 (1997)</div>
                                     <div><strong>Weight:</strong> 10.0 g</div>
-                                    <div><strong>Dia:</strong> 25.0 mm</div>
-                                    <div><strong>Thick:</strong> 2.7 mm</div>
-                                    <div><strong>Comp:</strong> Cu-Ni</div>
-                                    <div><strong>King:</strong> Birendra</div>
-                                    <div><strong>Mint:</strong> Info not available</div>
-                                    <div><strong>Shape:</strong> Info not available</div>
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight">Circulating commemorative coin issued during the reign of King Birendra Bir Bikram Shah.</p>
                             </div>
@@ -1933,7 +1774,7 @@ window.addEventListener('DOMContentLoaded', () => {
                             <span class="text-[10px] bg-red-600 text-white px-2.5 py-1 rounded-lg font-bold shadow">Hard to find</span>
                         </div>
                         <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1 shadow-inner" style="height: 270px;">
-                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/WishList/hon_Coin.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+                            <img alt="Chhatrapati Shivaji Maharaj - Hon Coin" width="300" height="270" loading="lazy" class="w-full h-full object-contain rounded p-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]" src="../images/Notes_And_Coins/Indian_Coins/WishList/hon_Coin.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
                         </div>
                         <div class="flex items-center justify-between pt-3 border-t border-white/10">
                             <span class="text-[11px] text-amber-400 font-bold">Target Wishlist Piece</span>
@@ -1954,7 +1795,7 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-<!-- Coin Valuation & Fake Detection Guides -->
+    <!-- Valuation & Fake Detection Guides -->
     <section id="valuation-guide" class="scroll-mt-28 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold drop-shadow">NUMISMATIC GUIDES &amp; AUTHENTICATION</h2>
@@ -2016,7 +1857,7 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-<!-- Indian Mint Symbols & Locations -->
+    <!-- Indian Mint Symbols & Locations -->
     <section id="mint-marks" class="scroll-mt-28 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold drop-shadow">INDIAN MINT SYMBOLS, LOCATIONS &amp; ESTABLISHMENT DATES</h2>
@@ -2039,7 +1880,7 @@ window.addEventListener('DOMContentLoaded', () => {
                         <p><strong>Mint Mark Symbols:</strong> <strong class="text-amber-200">Diamond (◆).</strong></p>
                     </div>
                 </div>
-                <p class="text-slate-400 text-[11px] pt-3 border-t border-white/5">Established in 1829, it is one of the oldest and most prolific minting facilities in Asia. Alongside regular circulation coins, it handles official medal manufacturing and the refining of precious metals like gold and silver. (Special collector proof sets from Mumbai have also occasionally used letters like 'M', 'B', or 'U').</p>
+                <p class="text-slate-400 text-[11px] pt-3 border-t border-white/5">Established in 1829, it is one of the oldest and most prolific minting facilities in Asia. Alongside regular circulation coins, it handles official medal manufacturing and the refining of precious metals like gold and silver.</p>
             </div>
 
             <!-- Kolkata Mint -->
@@ -2075,7 +1916,7 @@ window.addEventListener('DOMContentLoaded', () => {
                         <p><strong>Mint Mark Symbols:</strong> <strong class="text-amber-200">Split Diamond (★)</strong> <span class="text-slate-400">(Historically a split diamond)</span>.</p>
                     </div>
                 </div>
-                <p class="text-slate-400 text-[11px] pt-3 border-t border-white/5">Originally established in 1903 by the Nizam of Hyderabad and later taken over by the central government in 1950, it operates out of a modernized facility in Cherlapally and is known for producing a wide array of commemorative and circulation coins.</p>
+                <p class="text-slate-400 text-[11px] pt-3 border-t border-white/5">Originally established in 1903 by the Nizam of Hyderabad and later taken over by the central government in 1950, it operates out of a modernized facility in Cherlapally.</p>
             </div>
 
             <!-- Noida Mint -->
@@ -2093,56 +1934,32 @@ window.addEventListener('DOMContentLoaded', () => {
                         <p><strong>Mint Mark Symbols:</strong> <strong class="text-amber-200">Round Dot / Circular mark (•)</strong></p>
                     </div>
                 </div>
-                <p class="text-slate-400 text-[11px] pt-3 border-t border-white/5">Established in 1988, Noida is India's first mint built with modern, fully automated coinage technology to help handle the massive domestic demand for circulating currency.</p>
+                <p class="text-slate-400 text-[11px] pt-3 border-t border-white/5">Established in 1988, Noida is India's first mint built with modern, fully automated coinage technology to help handle domestic demand.</p>
             </div>
         </div>
     </section>
 
-    <!-- THREADED DISCUSSION & COMMENTS SECTION -->
+    <!-- Threaded Discussion & Comments Section -->
     <section id="discussion" class="scroll-mt-28 border-t border-amber-500/30 pt-14 mt-16 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-amber-400 italic tracking-tight font-bold drop-shadow">DISCUSSION &amp; COLLECTOR Q&amp;A</h2>
             <div class="h-px flex-grow bg-gradient-to-r from-amber-500/50 to-transparent"></div>
         </div>
 
-        <!-- Comment Form -->
         <form id="comment-form" class="glass-card p-6 sm:p-8 rounded-2xl border border-amber-500/30 space-y-5 shadow-2xl">
             <h3 class="text-lg font-semibold text-amber-300 tracking-tight">Join the Conversation</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                    type="text" 
-                    id="author" 
-                    placeholder="Your Name *" 
-                    required 
-                    class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all text-sm shadow-inner"
-                />
-                <input 
-                    type="email" 
-                    id="email" 
-                    placeholder="Your Email Address *" 
-                    required 
-                    class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all text-sm shadow-inner"
-                />
+                <input type="text" id="author" placeholder="Your Name *" required class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all text-sm shadow-inner" />
+                <input type="email" id="email" placeholder="Your Email Address *" required class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all text-sm shadow-inner" />
             </div>
             <div>
-                <textarea 
-                    id="content" 
-                    rows="3" 
-                    placeholder="Ask a question about coin identification, market values, or leave a message..." 
-                    required 
-                    class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all text-sm shadow-inner"
-                ></textarea>
+                <textarea id="content" rows="3" placeholder="Ask a question about coin identification, market values, or leave a message..." required class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all text-sm shadow-inner"></textarea>
             </div>
-            <button 
-                type="submit" 
-                id="submit-btn"
-                class="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold rounded-xl transition-all disabled:opacity-50 text-sm shadow-[0_0_20px_rgba(230,184,0,0.4)] hover:scale-105"
-            >
+            <button type="submit" id="submit-btn" class="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold rounded-xl transition-all disabled:opacity-50 text-sm shadow-[0_0_20px_rgba(230,184,0,0.4)] hover:scale-105">
                 Post Comment
             </button>
         </form>
 
-        <!-- Dynamic Comments Feed -->
         <div id="comments-container" class="space-y-6">
             <p class="text-slate-500 text-sm">Loading discussion...</p>
         </div>
@@ -2167,7 +1984,6 @@ window.addEventListener('DOMContentLoaded', () => {
 <script>
     if (window.lucide) lucide.createIcons();
 
-    // Isolated Page Key for Numismatic Portfolio Database Sync
     const ARTICLE_ID = 'coins';
     const API_URL = '/api/comments';
 
@@ -2232,85 +2048,38 @@ window.addEventListener('DOMContentLoaded', () => {
                 <p class="text-slate-300 text-sm whitespace-pre-line leading-relaxed">${escapeHTML(comment.content)}</p>
                 
                 <div class="flex items-center space-x-4 text-xs pt-2">
-                    <!-- Like -->
-                    <button 
-                        onclick="handleVote(${comment.id}, 'like')" 
-                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5"
-                    >
+                    <button onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5">
                         <span class="material-symbols-outlined text-sm">thumb_up</span>
                         <span>${comment.likes || 0}</span>
                     </button>
-
-                    <!-- Dislike -->
-                    <button 
-                        onclick="handleVote(${comment.id}, 'dislike')" 
-                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5"
-                    >
+                    <button onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5">
                         <span class="material-symbols-outlined text-sm">thumb_down</span>
                         <span>${comment.dislikes || 0}</span>
                     </button>
-
-                    <!-- Reply -->
-                    <button 
-                        onclick="toggleReplyForm(${comment.id})" 
-                        class="inline-flex items-center space-x-1 text-amber-400 hover:text-amber-300 font-semibold transition-colors bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20"
-                    >
+                    <button onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-amber-400 hover:text-amber-300 font-semibold transition-colors bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">
                         <span class="material-symbols-outlined text-sm">reply</span>
                         <span>Reply</span>
                     </button>
                 </div>
 
-                <!-- Hidden Reply Form -->
                 <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-4 pt-4 border-t border-slate-800 bg-black/40 p-4 rounded-xl">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input 
-                            type="text" 
-                            id="reply-author-${comment.id}" 
-                            placeholder="Your Name *" 
-                            required 
-                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
-                        />
-                        <input 
-                            type="email" 
-                            id="reply-email-${comment.id}" 
-                            placeholder="Your Email *" 
-                            required 
-                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
-                        />
+                        <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500" />
+                        <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500" />
                     </div>
-                    <textarea 
-                        id="reply-content-${comment.id}" 
-                        rows="2" 
-                        placeholder="Write a reply..." 
-                        required 
-                        class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
-                    ></textarea>
+                    <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"></textarea>
                     <div class="flex space-x-2">
-                        <button 
-                            type="button" 
-                            onclick="postReply(${comment.id})" 
-                            class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-lg shadow"
-                        >
-                            Submit Reply
-                        </button>
-                        <button 
-                            type="button" 
-                            onclick="toggleReplyForm(${comment.id})" 
-                            class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg"
-                        >
-                            Cancel
-                        </button>
+                        <button type="button" onclick="postReply(${comment.id})" class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-lg shadow">Submit Reply</button>
+                        <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg">Cancel</button>
                     </div>
                 </form>
-
                 ${repliesHTML}
             </div>
         `;
     }
 
     function toggleReplyForm(commentId) {
-        const form = document.getElementById(`reply-form-${commentId}`);
-        form.classList.toggle('hidden');
+        document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
     }
 
     async function handleVote(id, action) {
@@ -2342,12 +2111,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
             });
-
-            if (res.ok) {
-                await loadComments();
-            } else {
-                alert('Failed to post reply.');
-            }
+            if (res.ok) await loadComments();
         } catch (err) {
             alert('Network error.');
         }
@@ -2367,22 +2131,12 @@ window.addEventListener('DOMContentLoaded', () => {
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    author: author.value, 
-                    email: email.value, 
-                    content: content.value, 
-                    parent_id: null,
-                    article_id: ARTICLE_ID
-                })
+                body: JSON.stringify({ author: author.value, email: email.value, content: content.value, parent_id: null, article_id: ARTICLE_ID })
             });
 
             if (res.ok) {
-                author.value = '';
-                email.value = '';
-                content.value = '';
+                author.value = ''; email.value = ''; content.value = '';
                 await loadComments();
-            } else {
-                alert('Failed to post comment.');
             }
         } catch (err) {
             alert('Network error.');
@@ -2393,53 +2147,37 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
+        return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
     }
 
     loadComments();
 
-    // Mobile Navigation Drawer Navigation Toggle
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu-drawer');
         const icon = document.getElementById('menu-icon');
-        if (menu.classList.contains('hidden')) {
-            menu.classList.remove('hidden');
-            icon.textContent = 'close';
-        } else {
-            menu.classList.add('hidden');
-            icon.textContent = 'menu';
-        }
+        menu.classList.toggle('hidden');
+        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
     }
 
     function closeMobileMenu() {
-        const menu = document.getElementById('mobile-menu-drawer');
-        const icon = document.getElementById('menu-icon');
-        menu.classList.add('hidden');
-        icon.textContent = 'menu';
+        document.getElementById('mobile-menu-drawer').classList.add('hidden');
+        document.getElementById('menu-icon').textContent = 'menu';
     }
 
-    // Scroll-to-Top Action
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Floating Jump Menu Overlay Toggle
     function toggleQuickJump() {
-        const jumpMenu = document.getElementById('quick-jump-menu');
-        jumpMenu.classList.toggle('hidden');
+        document.getElementById('quick-jump-menu').classList.toggle('hidden');
     }
 
-    // Banknote Carousel Logic (15 seconds interval)
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
 
     function showSlide(index) {
         slides.forEach(s => s.classList.remove('active'));
-        if (slides[index]) {
-            slides[index].classList.add('active');
-        }
+        if (slides[index]) slides[index].classList.add('active');
     }
 
     function nextSlide() {
@@ -2456,9 +2194,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (slides.length > 0) {
-        setInterval(nextSlide, 15000);
-    }
+    if (slides.length > 0) setInterval(nextSlide, 15000);
 </script>
 </body>
 </html>
