@@ -124,11 +124,11 @@
 })();
 </script>
 
-<!-- Navigation Shell with Clean Logo (No Box) -->
+<!-- Navigation Shell with Clean Logo Matching Index Page -->
 <nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
     <div class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         <a href="../index.html" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-emerald-400 italic flex items-center gap-2.5 flex-shrink-0 group">
-            <img src="../Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="w-9 h-9 object-contain filter drop-shadow-[0_0_8px_rgba(16,185,129,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';"/>
+            <img src="../public/Main_page_data/Logo.avif" alt="Logo" width="36" height="30" class="w-9 h-[30px] object-contain filter drop-shadow-[0_0_8px_rgba(16,185,129,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';"/>
             <span>Akash Nagapure</span>
         </a>
 
@@ -234,7 +234,7 @@
         </div>
     </section>
 
-    <!-- Active Labs Carousel (Fixed Carousel Navigation Bindings) -->
+    <!-- Active Labs Carousel (Fixed Carousel Navigation) -->
     <section id="active-labs" class="overflow-hidden scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">FEATURED LAB ENVIRONMENTS</h2>
@@ -287,7 +287,7 @@
                 </div>
             </div>
 
-            <!-- Controls (Fixed Function Call Bindings) -->
+            <!-- Controls -->
             <button type="button" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="prevSlide()">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
             </button>
@@ -506,7 +506,7 @@
         </div>
     </section>
 
-    <!-- Architecture Notes & Appraisals (Fixed Toggle Review Function) -->
+    <!-- Architecture Notes & Appraisals (Working Accordion) -->
     <section id="reviews" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">ARCHITECTURE BREAKDOWNS</h2>
@@ -605,7 +605,7 @@
         </div>
     </section>
 
-    <!-- Threaded Discussion & Comments Section (Wired to Serverless Neon API) -->
+    <!-- Threaded Discussion & Comments Section -->
     <section id="discussion" class="scroll-mt-24 border-t border-emerald-500/20 pt-12 mt-16 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">SYSTEMS DISCUSSION &amp; TECHNICAL Q&amp;A</h2>
@@ -657,17 +657,33 @@
 
 </main>
 
-<footer class="w-full py-8 sm:py-12 bg-surface-dim border-t border-white/5 text-center">
-    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2">
-        <div class="w-8 h-8 rounded-xl flex items-center justify-center bg-black border border-emerald-500/40 p-1 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-            <img src="../Main_page_data/Logo.avif" alt="Logo Footer" width="24" height="24" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';"/>
+<footer class="w-full py-10 sm:py-16 bg-surface-dim border-t border-white/5 text-center relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <div class="flex items-center gap-4">
+                <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(16,185,129,0.4)]">
+                    <img src="../public/Main_page_data/Logo.avif" alt="Logo Footer" width="36" height="30" class="h-full w-auto object-contain font-bold" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';" />
+                </div>
+                <div class="flex flex-col text-left">
+                    <span class="font-sans font-extrabold text-sm text-white">Akash Nagapure</span>
+                    <span class="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">
+                        © 2026. All Rights Reserved. Engineered with Precision.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Clickable Logo Links for LinkedIn and Email -->
+            <div class="flex items-center gap-5">
+                <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" class="p-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 text-emerald-400 hover:text-white hover:border-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="mailto:akashnagapure@live.com" aria-label="Send Email" class="p-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 text-emerald-400 hover:text-white hover:border-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+            </div>
+
         </div>
-        <span class="font-sans font-extrabold text-sm text-white">
-            Akash Nagapure
-        </span>
-        <span class="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-1">
-            © 2026. All Rights Reserved. Engineered with Precision.
-        </span>
     </div>
 </footer>
 
@@ -922,7 +938,7 @@
         jumpMenu.classList.toggle('hidden');
     }
 
-    // Hero Carousel Logic (Fixed Auto & Manual Slide Transitions)
+    // Hero Carousel Logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
 
@@ -951,7 +967,7 @@
         setInterval(nextSlide, 7000);
     }
 
-    // Toggle Review Expand/Collapse (Fixed Accordion Animation)
+    // Toggle Review Expand/Collapse
     function toggleReview(id, buttonEl) {
         const detailEl = document.getElementById(id);
         const btnText = buttonEl.querySelector('.btn-text');
