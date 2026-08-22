@@ -832,15 +832,27 @@
     }
 
     async function handleVote(id, action) {
+        const email = prompt("Please enter your email address to record your vote:");
+        if (!email || !email.trim()) return;
+
         try {
             const res = await fetch(API_URL, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id, action })
+                body: JSON.stringify({ id, action, email: email.trim() })
             });
-            if (res.ok) await loadComments();
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.error || 'Failed to record vote.');
+                return;
+            }
+
+            await loadComments();
         } catch (err) {
-            console.error('Failed to vote');
+            console.error('Failed to vote', err);
+            alert('Network error while voting.');
         }
     }
 
