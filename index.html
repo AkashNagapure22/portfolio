@@ -256,17 +256,16 @@
       transform: rotateY(180deg);
     }
 
-    /* Side Sliding Tabs for Skills & Courses */
-    .side-slide-tab {
-      position: fixed;
-      right: -320px;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 100;
+    /* Vertical Accordion Dropdown Animation */
+    .vertical-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out, padding 0.3s ease;
+      opacity: 0;
     }
-    .side-slide-tab.open {
-      right: 0;
+    .vertical-dropdown.expanded {
+      max-height: 1200px;
+      opacity: 1;
     }
   </style>
 </head>
@@ -392,7 +391,7 @@
         <a href="#home" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30 shadow-[0_0_10px_rgba(56,189,248,0.2)]" onclick="scrollToSection(event, 'home')">Home</a>
         <a href="#about" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'about')">About</a>
         <a href="#certifications" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'certifications')">Certifications</a>
-        <a href="#blogs" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'blogs')">Technical Blogs</a>
+        <a href="public/Sub_Pages/Projects.html" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all">Technical Blogs</a>
         <a href="#education" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'education')">Education</a>
         <a href="#hobbies" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'hobbies')">Hobbies</a>
         <a href="#projects" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'projects')">Projects</a>
@@ -411,7 +410,7 @@
     <a href="#home" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-sky-400 bg-sky-950 border-l-4 border-sky-400" onclick="scrollToSection(event, 'home')">Home</a>
     <a href="#about" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'about')">About</a>
     <a href="#certifications" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'certifications')">Certifications</a>
-    <a href="#blogs" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'blogs')">Technical Blogs</a>
+    <a href="public/Sub_Pages/Projects.html" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Technical Blogs</a>
     <a href="#education" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'education')">Education</a>
     <a href="#hobbies" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'hobbies')">Hobbies</a>
     <a href="#projects" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'projects')">Projects</a>
@@ -691,7 +690,7 @@
     </div>
   </section>
 
-  <!-- Education & Academy with Skills & Courses Side Tabs -->
+  <!-- Education & Academy with Vertical Accordion Dropdown Tabs for Skills & Courses -->
   <section id="education" class="py-24 section-bg-education border-y border-sky-500/20 text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -707,16 +706,81 @@
           </p>
         </div>
 
-        <!-- Sliding Tab Trigger Buttons -->
+        <!-- Vertical Accordion Buttons -->
         <div class="flex flex-wrap gap-3">
-          <button onclick="toggleSideTab('skills-tab')" class="inline-flex items-center space-x-2 px-5 py-3 bg-sky-950/80 hover:bg-sky-900 border border-sky-400/40 text-sky-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all cursor-pointer">
+          <button type="button" onclick="toggleVerticalAccordion('skills-dropdown', this)" class="inline-flex items-center space-x-2 px-5 py-3 bg-sky-950/80 hover:bg-sky-900 border border-sky-400/40 text-sky-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all cursor-pointer">
             <i data-lucide="cpu" class="w-4 h-4"></i>
-            <span>View Skills →</span>
+            <span class="btn-text">View Skills</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300 icon"></i>
           </button>
-          <button onclick="toggleSideTab('courses-tab')" class="inline-flex items-center space-x-2 px-5 py-3 bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-400/40 text-indigo-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all cursor-pointer">
+          <button type="button" onclick="toggleVerticalAccordion('courses-dropdown', this)" class="inline-flex items-center space-x-2 px-5 py-3 bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-400/40 text-indigo-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all cursor-pointer">
             <i data-lucide="award" class="w-4 h-4"></i>
-            <span>View Courses →</span>
+            <span class="btn-text">View Courses Completed</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300 icon"></i>
           </button>
+        </div>
+      </div>
+
+      <!-- Vertical Accordion Dropdown Container: Skills -->
+      <div id="skills-dropdown" class="vertical-dropdown mb-8">
+        <div class="glass-card-3d p-6 sm:p-8 rounded-2xl border border-sky-400/40 shadow-2xl bg-slate-950/95 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/10 pb-4">
+            <h3 class="font-bold text-white text-lg flex items-center gap-2.5 font-sans"><i data-lucide="cpu" class="text-sky-400 w-5 h-5"></i> Technical Skills & Core Competencies</h3>
+            <a href="public/Sub_Pages/Skills.html" class="text-xs text-sky-400 hover:underline font-mono">Open Full Skills Hub →</a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-300 font-mono">
+            <div class="p-4 bg-slate-900/80 border border-sky-500/30 rounded-xl space-y-2">
+              <p class="text-sky-300 font-bold uppercase tracking-wider text-sm">Endpoint Management:</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Microsoft Intune</span>
+                <span class="px-2.5 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">MECM / SCCM</span>
+                <span class="px-2.5 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Windows Autopilot</span>
+                <span class="px-2.5 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Autopatch</span>
+              </div>
+            </div>
+            <div class="p-4 bg-slate-900/80 border border-indigo-500/30 rounded-xl space-y-2">
+              <p class="text-indigo-300 font-bold uppercase tracking-wider text-sm">Cloud & Virtualization:</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Azure Virtual Desktop</span>
+                <span class="px-2.5 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Windows 365</span>
+                <span class="px-2.5 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">VMware Horizon</span>
+                <span class="px-2.5 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Citrix</span>
+              </div>
+            </div>
+            <div class="p-4 bg-slate-900/80 border border-emerald-500/30 rounded-xl space-y-2">
+              <p class="text-emerald-300 font-bold uppercase tracking-wider text-sm">Automation & Security:</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">PowerShell Scripting</span>
+                <span class="px-2.5 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">Microsoft Entra ID</span>
+                <span class="px-2.5 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">Conditional Access</span>
+                <span class="px-2.5 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">ServiceNow CMDB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Accordion Dropdown Container: Courses Completed -->
+      <div id="courses-dropdown" class="vertical-dropdown mb-8">
+        <div class="glass-card-3d p-6 sm:p-8 rounded-2xl border border-indigo-400/40 shadow-2xl bg-slate-950/95 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/10 pb-4">
+            <h3 class="font-bold text-white text-lg flex items-center gap-2.5 font-sans"><i data-lucide="award" class="text-indigo-400 w-5 h-5"></i> Courses & Specialized Training Completed</h3>
+            <a href="public/Sub_Pages/courses.html" class="text-xs text-indigo-400 hover:underline font-mono">Open Full Courses Hub →</a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-2">
+              <span class="text-indigo-400 font-bold block uppercase tracking-wider text-[11px]">Microsoft 365 Certified</span>
+              <p class="text-white text-sm font-semibold">Endpoint Administrator Associate (MD-102)</p>
+            </div>
+            <div class="p-4 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-2">
+              <span class="text-indigo-400 font-bold block uppercase tracking-wider text-[11px]">Microsoft Certified</span>
+              <p class="text-white text-sm font-semibold">Azure Administrator Associate (AZ-104)</p>
+            </div>
+            <div class="p-4 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-2">
+              <span class="text-indigo-400 font-bold block uppercase tracking-wider text-[11px]">AXELOS / PeopleCert</span>
+              <p class="text-white text-sm font-semibold">ITIL Foundation Certificate in IT Service Management (ITIL 4)</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -784,65 +848,6 @@
     </div>
   </section>
 
-  <!-- Side Sliding Tab: Skills -->
-  <div id="skills-tab" class="side-slide-tab w-[300px] sm:w-[350px] glass-card-3d p-6 rounded-2xl border border-sky-400/50 shadow-2xl bg-slate-950/98 text-left">
-    <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
-      <h3 class="font-bold text-white text-base flex items-center gap-2"><i data-lucide="cpu" class="text-sky-400 w-5 h-5"></i> Technical Skills</h3>
-      <button onclick="toggleSideTab('skills-tab')" class="text-slate-400 hover:text-white p-1 cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
-    </div>
-    <div class="space-y-3 text-xs text-slate-300 font-mono max-h-[60vh] overflow-y-auto pr-2">
-      <p class="text-sky-300 font-bold">Endpoint Management:</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Microsoft Intune</span>
-        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">MECM / SCCM</span>
-        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Windows Autopilot</span>
-        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Autopatch</span>
-      </div>
-      <p class="text-indigo-300 font-bold pt-2">Cloud & Virtualization:</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Azure Virtual Desktop</span>
-        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Windows 365</span>
-        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">VMware Horizon</span>
-        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Citrix</span>
-      </div>
-      <p class="text-emerald-300 font-bold pt-2">Automation & Security:</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">PowerShell Scripting</span>
-        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">Microsoft Entra ID</span>
-        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">Conditional Access</span>
-        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">ServiceNow CMDB</span>
-      </div>
-    </div>
-    <div class="mt-4 pt-3 border-t border-white/10 text-center">
-      <a href="public/Sub_Pages/Skills.html" class="text-xs text-sky-400 hover:underline font-mono">Open Full Skills Hub →</a>
-    </div>
-  </div>
-
-  <!-- Side Sliding Tab: Courses Completed -->
-  <div id="courses-tab" class="side-slide-tab w-[300px] sm:w-[350px] glass-card-3d p-6 rounded-2xl border border-indigo-400/50 shadow-2xl bg-slate-950/98 text-left">
-    <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
-      <h3 class="font-bold text-white text-base flex items-center gap-2"><i data-lucide="award" class="text-indigo-400 w-5 h-5"></i> Courses & Training</h3>
-      <button onclick="toggleSideTab('courses-tab')" class="text-slate-400 hover:text-white p-1 cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
-    </div>
-    <div class="space-y-3 text-xs text-slate-300 font-mono max-h-[60vh] overflow-y-auto pr-2">
-      <div class="p-3 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-1">
-        <span class="text-indigo-400 font-bold block">Microsoft 365 Certified</span>
-        <p class="text-white text-xs">Endpoint Administrator Associate (MD-102)</p>
-      </div>
-      <div class="p-3 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-1">
-        <span class="text-indigo-400 font-bold block">Microsoft Certified</span>
-        <p class="text-white text-xs">Azure Administrator Associate (AZ-104)</p>
-      </div>
-      <div class="p-3 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-1">
-        <span class="text-indigo-400 font-bold block">AXELOS / PeopleCert</span>
-        <p class="text-white text-xs">ITIL Foundation Certificate in IT Service Management (ITIL 4)</p>
-      </div>
-    </div>
-    <div class="mt-4 pt-3 border-t border-white/10 text-center">
-      <a href="public/Sub_Pages/courses.html" class="text-xs text-indigo-400 hover:underline font-mono">Open Full Courses Hub →</a>
-    </div>
-  </div>
-
   <section id="hobbies" class="py-24 section-bg-hobbies text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mb-12">
@@ -855,7 +860,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <a href="Sub_Pages/HomeLab.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/HomeLab.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Self-Hosted Homelab</h3>
@@ -869,7 +874,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Game.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Game.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Strategic Gaming</h3>
@@ -883,7 +888,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Food.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Food.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Culinary & Foodie</h3>
@@ -897,7 +902,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Reading.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Reading.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Reading</h3>
@@ -911,7 +916,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Coins.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Coins.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Coin Collection</h3>
@@ -925,7 +930,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Puzzle.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="public/Sub_Pages/Puzzle.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Speedcubing & Puzzles</h3>
@@ -1596,11 +1601,27 @@
     }
   }
 
-  function toggleSideTab(tabId) {
-    const tab = document.getElementById(tabId);
-    if (tab) {
-      tab.classList.toggle('open');
+  function toggleVerticalAccordion(dropdownId, buttonEl) {
+    const dropdown = document.getElementById(dropdownId);
+    const icon = buttonEl.querySelector('.icon');
+    
+    // Close other dropdowns first for smooth mutually exclusive behavior
+    document.querySelectorAll('.vertical-dropdown').forEach(el => {
+      if (el.id !== dropdownId) {
+        el.classList.remove('expanded');
+      }
+    });
+    document.querySelectorAll('.vertical-dropdown').forEach(el => {
+      // Reset other buttons icons if any
+    });
+
+    dropdown.classList.toggle('expanded');
+    if (dropdown.classList.contains('expanded')) {
+      icon.style.transform = "rotate(180deg)";
+    } else {
+      icon.style.transform = "rotate(0deg)";
     }
+    lucide.createIcons();
   }
 
   function checkFormValidity() {
@@ -1631,7 +1652,7 @@
     const encodedBody = encodeURIComponent(body);
 
     const banner = document.getElementById("success-banner");
-    banner.classList.net ? banner.classList.remove("hidden") : banner.classList.remove("hidden");
+    banner.classList.remove("hidden");
     lucide.createIcons();
 
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
