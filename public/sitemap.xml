@@ -29,6 +29,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://akashnagapure.in/Sub_Pages/Projects.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://akashnagapure.in/Sub_Pages/Puzzle.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -38,8 +43,38 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/Skills.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/courses.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/access-denied.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://akashnagapure.in/Sub_Pages/maintenance.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
 
-  <!-- Blogs -->
+  <!-- Technical Blogs & Articles -->
   <url>
     <loc>https://akashnagapure.in/Blogs/Autopatchblog.html</loc>
     <changefreq>weekly</changefreq>
