@@ -22,29 +22,55 @@
 <body class="bg-[#020617] text-slate-100 min-h-screen flex flex-col justify-between font-sans selection:bg-sky-500 selection:text-slate-950">
 <canvas id="three-bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
 
-<div class="flex-grow flex items-center justify-center px-4 py-20">
-    <div class="glass-card-3d p-8 sm:p-12 rounded-3xl max-w-xl w-full text-center space-y-6 shadow-2xl relative overflow-hidden">
+<!-- Top Branding Bar -->
+<header class="w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 py-4 px-6 flex items-center justify-between">
+    <a href="index.html" class="flex items-center space-x-2">
+        <span class="font-sans font-bold text-white text-base">Akash Nagapure</span>
+        <span class="text-sky-400 font-mono text-[10px] hidden sm:inline">| Microsoft Intune & VMware Architect</span>
+    </a>
+    <a href="index.html" class="text-xs font-mono text-sky-400 hover:underline flex items-center gap-1">← Main Hub</a>
+</header>
+
+<div class="flex-grow flex items-center justify-center px-4 py-12">
+    <div class="glass-card-3d p-8 sm:p-10 rounded-3xl max-w-xl w-full text-center space-y-6 shadow-2xl relative overflow-hidden">
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 to-indigo-500"></div>
-        <div class="w-20 h-20 bg-sky-950/80 border border-sky-400/30 rounded-2xl mx-auto flex items-center justify-center text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
-            <span class="font-mono text-3xl font-extrabold">404</span>
+        
+        <div class="w-16 h-16 bg-sky-950/80 border border-sky-400/30 rounded-2xl mx-auto flex items-center justify-center text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+            <span class="font-mono text-2xl font-extrabold">404</span>
         </div>
+
         <div class="space-y-2">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">System Route Not Found</h1>
-            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                The targeted endpoint or resource path you are looking for does not exist or has been relocated within the architecture matrix.
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">System Route Not Found</h1>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                The targeted endpoint or resource path you are looking for does not exist or has been relocated within Akash Nagapure's enterprise architecture matrix.
             </p>
         </div>
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/index.html" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-bold rounded-xl shadow-lg transition-all text-sm font-mono">
+
+        <!-- Primary Action -->
+        <div class="pt-2">
+            <a href="index.html" class="w-full inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-bold rounded-xl shadow-lg transition-all text-sm font-mono">
                 <span class="material-symbols-outlined text-sm">home</span>
                 <span>Return to Main Hub</span>
             </a>
         </div>
+
+        <!-- Recent Pages Quick Links -->
+        <div class="pt-4 border-t border-white/10 text-left space-y-2.5">
+            <span class="font-mono text-[10px] text-sky-400 uppercase tracking-widest block">Quick Navigation & Recent Hubs:</span>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 font-mono text-xs">
+                <a href="public/Sub_Pages/Projects.html" class="p-2 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-lg text-slate-300 hover:text-white transition-colors text-center">Technical Blogs</a>
+                <a href="public/Sub_Pages/HomeLab.html" class="p-2 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-lg text-slate-300 hover:text-white transition-colors text-center">Homelab Stack</a>
+                <a href="public/Sub_Pages/Skills.html" class="p-2 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-lg text-slate-300 hover:text-white transition-colors text-center">Skills Arsenal</a>
+                <a href="public/Sub_Pages/courses.html" class="p-2 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-lg text-slate-300 hover:text-white transition-colors text-center">Courses Hub</a>
+                <a href="public/Sub_Pages/privacy.html" class="p-2 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-lg text-slate-400 hover:text-white transition-colors text-center">Privacy Policy</a>
+                <a href="public/Sub_Pages/terms.html" class="p-2 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-lg text-slate-400 hover:text-white transition-colors text-center">Terms of Service</a>
+            </div>
+        </div>
     </div>
 </div>
 
-<footer class="py-6 text-center text-xs font-mono text-slate-500 border-t border-white/5">
-    © 2026 Akash Nagapure. All Rights Reserved.
+<footer class="py-6 text-center text-xs font-mono text-slate-500 border-t border-white/5 bg-slate-950">
+    © 2026 Akash Nagapure. All Rights Reserved. Engineered with Precision.
 </footer>
 
 <script>
