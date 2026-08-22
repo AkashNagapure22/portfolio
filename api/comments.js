@@ -56,7 +56,7 @@ export default async function handler(req, res) {
       return res.status(200).json(rows[0]);
     }
 
-    // 3. PATCH: Handle like/dislike counts with unique email restriction
+    // 3. PATCH: Handle like/dislike with toggle and undo functionality
     if (req.method === 'PATCH') {
       const { id, action, email } = req.body;
 
@@ -64,7 +64,42 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid vote parameters or missing valid email.' });
       }
 
-      try {
+      // Check if this email has already voted on this comment
+      const existingVote = await sql`
+        SELECT vote_type FROM comment_votes 
+        WHERE comment_id = ${id} AND email = ${email}
+      `;
+
+      if (existingVote.length > 0) {
+        const currentVoteType = existingVote[0].vote_type;
+
+        if (currentVoteType === action) {
+          // SCENARIO 1: Clicking the exact same button again -> UNDO (Remove vote)
+          await sql`DELETE FROM comment_votes WHERE comment_id = ${id} AND email = ${email}`;
+
+          if (action === 'like') {
+            await sql`UPDATE comments SET likes = GREATEST(COALESCE(likes, 0) - 1, 0) WHERE id = ${id}`;
+          } else {
+            await sql`UPDATE comments SET dislikes = GREATEST(COALESCE(dislikes, 0) - 1, 0) WHERE id = ${id}`;
+          }
+
+          return res.status(200).json({ success: true, message: 'Vote removed successfully!' });
+
+        } else {
+          // SCENARIO 2: Switching vote (e.g., from like to dislike) -> TOGGLE
+          await sql`UPDATE comment_votes SET vote_type = ${action} WHERE comment_id = ${id} AND email = ${email}`;
+
+          if (action === 'like') {
+            await sql`UPDATE comments SET likes = COALESCE(likes, 0) + 1, dislikes = GREATEST(COALESCE(dislikes, 0) - 1, 0) WHERE id = ${id}`;
+          } else {
+            await sql`UPDATE comments SET dislikes = COALESCE(dislikes, 0) + 1, likes = GREATEST(COALESCE(likes, 0) - 1, 0) WHERE id = ${id}`;
+          }
+
+          return res.status(200).json({ success: true, message: 'Vote updated successfully!' });
+        }
+
+      } else {
+        // SCENARIO 3: First time voting -> INSERT
         await sql`
           INSERT INTO comment_votes (comment_id, email, vote_type)
           VALUES (${id}, ${email}, ${action})
@@ -77,12 +112,6 @@ export default async function handler(req, res) {
         }
 
         return res.status(200).json({ success: true, message: 'Vote recorded successfully!' });
-
-      } catch (err) {
-        if (err.code === '23505') {
-          return res.status(400).json({ error: 'You have already voted on this comment.' });
-        }
-        throw err;
       }
     }
 
