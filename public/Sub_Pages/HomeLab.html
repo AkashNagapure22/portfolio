@@ -124,13 +124,11 @@
 })();
 </script>
 
-<!-- Navigation Shell with Logo Integration -->
+<!-- Navigation Shell with Clean Logo (No Box) -->
 <nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
     <div class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
-        <a href="../index.html" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-emerald-400 italic flex items-center gap-3 flex-shrink-0 group">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-black border border-emerald-500/40 p-1 shadow-[0_0_15px_rgba(16,185,129,0.4)] group-hover:scale-105 transition-transform">
-                <img src="../Main_page_data/Logo.avif" alt="Logo" width="32" height="32" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';"/>
-            </div>
+        <a href="../index.html" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-emerald-400 italic flex items-center gap-2.5 flex-shrink-0 group">
+            <img src="../public/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="w-9 h-9 object-contain filter drop-shadow-[0_0_8px_rgba(16,185,129,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';"/>
             <span>Akash Nagapure</span>
         </a>
 
@@ -236,7 +234,7 @@
         </div>
     </section>
 
-    <!-- Active Labs Carousel (Hero Banner) with Local Paths & Fallbacks -->
+    <!-- Active Labs Carousel (Fixed Carousel Navigation Bindings) -->
     <section id="active-labs" class="overflow-hidden scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">FEATURED LAB ENVIRONMENTS</h2>
@@ -289,17 +287,17 @@
                 </div>
             </div>
 
-            <!-- Controls -->
-            <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="prevSlide()">
+            <!-- Controls (Fixed Function Call Bindings) -->
+            <button type="button" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="prevSlide()">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
             </button>
-            <button class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="nextSlide()">
+            <button type="button" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="nextSlide()">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_right</span>
             </button>
         </div>
     </section>
 
-    <!-- Lab Roadmap & Projects with Local Paths -->
+    <!-- Lab Roadmap & Projects -->
     <section id="roadmap" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">LAB ROADMAP & EXPERIMENTS</h2>
@@ -382,7 +380,7 @@
         </div>
     </section>
 
-    <!-- Core Topologies Display with Local Paths -->
+    <!-- Core Topologies Display -->
     <section id="topology" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">CORE TEST TOPOLOGIES</h2>
@@ -508,7 +506,7 @@
         </div>
     </section>
 
-    <!-- Architecture Notes & Appraisals -->
+    <!-- Architecture Notes & Appraisals (Fixed Toggle Review Function) -->
     <section id="reviews" class="scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">ARCHITECTURE BREAKDOWNS</h2>
@@ -554,7 +552,7 @@
                     </div>
                 </div>
 
-                <button onclick="toggleReview('review-1-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-emerald-300 font-mono">
+                <button type="button" onclick="toggleReview('review-1-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-emerald-300 font-mono cursor-pointer">
                     <span class="btn-text">VIEW LAB ARCHITECTURE</span>
                     <span class="material-symbols-outlined text-sm transition-transform duration-300 icon">expand_more</span>
                 </button>
@@ -598,7 +596,7 @@
                     </div>
                 </div>
 
-                <button onclick="toggleReview('review-2-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-emerald-300 font-mono">
+                <button type="button" onclick="toggleReview('review-2-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-emerald-300 font-mono cursor-pointer">
                     <span class="btn-text">VIEW LAB ARCHITECTURE</span>
                     <span class="material-symbols-outlined text-sm transition-transform duration-300 icon">expand_more</span>
                 </button>
@@ -607,7 +605,7 @@
         </div>
     </section>
 
-    <!-- Threaded Discussion & Comments Section -->
+    <!-- Threaded Discussion & Comments Section (Wired to Serverless Neon API) -->
     <section id="discussion" class="scroll-mt-24 border-t border-emerald-500/20 pt-12 mt-16 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-emerald-400 italic tracking-tight font-bold">SYSTEMS DISCUSSION &amp; TECHNICAL Q&amp;A</h2>
@@ -645,7 +643,7 @@
             <button 
                 type="submit" 
                 id="submit-btn"
-                class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 text-sm font-mono shadow-md"
+                class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 text-sm font-mono shadow-md cursor-pointer"
             >
                 Post Comment
             </button>
@@ -740,15 +738,15 @@
                 <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
                 
                 <div class="flex items-center space-x-4 text-xs pt-1">
-                    <button onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors">
+                    <button type="button" onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors cursor-pointer">
                         <span class="material-symbols-outlined text-sm">thumb_up</span>
                         <span>${comment.likes || 0}</span>
                     </button>
-                    <button onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors">
+                    <button type="button" onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors cursor-pointer">
                         <span class="material-symbols-outlined text-sm">thumb_down</span>
                         <span>${comment.dislikes || 0}</span>
                     </button>
-                    <button onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors font-mono">
+                    <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors font-mono cursor-pointer">
                         <span class="material-symbols-outlined text-sm">reply</span>
                         <span>Reply</span>
                     </button>
@@ -756,22 +754,54 @@
 
                 <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono" />
-                        <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono" />
+                        <input 
+                            type="text" 
+                            id="reply-author-${comment.id}" 
+                            placeholder="Your Name *" 
+                            required 
+                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono"
+                        />
+                        <input 
+                            type="email" 
+                            id="reply-email-${comment.id}" 
+                            placeholder="Your Email *" 
+                            required 
+                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono"
+                        />
                     </div>
-                    <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"></textarea>
+                    <textarea 
+                        id="reply-content-${comment.id}" 
+                        rows="2" 
+                        placeholder="Write a reply..." 
+                        required 
+                        class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                    ></textarea>
                     <div class="flex space-x-2">
-                        <button type="button" onclick="postReply(${comment.id})" class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded font-mono">Submit Reply</button>
-                        <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded font-mono">Cancel</button>
+                        <button 
+                            type="button" 
+                            onclick="postReply(${comment.id})" 
+                            class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded font-mono cursor-pointer"
+                        >
+                            Submit Reply
+                        </button>
+                        <button 
+                            type="button" 
+                            onclick="toggleReplyForm(${comment.id})" 
+                            class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded font-mono cursor-pointer"
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </form>
+
                 ${repliesHTML}
             </div>
         `;
     }
 
     function toggleReplyForm(commentId) {
-        document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
+        const form = document.getElementById(`reply-form-${commentId}`);
+        form.classList.toggle('hidden');
     }
 
     async function handleVote(id, action) {
@@ -803,7 +833,12 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
             });
-            if (res.ok) await loadComments();
+
+            if (res.ok) {
+                await loadComments();
+            } else {
+                alert('Failed to post reply.');
+            }
         } catch (err) {
             alert('Network error.');
         }
@@ -823,12 +858,22 @@
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ author: author.value, email: email.value, content: content.value, parent_id: null, article_id: ARTICLE_ID })
+                body: JSON.stringify({ 
+                    author: author.value, 
+                    email: email.value, 
+                    content: content.value, 
+                    parent_id: null,
+                    article_id: ARTICLE_ID
+                })
             });
 
             if (res.ok) {
-                author.value = ''; email.value = ''; content.value = '';
+                author.value = '';
+                email.value = '';
+                content.value = '';
                 await loadComments();
+            } else {
+                alert('Failed to post comment.');
             }
         } catch (err) {
             alert('Network error.');
@@ -839,37 +884,53 @@
     });
 
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
     }
 
     loadComments();
 
+    // Mobile Navigation Drawer Toggle
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu-drawer');
         const icon = document.getElementById('menu-icon');
-        menu.classList.toggle('hidden');
-        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            icon.textContent = 'close';
+        } else {
+            menu.classList.add('hidden');
+            icon.textContent = 'menu';
+        }
     }
 
     function closeMobileMenu() {
-        document.getElementById('mobile-menu-drawer').classList.add('hidden');
-        document.getElementById('menu-icon').textContent = 'menu';
+        const menu = document.getElementById('mobile-menu-drawer');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.add('hidden');
+        icon.textContent = 'menu';
     }
 
+    // Scroll-to-Top Action
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Floating Jump Menu Overlay Toggle
     function toggleQuickJump() {
-        document.getElementById('quick-jump-menu').classList.toggle('hidden');
+        const jumpMenu = document.getElementById('quick-jump-menu');
+        jumpMenu.classList.toggle('hidden');
     }
 
+    // Hero Carousel Logic (Fixed Auto & Manual Slide Transitions)
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
 
     function showSlide(index) {
         slides.forEach(s => s.classList.remove('active'));
-        if (slides[index]) slides[index].classList.add('active');
+        if (slides[index]) {
+            slides[index].classList.add('active');
+        }
     }
 
     function nextSlide() {
@@ -886,8 +947,11 @@
         }
     }
 
-    if (slides.length > 0) setInterval(nextSlide, 7000);
+    if (slides.length > 0) {
+        setInterval(nextSlide, 7000);
+    }
 
+    // Toggle Review Expand/Collapse (Fixed Accordion Animation)
     function toggleReview(id, buttonEl) {
         const detailEl = document.getElementById(id);
         const btnText = buttonEl.querySelector('.btn-text');
@@ -904,6 +968,7 @@
         }
     }
 
+    // Scroll Reveal Animation
     const observerOptions = { threshold: 0.05 };
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -918,6 +983,7 @@
         revealObserver.observe(section);
     });
 
+    // Active Navigation Highlight on Scroll
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
@@ -934,7 +1000,7 @@
                 navLinks.forEach(link => {
                     link.classList.remove('active-link');
                     if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.0 ? '' : link.classList.add('active-link');
+                        link.classList.add('active-link');
                     }
                 });
             }
