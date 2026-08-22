@@ -67,12 +67,6 @@
       z-index: -10;
       pointer-events: none;
     }
-    .section-bg-resume {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.94), rgba(15, 23, 42, 0.90)), url('../images/Main_Page_Images/project_intune_1781110786338.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -248,225 +242,249 @@
 </nav>
 </header>
 
-<main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-4xl mx-auto space-y-8">
-    
-    <!-- Resume Top Action Bar with Photo -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-6 glass-card-3d p-6 rounded-2xl holo-glow">
-      <div class="flex items-center space-x-5 text-center sm:text-left">
-        <div class="relative shrink-0">
-          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-40 blur-sm"></div>
-          <img src="../Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="85" height="85" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner grayscale hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';" />
+<main class="flex-grow py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full space-y-12">
+  
+  <!-- Resume Top Action Bar with Photo -->
+  <div class="flex flex-col sm:flex-row items-center justify-between gap-6 glass-card-3d p-6 rounded-2xl holo-glow">
+    <div class="flex items-center space-x-5 text-center sm:text-left">
+      <div class="relative shrink-0">
+        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-40 blur-sm"></div>
+        <img src="../Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="85" height="85" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner grayscale hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';" />
+      </div>
+      <div>
+        <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
+        <p class="font-mono text-xs text-sky-400 font-semibold uppercase tracking-wider mt-1">Microsoft Certified EUC & Intune Specialist</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="../Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all">
+        <i data-lucide="download" class="w-4 h-4"></i>
+        <span>Download PDF Resume</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Contact details card -->
+  <div class="glass-card-3d p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+    <div class="flex items-center space-x-2 text-slate-300">
+      <i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>
+      <span>+91 9860457155</span>
+    </div>
+    <div class="flex items-center space-x-2 text-slate-300">
+      <i data-lucide="mail" class="w-4 h-4 text-sky-400"></i>
+      <span>akashnagapure@live.com</span>
+    </div>
+    <div class="flex items-center space-x-2 text-slate-300">
+      <i data-lucide="linkedin" class="w-4 h-4 text-sky-400"></i>
+      <a href="https://www.linkedin.com/in/anagapure" target="_blank" class="hover:text-sky-300 underline">linkedin.com/in/anagapure</a>
+    </div>
+  </div>
+
+  <!-- Professional Summary -->
+  <div class="glass-card-3d p-7 rounded-2xl space-y-3">
+    <div class="flex items-center space-x-3">
+      <i data-lucide="user-check" class="w-5 h-5 text-sky-400"></i>
+      <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Professional Summary</h2>
+    </div>
+    <p class="font-sans text-slate-300 text-sm leading-relaxed text-justify">
+      Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience architecting secure, scalable modern endpoint management environments. Proven expertise in zero-touch provisioning (Autopilot/Autopatch), GPO migration, cloud infrastructure transitions, and enterprise automation via PowerShell. Adept at driving global device lifecycle management, compliance enforcement, and virtualization across hybrid enterprise architectures.
+    </p>
+  </div>
+
+  <!-- Core Competencies -->
+  <div class="glass-card-3d p-7 rounded-2xl space-y-4">
+    <div class="flex items-center space-x-3">
+      <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
+      <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Core Competencies</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
+      <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
+        <strong class="text-sky-300 font-mono text-sm block">Microsoft Intune</strong>
+        <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch – Setup, Connected Cache.</p>
+      </div>
+      <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
+        <strong class="text-sky-300 font-mono text-sm block">SCCM / MECM</strong>
+        <p class="text-slate-300">Task Sequence Management, OSD, Driver Import, Patch Deployment, DP Configuration, Maintenance.</p>
+      </div>
+      <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
+        <strong class="text-sky-300 font-mono text-sm block">Cloud & Virtualization</strong>
+        <p class="text-slate-300">Co-Management (SCCM + Intune), Azure AD, Conditional Access, Defender for Endpoint, AVD, Windows 365, Citrix, FSLogix, Workspace ONE, VMware Horizon.</p>
+      </div>
+      <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
+        <strong class="text-sky-300 font-mono text-sm block">Automation & Security</strong>
+        <p class="text-slate-300">PowerShell Automation, SQL Reporting, GPO Migration to Intune, BitLocker, Disk Encryption, LAPS, ITIL Process Adherence.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Work Experience -->
+  <div class="glass-card-3d p-7 rounded-2xl space-y-6">
+    <div class="flex items-center space-x-3">
+      <i data-lucide="briefcase" class="w-5 h-5 text-sky-400"></i>
+      <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Work Experience</h2>
+    </div>
+
+    <div class="space-y-6">
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+          <h3 class="font-bold text-white text-base">Specialist – Technical Specialist | Hexaware Technologies</h3>
+          <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
         </div>
-        <div>
-          <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
-          <p class="font-mono text-xs text-sky-400 font-semibold uppercase tracking-wider mt-1">Microsoft Certified EUC & Intune Specialist</p>
+        <p class="font-mono text-xs text-slate-400 italic">Client: Hiscox (EU)</p>
+        <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
+          <li>Led enterprise-wide migration of user home drives (H: Drive) to Microsoft OneDrive, enabling secure cloud-based file access and collaboration.</li>
+          <li>Designed and implemented enterprise-grade endpoint management solutions using Microsoft Intune across distributed environments.</li>
+          <li>Architected and deployed Modern Workplace solutions leveraging Intune, Autopilot, and Azure AD, improving device provisioning time.</li>
+          <li>Led design and integration of virtual desktop infrastructure (VDI) using Azure Virtual Desktop, Windows 365, and Citrix for secure remote access.</li>
+          <li>Implemented profile management and optimization using FSLogix, enhancing login performance in VDI environments.</li>
+          <li>Built and maintained gold images using Microsoft Deployment Toolkit, ensuring standardized and scalable image deployment.</li>
+          <li>Defined and enforced device compliance policies, security baselines, and conditional access aligned with enterprise standards.</li>
+        </ul>
+      </div>
+
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+          <h3 class="font-bold text-white text-base">Medline Industries India Pvt. Ltd, Pune</h3>
+          <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 – 13/02/2026</span>
         </div>
+        <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist – EUC (2024–2026) | Senior Administrator – EUC (2022–2024) | EUC Administrator (2020–2021)</p>
+        <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
+          <li>Led device lifecycle management for 5000+ endpoints using Intune and SCCM.</li>
+          <li>Managed Windows Autopatch setup including ring deployment and Connected Cache configuration.</li>
+          <li>Migrated 200+ on-prem GPOs to Intune using custom MDM configuration profiles.</li>
+          <li>Managed SCCM OSD deployments: image creation, driver import automation, and PXE troubleshooting.</li>
+          <li>Developed SQL & PowerShell scripts for device health, patch compliance, and SLA dashboards.</li>
+          <li>Executed monthly patching lifecycles across test, pilot, and production deployment rings.</li>
+          <li>Managed Azure Virtual Desktop environment including host pools, session hosts, application groups, and workspaces.</li>
+        </ul>
       </div>
-      <div class="flex items-center gap-3 shrink-0">
-        <a href="../Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all">
-          <i data-lucide="download" class="w-4 h-4"></i>
-          <span>Download PDF Resume</span>
-        </a>
+
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+          <h3 class="font-bold text-white text-base">Specialist – EUC Administrator (C2R) | Rectitude HR Solutions</h3>
+          <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 – 30/01/2020</span>
+        </div>
+        <p class="font-mono text-xs text-slate-400 italic">Client: Medline Industries India Pvt. Ltd, Pune</p>
+        <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
+          <li>Provided dedicated endpoint engineering and support for Medline enterprise systems.</li>
+          <li>Assisted in initial configuration of Intune device enrollment pipelines and compliance monitoring.</li>
+        </ul>
+      </div>
+
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+          <h3 class="font-bold text-white text-base">Process Associate | Capgemini Technology Services</h3>
+          <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 – 23/09/2019</span>
+        </div>
+        <p class="font-mono text-xs text-slate-400 italic">Client: IBM Merge Healthcare</p>
+        <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
+          <li>Supported global clients on DICOM/HL7 and healthcare platforms, delivering L2 support for Windows OS and applications.</li>
+          <li>Managed Salesforce CRM for ticketing, executed SQL database queries, and maintained SLA adherence.</li>
+        </ul>
+      </div>
+
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+          <h3 class="font-bold text-white text-base">Customer Support Engineer | VDA Info Solutions</h3>
+          <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 – 14/11/2018</span>
+        </div>
+        <p class="font-mono text-xs text-slate-400 italic">Client Location: Cognizant Technology Solutions (I) Pvt. Ltd, Pune</p>
+        <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
+          <li>Delivered IT infrastructure support for 24K+ users in an ODC environment and managed desktop/laptop refresh for 6000+ endpoints.</li>
+          <li>Monitored SCCM, BIOS, boot compliance, and device patch levels while managing ageing tickets.</li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <!-- Contact details card -->
-    <div class="glass-card-3d p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-      <div class="flex items-center space-x-2 text-slate-300">
-        <i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>
-        <span>+91 9860457155</span>
-      </div>
-      <div class="flex items-center space-x-2 text-slate-300">
-        <i data-lucide="mail" class="w-4 h-4 text-sky-400"></i>
-        <span>akashnagapure@live.com</span>
-      </div>
-      <div class="flex items-center space-x-2 text-slate-300">
-        <i data-lucide="linkedin" class="w-4 h-4 text-sky-400"></i>
-        <a href="https://www.linkedin.com/in/anagapure" target="_blank" class="hover:text-sky-300 underline">linkedin.com/in/anagapure</a>
-      </div>
-    </div>
-
-    <!-- Professional Summary -->
-    <div class="glass-card-3d p-7 rounded-2xl space-y-3">
-      <div class="flex items-center space-x-3">
-        <i data-lucide="user-check" class="w-5 h-5 text-sky-400"></i>
-        <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Professional Summary</h2>
-      </div>
-      <p class="font-sans text-slate-300 text-sm leading-relaxed text-justify">
-        Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience architecting secure, scalable modern endpoint management environments. Proven expertise in zero-touch provisioning (Autopilot/Autopatch), GPO migration, cloud infrastructure transitions, and enterprise automation via PowerShell. Adept at driving global device lifecycle management, compliance enforcement, and virtualization across hybrid enterprise architectures.
-      </p>
-    </div>
-
-    <!-- Core Competencies -->
+  <!-- Certifications & Academic Profile Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div class="glass-card-3d p-7 rounded-2xl space-y-4">
       <div class="flex items-center space-x-3">
-        <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
-        <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Core Competencies</h2>
+        <i data-lucide="award" class="w-5 h-5 text-sky-400"></i>
+        <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Certifications</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-          <strong class="text-sky-300 font-mono text-sm block">Microsoft Intune</strong>
-          <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch – Setup, Connected Cache.</p>
-        </div>
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-          <strong class="text-sky-300 font-mono text-sm block">SCCM / MECM</strong>
-          <p class="text-slate-300">Task Sequence Management, OSD, Driver Import, Patch Deployment, DP Configuration, Maintenance.</p>
-        </div>
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-          <strong class="text-sky-300 font-mono text-sm block">Cloud & Virtualization</strong>
-          <p class="text-slate-300">Co-Management (SCCM + Intune), Azure AD, Conditional Access, Defender for Endpoint, AVD, Windows 365, Citrix, FSLogix, Workspace ONE, VMware Horizon.</p>
-        </div>
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-          <strong class="text-sky-300 font-mono text-sm block">Automation & Security</strong>
-          <p class="text-slate-300">PowerShell Automation, SQL Reporting, GPO Migration to Intune, BitLocker, Disk Encryption, LAPS, ITIL Process Adherence.</p>
-        </div>
-      </div>
+      <ul class="space-y-2 text-xs font-sans text-slate-300">
+        <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
+        <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Administrator Associate (AZ-104)</span></li>
+        <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>ITIL 4 Foundation (Certificate No: GR671001549AN)</span></li>
+      </ul>
     </div>
 
-    <!-- Work Experience -->
-    <div class="glass-card-3d p-7 rounded-2xl space-y-6">
+    <div class="glass-card-3d p-7 rounded-2xl space-y-4">
       <div class="flex items-center space-x-3">
-        <i data-lucide="briefcase" class="w-5 h-5 text-sky-400"></i>
-        <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Work Experience</h2>
+        <i data-lucide="graduation-cap" class="w-5 h-5 text-sky-400"></i>
+        <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Academic Profile</h2>
       </div>
-
-      <div class="space-y-6">
-        <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-            <h3 class="font-bold text-white text-base">Specialist – Technical Specialist | Hexaware Technologies</h3>
-            <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
-          </div>
-          <p class="font-mono text-xs text-slate-400 italic">Client: Hiscox (EU)</p>
-          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-            <li>Led enterprise-wide migration of user home drives (H: Drive) to Microsoft OneDrive, enabling secure cloud-based file access and collaboration.</li>
-            <li>Designed and implemented enterprise-grade endpoint management solutions using Microsoft Intune across distributed environments.</li>
-            <li>Architected and deployed Modern Workplace solutions leveraging Intune, Autopilot, and Azure AD, improving device provisioning time.</li>
-            <li>Led design and integration of virtual desktop infrastructure (VDI) using Azure Virtual Desktop, Windows 365, and Citrix for secure remote access.</li>
-            <li>Implemented profile management and optimization using FSLogix, enhancing login performance in VDI environments.</li>
-            <li>Built and maintained gold images using Microsoft Deployment Toolkit, ensuring standardized and scalable image deployment.</li>
-            <li>Defined and enforced device compliance policies, security baselines, and conditional access aligned with enterprise standards.</li>
-          </ul>
-        </div>
-
-        <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-            <h3 class="font-bold text-white text-base">Medline Industries India Pvt. Ltd, Pune</h3>
-            <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 – 13/02/2026</span>
-          </div>
-          <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist – EUC (2024–2026) | Senior Administrator – EUC (2022–2024) | EUC Administrator (2020–2021)</p>
-          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-            <li>Led device lifecycle management for 5000+ endpoints using Intune and SCCM.</li>
-            <li>Managed Windows Autopatch setup including ring deployment and Connected Cache configuration.</li>
-            <li>Migrated 200+ on-prem GPOs to Intune using custom MDM configuration profiles.</li>
-            <li>Managed SCCM OSD deployments: image creation, driver import automation, and PXE troubleshooting.</li>
-            <li>Developed SQL & PowerShell scripts for device health, patch compliance, and SLA dashboards.</li>
-            <li>Executed monthly patching lifecycles across test, pilot, and production deployment rings.</li>
-            <li>Managed Azure Virtual Desktop environment including host pools, session hosts, application groups, and workspaces.</li>
-          </ul>
-        </div>
-
-        <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-            <h3 class="font-bold text-white text-base">Specialist – EUC Administrator (C2R) | Rectitude HR Solutions</h3>
-            <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 – 30/01/2020</span>
-          </div>
-          <p class="font-mono text-xs text-slate-400 italic">Client: Medline Industries India Pvt. Ltd, Pune</p>
-          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-            <li>Provided dedicated endpoint engineering and support for Medline enterprise systems.</li>
-            <li>Assisted in initial configuration of Intune device enrollment pipelines and compliance monitoring.</li>
-          </ul>
-        </div>
-
-        <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-            <h3 class="font-bold text-white text-base">Process Associate | Capgemini Technology Services</h3>
-            <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 – 23/09/2019</span>
-          </div>
-          <p class="font-mono text-xs text-slate-400 italic">Client: IBM Merge Healthcare</p>
-          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-            <li>Supported global clients on DICOM/HL7 and healthcare platforms, delivering L2 support for Windows OS and applications.</li>
-            <li>Managed Salesforce CRM for ticketing, executed SQL database queries, and maintained SLA adherence.</li>
-          </ul>
-        </div>
-
-        <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-            <h3 class="font-bold text-white text-base">Customer Support Engineer | VDA Info Solutions</h3>
-            <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 – 14/11/2018</span>
-          </div>
-          <p class="font-mono text-xs text-slate-400 italic">Client Location: Cognizant Technology Solutions (I) Pvt. Ltd, Pune</p>
-          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-            <li>Delivered IT infrastructure support for 24K+ users in an ODC environment and managed desktop/laptop refresh for 6000+ endpoints.</li>
-            <li>Monitored SCCM, BIOS, boot compliance, and device patch levels while managing ageing tickets.</li>
-          </ul>
-        </div>
-      </div>
+      <ul class="space-y-2 text-xs font-sans text-slate-300">
+        <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) – 63.06%</li>
+        <li><strong>HSC</strong> | Brijlal Biyani Science College, Amravati (2010) – 56.33%</li>
+        <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) – 67.83%</li>
+      </ul>
     </div>
-
-    <!-- Certifications & Academic Profile Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-        <div class="flex items-center space-x-3">
-          <i data-lucide="award" class="w-5 h-5 text-sky-400"></i>
-          <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Certifications</h2>
-        </div>
-        <ul class="space-y-2 text-xs font-sans text-slate-300">
-          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
-          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Administrator Associate (AZ-104)</span></li>
-          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>ITIL 4 Foundation (Certificate No: GR671001549AN)</span></li>
-        </ul>
-      </div>
-
-      <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-        <div class="flex items-center space-x-3">
-          <i data-lucide="graduation-cap" class="w-5 h-5 text-sky-400"></i>
-          <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Academic Profile</h2>
-        </div>
-        <ul class="space-y-2 text-xs font-sans text-slate-300">
-          <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) – 63.06%</li>
-          <li><strong>HSC</strong> | Brijlal Biyani Science College, Amravati (2010) – 56.33%</li>
-          <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) – 67.83%</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Hobbies & Personal Details -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-        <div class="flex items-center space-x-3">
-          <i data-lucide="compass" class="w-5 h-5 text-sky-400"></i>
-          <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Hobbies</h2>
-        </div>
-        <ul class="space-y-2 text-xs font-sans text-slate-300 list-disc list-inside">
-          <li>Coin collection & Numismatics</li>
-          <li>Surfing the Internet & Reading tech/strategy books</li>
-        </ul>
-      </div>
-
-      <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-        <div class="flex items-center space-x-3">
-          <i data-lucide="user" class="w-5 h-5 text-sky-400"></i>
-          <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Personal Details</h2>
-        </div>
-        <ul class="space-y-1.5 text-xs font-sans text-slate-300">
-          <li><strong>Full Name:</strong> Mr. Akash Subhashrao Nagapure</li>
-          <li><strong>Date of Birth:</strong> 22 October 1992</li>
-          <li><strong>Address:</strong> Olark Residency, Moshi Pradhikaran, Sector 9, Pune 412105</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Declaration -->
-    <div class="glass-card-3d p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-4">
-      <p class="italic">I hereby declare that the information provided above is true to the best of my knowledge and belief.</p>
-      <div class="text-right shrink-0 font-mono">
-        <p class="text-sky-400 font-bold">Place: AMRAVATI</p>
-        <p class="text-white">Akash S. Nagapure</p>
-      </div>
-    </div>
-
   </div>
+
+  <!-- Hobbies & Personal Details -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="glass-card-3d p-7 rounded-2xl space-y-4">
+      <div class="flex items-center space-x-3">
+        <i data-lucide="compass" class="w-5 h-5 text-sky-400"></i>
+        <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Hobbies</h2>
+      </div>
+      <ul class="space-y-2 text-xs font-sans text-slate-300 list-disc list-inside">
+        <li>Coin collection & Numismatics</li>
+        <li>Surfing the Internet & Reading tech/strategy books</li>
+      </ul>
+    </div>
+
+    <div class="glass-card-3d p-7 rounded-2xl space-y-4">
+      <div class="flex items-center space-x-3">
+        <i data-lucide="user" class="w-5 h-5 text-sky-400"></i>
+        <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Personal Details</h2>
+      </div>
+      <ul class="space-y-1.5 text-xs font-sans text-slate-300">
+        <li><strong>Full Name:</strong> Mr. Akash Subhashrao Nagapure</li>
+        <li><strong>Date of Birth:</strong> 22 October 1992</li>
+        <li><strong>Address:</strong> Olark Residency, Moshi Pradhikaran, Sector 9, Pune 412105</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Declaration -->
+  <div class="glass-card-3d p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-4">
+    <p class="italic">I hereby declare that the information provided above is true to the best of my knowledge and belief.</p>
+    <div class="text-right shrink-0 font-mono">
+      <p class="text-sky-400 font-bold">Place: AMRAVATI</p>
+      <p class="text-white">Akash S. Nagapure</p>
+    </div>
+  </div>
+
+  <!-- Threaded Discussion & Comments Section -->
+  <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-14 mt-16 space-y-8">
+      <div class="flex items-center gap-4">
+          <h2 class="font-headline-md text-xl sm:text-2xl text-sky-400 italic tracking-tight font-bold">CAREER DISCUSSION &amp; Q&amp;A</h2>
+          <div class="h-px flex-grow bg-white/10"></div>
+      </div>
+
+      <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl border border-sky-500/30 space-y-5 shadow-2xl">
+          <h3 class="text-lg font-semibold text-sky-300 tracking-tight font-mono">Leave a Note or Professional Inquiry</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" id="author" placeholder="Your Name / Handle *" required class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-all text-sm font-mono" />
+              <input type="email" id="email" placeholder="Your Email Address *" required class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-all text-sm font-mono" />
+          </div>
+          <div>
+              <textarea id="content" rows="3" placeholder="Share feedback regarding experience, ask about enterprise architecture, or start a discussion..." required class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-all text-sm"></textarea>
+          </div>
+          <button type="submit" id="submit-btn" class="px-6 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-bold rounded-xl transition-all disabled:opacity-50 text-sm shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:scale-105 cursor-pointer font-mono">
+              Post Comment
+          </button>
+      </form>
+
+      <div id="comments-container" class="space-y-6">
+          <p class="text-slate-500 text-sm font-mono">Loading discussion...</p>
+      </div>
+  </section>
+
 </main>
 
 <!-- Standardized Compact Footer with Icons -->
@@ -505,9 +523,176 @@
 </footer>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    lucide.createIcons();
+  if (window.lucide) lucide.createIcons();
+
+  const ARTICLE_ID = 'resume';
+  const API_URL = '/api/comments';
+
+  async function loadComments() {
+      const container = document.getElementById('comments-container');
+      try {
+          const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
+          const comments = await response.json();
+
+          if (!response.ok) throw new Error();
+
+          if (!comments || comments.length === 0) {
+              container.innerHTML = '<p class="text-slate-500 text-sm font-mono">No comments yet. Be the first to start the discussion!</p>';
+              return;
+          }
+
+          const commentMap = {};
+          const topLevelComments = [];
+
+          comments.forEach(comment => {
+              comment.replies = [];
+              commentMap[comment.id] = comment;
+              if (comment.parent_id) {
+                  if (commentMap[comment.parent_id]) {
+                      commentMap[comment.parent_id].replies.push(comment);
+                  }
+              } else {
+                  topLevelComments.push(comment);
+              }
+          });
+
+          container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
+          if (window.lucide) lucide.createIcons();
+      } catch (err) {
+          container.innerHTML = '<p class="text-slate-400 text-sm font-mono">No active comment server detected. Discussion thread initialized locally.</p>';
+      }
+  }
+
+  function renderCommentNode(comment) {
+      const formattedDate = comment.created_at ? new Date(comment.created_at).toLocaleString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+      }) : 'Just now';
+
+      const repliesHTML = comment.replies && comment.replies.length > 0 
+          ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-sky-500/20 space-y-4">
+              ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
+             </div>`
+          : '';
+
+      return `
+          <div class="p-5 glass-card-3d rounded-2xl border border-slate-800 space-y-3 shadow-xl" id="comment-${comment.id}">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                  <span class="font-bold text-sky-400 text-sm font-mono">${escapeHTML(comment.author)}</span>
+                  <span class="text-slate-500 font-mono">${formattedDate}</span>
+              </div>
+              
+              <p class="text-slate-300 text-sm whitespace-pre-line leading-relaxed">${escapeHTML(comment.content)}</p>
+              
+              <div class="flex items-center space-x-4 text-xs pt-2">
+                  <button type="button" onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                      <span class="material-symbols-outlined text-sm">thumb_up</span>
+                      <span>${comment.likes || 0}</span>
+                  </button>
+                  <button type="button" onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                      <span class="material-symbols-outlined text-sm">thumb_down</span>
+                      <span>${comment.dislikes || 0}</span>
+                  </button>
+                  <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors bg-sky-500/10 px-2.5 py-1 rounded-lg border border-sky-500/20 font-mono cursor-pointer">
+                      <span class="material-symbols-outlined text-sm">reply</span>
+                      <span>Reply</span>
+                  </button>
+              </div>
+
+              <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-4 pt-4 border-t border-slate-800 bg-black/40 p-4 rounded-xl">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono" />
+                      <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono" />
+                  </div>
+                  <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"></textarea>
+                  <div class="flex space-x-2">
+                      <button type="button" onclick="postReply(${comment.id})" class="px-3.5 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded-lg shadow font-mono cursor-pointer">Submit Reply</button>
+                      <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg font-mono cursor-pointer">Cancel</button>
+                  </div>
+              </form>
+              ${repliesHTML}
+          </div>
+      `;
+  }
+
+  function toggleReplyForm(commentId) {
+      document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
+  }
+
+  async function handleVote(id, action) {
+      try {
+          const res = await fetch(API_URL, {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id, action })
+          });
+          if (res.ok) await loadComments();
+      } catch (err) {
+          console.error('Failed to vote');
+      }
+  }
+
+  async function postReply(parentId) {
+      const author = document.getElementById(`reply-author-${parentId}`).value;
+      const email = document.getElementById(`reply-email-${parentId}`).value;
+      const content = document.getElementById(`reply-content-${parentId}`).value;
+
+      if (!author.trim() || !email.trim() || !content.trim()) {
+          alert('Please fill out all required fields.');
+          return;
+      }
+
+      try {
+          const res = await fetch(API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
+          });
+          if (res.ok) await loadComments();
+      } catch (err) {
+          alert('Network error.');
+      }
+  }
+
+  document.getElementById('comment-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const author = document.getElementById('author');
+      const email = document.getElementById('email');
+      const content = document.getElementById('content');
+
+      btn.disabled = true;
+      btn.innerText = 'Posting...';
+
+      try {
+          const res = await fetch(API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ author: author.value, email: email.value, content: content.value, parent_id: null, article_id: ARTICLE_ID })
+          });
+
+          if (res.ok) {
+              author.value = ''; email.value = ''; content.value = '';
+              await loadComments();
+          }
+      } catch (err) {
+          alert('Network error.');
+      } finally {
+          btn.disabled = false;
+          btn.innerText = 'Post Comment';
+      }
   });
+
+  function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  }
+
+  loadComments();
+
   function toggleMobileMenu() {
     const drawer = document.getElementById("mobile-menu-drawer");
     if (drawer) {
