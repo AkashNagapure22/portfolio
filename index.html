@@ -255,6 +255,19 @@
     .flip-card-back {
       transform: rotateY(180deg);
     }
+
+    /* Side Sliding Tabs for Skills & Courses */
+    .side-slide-tab {
+      position: fixed;
+      right: -320px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+    }
+    .side-slide-tab.open {
+      right: 0;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
@@ -379,11 +392,10 @@
         <a href="#home" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30 shadow-[0_0_10px_rgba(56,189,248,0.2)]" onclick="scrollToSection(event, 'home')">Home</a>
         <a href="#about" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'about')">About</a>
         <a href="#certifications" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'certifications')">Certifications</a>
-        <a href="#experience" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'experience')">Experience</a>
+        <a href="#blogs" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'blogs')">Technical Blogs</a>
         <a href="#education" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'education')">Education</a>
         <a href="#hobbies" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'hobbies')">Hobbies</a>
         <a href="#projects" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'projects')">Projects</a>
-        <a href="#blogs" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'blogs')">Blogs</a>
         <a href="#contact" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'contact')">Contact</a>
       </div>
 
@@ -399,11 +411,10 @@
     <a href="#home" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-sky-400 bg-sky-950 border-l-4 border-sky-400" onclick="scrollToSection(event, 'home')">Home</a>
     <a href="#about" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'about')">About</a>
     <a href="#certifications" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'certifications')">Certifications</a>
-    <a href="#experience" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'experience')">Experience</a>
+    <a href="#blogs" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'blogs')">Technical Blogs</a>
     <a href="#education" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'education')">Education</a>
     <a href="#hobbies" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'hobbies')">Hobbies</a>
     <a href="#projects" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'projects')">Projects</a>
-    <a href="#blogs" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'blogs')">Blogs</a>
     <a href="#contact" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="scrollToSection(event, 'contact')">Contact</a>
   </div>
 </nav>
@@ -447,9 +458,9 @@
               <span>Download Resume</span>
             </a>
 
-            <a href="#experience" onclick="scrollToSection(event, 'experience')" class="inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-slate-900 border border-slate-700/80 hover:border-sky-400/50 text-white font-sans font-semibold rounded-lg hover:bg-slate-800/80 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg">
-              <i data-lucide="briefcase" class="w-5 h-5 text-sky-400"></i>
-              <span>Work Experience</span>
+            <a href="public/Sub_Pages/Projects.html" class="inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-slate-900 border border-slate-700/80 hover:border-sky-400/50 text-white font-sans font-semibold rounded-lg hover:bg-slate-800/80 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg">
+              <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i>
+              <span>Technical Blogs</span>
             </a>
           </div>
         </div>
@@ -680,166 +691,34 @@
     </div>
   </section>
 
-  <section id="experience" class="py-24 section-bg-experience text-left relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="flex items-center space-x-4 mb-16">
-        <i data-lucide="briefcase" class="w-8 h-8 text-sky-400"></i>
-        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Work History</h2>
-      </div>
-
-      <div class="space-y-10 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[2px] before:bg-gradient-to-b before:from-sky-400 before:via-indigo-500 before:to-transparent">
-        
-        <div class="relative pl-12 sm:pl-20 group">
-          <div class="absolute left-[17px] top-2.5 w-3.5 h-3.5 rounded-full bg-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.9)] ring-4 ring-slate-950"></div>
-          <div class="glass-card-3d rounded-2xl p-7 hover:border-sky-400/50 transition-all duration-300">
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-              <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Architect – EUC</h3>
-                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider mt-1">Hexaware Technologies | Pune, Maharashtra</p>
-              </div>
-              <span class="mt-2 md:mt-0 px-3.5 py-1.5 bg-slate-950 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">14/02/2026 – Present</span>
-            </div>
-            <ul class="space-y-3 mb-4 text-slate-300 text-sm">
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization.</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Microsoft Intune</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Azure AD</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">AVD</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Citrix</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative pl-12 sm:pl-20 group">
-          <div class="absolute left-[17px] top-2.5 w-3.5 h-3.5 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors ring-4 ring-slate-950"></div>
-          <div class="glass-card-3d rounded-2xl p-7 hover:border-sky-400/50 transition-all duration-300">
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-              <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Specialist – EUC</h3>
-                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider mt-1">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
-              </div>
-              <span class="mt-2 md:mt-0 px-3.5 py-1.5 bg-slate-950 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">01/04/2024 – 13/02/2026</span>
-            </div>
-            <ul class="space-y-3 mb-4 text-slate-300 text-sm">
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Developed PowerShell and SQL scripts for patch compliance and device health dashboards.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access.</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">PowerShell</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">SQL</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">SCCM</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Entra ID</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative pl-12 sm:pl-20 group">
-          <div class="absolute left-[17px] top-2.5 w-3.5 h-3.5 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors ring-4 ring-slate-950"></div>
-          <div class="glass-card-3d rounded-2xl p-7 hover:border-sky-400/50 transition-all duration-300">
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-              <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Senior Administrator – EUC</h3>
-                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider mt-1">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
-              </div>
-              <span class="mt-2 md:mt-0 px-3.5 py-1.5 bg-slate-950 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">01/01/2022 – 31/03/2024</span>
-            </div>
-            <ul class="space-y-3 mb-4 text-slate-300 text-sm">
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Designed and implemented device management policies, software deployment strategies, and OS provisioning.</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Microsoft Intune</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">MECM/SCCM</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Entra ID</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative pl-12 sm:pl-20 group">
-          <div class="absolute left-[17px] top-2.5 w-3.5 h-3.5 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors ring-4 ring-slate-950"></div>
-          <div class="glass-card-3d rounded-2xl p-7 hover:border-sky-400/50 transition-all duration-300">
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-              <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Administrator – EUC</h3>
-                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider mt-1">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
-              </div>
-              <span class="mt-2 md:mt-0 px-3.5 py-1.5 bg-slate-950 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">31/01/2020 – 31/12/2021</span>
-            </div>
-            <ul class="space-y-3 mb-4 text-slate-300 text-sm">
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD).</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Created and maintained device collections, application packages, and compliance baselines.</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">MECM/SCCM</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">OSD</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Patch Management</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="relative pl-12 sm:pl-20 group">
-          <div class="absolute left-[17px] top-2.5 w-3.5 h-3.5 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors ring-4 ring-slate-950"></div>
-          <div class="glass-card-3d rounded-2xl p-7 hover:border-sky-400/50 transition-all duration-300">
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-              <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Process Associate</h3>
-                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider mt-1">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
-              </div>
-              <span class="mt-2 md:mt-0 px-3.5 py-1.5 bg-slate-950 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">19/11/2018 – 23/09/2019</span>
-            </div>
-            <ul class="space-y-3 mb-4 text-slate-300 text-sm">
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Performed SQL database health checks and managed incident tracking via Salesforce CRM.</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">DICOM/HL7</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">SQL</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Salesforce CRM</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative pl-12 sm:pl-20 group">
-          <div class="absolute left-[17px] top-2.5 w-3.5 h-3.5 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors ring-4 ring-slate-950"></div>
-          <div class="glass-card-3d rounded-2xl p-7 hover:border-sky-400/50 transition-all duration-300">
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-              <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Customer Support Engineer</h3>
-                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider mt-1">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
-              </div>
-              <span class="mt-2 md:mt-0 px-3.5 py-1.5 bg-slate-950 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">01/02/2016 – 14/11/2018</span>
-            </div>
-            <ul class="space-y-3 mb-4 text-slate-300 text-sm">
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Delivered IT infrastructure support for 24K+ users in an ODC environment.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Managed desktop/laptop refresh for 6000+ endpoints.</li>
-              <li class="flex items-start"><span class="text-sky-400 mr-2.5">▹</span> Asset management (Desktop\Laptop\Handheld devices\Voice devices).</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">IT Infrastructure Support</span>
-              <span class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-medium border border-sky-500/30">Asset Management</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
+  <!-- Education & Academy with Skills & Courses Side Tabs -->
   <section id="education" class="py-24 section-bg-education border-y border-sky-500/20 text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="flex items-center space-x-4 mb-4">
-        <i data-lucide="graduation-cap" class="w-8 h-8 text-sky-400"></i>
-        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Education & Academy
-        </h2>
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <div>
+          <div class="flex items-center space-x-4 mb-4">
+            <i data-lucide="graduation-cap" class="w-8 h-8 text-sky-400"></i>
+            <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Education & Academy
+            </h2>
+          </div>
+          <p class="font-sans text-slate-400 text-base max-w-2xl">
+            Academic foundations and ongoing advanced administrative training that validate engineered capabilities.
+          </p>
+        </div>
+
+        <!-- Sliding Tab Trigger Buttons -->
+        <div class="flex flex-wrap gap-3">
+          <button onclick="toggleSideTab('skills-tab')" class="inline-flex items-center space-x-2 px-5 py-3 bg-sky-950/80 hover:bg-sky-900 border border-sky-400/40 text-sky-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all cursor-pointer">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+            <span>View Skills →</span>
+          </button>
+          <button onclick="toggleSideTab('courses-tab')" class="inline-flex items-center space-x-2 px-5 py-3 bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-400/40 text-indigo-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all cursor-pointer">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span>View Courses →</span>
+          </button>
+        </div>
       </div>
-      <p class="font-sans text-slate-400 text-base mb-12 max-w-2xl">
-        Academic foundations and ongoing advanced administrative training that validate engineered capabilities.
-      </p>
 
       <div class="max-w-4xl space-y-8 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[2px] before:bg-sky-500/40">
         <div class="relative pl-12 sm:pl-16 group">
@@ -904,6 +783,65 @@
       </div>
     </div>
   </section>
+
+  <!-- Side Sliding Tab: Skills -->
+  <div id="skills-tab" class="side-slide-tab w-[300px] sm:w-[350px] glass-card-3d p-6 rounded-2xl border border-sky-400/50 shadow-2xl bg-slate-950/98 text-left">
+    <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+      <h3 class="font-bold text-white text-base flex items-center gap-2"><i data-lucide="cpu" class="text-sky-400 w-5 h-5"></i> Technical Skills</h3>
+      <button onclick="toggleSideTab('skills-tab')" class="text-slate-400 hover:text-white p-1 cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="space-y-3 text-xs text-slate-300 font-mono max-h-[60vh] overflow-y-auto pr-2">
+      <p class="text-sky-300 font-bold">Endpoint Management:</p>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Microsoft Intune</span>
+        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">MECM / SCCM</span>
+        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Windows Autopilot</span>
+        <span class="px-2 py-1 bg-sky-950 border border-sky-500/30 rounded text-sky-200">Autopatch</span>
+      </div>
+      <p class="text-indigo-300 font-bold pt-2">Cloud & Virtualization:</p>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Azure Virtual Desktop</span>
+        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Windows 365</span>
+        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">VMware Horizon</span>
+        <span class="px-2 py-1 bg-indigo-950 border border-indigo-500/30 rounded text-indigo-200">Citrix</span>
+      </div>
+      <p class="text-emerald-300 font-bold pt-2">Automation & Security:</p>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">PowerShell Scripting</span>
+        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">Microsoft Entra ID</span>
+        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">Conditional Access</span>
+        <span class="px-2 py-1 bg-emerald-950 border border-emerald-500/30 rounded text-emerald-200">ServiceNow CMDB</span>
+      </div>
+    </div>
+    <div class="mt-4 pt-3 border-t border-white/10 text-center">
+      <a href="public/Sub_Pages/Skills.html" class="text-xs text-sky-400 hover:underline font-mono">Open Full Skills Hub →</a>
+    </div>
+  </div>
+
+  <!-- Side Sliding Tab: Courses Completed -->
+  <div id="courses-tab" class="side-slide-tab w-[300px] sm:w-[350px] glass-card-3d p-6 rounded-2xl border border-indigo-400/50 shadow-2xl bg-slate-950/98 text-left">
+    <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+      <h3 class="font-bold text-white text-base flex items-center gap-2"><i data-lucide="award" class="text-indigo-400 w-5 h-5"></i> Courses & Training</h3>
+      <button onclick="toggleSideTab('courses-tab')" class="text-slate-400 hover:text-white p-1 cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="space-y-3 text-xs text-slate-300 font-mono max-h-[60vh] overflow-y-auto pr-2">
+      <div class="p-3 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-1">
+        <span class="text-indigo-400 font-bold block">Microsoft 365 Certified</span>
+        <p class="text-white text-xs">Endpoint Administrator Associate (MD-102)</p>
+      </div>
+      <div class="p-3 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-1">
+        <span class="text-indigo-400 font-bold block">Microsoft Certified</span>
+        <p class="text-white text-xs">Azure Administrator Associate (AZ-104)</p>
+      </div>
+      <div class="p-3 bg-slate-900 border border-indigo-500/30 rounded-xl space-y-1">
+        <span class="text-indigo-400 font-bold block">AXELOS / PeopleCert</span>
+        <p class="text-white text-xs">ITIL Foundation Certificate in IT Service Management (ITIL 4)</p>
+      </div>
+    </div>
+    <div class="mt-4 pt-3 border-t border-white/10 text-center">
+      <a href="public/Sub_Pages/courses.html" class="text-xs text-indigo-400 hover:underline font-mono">Open Full Courses Hub →</a>
+    </div>
+  </div>
 
   <section id="hobbies" class="py-24 section-bg-hobbies text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1431,8 +1369,9 @@
 
   <section id="blogs" class="py-24 section-bg-blogs text-left relative border-b border-sky-500/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-      <div class="mb-12 border-b border-white/10 pb-6">
+      <div class="mb-12 border-b border-white/10 pb-6 flex items-center justify-between">
         <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white">Technical Blogs</h2>
+        <a href="public/Sub_Pages/Projects.html" class="text-sky-400 font-mono text-sm hover:underline">View All Blogs →</a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1657,6 +1596,13 @@
     }
   }
 
+  function toggleSideTab(tabId) {
+    const tab = document.getElementById(tabId);
+    if (tab) {
+      tab.classList.toggle('open');
+    }
+  }
+
   function checkFormValidity() {
     const name = document.getElementById("direct_name").value.trim();
     const email = document.getElementById("direct_email").value.trim();
@@ -1685,7 +1631,7 @@
     const encodedBody = encodeURIComponent(body);
 
     const banner = document.getElementById("success-banner");
-    banner.classList.remove("hidden");
+    banner.classList.net ? banner.classList.remove("hidden") : banner.classList.remove("hidden");
     lucide.createIcons();
 
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
