@@ -197,7 +197,7 @@
   });
 </script>
 
-<!-- Navigation Shell (Matching Screenshot Menu Layout) -->
+<!-- Navigation Shell with Platform Categories in Top Menu -->
 <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
@@ -211,16 +211,16 @@
         </div>
       </a>
 
-      <!-- Main Menu Links -->
-      <div class="hidden lg:flex items-center space-x-1">
-        <a href="../../index.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Home</a>
-        <a href="Projects.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Technical Blogs</a>
-        <a href="Skills.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Skills</a>
-        <a href="courses.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30">Courses</a>
-        <a href="HomeLab.html" class="px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Homelab</a>
+      <!-- Platform Categories on Top Menu (Single Line Safe) -->
+      <div class="hidden xl:flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
+        <a href="../../index.html" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all whitespace-nowrap">Home</a>
+        <a href="#microsoft" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Microsoft</a>
+        <a href="#linkedin" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">LinkedIn Learning</a>
+        <a href="#pluralsight" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Pluralsight</a>
+        <a href="#udemy" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Udemy</a>
       </div>
 
-      <div class="flex items-center lg:hidden">
+      <div class="flex items-center xl:hidden">
         <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Toggle Menu">
           <span class="material-symbols-outlined text-2xl" id="menu-icon">menu</span>
         </button>
@@ -228,12 +228,12 @@
     </div>
   </div>
 
-  <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
-    <a href="../../index.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Home</a>
-    <a href="Projects.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Technical Blogs</a>
-    <a href="Skills.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Skills</a>
-    <a href="courses.html" class="block px-4 py-3 rounded-md text-base font-medium text-sky-400 bg-sky-950">Courses</a>
-    <a href="HomeLab.html" class="block px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Homelab</a>
+  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1 font-mono text-xs">
+    <a href="../../index.html" class="block px-4 py-2.5 rounded-md text-slate-300 hover:bg-slate-800">Home</a>
+    <a href="#microsoft" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Microsoft</a>
+    <a href="#linkedin" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">LinkedIn Learning</a>
+    <a href="#pluralsight" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Pluralsight</a>
+    <a href="#udemy" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Udemy</a>
   </div>
 </nav>
 
@@ -262,16 +262,7 @@
             </div>
         </div>
 
-        <!-- PLATFORM CATEGORY FILTER BAR -->
-        <div class="sticky top-20 z-40 bg-slate-950/85 backdrop-blur-md p-3 rounded-2xl border border-indigo-500/30 shadow-xl mb-12 flex items-center gap-3 overflow-x-auto no-scrollbar">
-            <span class="text-xs font-mono text-indigo-400 font-bold uppercase tracking-wider px-2 flex-shrink-0">Filter Platform:</span>
-            <a href="#microsoft" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-indigo-500/30 hover:border-indigo-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">Microsoft</a>
-            <a href="#linkedin" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-indigo-500/30 hover:border-indigo-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">LinkedIn Learning</a>
-            <a href="#pluralsight" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-indigo-500/30 hover:border-indigo-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">Pluralsight</a>
-            <a href="#udemy" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-indigo-500/30 hover:border-indigo-400 text-xs font-mono text-slate-200 whitespace-nowrap transition-all">Udemy</a>
-        </div>
-
-        <!-- COURSES CATEGORIZED BY ISSUER PLATFORM -->
+        <!-- COURSES CATEGORIZED BY PLATFORM -->
         <div class="space-y-16">
 
             <!-- MICROSOFT TRACK -->
