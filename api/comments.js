@@ -60,21 +60,38 @@ export default async function handler(req, res) {
       return res.status(200).json(rows[0]);
     }
 
-    // 3. PATCH: Handle like/dislike counts
+    // 3. PATCH: Handle like/dislike counts with unique email restriction
     if (req.method === 'PATCH') {
-      const { id, action } = req.body;
+      const { id, action, email } = req.body;
 
-      if (!id || !['like', 'dislike'].includes(action)) {
-        return res.status(400).json({ error: 'Invalid vote parameters.' });
+      if (!id || !email || !['like', 'dislike'].includes(action)) {
+        return res.status(400).json({ error: 'Invalid vote parameters or missing email.' });
       }
 
-      if (action === 'like') {
-        await sql`UPDATE comments SET likes = COALESCE(likes, 0) + 1 WHERE id = ${id}`;
-      } else {
-        await sql`UPDATE comments SET dislikes = COALESCE(dislikes, 0) + 1 WHERE id = ${id}`;
-      }
+      try {
+        // Attempt to record the vote. 
+        // Note: Requires the comment_votes table with a UNIQUE(comment_id, email) constraint.
+        await sql`
+          INSERT INTO comment_votes (comment_id, email, vote_type)
+          VALUES (${id}, ${email}, ${action})
+        `;
 
-      return res.status(200).json({ success: true });
+        // If vote insertion succeeds, increment the counter
+        if (action === 'like') {
+          await sql`UPDATE comments SET likes = COALESCE(likes, 0) + 1 WHERE id = ${id}`;
+        } else {
+          await sql`UPDATE comments SET dislikes = COALESCE(dislikes, 0) + 1 WHERE id = ${id}`;
+        }
+
+        return res.status(200).json({ success: true, message: 'Vote recorded successfully!' });
+
+      } catch (err) {
+        // PostgreSQL unique violation error code (23505) triggers when email already voted on this comment
+        if (err.code === '23505') {
+          return res.status(400).json({ error: 'You have already voted on this comment.' });
+        }
+        throw err; // Pass other errors to the main catch block
+      }
     }
 
     return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
