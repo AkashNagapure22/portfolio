@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Windows Autopatch A-to-Z | Akash Nagapure</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 </head>
-<body class="bg-slate-950 text-slate-300 font-sans selection:bg-sky-500/20 relative">
+<body class="bg-slate-950 text-slate-300 font-sans selection:bg-sky-500/20 relative min-h-screen flex flex-col justify-between">
 
-  <main class="max-w-4xl mx-auto px-6 py-16">
+  <main class="max-w-4xl mx-auto px-6 py-16 flex-grow w-full">
     <!-- Navigation -->
     <a href="../index.html" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
       <i data-lucide="arrow-left" class="w-4 h-4"></i>
@@ -112,6 +113,41 @@
 
     </article>
   </main>
+
+  <!-- Standardized Compact Footer with Icons -->
+  <footer class="w-full py-6 sm:py-8 bg-slate-950 border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+      <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+          <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+                  <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
+                      <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              </div>
+              <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
+          </div>
+          
+          <!-- Footer Links with Matching Icons -->
+          <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
+              <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">share</span> LinkedIn
+              </a>
+              <span>•</span>
+              <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
+              </a>
+              <span>•</span>
+              <a href="../Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
+              </a>
+              <span>•</span>
+              <a href="../Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">description</span> Terms of Service
+              </a>
+          </div>
+
+          <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
+      </div>
+  </footer>
 
   <!-- Floating Scroll To Top Button -->
   <button 
@@ -322,3 +358,5 @@
   </script>
 </body>
 </html>
+
+```
