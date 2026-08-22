@@ -736,6 +736,17 @@
     const ARTICLE_ID = 'projects';
     const API_URL = '/api/comments';
 
+    // Helper to manage email storage automatically
+    function getStoredEmail() {
+        return localStorage.getItem('akash_portfolio_user_email') || '';
+    }
+
+    function setStoredEmail(email) {
+        if (email && email.includes('@')) {
+            localStorage.setItem('akash_portfolio_user_email', email.trim());
+        }
+    }
+
     async function loadComments() {
         const container = document.getElementById('comments-container');
         try {
@@ -832,8 +843,17 @@
     }
 
     async function handleVote(id, action) {
-        const email = prompt("Please enter your email address to record your vote:");
-        if (!email || !email.trim()) return;
+        let email = getStoredEmail();
+        
+        // Prompt only if no email is registered yet in browser storage
+        if (!email) {
+            email = prompt("Please enter your email address to record your vote:");
+            if (!email || !email.includes('@')) {
+                alert('A valid email address containing "@" is required to vote.');
+                return;
+            }
+            setStoredEmail(email);
+        }
 
         try {
             const res = await fetch(API_URL, {
@@ -858,13 +878,16 @@
 
     async function postReply(parentId) {
         const author = document.getElementById(`reply-author-${parentId}`).value;
-        const email = document.getElementById(`reply-email-${parentId}`).value;
+        const emailField = document.getElementById(`reply-email-${parentId}`);
+        const email = emailField.value;
         const content = document.getElementById(`reply-content-${parentId}`).value;
 
-        if (!author.trim() || !email.trim() || !content.trim()) {
-            alert('Please fill out all required fields.');
+        if (!author.trim() || !email.trim() || !content.trim() || !email.includes('@')) {
+            alert('Please fill out all required fields with a valid email containing "@".');
             return;
         }
+
+        setStoredEmail(email);
 
         try {
             const res = await fetch(API_URL, {
@@ -885,6 +908,13 @@
         const email = document.getElementById('email');
         const content = document.getElementById('content');
 
+        if (!email.value.includes('@')) {
+            alert('Please provide a valid email address containing "@".');
+            return;
+        }
+
+        setStoredEmail(email.value);
+
         btn.disabled = true;
         btn.innerText = 'Posting...';
 
@@ -896,7 +926,7 @@
             });
 
             if (res.ok) {
-                author.value = ''; email.value = ''; content.value = '';
+                author.value = ''; content.value = '';
                 await loadComments();
             }
         } catch (err) {
@@ -904,6 +934,15 @@
         } finally {
             btn.disabled = false;
             btn.innerText = 'Post Comment';
+        }
+    });
+
+    // Automatically prepopulate and autofill email fields if stored previously
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedEmail = getStoredEmail();
+        const emailInput = document.getElementById('email');
+        if (savedEmail && emailInput) {
+            emailInput.value = savedEmail;
         }
     });
 
