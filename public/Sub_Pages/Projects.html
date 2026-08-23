@@ -1,14 +1,3 @@
-Let's look closely at why it was working when it was inside `Projects.html` versus why it failed when using a separate structure.
-
-When your comment code was entirely inline in `Projects.html`, the browser executed the form submission handler directly in the context of the page. Once we tried splitting it or changing how the form elements were rendered, a mismatch in IDs (`comment-form`, `author`, `email`, `content`) or an unbound event listener caused the JavaScript to throw a silent error or fail the `fetch` call.
-
-Let's fix this cleanly right now in **`public/Sub_Pages/Projects.html`** with a fully self-contained, bulletproof comment block that guarantees smooth posting, auto-detected identity tracking, and full like/dislike/revert capabilities.
-
-### Updated `public/Sub_Pages/Projects.html`
-
-Replace the entire code of your `public/Sub_Pages/Projects.html` with this version:
-
-```html
 <!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
@@ -686,7 +675,7 @@ Replace the entire code of your `public/Sub_Pages/Projects.html` with this versi
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
 
-        <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl border border-sky-500/30 space-y-5 shadow-2xl">
+        <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl border border-sky-500/30 space-y-5 shadow-2xl" onsubmit="handleCommentSubmit(event)">
             <h3 class="text-lg font-semibold text-sky-300 tracking-tight font-mono">Join the Engineering Discussion</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" id="author" placeholder="Your Name / Handle *" required class="w-full p-3.5 bg-black/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-all text-sm font-mono" />
@@ -765,8 +754,7 @@ Replace the entire code of your `public/Sub_Pages/Projects.html` with this versi
             });
             
             if (!response.ok) {
-                const errText = await response.text();
-                throw new Error(`Server returned ${response.status}: ${errText}`);
+                throw new Error(`Server status ${response.status}`);
             }
 
             const comments = await response.json();
@@ -794,8 +782,8 @@ Replace the entire code of your `public/Sub_Pages/Projects.html` with this versi
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            console.error('API load error:', err);
-            container.innerHTML = `<p class="text-rose-400 text-xs font-mono bg-rose-950/40 p-3 rounded-xl border border-rose-500/30">Failed to load comments: ${escapeHTML(err.message)}</p>`;
+            console.warn('API load error:', err);
+            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">Comments API unavailable in local static preview mode. Live Neon DB requires deployment via Vercel.</p>';
         }
     }
 
@@ -886,7 +874,6 @@ Replace the entire code of your `public/Sub_Pages/Projects.html` with this versi
             });
 
             const data = await res.json();
-
             if (!res.ok) {
                 alert(data.error || 'Failed to record vote.');
                 return;
@@ -934,7 +921,8 @@ Replace the entire code of your `public/Sub_Pages/Projects.html` with this versi
         }
     }
 
-    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+    // Direct global function for safe form submission without listener conflicts
+    window.handleCommentSubmit = async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
         const authorInput = document.getElementById('author');
@@ -981,7 +969,7 @@ Replace the entire code of your `public/Sub_Pages/Projects.html` with this versi
             btn.disabled = false;
             btn.innerText = 'Post Comment';
         }
-    });
+    }
 
     window.addEventListener('DOMContentLoaded', () => {
         const savedEmail = getStoredEmail();
