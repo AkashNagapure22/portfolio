@@ -736,7 +736,6 @@
     const ARTICLE_ID = 'projects';
     const API_URL = '/api/comments';
 
-    // Helper to manage email storage automatically
     function getStoredEmail() {
         return localStorage.getItem('akash_portfolio_user_email') || '';
     }
@@ -778,18 +777,13 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">No active comment server detected. Discussion thread initialized locally.</p>';
+            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">No active comment server detected.</p>';
         }
     }
 
     function renderCommentNode(comment) {
         const formattedDate = comment.created_at ? new Date(comment.created_at).toLocaleString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
+            month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true
         }) : 'Just now';
 
         const repliesHTML = comment.replies && comment.replies.length > 0 
@@ -838,11 +832,11 @@
         `;
     }
 
-    function toggleReplyForm(commentId) {
+    window.toggleReplyForm = function(commentId) {
         document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
     }
 
-    async function handleVote(id, action) {
+    window.handleVote = async function(id, action) {
         let email = getStoredEmail();
         
         if (!email) {
@@ -869,7 +863,6 @@
             });
 
             const data = await res.json();
-
             if (!res.ok) {
                 alert(data.error || 'Failed to record vote.');
                 return;
@@ -882,7 +875,7 @@
         }
     }
 
-    async function postReply(parentId) {
+    window.postReply = async function(parentId) {
         const author = document.getElementById(`reply-author-${parentId}`).value;
         const emailField = document.getElementById(`reply-email-${parentId}`);
         const email = emailField.value;
@@ -913,15 +906,20 @@
         }
     }
 
+    // Fixed form submission event handler
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
-        const author = document.getElementById('author').value;
-        const email = document.getElementById('email').value;
-        const content = document.getElementById('content').value;
+        const authorInput = document.getElementById('author');
+        const emailInput = document.getElementById('email');
+        const contentInput = document.getElementById('content');
 
-        if (!email.includes('@')) {
-            alert('Please provide a valid email address containing "@".');
+        const author = authorInput.value.trim();
+        const email = emailInput.value.trim();
+        const content = contentInput.value.trim();
+
+        if (!author || !email || !content || !email.includes('@')) {
+            alert('Please provide your name, a valid email address containing "@", and comment content.');
             return;
         }
 
@@ -938,9 +936,8 @@
             });
 
             if (res.ok) {
-                document.getElementById('author').value = '';
-                document.getElementById('email').value = email; // Retain email for convenience
-                document.getElementById('content').value = '';
+                authorInput.value = ''; 
+                contentInput.value = '';
                 await loadComments();
             } else {
                 const data = await res.json();
@@ -955,7 +952,6 @@
         }
     });
 
-    // Automatically prepopulate and autofill email fields if stored previously
     window.addEventListener('DOMContentLoaded', () => {
         const savedEmail = getStoredEmail();
         const emailInput = document.getElementById('email');
