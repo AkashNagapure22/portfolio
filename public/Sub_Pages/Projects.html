@@ -16,7 +16,7 @@
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script id="tailwind-config">
@@ -251,15 +251,15 @@
         </div>
       </a>
 
-      <!-- Main Menu Links -->
-      <div class="hidden lg:flex items-center space-x-1 shrink-0">
+      <!-- Main Menu Links with .nav-link class added -->
+      <div class="hidden lg:flex items-center space-x-1 shrink-0" id="nav-menu">
         <a href="../../index.html" class="px-2.5 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Home</a>
-        <a href="#intune" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">1. Intune</a>
-        <a href="#sccm" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">2. SCCM</a>
-        <a href="#powershell" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">3. PS</a>
-        <a href="#azure" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">4. Azure</a>
-        <a href="#vmware" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">5. VMware</a>
-        <a href="#activedirectory" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">6. AD</a>
+        <a href="#intune" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono nav-link">1. Intune</a>
+        <a href="#sccm" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono nav-link">2. SCCM</a>
+        <a href="#powershell" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono nav-link">3. PS</a>
+        <a href="#azure" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono nav-link">4. Azure</a>
+        <a href="#vmware" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono nav-link">5. VMware</a>
+        <a href="#activedirectory" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono nav-link">6. AD</a>
       </div>
 
       <!-- Live Page Search Bar -->
@@ -867,7 +867,6 @@
     }
 
     window.handleVote = async function(id, action) {
-        // Use VOTE_MANAGER to restrict double voting per comment
         if (typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
             alert("You have already voted on this comment!");
             return;
@@ -1010,7 +1009,6 @@
             }
         });
 
-        // Hide entire category sections if no cards within them match the filter query
         categoryBlocks.forEach(block => {
             const visibleCardsInBlock = block.querySelectorAll('.searchable-card:not([style*="display: none"])');
             if (visibleCardsInBlock.length === 0) {
@@ -1051,6 +1049,32 @@
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Active Navigation Highlight on Scroll (Fixes the stuck menu underline)
+    const navLinks = document.querySelectorAll('#nav-menu a[href^="#"]');
+    const sections = document.querySelectorAll('div.blog-category-block[id]');
+
+    const navObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    }, navObserverOptions);
+
+    sections.forEach(section => navObserver.observe(section));
 </script>
 </body>
 </html>
