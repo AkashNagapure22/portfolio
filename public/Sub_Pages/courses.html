@@ -197,10 +197,10 @@
   });
 </script>
 
-<!-- Navigation Shell with Platform Categories in Top Menu -->
+<!-- Navigation Shell with Platform Categories & Search Bar in Top Menu -->
 <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
+    <div class="flex items-center justify-between h-16 gap-4">
       <a href="../../index.html" class="flex items-center space-x-3 group cursor-pointer flex-shrink-0">
         <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
           <img src="../Main_page_data/Logo.avif" alt="Logo" width="36" height="30" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
@@ -211,13 +211,21 @@
         </div>
       </a>
 
-      <!-- Platform Categories on Top Menu (Single Line Safe) -->
-      <div class="hidden xl:flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
+      <!-- Platform Categories & Search Bar on Top Menu -->
+      <div class="hidden xl:flex items-center space-x-3 overflow-x-auto no-scrollbar py-1">
         <a href="../../index.html" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all whitespace-nowrap">Home</a>
         <a href="#microsoft" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Microsoft</a>
-        <a href="#linkedin" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">LinkedIn Learning</a>
+        <a href="#linkedin" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">LinkedIn</a>
         <a href="#pluralsight" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Pluralsight</a>
         <a href="#udemy" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Udemy</a>
+
+        <!-- Top Menu Search Input -->
+        <div class="relative ml-2">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-slate-400">
+            <span class="material-symbols-outlined text-sm">search</span>
+          </span>
+          <input type="text" id="course-search-top" oninput="filterCourses(this.value)" placeholder="Search courses..." class="w-48 pl-8 pr-3 py-1.5 bg-black/60 border border-sky-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 font-mono text-xs transition-all"/>
+        </div>
       </div>
 
       <div class="flex items-center xl:hidden">
@@ -228,7 +236,14 @@
     </div>
  </div>
 
- <div id="mobile-menu-drawer" class="hidden xl:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1 font-mono text-xs">
+ <div id="mobile-menu-drawer" class="hidden xl:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-3 font-mono text-xs">
+    <!-- Mobile Menu Search Bar -->
+    <div class="relative">
+      <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+        <span class="material-symbols-outlined text-sm">search</span>
+      </span>
+      <input type="text" id="course-search-mobile" oninput="filterCourses(this.value)" placeholder="Search courses..." class="w-full pl-9 pr-3 py-2 bg-black/80 border border-sky-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 text-xs"/>
+    </div>
     <a href="../../index.html" class="block px-4 py-2.5 rounded-md text-slate-300 hover:bg-slate-800">Home</a>
     <a href="#microsoft" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">Microsoft</a>
     <a href="#linkedin" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-md text-sky-400 hover:bg-slate-800">LinkedIn Learning</a>
@@ -248,7 +263,7 @@
 
     <section class="courses-section">
         <!-- Hero Section -->
-        <div class="glass-card-3d rounded-2xl p-8 sm:p-12 mb-8 relative overflow-hidden holo-glow">
+        <div class="glass-card-3d rounded-2xl p-8 sm:p-12 mb-12 relative overflow-hidden holo-glow">
             <div class="max-w-3xl space-y-4">
                 <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-indigo-950 border border-indigo-500/30 rounded-full font-mono text-xs text-indigo-400 uppercase tracking-wider">
                     Advanced Academy & Training Tracks
@@ -259,16 +274,6 @@
                 <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed">
                     Continuous professional development logs tracking advanced administration modules, cloud infrastructure engineering, and diagnostic problem-solving frameworks. (Click any card to flip for details)
                 </p>
-            </div>
-        </div>
-
-        <!-- SEARCH BAR FILTER -->
-        <div class="mb-12">
-            <div class="relative max-w-xl mx-auto">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
-                    <span class="material-symbols-outlined">search</span>
-                </span>
-                <input type="text" id="course-search" oninput="filterCourses(this.value)" placeholder="Search courses, certificates, or platforms..." class="w-full pl-11 pr-4 py-3.5 bg-slate-900/90 border border-sky-500/30 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 font-mono text-sm shadow-[0_0_20px_rgba(56,189,248,0.1)] transition-all"/>
             </div>
         </div>
 
@@ -571,7 +576,7 @@
     const ARTICLE_ID = 'courses';
     const API_URL = '/api/comments';
 
-    // Embedded Vote Manager to guarantee local storage persistence & prevent external 404 paths
+    // Embedded Vote Manager to guarantee local storage persistence
     const VOTE_MANAGER = {
         getVoteKey(articleId) {
             return `votes_${articleId}_${this.getUserId()}`;
@@ -600,9 +605,16 @@
         }
     };
 
-    // Course Search Filter Function
+    // Synchronized Course Search Filter Function for both Top & Mobile Search inputs
     function filterCourses(query) {
         const filter = query.toLowerCase().trim();
+        
+        // Keep top and mobile search bars synced
+        const topInput = document.getElementById('course-search-top');
+        const mobileInput = document.getElementById('course-search-mobile');
+        if (topInput && topInput.value !== query) topInput.value = query;
+        if (mobileInput && mobileInput.value !== query) mobileInput.value = query;
+
         const categoryBlocks = document.querySelectorAll('.course-category-block');
         let totalVisibleCards = 0;
 
@@ -621,7 +633,6 @@
                 }
             });
 
-            // Hide entire category block if no cards match inside it
             if (blockVisibleCount === 0) {
                 block.style.display = 'none';
             } else {
