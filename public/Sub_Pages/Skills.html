@@ -16,7 +16,7 @@
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script id="tailwind-config">
@@ -43,7 +43,7 @@
 </script>
 
 <style>
-    html { scroll-padding-top: 100px; scroll-behavior: smooth; }
+    html { scroll-padding-top: 110px; scroll-behavior: smooth; }
     
     ::-webkit-scrollbar { height: 6px; width: 6px; }
     ::-webkit-scrollbar-track { background: #020617; }
@@ -87,6 +87,11 @@
     }
     .holo-glow:hover::after {
         opacity: 0.8;
+    }
+
+    .nav-link.active-link {
+        color: #38bdf8 !important;
+        border-bottom: 2px solid #38bdf8;
     }
 </style>
 </head>
@@ -171,27 +176,36 @@
   });
 </script>
 
-<!-- Navigation Shell with Skills Categories Integrated in Top Menu -->
+<!-- Navigation Shell with Skills Categories, Search Bar, and Scroll Spy Menu -->
 <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
+    <div class="flex items-center justify-between h-16 gap-4">
       <a href="../../index.html" class="flex items-center space-x-3 group cursor-pointer flex-shrink-0">
         <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
           <img src="../Main_page_data/Logo.avif" alt="Logo" width="36" height="30" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col hidden sm:flex">
           <span class="font-sans font-bold text-base text-white tracking-tight leading-none">Akash Nagapure</span>
           <span class="font-mono text-[9px] text-sky-400 font-medium tracking-widest whitespace-nowrap mt-1">Technical Arsenal & Skills</span>
         </div>
       </a>
 
-      <!-- Skills Categories on Top Menu (Single Line Safe) -->
-      <div class="hidden xl:flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
+      <!-- Skills Categories on Top Menu with .nav-link for Scroll Spy -->
+      <div class="hidden xl:flex items-center space-x-1 overflow-x-auto no-scrollbar py-1 shrink-0" id="nav-menu">
         <a href="../../index.html" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all whitespace-nowrap">Home</a>
-        <a href="#endpoint" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Endpoint Mgmt</a>
-        <a href="#virtualization" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Virtualization</a>
-        <a href="#security" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Identity & Security</a>
-        <a href="#automation" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap">Automation</a>
+        <a href="#endpoint" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap nav-link">Endpoint Mgmt</a>
+        <a href="#virtualization" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap nav-link">Virtualization</a>
+        <a href="#security" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap nav-link">Identity & Security</a>
+        <a href="#automation" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap nav-link">Automation</a>
+      </div>
+
+      <!-- Live Page Search Bar -->
+      <div class="relative flex-grow max-w-xs sm:max-w-sm">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <span class="material-symbols-outlined text-sm">search</span>
+        </div>
+        <input type="text" id="skills-search-input" oninput="filterSkills(this.value)" placeholder="Search skills, tools, technologies..." 
+          class="w-full pl-9 pr-4 py-1.5 bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
       </div>
 
       <div class="flex items-center xl:hidden">
@@ -236,11 +250,18 @@
             </div>
         </div>
 
+        <!-- SEARCH EMPTY STATE WARNING -->
+        <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl mb-8">
+            <span class="material-symbols-outlined text-4xl text-sky-400 mb-2">search_off</span>
+            <h3 class="text-white font-bold text-lg">No matching technical skills found</h3>
+            <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Intune", "PowerShell", "VMware", or "Azure".</p>
+        </div>
+
         <!-- SKILLS SECTIONS GRID -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="skills-grid">
             
             <!-- Endpoint Management -->
-            <div id="endpoint" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
+            <div id="endpoint" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32 searchable-skill-card">
                 <div class="flex items-center gap-3 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">devices</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Endpoint Management & Modern Workplace</h2>
@@ -255,7 +276,7 @@
             </div>
 
             <!-- Virtualization & VDI -->
-            <div id="virtualization" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
+            <div id="virtualization" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32 searchable-skill-card">
                 <div class="flex items-center gap-4 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">dns</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Virtualization & Cloud VDI</h2>
@@ -270,7 +291,7 @@
             </div>
 
             <!-- Identity & Security -->
-            <div id="security" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
+            <div id="security" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32 searchable-skill-card">
                 <div class="flex items-center gap-4 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">security</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Identity & Microsoft Security</h2>
@@ -285,7 +306,7 @@
             </div>
 
             <!-- Automation & Scripting -->
-            <div id="automation" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32">
+            <div id="automation" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32 searchable-skill-card">
                 <div class="flex items-center gap-4 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-2xl">terminal</span>
                     <h2 class="font-headline-md text-xl text-white font-bold">Automation, Scripting & ITSM</h2>
@@ -368,11 +389,40 @@
   </div>
 </footer>
 
+<!-- Include Vote Manager Script -->
+<script src="../vote-manager.js"></script>
+
 <script>
     if (window.lucide) lucide.createIcons();
 
     const ARTICLE_ID = 'skills';
     const API_URL = '/api/comments';
+
+    // Real-Time Skills Search Filter Logic
+    function filterSkills(query) {
+        const filter = query.toLowerCase().trim();
+        const cards = document.querySelectorAll('.searchable-skill-card');
+        const emptyState = document.getElementById('search-empty-state');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const textContent = card.innerText.toLowerCase();
+            if (textContent.includes(filter)) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (emptyState) {
+            if (visibleCount === 0 && filter !== '') {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+    }
 
     async function loadComments() {
         const container = document.getElementById('comments-container');
@@ -547,6 +597,32 @@
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Active Navigation Highlight on Scroll (Scroll Spy)
+    const navLinks = document.querySelectorAll('#nav-menu a[href^="#"]');
+    const sections = document.querySelectorAll('div[id].searchable-skill-card');
+
+    const navObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    }, navObserverOptions);
+
+    sections.forEach(section => navObserver.observe(section));
 </script>
 </body>
 </html>
