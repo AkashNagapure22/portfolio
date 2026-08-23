@@ -47,7 +47,7 @@
     }
 </script>
 <style>
-    html { scroll-padding-top: 80px; }
+    html { scroll-padding-top: 90px; }
     
     /* Custom Scrollbar */
     ::-webkit-scrollbar { height: 4px; width: 4px; }
@@ -170,12 +170,12 @@
             Akash Nagapure
         </a>
 
-        <!-- Scrollable Top Menu with Search Bar Added -->
-        <div class="hidden xl:flex items-center gap-4 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
+        <!-- Scrollable Top Menu & Search Bar -->
+        <div class="hidden xl:flex items-center gap-3 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
             <a href="../index.html" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
                 <span class="material-symbols-outlined text-sm">home</span> Main Hub
             </a>
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link active-link py-1">Home</a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Home</a>
             <a href="#current-craving" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Current Craving</a>
             <a href="#todo-list" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Food To-Do</a>
             <a href="#favorites" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Hall of Fame</a>
@@ -199,7 +199,7 @@
         </button>
     </div>
 
-    <!-- Mobile Slide-down Drawer with Search Bar Added -->
+    <!-- Mobile Slide-down Drawer & Search Bar -->
     <div id="mobile-menu-drawer" class="hidden xl:hidden bg-background/95 border-b border-white/10 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
         <div class="relative mb-2">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-amber-400/70">
@@ -239,7 +239,6 @@
 
 <!-- Floating Fast Navigation / Scroll to Top Widget -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
-    <!-- Quick Jump Menu Overlay -->
     <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-amber-500/30 shadow-2xl flex flex-col gap-2 min-w-[180px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
         <a href="../index.html" class="text-xs text-amber-300 font-bold hover:text-amber-200 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2">
@@ -268,7 +267,6 @@
         </a>
     </div>
 
-    <!-- Combined Controller Buttons -->
     <div class="flex items-center gap-2">
         <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center cursor-pointer" aria-label="Quick Jump Menu">
             <span class="material-symbols-outlined text-xl">segment</span>
@@ -1219,6 +1217,32 @@
             this.classList.toggle('flipped');
         });
     });
+
+    // Active Navigation Highlight on Scroll (Fixes the stuck underline issue)
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    const navObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    }, navObserverOptions);
+
+    sections.forEach(section => navObserver.observe(section));
 </script>
 </body>
 </html>
