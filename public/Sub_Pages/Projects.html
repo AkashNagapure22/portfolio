@@ -777,7 +777,7 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">No active comment server detected. Discussion thread initialized locally.</p>';
+            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">Comments are currently in offline preview mode (Run via Vercel CLI to test live Neon DB).</p>';
         }
     }
 
@@ -954,7 +954,7 @@
             }
         } catch (err) {
             console.error('Comment posting error:', err);
-            alert('Network error while posting comment. Please check your connection or server API endpoint.');
+            alert('Network error while posting comment.');
         } finally {
             btn.disabled = false;
             btn.innerText = 'Post Comment';
