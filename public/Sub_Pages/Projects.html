@@ -845,17 +845,16 @@
     async function handleVote(id, action) {
         let email = getStoredEmail();
         
-        // Auto-detect or analyze email from browser session or existing form input
+        // Auto-detect or analyze email from browser session or existing form input seamlessly without annoying popups
         if (!email) {
             const emailInput = document.getElementById('email');
             if (emailInput && emailInput.value.trim().includes('@')) {
                 email = emailInput.value.trim();
                 setStoredEmail(email);
             } else {
-                // Fallback: silently use a derived persistent anonymous browser fingerprint/email if none provided
                 let anonEmail = localStorage.getItem('akash_portfolio_anon_id');
                 if (!anonEmail) {
-                    anonEmail = 'voter_' + Math.random().toString(36.substring(2, 10)) + '@portfolio.local';
+                    anonEmail = 'voter_' + Math.random().toString(36).substring(2, 10) + '@portfolio.local';
                     localStorage.setItem('akash_portfolio_anon_id', anonEmail);
                 }
                 email = anonEmail;
@@ -903,7 +902,13 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
             });
-            if (res.ok) await loadComments();
+            if (res.ok) {
+                document.getElementById(`reply-author-${parentId}`).value = '';
+                emailField.value = '';
+                document.getElementById(`reply-content-${parentId}`).value = '';
+                toggleReplyForm(parentId);
+                await loadComments();
+            }
         } catch (err) {
             alert('Network error.');
         }
@@ -949,7 +954,7 @@
     window.addEventListener('DOMContentLoaded', () => {
         const savedEmail = getStoredEmail();
         const emailInput = document.getElementById('email');
-        if (savedEmail && emailInput) {
+        if (savedEmail && emailInput && !emailInput.value) {
             emailInput.value = savedEmail;
         }
     });
