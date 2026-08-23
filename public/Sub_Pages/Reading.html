@@ -119,7 +119,7 @@
 })();
 </script>
 
-<!-- Navigation Shell -->
+<!-- Navigation Shell with Search Bar Added -->
 <nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,191,255,0.1)]">
     <div class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         <a href="/" class="font-headline-sm text-lg sm:text-2xl font-bold tracking-tighter text-sky-400 italic flex items-center gap-2 flex-shrink-0">
@@ -127,29 +127,43 @@
             Akash Nagapure
         </a>
 
-        <!-- Scrollable Top Menu -->
-        <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
+        <!-- Scrollable Top Menu & Search Bar -->
+        <div class="hidden xl:flex items-center gap-3 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
             <a href="/" class="font-label-caps text-xs text-sky-400 hover:text-sky-200 transition-colors py-1 flex items-center gap-1 border-r border-sky-500/20 pr-4">
                 <span class="material-symbols-outlined text-sm">home</span> Main Hub
             </a>
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link active-link py-1">Home</a>
-            <a href="#now-reading" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1">Currently Reading</a>
-            <a href="#tbr-list" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1">TBR List</a>
-            <a href="#hall-of-fame" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1">Bookshelf Hall of Fame</a>
-            <a href="#quotes" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1">Quotes</a>
-            <a href="#reviews" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1">Reviews</a>
-            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1">Discussion</a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link active-link py-1 px-1.5">Home</a>
+            <a href="#now-reading" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1 px-1.5">Currently Reading</a>
+            <a href="#tbr-list" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1 px-1.5">TBR List</a>
+            <a href="#hall-of-fame" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1 px-1.5">Hall of Fame</a>
+            <a href="#quotes" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1 px-1.5">Quotes</a>
+            <a href="#reviews" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1 px-1.5">Reviews</a>
+            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-sky-300 transition-colors nav-link py-1 px-1.5">Discussion</a>
+
+            <!-- Top Search Input -->
+            <div class="relative ml-2 flex-shrink-0">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-sky-400/70">
+                <span class="material-symbols-outlined text-sm">search</span>
+              </span>
+              <input type="text" id="reading-search-top" oninput="filterReading(this.value)" placeholder="Search library..." class="w-32 xl:w-36 pl-8 pr-3 py-1 bg-black/60 border border-sky-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 font-mono text-xs transition-all"/>
+            </div>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded text-sky-400 hover:bg-white/5 focus:outline-none flex items-center gap-1 border border-sky-500/20">
+        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded text-sky-400 hover:bg-white/5 focus:outline-none flex items-center gap-1 border border-sky-500/20" aria-label="Toggle Navigation Menu">
             <span class="text-xs font-bold uppercase tracking-wider">Menu</span>
             <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
         </button>
     </div>
 
-    <!-- Mobile Slide-down Drawer -->
-    <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/95 border-b border-white/10 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
+    <!-- Mobile Slide-down Drawer & Search Bar -->
+    <div id="mobile-menu-drawer" class="hidden xl:hidden bg-background/95 border-b border-white/10 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
+        <div class="relative mb-2">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-sky-400/70">
+            <span class="material-symbols-outlined text-sm">search</span>
+          </span>
+          <input type="text" id="reading-search-mobile" oninput="filterReading(this.value)" placeholder="Search library items..." class="w-full pl-9 pr-3 py-2 bg-black/80 border border-sky-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 text-xs font-mono"/>
+        </div>
         <a href="/" class="block font-label-caps text-xs text-sky-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">home</span> Main Hub
         </a>
@@ -196,10 +210,10 @@
 
     <!-- Combined Controller Buttons -->
     <div class="flex items-center gap-2">
-        <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-sky-500/20 text-sky-400 border border-sky-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center">
+        <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-sky-500/20 text-sky-400 border border-sky-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center cursor-pointer" aria-label="Quick Jump Menu">
             <span class="material-symbols-outlined text-xl">segment</span>
         </button>
-        <button onclick="scrollToTop()" class="p-3 bg-sky-500 text-slate-950 hover:bg-sky-400 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center">
+        <button onclick="scrollToTop()" class="p-3 bg-sky-500 text-slate-950 hover:bg-sky-400 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center cursor-pointer" aria-label="Scroll to top">
             <span class="material-symbols-outlined text-xl">arrow_upward</span>
         </button>
     </div>
@@ -209,22 +223,22 @@
 
     <!-- Reading Dashboard Metrics -->
     <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 scroll-mt-24">
-        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg reading-search-item">
             <span class="material-symbols-outlined text-sky-400 text-3xl sm:text-4xl mb-1 sm:mb-2">book</span>
             <div class="font-headline-md text-2xl sm:text-3xl text-sky-400 font-bold">42</div>
             <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Books Completed</div>
         </div>
-        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg reading-search-item">
             <span class="material-symbols-outlined text-sky-400 text-3xl sm:text-4xl mb-1 sm:mb-2">menu_book</span>
             <div class="font-headline-md text-2xl sm:text-3xl text-sky-400 font-bold">48,500+</div>
             <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Pages Turned</div>
         </div>
-        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg reading-search-item">
             <span class="material-symbols-outlined text-sky-400 text-3xl sm:text-4xl mb-1 sm:mb-2">flag</span>
             <div class="font-headline-md text-2xl sm:text-3xl text-sky-400 font-bold">6 / 15</div>
             <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">2026 Goal Progress</div>
         </div>
-        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg">
+        <div class="glass-card p-4 sm:p-6 flex flex-col items-center justify-center text-center rounded-lg reading-search-item">
             <span class="material-symbols-outlined text-sky-400 text-3xl sm:text-4xl mb-1 sm:mb-2">grade</span>
             <div class="font-headline-md text-2xl sm:text-3xl text-sky-400 font-bold">4.8</div>
             <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider">Avg Rating</div>
@@ -240,7 +254,7 @@
         
         <div class="relative w-full min-h-[480px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-xl overflow-hidden glass-card group">
             <!-- Slide 1: Corporate Chanakya -->
-            <div class="carousel-slide active absolute inset-0">
+            <div class="carousel-slide active absolute inset-0 reading-search-item">
                 <img src="images/Corporate_chanakya.jpg.jpg" alt="Corporate Chanakya Book Cover" class="w-full h-full object-cover"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
@@ -255,7 +269,7 @@
             </div>
 
             <!-- Slide 2: Dnyaneshwari -->
-            <div class="carousel-slide absolute inset-0">
+            <div class="carousel-slide absolute inset-0 reading-search-item">
                 <img alt="Dnyaneshwari Ancient Text" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1200&auto=format&fit=crop"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
@@ -270,7 +284,7 @@
             </div>
 
             <!-- Slide 3: Atomic Habits -->
-            <div class="carousel-slide absolute inset-0">
+            <div class="carousel-slide absolute inset-0 reading-search-item">
                 <img alt="Atomic Habits Book Cover" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop"/>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
@@ -285,10 +299,10 @@
             </div>
 
             <!-- Controls -->
-            <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="prevSlide()">
+            <button type="button" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="prevSlide()" aria-label="Previous slide">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
             </button>
-            <button class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white" onclick="nextSlide()">
+            <button type="button" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="nextSlide()" aria-label="Next slide">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_right</span>
             </button>
         </div>
@@ -300,9 +314,9 @@
             <h2 class="font-headline-md text-xl sm:text-2xl text-sky-400 italic tracking-tight font-bold">NEXT ON THE BOOKSHELF (TBR)</h2>
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="reading-tbr-grid">
             
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
+            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg reading-search-item">
                 <img alt="Rework Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=600&auto=format&fit=crop"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                 <div class="absolute top-2 right-2 flex flex-col gap-1 items-end">
@@ -314,7 +328,7 @@
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
+            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg reading-search-item">
                 <img alt="Sherlock Holmes Collection" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=600&auto=format&fit=crop"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                 <div class="absolute top-2 right-2">
@@ -326,7 +340,7 @@
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
+            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg reading-search-item">
                 <img alt="Choose Me Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                 <div class="absolute top-2 right-2">
@@ -338,7 +352,7 @@
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
+            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg reading-search-item">
                 <img alt="Accidental Prime Minister" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?q=80&w=600&auto=format&fit=crop"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                 <div class="absolute top-2 right-2">
@@ -350,7 +364,7 @@
                 </div>
             </div>
 
-            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg">
+            <div class="glass-card group aspect-[2/3] relative overflow-hidden rounded-lg reading-search-item">
                 <img alt="Unhooked Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=600&auto=format&fit=crop"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                 <div class="absolute top-2 right-2">
@@ -371,9 +385,9 @@
             <h2 class="font-headline-md text-xl sm:text-2xl text-sky-400 italic tracking-tight font-bold">BOOKSHELF HALL OF FAME</h2>
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6" id="reading-fame-grid">
             
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
+            <div class="glass-card p-4 flex gap-4 group rounded-lg reading-search-item">
                 <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
                     <img alt="Bhagavad Gita" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400&auto=format&fit=crop"/>
                 </div>
@@ -389,7 +403,7 @@
                 </div>
             </div>
 
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
+            <div class="glass-card p-4 flex gap-4 group rounded-lg reading-search-item">
                 <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
                     <img alt="Papillon" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop"/>
                 </div>
@@ -405,7 +419,7 @@
                 </div>
             </div>
 
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
+            <div class="glass-card p-4 flex gap-4 group rounded-lg reading-search-item">
                 <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
                     <img alt="Let's Talk Money" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&auto=format&fit=crop"/>
                 </div>
@@ -421,7 +435,7 @@
                 </div>
             </div>
 
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
+            <div class="glass-card p-4 flex gap-4 group rounded-lg reading-search-item">
                 <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
                     <img alt="One Arranged Murder" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&auto=format&fit=crop"/>
                 </div>
@@ -437,7 +451,7 @@
                 </div>
             </div>
 
-            <div class="glass-card p-4 flex gap-4 group rounded-lg">
+            <div class="glass-card p-4 flex gap-4 group rounded-lg reading-search-item">
                 <div class="w-20 h-28 flex-shrink-0 rounded-md overflow-hidden relative">
                     <img alt="Rich Dad Poor Dad" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=400&auto=format&fit=crop"/>
                 </div>
@@ -458,8 +472,8 @@
 
     <!-- Quotes & Author Spotlights -->
     <section id="quotes" class="grid grid-cols-1 lg:grid-cols-2 gap-8 scroll-mt-24">
-        <div>
-            <h2 class="font-headline-md text-lg sm:text-headline-md text-sky-400 mb-6 italic font-bold">INSPIRING QUOTES</h2>
+        <div class="reading-search-item">
+            <h2 class="font-headline-md text-lg sm:text-2xl text-sky-400 mb-6 italic font-bold">INSPIRING QUOTES</h2>
             <div class="space-y-4">
                 <div class="glass-card p-5 rounded-lg">
                     <p class="italic text-slate-200 text-sm sm:text-base mb-2">"You have the right to work, but never to the fruit of work. You should never engage in action for the sake of reward."</p>
@@ -472,8 +486,8 @@
             </div>
         </div>
 
-        <div>
-            <h2 class="font-headline-md text-lg sm:text-headline-md text-purple-400 mb-6 italic font-bold">GO-TO GENRES</h2>
+        <div class="reading-search-item">
+            <h2 class="font-headline-md text-lg sm:text-2xl text-purple-400 mb-6 italic font-bold">GO-TO GENRES</h2>
             <div class="space-y-4">
                 <div class="glass-card flex p-4 gap-4 sm:gap-6 group rounded-lg items-center">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-purple-500/30 flex-shrink-0 group-hover:border-purple-400">
@@ -506,7 +520,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <!-- Review Card 1: Bhagavad Gita -->
-            <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between reading-search-item">
                 <div>
                     <div class="flex justify-between items-start mb-4 sm:mb-6">
                         <h3 class="font-headline-sm text-base sm:text-xl text-sky-300 font-bold">Bhagavad Gita</h3>
@@ -544,14 +558,14 @@
                     </div>
                 </div>
 
-                <button onclick="toggleReview('review-1-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-sky-300">
+                <button type="button" onclick="toggleReview('review-1-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-sky-300 cursor-pointer">
                     <span class="btn-text font-bold">READ FULL REVIEW</span>
                     <span class="material-symbols-outlined text-sm transition-transform duration-300 icon">expand_more</span>
                 </button>
             </div>
 
             <!-- Review Card 2: Papillon -->
-            <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between reading-search-item">
                 <div>
                     <div class="flex justify-between items-start mb-4 sm:mb-6">
                         <h3 class="font-headline-sm text-base sm:text-xl text-sky-300 font-bold">Papillon</h3>
@@ -589,14 +603,14 @@
                     </div>
                 </div>
 
-                <button onclick="toggleReview('review-2-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-sky-300">
+                <button type="button" onclick="toggleReview('review-2-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-sky-300 cursor-pointer">
                     <span class="btn-text font-bold">READ FULL REVIEW</span>
                     <span class="material-symbols-outlined text-sm transition-transform duration-300 icon">expand_more</span>
                 </button>
             </div>
 
             <!-- Review Card 3: Let's Talk Money -->
-            <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div class="glass-card p-5 sm:p-8 rounded-xl flex flex-col justify-between reading-search-item">
                 <div>
                     <div class="flex justify-between items-start mb-4 sm:mb-6">
                         <h3 class="font-headline-sm text-base sm:text-xl text-sky-300 font-bold">Let's Talk Money</h3>
@@ -634,7 +648,7 @@
                     </div>
                 </div>
 
-                <button onclick="toggleReview('review-3-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-sky-300">
+                <button type="button" onclick="toggleReview('review-3-detail', this)" class="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-label-caps text-xs rounded flex items-center justify-center gap-2 text-sky-300 cursor-pointer">
                     <span class="btn-text font-bold">READ FULL REVIEW</span>
                     <span class="material-symbols-outlined text-sm transition-transform duration-300 icon">expand_more</span>
                 </button>
@@ -642,6 +656,11 @@
 
         </div>
     </section>
+
+    <!-- No Search Results State -->
+    <div id="no-search-results" class="hidden text-center py-12">
+        <p class="text-sky-400/80 font-mono text-sm">No books, quotes, or reviews found matching your search term.</p>
+    </div>
 
     <!-- THREADED DISCUSSION & COMMENTS SECTION -->
     <section id="discussion" class="scroll-mt-24 border-t border-sky-500/20 pt-12 mt-16 space-y-8">
@@ -659,14 +678,14 @@
                     id="author" 
                     placeholder="Your Name *" 
                     required 
-                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors text-sm"
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors text-sm font-mono"
                 />
                 <input 
                     type="email" 
                     id="email" 
                     placeholder="Your Email Address *" 
                     required 
-                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors text-sm"
+                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors text-sm font-mono"
                 />
             </div>
             <div>
@@ -681,7 +700,7 @@
             <button 
                 type="submit" 
                 id="submit-btn"
-                class="px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 text-sm shadow-md"
+                class="px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 text-sm shadow-md cursor-pointer font-mono"
             >
                 Post Comment
             </button>
@@ -689,7 +708,7 @@
 
         <!-- Dynamic Comments Feed -->
         <div id="comments-container" class="space-y-6">
-            <p class="text-slate-500 text-sm">Loading discussion...</p>
+            <p class="text-slate-500 text-sm font-mono">Loading discussion...</p>
         </div>
     </section>
 
@@ -709,11 +728,11 @@
         
         <!-- Footer Links with Matching Icons -->
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
-            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="https://www.linkedin.com/in/akash-nagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
             </a>
             <span>•</span>
-            <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="mailto:contact@akashnagapure.in" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
@@ -736,6 +755,67 @@
     const ARTICLE_ID = 'reading';
     const API_URL = '/api/comments';
 
+    // Embedded Vote Manager to guarantee local storage persistence & prevent duplicate voting
+    const VOTE_MANAGER = {
+        getVoteKey(articleId) {
+            return `votes_${articleId}_${this.getUserId()}`;
+        },
+        getUserId() {
+            let userId = localStorage.getItem('portfolio_user_id');
+            if (!userId) {
+                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('portfolio_user_id', userId);
+            }
+            return userId;
+        },
+        hasVoted(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            return votes[`${commentId}_${action}`] === true;
+        },
+        recordVote(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            votes[`${commentId}_${action}`] = true;
+            localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
+        },
+        clearVote(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            delete votes[`${commentId}_${action}`];
+            localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
+        }
+    };
+
+    // Synchronized Library Search Filter Function for both Top & Mobile Search inputs
+    function filterReading(query) {
+        const filter = query.toLowerCase().trim();
+        
+        const topInput = document.getElementById('reading-search-top');
+        const mobileInput = document.getElementById('reading-search-mobile');
+        if (topInput && topInput.value !== query) topInput.value = query;
+        if (mobileInput && mobileInput.value !== query) mobileInput.value = query;
+
+        const items = document.querySelectorAll('.reading-search-item');
+        let totalVisible = 0;
+
+        items.forEach(item => {
+            const text = item.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                item.style.display = '';
+                totalVisible++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        const noResultsMsg = document.getElementById('no-search-results');
+        if (noResultsMsg) {
+            if (totalVisible === 0) {
+                noResultsMsg.classList.remove('hidden');
+            } else {
+                noResultsMsg.classList.add('hidden');
+            }
+        }
+    }
+
     async function loadComments() {
         const container = document.getElementById('comments-container');
         try {
@@ -745,7 +825,7 @@
             if (!response.ok) throw new Error();
 
             if (!comments || comments.length === 0) {
-                container.innerHTML = '<p class="text-slate-500 text-sm">No comments yet. Be the first to start the discussion!</p>';
+                container.innerHTML = '<p class="text-slate-500 text-sm font-mono">No comments yet. Be the first to start the discussion!</p>';
                 return;
             }
 
@@ -767,123 +847,103 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            container.innerHTML = '<p class="text-red-400 text-sm">Unable to load discussion thread.</p>';
+            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">No active comment server detected. Discussion thread initialized locally.</p>';
         }
     }
 
     function renderCommentNode(comment) {
-        const formattedDate = new Date(comment.created_at).toLocaleString('en-US', {
+        const formattedDate = comment.created_at ? new Date(comment.created_at).toLocaleString('en-US', {
             month: 'short',
             day: 'numeric',
             year: 'numeric',
             hour: 'numeric',
             minute: '2-digit',
             hour12: true
-        });
+        }) : 'Just now';
 
-        const repliesHTML = comment.replies.length > 0 
+        const repliesHTML = comment.replies && comment.replies.length > 0 
             ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-sky-500/20 space-y-4">
                 ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
                </div>`
             : '';
 
+        const likedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'like');
+        const dislikedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'dislike');
+
+        const likeClass = likedAlready ? 'opacity-50 pointer-events-none text-emerald-400 border-emerald-500/30' : 'text-slate-400 hover:text-emerald-400';
+        const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400 border-rose-500/30' : 'text-slate-400 hover:text-rose-400';
+
         return `
-            <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
+            <div class="p-4 sm:p-5 glass-card rounded-2xl border border-slate-800 space-y-3 shadow-xl" id="comment-${comment.id}">
                 <div class="flex items-center justify-between text-xs text-slate-400">
-                    <span class="font-bold text-sky-400 text-sm">${escapeHTML(comment.author)}</span>
-                    <span class="text-slate-500">${formattedDate}</span>
+                    <span class="font-bold text-sky-400 text-sm font-mono">${escapeHTML(comment.author)}</span>
+                    <span class="text-slate-500 font-mono">${formattedDate}</span>
                 </div>
                 
-                <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
+                <p class="text-slate-300 text-sm whitespace-pre-line leading-relaxed">${escapeHTML(comment.content)}</p>
                 
-                <div class="flex items-center space-x-4 text-xs pt-1">
-                    <button 
-                        onclick="handleVote(${comment.id}, 'like')" 
-                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors"
-                    >
-                        <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+                <div class="flex items-center space-x-4 text-xs pt-2 flex-wrap gap-y-2">
+                    <button type="button" onclick="handleVote(event, ${comment.id}, 'like')" class="inline-flex items-center space-x-1 ${likeClass} transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">thumb_up</span>
                         <span>${comment.likes || 0}</span>
                     </button>
-
-                    <button 
-                        onclick="handleVote(${comment.id}, 'dislike')" 
-                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors"
-                    >
-                        <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
+                    <button type="button" onclick="handleVote(event, ${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 ${dislikeClass} transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">thumb_down</span>
                         <span>${comment.dislikes || 0}</span>
                     </button>
-
-                    <button 
-                        onclick="toggleReplyForm(${comment.id})" 
-                        class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors"
-                    >
-                        <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
+                    <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors bg-sky-500/10 px-2.5 py-1 rounded-lg border border-sky-500/20 font-mono cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">reply</span>
                         <span>Reply</span>
                     </button>
                 </div>
 
-                <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800">
+                <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-4 pt-4 border-t border-slate-800 bg-black/40 p-3 sm:p-4 rounded-xl">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input 
-                            type="text" 
-                            id="reply-author-${comment.id}" 
-                            placeholder="Your Name *" 
-                            required 
-                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
-                        />
-                        <input 
-                            type="email" 
-                            id="reply-email-${comment.id}" 
-                            placeholder="Your Email *" 
-                            required 
-                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
-                        />
+                        <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono" />
+                        <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono" />
                     </div>
-                    <textarea 
-                        id="reply-content-${comment.id}" 
-                        rows="2" 
-                        placeholder="Write a reply..." 
-                        required 
-                        class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
-                    ></textarea>
+                    <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"></textarea>
                     <div class="flex space-x-2">
-                        <button 
-                            type="button" 
-                            onclick="postReply(${comment.id})" 
-                            class="px-3 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded"
-                        >
-                            Submit Reply
-                        </button>
-                        <button 
-                            type="button" 
-                            onclick="toggleReplyForm(${comment.id})" 
-                            class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded"
-                        >
-                            Cancel
-                        </button>
+                        <button type="button" onclick="postReply(${comment.id})" class="px-3.5 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded-lg shadow font-mono cursor-pointer">Submit Reply</button>
+                        <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg font-mono cursor-pointer">Cancel</button>
                     </div>
                 </form>
-
                 ${repliesHTML}
             </div>
         `;
     }
 
     function toggleReplyForm(commentId) {
-        const form = document.getElementById(`reply-form-${commentId}`);
-        form.classList.toggle('hidden');
+        document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
     }
 
-    async function handleVote(id, action) {
+    async function handleVote(event, id, action) {
+        if (VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
+            alert("You have already voted on this comment!");
+            return;
+        }
+
+        VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
+
+        const btn = event.currentTarget;
+        if (btn) {
+            btn.classList.add('opacity-50', 'pointer-events-none');
+        }
+
         try {
             const res = await fetch(API_URL, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, action })
             });
-            if (res.ok) await loadComments();
+            if (res.ok) {
+                await loadComments();
+            } else {
+                VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
+            }
         } catch (err) {
-            console.error('Failed to vote');
+            console.error('Failed to vote', err);
+            VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
         }
     }
 
@@ -903,12 +963,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
             });
-
-            if (res.ok) {
-                await loadComments();
-            } else {
-                alert('Failed to post reply.');
-            }
+            if (res.ok) await loadComments();
         } catch (err) {
             alert('Network error.');
         }
@@ -928,22 +983,12 @@
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    author: author.value, 
-                    email: email.value, 
-                    content: content.value, 
-                    parent_id: null,
-                    article_id: ARTICLE_ID
-                })
+                body: JSON.stringify({ author: author.value, email: email.value, content: content.value, parent_id: null, article_id: ARTICLE_ID })
             });
 
             if (res.ok) {
-                author.value = '';
-                email.value = '';
-                content.value = '';
+                author.value = ''; email.value = ''; content.value = '';
                 await loadComments();
-            } else {
-                alert('Failed to post comment.');
             }
         } catch (err) {
             alert('Network error.');
@@ -954,9 +999,7 @@
     });
 
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
+        return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
     }
 
     loadComments();
@@ -998,20 +1041,24 @@
 
     function showSlide(index) {
         slides.forEach(s => s.classList.remove('active'));
-        slides[index].classList.add('active');
+        if (slides[index]) slides[index].classList.add('active');
     }
 
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
+        if (slides.length > 0) {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
     }
 
     function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
+        if (slides.length > 0) {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
     }
 
-    setInterval(nextSlide, 7000);
+    if (slides.length > 0) setInterval(nextSlide, 7000);
 
     // Toggle Review Expand/Collapse
     function toggleReview(id, buttonEl) {
@@ -1030,22 +1077,7 @@
         }
     }
 
-    // Scroll Reveal Animation
-    const observerOptions = { threshold: 0.05 };
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-6');
-        revealObserver.observe(section);
-    });
-
-    // Active Navigation Highlight on Scroll
+    // Active Navigation Highlight on Scroll (Scroll Spy)
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
