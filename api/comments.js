@@ -1,101 +1,114 @@
 // api/comments.js
-// Example using a simple in-memory or database handler for Vercel Serverless / Express
+import { neon } from '@neondatabase/serverless';
 
-let commentsStore = [
-  {
-    id: 'c1',
-    articleId: 'default-article',
-    author: 'Visitor',
-    text: 'Great portfolio structure! Love the 3D grid design.',
-    likes: 5,
-    dislikes: 0,
-    date: new Date().toISOString()
-  }
-];
-
-export default function handler(req, res) {
-  // Enable CORS if needed
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  const { articleId = 'default-article' } = req.query;
+  try {
+    const sql = neon(process.env.POSTGRES_URL);
 
-  if (req.method === 'GET') {
-    const articleComments = commentsStore.filter(c => c.articleId === articleId);
-    return res.status(200).json(articleComments);
-  }
+    // 1. Ensure table exists (split into safe, concise statements)
+    await sql`
+      CREATE TABLE IF NOT EXISTS comments (
+        id SERIAL PRIMARY KEY
+      );
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS article_id TEXT NOT NULL DEFAULT 'default';
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS author TEXT NOT NULL DEFAULT '';
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS email TEXT NOT NULL DEFAULT '';
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS content TEXT NOT NULL DEFAULT '';
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS parent_id INTEGER;
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS likes INT DEFAULT 0;
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS dislikes INT DEFAULT 0;
+    `;
+    await sql`
+      ALTER TABLE comments ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    `;
 
-  if (req.method === 'POST') {
-    const { action, commentId, author, text, targetArticleId } = req.body;
-
-    // Handle adding a new comment
-    if (action === 'add') {
-      if (!text || !author) {
-        return res.status(400).json({ error: 'Author and text are required.' });
-      }
-      const newComment = {
-        id: 'c_' + Date.now(),
-        articleId: targetArticleId || articleId,
-        author: author.trim(),
-        text: text.trim(),
-        likes: 0,
-        dislikes: 0,
-        date: new Date().toISOString()
-      };
-      commentsStore.push(newComment);
-      return res.status(201).json(newComment);
+    // 2. Handle GET: Fetch comments for a specific article ID
+    if (req.method === 'GET') {
+      const { article_id } = req.query;
+      const targetArticle = article_id || 'default-article';
+      
+      const comments = await sql`
+        SELECT id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date"
+        FROM comments 
+        WHERE article_id = ${targetArticle} 
+        ORDER BY created_at ASC;
+      `;
+      return res.status(200).json(comments);
     }
 
-    // Handle liking/disliking a comment
-    if (action === 'vote') {
-      const comment = commentsStore.find(c => c.id === commentId);
-      if (!comment) {
+    // 3. Handle POST: Add new comment or reply
+    if (req.method === 'POST') {
+      const { author, email, content, parent_id, article_id, targetArticleId } = req.body;
+      const finalArticleId = targetArticleId || article_id || 'default-article';
+
+      if (!content || !author) {
+        return res.status(400).json({ error: 'Author and content are required.' });
+      }
+
+      const newComment = await sql`
+        INSERT INTO comments (article_id, author, email, content, parent_id, likes, dislikes)
+        VALUES (${finalArticleId}, ${author.trim()}, ${email ? email.trim() : ''}, ${content.trim()}, ${parent_id || null}, 0, 0)
+        RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
+      `;
+      return res.status(201).json(newComment[0]);
+    }
+
+    // 4. Handle PATCH/Vote: Increment likes or dislikes
+    if (req.method === 'PATCH') {
+      const { id, action, voteType } = req.body;
+      const type = action || voteType;
+
+      if (!id || !type) {
+        return res.status(400).json({ error: 'ID and action type are required.' });
+      }
+
+      let updated;
+      if (type === 'like') {
+        updated = await sql`
+          UPDATE comments SET likes = likes + 1 WHERE id = ${id} 
+          RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
+        `;
+      } else if (type === 'dislike') {
+        updated = await sql`
+          UPDATE comments SET dislikes = dislikes + 1 WHERE id = ${id} 
+          RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
+        `;
+      } else {
+        return res.status(400).json({ error: 'Invalid action type.' });
+      }
+
+      if (!updated || updated.length === 0) {
         return res.status(404).json({ error: 'Comment not found.' });
       }
 
-      if (req.body.voteType === 'like') {
-        comment.likes += 1;
-      } else if (req.body.voteType === 'dislike') {
-        comment.dislikes += 1;
-      }
-
-      return res.status(200).json(comment);
+      return res.status(200).json(updated[0]);
     }
 
-    return res.status(400).json({ error: 'Invalid action.' });
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (error) {
+    console.error('Database Error:', error);
+    return res.status(500).json({ error: 'Internal server error: ' + error.message });
   }
-
-  return res.status(405).json({ error: 'Method not allowed' });
 }
-```[cite: 10]
-
----
-
-### Step 2: Add Comment & Like/Dislike UI HTML Structure
-In your blog or project subpages (e.g., inside your blog template or subpages folder), add the container markup where comments and votes should appear:
-
-```html
-<section id="comments-section" class="mt-12 max-w-3xl mx-auto p-6 glass-card-3d rounded-2xl">
-  <h3 class="text-xl font-bold text-white mb-6">Discussion & Comments</h3>
-  
-  <!-- New Comment Form -->
-  <form id="comment-form" onsubmit="submitComment(event)" class="space-y-4 mb-8">
-    <input type="text" id="comment-author" placeholder="Your Name" required 
-      class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:border-sky-400 focus:outline-none" />
-    <textarea id="comment-text" rows="3" placeholder="Write your comment..." required 
-      class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:border-sky-400 focus:outline-none resize-none"></textarea>
-    <button type="submit" class="px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm rounded-lg transition-all">
-      Post Comment
-    </button>
-  </form>
-
-  <!-- Comments Container List -->
-  <div id="comments-list" class="space-y-4">
-    <!-- Dynamically injected comments will appear here -->
-  </div>
-</section>
