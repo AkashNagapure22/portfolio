@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Windows Autopatch A-to-Z | Akash Nagapure</title>
+  <title>Windows Autopatch & Hotpatch Guide | Akash Nagapure</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
@@ -29,7 +29,7 @@
         <!-- Section Jump Menu -->
         <div class="hidden md:flex items-center space-x-2 shrink-0 font-mono text-xs" id="nav-menu">
           <a href="#section-1" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">1. Prereq</a>
-          <a href="#section-2" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">2. Broker</a>
+          <a href="#section-2" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">2. Hotpatch</a>
           <a href="#section-3" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">3. Rings</a>
           <a href="#section-4" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">4. Schedules</a>
           <a href="#section-5" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">5. Verify</a>
@@ -51,58 +51,75 @@
 
     <!-- Header -->
     <header class="mb-12 searchable-block">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-widest">Technical Guide</span>
-      <h1 class="text-4xl font-extrabold text-white mt-2 mb-6">Microsoft Autopatch: The A-to-Z Deployment</h1>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-widest">Enterprise Technical Guide</span>
+      <h1 class="text-4xl font-extrabold text-white mt-2 mb-6">Windows Autopatch &amp; Rebootless Hotpatch Deployment</h1>
     </header>
 
     <article class="space-y-12 text-slate-300 leading-relaxed">
       
-      <section id="section-1" class="searchable-block scroll-mt-28">
-        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">1. Prerequisites & Activation</h2>
-        <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). You need <strong>Global Administrator</strong> access for initial consent and <strong>Intune Admin</strong> rights.</p>
-        <p class="mt-4">Navigate to <em>Tenant administration → Windows Autopatch</em> to activate the service. Once activated, the dashboard will confirm your status.</p>
+      <!-- Section 1 -->
+      <section id="section-1" class="searchable-block scroll-mt-28 space-y-4">
+        <h2 class="text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">1. Prerequisites, Licensing &amp; RBAC</h2>
+        <p>Before beginning an enterprise Autopatch deployment, verify that your tenant meets core subscription and infrastructure requirements:</p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-slate-300 font-mono">
+            <li><strong>Licensing:</strong> Microsoft 365 Business Premium, Windows 10/11 Enterprise E3/E5, or Windows 365 Enterprise.</li>
+            <li><strong>Roles &amp; Permissions:</strong> Requires Global Administrator access for initial tenant consent and Intune Administrator / Policy and Profile Manager roles for ongoing policy assignment.</li>
+            <li><strong>Operating System:</strong> Target devices must run Windows 11 Enterprise (version 24H2 or later).</li>
+            <li><strong>Virtualization-Based Security (VBS):</strong> VBS must be provisioned and running to secure in-memory code patches.</li>
+        </ul>
         <img src="/images/placeholder.png" alt="Autopatch Activation Screen" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
       </section>
 
-      <section id="section-2" class="searchable-block scroll-mt-28">
-        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">2. Installing the Client Broker</h2>
-        <p>The Client Broker maintains your Autopatch service. Navigate to <em>Tenant Management</em> under the Autopatch menu, click <strong>Manage Client Broker</strong>, and select <strong>Install</strong>.</p>
+      <!-- Section 2 -->
+      <section id="section-2" class="searchable-block scroll-mt-24 space-y-4">
+        <h2 class="text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">2. Understanding Hotpatch &amp; Baseline Cycles</h2>
+        <p>Hotpatching allows monthly security updates to be applied to running processes in-memory without forcing device reboots. This drastically minimizes downtime for critical frontline or mission-critical endpoints.</p>
+        <div class="bg-[#070b15] p-5 border border-slate-800 rounded-xl space-y-3">
+            <h3 class="font-mono text-sm font-bold text-sky-400">Quarterly Baseline vs. Hotpatch Months</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                Devices receive standard cumulative updates (requiring a restart) during quarterly baseline months (<strong>January, April, July, October</strong>). During the remaining 8 months of the year, security patches are delivered entirely as rebootless hotpatches, cutting standard annual reboots down from 12 to 4.
+            </p>
+        </div>
       </section>
 
-      <section id="section-3" class="searchable-block scroll-mt-28">
-        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">3. Creating Deployment Rings</h2>
-        <p>Planning your rings is critical. While default "First" and "Last" rings exist, you can create additional deployment groups. If using dynamic distribution, ensure your ring percentages sum to 100%.</p>
+      <!-- Section 3 -->
+      <section id="section-3" class="searchable-block scroll-mt-24 space-y-4">
+        <h2 class="text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">3. Configuring Deployment Rings &amp; Policies</h2>
+        <p>Planning your deployment rings is essential. While default Autopatch groups exist, custom targeting groups can be synchronized with SCCM device collections or managed directly via Microsoft Intune.</p>
+        <p>Configure the <strong>Windows Quality Update Policy</strong> in the Intune Admin Center by navigating to <em>Devices → Windows updates → Quality updates</em>, enabling security updates, and toggling the hotpatch parameter to apply updates without restarting when available.</p>
         <img src="/images/placeholder.png" alt="Autopatch Deployment Rings" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
       </section>
 
-      <section id="section-4" class="searchable-block scroll-mt-28">
-        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">4. Configuring Release Schedules</h2>
-        <p>Define your update behavior by setting Deferral days, Deadline days, and Grace periods. For your Test ring, use 0 deferral days for immediate verification. For production rings, allow a longer deferral window.</p>
+      <!-- Section 4 -->
+      <section id="section-4" class="searchable-block scroll-mt-24 space-y-4">
+        <h2 class="text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">4. Release Schedules &amp; Deferrals</h2>
+        <p>Define update behavior by establishing deferral days, deadline windows, and grace periods. Test rings should use 0 deferral days for immediate validation, whereas production rings require broader rollout windows to monitor stability.</p>
       </section>
 
-      <section id="section-5" class="searchable-block scroll-mt-28">
-        <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">5. Verification & User Experience</h2>
-        <p>On your target devices, navigate to <em>Settings → Accounts → Work or School → Info</em>. Under <strong>Policies</strong>, you will see the applied Autopatch configurations. In Windows Update settings, you'll see the deployment ring assignment.</p>
+      <!-- Section 5 -->
+      <section id="section-5" class="searchable-block scroll-mt-24 space-y-4">
+        <h2 class="text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">5. Verification &amp; Troubleshooting</h2>
+        <p>On target devices, verify VBS status via <em>System Information</em> (ensuring it shows as Running and Enabled) and check registry paths under <code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Update</code> for <code>AllowRebootlessUpdates = 1</code>.</p>
       </section>
 
       <!-- SEARCH EMPTY STATE WARNING -->
       <div id="search-empty-state" class="hidden text-center py-12 bg-slate-900 border border-slate-800 rounded-xl">
           <span class="material-symbols-outlined text-4xl text-sky-400 mb-2">search_off</span>
           <h3 class="text-white font-bold text-lg">No matching guide content found</h3>
-          <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Prerequisites", "Broker", or "Rings".</p>
+          <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Licensing", "Hotpatch", "Rings", or "VBS".</p>
       </div>
 
       <section class="border-t border-slate-800 pt-8 mt-12">
         <h3 class="text-lg font-bold text-white mb-4">Official References</h3>
-        <ul class="space-y-2 text-sm text-sky-400 underline">
+        <ul class="space-y-2 text-sm text-sky-400 underline font-mono">
           <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/prepare/windows-autopatch-prerequisites" target="_blank">Windows Autopatch Prerequisites</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/operate/windows-autopatch-groups" target="_blank">Managing Autopatch Groups</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/manage/windows-autopatch-hotpatch-updates" target="_blank">Managing Hotpatch Updates in Autopatch</a></li>
         </ul>
       </section>
 
       <!-- Dynamic Comment Section -->
       <section id="discussion" class="border-t border-slate-800/80 pt-8 mt-12 scroll-mt-28">
-        <h2 class="text-2xl font-bold text-white mb-6">Discussion & Q&A</h2>
+        <h2 class="text-2xl font-bold text-white mb-6">Discussion &amp; Q&amp;A</h2>
 
         <!-- Comment Form -->
         <form id="comment-form" class="space-y-4 mb-10 bg-[#070b15] p-6 border border-slate-800/80 rounded-xl shadow-2xl" onsubmit="handleCommentSubmit(event)">
