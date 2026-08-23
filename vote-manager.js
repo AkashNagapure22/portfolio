@@ -5,7 +5,7 @@
  */
 
 const VOTE_MANAGER = {
-  // Get storage key for votes
+  // Get storage key for votes based on article and user ID
   getVoteKey(articleId) {
     return `votes_${articleId}_${this.getUserId()}`;
   },
@@ -20,7 +20,7 @@ const VOTE_MANAGER = {
     return userId;
   },
 
-  // Check if user has already voted on this comment
+  // Check if user has already voted on this comment for a specific action (like/dislike)
   hasVoted(articleId, commentId, action) {
     const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
     const key = `${commentId}_${action}`;
@@ -35,7 +35,7 @@ const VOTE_MANAGER = {
     localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
   },
 
-  // Clear a vote from localStorage (for testing/resetting)
+  // Clear a vote from localStorage (optional utility for testing/resetting)
   clearVote(articleId, commentId, action) {
     const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
     const key = `${commentId}_${action}`;
@@ -43,8 +43,15 @@ const VOTE_MANAGER = {
     localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
   },
 
-  // Clear all votes for an article (for testing/resetting)
+  // Clear all votes for an article (optional utility for testing/resetting)
   clearAllVotes(articleId) {
     localStorage.removeItem(this.getVoteKey(articleId));
   }
 };
+```[cite: 9]
+
+### How to use it in your repository:
+1. Save this exact code into a file named `vote-manager.js` in your root or asset directory[cite: 9].
+2. Include it in your HTML pages right before your main application/comment scripts:
+   ```html
+   <script src="/vote-manager.js"></script>
