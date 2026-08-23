@@ -610,6 +610,13 @@
                </div>`
             : '';
 
+        // Check local storage states to visually mark buttons if already voted
+        const likedAlready = typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'like');
+        const dislikedAlready = typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'dislike');
+
+        const likeClass = likedAlready ? 'opacity-50 pointer-events-none text-emerald-400 border-emerald-500/30' : 'text-slate-400 hover:text-emerald-400';
+        const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400 border-rose-500/30' : 'text-slate-400 hover:text-rose-400';
+
         return `
             <div class="p-5 glass-card-3d rounded-2xl border border-slate-800 space-y-3 shadow-xl" id="comment-${comment.id}">
                 <div class="flex items-center justify-between text-xs text-slate-400">
@@ -620,11 +627,11 @@
                 <p class="text-slate-300 text-sm whitespace-pre-line leading-relaxed">${escapeHTML(comment.content)}</p>
                 
                 <div class="flex items-center space-x-4 text-xs pt-2">
-                    <button type="button" onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                    <button type="button" onclick="handleVote(event, ${comment.id}, 'like')" class="inline-flex items-center space-x-1 ${likeClass} transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
                         <span class="material-symbols-outlined text-sm">thumb_up</span>
                         <span>${comment.likes || 0}</span>
                     </button>
-                    <button type="button" onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                    <button type="button" onclick="handleVote(event, ${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 ${dislikeClass} transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
                         <span class="material-symbols-outlined text-sm">thumb_down</span>
                         <span>${comment.dislikes || 0}</span>
                     </button>
@@ -654,11 +661,22 @@
         document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
     }
 
-    async function handleVote(id, action) {
-        // Prevent duplicate voting using VOTE_MANAGER
+    async function handleVote(event, id, action) {
+        // 1. Check persistent localStorage via VOTE_MANAGER
         if (typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
             alert("You have already voted on this comment!");
             return;
+        }
+
+        // 2. Record vote locally right away
+        if (typeof VOTE_MANAGER !== 'undefined') {
+            VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
+        }
+
+        // 3. Instantly dim/lock the clicked button element
+        const btn = event.currentTarget;
+        if (btn) {
+            btn.classList.add('opacity-50', 'pointer-events-none');
         }
 
         try {
@@ -668,13 +686,17 @@
                 body: JSON.stringify({ id, action })
             });
             if (res.ok) {
-                if (typeof VOTE_MANAGER !== 'undefined') {
-                    VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
-                }
                 await loadComments();
+            } else {
+                if (typeof VOTE_MANAGER !== 'undefined') {
+                    VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
+                }
             }
         } catch (err) {
             console.error('Failed to vote', err);
+            if (typeof VOTE_MANAGER !== 'undefined') {
+                VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
+            }
         }
     }
 
