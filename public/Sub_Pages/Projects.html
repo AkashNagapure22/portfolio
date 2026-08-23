@@ -668,7 +668,7 @@
         </div>
     </section>
 
-    <!-- THREADED DISCUSSION & COMMENTS SECTION (Wired to Serverless Neon API) -->
+    <!-- THREADED DISCUSSION & COMMENTS SECTION -->
     <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-14 mt-16 space-y-8">
         <div class="flex items-center gap-4">
             <h2 class="font-headline-md text-xl sm:text-2xl text-sky-400 italic tracking-tight font-bold">TECHNICAL DISCUSSION &amp; Q&amp;A</h2>
@@ -750,7 +750,7 @@
         const container = document.getElementById('comments-container');
         try {
             const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
-            if (!response.ok) throw new Error('API route unavailable');
+            if (!response.ok) throw new Error('API server error');
             const comments = await response.json();
 
             if (!comments || comments.length === 0) {
@@ -776,8 +776,8 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            console.warn('Live API connection failed, showing fallback preview:', err);
-            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">Comments are currently in offline preview mode (Run via Vercel CLI to test live Neon DB).</p>';
+            console.warn('Live API connection error:', err);
+            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">Unable to connect to comment API. Please test on your deployed Vercel domain where /api/comments is active.</p>';
         }
     }
 
@@ -868,7 +868,6 @@
             });
 
             const data = await res.json();
-
             if (!res.ok) {
                 alert(data.error || 'Failed to record vote.');
                 return;
@@ -958,7 +957,7 @@
             }
         } catch (err) {
             console.error('Comment posting error:', err);
-            alert('Network error while posting comment.');
+            alert('Network error while posting comment. Make sure you are testing on Vercel deployment where API routes are active.');
         } finally {
             btn.disabled = false;
             btn.innerText = 'Post Comment';
