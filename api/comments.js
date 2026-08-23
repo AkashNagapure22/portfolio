@@ -13,38 +13,7 @@ export default async function handler(req, res) {
   try {
     const sql = neon(process.env.POSTGRES_URL);
 
-    // 1. Ensure table exists (split into safe, concise statements)
-    await sql`
-      CREATE TABLE IF NOT EXISTS comments (
-        id SERIAL PRIMARY KEY
-      );
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS article_id TEXT NOT NULL DEFAULT 'default';
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS author TEXT NOT NULL DEFAULT '';
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS email TEXT NOT NULL DEFAULT '';
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS content TEXT NOT NULL DEFAULT '';
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS parent_id INTEGER;
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS likes INT DEFAULT 0;
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS dislikes INT DEFAULT 0;
-    `;
-    await sql`
-      ALTER TABLE comments ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-    `;
-
-    // 2. Handle GET: Fetch comments for a specific article ID
+    // Handle GET: Fetch comments for a specific article ID
     if (req.method === 'GET') {
       const { article_id } = req.query;
       const targetArticle = article_id || 'default-article';
@@ -58,7 +27,7 @@ export default async function handler(req, res) {
       return res.status(200).json(comments);
     }
 
-    // 3. Handle POST: Add new comment or reply
+    // Handle POST: Add new comment or reply
     if (req.method === 'POST') {
       const { author, email, content, parent_id, article_id, targetArticleId } = req.body;
       const finalArticleId = targetArticleId || article_id || 'default-article';
@@ -75,24 +44,27 @@ export default async function handler(req, res) {
       return res.status(201).json(newComment[0]);
     }
 
-    // 4. Handle PATCH/Vote: Increment likes or dislikes
+    // Handle PATCH/Vote: Increment likes or dislikes securely
     if (req.method === 'PATCH') {
-      const { id, action, voteType } = req.body;
-      const type = action || voteType;
+      const { id, action } = req.body;
 
-      if (!id || !type) {
-        return res.status(400).json({ error: 'ID and action type are required.' });
+      if (!id || !action) {
+        return res.status(400).json({ error: 'ID and action are required.' });
       }
 
       let updated;
-      if (type === 'like') {
+      if (action === 'like') {
         updated = await sql`
-          UPDATE comments SET likes = likes + 1 WHERE id = ${id} 
+          UPDATE comments 
+          SET likes = likes + 1 
+          WHERE id = ${id} 
           RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
         `;
-      } else if (type === 'dislike') {
+      } else if (action === 'dislike') {
         updated = await sql`
-          UPDATE comments SET dislikes = dislikes + 1 WHERE id = ${id} 
+          UPDATE comments 
+          SET dislikes = dislikes + 1 
+          WHERE id = ${id} 
           RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
         `;
       } else {
