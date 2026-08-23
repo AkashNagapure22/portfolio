@@ -232,6 +232,10 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+
+
+
 <header class="w-full z-50 bg-background/90 backdrop-blur-2xl border-b border-amber-500/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] sticky top-0">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-4 max-w-container-max mx-auto gap-2">
         <a href="../index.html" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3.5 flex-shrink-0 group">
@@ -305,6 +309,15 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
 </header>
 
+
+
+
+
+
+
+
+
+    
 <!-- Floating WhatsApp Widget -->
 <div class="fixed bottom-6 left-6 z-50 flex items-center group">
     <a href="https://wa.me/919860457155?text=Hi%20Akash,%20I%20visited%20your%20numismatic%20vault%20and%20would%20like%20to%20discuss%20coin%20collecting!" 
@@ -2060,6 +2073,7 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
 </footer>
 
+
 <script>
     if (window.lucide) lucide.createIcons();
 
@@ -2095,7 +2109,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Synchronized Vault Search Filter Function for both Top & Mobile Search inputs
+    // Synchronized Vault Search Filter Function
     function filterVault(query) {
         const filter = query.toLowerCase().trim();
         
@@ -2104,25 +2118,23 @@ window.addEventListener('DOMContentLoaded', () => {
         if (topInput && topInput.value !== query) topInput.value = query;
         if (mobileInput && mobileInput.value !== query) mobileInput.value = query;
 
-        const categoryBlocks = document.querySelectorAll('.vault-category-block');
-        let totalVisibleItems = 0;
+        const items = document.querySelectorAll('.vault-item');
+        let totalVisible = 0;
 
-        categoryBlocks.forEach(block => {
-            const items = block.querySelectorAll('.vault-item');
-            let blockVisibleCount = 0;
+        items.forEach(item => {
+            const text = item.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                item.style.display = '';
+                totalVisible++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
 
-            items.forEach(item => {
-                const text = item.innerText.toLowerCase();
-                if (text.includes(filter)) {
-                    item.style.display = '';
-                    blockVisibleCount++;
-                    totalVisibleItems++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            if (blockVisibleCount === 0) {
+        // Hide empty parent category blocks if all their items are filtered out
+        document.querySelectorAll('.vault-category-block').forEach(block => {
+            const visibleInBlock = block.querySelectorAll('.vault-item:not([style*="display: none"])');
+            if (visibleInBlock.length === 0 && filter !== '') {
                 block.style.display = 'none';
             } else {
                 block.style.display = '';
@@ -2130,10 +2142,12 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         const noResultsMsg = document.getElementById('no-search-results');
-        if (totalVisibleItems === 0) {
-            noResultsMsg.classList.remove('hidden');
-        } else {
-            noResultsMsg.classList.add('hidden');
+        if (noResultsMsg) {
+            if (totalVisible === 0) {
+                noResultsMsg.classList.remove('hidden');
+            } else {
+                noResultsMsg.classList.add('hidden');
+            }
         }
     }
 
@@ -2395,5 +2409,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => navObserver.observe(section));
 </script>
+
+
+
+
+
+
+    
 </body>
 </html>
