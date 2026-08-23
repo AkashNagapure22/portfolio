@@ -319,7 +319,6 @@
 
             <!-- Cube Interactive Playground -->
             <div class="flex flex-col lg:flex-row items-center justify-center gap-8 py-2">
-                <!-- Virtual Cube Faces Matrix -->
                 <div class="grid grid-cols-3 gap-3 p-4 bg-black/70 rounded-xl border border-purple-500/30 shadow-inner">
                     <div></div>
                     <div class="flex flex-col items-center">
@@ -349,7 +348,6 @@
                     <div></div>
                 </div>
 
-                <!-- Solver Console & Output Area -->
                 <div class="space-y-4 w-full max-w-md">
                     <div class="bg-slate-900/90 p-5 rounded-xl border border-white/10 space-y-4 shadow-xl">
                         <span class="text-xs font-label-caps text-purple-300 font-bold block uppercase tracking-wider border-b border-white/5 pb-2">Solver Assistant Panel</span>
@@ -364,7 +362,6 @@
                             </div>
                         </div>
 
-                        <!-- Solution Output Box -->
                         <div class="bg-black/80 p-3.5 rounded-lg border border-purple-500/30 min-h-[90px] max-h-[140px] overflow-y-auto">
                             <span class="text-[10px] font-label-caps text-purple-400 block mb-1 uppercase">Step-by-Step Solution Guide:</span>
                             <p id="solver-output-text" class="text-xs text-emerald-300 font-mono leading-relaxed">Ready. Paint your cube faces or click 'Random Scramble' to generate solving instructions.</p>
@@ -397,16 +394,30 @@
                 </div>
             </div>
 
-            <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="prevSlide()" aria-label="Previous slide">
+            <div class="carousel-slide absolute inset-0">
+                <img alt="Megaminx Dodecahedron" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1591991564021-006e5797520e?q=80&w=1200&auto=format&fit=crop"/>
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 md:via-background/60 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 md:inset-y-0 md:left-0 flex flex-col justify-end md:justify-center p-6 sm:p-8 md:p-12 max-w-xl">
+                    <span class="text-purple-300 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2">DODECAHEDRON SPEEDCUBE</span>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl text-purple-100 mb-2 font-extrabold leading-none">GAN Megaminx Magnetic</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-4">12-sided puzzle featuring 50 moveable pieces, magnetic positioning core, and sculpted grip ridges.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-sky-300 font-bold text-sm sm:text-base font-label-caps">Solve Time: 1m 48s</span>
+                        <span class="px-2 py-0.5 bg-purple-500/20 text-purple-300 text-xs rounded border border-purple-500/30 font-label-caps">Magnetic Core</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="prevSlide()" aria-label="Previous slide">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
             </button>
-            <button class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="nextSlide()" aria-label="Next slide">
+            <button type="button" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="nextSlide()" aria-label="Next slide">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_right</span>
             </button>
         </div>
     </section>
 
-    <!-- SECTION 1: TWISTY CUBES INVENTORY -->
+    <!-- SECTION 1: TWISTY CUBES INVENTORY (Includes 2x2, 3x3, 4x4, Pyraminx, Snake, Megaminx, 11x11) -->
     <section id="twisty-cubes" class="scroll-mt-24 space-y-12">
         <div class="flex items-center gap-4 border-b border-purple-500/20 pb-4">
             <span class="material-symbols-outlined text-sky-400 text-3xl">grid_view</span>
@@ -417,12 +428,47 @@
         </div>
 
         <div class="grid grid-cols-1 gap-6" id="puzzle-inventory-grid">
+
+            <!-- 2x2 Speedcube -->
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="2x2 Speedcube" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">2x2 CUBE</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">2x2 Pocket Speedcube</h4>
+                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">MoYu MGC 2x2</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Easy (2/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">2.84 Seconds</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method — 2x2 Pocket Cube</h4>
+                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Solved via Ortega or EG-1 methods. Builds a first face, orients top layer (OLL), and simultaneously permutes both layers (PBL).</p>
+                        </div>
+                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Pocket Speedcube</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3x3 Speedcube -->
             <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
                         <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
                             <img alt="3x3 Speedcube" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
-                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">3x3 CUBE</span>
                         </div>
                         <div class="flex-grow space-y-3 w-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-2">
@@ -430,8 +476,8 @@
                                 <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">3x3x3 Standard</span></div>
                                 <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">GAN 12 MagLev UV</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Intermediate (5/10)</span></div>
                                 <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">14.20 Seconds</span></div>
                             </div>
                         </div>
@@ -439,15 +485,148 @@
                     <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — 3x3</h4>
+                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method — 3x3 Standard</h4>
                                 <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                             </div>
-                            <p class="text-xs text-slate-300 leading-relaxed">Solved sequentially using CFOP (Fridrich): Cross -> F2L -> OLL -> PLL. Equipped with MagLev magnetic repulsion core.</p>
+                            <p class="text-xs text-slate-300 leading-relaxed">CFOP (Fridrich method): Cross -> F2L -> OLL -> PLL. Equipped with MagLev magnetic repulsion core.</p>
                         </div>
                         <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">WCA Competition Main Puzzle</span>
                     </div>
                 </div>
             </div>
+
+            <!-- 4x4 Speedcube -->
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="4x4 Speedcube" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">4x4 CUBE</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">4x4 Revenge Speedcube</h4>
+                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">YJ Aosu WR M 4x4</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Hard (6/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">58.4 Seconds</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method — 4x4 Revenge</h4>
+                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Yau Method: Centers -> Cross edges -> Remaining centers -> Edge pairing -> 3x3 reduction with OLL/PLL parity algorithms.</p>
+                        </div>
+                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Even-Layer High Speed Puzzle</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pyraminx -->
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Pyraminx" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">PYRAMINX</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">Pyraminx (Pyramid Speedcube)</h4>
+                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">GAN Pyraminx M</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Easy (3/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">4.12 Seconds</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method — Pyraminx</h4>
+                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Align tips -> Solve centers -> Solve first layer edges -> Apply L4E (Last 4 Edges) algorithm to finish in 1 step.</p>
+                        </div>
+                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">WCA Official Pyramid Puzzle</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snake Cube -->
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Snake Cube" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SNAKE CUBE</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">Twist Snake Puzzle (Rubik's Snake)</h4>
+                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">ShengShou 24-Piece</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Freeform (3/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Shape Time:</strong><span class="text-sky-300 font-bold">12.5 Seconds</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Geometry Mechanics — Snake Puzzle</h4>
+                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Composed of 24 spring-detent triangular prisms connected at 90-degree pivot angles. Transforms into spheres, cobras, and geometric animals.</p>
+                        </div>
+                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Classic Morphing Puzzle</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Megaminx -->
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+                <div class="inventory-flip-inner">
+                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
+                            <img alt="Megaminx" class="w-full h-full object-cover bg-slate-900/60 rounded" src="https://images.unsplash.com/photo-1591991564021-006e5797520e?q=80&w=1200&auto=format&fit=crop"/>
+                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">MEGAMINX</span>
+                        </div>
+                        <div class="flex-grow space-y-3 w-full">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">Megaminx 12-Sided Dodecahedron</h4>
+                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">YJ YuHu V2 M</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Hard (7/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">1m 48s</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method — Megaminx</h4>
+                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Extended CFOP approach (S2L + LL / Westlund method) across 12 distinct pentagonal color faces.</p>
+                        </div>
+                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">WCA Official Dodecahedron Event</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -542,7 +721,7 @@
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
 
-        <form id="comment-form" class="glass-card p-6 rounded-xl border border-purple-500/30 space-y-4">
+        <form id="comment-form" class="glass-card p-6 rounded-xl border border-purple-500/30 space-y-4" onsubmit="handleCommentSubmit(event)">
             <h3 class="text-lg font-semibold text-purple-200 font-label-caps">Join the Conversation</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" id="author" placeholder="Your Name *" required class="w-full p-3.5 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm font-label-caps" />
@@ -577,11 +756,11 @@
         
         <!-- Footer Links with Matching Icons -->
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
-            <a href="https://www.linkedin.com/in/akash-nagapure" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition-colors flex items-center gap-1">
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
             </a>
             <span>•</span>
-            <a href="mailto:contact@akashnagapure.in" class="hover:text-purple-300 transition-colors flex items-center gap-1">
+            <a href="mailto:akashnagapure@live.com" class="hover:text-purple-300 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
@@ -818,7 +997,7 @@
         }
     }
 
-    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+    async function handleCommentSubmit(e) {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
         const author = document.getElementById('author');
@@ -845,7 +1024,7 @@
             btn.disabled = false;
             btn.innerText = 'Post Comment';
         }
-    });
+    }
 
     function escapeHTML(str) {
         return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
@@ -882,6 +1061,31 @@
     function toggleQuickJump() {
         const jumpMenu = document.getElementById('quick-jump-menu');
         jumpMenu.classList.toggle('hidden');
+    }
+
+    // Hero Carousel Logic (Fixed Slide Switching & Static Until Clicked)
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        if (slides[index]) {
+            slides[index].classList.add('active');
+        }
+    }
+
+    window.nextSlide = function() {
+        if (slides.length > 0) {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+    }
+
+    window.prevSlide = function() {
+        if (slides.length > 0) {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
     }
 
     // Active Navigation Highlight on Scroll (Scroll Spy)
@@ -922,7 +1126,7 @@
 
     let activePaintColor = 'U';
 
-    function setActiveColor(colorKey) {
+    window.setActiveColor = function(colorKey) {
         activePaintColor = colorKey;
         document.querySelectorAll('[id^="brush-"]').forEach(btn => {
             btn.style.borderColor = 'transparent';
