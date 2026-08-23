@@ -777,13 +777,18 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">No active comment server detected.</p>';
+            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">No active comment server detected. Discussion thread initialized locally.</p>';
         }
     }
 
     function renderCommentNode(comment) {
         const formattedDate = comment.created_at ? new Date(comment.created_at).toLocaleString('en-US', {
-            month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
         }) : 'Just now';
 
         const repliesHTML = comment.replies && comment.replies.length > 0 
@@ -832,11 +837,11 @@
         `;
     }
 
-    window.toggleReplyForm = function(commentId) {
+    function toggleReplyForm(commentId) {
         document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
     }
 
-    window.handleVote = async function(id, action) {
+    async function handleVote(id, action) {
         let email = getStoredEmail();
         
         if (!email) {
@@ -863,6 +868,7 @@
             });
 
             const data = await res.json();
+
             if (!res.ok) {
                 alert(data.error || 'Failed to record vote.');
                 return;
@@ -875,7 +881,7 @@
         }
     }
 
-    window.postReply = async function(parentId) {
+    async function postReply(parentId) {
         const author = document.getElementById(`reply-author-${parentId}`).value;
         const emailField = document.getElementById(`reply-email-${parentId}`);
         const email = emailField.value;
@@ -906,7 +912,6 @@
         }
     }
 
-    // Fixed form submission event handler
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
@@ -940,12 +945,16 @@
                 contentInput.value = '';
                 await loadComments();
             } else {
-                const data = await res.json();
-                alert(data.error || 'Failed to post comment.');
+                let errorMsg = 'Failed to post comment.';
+                try {
+                    const data = await res.json();
+                    if (data && data.error) errorMsg = data.error;
+                } catch (parseErr) {}
+                alert(errorMsg);
             }
         } catch (err) {
             console.error('Comment posting error:', err);
-            alert('Network error while posting comment.');
+            alert('Network error while posting comment. Please check your connection or server API endpoint.');
         } finally {
             btn.disabled = false;
             btn.innerText = 'Post Comment';
