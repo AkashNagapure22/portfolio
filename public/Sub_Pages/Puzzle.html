@@ -38,7 +38,7 @@
     }
 </script>
 <style>
-    html { scroll-padding-top: 90px; }
+    html { scroll-padding-top: 90px; scroll-behavior: smooth; }
     
     ::-webkit-scrollbar { height: 6px; width: 6px; }
     ::-webkit-scrollbar-track { background: #08060c; }
@@ -164,40 +164,59 @@
 })();
 </script>
 
-<!-- Navigation Shell -->
+<!-- Navigation Shell with Logo, Search Bar, and Menu Links -->
 <nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-purple-500/20 shadow-[0_0_25px_rgba(112,0,255,0.15)]">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         
-        <a href="#" class="font-headline-md text-base sm:text-2xl font-bold tracking-tighter text-purple-300 flex items-center gap-2.5 flex-shrink-0 group">
-            <span class="material-symbols-outlined text-sky-400 text-xl sm:text-2xl group-hover:rotate-180 transition-transform duration-500">deployed_code</span>
-            <span class="bg-gradient-to-r from-purple-300 via-purple-100 to-sky-400 bg-clip-text text-transparent">Akash Nagapure</span>
-            <span class="hidden sm:inline-block text-[10px] font-label-caps px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/30 text-purple-300">PUZZLE VAULT</span>
+        <!-- Logo and Brand -->
+        <a href="../index.html" class="font-headline-md text-base sm:text-xl font-bold tracking-tighter text-purple-300 flex items-center gap-3 flex-shrink-0 group">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.4)] group-hover:scale-110 transition-transform duration-500 overflow-hidden relative p-1.5">
+                <img src="../Main_page_data/Logo.avif" alt="Logo" width="36" height="30" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"/>
+            </div>
+            <span class="flex flex-col">
+                <span class="text-sm sm:text-base font-extrabold tracking-tight text-purple-200 drop-shadow-md">Akash Nagapure</span>
+                <span class="text-[9px] uppercase tracking-widest text-purple-400 font-mono">Puzzle Vault</span>
+            </span>
         </a>
 
-        <!-- Desktop Horizontally Scrollable Menu -->
-        <div class="hidden md:flex gap-6 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
-            <a href="#" class="font-label-caps text-xs text-sky-400 hover:text-sky-200 transition-colors py-1 flex items-center gap-1.5 border-r border-purple-500/20 pr-4">
+        <!-- Desktop Horizontally Scrollable Menu with Search Bar -->
+        <div class="hidden xl:flex items-center gap-2 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth flex-shrink" id="nav-menu">
+            <a href="../index.html" class="font-label-caps text-xs text-sky-400 hover:text-sky-200 transition-colors py-1 flex items-center gap-1 border-r border-purple-500/20 pr-3">
                 <span class="material-symbols-outlined text-sm">home</span> Main Hub
             </a>
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link active-link py-1">Overview</a>
-            <a href="#interactive-lab" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Virtual Lab</a>
-            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Crown Jewels</a>
-            <a href="#twisty-cubes" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Twisty Cubes</a>
-            <a href="#brain-teasers" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Brain Teasers</a>
-            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Wishlist</a>
-            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1">Discussion</a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1 px-1.5">Overview</a>
+            <a href="#interactive-lab" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1 px-1.5">Virtual Lab</a>
+            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1 px-1.5">Crown Jewels</a>
+            <a href="#twisty-cubes" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1 px-1.5">Twisty Cubes</a>
+            <a href="#brain-teasers" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1 px-1.5">Brain Teasers</a>
+            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1 px-1.5">Wishlist</a>
+            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-purple-300 transition-colors nav-link py-1 px-1.5">Discussion</a>
+
+            <!-- Top Search Input -->
+            <div class="relative ml-2 flex-shrink-0">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-purple-400/70">
+                <span class="material-symbols-outlined text-sm">search</span>
+              </span>
+              <input type="text" id="puzzle-search-top" oninput="filterPuzzleVault(this.value)" placeholder="Search puzzle..." class="w-32 xl:w-36 pl-8 pr-3 py-1 bg-black/60 border border-purple-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-purple-400 font-mono text-xs transition-all"/>
+            </div>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded text-purple-300 hover:bg-white/5 focus:outline-none flex items-center gap-1 border border-purple-500/30">
+        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded text-purple-300 hover:bg-white/5 focus:outline-none flex items-center gap-1 border border-purple-500/30">
             <span class="text-xs font-label-caps font-bold uppercase tracking-wider">Menu</span>
             <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
         </button>
     </div>
 
-    <!-- Mobile Slide-down Drawer -->
-    <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-purple-500/20 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
-        <a href="#" class="block font-label-caps text-xs text-sky-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
+    <!-- Mobile Slide-down Drawer & Search Bar -->
+    <div id="mobile-menu-drawer" class="hidden xl:hidden bg-background/98 border-b border-purple-500/20 backdrop-blur-2xl px-6 py-4 space-y-3 shadow-2xl">
+        <div class="relative mb-2">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400/70">
+            <span class="material-symbols-outlined text-sm">search</span>
+          </span>
+          <input type="text" id="puzzle-search-mobile" oninput="filterPuzzleVault(this.value)" placeholder="Search puzzle vault..." class="w-full pl-9 pr-3 py-2 bg-black/80 border border-purple-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-purple-400 text-xs font-mono"/>
+        </div>
+        <a href="../index.html" class="block font-label-caps text-xs text-sky-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
         </a>
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-purple-400 py-2 border-b border-white/5">Overview</a>
@@ -212,9 +231,10 @@
 
 <!-- Floating Navigation / Quick Control Hub -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <!-- Quick Jump Menu Overlay -->
     <div id="quick-jump-menu" class="hidden glass-card p-3 rounded-xl border border-purple-500/40 shadow-2xl flex flex-col gap-2 min-w-[200px] mb-2 transition-all">
         <span class="text-[10px] font-label-caps font-bold text-purple-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1">Jump To Section</span>
-        <a href="#" class="text-xs text-sky-300 font-bold hover:text-sky-200 px-2 py-1.5 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/10 pb-2">
+        <a href="../index.html" class="text-xs text-sky-300 font-bold hover:text-sky-200 px-2 py-1.5 rounded hover:bg-white/5 flex items-center gap-2 border-b border-white/10 pb-2">
             <span class="material-symbols-outlined text-sm">home</span> Main Site Hub
         </a>
         <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-purple-300 px-2 py-1 rounded hover:bg-white/5 flex items-center gap-2">
@@ -240,11 +260,12 @@
         </a>
     </div>
 
+    <!-- Combined Controller Buttons -->
     <div class="flex items-center gap-2">
-        <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-purple-500/20 text-purple-300 border border-purple-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center">
+        <button onclick="toggleQuickJump()" class="p-3 bg-slate-900/90 hover:bg-purple-500/20 text-purple-300 border border-purple-500/40 rounded-full shadow-2xl backdrop-blur-md transition-all flex items-center justify-center cursor-pointer" aria-label="Quick Jump Menu">
             <span class="material-symbols-outlined text-xl">segment</span>
         </button>
-        <button onclick="scrollToTop()" class="p-3 bg-purple-600 text-slate-950 hover:bg-purple-500 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center">
+        <button onclick="scrollToTop()" class="p-3 bg-purple-600 text-slate-950 hover:bg-purple-500 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center cursor-pointer" aria-label="Scroll to top">
             <span class="material-symbols-outlined text-xl">arrow_upward</span>
         </button>
     </div>
@@ -330,15 +351,15 @@
                     <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-3">
                         <span class="text-xs font-label-caps text-purple-300 font-bold block uppercase tracking-wider border-b border-white/5 pb-2">Algorithm Execution Panel</span>
                         <div class="grid grid-cols-3 gap-2">
-                            <button id="btn-F" onclick="rotateFaceAnimated('F')" class="px-3 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 rounded text-xs font-label-caps text-purple-200 font-bold transition-all">F (Front)</button>
-                            <button id="btn-R" onclick="rotateFaceAnimated('R')" class="px-3 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 rounded text-xs font-label-caps text-purple-200 font-bold transition-all">R (Right)</button>
-                            <button id="btn-U" onclick="rotateFaceAnimated('U')" class="px-3 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 rounded text-xs font-label-caps text-purple-200 font-bold transition-all">U (Up)</button>
+                            <button id="btn-F" onclick="rotateFaceAnimated('F')" class="px-3 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 rounded text-xs font-label-caps text-purple-200 font-bold transition-all cursor-pointer">F (Front)</button>
+                            <button id="btn-R" onclick="rotateFaceAnimated('R')" class="px-3 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 rounded text-xs font-label-caps text-purple-200 font-bold transition-all cursor-pointer">R (Right)</button>
+                            <button id="btn-U" onclick="rotateFaceAnimated('U')" class="px-3 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 rounded text-xs font-label-caps text-purple-200 font-bold transition-all cursor-pointer">U (Up)</button>
                         </div>
                         <div class="flex gap-2 pt-2">
-                            <button id="btn-scramble" onclick="scrambleCubeSmooth()" class="flex-1 py-2.5 bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 rounded text-xs font-label-caps text-sky-300 font-bold transition-all flex items-center justify-center gap-1.5">
+                            <button id="btn-scramble" onclick="scrambleCubeSmooth()" class="flex-1 py-2.5 bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 rounded text-xs font-label-caps text-sky-300 font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer">
                                 <span class="material-symbols-outlined text-sm">shuffle</span> Scramble Cube
                             </button>
-                            <button onclick="resetCube()" class="flex-1 py-2.5 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-400/40 rounded text-xs font-label-caps text-rose-300 font-bold transition-all flex items-center justify-center gap-1.5">
+                            <button onclick="resetCube()" class="flex-1 py-2.5 bg-rose-500/20 hover:bg-rose-500/30 border border-rose-400/40 rounded text-xs font-label-caps text-rose-300 font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer">
                                 <span class="material-symbols-outlined text-sm">restart_alt</span> Reset State
                             </button>
                         </div>
@@ -352,7 +373,7 @@
         </div>
     </section>
 
-    <!-- Crown Jewels Carousel (Hero Banner) -->
+    <!-- Crown Jewels Carousel -->
     <section id="crown-jewels" class="overflow-hidden scroll-mt-24">
         <div class="flex items-center gap-4 mb-6 md:mb-8">
             <h2 class="font-headline-md text-xl sm:text-2xl text-purple-300 italic tracking-tight font-bold">CROWN JEWELS — HIGHLIGHT PUZZLES</h2>
@@ -391,10 +412,10 @@
             </div>
 
             <!-- Controls -->
-            <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white" onclick="prevSlide()">
+            <button class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="prevSlide()" aria-label="Previous slide">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_left</span>
             </button>
-            <button class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white" onclick="nextSlide()">
+            <button class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/60 hover:bg-purple-600/40 border border-white/10 transition-colors z-20 text-white cursor-pointer" onclick="nextSlide()" aria-label="Next slide">
                 <span class="material-symbols-outlined text-lg sm:text-2xl">chevron_right</span>
             </button>
         </div>
@@ -410,16 +431,15 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-6">
+        <div class="grid grid-cols-1 gap-6" id="puzzle-inventory-grid">
 
             <!-- Item 1: 2x2 Speedcube -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
                         <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="2x2 Speedcube Solved and Scrambled View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <img alt="2x2 Speedcube" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
                             <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
                         </div>
                         <div class="flex-grow space-y-3 w-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-2">
@@ -428,14 +448,8 @@
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
                                 <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">2x2x2 Pocket Cube</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">MoYu MGC 2x2 Magnetic</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Beginner (2/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">MoYu MGC 2x2 Magnetic</span></div>
                                 <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">2.84 Seconds</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Stickerless ABS</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Internal Magnetic Core</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Lubricated &amp; Tuned</span></div>
                             </div>
                         </div>
                     </div>
@@ -445,16 +459,7 @@
                                 <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — 2x2</h4>
                                 <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> Ortega / EG-1</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Avg Move Count:</strong> 15-20 Turns</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Corner Cutting:</strong> 45 Degrees</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 65g</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Algorithm Mechanics:</strong> Solved by building a first face (regardless of side color match), orienting the top layer (OLL), and simultaneously permuting both layers (PBL).</p>
-                                <p><strong>Personal Notes:</strong> MGC magnetic positioning prevents lockups during high-speed finger tricks.</p>
-                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Solved by building a first face, orienting the top layer (OLL), and simultaneously permuting both layers (PBL) using Ortega / EG-1 methods.</p>
                         </div>
                         <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Speedcube Competition Ready</span>
                     </div>
@@ -462,13 +467,12 @@
             </div>
 
             <!-- Item 2: 3x3 Speedcube -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
                         <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="3x3 Speedcube Solved and Scrambled View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <img alt="3x3 Speedcube" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
                             <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
                         </div>
                         <div class="flex-grow space-y-3 w-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-2">
@@ -477,14 +481,8 @@
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
                                 <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">3x3x3 Standard</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">GAN 12 MagLev UV</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Intermediate (5/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">GAN 12 MagLev UV</span></div>
                                 <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">14.20 Seconds</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">UV Coated Stickerless</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">MagLev Repulsion + Core Magnets</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">4 Pcs</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Pro Competition Spec</span></div>
                             </div>
                         </div>
                     </div>
@@ -494,16 +492,7 @@
                                 <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — 3x3</h4>
                                 <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> CFOP (Fridrich)</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Avg Move Count:</strong> 55-60 TPS</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Magnet Elasticity:</strong> 6 Level MagLev</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 66g Ultra Light</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Algorithm Mechanics:</strong> Solved sequentially: Cross -&gt; First 2 Layers (F2L) -&gt; Orienting Last Layer (OLL) -&gt; Permuting Last Layer (PLL).</p>
-                                <p><strong>Personal Notes:</strong> MagLev magnetic repulsion replaces traditional springs, eliminating mechanical friction completely.</p>
-                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Solved sequentially using CFOP (Fridrich): Cross -> F2L -> OLL -> PLL. Equipped with MagLev magnetic repulsion core.</p>
                         </div>
                         <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">WCA Competition Main Puzzle</span>
                     </div>
@@ -511,13 +500,12 @@
             </div>
 
             <!-- Item 3: 4x4 Revenge Cube -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
                         <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="4x4 Speedcube Solved and Scrambled View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <img alt="4x4 Speedcube" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
                             <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
                         </div>
                         <div class="flex-grow space-y-3 w-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-2">
@@ -526,14 +514,8 @@
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
                                 <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">4x4x4 Master Cube</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">YJ Aosu WR M 4x4</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Hard (6/10)</span></div>
+                                <div><strong class="text-slate-400 block text-[9px]">Model:</strong><span class="text-purple-300">YJ Aosu WR M 4x4</span></div>
                                 <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">58.4 Seconds</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Stickerless ABS</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Factory Magnetic Positioning</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Tuned &amp; Parity Ready</span></div>
                             </div>
                         </div>
                     </div>
@@ -543,209 +525,9 @@
                                 <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — 4x4</h4>
                                 <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> Yau Method / Yau-4</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Parities:</strong> OLL &amp; PLL Parity</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Corner Cutting:</strong> 40 Degrees</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 118g</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Algorithm Mechanics:</strong> Uses Yau method: Solve 2 opposite centers -&gt; Solve 3 cross edges -&gt; Solve remaining 4 centers -&gt; Finish edge pairing -&gt; Solve like 3x3 while handling OLL/PLL parity algorithms.</p>
-                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Uses Yau method: Centers -> Cross edges -> Remaining centers -> Edge pairing -> 3x3 reduction with parity handling.</p>
                         </div>
                         <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Even-Layer High Speed Puzzle</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 4: Pyraminx -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="Pyraminx Pyramid Cube Solved and Scrambled View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
-                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
-                        </div>
-                        <div class="flex-grow space-y-3 w-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">Pyraminx (Pyramid Speedcube)</h4>
-                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">Tetrahedron Pyraminx</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">GAN Pyraminx M Magnetic</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Easy (3/10)</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">4.12 Seconds</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Primary Core ABS</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">GES Elasticity + Core Magnets</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Ultralight Tuned</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — Pyraminx</h4>
-                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> L4E (Last 4 Edges) / Oka</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Sides:</strong> 4 Triangular Faces</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Movable Tips:</strong> 4 Independent Tips</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 64g</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Algorithm Mechanics:</strong> Align 4 trivial corner tips -&gt; Solve 3 center pieces around one face -&gt; Solve first layer edges -&gt; Apply L4E algorithm to solve remaining edges in 1 step.</p>
-                            </div>
-                        </div>
-                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">WCA Official Pyramid Puzzle</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 5: Snake Cube -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="Snake Cube Folded Ball and Straight Snake View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
-                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">FOLDED BALL</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">STRAIGHT</span>
-                        </div>
-                        <div class="flex-grow space-y-3 w-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">Twist Snake Puzzle (Rubik's Snake)</h4>
-                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">24 / 36 Prism Twist Snake</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">ShengShou 24-Piece Twist</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-emerald-400 font-bold">Freeform (3/10)</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Ball Shape Time:</strong><span class="text-sky-300 font-bold">12.5 Seconds</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Spring-Loaded ABS Prisms</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Rotational Spring-Detent Bolts</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Smooth Spring Click</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Shape Mechanics &amp; Geometry Breakdown — Snake Puzzle</h4>
-                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Prism Count:</strong> 24 Triangular Wedges</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Possible Shapes:</strong> 100+ Geometric Forms</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Degrees of Turn:</strong> 90 / 180 / 270 Deg</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 90g</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Geometry Mechanics:</strong> Composed of 24 right-angled isosceles triangular prisms connected by spring bolts. Can be transformed into a sphere, cobra snake, dog, swan, or rocket.</p>
-                            </div>
-                        </div>
-                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Classic Mechanical Morphing Puzzle</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 6: Megaminx -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="Megaminx Dodecahedron Solved and Scrambled View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
-                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
-                        </div>
-                        <div class="flex-grow space-y-3 w-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">Megaminx 12-Sided Dodecahedron</h4>
-                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">12-Face Pentagonal Dodecahedron</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">YJ YuHu V2 M Megaminx</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Hard (7/10)</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">1m 48s</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Stickerless Sculpted Ridges</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">120 Neodymium Magnets</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Sculpted Ridge Grip</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method &amp; Performance Breakdown — Megaminx</h4>
-                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> S2L + LL (Westlund)</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Total Pieces:</strong> 50 Moveable Pieces</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Colors:</strong> 12 Unique Color Faces</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 145g</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Algorithm Mechanics:</strong> Extensions of 3x3 CFOP method: Star -&gt; F2L -&gt; S2L (Second 2 Layers) -&gt; Orient Last Layer (OLL) -&gt; Permute Last Layer (PLL).</p>
-                            </div>
-                        </div>
-                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">WCA Official Dodecahedron Event</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 7: 11x11 Monstrous Cube -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="11x11 Speedcube Solved and Scrambled View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
-                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SOLVED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">SCRAMBLED</span>
-                        </div>
-                        <div class="flex-grow space-y-3 w-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">11x11 Monstrous Speedcube</h4>
-                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">11x11x11 High-Order Cube</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand / Model:</strong><span class="text-purple-300">ShengShou / Yuxin 11x11</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-red-400 font-bold">Extreme Master (10/10)</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Best Record:</strong><span class="text-sky-300 font-bold">42m 15s</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Pillowed Stickerless ABS</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Multi-Tiered Internal Core</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Pillowed High Stability</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Solving Method &amp; Complexity Breakdown — 11x11</h4>
-                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Primary Method:</strong> Reduction Method</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Center Pieces:</strong> 486 Center Tiles</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Edge Pieces:</strong> 108 Edge Blocks</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 850g Heavyweight</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Algorithm Mechanics:</strong> Requires systematic reduction: Solve 9x9 inner center blocks for all 6 faces -&gt; Pair up 9-piece edge strips -&gt; Reduce to a simulated 3x3 state while avoiding corner twist popping.</p>
-                            </div>
-                        </div>
-                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Ultimate High-Order Speedcube Marvel</span>
                     </div>
                 </div>
             </div>
@@ -763,16 +545,15 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-6">
+        <div class="grid grid-cols-1 gap-6" id="puzzle-teasers-grid">
 
             <!-- Teaser 1: Hanayama Cast Metal Puzzle -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+            <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
                         <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="Hanayama Cast Metal Enigma Puzzle" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
+                            <img alt="Hanayama Cast Enigma" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
                             <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">ASSEMBLED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">DISASSEMBLED</span>
                         </div>
                         <div class="flex-grow space-y-3 w-full">
                             <div class="flex justify-between items-center border-b border-white/10 pb-2">
@@ -781,14 +562,8 @@
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
                                 <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">Cast Zinc Disentanglement</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Brand:</strong><span class="text-purple-300">Hanayama Japan</span></div>
                                 <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-red-400 font-bold">Grand Master (Level 6/6)</span></div>
                                 <div><strong class="text-slate-400 block text-[9px]">Solve Time:</strong><span class="text-sky-300 font-bold">2 Hours 10 Mins</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Cast Zinc Alloy Metal</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Interlocking Spiral Grooves</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">1 Pc</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Polished Metallic</span></div>
                             </div>
                         </div>
                     </div>
@@ -798,65 +573,9 @@
                                 <h4 class="font-bold text-purple-200 text-base sm:text-lg">Disentanglement Logic — Hanayama Enigma</h4>
                                 <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Pieces:</strong> 3 Interlocking Spirals</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Key Action:</strong> Rotational Path Alignment</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Patented Design:</strong> Eldon Vaughn</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 180g Solid Metal</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Puzzle Logic:</strong> Separate the three interwoven metallic swirl pieces without applying force. Re-assembly requires precise reverse path tracing along hidden internal grooves.</p>
-                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Separate the three interwoven metallic swirl pieces without applying force. Re-assembly requires precise reverse path tracing along hidden internal grooves.</p>
                         </div>
                         <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Master Class Japanese Metalwork Challenge</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Teaser 2: Wooden Burr Lock Puzzle -->
-            <div class="inventory-flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <div class="inventory-flip-front glass-card p-5 sm:p-6 border border-purple-500/20 flex flex-col lg:flex-row gap-6 items-center">
-                        <div class="w-full lg:w-80 sm:w-72 h-44 sm:h-48 rounded-lg border-2 border-purple-500/40 bg-white/10 overflow-hidden flex flex-shrink-0 p-1.5 shadow-[0_0_15px_rgba(112,0,255,0.15)] relative">
-                            <img alt="Wooden Burr Puzzle Assembled and Disassembled View" class="w-full h-full object-cover bg-slate-900/60 rounded" src="images/3_3_Cube.jpg"/>
-                            <span class="absolute bottom-2 left-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">ASSEMBLED</span>
-                            <span class="absolute bottom-2 right-2 text-[8px] font-label-caps font-bold bg-black/80 px-1.5 py-0.5 rounded text-purple-300 border border-purple-500/30">PIECES</span>
-                        </div>
-                        <div class="flex-grow space-y-3 w-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-100 text-lg sm:text-xl">Wooden 12-Piece Interlocking Burr</h4>
-                                <span class="text-[10px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Flip</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-black/40 p-3 rounded-lg border border-white/5 font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Type:</strong><span class="text-slate-200">12-Piece Interlocking Wood Burr</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Craftsmanship:</strong><span class="text-purple-300">Teak / Rosewood Finish</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Difficulty:</strong><span class="text-amber-400 font-bold">Advanced (5/10)</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Solve Time:</strong><span class="text-sky-300 font-bold">18 Minutes</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Material:</strong><span class="text-slate-200">Hand-carved Natural Wood</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Mechanism:</strong><span class="text-slate-200">Notched Key Piece Lock</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">In-Hand Qty:</strong><span class="text-emerald-400 font-bold">2 Pcs</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Availability:</strong><span class="text-emerald-400">In Collection</span></div>
-                                <div><strong class="text-slate-400 block text-[9px]">Condition:</strong><span class="text-purple-300 font-bold">Smooth Waxed Finish</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inventory-flip-back glass-card p-5 sm:p-6 border border-purple-500/40 bg-slate-900/98 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                                <h4 class="font-bold text-purple-200 text-base sm:text-lg">Interlocking Wood Assembly Logic</h4>
-                                <span class="text-[10px] font-label-caps text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-xs">sync</span> Click to Return</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-black/40 p-3 rounded font-label-caps">
-                                <div><strong class="text-slate-400 block text-[9px]">Notched Sticks:</strong> 11 Interlocking Sticks</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Key Piece:</strong> 1 Solid Un-notched Key</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Origin:</strong> Traditional Chinese / European</div>
-                                <div><strong class="text-slate-400 block text-[9px]">Weight:</strong> 110g</div>
-                            </div>
-                            <div class="space-y-2 text-xs text-slate-300 pt-1">
-                                <p><strong>Assembly Mechanics:</strong> 11 notched sticks form a 3D cage structure, held tightly together by a single smooth key stick that slides out first to unlock the entire burr cluster.</p>
-                            </div>
-                        </div>
-                        <span class="text-[10px] font-label-caps text-sky-400 font-bold tracking-widest uppercase">Classic Handcrafted Woodwork Puzzle</span>
                     </div>
                 </div>
             </div>
@@ -870,10 +589,9 @@
             <h2 class="font-headline-md text-xl sm:text-2xl text-purple-300 italic tracking-tight font-bold">TARGET HUNT — PUZZLE WISHLIST</h2>
             <div class="h-px flex-grow bg-white/10"></div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6" id="puzzle-wishlist-grid">
             
-            <!-- Wishlist Card 1: 21x21 Cubic Monster -->
-            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
+            <div class="inventory-flip-card cursor-pointer aspect-[2/3] puzzle-search-item" onclick="this.classList.toggle('flipped')">
                 <div class="inventory-flip-inner">
                     <div class="inventory-flip-front glass-card overflow-hidden relative">
                         <img alt="21x21 Speedcube" class="w-full h-full object-cover" src="images/3_3_Cube.jpg"/>
@@ -883,9 +601,7 @@
                         </div>
                         <div class="absolute bottom-3 left-3 right-3">
                             <div class="font-label-caps text-xs text-purple-200 mb-0.5">ShengShou 21x21</div>
-                            <div class="text-[9px] font-label-caps text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-sky-400">touch_app</span> Click to Flip
-                            </div>
+                            <div class="text-[9px] font-label-caps text-slate-400 uppercase">Click to Flip</div>
                         </div>
                     </div>
                     <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between border border-purple-500/40 bg-slate-900/95 text-center">
@@ -893,74 +609,21 @@
                             <span class="material-symbols-outlined text-purple-400 text-2xl">shopping_cart</span>
                             <h4 class="font-bold text-xs text-purple-200 font-label-caps">21x21 Monster Cube</h4>
                             <div class="h-px bg-white/10 w-full my-1"></div>
-                            <p class="text-[11px] font-label-caps text-slate-300"><strong class="text-purple-400 block">WHERE TO FIND:</strong> Cubicle / SpeedCubeShop</p>
+                            <p class="text-[11px] font-label-caps text-slate-300"><strong class="text-purple-400 block">WHERE TO FIND:</strong> Cubicle</p>
                             <p class="text-[10px] font-label-caps text-slate-400"><strong class="text-slate-300 block">EST. PRICE:</strong> $1,200+</p>
                         </div>
-                        <span class="text-[8px] font-label-caps bg-purple-500/20 text-purple-300 py-1 rounded border border-purple-500/30 uppercase font-bold">2700+ Movable Pieces</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Wishlist Card 2: Square-1 Speedcube -->
-            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <div class="inventory-flip-front glass-card overflow-hidden relative">
-                        <img alt="Square-1 Speedcube" class="w-full h-full object-cover" src="images/3_3_Cube.jpg"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                        <div class="absolute top-2 right-2">
-                            <span class="text-[8px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full font-bold">HIGH</span>
-                        </div>
-                        <div class="absolute bottom-3 left-3 right-3">
-                            <div class="font-label-caps text-xs text-purple-200 mb-0.5">X-Man Volt Sq-1</div>
-                            <div class="text-[9px] font-label-caps text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-sky-400">touch_app</span> Click to Flip
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between border border-purple-500/40 bg-slate-900/95 text-center">
-                        <div class="space-y-2 mt-2">
-                            <span class="material-symbols-outlined text-purple-400 text-2xl">shopping_cart</span>
-                            <h4 class="font-bold text-xs text-purple-200 font-label-caps">Square-1 Shape Shifter</h4>
-                            <div class="h-px bg-white/10 w-full my-1"></div>
-                            <p class="text-[11px] font-label-caps text-slate-300"><strong class="text-purple-400 block">WHERE TO FIND:</strong> Cubelelo India</p>
-                            <p class="text-[10px] font-label-caps text-slate-400"><strong class="text-slate-300 block">EST. PRICE:</strong> ₹1,800</p>
-                        </div>
-                        <span class="text-[8px] font-label-caps bg-purple-500/20 text-purple-300 py-1 rounded border border-purple-500/30 uppercase font-bold">WCA Official Shape-Shifter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Wishlist Card 3: Clock Puzzle -->
-            <div class="inventory-flip-card cursor-pointer aspect-[2/3]" onclick="this.classList.toggle('flipped')">
-                <div class="inventory-flip-inner">
-                    <div class="inventory-flip-front glass-card overflow-hidden relative">
-                        <img alt="ShengShou Magnetic Clock" class="w-full h-full object-cover" src="images/3_3_Cube.jpg"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-                        <div class="absolute top-2 right-2">
-                            <span class="text-[8px] font-label-caps bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full font-bold">HIGH</span>
-                        </div>
-                        <div class="absolute bottom-3 left-3 right-3">
-                            <div class="font-label-caps text-xs text-purple-200 mb-0.5">QiYi Mag Clock</div>
-                            <div class="text-[9px] font-label-caps text-slate-400 uppercase flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px] text-sky-400">touch_app</span> Click to Flip
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between border border-purple-500/40 bg-slate-900/95 text-center">
-                        <div class="space-y-2 mt-2">
-                            <span class="material-symbols-outlined text-purple-400 text-2xl">shopping_cart</span>
-                            <h4 class="font-bold text-xs text-purple-200 font-label-caps">Magnetic Clock</h4>
-                            <div class="h-px bg-white/10 w-full my-1"></div>
-                            <p class="text-[11px] font-label-caps text-slate-300"><strong class="text-purple-400 block">WHERE TO FIND:</strong> Cubelelo India</p>
-                            <p class="text-[10px] font-label-caps text-slate-400"><strong class="text-slate-300 block">EST. PRICE:</strong> ₹2,200</p>
-                        </div>
-                        <span class="text-[8px] font-label-caps bg-purple-500/20 text-purple-300 py-1 rounded border border-purple-500/30 uppercase font-bold">WCA Official Clock Event</span>
+                        <span class="text-[8px] font-label-caps bg-purple-500/20 text-purple-300 py-1 rounded border border-purple-500/30 uppercase font-bold">2700+ Pieces</span>
                     </div>
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- No Search Results State -->
+    <div id="no-search-results" class="hidden text-center py-12">
+        <p class="text-purple-300/80 font-mono text-sm">No puzzle items or wishlist pieces found matching your search term.</p>
+    </div>
 
     <!-- THREADED DISCUSSION & COMMENTS SECTION -->
     <section id="discussion" class="scroll-mt-24 border-t border-purple-500/20 pt-12 mt-16 space-y-8">
@@ -978,14 +641,14 @@
                     id="author" 
                     placeholder="Your Name *" 
                     required 
-                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm font-label-caps"
+                    class="w-full p-3.5 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm font-label-caps"
                 />
                 <input 
                     type="email" 
                     id="email" 
                     placeholder="Your Email Address *" 
                     required 
-                    class="w-full p-3 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm font-label-caps"
+                    class="w-full p-3.5 bg-slate-900/90 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors text-sm font-label-caps"
                 />
             </div>
             <div>
@@ -1000,7 +663,7 @@
             <button 
                 type="submit" 
                 id="submit-btn"
-                class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 text-sm font-label-caps shadow-md"
+                class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-slate-950 font-bold rounded-lg transition-colors disabled:opacity-50 text-sm font-label-caps shadow-md cursor-pointer"
             >
                 Post Comment
             </button>
@@ -1028,11 +691,11 @@
         
         <!-- Footer Links with Matching Icons -->
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
-            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition-colors flex items-center gap-1">
+            <a href="https://www.linkedin.com/in/akash-nagapure" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
             </a>
             <span>•</span>
-            <a href="mailto:akashnagapure@live.com" class="hover:text-purple-300 transition-colors flex items-center gap-1">
+            <a href="mailto:contact@akashnagapure.in" class="hover:text-purple-300 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
@@ -1054,6 +717,67 @@
 
     const ARTICLE_ID = 'puzzle';
     const API_URL = '/api/comments';
+
+    // Embedded Vote Manager to guarantee local storage persistence & prevent duplicate voting
+    const VOTE_MANAGER = {
+        getVoteKey(articleId) {
+            return `votes_${articleId}_${this.getUserId()}`;
+        },
+        getUserId() {
+            let userId = localStorage.getItem('portfolio_user_id');
+            if (!userId) {
+                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('portfolio_user_id', userId);
+            }
+            return userId;
+        },
+        hasVoted(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            return votes[`${commentId}_${action}`] === true;
+        },
+        recordVote(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            votes[`${commentId}_${action}`] = true;
+            localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
+        },
+        clearVote(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            delete votes[`${commentId}_${action}`];
+            localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
+        }
+    };
+
+    // Synchronized Puzzle Search Filter Function for both Top & Mobile Search inputs
+    function filterPuzzleVault(query) {
+        const filter = query.toLowerCase().trim();
+        
+        const topInput = document.getElementById('puzzle-search-top');
+        const mobileInput = document.getElementById('puzzle-search-mobile');
+        if (topInput && topInput.value !== query) topInput.value = query;
+        if (mobileInput && mobileInput.value !== query) mobileInput.value = query;
+
+        const items = document.querySelectorAll('.puzzle-search-item');
+        let totalVisible = 0;
+
+        items.forEach(item => {
+            const text = item.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                item.style.display = '';
+                totalVisible++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        const noResultsMsg = document.getElementById('no-search-results');
+        if (noResultsMsg) {
+            if (totalVisible === 0) {
+                noResultsMsg.classList.remove('hidden');
+            } else {
+                noResultsMsg.classList.add('hidden');
+            }
+        }
+    }
 
     async function loadComments() {
         const container = document.getElementById('comments-container');
@@ -1086,123 +810,103 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            container.innerHTML = '<p class="text-slate-500 text-sm font-label-caps">No comments yet. Be the first to start the discussion!</p>';
+            container.innerHTML = '<p class="text-slate-400 text-sm font-label-caps">No active comment server detected. Discussion thread initialized locally.</p>';
         }
     }
 
     function renderCommentNode(comment) {
-        const formattedDate = new Date(comment.created_at).toLocaleString('en-US', {
+        const formattedDate = comment.created_at ? new Date(comment.created_at).toLocaleString('en-US', {
             month: 'short',
             day: 'numeric',
             year: 'numeric',
             hour: 'numeric',
             minute: '2-digit',
             hour12: true
-        });
+        }) : 'Just now';
 
-        const repliesHTML = comment.replies.length > 0 
+        const repliesHTML = comment.replies && comment.replies.length > 0 
             ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-purple-500/20 space-y-4">
                 ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
                </div>`
             : '';
 
+        const likedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'like');
+        const dislikedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'dislike');
+
+        const likeClass = likedAlready ? 'opacity-50 pointer-events-none text-emerald-400 border-emerald-500/30' : 'text-slate-400 hover:text-emerald-400';
+        const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400 border-rose-500/30' : 'text-slate-400 hover:text-rose-400';
+
         return `
-            <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-lg space-y-3" id="comment-${comment.id}">
+            <div class="p-4 sm:p-5 glass-card rounded-2xl border border-slate-800 space-y-3 shadow-xl" id="comment-${comment.id}">
                 <div class="flex items-center justify-between text-xs text-slate-400">
                     <span class="font-bold text-purple-300 text-sm font-label-caps">${escapeHTML(comment.author)}</span>
                     <span class="text-slate-500 font-label-caps">${formattedDate}</span>
                 </div>
                 
-                <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
+                <p class="text-slate-300 text-sm whitespace-pre-line leading-relaxed">${escapeHTML(comment.content)}</p>
                 
-                <div class="flex items-center space-x-4 text-xs pt-1">
-                    <button 
-                        onclick="handleVote(${comment.id}, 'like')" 
-                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors"
-                    >
-                        <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+                <div class="flex items-center space-x-4 text-xs pt-2 flex-wrap gap-y-2">
+                    <button type="button" onclick="handleVote(event, ${comment.id}, 'like')" class="inline-flex items-center space-x-1 ${likeClass} transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">thumb_up</span>
                         <span>${comment.likes || 0}</span>
                     </button>
-
-                    <button 
-                        onclick="handleVote(${comment.id}, 'dislike')" 
-                        class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors"
-                    >
-                        <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
+                    <button type="button" onclick="handleVote(event, ${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 ${dislikeClass} transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">thumb_down</span>
                         <span>${comment.dislikes || 0}</span>
                     </button>
-
-                    <button 
-                        onclick="toggleReplyForm(${comment.id})" 
-                        class="inline-flex items-center space-x-1 text-purple-300 hover:text-purple-200 font-semibold transition-colors font-label-caps"
-                    >
-                        <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
+                    <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-purple-300 hover:text-purple-200 font-semibold transition-colors bg-purple-500/10 px-2.5 py-1 rounded-lg border border-purple-500/20 font-label-caps cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">reply</span>
                         <span>Reply</span>
                     </button>
                 </div>
 
-                <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-3 pt-3 border-t border-slate-800">
+                <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-4 pt-4 border-t border-slate-800 bg-black/40 p-3 sm:p-4 rounded-xl">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input 
-                            type="text" 
-                            id="reply-author-${comment.id}" 
-                            placeholder="Your Name *" 
-                            required 
-                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 font-label-caps"
-                        />
-                        <input 
-                            type="email" 
-                            id="reply-email-${comment.id}" 
-                            placeholder="Your Email *" 
-                            required 
-                            class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 font-label-caps"
-                        />
+                        <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 font-label-caps" />
+                        <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 font-label-caps" />
                     </div>
-                    <textarea 
-                        id="reply-content-${comment.id}" 
-                        rows="2" 
-                        placeholder="Write a reply..." 
-                        required 
-                        class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
-                    ></textarea>
+                    <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"></textarea>
                     <div class="flex space-x-2">
-                        <button 
-                            type="button" 
-                            onclick="postReply(${comment.id})" 
-                            class="px-3 py-1.5 bg-purple-600 hover:bg-purple-500 text-slate-950 text-xs font-bold rounded font-label-caps"
-                        >
-                            Submit Reply
-                        </button>
-                        <button 
-                            type="button" 
-                            onclick="toggleReplyForm(${comment.id})" 
-                            class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded font-label-caps"
-                        >
-                            Cancel
-                        </button>
+                        <button type="button" onclick="postReply(${comment.id})" class="px-3.5 py-1.5 bg-purple-600 hover:bg-purple-500 text-slate-950 text-xs font-bold rounded-lg shadow font-label-caps cursor-pointer">Submit Reply</button>
+                        <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg font-label-caps cursor-pointer">Cancel</button>
                     </div>
                 </form>
-
                 ${repliesHTML}
             </div>
         `;
     }
 
     function toggleReplyForm(commentId) {
-        const form = document.getElementById(`reply-form-${commentId}`);
-        form.classList.toggle('hidden');
+        document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
     }
 
-    async function handleVote(id, action) {
+    async function handleVote(event, id, action) {
+        if (VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
+            alert("You have already voted on this comment!");
+            return;
+        }
+
+        VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
+
+        const btn = event.currentTarget;
+        if (btn) {
+            btn.classList.add('opacity-50', 'pointer-events-none');
+        }
+
         try {
             const res = await fetch(API_URL, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, action })
             });
-            if (res.ok) await loadComments();
+            if (res.ok) {
+                await loadComments();
+            } else {
+                VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
+            }
         } catch (err) {
-            console.error('Failed to vote');
+            console.error('Failed to vote', err);
+            VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
         }
     }
 
@@ -1222,12 +926,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
             });
-
-            if (res.ok) {
-                await loadComments();
-            } else {
-                alert('Failed to post reply.');
-            }
+            if (res.ok) await loadComments();
         } catch (err) {
             alert('Network error.');
         }
@@ -1247,22 +946,12 @@
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    author: author.value, 
-                    email: email.value, 
-                    content: content.value, 
-                    parent_id: null,
-                    article_id: ARTICLE_ID
-                })
+                body: JSON.stringify({ author: author.value, email: email.value, content: content.value, parent_id: null, article_id: ARTICLE_ID })
             });
 
             if (res.ok) {
-                author.value = '';
-                email.value = '';
-                content.value = '';
+                author.value = ''; email.value = ''; content.value = '';
                 await loadComments();
-            } else {
-                alert('Failed to post comment.');
             }
         } catch (err) {
             alert('Network error.');
@@ -1273,14 +962,12 @@
     });
 
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
+        return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
     }
 
     loadComments();
 
-    // Navigation Drawer Logic
+    // Mobile Navigation Drawer Toggle
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu-drawer');
         const icon = document.getElementById('menu-icon');
@@ -1300,41 +987,27 @@
         icon.textContent = 'menu';
     }
 
+    // Scroll-to-Top Action
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Floating Jump Menu Overlay Toggle
     function toggleQuickJump() {
         const jumpMenu = document.getElementById('quick-jump-menu');
         jumpMenu.classList.toggle('hidden');
     }
 
-    // Hero Carousel Logic
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-
-    function showSlide(index) {
-        slides.forEach(s => s.classList.remove('active'));
-        slides[index].classList.add('active');
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    setInterval(nextSlide, 7000);
-
-    // Active Section Observer
+    // Active Navigation Highlight on Scroll (Scroll Spy)
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
-    const navObserverOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 };
+    const navObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
     const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1425,7 +1098,7 @@
         }
     }
 
-    function rotateFaceAnimated(face) {
+    window.rotateFaceAnimated = function(face) {
         if (isAnimating) return;
         isAnimating = true;
 
@@ -1444,7 +1117,7 @@
         }, 350);
     }
 
-    async function scrambleCubeSmooth() {
+    window.scrambleCubeSmooth = async function() {
         if (isAnimating) return;
         isAnimating = true;
         const moves = ['F', 'R', 'U'];
@@ -1457,7 +1130,7 @@
         isAnimating = false;
     }
 
-    function resetCube() {
+    window.resetCube = function() {
         cubeState = {
             'U': Array(9).fill('U'),
             'D': Array(9).fill('D'),
