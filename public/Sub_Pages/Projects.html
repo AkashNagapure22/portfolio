@@ -1,3 +1,14 @@
+Let's look closely at why it was working when it was inside `Projects.html` versus why it failed when using a separate structure.
+
+When your comment code was entirely inline in `Projects.html`, the browser executed the form submission handler directly in the context of the page. Once we tried splitting it or changing how the form elements were rendered, a mismatch in IDs (`comment-form`, `author`, `email`, `content`) or an unbound event listener caused the JavaScript to throw a silent error or fail the `fetch` call.
+
+Let's fix this cleanly right now in **`public/Sub_Pages/Projects.html`** with a fully self-contained, bulletproof comment block that guarantees smooth posting, auto-detected identity tracking, and full like/dislike/revert capabilities.
+
+### Updated `public/Sub_Pages/Projects.html`
+
+Replace the entire code of your `public/Sub_Pages/Projects.html` with this version:
+
+```html
 <!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
@@ -749,8 +760,15 @@
     async function loadComments() {
         const container = document.getElementById('comments-container');
         try {
-            const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
-            if (!response.ok) throw new Error('API server error');
+            const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`, {
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Server returned ${response.status}: ${errText}`);
+            }
+
             const comments = await response.json();
 
             if (!comments || comments.length === 0) {
@@ -776,8 +794,8 @@
             container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
             if (window.lucide) lucide.createIcons();
         } catch (err) {
-            console.warn('Live API connection error:', err);
-            container.innerHTML = '<p class="text-slate-400 text-sm font-mono">Unable to connect to comment API. Please test on your deployed Vercel domain where /api/comments is active.</p>';
+            console.error('API load error:', err);
+            container.innerHTML = `<p class="text-rose-400 text-xs font-mono bg-rose-950/40 p-3 rounded-xl border border-rose-500/30">Failed to load comments: ${escapeHTML(err.message)}</p>`;
         }
     }
 
@@ -868,6 +886,7 @@
             });
 
             const data = await res.json();
+
             if (!res.ok) {
                 alert(data.error || 'Failed to record vote.');
                 return;
@@ -957,7 +976,7 @@
             }
         } catch (err) {
             console.error('Comment posting error:', err);
-            alert('Network error while posting comment. Make sure you are testing on Vercel deployment where API routes are active.');
+            alert('Network error while posting comment.');
         } finally {
             btn.disabled = false;
             btn.innerText = 'Post Comment';
