@@ -237,29 +237,38 @@
   });
 </script>
 
-<!-- Navigation Shell with Categories Integrated Directly in Top Menu -->
+<!-- Navigation Shell with Categories & Search Bar Integrated -->
 <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="../../index.html" class="flex items-center space-x-3 group cursor-pointer">
+    <div class="flex items-center justify-between h-16 gap-4">
+      <a href="../../index.html" class="flex items-center space-x-3 group cursor-pointer shrink-0">
         <div class="h-9 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
           <img src="../Main_page_data/Logo.avif" alt="Logo" width="36" height="30" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col hidden sm:flex">
           <span class="font-sans font-bold text-base text-white tracking-tight leading-none">Akash Nagapure</span>
           <span class="font-mono text-[9px] text-sky-400 font-medium tracking-widest whitespace-nowrap mt-1">Technical Blogs & Labs</span>
         </div>
       </a>
 
-      <!-- Main Menu with Categories Included (Single-Line Safe) -->
-      <div class="hidden xl:flex items-center space-x-1">
-        <a href="../../index.html" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Home</a>
-        <a href="#intune" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">1. Intune</a>
-        <a href="#sccm" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">2. SCCM</a>
-        <a href="#powershell" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">3. PowerShell</a>
-        <a href="#azure" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">4. Azure & AVD</a>
-        <a href="#vmware" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">5. VMware</a>
-        <a href="#activedirectory" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">6. AD</a>
+      <!-- Main Menu Links -->
+      <div class="hidden lg:flex items-center space-x-1 shrink-0">
+        <a href="../../index.html" class="px-2.5 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">Home</a>
+        <a href="#intune" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">1. Intune</a>
+        <a href="#sccm" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">2. SCCM</a>
+        <a href="#powershell" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">3. PS</a>
+        <a href="#azure" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">4. Azure</a>
+        <a href="#vmware" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">5. VMware</a>
+        <a href="#activedirectory" class="px-2 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono">6. AD</a>
+      </div>
+
+      <!-- Live Page Search Bar -->
+      <div class="relative flex-grow max-w-xs sm:max-w-sm">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <span class="material-symbols-outlined text-sm">search</span>
+        </div>
+        <input type="text" id="page-search-input" oninput="filterBlogCards(this.value)" placeholder="Search any topic, skill, title..." 
+          class="w-full pl-9 pr-4 py-1.5 bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
       </div>
 
       <div class="flex items-center xl:hidden">
@@ -322,11 +331,18 @@
             </div>
         </div>
 
+        <!-- SEARCH EMPTY STATE WARNING -->
+        <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl mb-8">
+            <span class="material-symbols-outlined text-4xl text-sky-400 mb-2">search_off</span>
+            <h3 class="text-white font-bold text-lg">No matching technical articles found</h3>
+            <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Autopatch", "Intune", "SCCM", or "PowerShell".</p>
+        </div>
+
         <!-- PROJECT GRID ORGANIZED BY CATEGORIES WITH COMPACT TILES & BUTTONS -->
         <div class="space-y-16">
 
             <!-- TRACK 1: MICROSOFT INTUNE -->
-            <div id="intune" class="space-y-6 scroll-mt-32">
+            <div id="intune" class="space-y-6 scroll-mt-32 blog-category-block">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">cloud</span>
                     <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">1. Microsoft Intune & Modern Workplace</h2>
@@ -334,7 +350,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Intune Item 1 (Autopatch A-Z - COMPLETED) -->
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between searchable-card">
                         <div class="relative aspect-[2.8/1] overflow-hidden border-b border-white/10 bg-slate-950">
                             <img src="../../images/Blogs_Images/AutopatchA-Z.avif" alt="Microsoft Autopatch Deployment" width="500" height="178" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -375,7 +391,7 @@
                     </div>
 
                     <!-- Intune Item 2 (In Progress) -->
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between searchable-card">
                         <div class="relative aspect-[2.8/1] overflow-hidden border-b border-white/10 bg-slate-950">
                             <img src="../Main_page_data/placeholder.gif" alt="Windows Autopilot Zero-Touch" width="500" height="178" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -418,14 +434,14 @@
             </div>
 
             <!-- TRACK 2: SCCM / MECM -->
-            <div id="sccm" class="space-y-6 scroll-mt-32">
+            <div id="sccm" class="space-y-6 scroll-mt-32 blog-category-block">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">dns</span>
                     <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">2. SCCM / MECM & Co-Management</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between searchable-card">
                         <div class="relative aspect-[2.8/1] overflow-hidden border-b border-white/10 bg-slate-950">
                             <img src="../Main_page_data/placeholder.gif" alt="SCCM Co-Management" width="500" height="178" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -468,14 +484,14 @@
             </div>
 
             <!-- TRACK 3: POWERSHELL AUTOMATION -->
-            <div id="powershell" class="space-y-6 scroll-mt-32">
+            <div id="powershell" class="space-y-6 scroll-mt-32 blog-category-block">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">terminal</span>
                     <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">3. PowerShell Automation & Microsoft Graph</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between searchable-card">
                         <div class="relative aspect-[2.8/1] overflow-hidden border-b border-white/10 bg-slate-950">
                             <img src="../Main_page_data/placeholder.gif" alt="PowerShell Automation" width="500" height="178" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -518,14 +534,14 @@
             </div>
 
             <!-- TRACK 4: AZURE & AVD -->
-            <div id="azure" class="space-y-6 scroll-mt-32">
+            <div id="azure" class="space-y-6 scroll-mt-32 blog-category-block">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">hub</span>
                     <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">4. Azure Cloud & Azure Virtual Desktop (AVD)</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between searchable-card">
                         <div class="relative aspect-[2.8/1] overflow-hidden border-b border-white/10 bg-slate-950">
                             <img src="../Main_page_data/placeholder.gif" alt="Azure Virtual Desktop AVD" width="500" height="178" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -568,14 +584,14 @@
             </div>
 
             <!-- TRACK 5: VMWARE & VIRTUALIZATION -->
-            <div id="vmware" class="space-y-6 scroll-mt-32">
+            <div id="vmware" class="space-y-6 scroll-mt-32 blog-category-block">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">dns</span>
                     <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">5. VMware & Virtual Desktop Infrastructure (VDI)</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between searchable-card">
                         <div class="relative aspect-[2.8/1] overflow-hidden border-b border-white/10 bg-slate-950">
                             <img src="../Main_page_data/placeholder.gif" alt="VMware Horizon VDI" width="500" height="178" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -617,14 +633,14 @@
             </div>
 
             <!-- TRACK 6: ACTIVE DIRECTORY -->
-            <div id="activedirectory" class="space-y-6 scroll-mt-32">
+            <div id="activedirectory" class="space-y-6 scroll-mt-32 blog-category-block">
                 <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
                     <span class="material-symbols-outlined text-sky-400 text-3xl">account_tree</span>
                     <h2 class="font-headline-md text-xl sm:text-2xl text-white font-bold">6. Active Directory & GPO Modernization</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div class="glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between searchable-card">
                         <div class="relative aspect-[2.8/1] overflow-hidden border-b border-white/10 bg-slate-950">
                             <img src="../Main_page_data/placeholder.gif" alt="GPO to Intune Migration" width="500" height="178" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -730,6 +746,9 @@
     </div>
 </footer>
 
+<!-- Include Vote Manager Script -->
+<script src="../vote-manager.js"></script>
+
 <script>
     if (window.lucide) lucide.createIcons();
 
@@ -813,11 +832,11 @@
                 <p class="text-slate-300 text-sm whitespace-pre-line leading-relaxed">${escapeHTML(comment.content)}</p>
                 
                 <div class="flex items-center space-x-4 text-xs pt-2">
-                    <button type="button" onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                    <button type="button" onclick="handleVote('${comment.id}', 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
                         <span class="material-symbols-outlined text-sm">thumb_up</span>
                         <span>${comment.likes || 0}</span>
                     </button>
-                    <button type="button" onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
+                    <button type="button" onclick="handleVote('${comment.id}', 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors bg-black/40 px-2.5 py-1 rounded-lg border border-white/5 cursor-pointer">
                         <span class="material-symbols-outlined text-sm">thumb_down</span>
                         <span>${comment.dislikes || 0}</span>
                     </button>
@@ -848,22 +867,21 @@
     }
 
     window.handleVote = async function(id, action) {
+        // Use VOTE_MANAGER to restrict double voting per comment
+        if (typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
+            alert("You have already voted on this comment!");
+            return;
+        }
+
         let email = getStoredEmail();
-        
         if (!email) {
-            const emailInput = document.getElementById('email');
-            if (emailInput && emailInput.value.trim().includes('@')) {
-                email = emailInput.value.trim();
-                setStoredEmail(email);
-            } else {
-                let anonEmail = localStorage.getItem('akash_portfolio_anon_id');
-                if (!anonEmail) {
-                    anonEmail = 'voter_' + Math.random().toString(36).substring(2, 10) + '@portfolio.local';
-                    localStorage.setItem('akash_portfolio_anon_id', anonEmail);
-                }
-                email = anonEmail;
-                setStoredEmail(email);
+            let anonEmail = localStorage.getItem('akash_portfolio_anon_id');
+            if (!anonEmail) {
+                anonEmail = 'voter_' + Math.random().toString(36).substring(2, 10) + '@portfolio.local';
+                localStorage.setItem('akash_portfolio_anon_id', anonEmail);
             }
+            email = anonEmail;
+            setStoredEmail(email);
         }
 
         try {
@@ -877,6 +895,10 @@
             if (!res.ok) {
                 alert(data.error || 'Failed to record vote.');
                 return;
+            }
+
+            if (typeof VOTE_MANAGER !== 'undefined') {
+                VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
             }
 
             await loadComments();
@@ -921,7 +943,6 @@
         }
     }
 
-    // Direct global function for safe form submission without listener conflicts
     window.handleCommentSubmit = async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
@@ -970,6 +991,43 @@
             btn.innerText = 'Post Comment';
         }
     }
+
+    // Real-Time Search Bar Logic
+    window.filterBlogCards = function(query) {
+        const filter = query.toLowerCase().trim();
+        const cards = document.querySelectorAll('.searchable-card');
+        const categoryBlocks = document.querySelectorAll('.blog-category-block');
+        const emptyState = document.getElementById('search-empty-state');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const textContent = card.innerText.toLowerCase();
+            if (textContent.includes(filter)) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Hide entire category sections if no cards within them match the filter query
+        categoryBlocks.forEach(block => {
+            const visibleCardsInBlock = block.querySelectorAll('.searchable-card:not([style*="display: none"])');
+            if (visibleCardsInBlock.length === 0) {
+                block.style.display = 'none';
+            } else {
+                block.style.display = '';
+            }
+        });
+
+        if (emptyState) {
+            if (visibleCount === 0 && filter !== '') {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+    };
 
     window.addEventListener('DOMContentLoaded', () => {
         const savedEmail = getStoredEmail();
