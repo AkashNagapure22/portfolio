@@ -845,7 +845,7 @@
     async function handleVote(id, action) {
         let email = getStoredEmail();
         
-        // Auto-detect or analyze email from browser session or existing form input seamlessly without annoying popups
+        // Auto-detect email from input or assign a unique browser fingerprint ID silently without popups
         if (!email) {
             const emailInput = document.getElementById('email');
             if (emailInput && emailInput.value.trim().includes('@')) {
