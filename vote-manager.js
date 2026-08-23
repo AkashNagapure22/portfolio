@@ -48,10 +48,5 @@ const VOTE_MANAGER = {
     localStorage.removeItem(this.getVoteKey(articleId));
   }
 };
-```[cite: 9]
 
-### How to use it in your repository:
-1. Save this exact code into a file named `vote-manager.js` in your root or asset directory[cite: 9].
-2. Include it in your HTML pages right before your main application/comment scripts:
-   ```html
-   <script src="/vote-manager.js"></script>
+
