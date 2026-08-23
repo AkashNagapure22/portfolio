@@ -60,7 +60,7 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    .glass-card {
+    . glass-card {
         background: linear-gradient(135deg, rgba(35, 30, 22, 0.9) 0%, rgba(18, 15, 12, 0.95) 100%);
         backdrop-filter: blur(25px);
         border: 1px solid rgba(255, 215, 0, 0.2);
@@ -116,6 +116,12 @@
     .carousel-slide.active { display: block; animation: zoomInFade 1s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes zoomInFade { from { opacity: 0; transform: scale(1.05) translateZ(-50px); } to { opacity: 1; transform: scale(1) translateZ(0); } }
 
+    /* Active Nav Class */
+    .nav-link.active-link {
+        color: #fff2d1 !important;
+        border-bottom: 2px solid #e6b800;
+    }
+
     .holo-glow {
         position: relative;
     }
@@ -135,7 +141,7 @@
     }
 </style>
 </head>
-<body class="bg-background text-slate-100 overflow-x-hidden font-body-md selection:bg-amber-500 selection:text-black min-h-screen flex flex-col justify-between">
+<body class="bg-background text-slate-100 overflow-x-hidden font-body-md selection:bg-amber-500 selection:text-black">
 
 <!-- True 3D Interactive Three.js WebGL Background -->
 <div class="fixed inset-0 w-full h-full -z-10 bg-[#0b0907] overflow-hidden pointer-events-none">
@@ -226,10 +232,10 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<header class="w-full z-50 bg-background/95 backdrop-blur-2xl border-b border-amber-500/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] sticky top-0">
-    <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
-        <a href="../index.html" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3 flex-shrink-0 group">
-            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/50 shadow-[0_0_25px_rgba(168,85,247,0.5)] group-hover:scale-105 transition-transform duration-300 overflow-hidden relative p-1.5">
+<header class="w-full z-50 bg-background/90 backdrop-blur-2xl border-b border-amber-500/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] sticky top-0">
+    <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-4 max-w-container-max mx-auto gap-4">
+        <a href="../index.html" class="font-headline-sm text-base sm:text-xl font-bold tracking-tighter text-amber-400 italic flex items-center gap-3.5 flex-shrink-0 group">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-900 to-black border border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.5)] group-hover:scale-110 transition-transform duration-500 overflow-hidden relative p-2">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(192,132,252,0.8)]">
                     <defs>
                         <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -242,23 +248,25 @@ window.addEventListener('DOMContentLoaded', () => {
                 </svg>
             </div>
             <span class="flex flex-col">
-                <span class="text-sm sm:text-base font-extrabold tracking-tight text-amber-200 drop-shadow-md">Akash Nagapure</span>
-                <span class="text-[9px] uppercase tracking-widest text-amber-400/90 font-mono">Numismatic Vault</span>
+                <span class="text-base sm:text-lg font-extrabold tracking-tight text-amber-200 drop-shadow-md">Akash Nagapure</span>
+                <span class="text-[10px] uppercase tracking-widest text-amber-400/90 font-mono">Numismatic Vault</span>
             </span>
         </a>
 
-        <!-- Desktop Menu & Search Bar -->
-        <div class="hidden xl:flex items-center gap-3 overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
-            <a href="../index.html" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-3">Main Hub</a>
-            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Overview</a>
-            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Banknotes</a>
-            <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Proof Sets</a>
-            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Indian</a>
-            <a href="#foreign-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Foreign</a>
-            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Hunt</a>
-            <a href="#valuation-guide" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Auth</a>
-            <a href="#mint-marks" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Mints</a>
-            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors py-1">Chat</a>
+        <!-- Desktop Menu with Search Bar -->
+        <div class="hidden md:flex gap-6 items-center overflow-x-auto whitespace-nowrap py-1 px-2 no-scrollbar scroll-smooth" id="nav-menu">
+            <a href="../index.html" class="font-label-caps text-xs text-amber-400 hover:text-amber-200 transition-colors py-1 flex items-center gap-1 border-r border-amber-500/20 pr-4">
+                <span class="material-symbols-outlined text-sm">home</span> Main Hub
+            </a>
+            <a href="#stats" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Overview</a>
+            <a href="#crown-jewels" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Banknotes</a>
+            <a href="#special-commemorative" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Proof &amp; UNC Sets</a>
+            <a href="#indian-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Indian Coins</a>
+            <a href="#foreign-coins" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Foreign Coins</a>
+            <a href="#wishlist" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Target Hunt</a>
+            <a href="#valuation-guide" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Authentication</a>
+            <a href="#mint-marks" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Mint Marks</a>
+            <a href="#discussion" class="font-label-caps text-xs text-slate-300 hover:text-amber-300 transition-colors nav-link py-1">Discussion</a>
 
             <!-- Top Search Input -->
             <div class="relative ml-2">
@@ -269,14 +277,13 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
 
-        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="xl:hidden p-2.5 rounded-xl text-amber-400 bg-white/5 hover:bg-white/10 focus:outline-none flex items-center gap-1 border border-amber-500/30 shadow-lg">
+        <button id="mobile-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-amber-400 bg-white/5 hover:bg-white/10 focus:outline-none flex items-center gap-1 border border-amber-500/30 shadow-lg">
             <span class="text-xs font-bold uppercase tracking-wider">Menu</span>
             <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
         </button>
     </div>
 
-    <!-- Mobile Drawer -->
-    <div id="mobile-menu-drawer" class="hidden xl:hidden bg-background/98 border-b border-amber-500/30 backdrop-blur-3xl px-6 py-6 space-y-3 shadow-2xl">
+    <div id="mobile-menu-drawer" class="hidden md:hidden bg-background/98 border-b border-amber-500/30 backdrop-blur-3xl px-6 py-6 space-y-3 shadow-2xl">
         <div class="relative mb-2">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-amber-400/70">
             <span class="material-symbols-outlined text-sm">search</span>
@@ -284,7 +291,7 @@ window.addEventListener('DOMContentLoaded', () => {
           <input type="text" id="coin-search-mobile" oninput="filterVault(this.value)" placeholder="Search vault items..." class="w-full pl-9 pr-3 py-2 bg-black/80 border border-amber-500/30 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 text-xs"/>
         </div>
         <a href="../index.html" class="block font-label-caps text-xs text-amber-400 font-bold py-2 border-b border-white/10 flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">home</span> Main Hub
+            <span class="material-symbols-outlined text-sm">home</span> Main Portfolio / Hub
         </a>
         <a href="#stats" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Overview</a>
         <a href="#crown-jewels" onclick="closeMobileMenu()" class="block font-label-caps text-xs text-slate-300 hover:text-amber-400 py-2 border-b border-white/5">Banknotes</a>
@@ -354,7 +361,7 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
 </div>
 
-<main class="relative pt-12 md:pt-16 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24 flex-grow w-full">
+<main class="relative pt-12 md:pt-16 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
 
     <!-- Dashboard Metrics -->
     <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 scroll-mt-28">
@@ -397,7 +404,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">GOVERNMENT OF INDIA (MINISTRY OF FINANCE)</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹1 Currency Note</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Signed by Finance Secretary. Issued as a promissory note featuring the iconic one rupee coin motif and vintage ornamentation.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Status: Available (1 Pc)</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Sovereign Issue</span>
                     </div>
@@ -412,7 +419,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹2 Banknote Classic Series</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Classic banknote series featuring traditional artwork, multi-lingual panels, and commemorative reverse imagery.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Status: Available (1 Pc)</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Collectible Series</span>
                     </div>
@@ -427,7 +434,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹5 Tractor Note</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Famous green-hued banknote featuring a farmer ploughing a field with a tractor on the reverse, symbolizing agricultural growth.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Status: Available (1 Pc)</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Agricultural Motif</span>
                     </div>
@@ -442,7 +449,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹10 Banknote Series</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Features wildlife motifs or the Konark Sun Temple wheel design across various historic Governor tenures.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Status: Available (1 Pc)</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Multi-Era Issue</span>
                     </div>
@@ -457,7 +464,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹50 Fluorescent Blue Note</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Mahatma Gandhi Series banknote featuring the intricate Chariot at Hampi monument on the reverse.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Status: Available (1 Pc)</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Hampi Motif</span>
                     </div>
@@ -472,7 +479,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹100 Lavender Note</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Sleek lavender palette showcasing Rani ki vav (The Queen's Stepwell) in Patan, Gujarat.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Status: Available (1 Pc)</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Rani ki vav</span>
                     </div>
@@ -487,7 +494,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹500 Stone Grey Banknote</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Mahatma Gandhi New Series banknote featuring the iconic Red Fort monument with the Indian flag on the reverse.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Status: Available (1 Pc)</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Red Fort Heritage</span>
                     </div>
@@ -502,7 +509,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">RESERVE BANK OF INDIA (1954–1978)</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">₹1000 Tanjore Temple Note</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Features the majestic Brihadishvara Temple of Tanjore. Large format currency issued under Governor B. Rama Rau.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Watermark: Ashoka Pillar</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Rare Demonetized Issue</span>
                     </div>
@@ -517,7 +524,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <span class="text-amber-400 font-label-caps text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] mb-2 font-semibold">BRITISH INDIA (1938–1947)</span>
                     <h3 class="text-3xl sm:text-4xl md:text-5xl text-amber-200 mb-2 font-extrabold leading-none drop-shadow-md">King George VI ₹10 Note</h3>
                     <p class="text-slate-300 text-xs sm:text-sm mb-4">Signed by C.D. Deshmukh, first Indian RBI Governor. Features profile portrait of King George VI and dhow boat reverse motif.</p>
-                    <div class="flex items-center gap-4 flex-wrap">
+                    <div class="flex items-center gap-4">
                         <span class="text-amber-400 font-bold text-sm sm:text-base">Condition: Crisp Uncirculated</span>
                         <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg border border-amber-500/40">Pre-Independence</span>
                     </div>
@@ -2361,6 +2368,32 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     if (slides.length > 0) setInterval(nextSlide, 15000);
+
+    // Active Navigation Highlight on Scroll (Fixes the stuck underline issue)
+    const navLinks = document.querySelectorAll('#nav-menu a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+
+    const navObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    }, navObserverOptions);
+
+    sections.forEach(section => navObserver.observe(section));
 </script>
 </body>
 </html>
