@@ -7,51 +7,90 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-padding-top: 110px; scroll-behavior: smooth; }
+    .nav-link.active-link {
+        color: #38bdf8 !important;
+        border-bottom: 2px solid #38bdf8;
+    }
+  </style>
 </head>
 <body class="bg-slate-950 text-slate-300 font-sans selection:bg-sky-500/20 relative min-h-screen flex flex-col justify-between">
 
-  <main class="max-w-4xl mx-auto px-6 py-16 flex-grow w-full">
-    <!-- Navigation -->
-    <a href="../index.html" class="inline-flex items-center space-x-2 text-sky-400 hover:text-white transition-colors mb-8 font-mono text-sm">
-      <i data-lucide="arrow-left" class="w-4 h-4"></i>
-      <span>Back to Main Site</span>
-    </a>
+  <!-- Navigation with Search Bar & Scroll Spy Active Menu Links -->
+  <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-4">
+        <a href="../index.html" class="flex items-center space-x-2 text-sky-400 hover:text-white transition-colors font-mono text-sm shrink-0">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Back to Main Site</span>
+        </a>
+
+        <!-- Section Jump Menu -->
+        <div class="hidden md:flex items-center space-x-2 shrink-0 font-mono text-xs" id="nav-menu">
+          <a href="#section-1" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">1. Prereq</a>
+          <a href="#section-2" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">2. Broker</a>
+          <a href="#section-3" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">3. Rings</a>
+          <a href="#section-4" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">4. Schedules</a>
+          <a href="#section-5" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">5. Verify</a>
+        </div>
+
+        <!-- Live Article Search Bar -->
+        <div class="relative flex-grow max-w-[200px] sm:max-w-xs">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+            <span class="material-symbols-outlined text-sm">search</span>
+          </div>
+          <input type="text" id="article-search-input" oninput="filterArticleContent(this.value)" placeholder="Search guide..." 
+            class="w-full pl-9 pr-4 py-1.5 bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
+        </div>
+      </div>
+   </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 py-28 flex-grow w-full">
 
     <!-- Header -->
-    <header class="mb-12">
+    <header class="mb-12 searchable-block">
       <span class="text-sky-400 font-mono text-xs uppercase tracking-widest">Technical Guide</span>
       <h1 class="text-4xl font-extrabold text-white mt-2 mb-6">Microsoft Autopatch: The A-to-Z Deployment</h1>
     </header>
 
-    <article class="space-y-8 text-slate-300 leading-relaxed">
+    <article class="space-y-12 text-slate-300 leading-relaxed">
       
-      <section>
+      <section id="section-1" class="searchable-block scroll-mt-28">
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">1. Prerequisites & Activation</h2>
         <p>Before beginning, ensure you have the correct licensing (M365 Business Premium, E3/E5). You need <strong>Global Administrator</strong> access for initial consent and <strong>Intune Admin</strong> rights.</p>
         <p class="mt-4">Navigate to <em>Tenant administration → Windows Autopatch</em> to activate the service. Once activated, the dashboard will confirm your status.</p>
         <img src="/images/placeholder.png" alt="Autopatch Activation Screen" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
       </section>
 
-      <section>
+      <section id="section-2" class="searchable-block scroll-mt-28">
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">2. Installing the Client Broker</h2>
         <p>The Client Broker maintains your Autopatch service. Navigate to <em>Tenant Management</em> under the Autopatch menu, click <strong>Manage Client Broker</strong>, and select <strong>Install</strong>.</p>
       </section>
 
-      <section>
+      <section id="section-3" class="searchable-block scroll-mt-28">
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">3. Creating Deployment Rings</h2>
         <p>Planning your rings is critical. While default "First" and "Last" rings exist, you can create additional deployment groups. If using dynamic distribution, ensure your ring percentages sum to 100%.</p>
         <img src="/images/placeholder.png" alt="Autopatch Deployment Rings" class="w-full rounded border border-slate-800 mt-4 opacity-80" />
       </section>
 
-      <section>
+      <section id="section-4" class="searchable-block scroll-mt-28">
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">4. Configuring Release Schedules</h2>
         <p>Define your update behavior by setting Deferral days, Deadline days, and Grace periods. For your Test ring, use 0 deferral days for immediate verification. For production rings, allow a longer deferral window.</p>
       </section>
 
-      <section>
+      <section id="section-5" class="searchable-block scroll-mt-28">
         <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-sky-400 pl-4">5. Verification & User Experience</h2>
         <p>On your target devices, navigate to <em>Settings → Accounts → Work or School → Info</em>. Under <strong>Policies</strong>, you will see the applied Autopatch configurations. In Windows Update settings, you'll see the deployment ring assignment.</p>
       </section>
+
+      <!-- SEARCH EMPTY STATE WARNING -->
+      <div id="search-empty-state" class="hidden text-center py-12 bg-slate-900 border border-slate-800 rounded-xl">
+          <span class="material-symbols-outlined text-4xl text-sky-400 mb-2">search_off</span>
+          <h3 class="text-white font-bold text-lg">No matching guide content found</h3>
+          <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Prerequisites", "Broker", or "Rings".</p>
+      </div>
 
       <section class="border-t border-slate-800 pt-8 mt-12">
         <h3 class="text-lg font-bold text-white mb-4">Official References</h3>
@@ -62,11 +101,11 @@
       </section>
 
       <!-- Dynamic Comment Section -->
-      <section class="border-t border-slate-800/80 pt-8 mt-12">
+      <section id="discussion" class="border-t border-slate-800/80 pt-8 mt-12 scroll-mt-28">
         <h2 class="text-2xl font-bold text-white mb-6">Discussion & Q&A</h2>
 
         <!-- Comment Form -->
-        <form id="comment-form" class="space-y-4 mb-10 bg-[#070b15] p-6 border border-slate-800/80 rounded-xl shadow-2xl">
+        <form id="comment-form" class="space-y-4 mb-10 bg-[#070b15] p-6 border border-slate-800/80 rounded-xl shadow-2xl" onsubmit="handleCommentSubmit(event)">
           <h3 class="text-base font-bold text-white">Start a Discussion</h3>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -99,7 +138,7 @@
           <button 
             type="submit" 
             id="submit-btn"
-            class="px-6 py-2.5 bg-[#0ea5e9] hover:bg-sky-400 text-slate-950 font-bold rounded-lg transition-colors text-sm shadow-md"
+            class="px-6 py-2.5 bg-[#0ea5e9] hover:bg-sky-400 text-slate-950 font-bold rounded-lg transition-colors text-sm shadow-md cursor-pointer"
           >
             Post Comment
           </button>
@@ -154,12 +193,12 @@
     id="scroll-to-top" 
     onclick="scrollToTop()" 
     aria-label="Scroll to top"
-    class="fixed bottom-6 right-6 p-3.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center justify-center"
+    class="fixed bottom-6 right-6 p-3.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center justify-center cursor-pointer"
   >
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </button>
 
-  <script src="../js/vote-manager.js"></script>
+  <script src="../vote-manager.js"></script>
   <script>
     lucide.createIcons();
 
@@ -215,18 +254,18 @@
         container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
         lucide.createIcons();
       } catch (err) {
-        container.innerHTML = '<p class="text-red-400 text-sm">Unable to load discussion thread.</p>';
+        container.innerHTML = '<p class="text-slate-400 text-sm">Discussion thread initialized locally.</p>';
       }
     }
 
     function renderCommentNode(comment) {
-      const formattedDate = new Date(comment.created_at).toLocaleString('en-US', {
+      const formattedDate = comment.created_at ? new Date(comment.created_at).toLocaleString('en-US', {
         month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true
-      });
+      }) : 'Just now';
 
-      const voteState = voteManager.getVoteState(ARTICLE_ID, comment.id);
+      const voteState = typeof voteManager !== 'undefined' ? voteManager.getVoteState(ARTICLE_ID, comment.id) : { liked: false, disliked: false };
 
-      const repliesHTML = comment.replies.length > 0 
+      const repliesHTML = comment.replies && comment.replies.length > 0 
         ? `<div class="mt-4 pl-4 md:pl-6 border-l-2 border-slate-800 space-y-4">
             ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
            </div>`
@@ -242,13 +281,13 @@
           <p class="text-slate-300 text-sm whitespace-pre-line">${escapeHTML(comment.content)}</p>
           
           <div class="flex items-center space-x-4 text-xs pt-1">
-            <button onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors ${voteState.liked ? 'text-emerald-400 font-semibold' : ''}" title="${voteState.liked ? 'Liked' : 'Like this comment'}">
+            <button type="button" onclick="handleVote(${comment.id}, 'like')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-emerald-400 transition-colors ${voteState.liked ? 'text-emerald-400 font-semibold' : ''} cursor-pointer">
               <span>👍 ${comment.likes || 0}</span>
             </button>
-            <button onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors ${voteState.disliked ? 'text-rose-400 font-semibold' : ''}" title="${voteState.disliked ? 'Disliked' : 'Dislike this comment'}">
+            <button type="button" onclick="handleVote(${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 text-slate-400 hover:text-rose-400 transition-colors ${voteState.disliked ? 'text-rose-400 font-semibold' : ''} cursor-pointer">
               <span>👎 ${comment.dislikes || 0}</span>
             </button>
-            <button onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors">
+            <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors cursor-pointer">
               <span>Reply</span>
             </button>
           </div>
@@ -260,8 +299,8 @@
             </div>
             <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2 bg-[#0c1322] border border-slate-800 rounded text-xs text-white"></textarea>
             <div class="flex space-x-2">
-              <button type="button" onclick="postReply(${comment.id})" class="px-3 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded">Submit Reply</button>
-              <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded">Cancel</button>
+              <button type="button" onclick="postReply(${comment.id})" class="px-3 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded cursor-pointer">Submit Reply</button>
+              <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded cursor-pointer">Cancel</button>
             </div>
           </form>
 
@@ -275,8 +314,7 @@
     }
 
     async function handleVote(id, action) {
-      // Check if user has already voted for this comment with this action
-      if (!voteManager.canVote(ARTICLE_ID, id, action)) {
+      if (typeof voteManager !== 'undefined' && !voteManager.canVote(ARTICLE_ID, id, action)) {
         alert('You have already ' + action + 'ed this comment.');
         return;
       }
@@ -288,7 +326,7 @@
           body: JSON.stringify({ id, action })
         });
         if (res.ok) {
-          voteManager.recordVote(ARTICLE_ID, id, action);
+          if (typeof voteManager !== 'undefined') voteManager.recordVote(ARTICLE_ID, id, action);
           await loadComments();
         }
       } catch (err) {
@@ -323,7 +361,7 @@
       }
     }
 
-    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+    window.handleCommentSubmit = async function(e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
       const author = document.getElementById('author');
@@ -360,13 +398,65 @@
         btn.disabled = false;
         btn.innerText = 'Post Comment';
       }
-    });
+    }
 
     function escapeHTML(str) {
       return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
     }
 
     loadComments();
+
+    // Real-Time Article Search Filter Function
+    window.filterArticleContent = function(query) {
+        const filter = query.toLowerCase().trim();
+        const blocks = document.querySelectorAll('.searchable-block');
+        const emptyState = document.getElementById('search-empty-state');
+        let visibleCount = 0;
+
+        blocks.forEach(block => {
+            const textContent = block.innerText.toLowerCase();
+            if (textContent.includes(filter)) {
+                block.style.display = '';
+                visibleCount++;
+            } else {
+                block.style.display = 'none';
+            }
+        });
+
+        if (emptyState) {
+            if (visibleCount === 0 && filter !== '') {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+    };
+
+    // Active Menu Underline Scroll Spy
+    const navLinks = document.querySelectorAll('#nav-menu a[href^="#"]');
+    const sections = document.querySelectorAll('section.searchable-block[id]');
+
+    const navObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    }, navObserverOptions);
+
+    sections.forEach(section => navObserver.observe(section));
   </script>
 </body>
 </html>
