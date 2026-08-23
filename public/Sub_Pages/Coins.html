@@ -2095,7 +2095,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Synchronized Vault Search Filter Function supporting both inputs & instant lookup
+    // Synchronized Vault Search Filter Function for both Top & Mobile Search inputs
     function filterVault(query) {
         const filter = query.toLowerCase().trim();
         
@@ -2130,12 +2130,10 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         const noResultsMsg = document.getElementById('no-search-results');
-        if (noResultsMsg) {
-            if (totalVisibleItems === 0) {
-                noResultsMsg.classList.remove('hidden');
-            } else {
-                noResultsMsg.classList.add('hidden');
-            }
+        if (totalVisibleItems === 0) {
+            noResultsMsg.classList.remove('hidden');
+        } else {
+            noResultsMsg.classList.add('hidden');
         }
     }
 
