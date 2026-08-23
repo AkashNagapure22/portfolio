@@ -19,9 +19,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-<!-- Include Vote Manager Script -->
-<script src="../../vote-manager.js"></script>
-
 <script id="tailwind-config">
     tailwind.config = {
         darkMode: "class",
@@ -559,6 +556,35 @@
     const ARTICLE_ID = 'courses';
     const API_URL = '/api/comments';
 
+    // Embedded Vote Manager to guarantee local storage persistence & prevent external 404 paths
+    const VOTE_MANAGER = {
+        getVoteKey(articleId) {
+            return `votes_${articleId}_${this.getUserId()}`;
+        },
+        getUserId() {
+            let userId = localStorage.getItem('portfolio_user_id');
+            if (!userId) {
+                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('portfolio_user_id', userId);
+            }
+            return userId;
+        },
+        hasVoted(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            return votes[`${commentId}_${action}`] === true;
+        },
+        recordVote(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            votes[`${commentId}_${action}`] = true;
+            localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
+        },
+        clearVote(articleId, commentId, action) {
+            const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+            delete votes[`${commentId}_${action}`];
+            localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
+        }
+    };
+
     async function loadComments() {
         const container = document.getElementById('comments-container');
         try {
@@ -610,9 +636,9 @@
                </div>`
             : '';
 
-        // Check local storage states to visually mark buttons if already voted
-        const likedAlready = typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'like');
-        const dislikedAlready = typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'dislike');
+        // Persistent check via embedded VOTE_MANAGER
+        const likedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'like');
+        const dislikedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'dislike');
 
         const likeClass = likedAlready ? 'opacity-50 pointer-events-none text-emerald-400 border-emerald-500/30' : 'text-slate-400 hover:text-emerald-400';
         const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400 border-rose-500/30' : 'text-slate-400 hover:text-rose-400';
@@ -662,18 +688,16 @@
     }
 
     async function handleVote(event, id, action) {
-        // 1. Check persistent localStorage via VOTE_MANAGER
-        if (typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
+        // Enforce block check using VOTE_MANAGER
+        if (VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
             alert("You have already voted on this comment!");
             return;
         }
 
-        // 2. Record vote locally right away
-        if (typeof VOTE_MANAGER !== 'undefined') {
-            VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
-        }
+        // Record vote immediately to local storage
+        VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
 
-        // 3. Instantly dim/lock the clicked button element
+        // Instantly dim and disable button element
         const btn = event.currentTarget;
         if (btn) {
             btn.classList.add('opacity-50', 'pointer-events-none');
@@ -688,15 +712,11 @@
             if (res.ok) {
                 await loadComments();
             } else {
-                if (typeof VOTE_MANAGER !== 'undefined') {
-                    VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
-                }
+                VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
             }
         } catch (err) {
             console.error('Failed to vote', err);
-            if (typeof VOTE_MANAGER !== 'undefined') {
-                VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
-            }
+            VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
         }
     }
 
