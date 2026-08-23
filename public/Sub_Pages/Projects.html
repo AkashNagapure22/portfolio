@@ -845,7 +845,6 @@
     async function handleVote(id, action) {
         let email = getStoredEmail();
         
-        // Auto-detect email from input or assign a unique browser fingerprint ID silently without popups
         if (!email) {
             const emailInput = document.getElementById('email');
             if (emailInput && emailInput.value.trim().includes('@')) {
@@ -917,16 +916,16 @@
     document.getElementById('comment-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
-        const author = document.getElementById('author');
-        const email = document.getElementById('email');
-        const content = document.getElementById('content');
+        const author = document.getElementById('author').value;
+        const email = document.getElementById('email').value;
+        const content = document.getElementById('content').value;
 
-        if (!email.value.includes('@')) {
+        if (!email.includes('@')) {
             alert('Please provide a valid email address containing "@".');
             return;
         }
 
-        setStoredEmail(email.value);
+        setStoredEmail(email);
 
         btn.disabled = true;
         btn.innerText = 'Posting...';
@@ -935,15 +934,21 @@
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ author: author.value, email: email.value, content: content.value, parent_id: null, article_id: ARTICLE_ID })
+                body: JSON.stringify({ author, email, content, parent_id: null, article_id: ARTICLE_ID })
             });
 
             if (res.ok) {
-                author.value = ''; content.value = '';
+                document.getElementById('author').value = '';
+                document.getElementById('email').value = email; // Retain email for convenience
+                document.getElementById('content').value = '';
                 await loadComments();
+            } else {
+                const data = await res.json();
+                alert(data.error || 'Failed to post comment.');
             }
         } catch (err) {
-            alert('Network error.');
+            console.error('Comment posting error:', err);
+            alert('Network error while posting comment.');
         } finally {
             btn.disabled = false;
             btn.innerText = 'Post Comment';
