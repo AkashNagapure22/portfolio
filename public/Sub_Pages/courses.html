@@ -19,6 +19,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+<!-- Include Vote Manager Script -->
+<script src="/vote-manager.js"></script>
+
 <script id="tailwind-config">
     tailwind.config = {
         darkMode: "class",
@@ -652,15 +655,26 @@
     }
 
     async function handleVote(id, action) {
+        // Prevent duplicate voting using VOTE_MANAGER
+        if (typeof VOTE_MANAGER !== 'undefined' && VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) {
+            alert("You have already voted on this comment!");
+            return;
+        }
+
         try {
             const res = await fetch(API_URL, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, action })
             });
-            if (res.ok) await loadComments();
+            if (res.ok) {
+                if (typeof VOTE_MANAGER !== 'undefined') {
+                    VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
+                }
+                await loadComments();
+            }
         } catch (err) {
-            console.error('Failed to vote');
+            console.error('Failed to vote', err);
         }
     }
 
