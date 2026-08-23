@@ -845,14 +845,22 @@
     async function handleVote(id, action) {
         let email = getStoredEmail();
         
-        // Prompt only if no email is registered yet in browser storage
+        // Auto-detect or analyze email from browser session or existing form input
         if (!email) {
-            email = prompt("Please enter your email address to record your vote:");
-            if (!email || !email.includes('@')) {
-                alert('A valid email address containing "@" is required to vote.');
-                return;
+            const emailInput = document.getElementById('email');
+            if (emailInput && emailInput.value.trim().includes('@')) {
+                email = emailInput.value.trim();
+                setStoredEmail(email);
+            } else {
+                // Fallback: silently use a derived persistent anonymous browser fingerprint/email if none provided
+                let anonEmail = localStorage.getItem('akash_portfolio_anon_id');
+                if (!anonEmail) {
+                    anonEmail = 'voter_' + Math.random().toString(36.substring(2, 10)) + '@portfolio.local';
+                    localStorage.setItem('akash_portfolio_anon_id', anonEmail);
+                }
+                email = anonEmail;
+                setStoredEmail(email);
             }
-            setStoredEmail(email);
         }
 
         try {
