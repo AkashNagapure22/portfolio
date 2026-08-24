@@ -114,22 +114,22 @@
     }
 
     /* Neon Pulse Border Effect */
-    .neon-border {
+    .holo-glow {
       position: relative;
     }
-    .neon-border::after {
+    .holo-glow::after {
       content: '';
       position: absolute;
       inset: -1px;
       background: linear-gradient(90deg, #38bdf8, #6366f1, #38bdf8);
       border-radius: inherit;
       z-index: -1;
-      opacity: 0.3;
+      opacity: 0.2;
       filter: blur(8px);
       transition: opacity 0.3s ease;
     }
-    .neon-border:hover::after {
-      opacity: 0.7;
+    .holo-glow:hover::after {
+      opacity: 0.6;
     }
 
     /* Construction Ticker Animation */
@@ -167,6 +167,13 @@
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #020617; }
     ::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 3px; }
+
+    /* Active Nav Class for Scroll Spy */
+    .nav-item-link.active-link {
+      color: #38bdf8 !important;
+      background-color: rgba(14, 165, 233, 0.15);
+      border-color: rgba(56, 189, 248, 0.4) !important;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500/20 selection:text-sky-300">
@@ -283,15 +290,14 @@
         </div>
       </a>
 
-      <div class="hidden lg:flex items-center space-x-1 font-mono text-xs">
-        <a href="#home" class="px-3 py-1.5 rounded-lg text-sky-400 bg-sky-950/50 border border-sky-400/30 shadow-[0_0_10px_rgba(56,189,248,0.2)]" onclick="scrollToSection(event, 'home')">Home</a>
-        <a href="#about" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 transition-all" onclick="scrollToSection(event, 'about')">About</a>
-        <a href="#certifications" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 transition-all" onclick="scrollToSection(event, 'certifications')">Certifications</a>
-        <a href="Sub_Pages/Projects.html" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 transition-all">Blogs</a>
-        <a href="#education" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 transition-all" onclick="scrollToSection(event, 'education')">Education</a>
-        <a href="#hobbies" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 transition-all" onclick="scrollToSection(event, 'hobbies')">Hobbies</a>
-        <a href="#projects" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 transition-all" onclick="scrollToSection(event, 'projects')">Projects</a>
-        <a href="#contact" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 transition-all" onclick="scrollToSection(event, 'contact')">Contact</a>
+      <!-- Desktop Nav Menu (Blog tab removed) -->
+      <div class="hidden lg:flex items-center space-x-1 font-mono text-xs" id="nav-menu">
+        <a href="#about" class="nav-item-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 border border-transparent transition-all" onclick="scrollToSection(event, 'about')">About</a>
+        <a href="#certifications" class="nav-item-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 border border-transparent transition-all" onclick="scrollToSection(event, 'certifications')">Certifications</a>
+        <a href="#education" class="nav-item-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 border border-transparent transition-all" onclick="scrollToSection(event, 'education')">Education</a>
+        <a href="#hobbies" class="nav-item-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 border border-transparent transition-all" onclick="scrollToSection(event, 'hobbies')">Hobbies</a>
+        <a href="#projects" class="nav-item-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 border border-transparent transition-all" onclick="scrollToSection(event, 'projects')">Projects</a>
+        <a href="#contact" class="nav-item-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/40 border border-transparent transition-all" onclick="scrollToSection(event, 'contact')">Contact</a>
       </div>
 
       <div class="flex items-center lg:hidden">
@@ -302,11 +308,10 @@
     </div>
   </div>
 
+  <!-- Mobile Menu Drawer (Blog tab removed) -->
   <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-950/95 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1 font-mono text-xs">
-    <a href="#home" class="block w-full px-4 py-2.5 rounded-lg text-sky-400 bg-sky-950/50" onclick="scrollToSection(event, 'home')">Home</a>
     <a href="#about" class="block w-full px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-900" onclick="scrollToSection(event, 'about')">About</a>
     <a href="#certifications" class="block w-full px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-900" onclick="scrollToSection(event, 'certifications')">Certifications</a>
-    <a href="Sub_Pages/Projects.html" class="block w-full px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-900">Technical Blogs</a>
     <a href="#education" class="block w-full px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-900" onclick="scrollToSection(event, 'education')">Education</a>
     <a href="#hobbies" class="block w-full px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-900" onclick="scrollToSection(event, 'hobbies')">Hobbies</a>
     <a href="#projects" class="block w-full px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-900" onclick="scrollToSection(event, 'projects')">Projects</a>
@@ -315,10 +320,10 @@
 </nav>
 </header>
 
-<main class="flex-grow pt-16">
+<main class="flex-grow pt-14">
   
   <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center justify-center py-20 relative">
+  <section id="home" class="min-h-screen flex items-center justify-center py-20 relative scroll-mt-20">
     <div class="absolute top-1/4 right-[15%] w-96 h-96 rounded-full bg-sky-500/10 blur-[140px] pointer-events-none animate-pulse"></div>
     <div class="absolute bottom-1/4 left-[10%] w-80 h-80 rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none animate-pulse"></div>
 
@@ -326,7 +331,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
-          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-emerald-500/30 shadow-lg shadow-emerald-500/5">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-emerald-500/35 shadow-lg">
             <span class="flex h-2 w-2 relative">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -380,7 +385,7 @@
             </div>
 
             <div class="absolute bottom-6 right-4 sm:-right-4 cyber-panel rounded-xl p-3.5 shadow-2xl max-w-[210px] flex items-center space-x-3.5">
-              <div class="p-2.5 bg-sky-950/60 rounded-lg border border-sky-400/30 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+              <div class="p-2.5 bg-sky-950/50 rounded-lg border border-sky-400/30 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.3)]">
                 <i data-lucide="cloud" class="w-5 h-5 animate-pulse"></i>
               </div>
               <div class="flex flex-col text-left">
@@ -401,7 +406,7 @@
   </section>
 
   <!-- About Me Section -->
-  <section id="about" class="py-24 text-left relative">
+  <section id="about" class="py-24 text-left relative scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex items-center space-x-4 mb-12">
         <div class="w-1.5 h-10 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
@@ -467,7 +472,7 @@
   </section>
 
   <!-- Professional Certifications Section -->
-  <section id="certifications" class="py-24 border-y border-sky-500/20 text-center relative">
+  <section id="certifications" class="py-24 border-y border-sky-500/20 text-center relative scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mx-auto mb-16 text-center">
         <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 cyber-panel border border-sky-500/30 rounded-full mb-4 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
@@ -589,7 +594,7 @@
   </section>
 
   <!-- Education & Academy Section -->
-  <section id="education" class="py-24 border-y border-sky-500/20 text-left relative">
+  <section id="education" class="py-24 border-y border-sky-500/20 text-left relative scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="mb-12">
         <div class="flex items-center space-x-4 mb-3">
@@ -600,7 +605,6 @@
       </div>
 
       <div class="max-w-4xl space-y-8 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[2px] before:bg-sky-500/40">
-        <!-- Edu 1 -->
         <div class="relative pl-12 sm:pl-16 group">
           <div class="absolute left-[13px] top-1.5 w-[22px] h-[22px] rounded-full bg-slate-950 border-4 border-slate-800 group-hover:border-sky-400 transition-colors flex items-center justify-center"></div>
           
@@ -623,7 +627,6 @@
           </div>
         </div>
 
-        <!-- Edu 2 -->
         <div class="relative pl-12 sm:pl-16 group">
           <div class="absolute left-[13px] top-1.5 w-[22px] h-[22px] rounded-full bg-slate-950 border-4 border-slate-800 group-hover:border-sky-400 transition-colors flex items-center justify-center"></div>
           
@@ -650,7 +653,7 @@
   </section>
 
   <!-- Hobbies & Interests Section -->
-  <section id="hobbies" class="py-24 text-left relative">
+  <section id="hobbies" class="py-24 text-left relative scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mb-12">
         <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
@@ -751,7 +754,7 @@
   </section>
 
   <!-- Key Projects Section -->
-  <section id="projects" class="py-24 border-b border-sky-500/20 text-left relative">
+  <section id="projects" class="py-24 border-b border-sky-500/20 text-left relative scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
       <div class="max-w-3xl mb-16">
         <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 cyber-panel border border-sky-500/30 rounded-full mb-4 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
@@ -764,7 +767,6 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        <!-- Project Loop Items (Case 01 to 09) -->
         <!-- Case 01 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
@@ -866,7 +868,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-24 text-left relative overflow-hidden">
+  <section id="contact" class="py-24 text-left relative overflow-hidden scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
@@ -1056,6 +1058,32 @@
       drawer.classList.toggle("hidden");
     }
   }
+
+  // Scroll Spy Observer to Highlight Active Nav Item
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-item-link");
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-20% 0px -70% 0px",
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        navLinks.forEach(link => {
+          link.classList.remove("active-link");
+          if (link.getAttribute("href") === `#${id}`) {
+            link.classList.add("active-link");
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
 
   function checkFormValidity() {
     const name = document.getElementById("direct_name").value.trim();
