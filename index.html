@@ -112,7 +112,7 @@
       pointer-events: none;
     }
 
-    /* Transparent sections so the 3D canvas is visible continuously */
+    /* Transparent section styling matching courses.html so canvas shows through everywhere */
     .section-bg-about,
     .section-bg-cert,
     .section-bg-experience,
@@ -153,13 +153,13 @@
       background: #38bdf8;
     }
     
-    /* True 3D Glassmorphism & Depth Layers */
-  .glass-card-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.35) 0%, rgba(2, 6, 23, 0.45) 100%);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
+    /* 3D Glassmorphism Cards with optimized alpha transparency to show particles behind text */
+    .glass-card-3d {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.45) 0%, rgba(2, 6, 23, 0.65) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
                 inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
                 0 0 30px rgba(56, 189, 248, 0.05);
       transform-style: preserve-3d;
