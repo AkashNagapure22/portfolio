@@ -112,7 +112,7 @@
       pointer-events: none;
     }
 
-    /* Transparent section styling matching courses.html so canvas shows through everywhere */
+    /* Fully transparent sections ensuring 3D background is unbroken */
     .section-bg-about,
     .section-bg-cert,
     .section-bg-experience,
@@ -153,15 +153,15 @@
       background: #38bdf8;
     }
     
-    /* 3D Glassmorphism Cards with optimized alpha transparency to show particles behind text */
+    /* Clean minimal glass cards with high transparency to reveal 3D background */
     .glass-card-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.45) 0%, rgba(2, 6, 23, 0.65) 100%);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.20) 0%, rgba(2, 6, 23, 0.35) 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                0 0 30px rgba(56, 189, 248, 0.05);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+                0 0 30px rgba(56, 189, 248, 0.03);
       transform-style: preserve-3d;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
@@ -304,7 +304,7 @@
 </script>
 
 <header>
-<nav id="portfolio-navbar" class="relative w-full z-50 transition-all duration-300 bg-slate-950/90 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+<nav id="portfolio-navbar" class="relative w-full z-50 transition-all duration-300 bg-slate-950/80 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="w-full overflow-hidden mb-3">
     <div class="animate-scroll whitespace-nowrap">
       <span class="text-[10px] font-mono tracking-wider">
