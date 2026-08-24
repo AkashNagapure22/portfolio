@@ -112,58 +112,18 @@
       pointer-events: none;
     }
 
-    /* Section Background Image Overlays with Deep Contrast Gradients */
-    .section-bg-about {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.88)), url('images/Main_Page_Images/hobby_homelab.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-cert {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.90), rgba(2, 6, 23, 0.95));
-    }
-
-    .section-bg-experience {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.90)), url('images/Main_Page_Images/project_intune_1781110786338.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-education {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.96)), url('images/Main_Page_Images/project_Windows-365.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-hobbies {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.90), rgba(15, 23, 42, 0.92)), url('images/Main_Page_Images/hobby_gaming.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-projects {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.94), rgba(2, 6, 23, 0.96)), url('images/Main_Page_Images/project_autopilot_1781110823628.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-blogs {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.90)), url('images/Main_Page_Images/hobby_reading.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
+    /* Unified semi-transparent section backgrounds so the 3D canvas shines through continuously */
+    .section-bg-about,
+    .section-bg-cert,
+    .section-bg-experience,
+    .section-bg-education,
+    .section-bg-hobbies,
+    .section-bg-projects,
+    .section-bg-blogs,
     .section-bg-contact {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.90), rgba(2, 6, 23, 0.96)), url('images/Main_Page_Images/project_ServiceNow.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.72), rgba(15, 23, 42, 0.78));
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     /* Construction Banner Animation */
