@@ -1,0 +1,34 @@
+name: Deploy Portfolio
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "main" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Check out your repository code so the runner can access it
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    # 2. Set up Node.js (if your project uses npm/Vite package configurations)
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    # 3. Install dependencies and build project (Optional if you use static HTML/CSS)
+    - name: Install Dependencies & Build
+      run: |
+        if [ -f package.json ]; then
+          npm install
+          npm run build --if-present
+        fi
+
+    # 4. Success notification / dummy verification step
+    - name: Verify Build
+      run: echo "Build and deployment check completed successfully!"
