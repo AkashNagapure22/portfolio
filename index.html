@@ -437,7 +437,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <!-- Left Content: Slide Down Animation -->
+        <!-- Left Content: Slide Down Animation (No "Hi there" or "Pune, India" as requested) -->
         <div class="lg:col-span-7 flex flex-col items-start space-y-6 text-left animate-slide-down">
           <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 shadow-lg shadow-emerald-500/5">
             <span class="flex h-2.5 w-2.5 relative">
@@ -1195,7 +1195,7 @@
     </div>
   </section>
 
-  <!-- Contact Section with Contact_Me.png Graphic and Logo Links -->
+  <!-- Contact Section with Larger Contact_Me.png Graphic and Email/LinkedIn SVG Logos -->
   <section id="contact" class="py-24 section-bg-contact text-left relative overflow-hidden">
     <div class="absolute inset-0 bg-radial-gradient from-indigo-500/5 via-transparent to-transparent pointer-events-none"></div>
 
@@ -1216,15 +1216,16 @@
             </p>
           </div>
 
-          <!-- Contact Graphic Asset -->
-          <div class="py-2">
-            <img src="public/images/Main_Page_Images/Contact_Me.png" alt="Contact Me Illustration" width="300" height="150" class="w-full max-w-xs object-contain filter drop-shadow-[0_0_20px_rgba(56,189,248,0.25)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          <!-- Larger Contact Graphic Asset -->
+          <div class="py-2 flex justify-start">
+            <img src="public/images/Main_Page_Images/Contact_Me.png" alt="Contact Me Illustration" width="380" height="200" class="w-full max-w-sm object-contain filter drop-shadow-[0_0_30px_rgba(56,189,248,0.35)] hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
 
           <div class="space-y-4 pt-2">
+            <!-- Email SVG Logo Link -->
             <a href="mailto:akashnagapure@live.com" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
-              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)] flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               </div>
               <div class="flex flex-col text-left">
                 <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">EMAIL LOGO</span>
@@ -1232,9 +1233,10 @@
               </div>
             </a>
 
+            <!-- LinkedIn SVG Logo Link -->
             <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
-              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)] flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </div>
               <div class="flex flex-col text-left">
                 <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">LINKEDIN LOGO</span>
@@ -1421,9 +1423,9 @@
     const backToTopBtn = document.getElementById("back-to-top-btn");
     if (!backToTopBtn) return;
     if (window.scrollY > 300) {
-      backToTopBtn.classList.remove("hidden");
-    } else {
       backToTopBtn.classList.add("hidden");
+    } else {
+      backToTopBtn.classList.remove("hidden");
     }
   });
 
