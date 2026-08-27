@@ -431,9 +431,12 @@
             <h1 id="hero-display-name" class="font-sans text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight select-none drop-shadow-lg">
               Akash Nagapure
             </h1>
-            <p class="font-mono text-lg sm:text-xl font-medium text-sky-400 tracking-wide filter drop-shadow">
-              Microsoft Intune & VMware Architect | Endpoint Security Specialist
-            </p>
+            
+            <!-- Dynamic Typewriter Sub-headline Container -->
+            <div class="font-mono text-lg sm:text-xl font-medium text-sky-400 tracking-wide filter drop-shadow min-h-[32px] flex items-center">
+              <span id="typewriter-text"></span>
+              <span class="animate-pulse ml-1 inline-block w-2.5 h-5 bg-sky-400"></span>
+            </div>
           </div>
 
           <p class="max-w-xl font-sans text-slate-300 text-base sm:text-lg leading-relaxed">
@@ -683,169 +686,161 @@
     </div>
   </section>
 
-  <!-- Work History Section Styled Like Reference (Placed Directly Below Professional Certifications) -->
+  <!-- Work History Section -->
+  <section id="experience" class="py-24 bg-slate-950 text-left relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex items-center space-x-4 mb-12">
+        <i data-lucide="briefcase" class="w-8 h-8 text-sky-400"></i>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Work History</h2>
+      </div>
 
-    
+      <div class="space-y-12 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[1px] before:bg-slate-800">
+        
+        <!-- Role: Architect – Technical Specialist -->
+        <div class="relative pl-12 sm:pl-20 group">
+          <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Architect – Technical Specialist</h3>
+                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Hexaware Technologies | Pune, Maharashtra</p>
+              </div>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">14/02/2026 – Present</span>
+            </div>
+            <ul class="space-y-3 mb-4">
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Microsoft Intune</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Azure AD</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">AVD</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Citrix</span>
+            </div>
+          </div>
+        </div>
 
-    <section id="experience" class="py-24 bg-slate-950 text-left relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="flex items-center space-x-4 mb-12">
-      <i data-lucide="briefcase" class="w-8 h-8 text-sky-400"></i>
-      <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Work History</h2>
+        <!-- Role: Specialist – EUC -->
+        <div class="relative pl-12 sm:pl-20 group">
+          <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Specialist – EUC</h3>
+                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+              </div>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/04/2024 – 13/02/2026</span>
+            </div>
+            <ul class="space-y-3 mb-4">
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Developed PowerShell and SQL scripts for patch compliance and device health dashboards.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">PowerShell</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">SQL</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">SCCM</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Entra ID</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role: Senior Administrator – EUC -->
+        <div class="relative pl-12 sm:pl-20 group">
+          <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Senior Administrator – EUC</h3>
+                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+              </div>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/01/2022 – 31/03/2024</span>
+            </div>
+            <ul class="space-y-3 mb-4">
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Designed and implemented device management policies, software deployment strategies, and OS provisioning.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Microsoft Intune</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">MECM/SCCM</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Entra ID</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role: Administrator – EUC -->
+        <div class="relative pl-12 sm:pl-20 group">
+          <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Administrator – EUC</h3>
+                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+              </div>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">31/01/2020 – 31/12/2021</span>
+            </div>
+            <ul class="space-y-3 mb-4">
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD).</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Created and maintained device collections, application packages, and compliance baselines.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">MECM/SCCM</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">OSD</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Patch Management</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Role: Process Associate -->
+        <div class="relative pl-12 sm:pl-20 group">
+          <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Process Associate</h3>
+                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
+              </div>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">19/11/2018 – 23/09/2019</span>
+            </div>
+            <ul class="space-y-3 mb-4">
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Performed SQL database health checks and managed incident tracking via Salesforce CRM.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">DICOM/HL7</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">SQL</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Salesforce CRM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role: Customer Support Engineer -->
+        <div class="relative pl-12 sm:pl-20 group">
+          <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Customer Support Engineer</h3>
+                <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
+              </div>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/02/2016 – 14/11/2018</span>
+            </div>
+            <ul class="space-y-3 mb-4">
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Delivered IT infrastructure support for 24K+ users in an ODC environment.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed desktop/laptop refresh for 6000+ endpoints.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Asset management (Desktop\Laptop\Handheld devices\Voice devices).</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">IT Infrastructure Support</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Asset Management</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <div class="space-y-12 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[1px] before:bg-slate-800">
-      
-      <!-- Role: Architect – Technical Specialist -->
-      <div class="relative pl-12 sm:pl-20 group">
-        <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
-        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
-          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Architect – Technical Specialist</h3>
-              <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Hexaware Technologies | Pune, Maharashtra</p>
-            </div>
-            <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">14/02/2026 – Present</span>
-          </div>
-          <ul class="space-y-3 mb-4">
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization.</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-4">
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Microsoft Intune</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Azure AD</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">AVD</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Citrix</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Role: Specialist – EUC -->
-      <div class="relative pl-12 sm:pl-20 group">
-        <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
-          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Specialist – EUC</h3>
-              <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
-            </div>
-            <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/04/2024 – 13/02/2026</span>
-          </div>
-          <ul class="space-y-3 mb-4">
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Developed PowerShell and SQL scripts for patch compliance and device health dashboards.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access.</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-4">
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">PowerShell</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">SQL</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">SCCM</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Entra ID</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Role: Senior Administrator – EUC -->
-      <div class="relative pl-12 sm:pl-20 group">
-        <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
-          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Senior Administrator – EUC</h3>
-              <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
-            </div>
-            <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/01/2022 – 31/03/2024</span>
-          </div>
-          <ul class="space-y-3 mb-4">
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Designed and implemented device management policies, software deployment strategies, and OS provisioning.</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-4">
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Microsoft Intune</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">MECM/SCCM</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Entra ID</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Role: Administrator – EUC -->
-      <div class="relative pl-12 sm:pl-20 group">
-        <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
-          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Administrator – EUC</h3>
-              <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
-            </div>
-            <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">31/01/2020 – 31/12/2021</span>
-          </div>
-          <ul class="space-y-3 mb-4">
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD).</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Created and maintained device collections, application packages, and compliance baselines.</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-4">
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">MECM/SCCM</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">OSD</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Patch Management</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Role: Process Associate -->
-      <div class="relative pl-12 sm:pl-20 group">
-        <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
-          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Process Associate</h3>
-              <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
-            </div>
-            <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">19/11/2018 – 23/09/2019</span>
-          </div>
-          <ul class="space-y-3 mb-4">
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Performed SQL database health checks and managed incident tracking via Salesforce CRM.</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-4">
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">DICOM/HL7</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">SQL</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Salesforce CRM</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Role: Customer Support Engineer -->
-      <div class="relative pl-12 sm:pl-20 group">
-        <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
-          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Customer Support Engineer</h3>
-              <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
-            </div>
-            <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/02/2016 – 14/11/2018</span>
-          </div>
-          <ul class="space-y-3 mb-4">
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Delivered IT infrastructure support for 24K+ users in an ODC environment.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed desktop/laptop refresh for 6000+ endpoints.</li>
-            <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Asset management (Desktop\Laptop\Handheld devices\Voice devices).</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 mt-4">
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">IT Infrastructure Support</span>
-            <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Asset Management</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
+  </section>
 
   <!-- Education & Academy Section -->
   <section id="education" class="py-24 section-bg-education border-y border-sky-500/20 text-left relative">
@@ -1598,6 +1593,48 @@
 </button>
 
 <script>
+  // Typewriter effect logic for Option 1 phrases
+  const phrases = [
+    "Microsoft Intune & VMware Architect",
+    "Securing endpoints and scaling cloud virtualization",
+    "Building automated, zero-trust enterprise workplaces."
+  ];
+
+  let currentPhraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typingSpeed = 70;
+  const deletingSpeed = 40;
+  const pauseTime = 2000;
+
+  function typeWriterEffect() {
+    const targetElement = document.getElementById("typewriter-text");
+    if (!targetElement) return;
+
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    if (isDeleting) {
+      targetElement.textContent = currentPhrase.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      targetElement.textContent = currentPhrase.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let speed = isDeleting ? deletingSpeed : typingSpeed;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      speed = pauseTime;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      speed = 500;
+    }
+
+    setTimeout(typeWriterEffect, speed);
+  }
+
   // Experience data dictionary for dynamic tab switching
   const experienceData = {
     'hexaware': {
@@ -1678,7 +1715,6 @@
   };
 
   function switchExperience(key) {
-    // Update active tab buttons styling
     document.querySelectorAll('.exp-tab-btn').forEach(btn => {
       btn.classList.remove('border-sky-500/50', 'bg-slate-900/90', 'shadow-[0_0_15px_rgba(56,189,248,0.15)]');
       btn.classList.add('border-slate-800', 'bg-slate-900/30');
@@ -1690,7 +1726,6 @@
       activeBtn.classList.add('border-sky-500/50', 'bg-slate-900/90', 'shadow-[0_0_15px_rgba(56,189,248,0.15)]');
     }
 
-    // Populate data into panel
     const data = experienceData[key];
     const panel = document.getElementById('experience-content-panel');
     if (!data || !panel) return;
@@ -1740,6 +1775,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
+    typeWriterEffect();
 
     const counters = document.querySelectorAll('.metric-value');
     const observer = new IntersectionObserver((entries) => {
