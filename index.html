@@ -4,25 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <!-- Primary SEO Meta Tags -->
   <title>Akash Nagapure | Microsoft Intune, SCCM & VMware Architect Portfolio</title>
   <meta name="title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect Portfolio">
   <meta name="description" content="Portfolio of Akash Nagapure - Microsoft Intune, SCCM, and VMware Architect specializing in enterprise endpoint security, Azure infrastructure, and automation." />
   <link rel="canonical" href="https://www.akashnagapure.in/" />
 
+  <!-- Preload LCP Hero Image for Instant Discovery -->
   <link rel="preload" as="image" href="public/Main_page_data/akash_profile_1781110763642.avif" fetchpriority="high">
 
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.akashnagapure.in/">
   <meta property="og:title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect">
   <meta property="og:description" content="Portfolio of Akash Nagapure - Microsoft Intune, SCCM, and VMware Architect specializing in enterprise endpoint security, Azure infrastructure, and automation.">
   <meta property="og:image" content="https://www.akashnagapure.in/public/Main_page_data/akash_profile_1781110763642.avif">
 
+  <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://www.akashnagapure.in/">
   <meta property="twitter:title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect">
   <meta property="twitter:description" content="Portfolio of Akash Nagapure - Microsoft Intune, SCCM, and VMware Architect specializing in enterprise endpoint security, Azure infrastructure, and automation.">
   <meta property="twitter:image" content="https://www.akashnagapure.in/public/Main_page_data/akash_profile_1781110763642.avif">
 
+  <!-- Structured Data (JSON-LD Schema) for Google Search -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,6 +53,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
+  <!-- Core Styling and Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -106,7 +112,7 @@
       pointer-events: none;
     }
 
-    /* Section Background Image Overlays */
+    /* Section Background Image Overlays with Deep Contrast Gradients */
     .section-bg-about {
       background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.88)), url('images/Main_Page_Images/hobby_homelab.avif');
       background-size: cover;
@@ -153,7 +159,7 @@
       background-attachment: fixed;
     }
 
-    /* Animations: Slide Down & Slide Left */
+    /* Animations: Slide Down & Slide Left & Shimmer */
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -163,8 +169,12 @@
       to { opacity: 1; transform: translateX(0); }
     }
     @keyframes nameGlow {
-      0%, 100% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
-      50% { text-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 0 10px rgba(99, 102, 241, 0.6); }
+      0%, 100% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(99, 102, 241, 0.2); }
+      50% { text-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 0 20px rgba(129, 140, 248, 0.6); }
+    }
+    @keyframes textShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
     }
     .animate-slide-down {
       animation: slideDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -174,6 +184,13 @@
     }
     .animate-name-glow {
       animation: nameGlow 4s ease-in-out infinite;
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #38bdf8 0%, #ffffff 50%, #818cf8 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      animation: textShimmer 5s linear infinite;
     }
 
     /* Construction Banner Animation */
@@ -266,6 +283,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
 
+<!-- Full-Page 3D Cinematic Particle & Tech Grid Background -->
 <canvas id="three-bg-canvas"></canvas>
 <script>
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
@@ -381,6 +399,7 @@
         </div>
       </a>
 
+      <!-- Updated Nav Menu -->
       <div class="hidden lg:flex items-center space-x-1">
         <a href="#home" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30 shadow-[0_0_10px_rgba(56,189,248,0.2)]" onclick="scrollToSection(event, 'home')">Home</a>
         <a href="#about" class="nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all" onclick="scrollToSection(event, 'about')">About</a>
@@ -421,31 +440,25 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
+        <!-- Left Content: Slide Down Animation -->
         <div class="lg:col-span-7 flex flex-col items-start space-y-6 text-left animate-slide-down">
-          <div class="flex flex-wrap items-center gap-3">
-            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 shadow-lg shadow-emerald-500/5">
-              <span class="flex h-2.5 w-2.5 relative">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-              </span>
-              <span class="flex-none font-mono text-[11px] font-semibold text-emerald-400 tracking-wider uppercase">
-                AVAILABLE FOR WORK
-              </span>
-            </div>
-
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-sky-500/20 text-sky-300 font-mono text-xs">
-              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-400"></i>
-              <span>Pune, India</span>
-            </div>
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 shadow-lg shadow-emerald-500/5">
+            <span class="flex h-2.5 w-2.5 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="flex-none font-mono text-[11px] font-semibold text-emerald-400 tracking-wider uppercase">
+              AVAILABLE FOR WORK
+            </span>
           </div>
 
           <div class="space-y-3">
-            <span class="font-mono text-xs text-sky-400 uppercase tracking-widest block font-bold">Hi there, I am</span>
             <h1 id="hero-display-name" class="font-sans text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight select-none animate-name-glow">
               Akash Nagapure
             </h1>
             
-            <div class="font-mono text-lg sm:text-xl font-medium text-sky-300 tracking-wide filter drop-shadow min-h-[32px] flex items-center">
+            <!-- Typewriter Sub-headline -->
+            <div class="font-mono text-lg sm:text-xl font-medium text-sky-400 tracking-wide filter drop-shadow min-h-[32px] flex items-center">
               <span id="typewriter-text"></span>
               <span class="animate-pulse ml-1 inline-block w-2.5 h-5 bg-sky-400"></span>
             </div>
@@ -468,6 +481,7 @@
           </div>
         </div>
 
+        <!-- Right Photo: Slide Left Animation & Boxless Background Integration -->
         <div class="lg:col-span-5 flex justify-center relative animate-slide-left">
           <div class="relative group">
             <div class="absolute -inset-2 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-20 group-hover:opacity-40 blur-3xl transition duration-500"></div>
@@ -510,25 +524,32 @@
     </div>
   </section>
 
+  <!-- About Me Section with Location, Updated Hobby/Interest Text, and Graphic -->
   <section id="about" class="py-24 section-bg-about text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="flex items-center space-x-4 mb-12">
-        <div class="w-1.5 h-10 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          About Me
-        </h2>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-12 gap-4">
+        <div class="flex items-center space-x-4">
+          <div class="w-1.5 h-10 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
+          <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            About Me
+          </h2>
+        </div>
+        <div class="inline-flex items-center space-x-2 px-4 py-2 bg-slate-900/90 border border-sky-500/30 rounded-full text-sky-300 font-mono text-xs shadow-lg backdrop-blur-md w-fit">
+          <i data-lucide="map-pin" class="w-4 h-4 text-sky-400 animate-bounce"></i>
+          <span>Pune, India</span>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-7 space-y-6">
-          <h3 class="font-sans text-xl sm:text-2xl font-bold text-sky-300 tracking-tight leading-relaxed">
+          <h3 class="font-sans text-xl sm:text-2xl font-bold shimmer-text tracking-tight leading-relaxed">
             Architect Behind The Screens
           </h3>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-            I design automated, secure, and bulletproof device environments. I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
+            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune and VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
           </p>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-            Outside of managing 35k+ endpoints, I am simply a builder who loves structured systems. Offline, I keep my mind sharp by breaking things in my self-hosted homelab, mastering strategic gaming or decoding history through numismatics (rare coins).
+            When I am not scaling cloud infrastructure or fine-tuning <span class="text-indigo-400 font-medium">PowerShell automation scripts</span>, my free time is dedicated to building and breaking configurations in my <span class="text-sky-300 font-medium">self-hosted homelab</span>, collecting rare and historical coins (<span class="text-amber-400 font-medium">numismatics</span>), diving into sci-fi and tech strategy literature, or sharpening tactical thinking through strategic gaming and speedcubing.
           </p>
 
           <div class="flex flex-wrap gap-4 pt-4">
@@ -543,6 +564,7 @@
           </div>
         </div>
 
+        <!-- Right Side: Custom About Me Graphic Asset -->
         <div class="lg:col-span-5 flex justify-center">
           <div class="relative w-full max-w-md">
             <img 
@@ -680,6 +702,7 @@
     </div>
   </section>
 
+  <!-- Work History Section -->
   <section id="experience" class="py-24 bg-slate-950 text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex items-center space-x-4 mb-12">
@@ -689,6 +712,7 @@
 
       <div class="space-y-12 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[1px] before:bg-slate-800">
         
+        <!-- Role: Architect – Technical Specialist -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
           <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
@@ -713,6 +737,7 @@
           </div>
         </div>
 
+        <!-- Role: Specialist – EUC -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
           <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
@@ -737,6 +762,7 @@
           </div>
         </div>
 
+        <!-- Role: Senior Administrator – EUC -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
           <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
@@ -759,6 +785,7 @@
           </div>
         </div>
 
+        <!-- Role: Administrator – EUC -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
           <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
@@ -781,6 +808,7 @@
           </div>
         </div>
         
+        <!-- Role: Process Associate -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
           <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
@@ -803,6 +831,7 @@
           </div>
         </div>
 
+        <!-- Role: Customer Support Engineer -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
           <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
@@ -829,6 +858,7 @@
     </div>
   </section>
 
+  <!-- Education & Academy Section -->
   <section id="education" class="py-24 section-bg-education border-y border-sky-500/20 text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -909,6 +939,7 @@
     </div>
   </section>
 
+  <!-- Hobbies Section Reverted to Original Tiles Layout -->
   <section id="hobbies" class="py-24 section-bg-hobbies text-left relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mb-12">
@@ -919,54 +950,97 @@
         <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Interests & Hobbies</h2>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <a href="Sub_Pages/HomeLab.html" class="flex flex-col items-center justify-center p-6 glass-card-3d rounded-2xl group hover:-translate-y-2 transition-all duration-300 holo-glow text-center">
-          <div class="w-16 h-16 rounded-2xl bg-sky-950/80 border border-sky-400/30 flex items-center justify-center text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.3)] group-hover:scale-110 transition-transform mb-3">
-            <i data-lucide="server" class="w-8 h-8"></i>
+        <a href="Sub_Pages/HomeLab.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Self-Hosted Homelab</h3>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Homelab Architecture →</span>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
-          <span class="font-sans font-bold text-white text-xs sm:text-sm group-hover:text-sky-300 transition-colors">Homelab</span>
+          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+            <img src="images/Main_Page_Images/hobby_homelab.avif" alt="Homelab Portfolio" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          </div>
         </a>
 
-        <a href="Sub_Pages/Game.html" class="flex flex-col items-center justify-center p-6 glass-card-3d rounded-2xl group hover:-translate-y-2 transition-all duration-300 holo-glow text-center">
-          <div class="w-16 h-16 rounded-2xl bg-indigo-950/80 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.3)] group-hover:scale-110 transition-transform mb-3">
-            <i data-lucide="Gamepad-2" class="w-8 h-8"></i>
+        <a href="Sub_Pages/Game.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Strategic Gaming</h3>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Gaming Portfolio →</span>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
-          <span class="font-sans font-bold text-white text-xs sm:text-sm group-hover:text-sky-300 transition-colors">Gaming</span>
+          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+            <img src="images/Main_Page_Images/hobby_gaming.avif" alt="Strategic Gaming Portfolio" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          </div>
         </a>
 
-        <a href="Sub_Pages/Food.html" class="flex flex-col items-center justify-center p-6 glass-card-3d rounded-2xl group hover:-translate-y-2 transition-all duration-300 holo-glow text-center">
-          <div class="w-16 h-16 rounded-2xl bg-amber-950/80 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)] group-hover:scale-110 transition-transform mb-3">
-            <i data-lucide="utensils" class="w-8 h-8"></i>
+        <a href="Sub_Pages/Food.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Culinary & Foodie</h3>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Food Portfolio →</span>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
-          <span class="font-sans font-bold text-white text-xs sm:text-sm group-hover:text-sky-300 transition-colors">Culinary</span>
+          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+            <img src="images/Main_Page_Images/Food_Poster.avif" alt="Food Portfolio" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          </div>
         </a>
 
-        <a href="Sub_Pages/Reading.html" class="flex flex-col items-center justify-center p-6 glass-card-3d rounded-2xl group hover:-translate-y-2 transition-all duration-300 holo-glow text-center">
-          <div class="w-16 h-16 rounded-2xl bg-emerald-950/80 border border-emerald-400/30 flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.3)] group-hover:scale-110 transition-transform mb-3">
-            <i data-lucide="book-open" class="w-8 h-8"></i>
+        <a href="Sub_Pages/Reading.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Reading</h3>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Literary Portfolio →</span>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
-          <span class="font-sans font-bold text-white text-xs sm:text-sm group-hover:text-sky-300 transition-colors">Reading</span>
+          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+            <img src="images/Main_Page_Images/hobby_reading.avif" alt="Reading Portfolio" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          </div>
         </a>
 
-        <a href="Sub_Pages/Coins.html" class="flex flex-col items-center justify-center p-6 glass-card-3d rounded-2xl group hover:-translate-y-2 transition-all duration-300 holo-glow text-center">
-          <div class="w-16 h-16 rounded-2xl bg-purple-950/80 border border-purple-400/30 flex items-center justify-center text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.3)] group-hover:scale-110 transition-transform mb-3">
-            <i data-lucide="coins" class="w-8 h-8"></i>
+        <a href="Sub_Pages/Coins.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Coin Collection</h3>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Numismatic Vault →</span>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
-          <span class="font-sans font-bold text-white text-xs sm:text-sm group-hover:text-sky-300 transition-colors">Numismatics</span>
+          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+            <img src="images/Main_Page_Images/hobby_coins.avif" alt="Coin Collection Portfolio" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          </div>
         </a>
 
-        <a href="Sub_Pages/Puzzle.html" class="flex flex-col items-center justify-center p-6 glass-card-3d rounded-2xl group hover:-translate-y-2 transition-all duration-300 holo-glow text-center">
-          <div class="w-16 h-16 rounded-2xl bg-teal-950/80 border border-teal-400/30 flex items-center justify-center text-teal-400 shadow-[0_0_20px_rgba(45,212,191,0.3)] group-hover:scale-110 transition-transform mb-3">
-            <i data-lucide="puzzle" class="w-8 h-8"></i>
+        <a href="Sub_Pages/Puzzle.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Speedcubing & Puzzles</h3>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Puzzle Hub →</span>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
-          <span class="font-sans font-bold text-white text-xs sm:text-sm group-hover:text-sky-300 transition-colors">Puzzles</span>
+          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden">
+            <img src="images/Main_Page_Images/3_3_Cube.avif" alt="Rubik's Cube Portfolio" width="487" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          </div>
         </a>
 
       </div>
     </div>
   </section>
 
+  <!-- Projects Section Reverted to 6 Project Flip Cards -->
   <section id="projects" class="py-24 section-bg-projects border-b border-sky-500/20 text-left relative">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.03),transparent)] pointer-events-none"></div>
 
@@ -980,105 +1054,79 @@
         <p class="font-sans text-slate-400 text-base sm:text-lg">Case studies of engineered solutions and successful enterprise deployments. (Click cards to spin)</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
+        <!-- Project 1 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Migration Case Study" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                  <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Migration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_01</div>
                 </div>
                 <div class="p-6">
                   <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>VDI Migration (Windows 7 to 10)</span>
+                    <span>VDI Migration (Win 7 to 10)</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
                   <p class="font-sans text-slate-300 text-sm leading-relaxed">
-                    Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability for the global workforce.
+                    Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability.
                   </p>
                 </div>
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-[0_0_40px_rgba(56,189,248,0.25)]">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
               <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 6 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-200 text-xs leading-relaxed">Successfully resolved migration-related driver and resource issues for 3,000+ VDIs, ensuring a smooth transition to modern OS standards.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-200 text-xs font-mono mt-0.5">VMware Horizon, AppVolumes, vSphere</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-200 text-xs leading-relaxed">Old legacy applications need to be tested with newer version OS compatibility beforehand.</p>
-                </div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">6 Months</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Resolved driver & resource bottlenecks for 3k+ virtual endpoints.</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Stack</span><p class="text-slate-200 text-xs font-mono">VMware Horizon, vSphere</p></div>
               </div>
-              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click anywhere to flip front</div>
+              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click to flip front</div>
             </div>
           </div>
         </div>
 
+        <!-- Project 2 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune Migration Case Study" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                  <img src="images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_02</div>
                 </div>
                 <div class="p-6">
                   <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
-                    <span>SCCM to Intune Migration (Hybrid Join)</span>
+                    <span>SCCM to Intune Migration</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
                   <p class="font-sans text-slate-300 text-sm leading-relaxed">
-                    Architected a Hybrid Azure AD Join environment, enabling a phased migration from on-premises SCCM management to cloud-native Intune.
+                    Architected a Hybrid Azure AD Join environment enabling phased migration from on-prem SCCM to cloud-native Intune.
                   </p>
                 </div>
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-[0_0_40px_rgba(56,189,248,0.25)]">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
               <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 8 Months</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-200 text-xs leading-relaxed">Enabled gradual shift of device management authority without stripping critical on-premises security controls.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-200 text-xs font-mono mt-0.5">AAD Connect, Co-management Workloads, Hybrid Join.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-200 text-xs leading-relaxed">Identity sync health is absolute priority. Never attempt to shift workloads until your hybrid identity state is verified.</p>
-                </div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">8 Months</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Smooth workload authority shift without losing security controls.</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Stack</span><p class="text-slate-200 text-xs font-mono">AAD Connect, Hybrid Join</p></div>
               </div>
-              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click anywhere to flip front</div>
+              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click to flip front</div>
             </div>
           </div>
         </div>
 
+        <!-- Project 3 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Autopilot Zero-Touch Case Study" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" referrerpolicy="no-referrer" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                  <img src="images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Autopilot Zero-Touch" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_03</div>
                 </div>
                 <div class="p-6">
@@ -1087,32 +1135,115 @@
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
                   <p class="font-sans text-slate-300 text-sm leading-relaxed">
-                    Architected a custom global factory-to-user operating system provisioning model utilizing dynamic application packaging matrices.
+                    Custom global factory-to-user OS provisioning model utilizing dynamic application packaging matrices.
                   </p>
                 </div>
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-[0_0_40px_rgba(56,189,248,0.25)]">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
               <div class="space-y-4 overflow-y-auto pr-1">
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">PROJECT TIMELINE</span>
-                  <p class="text-white text-sm font-semibold mt-0.5">Duration: 4 Months</p>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">4 Months</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Reduced device setup tracks from 4 hours to under 30 minutes.</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Stack</span><p class="text-slate-200 text-xs font-mono">Windows Autopilot, Win32</p></div>
+              </div>
+              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click to flip front</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+              <div>
+                <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                  <img src="images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_04</div>
                 </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">BUSINESS OUTCOME</span>
-                  <p class="text-slate-200 text-xs leading-relaxed">Slashed traditional hardware configuration tracks down from 4 hours into under 30 minutes.</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">TECHNOLOGY STACK</span>
-                  <p class="text-slate-200 text-xs font-mono mt-0.5">Windows Autopilot, PowerShell System Staging, Win32 Wrappers</p>
-                </div>
-                <div>
-                  <span class="text-[10px] font-mono text-sky-400 block uppercase tracking-wider">LESSONS LEARNED</span>
-                  <p class="text-slate-200 text-xs leading-relaxed">Enforcing structured application dependency sequences blocks potential timing exceptions.</p>
+                <div class="p-6">
+                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>Windows 365 Setup</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed">
+                    Deployed Cloud PCs providing flexible, persistent, and secure virtual workspaces for remote-first teams.
+                  </p>
                 </div>
               </div>
-              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click anywhere to flip front</div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+            </div>
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+              <div class="space-y-4 overflow-y-auto pr-1">
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">3 Months</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Improved user login speeds by 30% globally.</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Stack</span><p class="text-slate-200 text-xs font-mono">Windows 365 Enterprise</p></div>
+              </div>
+              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click to flip front</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+              <div>
+                <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                  <img src="images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_05</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>GPO to Intune Profiles</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed">
+                    Modernized endpoint management by migrating complex legacy GPOs to cloud-native Intune Configuration Profiles.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+            </div>
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+              <div class="space-y-4 overflow-y-auto pr-1">
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">3 Months</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Achieved a 50% reduction in policy conflict support tickets.</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Stack</span><p class="text-slate-200 text-xs font-mono">Settings Catalog, AD Policies</p></div>
+              </div>
+              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click to flip front</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+          <div class="flip-card-inner w-full h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+              <div>
+                <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
+                  <img src="images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow Integration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_06</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>ServiceNow & Intune Sync</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed">
+                    Integrated Microsoft Intune with ServiceNow, automating asset management, CI syncing, and incident workflows.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+            </div>
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+              <div class="space-y-4 overflow-y-auto pr-1">
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">3 Months</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Real-time CMDB inventory accuracy with zero manual audits.</p></div>
+                <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Stack</span><p class="text-slate-200 text-xs font-mono">Microsoft Graph API, CMDB</p></div>
+              </div>
+              <div class="pt-4 border-t border-white/10 text-[11px] text-sky-400 font-mono">Click to flip front</div>
             </div>
           </div>
         </div>
@@ -1121,11 +1252,12 @@
     </div>
   </section>
 
+  <!-- Contact Section with Custom Contact_Me.png Graphic and Logo Links -->
   <section id="contact" class="py-24 section-bg-contact text-left relative overflow-hidden">
     <div class="absolute inset-0 bg-radial-gradient from-indigo-500/5 via-transparent to-transparent pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-8">
           <div class="space-y-6">
@@ -1141,29 +1273,35 @@
             </p>
           </div>
 
-          <div class="space-y-4 pt-4">
-            <a href="mailto:akashnagapure@live.com" class="flex items-center space-x-4 p-5 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
-              <div class="p-3.5 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+          <!-- Contact Graphic Asset -->
+          <div class="py-2">
+            <img src="public/images/Main_Page_Images/Contact_Me.png" alt="Contact Me Illustration" width="300" height="150" class="w-full max-w-xs object-contain filter drop-shadow-[0_0_20px_rgba(56,189,248,0.25)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <a href="mailto:akashnagapure@live.com" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
+              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               </div>
               <div class="flex flex-col text-left">
-                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">EMAIL DIRECT</span>
+                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">EMAIL LOGO / DIRECT</span>
                 <span class="font-sans text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">akashnagapure@live.com</span>
               </div>
             </a>
 
-            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="flex items-center space-x-4 p-5 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
-              <div class="p-3.5 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
+              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
               </div>
               <div class="flex flex-col text-left">
-                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">LINKEDIN MATRIX</span>
+                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">LINKEDIN MATRIX LOGO</span>
                 <span class="font-sans text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">www.linkedin.com/in/anagapure</span>
               </div>
             </a>
           </div>
         </div>
 
+        <!-- Fully Editable Contact Form Terminal -->
         <div class="lg:col-span-7 glass-card-3d p-7 sm:p-10 rounded-3xl shadow-2xl relative holo-glow z-20">
           <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
             <div class="flex items-center space-x-2">
@@ -1226,6 +1364,7 @@
   </section>
 </main>
 
+<!-- Standardized Compact Footer with Icons -->
 <footer class="w-full py-6 sm:py-8 bg-surface-dim border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
     <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
         <div class="flex items-center gap-2.5">
@@ -1237,6 +1376,7 @@
             <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
         </div>
         
+        <!-- Footer Links with Matching Icons -->
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
             <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
@@ -1304,144 +1444,6 @@
     }
 
     setTimeout(typeWriterEffect, speed);
-  }
-
-  // Experience data dictionary
-  const experienceData = {
-    'hexaware': {
-      company: "Hexaware Technologies",
-      location: "Pune, Maharashtra",
-      dateRange: "14/02/2026 – Present",
-      role: "Architect – Technical Specialist",
-      details: [
-        "Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.",
-        "Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.",
-        "Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization."
-      ],
-      projects: "Enterprise Modern Workplace & Cloud Migration Program",
-      technologies: ["Microsoft Intune", "Azure AD", "AVD", "Citrix", "Autopilot"]
-    },
-    'medline': {
-      company: "Medline Industries India Pvt. Ltd",
-      location: "Pune, Maharashtra",
-      dateRange: "01/04/2024 – 13/02/2026",
-      role: "Specialist – EUC",
-      details: [
-        "Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.",
-        "Developed PowerShell and SQL scripts for patch compliance and device health dashboards.",
-        "Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access."
-      ],
-      projects: "Global Endpoint Management & Automated Patching",
-      technologies: ["PowerShell", "SQL", "SCCM", "Entra ID", "Intune"]
-    },
-    'medline-sr': {
-      company: "Medline Industries India Pvt. Ltd",
-      location: "Pune, Maharashtra",
-      dateRange: "01/01/2022 – 31/03/2024",
-      role: "Senior Administrator – EUC",
-      details: [
-        "Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.",
-        "Designed and implemented device management policies, software deployment strategies, and OS provisioning."
-      ],
-      projects: "Enterprise Policy Optimization & Provisioning",
-      technologies: ["Microsoft Intune", "MECM/SCCM", "Entra ID", "GPO"]
-    },
-    'medline-admin': {
-      company: "Medline Industries India Pvt. Ltd",
-      location: "Pune, Maharashtra",
-      dateRange: "31/01/2020 – 31/12/2021",
-      role: "Administrator – EUC",
-      details: [
-        "Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD).",
-        "Created and maintained device collections, application packages, and compliance baselines."
-      ],
-      projects: "MECM Infrastructure & OSD Deployment",
-      technologies: ["MECM/SCCM", "OSD", "Patch Management"]
-    },
-    'capgemini': {
-      company: "Capgemini Technology Services",
-      location: "Client: IBM Merge Healthcare",
-      dateRange: "19/11/2018 – 23/09/2019",
-      role: "Process Associate",
-      details: [
-        "Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments.",
-        "Performed SQL database health checks and managed incident tracking via Salesforce CRM."
-      ],
-      projects: "Global Healthcare Platforms Support",
-      technologies: ["DICOM/HL7", "SQL", "Salesforce CRM", "Windows OS"]
-    },
-    'vda': {
-      company: "VDA Info Solutions Private Limited",
-      location: "Pune, Maharashtra",
-      dateRange: "01/02/2016 – 14/11/2018",
-      role: "Customer Support Engineer",
-      details: [
-        "Delivered IT infrastructure support for 24K+ users in an ODC environment.",
-        "Managed desktop/laptop refresh for 6000+ endpoints.",
-        "Asset management (Desktop\\Laptop\\Handheld devices\\Voice devices)."
-      ],
-      projects: "Enterprise Refresh & ODC Infrastructure",
-      technologies: ["IT Infrastructure Support", "Asset Management", "Hardware Refresh"]
-    }
-  };
-
-  function switchExperience(key) {
-    document.querySelectorAll('.exp-tab-btn').forEach(btn => {
-      btn.classList.remove('border-sky-500/50', 'bg-slate-900/90', 'shadow-[0_0_15px_rgba(56,189,248,0.15)]');
-      btn.classList.add('border-slate-800', 'bg-slate-900/30');
-    });
-
-    const activeBtn = document.getElementById(`btn-${key}`);
-    if (activeBtn) {
-      activeBtn.classList.remove('border-slate-800', 'bg-slate-900/30');
-      activeBtn.classList.add('border-sky-500/50', 'bg-slate-900/90', 'shadow-[0_0_15px_rgba(56,189,248,0.15)]');
-    }
-
-    const data = experienceData[key];
-    const panel = document.getElementById('experience-content-panel');
-    if (!data || !panel) return;
-
-    let techHTML = data.technologies.map(tech => 
-      `<span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">${tech}</span>`
-    ).join('');
-
-    let detailsHTML = data.details.map(item => 
-      `<li class="flex items-start"><span class="text-sky-400 mr-2">▪</span> ${item}</li>`
-    ).join('');
-
-    panel.innerHTML = `
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-5 mb-6">
-        <div>
-          <h3 class="text-xl sm:text-2xl font-bold text-white">${data.company}</h3>
-          <p class="text-sky-400 font-mono text-xs uppercase tracking-wider mt-1">${data.location}</p>
-        </div>
-        <div class="mt-2 sm:mt-0 text-right">
-          <span class="px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-300 block">${data.dateRange}</span>
-        </div>
-      </div>
-
-      <div class="mb-6">
-        <h4 class="text-lg font-semibold text-sky-300 mb-1">${data.role}</h4>
-        <p class="text-xs font-mono text-slate-400 mb-4">${data.dateRange}</p>
-        
-        <h5 class="font-mono text-xs text-slate-400 uppercase tracking-wider mb-3">Details:</h5>
-        <ul class="space-y-3 text-slate-300 text-sm">
-          ${detailsHTML}
-        </ul>
-      </div>
-
-      <div class="mb-6 border-t border-slate-800/80 pt-6">
-        <h5 class="font-mono text-xs text-slate-400 uppercase tracking-wider mb-2">Projects:</h5>
-        <p class="text-sm text-slate-300">${data.projects}</p>
-      </div>
-
-      <div class="border-t border-slate-800/80 pt-6">
-        <h5 class="font-mono text-xs text-slate-400 uppercase tracking-wider mb-3">Technologies:</h5>
-        <div class="flex flex-wrap gap-2">
-          ${techHTML}
-        </div>
-      </div>
-    `;
   }
 
   document.addEventListener("DOMContentLoaded", () => {
