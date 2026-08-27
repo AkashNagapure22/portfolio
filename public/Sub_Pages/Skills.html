@@ -94,9 +94,9 @@
         border-bottom: 2px solid #38bdf8;
     }
 
-    /* True 3D Hover Effect for Tech Stack Cards */
+    /* True 3D Floating Effect for Tech Stack Cards */
     .tech-stack-card {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(2, 6, 23, 0.8) 100%);
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(2, 6, 23, 0.75) 100%);
         backdrop-filter: blur(15px);
         border: 1px solid rgba(56, 189, 248, 0.15);
         box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
@@ -104,7 +104,7 @@
         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.3s ease;
     }
     .tech-stack-card:hover {
-        transform: translateY(-8px) rotateX(4deg) rotateY(6deg) scale(1.02);
+        transform: translateY(-8px) rotateX(4deg) rotateY(6deg) scale(1.03);
         border-color: rgba(56, 189, 248, 0.5);
         box-shadow: 0 25px 50px -10px rgba(56, 189, 248, 0.25), 0 0 30px rgba(56, 189, 248, 0.1);
     }
@@ -260,7 +260,7 @@
             <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Intune", "PowerShell", "VMware", or "Azure".</p>
         </div>
 
-        <!-- NEW TECH STACK SECTION (Integrated seamlessly into background with 3D cards) -->
+        <!-- NEW TECH STACK SECTION (Background-blended illustration & 3D rotating cards) -->
         <div id="tech-stack" class="pt-4 scroll-mt-32 searchable-skill-card">
             
             <div class="text-center mb-16 space-y-3">
@@ -270,16 +270,17 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <!-- Left Image Card (Transparent blend with background) -->
+                <!-- Left Image Card (Transparent background blend matching reference) -->
                 <div class="lg:col-span-5 flex justify-center">
                     <div class="relative w-full max-w-lg">
-                        <div class="overflow-hidden">
+                        <div class="overflow-hidden bg-transparent">
                             <img 
                                 src="../images/Skills/skills.avif" 
                                 alt="Technical Arsenal Illustration" 
-                                width="500" 
-                                height="420" 
-                                class="w-full h-auto object-contain filter drop-shadow-[0_0_30px_rgba(56,189,248,0.15)] transform group-hover:scale-105 transition-transform duration-500" 
+                                width="520" 
+                                height="440" 
+                                class="w-full h-auto object-contain transform hover:scale-105 transition-transform duration-500" 
+                                style="mix-blend-mode: luminosity; opacity: 0.95;"
                                 onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';"
                             />
                         </div>
@@ -482,7 +483,7 @@
 
         if (emptyState) {
             if (visibleCount === 0 && filter !== '') {
-                emptyState.classList.add('');
+                emptyState.classList.remove('hidden');
             } else {
                 emptyState.classList.add('hidden');
             }
