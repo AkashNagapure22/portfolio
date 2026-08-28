@@ -112,51 +112,34 @@
       pointer-events: none;
     }
 
-    /* Section Background Image Overlays with Deep Contrast Gradients */
-    .section-bg-about {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.88)), url('images/Main_Page_Images/hobby_homelab.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+    /* Clean Solid / Gradient Section Backgrounds */
+    .section-clean-bg {
+      background: linear-gradient(to bottom, #020617 0%, #090d1f 50%, #020617 100%);
     }
 
-    .section-bg-cert {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.90), rgba(2, 6, 23, 0.95));
+    /* Giant Scrolling Background Section Names (Parallax Effect) */
+    .parallax-title-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+      display: flex;
+      align-items: center;
     }
 
-    .section-bg-experience {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.90)), url('images/Main_Page_Images/project_intune_1781110786338.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-education {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.96)), url('images/Main_Page_Images/project_Windows-365.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-hobbies {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.90), rgba(15, 23, 42, 0.92)), url('images/Main_Page_Images/hobby_gaming.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-projects {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.94), rgba(2, 6, 23, 0.96)), url('images/Main_Page_Images/project_autopilot_1781110823628.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-
-    .section-bg-contact {
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.90), rgba(2, 6, 23, 0.96)), url('images/Main_Page_Images/project_ServiceNow.avif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+    .parallax-big-text {
+      font-size: clamp(120px, 18vw, 300px);
+      font-weight: 900;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: rgba(56, 189, 248, 0.035);
+      letter-spacing: -0.05em;
+      user-select: none;
+      will-change: transform;
     }
 
     /* Animations: Slide Down & Slide Left & Shimmer */
@@ -481,7 +464,7 @@
           </div>
         </div>
 
-        <!-- Right Photo: Slide Left Animation & Boxless Background Integration -->
+        <!-- Right Photo: Slide Left Animation -->
         <div class="lg:col-span-5 flex justify-center relative animate-slide-left">
           <div class="relative group">
             <div class="absolute -inset-2 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-20 group-hover:opacity-40 blur-3xl transition duration-500"></div>
@@ -524,8 +507,12 @@
     </div>
   </section>
 
-  <!-- About Me Section with Location, Updated Hobby/Interest Text, and Graphic -->
-  <section id="about" class="py-24 section-bg-about text-left relative">
+  <!-- About Me Section with Giant Parallax Background Title -->
+  <section id="about" class="py-24 section-clean-bg text-left relative overflow-hidden">
+    <div class="parallax-title-container">
+      <div class="parallax-big-text" data-speed="0.15">ABOUT ME</div>
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-12 gap-4">
         <div class="flex items-center space-x-4">
@@ -581,8 +568,11 @@
     </div>
   </section>
 
-  <section id="certifications" class="py-24 section-bg-cert border-y border-sky-500/20 text-center relative">
-    <div class="absolute inset-0 bg-radial-gradient from-sky-500/5 via-transparent to-transparent pointer-events-none"></div>
+  <!-- Certifications Section with Parallax Background Title -->
+  <section id="certifications" class="py-24 section-clean-bg border-y border-sky-500/20 text-center relative overflow-hidden">
+    <div class="parallax-title-container">
+      <div class="parallax-big-text" data-speed="0.15">CREDENTIALS</div>
+    </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mx-auto mb-16 text-center">
@@ -702,8 +692,12 @@
     </div>
   </section>
 
-  <!-- Work History Section -->
-  <section id="experience" class="py-24 bg-slate-950 text-left relative">
+  <!-- Work History Section with Parallax Background Title -->
+  <section id="experience" class="py-24 section-clean-bg text-left relative overflow-hidden">
+    <div class="parallax-title-container">
+      <div class="parallax-big-text" data-speed="0.15">EXPERIENCE</div>
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex items-center space-x-4 mb-12">
         <i data-lucide="briefcase" class="w-8 h-8 text-sky-400"></i>
@@ -715,7 +709,7 @@
         <!-- Role: Architect – Technical Specialist -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Architect – Technical Specialist</h3>
@@ -740,7 +734,7 @@
         <!-- Role: Specialist – EUC -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Specialist – EUC</h3>
@@ -765,7 +759,7 @@
         <!-- Role: Senior Administrator – EUC -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Senior Administrator – EUC</h3>
@@ -788,7 +782,7 @@
         <!-- Role: Administrator – EUC -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Administrator – EUC</h3>
@@ -811,7 +805,7 @@
         <!-- Role: Process Associate -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Process Associate</h3>
@@ -834,7 +828,7 @@
         <!-- Role: Customer Support Engineer -->
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300">
+          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Customer Support Engineer</h3>
@@ -858,8 +852,12 @@
     </div>
   </section>
 
-  <!-- Education & Academy Section -->
-  <section id="education" class="py-24 section-bg-education border-y border-sky-500/20 text-left relative">
+  <!-- Education & Academy Section with Parallax Background Title -->
+  <section id="education" class="py-24 section-clean-bg border-y border-sky-500/20 text-left relative overflow-hidden">
+    <div class="parallax-title-container">
+      <div class="parallax-big-text" data-speed="0.15">ACADEMY</div>
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
@@ -879,7 +877,7 @@
         <div class="relative pl-12 sm:pl-16 group">
           <div class="absolute left-[13px] top-1.5 w-[22px] h-[22px] rounded-full bg-slate-950 border-4 border-slate-800 group-hover:border-sky-400 transition-colors duration-300 flex items-center justify-center"></div>
           
-          <div class="glass-card-3d p-7 rounded-2xl transition-all duration-300">
+          <div class="glass-card-3d p-7 rounded-2xl transition-all duration-300 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
               <h3 class="font-sans font-extrabold text-lg sm:text-xl text-white group-hover:text-sky-300 transition-colors">
                 Bachelor of Computer Science and Engineering
@@ -909,7 +907,7 @@
         <div class="relative pl-12 sm:pl-16 group">
           <div class="absolute left-[13px] top-1.5 w-[22px] h-[22px] rounded-full bg-slate-950 border-4 border-slate-800 group-hover:border-sky-400 transition-colors duration-300 flex items-center justify-center"></div>
           
-          <div class="glass-card-3d p-7 rounded-2xl transition-all duration-300">
+          <div class="glass-card-3d p-7 rounded-2xl transition-all duration-300 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
               <h3 class="font-sans font-extrabold text-lg sm:text-xl text-white group-hover:text-sky-300 transition-colors">
                 HSC
@@ -939,8 +937,12 @@
     </div>
   </section>
 
-  <!-- Hobbies Section Reverted to Original Tiles Layout -->
-  <section id="hobbies" class="py-24 section-bg-hobbies text-left relative">
+  <!-- Hobbies Section with Parallax Background Title -->
+  <section id="hobbies" class="py-24 section-clean-bg text-left relative overflow-hidden">
+    <div class="parallax-title-container">
+      <div class="parallax-big-text" data-speed="0.15">HOBBIES</div>
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mb-12">
         <div class="flex items-center space-x-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
@@ -952,7 +954,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <a href="Sub_Pages/HomeLab.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="Sub_Pages/HomeLab.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow shadow-xl">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Self-Hosted Homelab</h3>
@@ -966,7 +968,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Game.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="Sub_Pages/Game.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow shadow-xl">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Strategic Gaming</h3>
@@ -980,7 +982,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Food.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="Sub_Pages/Food.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow shadow-xl">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Culinary & Foodie</h3>
@@ -994,7 +996,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Reading.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="Sub_Pages/Reading.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow shadow-xl">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Reading</h3>
@@ -1008,7 +1010,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Coins.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="Sub_Pages/Coins.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow shadow-xl">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Coin Collection</h3>
@@ -1022,7 +1024,7 @@
           </div>
         </a>
 
-        <a href="Sub_Pages/Puzzle.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow">
+        <a href="Sub_Pages/Puzzle.html" class="block h-[380px] glass-card-3d rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 group holo-glow shadow-xl">
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Speedcubing & Puzzles</h3>
@@ -1040,9 +1042,11 @@
     </div>
   </section>
 
-  <!-- Projects Section Reverted to 6 Project Flip Cards -->
-  <section id="projects" class="py-24 section-bg-projects border-b border-sky-500/20 text-left relative">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.03),transparent)] pointer-events-none"></div>
+  <!-- Projects Section Restored to All 6 Key Projects -->
+  <section id="projects" class="py-24 section-clean-bg border-b border-sky-500/20 text-left relative overflow-hidden">
+    <div class="parallax-title-container">
+      <div class="parallax-big-text" data-speed="0.15">PROJECTS</div>
+    </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
       <div class="max-w-3xl mb-16">
@@ -1059,7 +1063,7 @@
         <!-- Project 1 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xl">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
                   <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Migration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
@@ -1077,7 +1081,7 @@
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">6 Months</p></div>
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Resolved driver & resource bottlenecks for 3k+ virtual endpoints.</p></div>
@@ -1091,7 +1095,7 @@
         <!-- Project 2 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xl">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
                   <img src="images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
@@ -1109,7 +1113,7 @@
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">8 Months</p></div>
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Smooth workload authority shift without losing security controls.</p></div>
@@ -1123,7 +1127,7 @@
         <!-- Project 3 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xl">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
                   <img src="images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Autopilot Zero-Touch" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
@@ -1141,7 +1145,7 @@
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">4 Months</p></div>
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Reduced device setup tracks from 4 hours to under 30 minutes.</p></div>
@@ -1155,10 +1159,10 @@
         <!-- Project 4 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xl">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <img src="images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365 Setup" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_04</div>
                 </div>
                 <div class="p-6">
@@ -1173,7 +1177,7 @@
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">3 Months</p></div>
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Improved user login speeds by 30% globally.</p></div>
@@ -1187,10 +1191,10 @@
         <!-- Project 5 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xl">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <img src="images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune Profiles" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_05</div>
                 </div>
                 <div class="p-6">
@@ -1205,7 +1209,7 @@
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">3 Months</p></div>
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Achieved a 50% reduction in policy conflict support tickets.</p></div>
@@ -1219,7 +1223,7 @@
         <!-- Project 6 -->
         <div class="flip-card-container h-[420px] cursor-pointer" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner w-full h-full">
-            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+            <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xl">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
                   <img src="images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow Integration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
@@ -1237,7 +1241,7 @@
               </div>
               <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
             </div>
-            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full">
+            <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Timeline</span><p class="text-white text-sm">3 Months</p></div>
                 <div><span class="text-[10px] font-mono text-sky-400 block uppercase">Outcome</span><p class="text-slate-200 text-xs">Real-time CMDB inventory accuracy with zero manual audits.</p></div>
@@ -1252,8 +1256,12 @@
     </div>
   </section>
 
-  <!-- Contact Section with Custom Contact_Me.png Graphic and Logo Links -->
-  <section id="contact" class="py-24 section-bg-contact text-left relative overflow-hidden">
+  <!-- Contact Section with Parallax Background Title -->
+  <section id="contact" class="py-24 section-clean-bg text-left relative overflow-hidden">
+    <div class="parallax-title-container">
+      <div class="parallax-big-text" data-speed="0.15">CONTACT</div>
+    </div>
+
     <div class="absolute inset-0 bg-radial-gradient from-indigo-500/5 via-transparent to-transparent pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1273,28 +1281,30 @@
             </p>
           </div>
 
-          <!-- Contact Graphic Asset -->
-          <div class="py-2">
-            <img src="public/images/Main_Page_Images/Contact_Me.png" alt="Contact Me Illustration" width="300" height="150" class="w-full max-w-xs object-contain filter drop-shadow-[0_0_20px_rgba(56,189,248,0.25)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          <!-- Larger Contact Graphic Asset -->
+          <div class="py-2 flex justify-start">
+            <img src="public/images/Main_Page_Images/Contact_Me.png" alt="Contact Me Illustration" width="380" height="200" class="w-full max-w-sm object-contain filter drop-shadow-[0_0_30px_rgba(56,189,248,0.35)] hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
 
           <div class="space-y-4 pt-2">
-            <a href="mailto:akashnagapure@live.com" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
-              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <!-- Email SVG Logo Link -->
+            <a href="mailto:akashnagapure@live.com" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all shadow-xl">
+              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)] flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               </div>
               <div class="flex flex-col text-left">
-                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">EMAIL LOGO / DIRECT</span>
+                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">EMAIL LOGO</span>
                 <span class="font-sans text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">akashnagapure@live.com</span>
               </div>
             </a>
 
-            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all">
-              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            <!-- LinkedIn SVG Logo Link -->
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="flex items-center space-x-4 p-4 glass-card-3d hover:border-sky-400/50 rounded-2xl group transition-all shadow-xl">
+              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:text-white transition-colors shadow-[0_0_15px_rgba(56,189,248,0.2)] flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </div>
               <div class="flex flex-col text-left">
-                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">LINKEDIN MATRIX LOGO</span>
+                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">LINKEDIN LOGO</span>
                 <span class="font-sans text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">www.linkedin.com/in/anagapure</span>
               </div>
             </a>
@@ -1302,7 +1312,7 @@
         </div>
 
         <!-- Fully Editable Contact Form Terminal -->
-        <div class="lg:col-span-7 glass-card-3d p-7 sm:p-10 rounded-3xl shadow-2xl relative holo-glow z-20">
+        <div class="lg:col-span-7 glass-card-3d p-7 sm:p-10 rounded-3xl shadow-2xl relative holo-glow z-25">
           <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
             <div class="flex items-center space-x-2">
               <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
@@ -1445,6 +1455,19 @@
 
     setTimeout(typeWriterEffect, speed);
   }
+
+  // Parallax Scrolling Effect for Giant Section Name Titles
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    document.querySelectorAll('.parallax-big-text').forEach(el => {
+      const section = el.closest('section');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const speed = parseFloat(el.getAttribute('data-speed')) || 0.15;
+      const xOffset = (rect.top - window.innerHeight / 2) * speed * 2;
+      el.style.transform = `translateX(${xOffset}px)`;
+    });
+  });
 
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
