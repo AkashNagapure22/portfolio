@@ -685,8 +685,51 @@
 </style>
 
 <!-- Certifications Section with Parallax Background Title -->
-<section id="certifications" class="py-32 section-clean-bg border-y border-sky-500/20 text-center relative overflow-hidden">
-  <!-- Dynamic Ambient Backlight Elements -->
+<!-- Include canvas-confetti library for the sparkle effect -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<!-- Custom CSS for Advanced Glassmorphism and Hover Effects -->
+<style>
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  @keyframes sparkleBurst {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.15) rotate(5deg); filter: brightness(1.4) drop-shadow(0 0 25px rgba(56, 189, 248, 0.9)); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+
+  .cert-container {
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+  .cert-container:nth-child(2) { animation-delay: 1.2s; }
+  .cert-container:nth-child(3) { animation-delay: 2.4s; }
+  .cert-container:nth-child(4) { animation-delay: 0.6s; }
+  .cert-container:nth-child(5) { animation-delay: 1.8s; }
+
+  .cert-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  .badge-clicked {
+    animation: sparkleBurst 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  .badge-card-hover {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+</style>
+
+<!-- Certifications Section matching the requested layout and styling -->
+<section id="certifications" class="py-32 section-clean-bg border-y border-sky-500/20 text-center relative overflow-hidden bg-[#030712]">
+  <!-- Dynamic Ambient Backlight Elements matching the dark atmospheric theme -->
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[250px] bg-sky-500/10 blur-[140px] rounded-full pointer-events-none"></div>
 
   <div class="parallax-title-container">
@@ -697,13 +740,14 @@
     <div class="max-w-3xl mx-auto mb-20 text-center">
       <div class="inline-flex items-center space-x-2 px-4 py-1.5 bg-sky-950/80 border border-sky-500/40 rounded-full mb-4 shadow-[0_0_20px_rgba(56,189,248,0.25)] animate-pulse">
         <i data-lucide="award" class="w-4 h-4 text-sky-400"></i>
-        <span class="font-mono text-xs text-sky-400 font-bold uppercase tracking-wider">Credentials</span>
+        <span class="font-mono text-xs text-sky-400 font-bold uppercase tracking-wider">CREDENTIALS</span>
       </div>
-      <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+      <h2 class="font-sans text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
         Professional Certifications
       </h2>
       <p class="font-sans text-slate-400 text-base sm:text-lg">
-        Validated expertise across the Microsoft cloud and endpoint management spectrum. (Click to sparkle)
+        Validated expertise across the Microsoft cloud and endpoint management spectrum.<br>
+        <span class="text-xs text-sky-400/80 font-mono mt-1 inline-block">(Click to sparkle)</span>
       </p>
     </div>
 
@@ -711,15 +755,23 @@
       
       <!-- Certification 1: MD-102 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="
+        const card = this.querySelector('.badge-card-hover');
+        card.classList.remove('badge-clicked');
+        void card.offsetWidth;
+        card.classList.add('badge-clicked');
+
         const rect = this.getBoundingClientRect();
         const x = (rect.left + rect.width / 2) / window.innerWidth;
         const y = (rect.top + rect.height / 2) / window.innerHeight;
+        
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 100,
+          spread: 90,
           origin: { x, y },
           zIndex: 9999,
-          colors: ['#38bdf8', '#818cf8', '#ffffff', '#38bdf8']
+          colors: ['#38bdf8', '#818cf8', '#ffffff', '#0284c7', '#38bdf8'],
+          shapes: ['square', 'circle', 'star'],
+          scalar: 0.85
         });
       ">
         <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
@@ -729,22 +781,30 @@
         </div>
 
         <div class="mt-4 text-center z-10">
-          <h4 class="font-sans font-bold text-white text-sm tracking-wide text-sky-300">MD-102</h4>
+          <h4 class="font-sans font-bold text-white text-sm tracking-wide">MD-102</h4>
           <p class="font-mono text-[11px] text-slate-400 mt-0.5">12 July 2026</p>
         </div>
       </div>
 
       <!-- Certification 2: ITIL 4 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="
+        const card = this.querySelector('.badge-card-hover');
+        card.classList.remove('badge-clicked');
+        void card.offsetWidth;
+        card.classList.add('badge-clicked');
+
         const rect = this.getBoundingClientRect();
         const x = (rect.left + rect.width / 2) / window.innerWidth;
         const y = (rect.top + rect.height / 2) / window.innerHeight;
+        
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 100,
+          spread: 90,
           origin: { x, y },
           zIndex: 9999,
-          colors: ['#38bdf8', '#818cf8', '#ffffff', '#38bdf8']
+          colors: ['#38bdf8', '#818cf8', '#ffffff', '#0284c7', '#38bdf8'],
+          shapes: ['square', 'circle', 'star'],
+          scalar: 0.85
         });
       ">
         <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
@@ -754,22 +814,30 @@
         </div>
 
         <div class="mt-4 text-center z-10">
-          <h4 class="font-sans font-bold text-white text-sm tracking-wide text-sky-300">ITIL 4</h4>
+          <h4 class="font-sans font-bold text-white text-sm tracking-wide">ITIL 4</h4>
           <p class="font-mono text-[11px] text-slate-400 mt-0.5">12 July 2026</p>
         </div>
       </div>
 
       <!-- Certification 3: AZ-104 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="
+        const card = this.querySelector('.badge-card-hover');
+        card.classList.remove('badge-clicked');
+        void card.offsetWidth;
+        card.classList.add('badge-clicked');
+
         const rect = this.getBoundingClientRect();
         const x = (rect.left + rect.width / 2) / window.innerWidth;
         const y = (rect.top + rect.height / 2) / window.innerHeight;
+        
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 100,
+          spread: 90,
           origin: { x, y },
           zIndex: 9999,
-          colors: ['#38bdf8', '#818cf8', '#ffffff', '#38bdf8']
+          colors: ['#38bdf8', '#818cf8', '#ffffff', '#0284c7', '#38bdf8'],
+          shapes: ['square', 'circle', 'star'],
+          scalar: 0.85
         });
       ">
         <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
@@ -779,22 +847,30 @@
         </div>
 
         <div class="mt-4 text-center z-10">
-          <h4 class="font-sans font-bold text-white text-sm tracking-wide text-sky-300">AZ-104</h4>
+          <h4 class="font-sans font-bold text-white text-sm tracking-wide">AZ-104</h4>
           <p class="font-mono text-[11px] text-slate-400 mt-0.5">12 July 2026</p>
         </div>
       </div>
 
       <!-- Certification 4: AZ-900 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="
+        const card = this.querySelector('.badge-card-hover');
+        card.classList.remove('badge-clicked');
+        void card.offsetWidth;
+        card.classList.add('badge-clicked');
+
         const rect = this.getBoundingClientRect();
         const x = (rect.left + rect.width / 2) / window.innerWidth;
         const y = (rect.top + rect.height / 2) / window.innerHeight;
+        
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 100,
+          spread: 90,
           origin: { x, y },
           zIndex: 9999,
-          colors: ['#38bdf8', '#818cf8', '#ffffff', '#38bdf8']
+          colors: ['#38bdf8', '#818cf8', '#ffffff', '#0284c7', '#38bdf8'],
+          shapes: ['square', 'circle', 'star'],
+          scalar: 0.85
         });
       ">
         <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
@@ -804,22 +880,30 @@
         </div>
 
         <div class="mt-4 text-center z-10">
-          <h4 class="font-sans font-bold text-white text-sm tracking-wide text-sky-300">AZ-900</h4>
+          <h4 class="font-sans font-bold text-white text-sm tracking-wide">AZ-900</h4>
           <p class="font-mono text-[11px] text-slate-400 mt-0.5">12 July 2026</p>
         </div>
       </div>
 
       <!-- Certification 5: MS-102 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="
+        const card = this.querySelector('.badge-card-hover');
+        card.classList.remove('badge-clicked');
+        void card.offsetWidth;
+        card.classList.add('badge-clicked');
+
         const rect = this.getBoundingClientRect();
         const x = (rect.left + rect.width / 2) / window.innerWidth;
         const y = (rect.top + rect.height / 2) / window.innerHeight;
+        
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 100,
+          spread: 90,
           origin: { x, y },
           zIndex: 9999,
-          colors: ['#38bdf8', '#818cf8', '#ffffff', '#38bdf8']
+          colors: ['#38bdf8', '#818cf8', '#ffffff', '#0284c7', '#38bdf8'],
+          shapes: ['square', 'circle', 'star'],
+          scalar: 0.85
         });
       ">
         <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
@@ -829,7 +913,7 @@
         </div>
 
         <div class="mt-4 text-center z-10">
-          <h4 class="font-sans font-bold text-white text-sm tracking-wide text-sky-300">MS-102</h4>
+          <h4 class="font-sans font-bold text-white text-sm tracking-wide">MS-102</h4>
           <p class="font-mono text-[11px] text-slate-400 mt-0.5">12 July 2026</p>
         </div>
       </div>
