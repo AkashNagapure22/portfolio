@@ -57,8 +57,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- Include canvas-confetti library v1.9.3 from CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -664,7 +662,6 @@
       ====================================================== -->
       <div
         class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer select-none"
-        onclick="fireCertificationConfetti(event)"
         role="button"
         tabindex="0"
         aria-label="Celebrate MD-102 certification"
@@ -706,7 +703,6 @@
       ====================================================== -->
       <div
         class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer select-none"
-        onclick="fireCertificationConfetti(event)"
         role="button"
         tabindex="0"
         aria-label="Celebrate ITIL 4 certification"
@@ -748,7 +744,6 @@
       ====================================================== -->
       <div
         class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer select-none"
-        onclick="fireCertificationConfetti(event)"
         role="button"
         tabindex="0"
         aria-label="Celebrate AZ-104 certification"
@@ -790,7 +785,6 @@
       ====================================================== -->
       <div
         class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer select-none"
-        onclick="fireCertificationConfetti(event)"
         role="button"
         tabindex="0"
         aria-label="Celebrate AZ-900 certification"
@@ -832,7 +826,6 @@
       ====================================================== -->
       <div
         class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer select-none"
-        onclick="fireCertificationConfetti(event)"
         role="button"
         tabindex="0"
         aria-label="Celebrate MS-102 certification"
@@ -1658,29 +1651,6 @@
     lucide.createIcons();
     typeWriterEffect();
 
-    // Clean Event-Driven Firecracker Sparkle Effect for Certification Badges (No Rotation)
-    const badgeCards = document.querySelectorAll('.cert-badge-card');
-    badgeCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (rect.left + rect.width / 2) / window.innerWidth;
-        const y = (rect.top + rect.height / 2) / window.innerHeight;
-
-        // Trigger localized high-impact firecracker sparkle burst
-        confetti({
-          particleCount: 70,
-          spread: 70,
-          origin: { x, y },
-          zIndex: 9999,
-          colors: ['#38bdf8', '#fbbf24', '#ffffff', '#818cf8', '#f59e0b'],
-          shapes: ['circle', 'star'],
-          scalar: 0.9,
-          startVelocity: 25,
-          ticks: 100
-        });
-      });
-    });
-
     const counters = document.querySelectorAll('.metric-value');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1772,5 +1742,8 @@
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
   }
 </script>
+
+<!-- Certification firecracker effect. Keep certificateconfeti.js in the same folder as index.html. -->
+<script type="module" src="./certificateconfeti.js"></script>
 </body>
 </html>
