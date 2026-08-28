@@ -1,4 +1,3 @@
-// api/comments.js
 import { neon } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
@@ -11,7 +10,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    const sql = neon(process.env.POSTGRES_URL);
+    const postgresUrl = process.env.POSTGRES_URL;
+    if (!postgresUrl) {
+      throw new Error('POSTGRES_URL environment variable is not set');
+    }
+
+    const sql = neon(postgresUrl);
 
     // Handle GET: Fetch comments for a specific article ID
     if (req.method === 'GET') {

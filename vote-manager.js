@@ -1,9 +1,3 @@
-/**
- * Vote Manager System
- * Prevents users from voting multiple times on the same comment
- * Uses browser localStorage to track votes persistently
- */
-
 const VOTE_MANAGER = {
   // Get storage key for votes based on article and user ID
   getVoteKey(articleId) {
@@ -49,4 +43,7 @@ const VOTE_MANAGER = {
   }
 };
 
-
+// Add a check to handle the case when the user ID is not found in local storage
+if (VOTE_MANAGER.getUserId() === 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)) {
+  VOTE_MANAGER.clearAllVotes();
+}
