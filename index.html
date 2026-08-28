@@ -771,6 +771,49 @@
 </style>
 
 <!-- Certifications Section matching the requested layout and styling with continuous fireworks click effect -->
+<!-- Include canvas-confetti library for the fireworks effect -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<!-- Custom CSS for Advanced Glassmorphism and Hover Effects -->
+<style>
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  @keyframes sparkleBurst {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.15) rotate(5deg); filter: brightness(1.4) drop-shadow(0 0 25px rgba(56, 189, 248, 0.9)); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+
+  .cert-container {
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+  .cert-container:nth-child(2) { animation-delay: 1.2s; }
+  .cert-container:nth-child(3) { animation-delay: 2.4s; }
+  .cert-container:nth-child(4) { animation-delay: 0.6s; }
+  .cert-container:nth-child(5) { animation-delay: 1.8s; }
+
+  .cert-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  .badge-clicked {
+    animation: sparkleBurst 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  .badge-card-hover {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+</style>
+
+<!-- Certifications Section matching the requested layout and styling with fireworks effect on click -->
 <section id="certifications" class="py-32 section-clean-bg border-y border-sky-500/20 text-center relative overflow-hidden bg-[#030712]">
   <!-- Dynamic Ambient Backlight Elements matching the dark atmospheric theme -->
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[250px] bg-sky-500/10 blur-[140px] rounded-full pointer-events-none"></div>
