@@ -600,8 +600,53 @@
   }
 </style>
 
-<section id="certifications" class="py-28 section-clean-bg border-y border-sky-500/20 text-center relative overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-sky-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+<!-- Custom CSS for Advanced Glassmorphism and Hover Effects -->
+<style>
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  @keyframes borderBeam {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .cert-container {
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+  .cert-container:nth-child(2) { animation-delay: 1.2s; }
+  .cert-container:nth-child(3) { animation-delay: 2.4s; }
+  .cert-container:nth-child(4) { animation-delay: 0.6s; }
+  .cert-container:nth-child(5) { animation-delay: 1.8s; }
+
+  .cert-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  .glass-tooltip {
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 0.99) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .badge-card-hover {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+</style>
+
+<!-- Certifications Section with Parallax Background Title -->
+<section id="certifications" class="py-32 section-clean-bg border-y border-sky-500/20 text-center relative overflow-hidden">
+  <!-- Dynamic Ambient Backlight Elements -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[250px] bg-sky-500/10 blur-[140px] rounded-full pointer-events-none"></div>
 
   <div class="parallax-title-container">
     <div class="parallax-big-text" data-speed="0.15">CREDENTIALS</div>
@@ -623,86 +668,94 @@
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 justify-center items-center">
       
+      <!-- Certification 1: MD-102 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer">
-        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/20 to-indigo-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+        <!-- Ambient hover glow background -->
+        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
         
-        <div class="relative transform transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-3 group-hover:rotate-2">
-          <img src="public/images/Main_Page_Images/image-2.webp" alt="MD-102 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]">
+        <!-- Interactive Badge Image with 3D Pop Effect -->
+        <div class="badge-card-hover relative z-10 transform group-hover:scale-125 group-hover:-translate-y-4 group-hover:rotate-3">
+          <img src="public/images/Main_Page_Images/image-2.webp" alt="MD-102 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_25px_40px_rgba(56,189,248,0.6)]">
         </div>
         
-        <div class="absolute opacity-0 translate-y-4 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-300 ease-out inset-x-[-25px] bottom-full mb-5 p-4 glass-tooltip rounded-xl text-center pointer-events-none z-30">
-          <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
-          <div class="flex items-center justify-center space-x-1.5 mb-1">
+        <!-- Next-Gen Glassmorphic Popup Tooltip -->
+        <div class="absolute opacity-0 translate-y-6 scale-90 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) inset-x-[-35px] bottom-full mb-6 p-4.5 glass-tooltip rounded-2xl text-center pointer-events-none z-40">
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
+          <div class="flex items-center justify-center space-x-2 mb-1.5">
             <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-            <h4 class="font-sans font-bold text-white text-xs tracking-wide text-sky-300">MD-102</h4>
+            <h4 class="font-sans font-bold text-white text-xs tracking-wider uppercase text-sky-300">MD-102</h4>
           </div>
           <p class="font-sans text-slate-300 text-[10px] leading-relaxed">Endpoint Administrator Associate: Validates skills in deploying operating systems, managing apps, and configuration profiles.</p>
         </div>
       </div>
 
+      <!-- Certification 2: ITIL 4 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer">
-        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/20 to-indigo-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
         
-        <div class="relative transform transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-3 group-hover:rotate-2">
-          <img src="public/images/Main_Page_Images/image-2.webp" alt="ITIL 4 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]">
+        <div class="badge-card-hover relative z-10 transform group-hover:scale-125 group-hover:-translate-y-4 group-hover:rotate-3">
+          <img src="public/images/Main_Page_Images/image-2.webp" alt="ITIL 4 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_25px_40px_rgba(56,189,248,0.6)]">
         </div>
         
-        <div class="absolute opacity-0 translate-y-4 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-300 ease-out inset-x-[-25px] bottom-full mb-5 p-4 glass-tooltip rounded-xl text-center pointer-events-none z-30">
-          <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
-          <div class="flex items-center justify-center space-x-1.5 mb-1">
+        <div class="absolute opacity-0 translate-y-6 scale-90 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) inset-x-[-35px] bottom-full mb-6 p-4.5 glass-tooltip rounded-2xl text-center pointer-events-none z-40">
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
+          <div class="flex items-center justify-center space-x-2 mb-1.5">
             <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-            <h4 class="font-sans font-bold text-white text-xs tracking-wide text-sky-300">ITIL 4</h4>
+            <h4 class="font-sans font-bold text-white text-xs tracking-wider uppercase text-sky-300">ITIL 4</h4>
           </div>
           <p class="font-sans text-slate-300 text-[10px] leading-relaxed">ITIL Foundation: Leverages structural frameworks to align core digital workspace delivery with business scaling matrices.</p>
         </div>
       </div>
 
+      <!-- Certification 3: AZ-104 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer">
-        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/20 to-indigo-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
         
-        <div class="relative transform transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-3 group-hover:rotate-2">
-          <img src="public/images/Main_Page_Images/image-2.webp" alt="AZ-104 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]">
+        <div class="badge-card-hover relative z-10 transform group-hover:scale-125 group-hover:-translate-y-4 group-hover:rotate-3">
+          <img src="public/images/Main_Page_Images/image-2.webp" alt="AZ-104 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_25px_40px_rgba(56,189,248,0.6)]">
         </div>
         
-        <div class="absolute opacity-0 translate-y-4 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-300 ease-out inset-x-[-25px] bottom-full mb-5 p-4 glass-tooltip rounded-xl text-center pointer-events-none z-30">
-          <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
-          <div class="flex items-center justify-center space-x-1.5 mb-1">
+        <div class="absolute opacity-0 translate-y-6 scale-90 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) inset-x-[-35px] bottom-full mb-6 p-4.5 glass-tooltip rounded-2xl text-center pointer-events-none z-40">
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
+          <div class="flex items-center justify-center space-x-2 mb-1.5">
             <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-            <h4 class="font-sans font-bold text-white text-xs tracking-wide text-sky-300">AZ-104</h4>
+            <h4 class="font-sans font-bold text-white text-xs tracking-wider uppercase text-sky-300">AZ-104</h4>
           </div>
           <p class="font-sans text-slate-300 text-[10px] leading-relaxed">Azure Administrator: Validates capabilities managing virtual networks, storage nodes, compute profiles, and identity governance.</p>
         </div>
       </div>
 
+      <!-- Certification 4: AZ-900 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer">
-        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/20 to-indigo-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
         
-        <div class="relative transform transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-3 group-hover:rotate-2">
-          <img src="public/images/Main_Page_Images/image-2.webp" alt="AZ-900 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]">
+        <div class="badge-card-hover relative z-10 transform group-hover:scale-125 group-hover:-translate-y-4 group-hover:rotate-3">
+          <img src="public/images/Main_Page_Images/image-2.webp" alt="AZ-900 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_25px_40px_rgba(56,189,248,0.6)]">
         </div>
         
-        <div class="absolute opacity-0 translate-y-4 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-300 ease-out inset-x-[-25px] bottom-full mb-5 p-4 glass-tooltip rounded-xl text-center pointer-events-none z-30">
-          <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
-          <div class="flex items-center justify-center space-x-1.5 mb-1">
+        <div class="absolute opacity-0 translate-y-6 scale-90 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) inset-x-[-35px] bottom-full mb-6 p-4.5 glass-tooltip rounded-2xl text-center pointer-events-none z-40">
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
+          <div class="flex items-center justify-center space-x-2 mb-1.5">
             <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-            <h4 class="font-sans font-bold text-white text-xs tracking-wide text-sky-300">AZ-900</h4>
+            <h4 class="font-sans font-bold text-white text-xs tracking-wider uppercase text-sky-300">AZ-900</h4>
           </div>
           <p class="font-sans text-slate-300 text-[10px] leading-relaxed">Azure Fundamentals: Validates high-level understanding of cloud concepts, security matrix models, and privacy protocols.</p>
         </div>
       </div>
 
+      <!-- Certification 5: MS-102 -->
       <div class="cert-container group relative flex flex-col items-center justify-center p-4 cursor-pointer">
-        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/20 to-indigo-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+        <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
         
-        <div class="relative transform transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-3 group-hover:rotate-2">
-          <img src="public/images/Main_Page_Images/image-2.webp" alt="MS-102 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]">
+        <div class="badge-card-hover relative z-10 transform group-hover:scale-125 group-hover:-translate-y-4 group-hover:rotate-3">
+          <img src="public/images/Main_Page_Images/image-2.webp" alt="MS-102 Certification" class="w-28 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_25px_40px_rgba(56,189,248,0.6)]">
         </div>
         
-        <div class="absolute opacity-0 translate-y-4 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-300 ease-out inset-x-[-25px] bottom-full mb-5 p-4 glass-tooltip rounded-xl text-center pointer-events-none z-30">
-          <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
-          <div class="flex items-center justify-center space-x-1.5 mb-1">
+        <div class="absolute opacity-0 translate-y-6 scale-90 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) inset-x-[-35px] bottom-full mb-6 p-4.5 glass-tooltip rounded-2xl text-center pointer-events-none z-40">
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-slate-900 border-r border-b border-sky-400/50 rotate-45"></div>
+          <div class="flex items-center justify-center space-x-2 mb-1.5">
             <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-            <h4 class="font-sans font-bold text-white text-xs tracking-wide text-sky-300">MS-102</h4>
+            <h4 class="font-sans font-bold text-white text-xs tracking-wider uppercase text-sky-300">MS-102</h4>
           </div>
           <p class="font-sans text-slate-300 text-[10px] leading-relaxed">M365 Administrator: Validates capacity evaluating, planning, and managing tenant identity services and corporate endpoints.</p>
         </div>
@@ -711,7 +764,6 @@
     </div>
   </div>
 </section>
-
   <!-- Work History Section with Parallax Background Title -->
   <section id="experience" class="py-24 section-clean-bg text-left relative overflow-hidden">
     <div class="parallax-title-container">
