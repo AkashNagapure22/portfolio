@@ -77,7 +77,8 @@
   <style>
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 5rem;
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: 4.5rem;
     }
 
     body {
@@ -87,6 +88,19 @@
       perspective: 1200px;
     }
     
+    main > section {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      min-height: calc(100vh - 4.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    footer {
+      scroll-snap-align: end;
+    }
+
     /* Full-Height Fixed 3D Cinematic Canvas Background Covering Entire Page */
     #three-bg-canvas {
       position: fixed;
@@ -170,14 +184,14 @@
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 
                 0 0 30px rgba(56, 189, 248, 0.05);
       transform-style: preserve-3d;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card-3d:hover {
       border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
+      box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25), 
                 0 0 50px rgba(56, 189, 248, 0.15);
     }
 
@@ -978,7 +992,7 @@
             <div class="flip-card-front glass-card-3d rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xl">
               <div>
                 <div class="relative aspect-video overflow-hidden border-b border-white/10 bg-slate-950">
-                  <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Migration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <img src="images/Main_Page_Images/project_intune_1781110886338.avif" alt="VDI Migration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_01</div>
                 </div>
                 <div class="p-6">
@@ -1423,7 +1437,51 @@
 
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
   }
+
+  // Smooth Section-by-Section Mouse Wheel Controller
+  (function initSectionSnapScroll() {
+    const sections = Array.from(document.querySelectorAll("main > section, footer"));
+    let isScrolling = false;
+
+    window.addEventListener(
+      "wheel",
+      (e) => {
+        if (e.target.closest(".overflow-y-auto")) return;
+
+        e.preventDefault();
+
+        if (isScrolling) return;
+
+        const currentScroll = window.scrollY + 100;
+        let currentIndex = sections.findIndex((sec) => {
+          const rect = sec.getBoundingClientRect();
+          return rect.top + window.scrollY <= currentScroll && rect.bottom + window.scrollY > currentScroll;
+        });
+
+        if (currentIndex === -1) currentIndex = 0;
+
+        let targetIndex = currentIndex;
+
+        if (e.deltaY > 20) {
+          targetIndex = Math.min(currentIndex + 1, sections.length - 1);
+        } else if (e.deltaY < -20) {
+          targetIndex = Math.max(currentIndex - 1, 0);
+        } else {
+          return;
+        }
+
+        if (targetIndex !== currentIndex) {
+          isScrolling = true;
+          sections[targetIndex].scrollIntoView({ behavior: "smooth" });
+
+          setTimeout(() => {
+            isScrolling = false;
+          }, 800);
+        }
+      },
+      { passive: false }
+    );
+  })();
 </script>
 </body>
 </html>
-
