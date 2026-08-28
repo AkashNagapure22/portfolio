@@ -51,7 +51,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <script>
@@ -1436,9 +1435,70 @@
     });
   });
 
+  // Inline Bulletproof Fireworks Execution Function
+  function fireCertificationConfetti(event) {
+    const card = event ? event.currentTarget : null;
+    let origin = { x: 0.5, y: 0.5 };
+
+    if (card && typeof card.getBoundingClientRect === 'function') {
+      const rect = card.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        origin = {
+          x: (rect.left + rect.width / 2) / window.innerWidth,
+          y: (rect.top + rect.height / 2) / window.innerHeight,
+        };
+      }
+    }
+
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: 120,
+        spread: 90,
+        startVelocity: 45,
+        gravity: 1,
+        ticks: 200,
+        origin: origin,
+        colors: ["#38bdf8", "#22d3ee", "#0ea5e9", "#7dd3fc", "#ffffff"],
+        zIndex: 999999,
+      });
+
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          spread: 120,
+          startVelocity: 30,
+          gravity: 0.8,
+          ticks: 160,
+          origin: origin,
+          colors: ["#38bdf8", "#67e8f9", "#ffffff"],
+          scalar: 0.7,
+          zIndex: 999999,
+        });
+      }, 100);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
     typeWriterEffect();
+
+    // Bind Test Button
+    const testBtn = document.getElementById('trigger-fireworks-btn');
+    if (testBtn) {
+      testBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        fireCertificationConfetti(e);
+      });
+    }
+
+    // Bind Certification Badge Cards
+    const badgeCards = document.querySelectorAll('.cert-badge-card');
+    badgeCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        fireCertificationConfetti(e);
+      });
+    });
 
     const counters = document.querySelectorAll('.metric-value');
     const observer = new IntersectionObserver((entries) => {
@@ -1531,7 +1591,5 @@
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
   }
 </script>
-
-<script type="module" src="./certificateconfeti.js"></script>
 </body>
 </html>
