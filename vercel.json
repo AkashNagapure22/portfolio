@@ -1,55 +1,55 @@
 {
-  "cleanUrls": true,
+  "cleanUrls": false,
   "rewrites": [
     {
-      "source": "/((?!.*\\..*).*)",
-      "has": [{ "type": "host", "value": "resume.akashnagapure.in" }],
-      "destination": "/Sub_Pages/resume"
-    },
-    {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "blogs.akashnagapure.in" }],
-      "destination": "/Sub_Pages/Projects"
+      "destination": "/Sub_Pages/Projects.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "reading.akashnagapure.in" }],
-      "destination": "/Sub_Pages/Reading"
+      "destination": "/Sub_Pages/Reading.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "coins.akashnagapure.in" }],
-      "destination": "/Sub_Pages/Coins"
+      "destination": "/Sub_Pages/Coins.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "homelab.akashnagapure.in" }],
-      "destination": "/Sub_Pages/HomeLab"
+      "destination": "/Sub_Pages/HomeLab.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
+      "has": [{ "type": "host", "value": "resume.akashnagapure.in" }],
+      "destination": "/Sub_Pages/resume.html"
+    },
+    {
+      "source": "/",
       "has": [{ "type": "host", "value": "skills.akashnagapure.in" }],
-      "destination": "/Sub_Pages/Skills"
+      "destination": "/Sub_Pages/Skills.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "courses.akashnagapure.in" }],
-      "destination": "/Sub_Pages/courses"
+      "destination": "/Sub_Pages/courses.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "gaming.akashnagapure.in" }],
-      "destination": "/Sub_Pages/Game"
+      "destination": "/Sub_Pages/Game.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "food.akashnagapure.in" }],
-      "destination": "/Sub_Pages/Food"
+      "destination": "/Sub_Pages/Food.html"
     },
     {
-      "source": "/((?!.*\\..*).*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "puzzle.akashnagapure.in" }],
-      "destination": "/Sub_Pages/Puzzle"
+      "destination": "/Sub_Pages/Puzzle.html"
     }
   ]
 }
