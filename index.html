@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
+  <script>
+  (function() {
+    const host = window.location.hostname.toLowerCase();
+    
+    // Subdomain to target HTML page mappings
+    const subdomainRoutes = {
+      'blogs.akashnagapure.in': '/Sub_Pages/Projects.html',
+      'reading.akashnagapure.in': '/Sub_Pages/Reading.html',
+      'coins.akashnagapure.in': '/Sub_Pages/Coins.html',
+      'homelab.akashnagapure.in': '/Sub_Pages/HomeLab.html',
+      'resume.akashnagapure.in': '/Sub_Pages/resume.html',
+      'skills.akashnagapure.in': '/Sub_Pages/Skills.html',
+      'courses.akashnagapure.in': '/Sub_Pages/courses.html',
+      'gaming.akashnagapure.in': '/Sub_Pages/Game.html',
+      'food.akashnagapure.in': '/Sub_Pages/Food.html',
+      'puzzle.akashnagapure.in': '/Sub_Pages/Puzzle.html'
+    };
+
+    if (subdomainRoutes[host]) {
+      window.location.replace(subdomainRoutes[host]);
+    }
+  })();
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   
