@@ -9,12 +9,12 @@
   <meta name="description" content="Portfolio of Akash Nagapure - Enterprise Fleet Architect specializing in Microsoft Intune, SCCM, VMware virtualization, zero-trust endpoint security, and cloud automation." />
   <link rel="canonical" href="https://www.akashnagapure.in/" />
 
-  <!-- Preconnect & High-Priority Fonts -->
+  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Critical Meta Tags -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.akashnagapure.in/" />
   <meta property="og:title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect" />
@@ -46,7 +46,6 @@
   }
   </script>
   
-  <!-- Tailwind & Core UI Engines -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -60,16 +59,6 @@
           fontFamily: {
             sans: ["'Plus Jakarta Sans'", "ui-sans-serif", "system-ui", "sans-serif"],
             mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
-          },
-          colors: {
-            brand: {
-              cyan: "#38bdf8",
-              indigo: "#6366f1",
-              dark: "#020617",
-              surface: "#0b0f19",
-              card: "rgba(15, 23, 42, 0.72)",
-              border: "rgba(56, 189, 248, 0.16)",
-            }
           }
         }
       }
@@ -77,7 +66,6 @@
   </script>
 
   <style>
-    /* Mobile-First Reset & Core Layout Stabilization */
     *, *::before, *::after {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -85,7 +73,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 5.5rem;
+      scroll-padding-top: 4.5rem;
       background-color: #020617;
       text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
@@ -100,12 +88,11 @@
       margin: 0;
       padding: 0;
       position: relative;
-      touch-action: pan-y;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Fixed Background Canvas optimized for non-blocking GPU rendering */
+    /* Fixed Fullscreen 3D Starfield Canvas */
     #three-bg-canvas {
       position: fixed;
       top: 0;
@@ -116,38 +103,24 @@
       pointer-events: none;
       contain: strict;
       transform: translate3d(0, 0, 0);
-      will-change: transform;
     }
 
-    /* Transparent Sections guaranteeing uninterrupted 3D background continuity */
+    /* Seamless Section Layer (Zero boxes/borders) */
     .section-seamless {
       background: transparent !important;
       position: relative;
       z-index: 10;
       width: 100%;
-      contain: content;
     }
 
-    /* Performance-tuned Glass Surface (Mobile GPU Friendly) */
-    .glass-surface-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.65) 0%, rgba(2, 6, 23, 0.85) 100%);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(56, 189, 248, 0.15);
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-      will-change: transform, border-color;
+    /* Seamless Card: No bordered box outline, clean typographic separation */
+    .seamless-card {
+      position: relative;
+      background: transparent;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @media (hover: hover) and (pointer: fine) {
-      .glass-surface-3d:hover {
-        border-color: rgba(56, 189, 248, 0.45);
-        box-shadow: 0 20px 40px -10px rgba(56, 189, 248, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-        transform: translateY(-2px);
-      }
-    }
-
-    /* High-Performance Mobile-Safe 3D Flip System */
+    /* Responsive Flip Card for Projects (Border-free) */
     .flip-card-container {
       perspective: 1000px;
       -webkit-perspective: 1000px;
@@ -158,7 +131,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
       will-change: transform;
@@ -176,16 +149,19 @@
       height: 100%;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      border-radius: 1rem;
-      transform: translate3d(0, 0, 0);
+      border-radius: 1.25rem;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(56, 189, 248, 0.1);
     }
     
     .flip-card-back {
-      transform: rotateY(180deg) translate3d(0, 0, 0);
-      -webkit-transform: rotateY(180deg) translate3d(0, 0, 0);
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
     }
 
-    /* Micro Animations */
+    /* Animations */
     @keyframes tickerScroll {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-50%, 0, 0); }
@@ -193,8 +169,7 @@
     .animate-ticker {
       display: flex;
       width: 200%;
-      animation: tickerScroll 28s linear infinite;
-      will-change: transform;
+      animation: tickerScroll 30s linear infinite;
     }
     .animate-ticker:hover {
       animation-play-state: paused;
@@ -206,22 +181,21 @@
     }
     .cert-float {
       animation: floatSlow 5s ease-in-out infinite;
-      will-change: transform;
     }
-    .cert-float:nth-child(2) { animation-delay: 0.8s; }
-    .cert-float:nth-child(3) { animation-delay: 1.6s; }
-    .cert-float:nth-child(4) { animation-delay: 2.4s; }
-    .cert-float:nth-child(5) { animation-delay: 3.2s; }
+    .cert-float:nth-child(2) { animation-delay: 0.9s; }
+    .cert-float:nth-child(3) { animation-delay: 1.8s; }
+    .cert-float:nth-child(4) { animation-delay: 2.7s; }
+    .cert-float:nth-child(5) { animation-delay: 3.6s; }
 
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.2; transform: scale(0.96); }
-      50% { opacity: 0.6; transform: scale(1.04); }
+    @keyframes nameGlow {
+      0%, 100% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(99, 102, 241, 0.2); }
+      50% { text-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 0 20px rgba(129, 140, 248, 0.6); }
     }
-    .glow-pulse {
-      animation: glowPulse 3.5s ease-in-out infinite;
+    .animate-name-glow {
+      animation: nameGlow 4s ease-in-out infinite;
     }
 
-    /* Custom Scrollbar */
+    /* Clean subtle high-tech scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -241,43 +215,43 @@
 
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-[100dvh] w-full">
 
-<!-- Hardware-Accelerated 3D Starfield Canvas -->
+<!-- 3D WebGL Canvas Layer -->
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 
-<!-- Top Navigation & Live Ticker Header -->
-<header class="sticky top-0 z-50 w-full px-3 sm:px-6 pt-2 sm:pt-3">
-  <!-- Live Status Ticker -->
-  <div class="max-w-7xl mx-auto mb-2 overflow-hidden rounded-full bg-slate-950/80 border border-sky-500/20 backdrop-blur-md py-1 px-3 text-[11px] font-mono text-slate-400">
+<!-- Top Navigation & Live Ticker (Borderless, Floating, Seamless) -->
+<header class="sticky top-0 z-50 w-full transition-all duration-300">
+  <!-- Status Ticker (No Box Outline) -->
+  <div class="w-full overflow-hidden bg-slate-950/70 backdrop-blur-md py-1.5 px-4 text-[11px] font-mono border-b border-sky-500/10">
     <div class="animate-ticker">
-      <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6">
+      <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6 text-slate-400">
         <span class="inline-flex items-center gap-1.5 text-amber-400 font-semibold">
           <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
-          INFRASTRUCTURE STATUS:
+          STATUS:
         </span>
         <span class="text-slate-300">Modern Endpoint Fleet Architecture Live</span>
-        <span class="text-sky-400 font-semibold">35,000+ Managed Nodes Active</span>
+        <span class="text-sky-400 font-medium">35,000+ Active Nodes</span>
         <a href="Sub_Pages/Projects.html" class="text-sky-400 hover:text-white underline underline-offset-2 transition-colors">Read Deployment Logs →</a>
       </div>
-      <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6">
+      <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6 text-slate-400">
         <span class="inline-flex items-center gap-1.5 text-amber-400 font-semibold">
           <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
-          INFRASTRUCTURE STATUS:
+          STATUS:
         </span>
         <span class="text-slate-300">Modern Endpoint Fleet Architecture Live</span>
-        <span class="text-sky-400 font-semibold">35,000+ Managed Nodes Active</span>
+        <span class="text-sky-400 font-medium">35,000+ Active Nodes</span>
         <a href="Sub_Pages/Projects.html" class="text-sky-400 hover:text-white underline underline-offset-2 transition-colors">Read Deployment Logs →</a>
       </div>
     </div>
   </div>
 
-  <!-- Primary Floating Navigation Bar -->
-  <nav class="max-w-7xl mx-auto rounded-2xl bg-slate-950/85 border border-sky-500/20 backdrop-blur-xl px-4 sm:px-6 py-2.5 shadow-[0_12px_30px_rgba(0,0,0,0.7)] flex items-center justify-between">
+  <!-- Primary Seamless Navigation Bar -->
+  <nav class="w-full bg-slate-950/60 backdrop-blur-xl px-4 sm:px-8 py-3.5 flex items-center justify-between border-b border-sky-500/10">
     <a href="#home" class="flex items-center gap-3 group" onclick="smoothNav(event, 'home')">
-      <div class="h-9 w-9 rounded-xl bg-sky-950/80 border border-sky-400/40 p-1 flex items-center justify-center shadow-[0_0_12px_rgba(56,189,248,0.25)] group-hover:border-sky-400 group-hover:scale-105 transition-all shrink-0">
-        <img src="public/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+      <div class="h-9 w-9 flex items-center justify-center shrink-0">
+        <img src="public/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
       </div>
       <div class="flex flex-col">
-        <span class="font-sans font-bold text-sm sm:text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">
+        <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">
           Akash Nagapure
         </span>
         <span class="font-mono text-[9px] text-sky-400 font-semibold tracking-wider uppercase mt-1">
@@ -286,59 +260,59 @@
       </div>
     </a>
 
-    <!-- Desktop Navigation items -->
-    <div class="hidden lg:flex items-center gap-1">
-      <a href="#home" class="nav-item-link px-3 py-1.5 rounded-lg font-sans text-xs font-semibold text-sky-400 bg-sky-950/70 border border-sky-400/30 shadow-[0_0_10px_rgba(56,189,248,0.15)]" onclick="smoothNav(event, 'home')">Home</a>
-      <a href="#about" class="nav-item-link px-3 py-1.5 rounded-lg font-sans text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all" onclick="smoothNav(event, 'about')">About</a>
-      <a href="#certifications" class="nav-item-link px-3 py-1.5 rounded-lg font-sans text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all" onclick="smoothNav(event, 'certifications')">Certifications</a>
-      <a href="#experience" class="nav-item-link px-3 py-1.5 rounded-lg font-sans text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all" onclick="smoothNav(event, 'experience')">Work Experience</a>
-      <a href="#education" class="nav-item-link px-3 py-1.5 rounded-lg font-sans text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all" onclick="smoothNav(event, 'education')">Education</a>
-      <a href="#hobbies" class="nav-item-link px-3 py-1.5 rounded-lg font-sans text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all" onclick="smoothNav(event, 'hobbies')">Hobbies</a>
-      <a href="#projects" class="nav-item-link px-3 py-1.5 rounded-lg font-sans text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all" onclick="smoothNav(event, 'projects')">Projects</a>
-      <a href="#contact" class="ml-2 px-3.5 py-1.5 rounded-lg font-sans text-xs font-bold text-slate-950 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 transition-all shadow-[0_0_15px_rgba(56,189,248,0.3)]" onclick="smoothNav(event, 'contact')">Direct Contact</a>
+    <!-- Desktop Navigation Links (Clean Textual Menu) -->
+    <div class="hidden lg:flex items-center gap-6">
+      <a href="#home" class="nav-item-link font-sans text-xs font-semibold text-sky-400 tracking-wide hover:text-sky-300 transition-colors" onclick="smoothNav(event, 'home')">Home</a>
+      <a href="#about" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors" onclick="smoothNav(event, 'about')">About</a>
+      <a href="#certifications" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors" onclick="smoothNav(event, 'certifications')">Certifications</a>
+      <a href="#experience" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors" onclick="smoothNav(event, 'experience')">Work Experience</a>
+      <a href="#education" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors" onclick="smoothNav(event, 'education')">Education</a>
+      <a href="#hobbies" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors" onclick="smoothNav(event, 'hobbies')">Hobbies</a>
+      <a href="#projects" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors" onclick="smoothNav(event, 'projects')">Projects</a>
+      <a href="#contact" class="px-4 py-2 rounded-full font-sans text-xs font-bold text-slate-950 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 transition-all shadow-[0_0_15px_rgba(56,189,248,0.25)] hover:scale-105" onclick="smoothNav(event, 'contact')">Direct Contact</a>
     </div>
 
     <!-- Mobile Menu Button -->
     <div class="flex items-center lg:hidden">
-      <button id="mobile-toggle-btn" onclick="toggleMobileNav()" class="p-2 rounded-xl bg-slate-900/90 border border-sky-500/20 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Navigation Drawer">
-        <i data-lucide="menu" class="w-5 h-5"></i>
+      <button id="mobile-toggle-btn" onclick="toggleMobileNav()" class="p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Navigation Drawer">
+        <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile Drawer -->
-  <div id="mobile-drawer" class="hidden lg:hidden max-w-7xl mx-auto mt-2 rounded-2xl bg-slate-950/95 border border-sky-500/30 backdrop-blur-2xl p-4 shadow-2xl space-y-1.5">
-    <a href="#home" class="block w-full px-4 py-2.5 rounded-xl text-sm font-semibold text-sky-400 bg-sky-950/80 border border-sky-500/30" onclick="smoothNav(event, 'home')">Home</a>
-    <a href="#about" class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900" onclick="smoothNav(event, 'about')">About</a>
-    <a href="#certifications" class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900" onclick="smoothNav(event, 'certifications')">Certifications</a>
-    <a href="#experience" class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900" onclick="smoothNav(event, 'experience')">Work Experience</a>
-    <a href="#education" class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900" onclick="smoothNav(event, 'education')">Education</a>
-    <a href="#hobbies" class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900" onclick="smoothNav(event, 'hobbies')">Hobbies</a>
-    <a href="#projects" class="block w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900" onclick="smoothNav(event, 'projects')">Projects</a>
-    <a href="#contact" class="block w-full px-4 py-2.5 rounded-xl text-sm font-bold text-center text-slate-950 bg-sky-400 hover:bg-sky-300" onclick="smoothNav(event, 'contact')">Direct Contact</a>
+  <!-- Mobile Drawer Overlay -->
+  <div id="mobile-drawer" class="hidden lg:hidden w-full bg-slate-950/95 backdrop-blur-2xl px-6 py-6 border-b border-sky-500/10 space-y-3">
+    <a href="#home" class="block w-full text-base font-semibold text-sky-400" onclick="smoothNav(event, 'home')">Home</a>
+    <a href="#about" class="block w-full text-base font-medium text-slate-300 hover:text-white" onclick="smoothNav(event, 'about')">About</a>
+    <a href="#certifications" class="block w-full text-base font-medium text-slate-300 hover:text-white" onclick="smoothNav(event, 'certifications')">Certifications</a>
+    <a href="#experience" class="block w-full text-base font-medium text-slate-300 hover:text-white" onclick="smoothNav(event, 'experience')">Work Experience</a>
+    <a href="#education" class="block w-full text-base font-medium text-slate-300 hover:text-white" onclick="smoothNav(event, 'education')">Education</a>
+    <a href="#hobbies" class="block w-full text-base font-medium text-slate-300 hover:text-white" onclick="smoothNav(event, 'hobbies')">Hobbies</a>
+    <a href="#projects" class="block w-full text-base font-medium text-slate-300 hover:text-white" onclick="smoothNav(event, 'projects')">Projects</a>
+    <a href="#contact" class="block w-full text-center py-2.5 rounded-xl text-sm font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 mt-2" onclick="smoothNav(event, 'contact')">Direct Contact</a>
   </div>
 </header>
 
 <main class="w-full flex-grow">
 
   <!-- 1. HERO SECTION -->
-  <section id="home" class="section-seamless min-h-[calc(100dvh-5.5rem)] flex items-center justify-center py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+  <section id="home" class="section-seamless min-h-[calc(100dvh-5.5rem)] flex items-center justify-center py-12 sm:py-20 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       
-      <!-- Hero Text Column -->
-      <div class="lg:col-span-7 flex flex-col items-start space-y-5 sm:space-y-6 text-left">
-        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-emerald-500/40 shadow-lg shadow-emerald-500/10">
-          <span class="flex h-2.5 w-2.5 relative">
+      <!-- Hero Content -->
+      <div class="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
+        <div class="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-slate-900/40 border border-emerald-500/30">
+          <span class="flex h-2 w-2 relative">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
           <span class="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-400 tracking-wider uppercase">
             AVAILABLE FOR ENTERPRISE ARCHITECTURE
           </span>
         </div>
 
-        <div class="space-y-2 sm:space-y-3 w-full">
-          <h1 class="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
+        <div class="space-y-3 w-full">
+          <h1 class="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] animate-name-glow">
             Akash Nagapure
           </h1>
           <div class="font-mono text-base sm:text-xl font-medium text-sky-400 tracking-wide min-h-[28px] sm:min-h-[32px] flex items-center">
@@ -352,23 +326,23 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto pt-2">
-          <a href="Sub_Pages/resume.html" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all">
+          <a href="Sub_Pages/resume.html" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-sm rounded-full shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all">
             <i data-lucide="file-text" class="w-4 h-4"></i>
             <span>Resume</span>
           </a>
-          <a href="Sub_Pages/Projects.html" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900/90 border border-slate-700/80 hover:border-sky-400 text-white font-sans font-semibold text-sm rounded-xl hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-lg">
+          <a href="Sub_Pages/Projects.html" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900/60 border border-slate-700/60 hover:border-sky-400 text-white font-sans font-semibold text-sm rounded-full hover:bg-slate-800/80 hover:scale-105 active:scale-95 transition-all">
             <i data-lucide="book-open" class="w-4 h-4 text-sky-400"></i>
             <span>Technical Blogs</span>
           </a>
         </div>
       </div>
 
-      <!-- Hero Visual Column -->
+      <!-- Hero Visual -->
       <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
         <div class="relative w-full aspect-square group">
-          <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-sky-500/20 via-indigo-500/20 to-sky-400/10 blur-xl group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute -inset-4 rounded-full bg-sky-500/10 blur-2xl group-hover:opacity-100 transition-opacity"></div>
           
-          <div class="glass-surface-3d relative w-full h-full rounded-3xl p-3 flex flex-col justify-center items-center overflow-hidden">
+          <div class="relative w-full h-full p-2 flex flex-col justify-center items-center overflow-hidden">
             <img
               src="public/Main_page_data/akash_profile_1781110763642.avif"
               alt="Akash Nagapure Profile Portrait"
@@ -376,13 +350,13 @@
               height="400"
               fetchpriority="high"
               loading="eager"
-              class="w-full h-full rounded-2xl object-cover aspect-square shadow-2xl transition-transform duration-500 group-hover:scale-105"
+              class="w-full h-full rounded-2xl object-cover aspect-square shadow-2xl transition-transform duration-700 group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)]"
               onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"
             />
 
-            <!-- Telemetry Float Badge -->
-            <div class="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 bg-slate-950/95 border border-sky-400/40 backdrop-blur-xl rounded-2xl p-2.5 sm:p-3 shadow-2xl flex items-center gap-3">
-              <div class="p-2 bg-sky-950 rounded-xl border border-sky-400/30 text-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.3)]">
+            <!-- Telemetry Float -->
+            <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-slate-950/90 border border-sky-400/30 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 shadow-2xl flex items-center gap-3">
+              <div class="p-2 bg-sky-950/80 rounded-xl text-sky-400">
                 <i data-lucide="cloud" class="w-4 h-4 sm:w-5 sm:h-5 animate-pulse"></i>
               </div>
               <div class="flex flex-col text-left">
@@ -397,58 +371,62 @@
     </div>
   </section>
 
-  <!-- 2. ABOUT ME SECTION -->
-  <section id="about" class="section-seamless py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+  <!-- 2. ABOUT ME SECTION (SEAMLESS - NO CARD BOXES) -->
+  <section id="about" class="section-seamless py-16 sm:py-28 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-12 gap-4">
         <div class="flex items-center gap-3">
           <div class="w-1.5 h-8 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-          <h2 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             About Me
           </h2>
         </div>
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-900/80 border border-sky-500/30 rounded-full text-sky-300 font-mono text-xs shadow-lg backdrop-blur-md w-fit">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-900/40 border border-sky-500/20 rounded-full text-sky-300 font-mono text-xs backdrop-blur-md w-fit">
           <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-400"></i>
           <span>Pune, India</span>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-7 space-y-4 sm:space-y-5">
-          <div class="glass-surface-3d p-6 sm:p-8 rounded-3xl space-y-4">
-            <h3 class="font-sans text-lg sm:text-xl font-bold text-white tracking-tight flex items-center gap-2">
-              <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
-              Architect Behind The Screens
-            </h3>
-            <p class="font-sans text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-              I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune and VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
-            </p>
-            <p class="font-sans text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-              When I am not scaling cloud infrastructure or fine-tuning <span class="text-indigo-400 font-medium">PowerShell automation scripts</span>, my free time is dedicated to building and breaking configurations in my <span class="text-sky-300 font-medium">self-hosted homelab</span>, collecting rare and historical coins (<span class="text-amber-400 font-medium">numismatics</span>), diving into sci-fi and tech strategy literature, or sharpening tactical thinking through strategic gaming and speedcubing.
-            </p>
+      <!-- Seamless Grid Layout (No box wrapping) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        
+        <!-- Left: Copy & Actions -->
+        <div class="lg:col-span-7 space-y-6">
+          <h3 class="font-sans text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2.5">
+            <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
+            Architect Behind The Screens
+          </h3>
+          <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune and VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
+          </p>
+          <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+            When I am not scaling cloud infrastructure or fine-tuning <span class="text-indigo-400 font-medium">PowerShell automation scripts</span>, my free time is dedicated to building and breaking configurations in my <span class="text-sky-300 font-medium">self-hosted homelab</span>, collecting rare and historical coins (<span class="text-amber-400 font-medium">numismatics</span>), diving into sci-fi and tech strategy literature, or sharpening tactical thinking through strategic gaming and speedcubing.
+          </p>
 
-            <div class="flex flex-wrap gap-3 pt-2">
-              <a href="Sub_Pages/Skills.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-950/80 hover:bg-sky-900 border border-sky-400/40 text-sky-300 font-mono text-xs font-bold transition-all shadow-md">
-                <i data-lucide="cpu" class="w-4 h-4"></i>
-                <span>View Skills →</span>
-              </a>
-              <a href="Sub_Pages/courses.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-400/40 text-indigo-300 font-mono text-xs font-bold transition-all shadow-md">
-                <i data-lucide="award" class="w-4 h-4"></i>
-                <span>View Courses Completed →</span>
-              </a>
-            </div>
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="Sub_Pages/Skills.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-950/40 hover:bg-sky-900/60 border border-sky-400/30 text-sky-300 font-mono text-xs uppercase font-bold tracking-wider transition-all hover:scale-105">
+              <i data-lucide="cpu" class="w-4 h-4"></i>
+              <span>View Skills →</span>
+            </a>
+            <a href="Sub_Pages/courses.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-950/40 hover:bg-indigo-900/60 border border-indigo-400/30 text-indigo-300 font-mono text-xs uppercase font-bold tracking-wider transition-all hover:scale-105">
+              <i data-lucide="award" class="w-4 h-4"></i>
+              <span>View Courses Completed →</span>
+            </a>
           </div>
         </div>
 
+        <!-- Right: Graphic Illustration (Zero outer container box) -->
         <div class="lg:col-span-5 flex justify-center">
-          <div class="glass-surface-3d p-4 rounded-3xl w-full max-w-md">
+          <div class="w-full max-w-md">
             <img 
               src="public/Main_page_data/About_me.avif" 
-              alt="Architecture Concept Visual" 
+              alt="About Me Graphic" 
               width="450" 
               height="380" 
               loading="lazy"
-              class="w-full h-auto object-contain rounded-2xl filter drop-shadow-[0_0_25px_rgba(56,189,248,0.2)]"
+              class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(56,189,248,0.25)] hover:scale-105 transition-transform duration-500"
               onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';"
             />
           </div>
@@ -457,76 +435,78 @@
     </div>
   </section>
 
-  <!-- 3. CERTIFICATIONS SECTION -->
-  <section id="certifications" class="section-seamless py-12 sm:py-20 border-y border-sky-500/20 text-center">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto mb-8 sm:mb-12 text-center">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sky-950/80 border border-sky-500/40 rounded-full mb-3 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+  <!-- 3. CERTIFICATIONS SECTION (SEAMLESS - NO CARDS, FLOATING BADGES) -->
+  <section id="certifications" class="section-seamless py-16 sm:py-28 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+      
+      <div class="max-w-3xl mx-auto mb-16 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sky-950/40 border border-sky-500/30 rounded-full mb-3 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
           <i data-lucide="award" class="w-4 h-4 text-sky-400"></i>
           <span class="font-mono text-xs text-sky-400 font-bold uppercase tracking-wider">CREDENTIALS</span>
         </div>
-        <h2 class="font-sans text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+        <h2 class="font-sans text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">
           Professional Certifications
         </h2>
-        <p class="font-sans text-slate-400 text-xs sm:text-base">
-          Validated expertise across the Microsoft cloud and endpoint management spectrum. (Tap any badge to celebrate!)
+        <p class="font-sans text-slate-400 text-sm sm:text-base">
+          Validated expertise across the Microsoft cloud and endpoint management spectrum. (Tap badges to celebrate!)
         </p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 justify-center items-start">
+      <!-- Floating Badges in Space (No enclosing card containers) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 justify-center items-start">
         
         <!-- Badge 1: AZ-900 -->
-        <div class="cert-float glass-surface-3d p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-between cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-900')">
-          <div class="p-2">
-            <img src="public/images/Main_Page_Images/AZ-900.avif" alt="AZ-900 Certification" width="110" height="110" loading="lazy" class="w-20 sm:w-28 h-auto object-contain transition-transform group-hover:scale-110 filter drop-shadow-md" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-900')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="public/images/Main_Page_Images/AZ-900.avif" alt="AZ-900" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-3 text-center">
-            <h4 class="font-sans font-bold text-white text-xs sm:text-sm tracking-wide">AZ-900</h4>
-            <p class="font-mono text-[10px] text-slate-400 mt-0.5">March 2022</p>
+          <div class="mt-4 text-center">
+            <h4 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-sky-300 transition-colors">AZ-900</h4>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">March 2022</p>
           </div>
         </div>
 
         <!-- Badge 2: AZ-104 -->
-        <div class="cert-float glass-surface-3d p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-between cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-104')">
-          <div class="p-2">
-            <img src="public/images/Main_Page_Images/AZ-104.avif" alt="AZ-104 Certification" width="110" height="110" loading="lazy" class="w-20 sm:w-28 h-auto object-contain transition-transform group-hover:scale-110 filter drop-shadow-md" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-104')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="public/images/Main_Page_Images/AZ-104.avif" alt="AZ-104" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-3 text-center">
-            <h4 class="font-sans font-bold text-white text-xs sm:text-sm tracking-wide">AZ-104</h4>
-            <p class="font-mono text-[10px] text-slate-400 mt-0.5">April 2026</p>
+          <div class="mt-4 text-center">
+            <h4 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-sky-300 transition-colors">AZ-104</h4>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">April 2026</p>
           </div>
         </div>
 
         <!-- Badge 3: AZ-140 -->
-        <div class="cert-float glass-surface-3d p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-between cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-140')">
-          <div class="p-2">
-            <img src="public/images/Main_Page_Images/AZ-140.avif" alt="AZ-140 Certification" width="110" height="110" loading="lazy" class="w-20 sm:w-28 h-auto object-contain transition-transform group-hover:scale-110 filter drop-shadow-md" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-140')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="public/images/Main_Page_Images/AZ-140.avif" alt="AZ-140" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-3 text-center">
-            <h4 class="font-sans font-bold text-white text-xs sm:text-sm tracking-wide">AZ-140</h4>
-            <p class="font-mono text-[10px] text-slate-400 mt-0.5">Sep 2026</p>
+          <div class="mt-4 text-center">
+            <h4 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-sky-300 transition-colors">AZ-140</h4>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">Sep 2026</p>
           </div>
         </div>
 
         <!-- Badge 4: MD-102 -->
-        <div class="cert-float glass-surface-3d p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-between cursor-pointer group" onclick="triggerBadgeConfetti(event, 'MD-102')">
-          <div class="p-2">
-            <img src="public/images/Main_Page_Images/MD-102.avif" alt="MD-102 Certification" width="110" height="110" loading="lazy" class="w-20 sm:w-28 h-auto object-contain transition-transform group-hover:scale-110 filter drop-shadow-md" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'MD-102')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="public/images/Main_Page_Images/MD-102.avif" alt="MD-102" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-3 text-center">
-            <h4 class="font-sans font-bold text-white text-xs sm:text-sm tracking-wide">MD-102</h4>
-            <p class="font-mono text-[10px] text-slate-400 mt-0.5">Sep 2026</p>
+          <div class="mt-4 text-center">
+            <h4 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-sky-300 transition-colors">MD-102</h4>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">Sep 2026</p>
           </div>
         </div>
 
         <!-- Badge 5: ITIL 4 -->
-        <div class="cert-float glass-surface-3d p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-between cursor-pointer group" onclick="triggerBadgeConfetti(event, 'ITIL-4')">
-          <div class="p-2">
-            <img src="public/images/Main_Page_Images/ITIL-V.avif" alt="ITIL 4 Certification" width="110" height="110" loading="lazy" class="w-20 sm:w-28 h-auto object-contain transition-transform group-hover:scale-110 filter drop-shadow-md" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'ITIL-4')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="public/images/Main_Page_Images/ITIL-V.avif" alt="ITIL 4" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(56,189,248,0.5)]" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-3 text-center">
-            <h4 class="font-sans font-bold text-white text-xs sm:text-sm tracking-wide">ITIL 4</h4>
-            <p class="font-mono text-[10px] text-slate-400 mt-0.5">Dec 2021</p>
+          <div class="mt-4 text-center">
+            <h4 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-sky-300 transition-colors">ITIL 4</h4>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">Dec 2021</p>
           </div>
         </div>
 
@@ -534,167 +514,144 @@
     </div>
   </section>
 
-  <!-- 4. WORK EXPERIENCE SECTION -->
-  <section id="experience" class="section-seamless py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+  <!-- 4. WORK EXPERIENCE SECTION (CLEAN TIMELINE - NO BOXES) -->
+  <section id="experience" class="section-seamless py-16 sm:py-28 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
-      <div class="flex items-center gap-3 mb-8">
-        <i data-lucide="briefcase" class="w-6 h-6 sm:w-7 sm:h-7 text-sky-400"></i>
-        <h2 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Work History</h2>
+      
+      <div class="flex items-center gap-3 mb-12">
+        <i data-lucide="briefcase" class="w-7 h-7 sm:w-8 sm:h-8 text-sky-400"></i>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Work History</h2>
       </div>
 
-      <div class="space-y-6 relative before:absolute before:left-3 sm:before:left-5 before:top-3 before:bottom-3 before:w-[2px] before:bg-sky-500/20">
+      <!-- Linear Timeline Spine (No outer boxes) -->
+      <div class="space-y-12 relative before:absolute before:left-3 sm:before:left-5 before:top-2 before:bottom-2 before:w-[1.5px] before:bg-slate-800">
         
         <!-- Experience Node 1 -->
         <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[7px] sm:left-[15px] top-4 w-3 h-3 rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.9)]"></div>
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.9)]"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
               <div>
-                <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                  Architect – Technical Specialist
-                </h3>
-                <p class="text-sky-400 font-mono text-xs uppercase tracking-wider">Hexaware Technologies | Pune, Maharashtra</p>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Architect – Technical Specialist</h3>
+                <p class="text-sky-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Hexaware Technologies | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-[11px] text-slate-400 px-3 py-1 bg-slate-950/80 rounded-lg border border-sky-500/20 w-fit">14/02/2026 – Present</span>
+              <span class="font-mono text-xs text-slate-400 mt-1 md:mt-0">14/02/2026 – Present</span>
             </div>
-            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-sm font-light">
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization.</li>
+            <ul class="space-y-2 text-slate-300 text-sm sm:text-base font-light mb-3">
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.</li>
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.</li>
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization.</li>
             </ul>
-            <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/5">
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Microsoft Intune</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Azure AD</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">AVD</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Citrix</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">Microsoft Intune</span>
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">Azure AD</span>
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">AVD</span>
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">Citrix</span>
             </div>
           </div>
         </div>
 
         <!-- Experience Node 2 -->
         <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[7px] sm:left-[15px] top-4 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
               <div>
-                <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                  Specialist – EUC
-                </h3>
-                <p class="text-sky-400 font-mono text-xs uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Specialist – EUC</h3>
+                <p class="text-sky-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-[11px] text-slate-400 px-3 py-1 bg-slate-950/80 rounded-lg border border-sky-500/20 w-fit">01/04/2024 – 13/02/2026</span>
+              <span class="font-mono text-xs text-slate-400 mt-1 md:mt-0">01/04/2024 – 13/02/2026</span>
             </div>
-            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-sm font-light">
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Developed PowerShell and SQL scripts for patch compliance and device health dashboards.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access.</li>
+            <ul class="space-y-2 text-slate-300 text-sm sm:text-base font-light mb-3">
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.</li>
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Developed PowerShell and SQL scripts for patch compliance and device health dashboards.</li>
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access.</li>
             </ul>
-            <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/5">
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">PowerShell</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">SQL</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">SCCM</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Entra ID</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-300 font-mono text-[11px] border border-teal-500/20">PowerShell</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-300 font-mono text-[11px] border border-teal-500/20">SQL</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-300 font-mono text-[11px] border border-teal-500/20">SCCM</span>
+              <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-300 font-mono text-[11px] border border-teal-500/20">Entra ID</span>
             </div>
           </div>
         </div>
 
         <!-- Experience Node 3 -->
         <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[7px] sm:left-[15px] top-4 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
               <div>
-                <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                  Senior Administrator – EUC
-                </h3>
-                <p class="text-sky-400 font-mono text-xs uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Senior Administrator – EUC</h3>
+                <p class="text-sky-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-[11px] text-slate-400 px-3 py-1 bg-slate-950/80 rounded-lg border border-sky-500/20 w-fit">01/01/2022 – 31/03/2024</span>
+              <span class="font-mono text-xs text-slate-400 mt-1 md:mt-0">01/01/2022 – 31/03/2024</span>
             </div>
-            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-sm font-light">
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Designed and implemented device management policies, software deployment strategies, and OS provisioning.</li>
+            <ul class="space-y-2 text-slate-300 text-sm sm:text-base font-light mb-3">
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.</li>
+              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Designed and implemented device management policies, software deployment strategies, and OS provisioning.</li>
             </ul>
-            <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/5">
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Microsoft Intune</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">MECM/SCCM</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Entra ID</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">Microsoft Intune</span>
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">MECM/SCCM</span>
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">Entra ID</span>
             </div>
           </div>
         </div>
 
         <!-- Experience Node 4 -->
         <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[7px] sm:left-[15px] top-4 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
               <div>
-                <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                  Administrator – EUC
-                </h3>
-                <p class="text-sky-400 font-mono text-xs uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Administrator – EUC</h3>
+                <p class="text-sky-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-[11px] text-slate-400 px-3 py-1 bg-slate-950/80 rounded-lg border border-sky-500/20 w-fit">31/01/2020 – 31/12/2021</span>
+              <span class="font-mono text-xs text-slate-400 mt-1 md:mt-0">31/01/2020 – 31/12/2021</span>
             </div>
-            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-sm font-light">
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD).</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Created and maintained device collections, application packages, and compliance baselines.</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/5">
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">MECM/SCCM</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">OSD</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Patch Management</span>
+            <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed mb-3">
+              Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD). Created and maintained device collections, application packages, and compliance baselines.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">MECM/SCCM</span>
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">OSD</span>
+              <span class="px-3 py-1 rounded-full bg-sky-950/40 text-sky-300 font-mono text-[11px] border border-sky-500/20">Patch Management</span>
             </div>
           </div>
         </div>
 
         <!-- Experience Node 5 -->
         <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[7px] sm:left-[15px] top-4 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
               <div>
-                <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                  Process Associate
-                </h3>
-                <p class="text-sky-400 font-mono text-xs uppercase tracking-wider">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Process Associate</h3>
+                <p class="text-sky-400 font-mono text-xs sm:text-sm uppercase tracking-wider">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
               </div>
-              <span class="font-mono text-[11px] text-slate-400 px-3 py-1 bg-slate-950/80 rounded-lg border border-sky-500/20 w-fit">19/11/2018 – 23/09/2019</span>
+              <span class="font-mono text-xs text-slate-400 mt-1 md:mt-0">19/11/2018 – 23/09/2019</span>
             </div>
-            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-sm font-light">
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Performed SQL database health checks and managed incident tracking via Salesforce CRM.</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/5">
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">DICOM/HL7</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">SQL</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Salesforce CRM</span>
-            </div>
+            <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed mb-3">
+              Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments. Performed SQL database health checks and managed incident tracking via Salesforce CRM.
+            </p>
           </div>
         </div>
 
         <!-- Experience Node 6 -->
         <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[7px] sm:left-[15px] top-4 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
               <div>
-                <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                  Customer Support Engineer
-                </h3>
-                <p class="text-sky-400 font-mono text-xs uppercase tracking-wider">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Customer Support Engineer</h3>
+                <p class="text-sky-400 font-mono text-xs sm:text-sm uppercase tracking-wider">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-[11px] text-slate-400 px-3 py-1 bg-slate-950/80 rounded-lg border border-sky-500/20 w-fit">01/02/2016 – 14/11/2018</span>
+              <span class="font-mono text-xs text-slate-400 mt-1 md:mt-0">01/02/2016 – 14/11/2018</span>
             </div>
-            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-sm font-light">
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Delivered IT infrastructure support for 24K+ users in an ODC environment.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Managed desktop/laptop refresh for 6000+ endpoints.</li>
-              <li class="flex items-start gap-2"><span class="text-sky-400 font-mono font-bold">▹</span> Asset management (Desktop\Laptop\Handheld devices\Voice devices).</li>
-            </ul>
-            <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/5">
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">IT Infrastructure Support</span>
-              <span class="px-2.5 py-1 rounded-md bg-sky-950/60 text-sky-300 font-mono text-[10px] border border-sky-500/30">Asset Management</span>
-            </div>
+            <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed">
+              Delivered IT infrastructure support for 24K+ users in an ODC environment. Managed desktop/laptop refresh for 6000+ endpoints and active asset life cycles.
+            </p>
           </div>
         </div>
 
@@ -702,243 +659,183 @@
     </div>
   </section>
 
-  <!-- 5. EDUCATION SECTION -->
-  <section id="education" class="section-seamless py-12 sm:py-20 border-y border-sky-500/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-        <div>
-          <div class="flex items-center gap-3 mb-2">
-            <i data-lucide="graduation-cap" class="w-6 h-6 sm:w-7 sm:h-7 text-sky-400"></i>
-            <h2 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Education & Academy
-            </h2>
-          </div>
-          <p class="font-sans text-slate-400 text-xs sm:text-base max-w-2xl">
-            Academic foundations and ongoing advanced administrative training that validate engineered capabilities.
-          </p>
-        </div>
+  <!-- 5. EDUCATION SECTION (OPEN LAYOUT - NO BOXES) -->
+  <section id="education" class="section-seamless py-16 sm:py-28 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="flex items-center gap-3 mb-10">
+        <i data-lucide="graduation-cap" class="w-7 h-7 sm:w-8 sm:h-8 text-sky-400"></i>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Education & Academy
+        </h2>
       </div>
 
-      <div class="max-w-4xl space-y-6 relative before:absolute before:left-3 sm:before:left-5 before:top-4 before:bottom-4 before:w-[2px] before:bg-sky-500/30">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
         
         <!-- Bachelor Degree -->
-        <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[5px] sm:left-[13px] top-1.5 w-[18px] h-[18px] rounded-full bg-slate-950 border-4 border-slate-800 group-hover:border-sky-400 transition-colors duration-300 flex items-center justify-center"></div>
-          
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-              <h3 class="font-sans font-extrabold text-base sm:text-xl text-white group-hover:text-sky-300 transition-colors">
-                Bachelor of Computer Science and Engineering
-              </h3>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-900/90 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">
-                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                <span>2010 - 2014</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-3">
-              <div class="flex items-center gap-1">
-                <i data-lucide="book-open" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>IBSS College of Engineering</span>
-              </div>
-              <div class="flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>Amravati University</span>
-              </div>
-            </div>
-            <p class="font-sans text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-3">
-              Specialized in computer science, Enterprise Computer Networks, Database Architectures.
-            </p>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-sky-400 uppercase tracking-wider font-semibold">Undergraduate</span>
+            <span class="font-mono text-xs text-slate-400">2010 - 2014</span>
           </div>
+          <h3 class="font-sans font-bold text-xl text-white">Bachelor of Computer Science & Engineering</h3>
+          <p class="font-mono text-xs text-slate-400">IBSS College of Engineering • Amravati University</p>
+          <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+            Specialized in Enterprise Computer Networks, Database Architectures, and Operating System Foundations.
+          </p>
         </div>
 
         <!-- HSC -->
-        <div class="relative pl-8 sm:pl-14 group">
-          <div class="absolute left-[5px] sm:left-[13px] top-1.5 w-[18px] h-[18px] rounded-full bg-slate-950 border-4 border-slate-800 group-hover:border-sky-400 transition-colors duration-300 flex items-center justify-center"></div>
-          
-          <div class="glass-surface-3d p-5 sm:p-7 rounded-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-              <h3 class="font-sans font-extrabold text-base sm:text-xl text-white group-hover:text-sky-300 transition-colors">
-                HSC
-              </h3>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-900/90 border border-sky-500/30 rounded-lg font-mono text-xs text-sky-300 w-fit">
-                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                <span>2010</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 mb-3">
-              <div class="flex items-center gap-1">
-                <i data-lucide="book-open" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>Maharashtra Board</span>
-              </div>
-              <div class="flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>State Board</span>
-              </div>
-            </div>
-            <p class="font-sans text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-3">
-              12th Board - State Exams.
-            </p>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-sky-400 uppercase tracking-wider font-semibold">Higher Secondary</span>
+            <span class="font-mono text-xs text-slate-400">2010</span>
           </div>
+          <h3 class="font-sans font-bold text-xl text-white">Higher Secondary Certificate (HSC)</h3>
+          <p class="font-mono text-xs text-slate-400">Maharashtra State Board</p>
+          <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+            12th Board Examinations with a focus on Mathematics, Physics, and Advanced Electronics.
+          </p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- 6. HOBBIES & INTERESTS SECTION -->
-  <section id="hobbies" class="section-seamless py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+  <!-- 6. HOBBIES & PORTALS (STREAMLINED TILES) -->
+  <section id="hobbies" class="section-seamless py-16 sm:py-28 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mb-8">
+      
+      <div class="max-w-3xl mb-12">
         <div class="flex items-center gap-2 text-sky-400 font-mono text-xs uppercase tracking-wider mb-2">
           <i data-lucide="compass" class="w-4 h-4"></i>
           <span>Extracurricular focus</span>
         </div>
-        <h2 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Interests & Hobbies</h2>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Interests & Hobbies</h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Hobby 1: Homelab -->
-        <a href="Sub_Pages/HomeLab.html" class="block h-[340px] glass-surface-3d rounded-2xl overflow-hidden group">
-          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-base group-hover:text-sky-300 transition-colors">Self-Hosted Homelab</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Homelab Architecture →</span>
-            </div>
-            <i data-lucide="external-link" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <!-- Homelab -->
+        <a href="Sub_Pages/HomeLab.html" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950">
+            <img src="images/Main_Page_Images/hobby_homelab.avif" alt="Homelab" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden bg-slate-950">
-            <img src="images/Main_Page_Images/hobby_homelab.avif" alt="Homelab Portfolio" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Self-Hosted Homelab</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
+          <p class="font-mono text-xs text-slate-400">Explore Infrastructure Topology →</p>
         </a>
 
-        <!-- Hobby 2: Gaming -->
-        <a href="Sub_Pages/Game.html" class="block h-[340px] glass-surface-3d rounded-2xl overflow-hidden group">
-          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-base group-hover:text-sky-300 transition-colors">Strategic Gaming</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Gaming Portfolio →</span>
-            </div>
-            <i data-lucide="external-link" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <!-- Gaming -->
+        <a href="Sub_Pages/Game.html" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950">
+            <img src="images/Main_Page_Images/hobby_gaming.avif" alt="Gaming" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden bg-slate-950">
-            <img src="images/Main_Page_Images/hobby_gaming.avif" alt="Strategic Gaming Portfolio" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Strategic Gaming</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
+          <p class="font-mono text-xs text-slate-400">Tactical Playbooks & Stats →</p>
         </a>
 
-        <!-- Hobby 3: Food -->
-        <a href="Sub_Pages/Food.html" class="block h-[340px] glass-surface-3d rounded-2xl overflow-hidden group">
-          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-base group-hover:text-sky-300 transition-colors">Culinary & Foodie</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Food Portfolio →</span>
-            </div>
-            <i data-lucide="external-link" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <!-- Food -->
+        <a href="Sub_Pages/Food.html" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950">
+            <img src="images/Main_Page_Images/Food_Poster.avif" alt="Food" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden bg-slate-950">
-            <img src="images/Main_Page_Images/Food_Poster.avif" alt="Food Portfolio" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Culinary & Foodie</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
+          <p class="font-mono text-xs text-slate-400">Gastronomy & Recipes →</p>
         </a>
 
-        <!-- Hobby 4: Reading -->
-        <a href="Sub_Pages/Reading.html" class="block h-[340px] glass-surface-3d rounded-2xl overflow-hidden group">
-          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-base group-hover:text-sky-300 transition-colors">Reading</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Literary Portfolio →</span>
-            </div>
-            <i data-lucide="external-link" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <!-- Reading -->
+        <a href="Sub_Pages/Reading.html" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950">
+            <img src="images/Main_Page_Images/hobby_reading.avif" alt="Reading" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden bg-slate-950">
-            <img src="images/Main_Page_Images/hobby_reading.avif" alt="Reading Portfolio" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Reading</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
+          <p class="font-mono text-xs text-slate-400">Sci-Fi & Strategy Archive →</p>
         </a>
 
-        <!-- Hobby 5: Coins -->
-        <a href="Sub_Pages/Coins.html" class="block h-[340px] glass-surface-3d rounded-2xl overflow-hidden group">
-          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-base group-hover:text-sky-300 transition-colors">Coin Collection</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Numismatic Vault →</span>
-            </div>
-            <i data-lucide="external-link" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <!-- Coins -->
+        <a href="Sub_Pages/Coins.html" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950">
+            <img src="images/Main_Page_Images/hobby_coins.avif" alt="Coins" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden bg-slate-950">
-            <img src="images/Main_Page_Images/hobby_coins.avif" alt="Coin Collection Portfolio" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Coin Collection</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
+          <p class="font-mono text-xs text-slate-400">Numismatic Vault →</p>
         </a>
 
-        <!-- Hobby 6: Puzzles -->
-        <a href="Sub_Pages/Puzzle.html" class="block h-[340px] glass-surface-3d rounded-2xl overflow-hidden group">
-          <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
-            <div>
-              <h3 class="font-bold text-white text-base group-hover:text-sky-300 transition-colors">Speedcubing & Puzzles</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Puzzle Hub →</span>
-            </div>
-            <i data-lucide="external-link" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        <!-- Puzzles -->
+        <a href="Sub_Pages/Puzzle.html" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950">
+            <img src="images/Main_Page_Images/3_3_Cube.avif" alt="Puzzles" width="487" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="relative w-full h-[calc(100%-73px)] overflow-hidden bg-slate-950">
-            <img src="images/Main_Page_Images/3_3_Cube.avif" alt="Rubik's Cube Portfolio" width="487" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Speedcubing & Puzzles</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
+          <p class="font-mono text-xs text-slate-400">Permutations & Puzzles →</p>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- 7. PROJECTS SECTION -->
-  <section id="projects" class="section-seamless py-12 sm:py-20 border-b border-sky-500/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-8 sm:mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-sky-950/80 border border-sky-500/30 rounded-full mb-3 shadow-[0_0_12px_rgba(56,189,248,0.2)]">
+  <!-- 7. PROJECTS SECTION (3D INTERACTIVE FLIP CARDS) -->
+  <section id="projects" class="section-seamless py-16 sm:py-28 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-sky-950/40 border border-sky-500/30 rounded-full mb-3 shadow-[0_0_12px_rgba(56,189,248,0.2)]">
           <i data-lucide="folder-kanban" class="w-4 h-4 text-sky-400"></i>
           <span class="font-mono text-xs text-sky-400 font-bold uppercase tracking-wider">Engineering Cases</span>
         </div>
-        <h2 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">Key Projects</h2>
-        <p class="font-sans text-slate-400 text-xs sm:text-base">Case studies of engineered solutions and successful enterprise deployments. (Tap cards to spin)</p>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">Key Projects</h2>
+        <p class="font-sans text-slate-400 text-sm sm:text-base">Case studies of engineered solutions and successful enterprise deployments. (Tap cards to spin)</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         <!-- Case 1 -->
-        <div class="flip-card-container h-[400px] sm:h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner">
-            <div class="flip-card-front glass-surface-3d p-0 overflow-hidden flex flex-col justify-between">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video w-full bg-slate-950 border-b border-white/10">
-                  <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Horizon Migration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_01</div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Horizon" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_01</div>
                 </div>
-                <div class="p-5">
-                  <h3 class="font-sans font-extrabold text-lg text-white mb-1.5 flex items-center justify-between">
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
                     <span>VDI Migration (Win 7 to 10)</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
-                  <p class="font-sans text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
                     Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability.
                   </p>
                 </div>
               </div>
-              <div class="px-5 pb-5 text-xs font-mono text-sky-400 flex items-center gap-1">
-                <span>Touch to inspect telemetry →</span>
-              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Touch to inspect telemetry →</div>
             </div>
 
-            <div class="flip-card-back glass-surface-3d p-6 border border-sky-400 flex flex-col justify-between text-left">
+            <div class="flip-card-back p-7 border border-sky-400 flex flex-col justify-between text-left">
               <div class="space-y-4">
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Execution Timeline</span>
                   <p class="text-white text-sm font-semibold">6 Months</p>
                 </div>
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Key Architectural Outcome</span>
                   <p class="text-slate-200 text-xs leading-relaxed">Resolved driver & resource bottlenecks for 3k+ virtual endpoints.</p>
                 </div>
@@ -953,36 +850,34 @@
         </div>
 
         <!-- Case 2 -->
-        <div class="flip-card-container h-[400px] sm:h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner">
-            <div class="flip-card-front glass-surface-3d p-0 overflow-hidden flex flex-col justify-between">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video w-full bg-slate-950 border-b border-white/10">
-                  <img src="images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune Migration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_02</div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_02</div>
                 </div>
-                <div class="p-5">
-                  <h3 class="font-sans font-extrabold text-lg text-white mb-1.5 flex items-center justify-between">
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
                     <span>SCCM to Intune Migration</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
-                  <p class="font-sans text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
                     Architected a Hybrid Azure AD Join environment enabling phased migration from on-prem SCCM to cloud-native Intune.
                   </p>
                 </div>
               </div>
-              <div class="px-5 pb-5 text-xs font-mono text-sky-400 flex items-center gap-1">
-                <span>Touch to inspect telemetry →</span>
-              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Touch to inspect telemetry →</div>
             </div>
 
-            <div class="flip-card-back glass-surface-3d p-6 border border-sky-400 flex flex-col justify-between text-left">
+            <div class="flip-card-back p-7 border border-sky-400 flex flex-col justify-between text-left">
               <div class="space-y-4">
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Execution Timeline</span>
                   <p class="text-white text-sm font-semibold">8 Months</p>
                 </div>
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Key Architectural Outcome</span>
                   <p class="text-slate-200 text-xs leading-relaxed">Smooth workload authority shift without losing security controls.</p>
                 </div>
@@ -997,36 +892,34 @@
         </div>
 
         <!-- Case 3 -->
-        <div class="flip-card-container h-[400px] sm:h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner">
-            <div class="flip-card-front glass-surface-3d p-0 overflow-hidden flex flex-col justify-between">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video w-full bg-slate-950 border-b border-white/10">
-                  <img src="images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Zero-Touch Windows Autopilot" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_03</div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Windows Autopilot" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_03</div>
                 </div>
-                <div class="p-5">
-                  <h3 class="font-sans font-extrabold text-lg text-white mb-1.5 flex items-center justify-between">
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
                     <span>Autopilot Zero-Touch</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
-                  <p class="font-sans text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
                     Custom global factory-to-user OS provisioning model utilizing dynamic application packaging matrices.
                   </p>
                 </div>
               </div>
-              <div class="px-5 pb-5 text-xs font-mono text-sky-400 flex items-center gap-1">
-                <span>Touch to inspect telemetry →</span>
-              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Touch to inspect telemetry →</div>
             </div>
 
-            <div class="flip-card-back glass-surface-3d p-6 border border-sky-400 flex flex-col justify-between text-left">
+            <div class="flip-card-back p-7 border border-sky-400 flex flex-col justify-between text-left">
               <div class="space-y-4">
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Execution Timeline</span>
                   <p class="text-white text-sm font-semibold">4 Months</p>
                 </div>
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Key Architectural Outcome</span>
                   <p class="text-slate-200 text-xs leading-relaxed">Reduced device setup tracks from 4 hours to under 30 minutes.</p>
                 </div>
@@ -1041,36 +934,34 @@
         </div>
 
         <!-- Case 4 -->
-        <div class="flip-card-container h-[400px] sm:h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner">
-            <div class="flip-card-front glass-surface-3d p-0 overflow-hidden flex flex-col justify-between">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video w-full bg-slate-950 border-b border-white/10">
-                  <img src="images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365 Setup" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_04</div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_04</div>
                 </div>
-                <div class="p-5">
-                  <h3 class="font-sans font-extrabold text-lg text-white mb-1.5 flex items-center justify-between">
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
                     <span>Windows 365 Setup</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
-                  <p class="font-sans text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
                     Deployed Cloud PCs providing flexible, persistent, and secure virtual workspaces for remote-first teams.
                   </p>
                 </div>
               </div>
-              <div class="px-5 pb-5 text-xs font-mono text-sky-400 flex items-center gap-1">
-                <span>Touch to inspect telemetry →</span>
-              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Touch to inspect telemetry →</div>
             </div>
 
-            <div class="flip-card-back glass-surface-3d p-6 border border-sky-400 flex flex-col justify-between text-left">
+            <div class="flip-card-back p-7 border border-sky-400 flex flex-col justify-between text-left">
               <div class="space-y-4">
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Execution Timeline</span>
                   <p class="text-white text-sm font-semibold">3 Months</p>
                 </div>
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Key Architectural Outcome</span>
                   <p class="text-slate-200 text-xs leading-relaxed">Improved user login speeds by 30% globally.</p>
                 </div>
@@ -1085,36 +976,34 @@
         </div>
 
         <!-- Case 5 -->
-        <div class="flip-card-container h-[400px] sm:h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner">
-            <div class="flip-card-front glass-surface-3d p-0 overflow-hidden flex flex-col justify-between">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video w-full bg-slate-950 border-b border-white/10">
-                  <img src="images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune Profiles" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_05</div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_05</div>
                 </div>
-                <div class="p-5">
-                  <h3 class="font-sans font-extrabold text-lg text-white mb-1.5 flex items-center justify-between">
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
                     <span>GPO to Intune Profiles</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
-                  <p class="font-sans text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
                     Modernized endpoint management by migrating complex legacy GPOs to cloud-native Intune Configuration Profiles.
                   </p>
                 </div>
               </div>
-              <div class="px-5 pb-5 text-xs font-mono text-sky-400 flex items-center gap-1">
-                <span>Touch to inspect telemetry →</span>
-              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Touch to inspect telemetry →</div>
             </div>
 
-            <div class="flip-card-back glass-surface-3d p-6 border border-sky-400 flex flex-col justify-between text-left">
+            <div class="flip-card-back p-7 border border-sky-400 flex flex-col justify-between text-left">
               <div class="space-y-4">
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Execution Timeline</span>
                   <p class="text-white text-sm font-semibold">3 Months</p>
                 </div>
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Key Architectural Outcome</span>
                   <p class="text-slate-200 text-xs leading-relaxed">Achieved a 50% reduction in policy conflict support tickets.</p>
                 </div>
@@ -1129,36 +1018,34 @@
         </div>
 
         <!-- Case 6 -->
-        <div class="flip-card-container h-[400px] sm:h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
           <div class="flip-card-inner">
-            <div class="flip-card-front glass-surface-3d p-0 overflow-hidden flex flex-col justify-between">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between">
               <div>
-                <div class="relative aspect-video w-full bg-slate-950 border-b border-white/10">
-                  <img src="images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow Integration" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 backdrop-blur-md rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_06</div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-sky-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-sky-300">Case_06</div>
                 </div>
-                <div class="p-5">
-                  <h3 class="font-sans font-extrabold text-lg text-white mb-1.5 flex items-center justify-between">
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
                     <span>ServiceNow & Intune Sync</span>
                     <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-400"></i>
                   </h3>
-                  <p class="font-sans text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
                     Integrated Microsoft Intune with ServiceNow, automating asset management, CI syncing, and incident workflows.
                   </p>
                 </div>
               </div>
-              <div class="px-5 pb-5 text-xs font-mono text-sky-400 flex items-center gap-1">
-                <span>Touch to inspect telemetry →</span>
-              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Touch to inspect telemetry →</div>
             </div>
 
-            <div class="flip-card-back glass-surface-3d p-6 border border-sky-400 flex flex-col justify-between text-left">
+            <div class="flip-card-back p-7 border border-sky-400 flex flex-col justify-between text-left">
               <div class="space-y-4">
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Execution Timeline</span>
                   <p class="text-white text-sm font-semibold">3 Months</p>
                 </div>
-                <div class="border-b border-white/10 pb-2">
+                <div>
                   <span class="text-[10px] font-mono text-sky-400 block uppercase font-bold">Key Architectural Outcome</span>
                   <p class="text-slate-200 text-xs leading-relaxed">Real-time CMDB inventory accuracy with zero manual audits.</p>
                 </div>
@@ -1176,93 +1063,94 @@
     </div>
   </section>
 
-  <!-- 8. CONTACT SECTION -->
-  <section id="contact" class="section-seamless py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+  <!-- 8. CONTACT SECTION (SEAMLESS DIRECT TRANSMISSION) -->
+  <section id="contact" class="section-seamless py-16 sm:py-28 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
-        <!-- Left Column -->
+        <!-- Left: Details & Actions -->
         <div class="lg:col-span-5 space-y-6">
           <div class="space-y-4">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-indigo-950/80 border border-indigo-500/40 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-indigo-950/40 border border-indigo-500/30 rounded-full">
               <i data-lucide="send" class="w-4 h-4 text-indigo-400"></i>
               <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Secure Direct Link</span>
             </div>
-            <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 class="font-sans text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Let's Build Something Secure.
             </h2>
-            <p class="font-sans text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+            <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
               Whether you're looking for an Architect, consultation on modern enterprise endpoints, MDM configurations, or looking to add a dedicated Systems Engineer to your squad — send me a secure transmission directly to my inbox.
             </p>
           </div>
 
           <div class="py-2 flex justify-start">
-            <img src="public/images/Main_Page_Images/Contact_Me.png" alt="Contact Me Illustration" width="380" height="200" loading="lazy" class="w-full max-w-sm object-contain filter drop-shadow-[0_0_30px_rgba(56,189,248,0.3)] hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+            <img src="public/images/Main_Page_Images/Contact_Me.png" alt="Contact Graphic" width="380" height="200" loading="lazy" class="w-full max-w-sm object-contain filter drop-shadow-[0_0_30px_rgba(56,189,248,0.25)] hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
 
           <div class="space-y-3 pt-2">
-            <a href="mailto:akashnagapure@live.com" class="flex items-center gap-4 p-4 glass-surface-3d rounded-2xl group">
-              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:scale-105 transition-transform shadow-[0_0_12px_rgba(56,189,248,0.2)] shrink-0">
-                <i data-lucide="mail" class="w-5 h-5"></i>
+            <a href="mailto:akashnagapure@live.com" class="flex items-center gap-4 py-3 group">
+              <div class="p-3 bg-slate-900/60 rounded-xl text-sky-400 group-hover:scale-110 transition-transform">
+                <i data-lucide="mail" class="w-6 h-6"></i>
               </div>
-              <div class="flex flex-col text-left overflow-hidden">
-                <span class="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-wider">EMAIL LOGO</span>
-                <span class="font-sans text-white font-semibold text-xs sm:text-sm group-hover:text-sky-300 transition-colors truncate">akashnagapure@live.com</span>
+              <div class="flex flex-col text-left">
+                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">EMAIL DIRECT</span>
+                <span class="font-sans text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">akashnagapure@live.com</span>
               </div>
             </a>
 
-            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="flex items-center gap-4 p-4 glass-surface-3d rounded-2xl group">
-              <div class="p-3 bg-slate-950 border border-sky-400/30 rounded-xl text-sky-400 group-hover:scale-105 transition-transform shadow-[0_0_12px_rgba(56,189,248,0.2)] shrink-0">
-                <i data-lucide="linkedin" class="w-5 h-5"></i>
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="flex items-center gap-4 py-3 group">
+              <div class="p-3 bg-slate-900/60 rounded-xl text-sky-400 group-hover:scale-110 transition-transform">
+                <i data-lucide="linkedin" class="w-6 h-6"></i>
               </div>
-              <div class="flex flex-col text-left overflow-hidden">
-                <span class="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-wider">LINKEDIN LOGO</span>
-                <span class="font-sans text-white font-semibold text-xs sm:text-sm group-hover:text-sky-300 transition-colors truncate">linkedin.com/in/anagapure</span>
+              <div class="flex flex-col text-left">
+                <span class="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">PROFESSIONAL NETWORK</span>
+                <span class="font-sans text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">linkedin.com/in/anagapure</span>
               </div>
             </a>
           </div>
         </div>
 
-        <!-- Terminal Form Right -->
-        <div class="lg:col-span-7 glass-surface-3d p-6 sm:p-8 rounded-3xl relative">
-          <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+        <!-- Right: Dispatch Form -->
+        <div class="lg:col-span-7 pt-4">
+          <div class="border-b border-white/10 pb-4 mb-6 flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-              <span class="font-mono text-xs text-slate-400 font-semibold ml-2">DIRECT_MAIL_TERMINAL</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="font-mono text-xs text-slate-300 font-semibold">DIRECT_MAIL_TERMINAL</span>
             </div>
-            <span class="font-mono text-[10px] text-sky-400 bg-sky-950/80 border border-sky-500/30 px-2 py-0.5 rounded">STATUS: READY</span>
+            <span class="font-mono text-[10px] text-sky-400 bg-sky-950/60 px-2.5 py-1 rounded">READY</span>
           </div>
 
-          <form onsubmit="event.preventDefault(); launchDirectMail();" class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form onsubmit="event.preventDefault(); launchDirectMail();" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div class="space-y-1.5">
-                <label for="direct_name" class="font-mono text-[11px] text-slate-300 font-semibold uppercase tracking-wider block">Full Name</label>
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" required class="w-full bg-slate-950/80 border border-sky-500/30 hover:border-sky-400 focus:border-sky-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors" />
+                <label for="direct_name" class="font-mono text-xs text-slate-400 uppercase tracking-wider block">Full Name</label>
+                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="John Doe" required class="w-full bg-slate-950/40 border-b border-slate-700 hover:border-sky-400 focus:border-sky-400 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-colors" />
               </div>
               <div class="space-y-1.5">
-                <label for="direct_email" class="font-mono text-[11px] text-slate-300 font-semibold uppercase tracking-wider block">Your Email Address</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" required class="w-full bg-slate-950/80 border border-sky-500/30 hover:border-sky-400 focus:border-sky-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors" />
+                <label for="direct_email" class="font-mono text-xs text-slate-400 uppercase tracking-wider block">Your Email Address</label>
+                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="john@example.com" required class="w-full bg-slate-950/40 border-b border-slate-700 hover:border-sky-400 focus:border-sky-400 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-colors" />
               </div>
             </div>
 
             <div class="space-y-1.5">
-              <label for="direct_subject" class="font-mono text-[11px] text-slate-300 font-semibold uppercase tracking-wider block">Subject</label>
-              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full bg-slate-950/80 border border-sky-500/30 hover:border-sky-400 focus:border-sky-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors" />
+              <label for="direct_subject" class="font-mono text-xs text-slate-400 uppercase tracking-wider block">Subject</label>
+              <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Consultation Request" class="w-full bg-slate-950/40 border-b border-slate-700 hover:border-sky-400 focus:border-sky-400 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-colors" />
             </div>
 
             <div class="space-y-1.5">
-              <label for="direct_message" class="font-mono text-[11px] text-slate-300 font-semibold uppercase tracking-wider block">Message</label>
-              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" required class="w-full bg-slate-950/80 border border-sky-500/30 hover:border-sky-400 focus:border-sky-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors resize-none"></textarea>
+              <label for="direct_message" class="font-mono text-xs text-slate-400 uppercase tracking-wider block">Message</label>
+              <textarea id="direct_message" rows="4" oninput="checkFormValidity()" placeholder="How can I help you?" required class="w-full bg-slate-950/40 border-b border-slate-700 hover:border-sky-400 focus:border-sky-400 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-colors resize-none"></textarea>
             </div>
 
-            <button type="button" onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.25)] transition-all active:scale-[0.99] cursor-pointer">
-              <i data-lucide="mail" class="w-4 h-4"></i>
-              <span>Send Email</span>
-            </button>
+            <div class="pt-3">
+              <button type="button" onclick="launchDirectMail()" id="send-email-btn" disabled class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 disabled:opacity-30 disabled:cursor-not-allowed text-slate-950 font-sans font-extrabold text-sm rounded-full shadow-[0_0_20px_rgba(56,189,248,0.25)] transition-all active:scale-[0.99] cursor-pointer">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>Send Email</span>
+              </button>
+            </div>
 
-            <div id="success-banner" class="hidden p-4 bg-emerald-950/60 border border-emerald-500/40 rounded-xl flex items-center gap-3 transition-all">
+            <div id="success-banner" class="hidden p-4 bg-emerald-950/40 border border-emerald-500/30 rounded-xl flex items-center gap-3">
               <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0"></i>
               <p class="font-mono text-xs text-emerald-300">
                 Thank you for reaching out! I will review your message and get back to you shortly.
@@ -1277,11 +1165,11 @@
 
 </main>
 
-<!-- FOOTER -->
-<footer class="w-full py-6 sm:py-8 bg-slate-950/90 backdrop-blur-xl border-t border-sky-500/20 text-center relative z-10">
-  <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+<!-- FOOTER (SEAMLESS) -->
+<footer class="w-full py-8 bg-transparent border-t border-sky-500/10 text-center relative z-10">
+  <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-3 max-w-7xl mx-auto">
     <div class="flex items-center gap-2.5">
-      <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+      <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/40 p-1 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
         <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
           <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -1303,22 +1191,22 @@
       <a href="Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors">Terms of Service</a>
     </div>
 
-    <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
+    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mt-1">© 2026. All Rights Reserved. Engineered with Precision.</span>
   </div>
 </footer>
 
 <!-- BACK TO TOP BUTTON -->
-<button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/90 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110" aria-label="Scroll Back To Top">
+<button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/80 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110" aria-label="Scroll Back To Top">
   <i data-lucide="arrow-up" class="w-4 h-4"></i>
 </button>
 
 <script>
-  // 1. MOBILE-PERFORMANCE OPTIMIZED THREE.JS 3D ENGINE
+  // 1. THREE.JS 3D ENGINE (OPTIMIZED FOR PERFORMANCE & CONTINUITY)
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
   let isPageVisible = true;
-  const isMobileDevice = window.innerWidth < 768;
+  const isMobile = window.innerWidth < 768;
 
   function init3DBackground() {
     const canvas = document.getElementById('three-bg-canvas');
@@ -1330,53 +1218,48 @@
 
     renderer = new THREE.WebGLRenderer({ 
       canvas: canvas, 
-      antialias: !isMobileDevice, 
+      antialias: !isMobile, 
       alpha: true,
       powerPreference: "high-performance"
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobileDevice ? 1.25 : 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
 
-    // Mobile throttle: 1,200 particles on mobile, 4,000 on desktop
-    const count = isMobileDevice ? 1200 : 4000;
+    const count = isMobile ? 1500 : 4500;
     particlesGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
 
     for (let i = 0; i < count * 3; i += 3) {
       positions[i] = (Math.random() - 0.5) * 800;
-      positions[i + 1] = (Math.random() - 0.5) * 2600;
+      positions[i + 1] = (Math.random() - 0.5) * 2800;
       positions[i + 2] = (Math.random() - 0.5) * 600;
     }
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const particleMat = new THREE.PointsMaterial({
       color: 0x38bdf8,
-      size: isMobileDevice ? 1.4 : 1.1,
+      size: isMobile ? 1.3 : 1.1,
       transparent: true,
       opacity: 0.85,
-      blending: isMobileDevice ? THREE.NormalBlending : THREE.AdditiveBlending
+      blending: THREE.AdditiveBlending
     });
 
     particlesMesh = new THREE.Points(particlesGeo, particleMat);
     scene.add(particlesMesh);
 
-    // Optimized Perspective Grid
-    const gridDensity = isMobileDevice ? 60 : 120;
-    gridHelper = new THREE.GridHelper(1400, gridDensity, 0x0284c7, 0x0f172a);
+    gridHelper = new THREE.GridHelper(1400, isMobile ? 50 : 100, 0x0284c7, 0x0f172a);
     gridHelper.position.y = -220;
     gridHelper.material.transparent = true;
     gridHelper.material.opacity = 0.22;
     scene.add(gridHelper);
 
-    // Passive Mouse/Touch listener
-    if (!isMobileDevice) {
-      window.addEventListener('mousemove', (event) => {
-        mouseX = (event.clientX - window.innerWidth / 2) * 0.0006;
-        mouseY = (event.clientY - window.innerHeight / 2) * 0.0006;
+    if (!isMobile) {
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.0006;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.0006;
       }, { passive: true });
     }
 
-    // Debounced Resize listener
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
@@ -1388,7 +1271,6 @@
       }, 150);
     }, { passive: true });
 
-    // Page Visibility API Hook to halt rendering when user switches tabs
     document.addEventListener('visibilitychange', () => {
       isPageVisible = !document.hidden;
     });
@@ -1416,7 +1298,7 @@
     }
   }
 
-  // 2. BADGE CONFETTI TRIGGER (MOBILE ACCESSIBLE)
+  // 2. BADGE CONFETTI TRIGGER
   function triggerBadgeConfetti(event, badgeName) {
     if (typeof confetti === 'function') {
       const rect = event.currentTarget.getBoundingClientRect();
@@ -1424,7 +1306,7 @@
       const y = (rect.top + rect.height / 2) / window.innerHeight;
 
       confetti({
-        particleCount: isMobileDevice ? 40 : 65,
+        particleCount: 50,
         spread: 60,
         origin: { x: Math.max(0.1, Math.min(0.9, x)), y: Math.max(0.1, Math.min(0.9, y)) },
         colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff'],
@@ -1475,7 +1357,7 @@
     setTimeout(typeWriterEffect, speed);
   }
 
-  // 4. NAVIGATION & MOBILE MENU DISPATCHER
+  // 4. NAVIGATION & SCROLL DISPATCHER
   function smoothNav(event, id) {
     if (event) event.preventDefault();
     const targetElement = document.getElementById(id);
@@ -1532,7 +1414,6 @@
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodeURIComponent(subjectVal)}&body=${encodeURIComponent(body)}`;
   }
 
-  // INITIALIZATION ON DOM READY
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
     init3DBackground();
@@ -1542,4 +1423,3 @@
 </script>
 </body>
 </html>
-
