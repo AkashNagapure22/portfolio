@@ -9,7 +9,7 @@
           "value": "blogs.akashnagapure.in"
         }
       ],
-      "destination": "/Sub_Pages/Projects.html"
+      "destination": "./Sub_Pages/Projects.html"
     },
     {
       "source": "/",
