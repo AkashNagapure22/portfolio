@@ -39,7 +39,7 @@
           "value": "homelab.akashnagapure.in"
         }
       ],
-      "destination": "/Sub_Pages/Homelab.html"
+      "destination": "/Sub_Pages/HomeLab.html"
     },
     {
       "source": "/",
@@ -49,7 +49,7 @@
           "value": "resume.akashnagapure.in"
         }
       ],
-      "destination": "/Sub_Pages/Resume.html"
+      "destination": "/Sub_Pages/resume.html"
     },
     {
       "source": "/",
@@ -69,7 +69,7 @@
           "value": "courses.akashnagapure.in"
         }
       ],
-      "destination": "/Sub_Pages/Courses.html"
+      "destination": "/Sub_Pages/courses.html"
     },
     {
       "source": "/",
@@ -79,7 +79,7 @@
           "value": "gaming.akashnagapure.in"
         }
       ],
-      "destination": "/Sub_Pages/Gaming.html"
+      "destination": "/Sub_Pages/Game.html"
     },
     {
       "source": "/",
