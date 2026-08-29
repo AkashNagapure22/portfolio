@@ -1,10 +1,8 @@
-import { rewrite } from '@vercel/edge';
-
 export default function middleware(request) {
   const url = new URL(request.url);
   const hostname = request.headers.get('host') || '';
 
-  // Skip static asset files and API routes
+  // Skip static asset files, images, and API routes
   if (
     url.pathname.startsWith('/public') ||
     url.pathname.startsWith('/images') ||
@@ -14,37 +12,26 @@ export default function middleware(request) {
     return;
   }
 
-  // Only rewrite root visits on subdomains
+  // Only rewrite root path visits on subdomains
   if (url.pathname === '/') {
-    if (hostname.includes('blogs.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/Projects.html', request.url));
-    }
-    if (hostname.includes('reading.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/Reading.html', request.url));
-    }
-    if (hostname.includes('coins.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/Coins.html', request.url));
-    }
-    if (hostname.includes('homelab.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/HomeLab.html', request.url));
-    }
-    if (hostname.includes('resume.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/resume.html', request.url));
-    }
-    if (hostname.includes('skills.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/Skills.html', request.url));
-    }
-    if (hostname.includes('courses.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/courses.html', request.url));
-    }
-    if (hostname.includes('gaming.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/Game.html', request.url));
-    }
-    if (hostname.includes('food.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/Food.html', request.url));
-    }
-    if (hostname.includes('puzzle.akashnagapure.in')) {
-      return rewrite(new URL('/Sub_Pages/Puzzle.html', request.url));
+    const routes = {
+      'blogs.akashnagapure.in': '/Sub_Pages/Projects.html',
+      'reading.akashnagapure.in': '/Sub_Pages/Reading.html',
+      'coins.akashnagapure.in': '/Sub_Pages/Coins.html',
+      'homelab.akashnagapure.in': '/Sub_Pages/HomeLab.html',
+      'resume.akashnagapure.in': '/Sub_Pages/resume.html',
+      'skills.akashnagapure.in': '/Sub_Pages/Skills.html',
+      'courses.akashnagapure.in': '/Sub_Pages/courses.html',
+      'gaming.akashnagapure.in': '/Sub_Pages/Game.html',
+      'food.akashnagapure.in': '/Sub_Pages/Food.html',
+      'puzzle.akashnagapure.in': '/Sub_Pages/Puzzle.html'
+    };
+
+    for (const [domain, targetPath] of Object.entries(routes)) {
+      if (hostname.includes(domain)) {
+        url.pathname = targetPath;
+        return fetch(url.toString(), request);
+      }
     }
   }
 }
