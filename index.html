@@ -67,7 +67,7 @@
               850: "#0f172a", 
               950: "#020617", 
             },
-            "surface-dim": "#0d0b12"
+            "surface-dim": "#050914"
           }
         }
       }
@@ -84,26 +84,22 @@
       background-color: #020617 !important;
       color: #f8fafc !important;
       overflow-x: hidden;
-      perspective: 1200px;
     }
     
-    /* Full-Height Fixed 3D Cinematic Canvas Background Covering Entire Page */
     #three-bg-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -10;
+      z-index: 0;
       pointer-events: none;
     }
 
-    /* Completely Transparent Section Backgrounds so the continuous 3D starfield and grid extend fully across every section */
     .section-clean-bg {
       background: transparent !important;
     }
 
-    /* Animations: Slide Down & Slide Left & Shimmer */
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -116,10 +112,6 @@
       0%, 100% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(99, 102, 241, 0.2); }
       50% { text-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 0 20px rgba(129, 140, 248, 0.6); }
     }
-    @keyframes textShimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
     .animate-slide-down {
       animation: slideDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -129,15 +121,7 @@
     .animate-name-glow {
       animation: nameGlow 4s ease-in-out infinite;
     }
-    .shimmer-text {
-      background: linear-gradient(90deg, #38bdf8 0%, #ffffff 50%, #818cf8 100%);
-      background-size: 200% auto;
-      color: transparent;
-      -webkit-background-clip: text;
-      animation: textShimmer 5s linear infinite;
-    }
 
-    /* Construction Banner Animation */
     @keyframes scrollLeft {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
@@ -148,7 +132,6 @@
       animation: scrollLeft 40s linear infinite;
     }
 
-    /* Custom high-tech scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -165,20 +148,20 @@
     }
     
     .glass-card-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                0 0 30px rgba(56, 189, 248, 0.05);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(2, 6, 23, 0.88) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(56, 189, 248, 0.16);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 
+                  0 0 25px rgba(56, 189, 248, 0.04);
       transform-style: preserve-3d;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card-3d:hover {
       border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
-                0 0 50px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 30px 60px -15px rgba(56, 189, 248, 0.22), 
+                  0 0 45px rgba(56, 189, 248, 0.12);
     }
 
     .holo-glow {
@@ -249,9 +232,15 @@
     .badge-card-hover {
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+
+    .video-seamless-blend {
+      mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+      -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+      mix-blend-mode: lighten;
+    }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
+<body class="bg-slate-950 text-slate-100 font-sans min-h-[100dvh] flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300 relative">
 
 <canvas id="three-bg-canvas"></canvas>
 <script>
@@ -263,8 +252,8 @@
     const canvas = document.getElementById('three-bg-canvas');
     if (!canvas) return;
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 50;
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.z = 80;
 
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -275,32 +264,32 @@
     const positions = new Float32Array(count * 3);
 
     for (let i = 0; i < count * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 800;
-      positions[i + 1] = (Math.random() - 0.5) * 3000;
-      positions[i + 2] = (Math.random() - 0.5) * 600;
+      positions[i] = (Math.random() - 0.5) * 1200;
+      positions[i + 1] = (Math.random() - 0.5) * 3500;
+      positions[i + 2] = (Math.random() - 0.5) * 1000;
     }
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const particleMat = new THREE.PointsMaterial({
       color: 0x38bdf8,
-      size: 1.2,
+      size: 1.4,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.85,
       blending: THREE.AdditiveBlending
     });
 
     particlesMesh = new THREE.Points(particlesGeo, particleMat);
     scene.add(particlesMesh);
 
-    gridHelper = new THREE.GridHelper(1500, 150, 0x0284c7, 0x0f172a);
-    gridHelper.position.y = -250;
+    gridHelper = new THREE.GridHelper(2000, 120, 0x0284c7, 0x0f172a);
+    gridHelper.position.y = -220;
     gridHelper.material.transparent = true;
-    gridHelper.material.opacity = 0.25;
+    gridHelper.material.opacity = 0.22;
     scene.add(gridHelper);
 
     document.addEventListener('mousemove', (event) => {
-      mouseX = (event.clientX - window.innerWidth / 2) * 0.0008;
-      mouseY = (event.clientY - window.innerHeight / 2) * 0.0008;
+      mouseX = (event.clientX - window.innerWidth / 2) * 0.0006;
+      mouseY = (event.clientY - window.innerHeight / 2) * 0.0006;
     });
 
     window.addEventListener('resize', () => {
@@ -310,20 +299,23 @@
     });
   }
 
-  let clock = new THREE.Clock();
+  const clock = new THREE.Clock();
   function animate3DBackground() {
     requestAnimationFrame(animate3DBackground);
     const elapsedTime = clock.getElapsedTime();
+    const scrollOffset = window.scrollY || window.pageYOffset;
 
     targetX += (mouseX - targetX) * 0.05;
     targetY += (mouseY - targetY) * 0.05;
 
     if(particlesMesh) {
-      particlesMesh.rotation.y = elapsedTime * 0.02 + targetX;
-      particlesMesh.rotation.x = elapsedTime * 0.01 + targetY;
+      particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
+      particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
+      particlesMesh.position.y = scrollOffset * 0.12;
     }
     if(gridHelper) {
-      gridHelper.rotation.y = elapsedTime * 0.004;
+      gridHelper.rotation.y = elapsedTime * 0.003;
+      gridHelper.position.y = -220 + (scrollOffset * 0.06);
     }
     if (renderer && scene && camera) {
       renderer.render(scene, camera);
@@ -341,12 +333,12 @@
   <div class="w-full overflow-hidden mb-3">
     <div class="animate-scroll whitespace-nowrap">
       <span class="text-[10px] font-mono tracking-wider">
-        <span class="text-amber-400 mx-3">🚧</span> 
-        <span class="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent font-bold">
+        <span class="text-rose-400 mx-3 font-bold text-sm">!</span> 
+        <span class="text-rose-400 font-bold bg-rose-950/60 px-2.5 py-1 rounded border border-rose-500/40">
           The website is still under construction and a work in progress, but the foundation is taking shape.
         </span>
-        <a href="Sub_Pages/Projects.html" class="ml-4 text-sky-400 hover:text-white underline underline-offset-4 transition-colors">
-          Click here to view the latest blog →
+        <a href="Sub_Pages/Projects.html" class="ml-4 text-rose-300 hover:text-white underline underline-offset-4 transition-colors font-semibold">
+          Click here to view the latest blog ->
         </a>
       </span>
     </div>
@@ -400,8 +392,8 @@
 </nav>
 </header>
 
-<main class="flex-grow">
-  <section id="home" class="relative min-h-screen flex items-center justify-center pt-8 pb-16 overflow-hidden section-clean-bg">
+<main class="flex-grow relative z-10">
+  <section id="home" class="relative min-h-[100dvh] flex items-center justify-center pt-8 pb-16 overflow-hidden section-clean-bg">
     <div class="absolute top-20 right-[10%] w-96 h-96 rounded-full bg-sky-500/15 blur-[130px] pointer-events-none animate-pulse"></div>
     <div class="absolute bottom-20 left-[5%] w-80 h-80 rounded-full bg-indigo-500/15 blur-[110px] pointer-events-none animate-pulse"></div>
 
@@ -505,12 +497,12 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-6 space-y-6">
           <h3 class="font-sans text-xl sm:text-2xl font-bold text-white tracking-tight leading-relaxed">
             Architect Behind The Screens
           </h3>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune and VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
+            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune and VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens: treating client fleet configuration as a craft and zero-trust security as a baseline.
           </p>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
             When I am not scaling cloud infrastructure or fine-tuning <span class="text-indigo-400 font-medium">PowerShell automation scripts</span>, my free time is dedicated to building and breaking configurations in my <span class="text-sky-300 font-medium">self-hosted homelab</span>, collecting rare and historical coins (<span class="text-amber-400 font-medium">numismatics</span>), diving into sci-fi and tech strategy literature, or sharpening tactical thinking through strategic gaming and speedcubing.
@@ -519,24 +511,25 @@
           <div class="flex flex-wrap gap-4 pt-4">
             <a href="Sub_Pages/Skills.html" class="inline-flex items-center space-x-2 px-6 py-3.5 bg-sky-950/85 hover:bg-sky-900 border border-sky-400/40 text-sky-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all">
               <i data-lucide="cpu" class="w-4 h-4"></i>
-              <span>View Skills →</span>
+              <span>View Skills -></span>
             </a>
             <a href="Sub_Pages/courses.html" class="inline-flex items-center space-x-2 px-6 py-3.5 bg-indigo-950/85 hover:bg-indigo-900 border border-indigo-400/40 text-indigo-300 font-mono text-xs uppercase font-bold rounded-xl shadow-lg transition-all">
               <i data-lucide="award" class="w-4 h-4"></i>
-              <span>View Courses Completed →</span>
+              <span>View Courses Completed -></span>
             </a>
           </div>
         </div>
 
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="relative w-full max-w-md">
-            <img 
-              src="public/Main_page_data/About_me.avif" 
-              alt="About Me Architecture Graphic" 
-              width="450" 
-              height="380" 
-              class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(56,189,248,0.25)]"
-            />
+        <div class="lg:col-span-6 flex justify-center w-full">
+          <div class="relative w-full flex items-center justify-center p-0">
+            <video 
+              src="public/Video/mp4.mp4" 
+              autoplay 
+              loop 
+              muted 
+              playsinline 
+              class="w-full max-w-lg h-auto object-cover block border-0 outline-none video-seamless-blend">
+            </video>
           </div>
         </div>
       </div>
@@ -562,7 +555,7 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 justify-center items-start">
         
-        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer">
+        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="fireConfetti(event)">
           <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
           
           <div class="badge-card-hover relative z-10 transform group-hover:scale-110 group-hover:-translate-y-2">
@@ -575,7 +568,7 @@
           </div>
         </div>
 
-        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer">
+        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="fireConfetti(event)">
           <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
           
           <div class="badge-card-hover relative z-10 transform group-hover:scale-110 group-hover:-translate-y-2">
@@ -588,7 +581,7 @@
           </div>
         </div>
 
-        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer">
+        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="fireConfetti(event)">
           <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
           
           <div class="badge-card-hover relative z-10 transform group-hover:scale-110 group-hover:-translate-y-2">
@@ -601,7 +594,7 @@
           </div>
         </div>
 
-        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer">
+        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="fireConfetti(event)">
           <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
           
           <div class="badge-card-hover relative z-10 transform group-hover:scale-110 group-hover:-translate-y-2">
@@ -614,7 +607,7 @@
           </div>
         </div>
 
-        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer">
+        <div class="cert-container cert-badge-card group relative flex flex-col items-center justify-center p-4 cursor-pointer" onclick="fireConfetti(event)">
           <div class="cert-glow absolute inset-0 bg-gradient-to-t from-sky-500/30 via-cyan-500/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none blur-xl"></div>
           
           <div class="badge-card-hover relative z-10 transform group-hover:scale-110 group-hover:-translate-y-2">
@@ -642,18 +635,18 @@
         
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
-          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
+          <div class="glass-card-3d rounded-xl p-6 hover:border-sky-500/40 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Architect – Technical Specialist</h3>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Architect - Technical Specialist</h3>
                 <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Hexaware Technologies | Pune, Maharashtra</p>
               </div>
-              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">14/02/2026 – Present</span>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">14/02/2026 - Present</span>
             </div>
             <ul class="space-y-3 mb-4">
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using Intune, Autopilot, and Azure AD.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Designed Virtual Desktop Infrastructure (VDI) using Azure Virtual Desktop and Windows 365, integrated with Citrix for secure remote access.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Managed endpoint security and configuration policies via Intune, GPO, and FSLogix profile optimization.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Microsoft Intune</span>
@@ -666,18 +659,18 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
+          <div class="glass-card-3d rounded-xl p-6 hover:border-sky-500/40 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Specialist – EUC</h3>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Specialist - EUC</h3>
                 <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/04/2024 – 13/02/2026</span>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/04/2024 - 13/02/2026</span>
             </div>
             <ul class="space-y-3 mb-4">
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Developed PowerShell and SQL scripts for patch compliance and device health dashboards.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Managed lifecycle for 5000+ endpoints using Intune and SCCM, including Autopatch setup and ring deployment.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Developed PowerShell and SQL scripts for patch compliance and device health dashboards.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Deployed AVD session hosts and integrated with Microsoft Entra ID for secure RBAC and conditional access.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">PowerShell</span>
@@ -690,17 +683,17 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
+          <div class="glass-card-3d rounded-xl p-6 hover:border-sky-500/40 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Senior Administrator – EUC</h3>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Senior Administrator - EUC</h3>
                 <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/01/2022 – 31/03/2024</span>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/01/2022 - 31/03/2024</span>
             </div>
             <ul class="space-y-3 mb-4">
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Designed and implemented device management policies, software deployment strategies, and OS provisioning.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Led the administration and optimization of enterprise endpoint management solutions, including Microsoft Intune, MECM/SCCM, and Microsoft Entra ID.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Designed and implemented device management policies, software deployment strategies, and OS provisioning.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">Microsoft Intune</span>
@@ -712,17 +705,17 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
+          <div class="glass-card-3d rounded-xl p-6 hover:border-sky-500/40 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
-                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Administrator – EUC</h3>
+                <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Administrator - EUC</h3>
                 <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">31/01/2020 – 31/12/2021</span>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">31/01/2020 - 31/12/2021</span>
             </div>
             <ul class="space-y-3 mb-4">
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD).</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Created and maintained device collections, application packages, and compliance baselines.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Managed and administered Microsoft Configuration Manager (MECM/SCCM) infrastructure, including software deployment and OS deployment (OSD).</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Created and maintained device collections, application packages, and compliance baselines.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">MECM/SCCM</span>
@@ -734,17 +727,17 @@
         
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
+          <div class="glass-card-3d rounded-xl p-6 hover:border-sky-500/40 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Process Associate</h3>
                 <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
               </div>
-              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">19/11/2018 – 23/09/2019</span>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">19/11/2018 - 23/09/2019</span>
             </div>
             <ul class="space-y-3 mb-4">
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Performed SQL database health checks and managed incident tracking via Salesforce CRM.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Performed SQL database health checks and managed incident tracking via Salesforce CRM.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">DICOM/HL7</span>
@@ -756,18 +749,18 @@
 
         <div class="relative pl-12 sm:pl-20 group">
           <div class="absolute left-[19px] top-2 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-sky-400 transition-colors"></div>
-          <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-xl p-6 hover:border-sky-500/30 transition-all duration-300 shadow-xl">
+          <div class="glass-card-3d rounded-xl p-6 hover:border-sky-500/40 transition-all duration-300 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">Customer Support Engineer</h3>
                 <p class="text-sky-400 font-mono text-sm uppercase tracking-wider">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
               </div>
-              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/02/2016 – 14/11/2018</span>
+              <span class="mt-2 md:mt-0 px-3 py-1 bg-slate-950 border border-slate-800 rounded font-mono text-xs text-slate-400">01/02/2016 - 14/11/2018</span>
             </div>
             <ul class="space-y-3 mb-4">
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Delivered IT infrastructure support for 24K+ users in an ODC environment.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Managed desktop/laptop refresh for 6000+ endpoints.</li>
-              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">▹</span> Asset management (Desktop\Laptop\Handheld devices\Voice devices).</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Delivered IT infrastructure support for 24K+ users in an ODC environment.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Managed desktop/laptop refresh for 6000+ endpoints.</li>
+              <li class="flex items-start text-slate-300 text-sm"><span class="text-sky-500 mr-2">></span> Asset management (Desktop\Laptop\Handheld devices\Voice devices).</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="px-3 py-1 rounded-full bg-teal-900/30 text-teal-400 text-xs font-medium border border-teal-500/20">IT Infrastructure Support</span>
@@ -876,7 +869,7 @@
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Self-Hosted Homelab</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Homelab Architecture →</span>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Homelab Architecture -></span>
             </div>
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
@@ -890,7 +883,7 @@
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Strategic Gaming</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Gaming Portfolio →</span>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Gaming Portfolio -></span>
             </div>
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
@@ -904,7 +897,7 @@
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Culinary & Foodie</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Food Portfolio →</span>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Food Portfolio -></span>
             </div>
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
@@ -918,7 +911,7 @@
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Reading</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Literary Portfolio →</span>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Literary Portfolio -></span>
             </div>
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
@@ -932,7 +925,7 @@
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Coin Collection</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Numismatic Vault →</span>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Numismatic Vault -></span>
             </div>
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
@@ -946,7 +939,7 @@
           <div class="p-4 bg-slate-950/80 border-b border-white/10 flex justify-between items-center">
             <div>
               <h3 class="font-bold text-white text-lg group-hover:text-sky-300 transition-colors">Speedcubing & Puzzles</h3>
-              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Puzzle Hub →</span>
+              <span class="font-mono text-[10px] text-sky-400 mt-1 block">Click to view Puzzle Hub -></span>
             </div>
             <i data-lucide="external-link" class="w-5 h-5 text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
           </div>
@@ -991,7 +984,7 @@
                   </p>
                 </div>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned -></div>
             </div>
             <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
@@ -1022,7 +1015,7 @@
                   </p>
                 </div>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned -></div>
             </div>
             <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
@@ -1053,7 +1046,7 @@
                   </p>
                 </div>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned -></div>
             </div>
             <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
@@ -1084,7 +1077,7 @@
                   </p>
                 </div>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned -></div>
             </div>
             <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
@@ -1115,7 +1108,7 @@
                   </p>
                 </div>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned -></div>
             </div>
             <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
@@ -1146,7 +1139,7 @@
                   </p>
                 </div>
               </div>
-              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned →</div>
+              <div class="px-6 pb-6 text-xs font-mono text-sky-400">Click to reveal metrics & lessons learned -></div>
             </div>
             <div class="flip-card-back glass-card-3d border border-sky-400 p-7 rounded-2xl flex flex-col justify-between text-left h-full shadow-xl">
               <div class="space-y-4 overflow-y-auto pr-1">
@@ -1164,22 +1157,31 @@
   </section>
 
   <section id="contact" class="py-24 section-clean-bg text-left relative overflow-hidden">
-    <div class="absolute inset-0 bg-radial-gradient from-indigo-500/5 via-transparent to-transparent pointer-events-none"></div>
+    <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+      <video 
+        src="public/Video/Abhinandhan Frontend Developer.mp4" 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        class="w-full h-full object-cover opacity-55 border-0 outline-none">
+      </video>
+    </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-8">
           <div class="space-y-6">
-            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-indigo-950 border border-indigo-500/30 rounded-full mb-2 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-indigo-950/90 border border-indigo-500/40 rounded-full mb-2 shadow-[0_0_15px_rgba(99,102,241,0.3)] backdrop-blur-md">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
               <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Secure Direct Link</span>
             </div>
-            <h2 class="font-sans text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <h2 class="font-sans text-4xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">
               Let's Build Something Secure.
             </h2>
-            <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-              Whether you're looking for an Architect, consultation on modern enterprise endpoints, MDM configurations, or looking to add a dedicated Systems Engineer to your squad — send me a secure transmission directly to my inbox.
+            <p class="font-sans text-slate-200 text-base sm:text-lg leading-relaxed font-normal drop-shadow-sm">
+              Whether you're looking for an Architect, consultation on modern enterprise endpoints, MDM configurations, or looking to add a dedicated Systems Engineer to your squad: send me a secure transmission directly to my inbox.
             </p>
           </div>
 
@@ -1287,15 +1289,15 @@
             <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
             </a>
-            <span>•</span>
+            <span>*</span>
             <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">mail</span> Email
             </a>
-            <span>•</span>
+            <span>*</span>
             <a href="Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
             </a>
-            <span>•</span>
+            <span>*</span>
             <a href="Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">description</span> Terms of Service
             </a>
@@ -1310,7 +1312,6 @@
 </button>
 
 <script>
-  // Typewriter effect logic
   const phrases = [
     "Microsoft Intune & VMware Architect",
     "Securing endpoints and scaling cloud virtualization",
@@ -1352,12 +1353,47 @@
     setTimeout(typeWriterEffect, speed);
   }
 
+  function fireConfetti(event) {
+    if (typeof confetti === 'function') {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+      confetti({
+        particleCount: 55,
+        spread: 65,
+        origin: { x: x, y: y },
+        colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff']
+      });
+    }
+  }
+
+  function updateActiveNav() {
+    const sections = ['home', 'about', 'certifications', 'experience', 'education', 'hobbies', 'projects', 'contact'];
+    const scrollPos = window.scrollY + 200;
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const section = document.getElementById(sections[i]);
+      if (section && section.offsetTop <= scrollPos) {
+        document.querySelectorAll('.nav-item-link').forEach(link => {
+          if (link.getAttribute('href') === `#${sections[i]}`) {
+            link.className = 'nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-sky-400 bg-sky-950/60 border border-sky-400/30 shadow-[0_0_10px_rgba(56,189,248,0.2)]';
+          } else {
+            link.className = 'nav-item-link px-3.5 py-1.5 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all';
+          }
+        });
+        break;
+      }
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
     typeWriterEffect();
   });
 
   window.addEventListener("scroll", () => {
+    updateActiveNav();
     const backToTopBtn = document.getElementById("back-to-top-btn");
     if (!backToTopBtn) return;
     if (window.scrollY > 300) {
@@ -1372,10 +1408,17 @@
   }
 
   function scrollToSection(event, id) { 
-    event.preventDefault(); 
+    if (event) event.preventDefault(); 
     const targetElement = document.getElementById(id);
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
+      const navOffset = 70;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
     const drawer = document.getElementById("mobile-menu-drawer");
     if (drawer && !drawer.classList.contains("hidden")) {
@@ -1418,7 +1461,7 @@
     const encodedBody = encodeURIComponent(body);
 
     const banner = document.getElementById("success-banner");
-    banner.classList.add("hidden");
+    banner.classList.remove("hidden");
     lucide.createIcons();
 
     window.location.href = `mailto:akashnagapure@live.com?subject=${encodedSubject}&body=${encodedBody}`;
@@ -1426,4 +1469,3 @@
 </script>
 </body>
 </html>
-
