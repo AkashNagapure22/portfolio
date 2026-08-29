@@ -1,18 +1,3 @@
-Here is the complete diagnosis of why your mobile experience was laggy, stuttered during scrolling, and suffered from broken layout shifts—followed by the complete, production-ready, bulletproof single-file codebase.
-Root Cause Analysis & Architectural Fixes
- * Massive WebGL / Three.js Overdraw & Repaint Storms on Mobile GPU
-   * Problem: A 5,500 particle point cloud + infinite THREE.GridHelper with continuous mousemove tracking and heavy AdditiveBlending was running on a full-screen fixed canvas. On mobile retina displays with high DPI (devicePixelRatio: 2 or 3), this forces the mobile GPU into thermal throttling and continuous 60fps frame drops, starving the browser's main UI thread and freezing scroll dispatchers.
-   * Fix: Created a mobile-throttled WebGL pipeline with max DPR capped strictly at 1.25 on mobile (vs 1.75 on desktop), reduced mobile particle count from 5,500 to 1,200, disabled expensive additive blending on low-tier screens, and added visibilitychange + IntersectionObserver pause hooks so the canvas idles when offscreen.
- * Heavy Backface 3D Transforms & Composite Layer Thrashing (backdrop-blur + preserve-3d)
-   * Problem: Nesting backdrop-filter: blur(25px) inside elements with transform-style: preserve-3d and .flip-card-container creates separate hardware acceleration compositing layers for every single card. Mobile WebKit (iOS Safari) and Blink (Chrome Android) run out of VRAM, causing layout delays, white screen flickers, and unresponsive touch scrolling.
-   * Fix: Removed composite layer traps. Isolated 3D card flips with CSS hardware optimization (will-change: transform, contain: paint layout), optimized mobile backdrop blur to 8px with lightweight fallback background colors, and disabled horizontal bleed.
- * Cumulative Layout Shift (CLS) & Asynchronous Font/Asset Pop-in
-   * Problem: Critical structural containers lacked aspect ratio boxes and min-height anchors before images/icons loaded, causing the page to dynamically jump by 100s of pixels as you scrolled down.
-   * Fix: Hardened all image containers with CSS aspect-ratio reserving exact heights before download.
- * Scroll Hijacking & Fixed Viewport Traps
-   * Problem: Negative z-index canvas fighting fixed backdrop headers, improper touch listeners, and unbounded nested click containers intercepted smooth inertial scrolling on iOS/Android.
-   * Fix: Streamlined all touch targets with clean mobile-first tap mechanics, hardware-accelerated CSS transitions, and zero JavaScript scroll interception.
-Complete, Zero-Omission Production Code (index.html)
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
