@@ -87,7 +87,6 @@
       perspective: 1200px;
     }
     
-    /* Full-Height Fixed 3D Cinematic Canvas Background Covering Entire Page */
     #three-bg-canvas {
       position: fixed;
       top: 0;
@@ -98,12 +97,10 @@
       pointer-events: none;
     }
 
-    /* Completely Transparent Section Backgrounds so the continuous 3D starfield and grid extend fully across every section */
     .section-clean-bg {
       background: transparent !important;
     }
 
-    /* Animations: Slide Down & Slide Left & Shimmer */
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -137,7 +134,6 @@
       animation: textShimmer 5s linear infinite;
     }
 
-    /* Construction Banner Animation */
     @keyframes scrollLeft {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
@@ -148,7 +144,6 @@
       animation: scrollLeft 40s linear infinite;
     }
 
-    /* Custom high-tech scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -170,15 +165,15 @@
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                0 0 30px rgba(56, 189, 248, 0.05);
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 
+                  0 0 30px rgba(56, 189, 248, 0.05);
       transform-style: preserve-3d;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card-3d:hover {
       border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
-                0 0 50px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25), 
+                  0 0 50px rgba(56, 189, 248, 0.15);
     }
 
     .holo-glow {
@@ -529,14 +524,15 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center">
-          <div class="relative w-full max-w-md">
-            <img 
-              src="public/Main_page_data/About_me.avif" 
-              alt="About Me Architecture Graphic" 
-              width="450" 
-              height="380" 
-              class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(56,189,248,0.25)]"
-            />
+          <div class="relative w-full max-w-md bg-transparent">
+            <video 
+              src="public/Video/mp4.mp4" 
+              autoplay 
+              loop 
+              muted 
+              playsinline 
+              class="w-full h-auto object-contain border-0 outline-none shadow-none bg-transparent filter drop-shadow-[0_0_35px_rgba(56,189,248,0.25)]">
+            </video>
           </div>
         </div>
       </div>
@@ -1164,7 +1160,19 @@
   </section>
 
   <section id="contact" class="py-24 section-clean-bg text-left relative overflow-hidden">
-    <div class="absolute inset-0 bg-radial-gradient from-indigo-500/5 via-transparent to-transparent pointer-events-none"></div>
+    <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+      <video 
+        src="public/Video/Abhinandhan Frontend Developer.mp4" 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        class="w-full h-full object-cover opacity-20 border-0 outline-none">
+      </video>
+      <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px]"></div>
+    </div>
+
+    <div class="absolute inset-0 bg-radial-gradient from-indigo-500/5 via-transparent to-transparent pointer-events-none z-0"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -1310,7 +1318,6 @@
 </button>
 
 <script>
-  // Typewriter effect logic
   const phrases = [
     "Microsoft Intune & VMware Architect",
     "Securing endpoints and scaling cloud virtualization",
@@ -1426,4 +1433,3 @@
 </script>
 </body>
 </html>
-
