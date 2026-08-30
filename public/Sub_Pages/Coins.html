@@ -64,6 +64,8 @@
         scroll-padding-top: 100px; 
         scroll-behavior: smooth; 
         background-color: #020617;
+        overflow-x: hidden;
+        height: 100%;
     }
     body {
         background-color: #020617 !important;
@@ -164,108 +166,6 @@
 
 <canvas id="three-bg-canvas" aria-hidden="true" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
 
-<script>
-let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
-let mouseX = 0, mouseY = 0;
-let targetX = 0, targetY = 0;
-let isPageVisible = true;
-const isMobile = window.innerWidth < 768;
-
-function init3DBackground() {
-    const canvas = document.getElementById('three-bg-canvas');
-    if (!canvas) return;
-
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 50;
-
-    renderer = new THREE.WebGLRenderer({ 
-        canvas: canvas, 
-        antialias: !isMobile, 
-        alpha: true, 
-        powerPreference: "high-performance"
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
-
-    const count = isMobile ? 1500 : 3500;
-    particlesGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(count * 3);
-
-    for (let i = 0; i < count * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 800;
-        positions[i + 1] = (Math.random() - 0.5) * 2800;
-        positions[i + 2] = (Math.random() - 0.5) * 600;
-    }
-    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particleMat = new THREE.PointsMaterial({
-        color: 0x38bdf8,
-        size: isMobile ? 1.3 : 1.1,
-        transparent: true,
-        opacity: 0.85,
-        blending: THREE.AdditiveBlending
-    });
-
-    particlesMesh = new THREE.Points(particlesGeo, particleMat);
-    scene.add(particlesMesh);
-
-    gridHelper = new THREE.GridHelper(1400, isMobile ? 50 : 100, 0x0284c7, 0x0f172a);
-    gridHelper.position.y = -220;
-    gridHelper.material.transparent = true;
-    gridHelper.material.opacity = 0.22;
-    scene.add(gridHelper);
-
-    if (!isMobile) {
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - window.innerWidth / 2) * 0.0006;
-            mouseY = (e.clientY - window.innerHeight / 2) * 0.0006;
-        }, { passive: true });
-    }
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            if (!camera || !renderer) return;
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }, 150);
-    }, { passive: true });
-
-    document.addEventListener('visibilitychange', () => {
-        isPageVisible = !document.hidden;
-    });
-}
-
-const clock = new THREE.Clock();
-function animate3DBackground() {
-    requestAnimationFrame(animate3DBackground);
-    if (!isPageVisible) return;
-
-    const elapsedTime = clock.getElapsedTime();
-    targetX += (mouseX - targetX) * 0.04;
-    targetY += (mouseY - targetY) * 0.04;
-
-    if (particlesMesh) {
-        particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
-        particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
-    }
-    if (gridHelper) {
-        gridHelper.rotation.y = elapsedTime * 0.003;
-    }
-    if (renderer && scene && camera) {
-        renderer.render(scene, camera);
-    }
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    init3DBackground();
-    animate3DBackground();
-});
-</script>
-
 <header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.85)]">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
         <a href="https://www.akashnagapure.in" class="flex items-center gap-3 group shrink-0">
@@ -332,24 +232,24 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
 </header>
     
-<div class="fixed bottom-6 left-6 z-50 flex items-center group">
+<div class="fixed bottom-6 left-6 z-[60] flex items-center group pointer-events-auto">
     <a href="https://wa.me/919860457155?text=Hi%20Akash,%20I%20visited%20your%20numismatic%20vault%20and%20would%20like%20to%20discuss%20coin%20collecting!" 
        target="_blank" 
        rel="noopener noreferrer" 
-       class="relative flex items-center justify-center w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)] hover:scale-110 transition-all duration-300 cursor-pointer"
+       class="relative flex items-center justify-center w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:scale-110 transition-all duration-300 cursor-pointer"
        aria-label="Chat on WhatsApp">
         <i data-lucide="message-circle" class="w-6 h-6"></i>
         <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-30 pointer-events-none"></span>
     </a>
-    <div class="absolute left-16 bg-slate-900/90 border border-emerald-500/30 text-emerald-300 font-mono text-xs px-3 py-1.5 rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap backdrop-blur-md">
+    <div class="absolute left-16 bg-slate-900/95 border border-emerald-500/30 text-emerald-300 font-mono text-xs px-3 py-1.5 rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap backdrop-blur-md">
         Chat on WhatsApp 👋
     </div>
 </div>
 
-<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+<div class="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3 pointer-events-auto">
     <div id="quick-jump-menu" class="hidden glass-card p-4 rounded-2xl border border-sky-400/40 shadow-[0_10px_30px_rgba(0,0,0,0.9)] flex flex-col gap-2 min-w-[200px] mb-2 transition-all">
         <span class="text-[10px] font-bold text-sky-400 uppercase tracking-widest px-2 border-b border-white/10 pb-1 font-mono">Jump To Section</span>
-        <a href="../index.html" class="text-xs text-sky-300 font-bold hover:text-sky-200 px-2 py-1.5 rounded-lg hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2 font-mono">
+        <a href="https://www.akashnagapure.in" class="text-xs text-sky-300 font-bold hover:text-sky-200 px-2 py-1.5 rounded-lg hover:bg-white/5 flex items-center gap-2 border-b border-white/5 pb-2 font-mono">
             <i data-lucide="home" class="w-3.5 h-3.5"></i> Main Site Hub
         </a>
         <a href="#stats" onclick="toggleQuickJump()" class="text-xs text-slate-300 hover:text-sky-400 px-2 py-1.5 rounded-lg hover:bg-white/5 flex items-center gap-2 font-mono">
@@ -376,16 +276,16 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <div class="flex items-center gap-2">
-        <button onclick="toggleQuickJump()" class="p-3.5 bg-slate-900/90 hover:bg-sky-500/20 text-sky-400 border border-sky-400/40 rounded-full shadow-[0_0_20px_rgba(56,189,248,0.3)] backdrop-blur-md transition-all flex items-center justify-center hover:scale-110 cursor-pointer" aria-label="Quick Jump Menu">
+        <button onclick="toggleQuickJump()" class="p-3.5 bg-slate-900/90 hover:bg-sky-500/20 text-sky-400 border border-sky-400/40 rounded-full shadow-[0_0_20px_rgba(56,189,248,0.3)] backdrop-blur-md transition-all flex items-center justify-center hover:scale-110 cursor-pointer pointer-events-auto" aria-label="Quick Jump Menu">
             <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
-        <button onclick="scrollToTop()" class="hidden p-3.5 bg-gradient-to-r from-sky-400 to-sky-500 text-slate-950 hover:from-sky-300 hover:to-sky-400 font-bold rounded-full shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all flex items-center justify-center hover:scale-110 cursor-pointer" id="back-to-top-btn" aria-label="Scroll to top">
+        <button onclick="scrollToTop()" class="p-3.5 bg-gradient-to-r from-sky-400 to-sky-500 text-slate-950 hover:from-sky-300 hover:to-sky-400 font-bold rounded-full shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all flex items-center justify-center hover:scale-110 cursor-pointer pointer-events-auto" id="back-to-top-btn" aria-label="Scroll to top">
             <i data-lucide="arrow-up" class="w-5 h-5"></i>
         </button>
     </div>
 </div>
 
-<main class="relative z-10 pt-28 md:pt-36 pb-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto space-y-16 md:space-y-24">
+<main class="relative z-10 pt-28 md:pt-36 pb-20 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-16 md:space-y-24">
 
     <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 scroll-mt-28">
         <div class="glass-card p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl holo-glow">
@@ -828,19 +728,20 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-    <section id="foreign-coins" class="scroll-mt-28 space-y-12">
+    <section id="foreign-coins" class="scroll-mt-28 space-y-16">
         <div class="flex items-center gap-4 border-b border-sky-500/20 pb-4">
             <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
             <div>
                 <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">FOREIGN COIN INVENTORY (INTERNATIONAL VAULT)</h2>
-                <p class="text-xs text-slate-400 font-light">Global pieces: Hungary, Euro Zone, UAE, Singapore, China, and Nepal</p>
+                <p class="text-xs text-slate-400 font-light">Global pieces cleanly separated by country &amp; economic zone</p>
             </div>
         </div>
 
         <div class="space-y-6 vault-category-block">
-            <h3 class="text-base sm:text-lg font-bold text-sky-400 flex items-center gap-2 font-mono">
-                <i data-lucide="globe-2" class="w-4 h-4"></i> Hungary (Hungarian Forint)
-            </h3>
+            <div class="flex items-center gap-3 border-l-4 border-sky-400 pl-3">
+                <i data-lucide="globe-2" class="w-5 h-5 text-sky-400"></i>
+                <h3 class="text-base sm:text-lg font-bold text-sky-400 font-mono">Hungary (Hungarian Forint)</h3>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
@@ -904,7 +805,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Dia:</strong> 24.8 mm</div>
                                     <div><strong>Weight:</strong> 6.1 g</div>
                                 </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Displays official coat of arms of Hungary.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight font-light">Coat of arms of Hungary.</p>
                             </div>
                             <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Hungarian Issue</span>
                         </div>
@@ -938,41 +839,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Dia:</strong> 26.3 mm</div>
                                     <div><strong>Weight:</strong> 6.9 g</div>
                                 </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Features Stool Iris flower on the obverse.</p>
-                            </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Hungarian Issue</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <h4 class="font-bold text-white text-xs truncate">50 Forint</h4>
-                                <span class="text-[8px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full border border-sky-500/30 font-mono">FLIP ↻</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1">
-                                <img alt="50 Forint" width="200" height="160" loading="lazy" class="w-full h-full object-contain p-2" src="../images/Notes_And_Coins/Foreign_Coins/Hungary_Coins/50_fornit.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10 text-[10px] font-mono">
-                                <span class="text-emerald-400 font-bold">1 Pc Available</span>
-                                <span class="text-sky-400 font-bold">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-sky-400 text-xs">50 Forint Specs</h4>
-                                    <span class="text-[8px] text-slate-400 font-mono">Return ↻</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-xl border border-white/5 font-mono">
-                                    <div><strong>Denom:</strong> 50 Forint</div>
-                                    <div><strong>Issuer:</strong> MNB</div>
-                                    <div><strong>Dia:</strong> 27.4 mm</div>
-                                    <div><strong>Weight:</strong> 7.7 g</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Depicts Saker Falcon.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight font-light">Stool Iris flower motif.</p>
                             </div>
                             <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Hungarian Issue</span>
                         </div>
@@ -1006,7 +873,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Dia:</strong> 28.3 mm</div>
                                     <div><strong>Weight:</strong> 9.0 g</div>
                                 </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Features Széchenyi Chain Bridge of Budapest.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight font-light">Széchenyi Chain Bridge of Budapest.</p>
                             </div>
                             <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Hungarian Issue</span>
                         </div>
@@ -1015,10 +882,11 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
 
-        <div class="space-y-6 pt-6 vault-category-block">
-            <h3 class="text-base sm:text-lg font-bold text-sky-400 flex items-center gap-2 font-mono">
-                <i data-lucide="globe" class="w-4 h-4"></i> Europe (Euro Zone Currency)
-            </h3>
+        <div class="space-y-6 vault-category-block pt-4">
+            <div class="flex items-center gap-3 border-l-4 border-sky-400 pl-3">
+                <i data-lucide="euro" class="w-5 h-5 text-sky-400"></i>
+                <h3 class="text-base sm:text-lg font-bold text-sky-400 font-mono">Europe (Euro Zone Currency)</h3>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
@@ -1156,115 +1024,14 @@ window.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 </div>
-
-                <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <h4 class="font-bold text-white text-xs truncate">10 Euro Cent</h4>
-                                <span class="text-[8px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full border border-sky-500/30 font-mono">FLIP ↻</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1">
-                                <img alt="10 Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain p-2" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/10_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10 text-[10px] font-mono">
-                                <span class="text-emerald-400 font-bold">1 Pc Available</span>
-                                <span class="text-sky-400 font-bold">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-sky-400 text-xs">10 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 font-mono">Return ↻</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-xl border border-white/5 font-mono">
-                                    <div><strong>Denom:</strong> 10 Cent</div>
-                                    <div><strong>Alloy:</strong> Nordic Gold</div>
-                                    <div><strong>Dia:</strong> 19.75 mm</div>
-                                    <div><strong>Weight:</strong> 4.1 g</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Scalloped edge fraction.</p>
-                            </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Euro Zone</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <h4 class="font-bold text-white text-xs truncate">2 Euro Cent</h4>
-                                <span class="text-[8px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full border border-sky-500/30 font-mono">FLIP ↻</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1">
-                                <img alt="2 Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain p-2" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/2_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10 text-[10px] font-mono">
-                                <span class="text-emerald-400 font-bold">1 Pc Available</span>
-                                <span class="text-sky-400 font-bold">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-sky-400 text-xs">2 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 font-mono">Return ↻</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-xl border border-white/5 font-mono">
-                                    <div><strong>Denom:</strong> 2 Cent</div>
-                                    <div><strong>Comp:</strong> Steel / Copper</div>
-                                    <div><strong>Dia:</strong> 18.75 mm</div>
-                                    <div><strong>Weight:</strong> 3.06 g</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Copper-plated steel with horizontal groove.</p>
-                            </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Euro Zone</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
-                    <div class="inventory-flip-inner">
-                        <div class="inventory-flip-front glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                <h4 class="font-bold text-white text-xs truncate">1 Euro Cent</h4>
-                                <span class="text-[8px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full border border-sky-500/30 font-mono">FLIP ↻</span>
-                            </div>
-                            <div class="w-full flex-grow rounded-xl overflow-hidden relative flex items-center justify-center bg-black/40 my-1">
-                                <img alt="1 Cent" width="200" height="160" loading="lazy" class="w-full h-full object-contain p-2" src="../images/Notes_And_Coins/Foreign_Coins/Europe_Coins/1_Euro_Cent.avif" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/10 text-[10px] font-mono">
-                                <span class="text-emerald-400 font-bold">1 Pc Available</span>
-                                <span class="text-sky-400 font-bold">Specs →</span>
-                            </div>
-                        </div>
-                        <div class="inventory-flip-back glass-card p-4 flex flex-col justify-between h-full">
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center border-b border-white/10 pb-1">
-                                    <h4 class="font-bold text-sky-400 text-xs">1 Cent Specs</h4>
-                                    <span class="text-[8px] text-slate-400 font-mono">Return ↻</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-200 bg-black/60 p-2 rounded-xl border border-white/5 font-mono">
-                                    <div><strong>Denom:</strong> 1 Cent</div>
-                                    <div><strong>Comp:</strong> Steel / Copper</div>
-                                    <div><strong>Dia:</strong> 16.25 mm</div>
-                                    <div><strong>Weight:</strong> 2.3 g</div>
-                                </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Smallest euro denomination coin.</p>
-                            </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Euro Zone</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <div class="space-y-6 pt-6 vault-category-block">
-            <h3 class="text-base sm:text-lg font-bold text-sky-400 flex items-center gap-2 font-mono">
-                <i data-lucide="globe-2" class="w-4 h-4"></i> UAE (United Arab Emirates Dirham)
-            </h3>
+        <div class="space-y-6 vault-category-block pt-4">
+            <div class="flex items-center gap-3 border-l-4 border-sky-400 pl-3">
+                <i data-lucide="flag" class="w-5 h-5 text-sky-400"></i>
+                <h3 class="text-base sm:text-lg font-bold text-sky-400 font-mono">UAE (United Arab Emirates Dirham)</h3>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
@@ -1294,9 +1061,9 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Dia:</strong> 20.0 mm</div>
                                     <div><strong>Weight:</strong> 3.5 g</div>
                                 </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Features Arabian Gazelle on reverse.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight font-light">Arabian Gazelle reverse motif.</p>
                             </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Middle Eastern Vault</span>
+                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">UAE Issue</span>
                         </div>
                     </div>
                 </div>
@@ -1328,9 +1095,9 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Dia:</strong> 21.0 mm</div>
                                     <div><strong>Weight:</strong> 6.2 g</div>
                                 </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Heptagonal shaped coin.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight font-light">Heptagonal shape with oil derricks.</p>
                             </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Middle Eastern Vault</span>
+                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">UAE Issue</span>
                         </div>
                     </div>
                 </div>
@@ -1362,19 +1129,20 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Dia:</strong> 24.0 mm</div>
                                     <div><strong>Weight:</strong> 6.4 g</div>
                                 </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Features traditional Dallah coffee pot motif.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight font-light">Traditional Dallah coffee pot motif.</p>
                             </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Middle Eastern Vault</span>
+                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">UAE Issue</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="space-y-6 pt-6 vault-category-block">
-            <h3 class="text-base sm:text-lg font-bold text-sky-400 flex items-center gap-2 font-mono">
-                <i data-lucide="globe-2" class="w-4 h-4"></i> Singapore &amp; China &amp; Nepal
-            </h3>
+        <div class="space-y-6 vault-category-block pt-4">
+            <div class="flex items-center gap-3 border-l-4 border-sky-400 pl-3">
+                <i data-lucide="compass" class="w-5 h-5 text-sky-400"></i>
+                <h3 class="text-base sm:text-lg font-bold text-sky-400 font-mono">Singapore (Singapore Dollar)</h3>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
@@ -1404,13 +1172,22 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div><strong>Dia:</strong> 18.5 mm</div>
                                     <div><strong>Weight:</strong> 1.6 g</div>
                                 </div>
-                                <p class="text-[10px] text-slate-300 leading-tight font-light">Vanda Miss Joaquim orchid motif.</p>
+                                <p class="text-[10px] text-slate-300 leading-tight font-light">Vanda Miss Joaquim orchid flower.</p>
                             </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Asian Vault</span>
+                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Singapore Issue</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="space-y-6 vault-category-block pt-4">
+            <div class="flex items-center gap-3 border-l-4 border-sky-400 pl-3">
+                <i data-lucide="shield" class="w-5 h-5 text-sky-400"></i>
+                <h3 class="text-base sm:text-lg font-bold text-sky-400 font-mono">China (People's Republic of China)</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-4 flex flex-col justify-between h-full">
@@ -1440,11 +1217,20 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight font-light">Chrysanthemum flower motif.</p>
                             </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Asian Vault</span>
+                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Chinese Issue</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="space-y-6 vault-category-block pt-4">
+            <div class="flex items-center gap-3 border-l-4 border-sky-400 pl-3">
+                <i data-lucide="mountain" class="w-5 h-5 text-sky-400"></i>
+                <h3 class="text-base sm:text-lg font-bold text-sky-400 font-mono">Nepal (Nepalese Rupee)</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <div class="inventory-flip-card cursor-pointer vault-item" onclick="this.classList.toggle('flipped')">
                     <div class="inventory-flip-inner">
                         <div class="inventory-flip-front glass-card p-4 flex flex-col justify-between h-full">
@@ -1474,7 +1260,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <p class="text-[10px] text-slate-300 leading-tight font-light">King Birendra Bir Bikram Shah reign.</p>
                             </div>
-                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Himalayan Vault</span>
+                            <span class="text-[8px] text-sky-400 font-bold tracking-widest uppercase text-center font-mono">Nepalese Issue</span>
                         </div>
                     </div>
                 </div>
@@ -1683,14 +1469,14 @@ window.addEventListener('DOMContentLoaded', () => {
 </footer>
 
 <script>
-    // 1. THREE.JS 3D BACKGROUND ENGINE
-    let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
+    // 1. THREE.JS 3D STAR FIELD & PARTICLES ENGINE
+    let scene, camera, renderer, starField, gridHelper, particlesGeo;
     let mouseX = 0, mouseY = 0;
     let targetX = 0, targetY = 0;
     let isPageVisible = true;
     const isMobile = window.innerWidth < 768;
 
-    function init3DBackground() {
+    function init3DStarBackground() {
         const canvas = document.getElementById('three-bg-canvas');
         if (!canvas) return;
 
@@ -1707,38 +1493,38 @@ window.addEventListener('DOMContentLoaded', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
 
-        const count = isMobile ? 1500 : 3500;
+        const count = isMobile ? 1200 : 3000;
         particlesGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(count * 3);
 
         for (let i = 0; i < count * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 800;
-            positions[i + 1] = (Math.random() - 0.5) * 2800;
-            positions[i + 2] = (Math.random() - 0.5) * 600;
+            positions[i] = (Math.random() - 0.5) * 1000;
+            positions[i + 1] = (Math.random() - 0.5) * 1000;
+            positions[i + 2] = (Math.random() - 0.5) * 800;
         }
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
         const particleMat = new THREE.PointsMaterial({
             color: 0x38bdf8,
-            size: isMobile ? 1.3 : 1.1,
+            size: isMobile ? 1.5 : 1.2,
             transparent: true,
-            opacity: 0.85,
+            opacity: 0.9,
             blending: THREE.AdditiveBlending
         });
 
-        particlesMesh = new THREE.Points(particlesGeo, particleMat);
-        scene.add(particlesMesh);
+        starField = new THREE.Points(particlesGeo, particleMat);
+        scene.add(starField);
 
-        gridHelper = new THREE.GridHelper(1400, isMobile ? 50 : 100, 0x0284c7, 0x0f172a);
-        gridHelper.position.y = -220;
+        gridHelper = new THREE.GridHelper(1500, isMobile ? 40 : 80, 0x0284c7, 0x090d16);
+        gridHelper.position.y = -250;
         gridHelper.material.transparent = true;
-        gridHelper.material.opacity = 0.22;
+        gridHelper.material.opacity = 0.18;
         scene.add(gridHelper);
 
         if (!isMobile) {
             window.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX - window.innerWidth / 2) * 0.0006;
-                mouseY = (e.clientY - window.innerHeight / 2) * 0.0006;
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.0005;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.0005;
             }, { passive: true });
         }
 
@@ -1764,15 +1550,15 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!isPageVisible) return;
 
         const elapsedTime = clock.getElapsedTime();
-        targetX += (mouseX - targetX) * 0.04;
-        targetY += (mouseY - targetY) * 0.04;
+        targetX += (mouseX - targetX) * 0.05;
+        targetY += (mouseY - targetY) * 0.05;
 
-        if (particlesMesh) {
-            particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
-            particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
+        if (starField) {
+            starField.rotation.y = elapsedTime * 0.02 + targetX;
+            starField.rotation.x = elapsedTime * 0.01 + targetY;
         }
         if (gridHelper) {
-            gridHelper.rotation.y = elapsedTime * 0.003;
+            gridHelper.rotation.y = elapsedTime * 0.002;
         }
         if (renderer && scene && camera) {
             renderer.render(scene, camera);
@@ -2080,7 +1866,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('DOMContentLoaded', () => {
         if (window.lucide) lucide.createIcons();
-        init3DBackground();
+        init3DStarBackground();
         animate3DBackground();
         loadComments();
     });
