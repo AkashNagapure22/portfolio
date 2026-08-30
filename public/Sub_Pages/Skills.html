@@ -99,8 +99,8 @@
     }
 
     .marquee-container {
-      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     }
 
     .nav-link.active-link {
@@ -122,7 +122,7 @@
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 
-<!-- Fixed Header with Functional Home & Search Image Icons + Streamlined Menu -->
+<!-- Fixed Header with Icon-Only Home and Borderless Search -->
 <header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 gap-4">
@@ -136,11 +136,10 @@
         </div>
       </a>
 
-      <!-- Streamlined Navigation Menu -->
+      <!-- Navigation Menu with Icon-Only Home Button -->
       <div class="hidden xl:flex items-center space-x-1 overflow-x-auto no-scrollbar py-1 shrink-0" id="nav-menu">
-        <a href="https://www.akashnagapure.in" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all flex items-center gap-1.5 cursor-pointer">
-          <img src="/images/Icons_AVIF/Home.png" alt="Home" width="16" height="16" class="object-contain filter brightness-125" /> 
-          <span>Main Hub</span>
+        <a href="https://www.akashnagapure.in" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all flex items-center justify-center cursor-pointer" title="Main Hub">
+          <img src="/images/Icons_AVIF/Home.png" alt="Home" width="18" height="18" class="object-contain filter brightness-125 hover:scale-110 transition-transform" />
         </a>
         <a href="#skills-section" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap nav-link">Skills</a>
         <a href="#endpoint" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap nav-link">Endpoint Mgmt</a>
@@ -149,13 +148,13 @@
         <a href="#automation" class="px-3 py-1.5 rounded-md font-sans text-xs font-medium text-slate-300 hover:text-sky-400 transition-all font-mono whitespace-nowrap nav-link">Automation</a>
       </div>
 
-      <!-- Functional Search Bar with Search Image Icon -->
+      <!-- Borderless Search Input with Search Image Icon -->
       <div class="relative flex-grow max-w-xs sm:max-w-sm">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center cursor-pointer text-sky-400/70 hover:text-sky-400 transition-colors" onclick="focusSearchInput()" title="Click to search">
           <img src="/images/Icons_AVIF/search.png" alt="Search" width="16" height="16" class="object-contain opacity-80 filter brightness-200" onerror="this.style.display='none';" />
         </div>
         <input type="text" id="skills-search-input" oninput="filterSkills(this.value)" placeholder="Search skills, tools, tech..." 
-          class="w-full pl-9 pr-4 py-1.5 bg-slate-900/60 border border-slate-700/60 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
+          class="w-full pl-9 pr-4 py-1.5 bg-slate-900/40 border border-transparent hover:border-sky-500/30 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono shadow-inner" />
       </div>
 
       <div class="flex items-center xl:hidden">
@@ -168,7 +167,7 @@
 
   <div id="mobile-menu-drawer" class="hidden xl:hidden bg-slate-950/98 border-b border-sky-500/10 backdrop-blur-2xl px-6 py-4 space-y-2 font-mono text-xs shadow-2xl">
     <a href="https://www.akashnagapure.in" onclick="toggleMobileMenu()" class="block py-2 text-sky-400 hover:text-white flex items-center gap-2 border-b border-white/10">
-      <img src="/images/Icons_AVIF/Home.png" alt="Home" width="14" height="14" class="object-contain filter brightness-125" /> Main Hub
+      <img src="/images/Icons_AVIF/Home.png" alt="Home" width="16" height="16" class="object-contain filter brightness-125" /> Main Hub
     </a>
     <a href="#skills-section" onclick="toggleMobileMenu()" class="block py-1.5 text-slate-300 hover:text-sky-400">Skills Overview</a>
     <a href="#endpoint" onclick="toggleMobileMenu()" class="block py-1.5 text-slate-300 hover:text-sky-400">Endpoint Management</a>
@@ -188,7 +187,7 @@
       <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Intune", "PowerShell", "VMware", or "Azure".</p>
     </div>
 
-    <!-- Skills Showcase: Workspace image on left, Borderless categorized icon marquees on the right -->
+    <!-- Skills Section: Workspace image on left, 4 distinct smooth horizontal rows on the right with NO boxes around individual skill items -->
     <div id="skills-section" class="pt-4 scroll-mt-32 searchable-skill-card relative space-y-12">
       <div class="text-center space-y-3 max-w-2xl mx-auto">
         <span class="text-xs font-mono uppercase tracking-[0.2em] text-sky-400 font-bold px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20">Technical Arsenal</span>
@@ -196,303 +195,307 @@
           My Skills & Expertise
         </h2>
         <p class="text-slate-400 text-xs sm:text-sm font-mono leading-relaxed">
-          Explore categorized technologies, enterprise tools, and cloud platforms below. Click any icon to trigger celebratory effects!
+          Explore technologies, tools, databases, and cloud platforms streaming smoothly across 4 rows. Click any icon to trigger celebratory confetti!
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-6">
         <!-- Left: Workspace Image with Atmospheric Glow -->
-        <div class="lg:col-span-5 flex justify-center items-center relative">
+        <div class="lg:col-span-4 flex justify-center items-center relative">
           <div class="absolute inset-0 bg-sky-500/10 blur-[80px] rounded-full pointer-events-none"></div>
-          <div class="relative w-full max-w-md flex justify-center p-4">
+          <div class="relative w-full max-w-sm flex justify-center p-4">
             <img 
               src="/images/Skills/light.avif" 
               alt="Cyber Architect Workspace" 
-              width="460" 
-              height="360" 
+              width="400" 
+              height="320" 
               class="w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(56,189,248,0.25)] hover:scale-105 transition-all duration-700 select-none pointer-events-none" 
               onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';"
             />
           </div>
         </div>
 
-        <!-- Right: Categorized Borderless Marquee Rows -->
-        <div class="lg:col-span-7 space-y-8">
+        <!-- Right: Exactly 4 distinct horizontal rows flowing from left to right with NO boxes -->
+        <div class="lg:col-span-8 space-y-6">
           
-          <!-- Category: Tools -->
-          <div class="space-y-3 searchable-skill-card">
-            <div class="flex items-center gap-2 text-sky-400 font-mono text-xs uppercase tracking-widest font-bold">
-              <i data-lucide="tool" class="w-4 h-4"></i> Tools
+          <!-- Row 1: Tools -->
+          <div class="space-y-2 searchable-skill-card">
+            <div class="text-sky-400 font-mono text-[11px] uppercase tracking-widest font-bold px-1">
+              Tools
             </div>
-            <div class="overflow-hidden marquee-container py-3 bg-slate-950/40 rounded-2xl border border-sky-500/10 backdrop-blur-md">
-              <div class="marquee-track-ltr space-x-14 items-center">
-                <div class="flex items-center space-x-14">
+            <div class="overflow-hidden marquee-container py-2 bg-transparent">
+              <div class="marquee-track-ltr space-x-12 items-center" style="animation-duration: 24s;">
+                <!-- Group 1 -->
+                <div class="flex items-center space-x-12">
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-vscode.png" alt="VS Code" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-vscode.png" alt="VS Code" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">VS Code</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">VS Code</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Github-Dark.svg" alt="GitHub" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Github-Dark.svg" alt="GitHub" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">GitHub</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">GitHub</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/dell.png" alt="Dell" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/dell.png" alt="Dell" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Dell</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Dell</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Discord.svg" alt="Discord" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Discord.svg" alt="Discord" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Discord</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Discord</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Gmail-Dark.svg" alt="Gmail" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Gmail-Dark.svg" alt="Gmail" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Gmail</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Gmail</span>
                   </div>
                 </div>
-                <!-- Duplicate for smooth loop -->
-                <div class="flex items-center space-x-14">
+                <!-- Group 2 (Exact Duplicate for Loop) -->
+                <div class="flex items-center space-x-12">
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-vscode.png" alt="VS Code" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-vscode.png" alt="VS Code" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">VS Code</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">VS Code</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Github-Dark.svg" alt="GitHub" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Github-Dark.svg" alt="GitHub" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">GitHub</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">GitHub</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/dell.png" alt="Dell" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/dell.png" alt="Dell" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Dell</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Dell</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Discord.svg" alt="Discord" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Discord.svg" alt="Discord" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Discord</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Discord</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Gmail-Dark.svg" alt="Gmail" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Gmail-Dark.svg" alt="Gmail" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Gmail</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Category: Technology -->
-          <div class="space-y-3 searchable-skill-card">
-            <div class="flex items-center gap-2 text-sky-400 font-mono text-xs uppercase tracking-widest font-bold">
-              <i data-lucide="cpu" class="w-4 h-4"></i> Technology
-            </div>
-            <div class="overflow-hidden marquee-container py-3 bg-slate-950/40 rounded-2xl border border-sky-500/10 backdrop-blur-md">
-              <div class="marquee-track-ltr space-x-14 items-center" style="animation-duration: 25s;">
-                <div class="flex items-center space-x-14">
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-powershellcore.png" alt="PowerShell" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">PowerShell</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/SCCM.png" alt="SCCM" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">SCCM</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Windows-Dark.svg" alt="Windows" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Windows</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/citrix-workspaceapp.png" alt="Citrix" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Citrix</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/crowdstrike.png" alt="Crowdstrike" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Crowdstrike</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/vmware.png" alt="VMware" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">VMware</span>
-                  </div>
-                </div>
-                <!-- Duplicate -->
-                <div class="flex items-center space-x-14">
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-powershellcore.png" alt="PowerShell" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">PowerShell</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/SCCM.png" alt="SCCM" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">SCCM</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Windows-Dark.svg" alt="Windows" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Windows</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/citrix-workspaceapp.png" alt="Citrix" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Citrix</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/crowdstrike.png" alt="Crowdstrike" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Crowdstrike</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/vmware.png" alt="VMware" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">VMware</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Gmail</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Category: Database -->
-          <div class="space-y-3 searchable-skill-card">
-            <div class="flex items-center gap-2 text-sky-400 font-mono text-xs uppercase tracking-widest font-bold">
-              <i data-lucide="database" class="w-4 h-4"></i> Database
+          <!-- Row 2: Technology -->
+          <div class="space-y-2 searchable-skill-card">
+            <div class="text-sky-400 font-mono text-[11px] uppercase tracking-widest font-bold px-1">
+              Technology
             </div>
-            <div class="overflow-hidden marquee-container py-3 bg-slate-950/40 rounded-2xl border border-sky-500/10 backdrop-blur-md">
-              <div class="marquee-track-ltr space-x-14 items-center" style="animation-duration: 18s;">
-                <div class="flex items-center space-x-14">
+            <div class="overflow-hidden marquee-container py-2 bg-transparent">
+              <div class="marquee-track-ltr space-x-12 items-center" style="animation-duration: 26s;">
+                <!-- Group 1 -->
+                <div class="flex items-center space-x-12">
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/MySQL-Dark.svg" alt="MySQL" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-powershellcore.png" alt="PowerShell" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">MySQL</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">PowerShell</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/SCCM.png" alt="SCCM" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">SCCM</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Windows-Dark.svg" alt="Windows" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Windows</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/citrix-workspaceapp.png" alt="Citrix" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Citrix</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/crowdstrike.png" alt="Crowdstrike" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Crowdstrike</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/vmware.png" alt="VMware" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">VMware</span>
                   </div>
                 </div>
-                <!-- Duplicate -->
-                <div class="flex items-center space-x-14">
+                <!-- Group 2 (Exact Duplicate) -->
+                <div class="flex items-center space-x-12">
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/MySQL-Dark.svg" alt="MySQL" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-powershellcore.png" alt="PowerShell" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">MySQL</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">PowerShell</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/SCCM.png" alt="SCCM" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">SCCM</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Windows-Dark.svg" alt="Windows" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Windows</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/citrix-workspaceapp.png" alt="Citrix" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Citrix</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/crowdstrike.png" alt="Crowdstrike" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Crowdstrike</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/vmware.png" alt="VMware" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">VMware</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Category: Cloud -->
-          <div class="space-y-3 searchable-skill-card">
-            <div class="flex items-center gap-2 text-sky-400 font-mono text-xs uppercase tracking-widest font-bold">
-              <i data-lucide="cloud" class="w-4 h-4"></i> Cloud
+          <!-- Row 3: Database -->
+          <div class="space-y-2 searchable-skill-card">
+            <div class="text-sky-400 font-mono text-[11px] uppercase tracking-widest font-bold px-1">
+              Database
             </div>
-            <div class="overflow-hidden marquee-container py-3 bg-slate-950/40 rounded-2xl border border-sky-500/10 backdrop-blur-md">
-              <div class="marquee-track-ltr space-x-14 items-center" style="animation-duration: 22s;">
-                <div class="flex items-center space-x-14">
+            <div class="overflow-hidden marquee-container py-2 bg-transparent">
+              <div class="marquee-track-ltr space-x-12 items-center" style="animation-duration: 20s;">
+                <!-- Group 1 -->
+                <div class="flex items-center space-x-12">
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Azure-Dark.svg" alt="Azure" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/MySQL-Dark.svg" alt="MySQL" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Azure</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft365.png" alt="M365" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">M365</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-onedrive.png" alt="OneDrive" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">OneDrive</span>
-                  </div>
-
-                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-teams.png" alt="Teams" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                    </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Teams</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">MySQL</span>
                   </div>
                 </div>
-                <!-- Duplicate -->
-                <div class="flex items-center space-x-14">
+                <!-- Group 2 -->
+                <div class="flex items-center space-x-12">
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/Azure-Dark.svg" alt="Azure" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/MySQL-Dark.svg" alt="MySQL" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Azure</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">MySQL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4: Cloud -->
+          <div class="space-y-2 searchable-skill-card">
+            <div class="text-sky-400 font-mono text-[11px] uppercase tracking-widest font-bold px-1">
+              Cloud
+            </div>
+            <div class="overflow-hidden marquee-container py-2 bg-transparent">
+              <div class="marquee-track-ltr space-x-12 items-center" style="animation-duration: 22s;">
+                <!-- Group 1 -->
+                <div class="flex items-center space-x-12">
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Azure-Dark.svg" alt="Azure" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Azure</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft365.png" alt="M365" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft365.png" alt="M365" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">M365</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">M365</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-onedrive.png" alt="OneDrive" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-onedrive.png" alt="OneDrive" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">OneDrive</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">OneDrive</span>
                   </div>
 
                   <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
-                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                      <img src="/images/Icons_AVIF/microsoft-teams.png" alt="Teams" width="44" height="44" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-teams.png" alt="Teams" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                     </div>
-                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-2">Teams</span>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Teams</span>
+                  </div>
+                </div>
+                <!-- Group 2 -->
+                <div class="flex items-center space-x-12">
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/Azure-Dark.svg" alt="Azure" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Azure</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft365.png" alt="M365" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">M365</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-onedrive.png" alt="OneDrive" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">OneDrive</span>
+                  </div>
+
+                  <div onclick="triggerConfetti(event)" class="flex flex-col items-center justify-center text-center group cursor-pointer w-20 transition-transform duration-300 hover:scale-110">
+                    <div class="w-12 h-12 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform bg-transparent">
+                      <img src="/images/Icons_AVIF/microsoft-teams.png" alt="Teams" width="42" height="42" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                    </div>
+                    <span class="font-sans font-bold text-white text-[11px] tracking-wider mt-1.5">Teams</span>
                   </div>
                 </div>
               </div>
