@@ -71,14 +71,14 @@
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                  0 0 30px rgba(56, 189, 248, 0.05);
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(56, 189, 248, 0.05);
       transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
     .glass-card-3d:hover {
       border-color: rgba(56, 189, 248, 0.55);
       box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
-                  0 0 50px rgba(56, 189, 248, 0.15);
+                0 0 50px rgba(56, 189, 248, 0.15);
       transform: translateY(-3px);
     }
 
@@ -208,61 +208,75 @@
           <div class="marquee-track-ltr space-x-12 items-center">
             <div class="flex items-center space-x-12">
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.11v4.71c0 4.54-3.08 8.78-7 9.88-3.92-1.1-7-5.34-7-9.88V6.29l7-3.11zm-1 5.82v6h2v-6h-2zm0 8v2h2v-2h-2z"/></svg>
-                </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">Intune</span>
-              </div>
-
-              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M13.05 4.24l-4.5 7.8 5.7 9.87H24L13.05 4.24zM0 21.91h7.88l3.4-5.91-3.95-6.85L0 21.91z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Azure-Dark.svg" alt="Azure" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
                 <span class="font-sans font-bold text-white text-xs tracking-wider">Azure</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 88 88"><path d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L0 75.48V46.08zm4.326-39.117L87.914 0v41.525l-47.918.3zm47.918 39.529V88L39.996 76.12V46.59z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Discord.svg" alt="Discord" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">Windows</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Discord</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M12 2a4 4 0 00-4 4 4 4 0 004 4 4 4 0 004-4 4 4 0 00-4-4zm0 10c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6zm7-3a3 3 0 00-2.25 1.02A5.94 5.94 0 0118 14v1.89A7.95 7.95 0 0122 18v2h2v-2c0-2.83-2.34-5.18-5-5.91A3 3 0 0019 9z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Github-Dark.svg" alt="GitHub" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">Active Directory</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">GitHub</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Gmail-Dark.svg" alt="Gmail" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Gmail</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/MySQL-Dark.svg" alt="MySQL" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">MySQL</span>
               </div>
             </div>
 
             <div class="flex items-center space-x-12">
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.11v4.71c0 4.54-3.08 8.78-7 9.88-3.92-1.1-7-5.34-7-9.88V6.29l7-3.11zm-1 5.82v6h2v-6h-2zm0 8v2h2v-2h-2z"/></svg>
-                </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">Intune</span>
-              </div>
-
-              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M13.05 4.24l-4.5 7.8 5.7 9.87H24L13.05 4.24zM0 21.91h7.88l3.4-5.91-3.95-6.85L0 21.91z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Azure-Dark.svg" alt="Azure" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
                 <span class="font-sans font-bold text-white text-xs tracking-wider">Azure</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 88 88"><path d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L0 75.48V46.08zm4.326-39.117L87.914 0v41.525l-47.918.3zm47.918 39.529V88L39.996 76.12V46.59z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Discord.svg" alt="Discord" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">Windows</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Discord</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M12 2a4 4 0 00-4 4 4 4 0 004 4 4 4 0 004-4 4 4 0 00-4-4zm0 10c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6zm7-3a3 3 0 00-2.25 1.02A5.94 5.94 0 0118 14v1.89A7.95 7.95 0 0122 18v2h2v-2c0-2.83-2.34-5.18-5-5.91A3 3 0 0019 9z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Github-Dark.svg" alt="GitHub" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">Active Directory</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">GitHub</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Gmail-Dark.svg" alt="Gmail" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Gmail</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/MySQL-Dark.svg" alt="MySQL" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">MySQL</span>
               </div>
             </div>
           </div>
@@ -270,79 +284,162 @@
           <div class="marquee-track-ltr space-x-12 items-center" style="animation-duration: 26s;">
             <div class="flex items-center space-x-12">
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M10.85 4.75v3.42H7.43v3.42H4.01v-3.42H.59V4.75h10.26zm2.3 0h10.26v3.42h-3.42v3.42h-3.42v-3.42h-3.42V4.75zm-6.84 6.84h6.84v3.42H9.73v3.42H6.31v-3.42H2.89v-3.42h3.42zm10.26 0h3.42v3.42h-3.42v3.42h-3.42v-3.42h-3.42v-3.42h6.84zm-3.42 6.84h10.26v3.42H13.15v-3.42zm-12.56 0h10.26v3.42H.59v-3.42z"/></svg>
-                </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">VMware</span>
-              </div>
-
-              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M20 18h2v-8h-2v3h-3V7h2V5h-2V2H7v3H5v2h2v6H4v-3H2v8h2v-3h3v3h10v-3h3v3zM9 4h6v3H9V4zm0 5h6v6H9V9z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/SCCM.png" alt="SCCM" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
                 <span class="font-sans font-bold text-white text-xs tracking-wider">SCCM</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M22.003 3.667a.666.666 0 00-.67-.667H2.667a.667.667 0 00-.667.667v16.666c0 .369.298.667.667.667h18.666a.667.667 0 00.67-.667V3.667zm-11.23 8.334L5.677 6.905l1.414-1.414 6.51 6.51-6.51 6.51-1.414-1.414 5.096-5.098zm7.894 4.666H12v-2h6.667v2z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Windows-Dark.svg" alt="Windows" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Windows</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/citrix-workspaceapp.png" alt="Citrix" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Citrix</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/crowdstrike.png" alt="Crowdstrike" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Crowdstrike</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/dell.png" alt="Dell" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Dell</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-onedrive.png" alt="OneDrive" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">OneDrive</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-powershellcore.png" alt="PowerShell" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
                 <span class="font-sans font-bold text-white text-xs tracking-wider">PowerShell</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-teams.png" alt="Teams" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">GPO</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Teams</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M11.99 2L2 7l9.99 5L22 7 11.99 2zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-vscode.png" alt="VS Code" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">AppVolumes</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">VS Code</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft365.png" alt="M365" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">M365</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/vmware.png" alt="VMware" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">VMware</span>
               </div>
             </div>
 
             <div class="flex items-center space-x-12">
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M10.85 4.75v3.42H7.43v3.42H4.01v-3.42H.59V4.75h10.26zm2.3 0h10.26v3.42h-3.42v3.42h-3.42v-3.42h-3.42V4.75zm-6.84 6.84h6.84v3.42H9.73v3.42H6.31v-3.42H2.89v-3.42h3.42zm10.26 0h3.42v3.42h-3.42v3.42h-3.42v-3.42h-3.42v-3.42h6.84zm-3.42 6.84h10.26v3.42H13.15v-3.42zm-12.56 0h10.26v3.42H.59v-3.42z"/></svg>
-                </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">VMware</span>
-              </div>
-
-              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M20 18h2v-8h-2v3h-3V7h2V5h-2V2H7v3H5v2h2v6H4v-3H2v8h2v-3h3v3h10v-3h3v3zM9 4h6v3H9V4zm0 5h6v6H9V9z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/SCCM.png" alt="SCCM" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
                 <span class="font-sans font-bold text-white text-xs tracking-wider">SCCM</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M22.003 3.667a.666.666 0 00-.67-.667H2.667a.667.667 0 00-.667.667v16.666c0 .369.298.667.667.667h18.666a.667.667 0 00.67-.667V3.667zm-11.23 8.334L5.677 6.905l1.414-1.414 6.51 6.51-6.51 6.51-1.414-1.414 5.096-5.098zm7.894 4.666H12v-2h6.667v2z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/Windows-Dark.svg" alt="Windows" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Windows</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/citrix-workspaceapp.png" alt="Citrix" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Citrix</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/crowdstrike.png" alt="Crowdstrike" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Crowdstrike</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/dell.png" alt="Dell" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Dell</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-onedrive.png" alt="OneDrive" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">OneDrive</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-powershellcore.png" alt="PowerShell" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
                 <span class="font-sans font-bold text-white text-xs tracking-wider">PowerShell</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-teams.png" alt="Teams" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">GPO</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">Teams</span>
               </div>
 
               <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
-                <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
-                  <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M11.99 2L2 7l9.99 5L22 7 11.99 2zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft-vscode.png" alt="VS Code" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-sans font-bold text-white text-xs tracking-wider">AppVolumes</span>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">VS Code</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/microsoft365.png" alt="M365" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">M365</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
+                <div class="mb-2 w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300">
+                  <img src="/images/Icons_AVIF/vmware.png" alt="VMware" width="40" height="40" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <span class="font-sans font-bold text-white text-xs tracking-wider">VMware</span>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
