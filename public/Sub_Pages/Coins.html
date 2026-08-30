@@ -29,6 +29,13 @@
           fontFamily: {
             sans: ["'Plus Jakarta Sans'", "ui-sans-serif", "system-ui", "sans-serif"],
             mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+          },
+          colors: {
+            vault: {
+              950: '#020617',
+              900: '#090d16',
+              800: '#111827',
+            }
           }
         }
       }
@@ -42,7 +49,7 @@
     }
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 5.5rem;
+      scroll-padding-top: 6rem;
       background-color: #020617;
     }
     body {
@@ -64,22 +71,22 @@
       pointer-events: none;
     }
     .glass-card {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.90) 0%, rgba(2, 6, 23, 0.96) 100%);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.85);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-card:hover {
       border-color: rgba(56, 189, 248, 0.45);
-      box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.25);
       transform: translateY(-2px);
     }
     .inventory-flip-card {
       perspective: 1500px;
       user-select: none;
-      height: 330px;
+      height: 340px;
       width: 100%;
       max-width: 280px;
       margin-left: auto;
@@ -89,7 +96,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-style: preserve-3d;
       border-radius: 1rem;
     }
@@ -111,7 +118,7 @@
     }
     .carousel-slide { display: none; }
     .carousel-slide.active { display: block; animation: zoomInFade 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-    @keyframes zoomInFade { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: scale(1); } }
+    @keyframes zoomInFade { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
 
     .nav-link.active-link {
       color: #38bdf8 !important;
@@ -131,8 +138,8 @@
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 
-<header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-  <div class="flex items-center justify-between px-4 sm:px-8 py-3 max-w-7xl mx-auto gap-4">
+<header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.85)]">
+  <div class="flex items-center justify-between px-4 sm:px-8 py-3.5 max-w-7xl mx-auto gap-4">
     <a href="https://www.akashnagapure.in" class="flex items-center gap-3 group shrink-0">
       <div class="h-9 w-9 flex items-center justify-center shrink-0">
         <img src="/Main_page_data/Logo.avif" alt="Akash Nagapure Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
@@ -141,7 +148,7 @@
         <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">
           Akash Nagapure
         </span>
-        <span class="font-mono text-[9px] text-sky-400 font-semibold tracking-wider uppercase mt-1">
+        <span class="font-mono text-[9px] text-sky-400 font-semibold tracking-widest uppercase mt-1">
           Numismatic Vault
         </span>
       </div>
@@ -204,7 +211,7 @@
   </a>
 </div>
 
-<main class="relative z-10 pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto space-y-16 md:space-y-24">
+<main class="relative z-10 pt-28 md:pt-36 pb-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto space-y-16 md:space-y-24">
 
   <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 scroll-mt-28">
     <div class="glass-card p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
