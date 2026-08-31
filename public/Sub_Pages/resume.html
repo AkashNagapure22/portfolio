@@ -117,7 +117,7 @@
     <div class="flex items-center justify-between h-14">
       <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group">
         <div class="h-9 w-9 flex items-center justify-center shrink-0">
-          <img src="/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          <img src="public/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col">
           <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">
@@ -145,7 +145,7 @@
     <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-5 text-center sm:text-left">
       <div class="relative shrink-0">
         <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-40 blur-sm"></div>
-        <img src="/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="88" height="88" class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        <img src="public/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="88" height="88" class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
       </div>
       <div>
         <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
@@ -153,7 +153,7 @@
       </div>
     </div>
     <div class="flex items-center shrink-0">
-      <a href="/Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 active:scale-95 transition-all">
+      <a href="public/Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 active:scale-95 transition-all">
         <i data-lucide="download" class="w-4 h-4"></i>
         <span>Download PDF Resume</span>
       </a>
@@ -170,7 +170,7 @@
       <span>akashnagapure@live.com</span>
     </div>
     <div class="flex items-center space-x-2 text-slate-300">
-      <i data-lucide="linkedin" class="w-4 h-4 text-sky-400 shrink-0"></i>
+      <img src="LinkedIn.svg" alt="LinkedIn" class="w-4 h-4 shrink-0" />
       <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-300 underline underline-offset-2">linkedin.com/in/anagapure</a>
     </div>
   </div>
@@ -191,21 +191,33 @@
       <h2 class="font-sans text-base font-bold text-white uppercase tracking-wider">Core Competencies</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-1">
-        <strong class="text-sky-300 font-mono text-xs block">Microsoft Intune</strong>
-        <p class="text-slate-300 font-light">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch – Setup, Connected Cache.</p>
+      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
+        <div class="flex items-center space-x-2">
+          <img src="microsoftstore-companyportal.png" alt="Intune" class="w-5 h-5 object-contain" />
+          <strong class="text-sky-300 font-mono text-xs">Microsoft Intune & Autopilot</strong>
+        </div>
+        <p class="text-slate-300 font-light">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch, Connected Cache.</p>
       </div>
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-1">
-        <strong class="text-sky-300 font-mono text-xs block">SCCM / MECM</strong>
-        <p class="text-slate-300 font-light">Task Sequence Management, OSD, Driver Import, Patch Deployment, DP Configuration, Maintenance.</p>
+      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
+        <div class="flex items-center space-x-2">
+          <img src="SCCM.png" alt="SCCM" class="w-5 h-5 object-contain" />
+          <strong class="text-sky-300 font-mono text-xs">SCCM / MECM</strong>
+        </div>
+        <p class="text-slate-300 font-light">Task Sequence Management, OSD, Driver Import, Patch Deployment, DP Configuration, Maintenance & Compliance Baselines.</p>
       </div>
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-1">
-        <strong class="text-sky-300 font-mono text-xs block">Cloud & Virtualization</strong>
-        <p class="text-slate-300 font-light">Co-Management (SCCM + Intune), Azure AD, Conditional Access, Defender for Endpoint, AVD, Windows 365, Citrix, FSLogix, Workspace ONE, VMware Horizon.</p>
+      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
+        <div class="flex items-center space-x-2">
+          <img src="citrix-workspaceapp.png" alt="Citrix" class="w-5 h-5 object-contain" />
+          <strong class="text-sky-300 font-mono text-xs">Cloud & Virtualization</strong>
+        </div>
+        <p class="text-slate-300 font-light">Co-Management, Azure AD, Conditional Access, Defender, AVD, Windows 365, Citrix, FSLogix, Workspace ONE, VMware Horizon.</p>
       </div>
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-1">
-        <strong class="text-sky-300 font-mono text-xs block">Automation & Security</strong>
-        <p class="text-slate-300 font-light">PowerShell Automation, SQL Reporting, GPO Migration to Intune, BitLocker, Disk Encryption, LAPS, ITIL Process Adherence.</p>
+      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
+        <div class="flex items-center space-x-2">
+          <img src="microsoft-powershellcore.png" alt="PowerShell" class="w-5 h-5 object-contain" />
+          <strong class="text-sky-300 font-mono text-xs">Automation & Security</strong>
+        </div>
+        <p class="text-slate-300 font-light">PowerShell Automation, SQL Reporting, GPO Migration to Intune, BitLocker, Disk Encryption, LAPS, CrowdStrike EDR, Zscaler.</p>
       </div>
     </div>
   </div>
@@ -219,7 +231,7 @@
     <div class="space-y-6">
       <div class="border-l-2 border-sky-400 pl-4 space-y-2">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-          <h3 class="font-bold text-white text-sm sm:text-base">Specialist – Technical Specialist | Hexaware Technologies</h3>
+          <h3 class="font-bold text-white text-sm sm:text-base">Architect – Technical Specialist | Hexaware Technologies</h3>
           <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
         </div>
         <p class="font-mono text-xs text-slate-400 italic">Client: Hiscox (EU)</p>
@@ -311,16 +323,16 @@
     
     <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
       <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <i data-lucide="share-2" class="w-3.5 h-3.5"></i> LinkedIn
+        <img src="LinkedIn.svg" alt="LinkedIn" class="w-3.5 h-3.5" /> LinkedIn
       </a>
       <span>•</span>
       <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
         <i data-lucide="mail" class="w-3.5 h-3.5"></i> Email
       </a>
       <span>•</span>
-      <a href="/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors">Privacy Policy</a>
+      <a href="Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors">Privacy Policy</a>
       <span>•</span>
-      <a href="/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors">Terms of Service</a>
+      <a href="Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors">Terms of Service</a>
     </div>
 
     <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mt-1">© 2026. All Rights Reserved. Engineered with Precision.</span>
@@ -332,7 +344,6 @@
 </button>
 
 <script>
-  // 1. THREE.JS 3D BACKGROUND ENGINE
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
