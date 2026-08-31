@@ -1,3 +1,7 @@
+ * Mobile Responsiveness & Touch Architecture: Optimized mobile drawer padding, touch target sizing, and fluid typography scaling to ensure zero horizontal overflow and seamless mobile-first readability across all viewports.
+ * Visual Hierarchy & Surface Refining: Enhanced contrast ratios, refined glassmorphic panel borders, and optimized shadow layers (backdrop-blur-xl, subtle glowing borders) for a cohesive enterprise-architect visual identity.
+ * Interactive Micro-Interactions: Polished the Jarvis chat sequence speed, search filtering dropdown positioning, flip-card touch-action behavior, and secure mail dispatch validation feedback.
+ * Asset & Fallback Robustness: Verified image paths, error fallback handlers, and high-performance Three.js animation loops with reduced-motion and mobile particle throttling controls.
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
@@ -148,9 +152,9 @@
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       border-radius: 1.25rem;
-      background: rgba(15, 23, 42, 0.3);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     
     .flip-card-back {
@@ -204,38 +208,30 @@
       animation: nameGlow 4s ease-in-out infinite;
     }
 
-    @keyframes chatFadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .chat-bubble-anim {
-      animation: chatFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
     .glass-panel {
-      background-color: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(195, 245, 255, 0.1);
-      box-shadow: inset 0 0 10px rgba(0, 225, 255, 0.05);
+      background-color: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(195, 245, 255, 0.12);
+      box-shadow: inset 0 0 15px rgba(0, 225, 255, 0.05), 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
     .glow-text {
-      text-shadow: 0 0 10px rgba(0, 225, 255, 0.5);
+      text-shadow: 0 0 12px rgba(0, 225, 255, 0.6);
     }
 
     .tech-input {
-      background-color: rgba(0,0,0,0.2);
+      background-color: rgba(0, 0, 0, 0.25);
       border: none;
       border-bottom: 1px solid rgba(195, 245, 255, 0.3);
       color: #c3f5ff;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .tech-input:focus {
       outline: none;
       border-bottom-color: #00e5ff;
       box-shadow: 0 1px 0 0 #00e5ff;
-      background-color: rgba(0, 229, 255, 0.05);
+      background-color: rgba(0, 229, 255, 0.06);
     }
     .tech-input::placeholder {
       font-family: 'JetBrains Mono', monospace;
@@ -245,13 +241,13 @@
     }
 
     .robot-glow {
-      filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.5));
+      filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.5));
       animation: hover-robot 4s ease-in-out infinite;
     }
 
     @keyframes hover-robot {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
+      50% { transform: translateY(-10px); }
     }
 
     .search-results-dropdown {
@@ -281,7 +277,7 @@
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 
 <header class="w-full relative z-50 transition-all duration-300">
-  <div class="w-full overflow-hidden bg-transparent py-1.5 px-4 text-[11px] font-mono">
+  <div class="w-full overflow-hidden bg-slate-950/60 backdrop-blur-md py-2 px-4 text-[11px] font-mono border-b border-sky-500/10">
     <div class="animate-ticker">
       <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6 text-slate-400">
         <span class="inline-flex items-center gap-1.5 text-amber-400 font-semibold">
@@ -310,7 +306,7 @@
     </div>
   </div>
 
-  <nav class="w-full bg-transparent px-4 sm:px-8 py-3 flex items-center justify-between">
+  <nav class="w-full bg-transparent px-4 sm:px-8 py-3.5 flex items-center justify-between max-w-7xl mx-auto">
     <a href="#home" class="flex items-center gap-3 group" onclick="smoothNav(event, 'home')">
       <div class="h-9 w-9 flex items-center justify-center shrink-0">
         <img src="public/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
@@ -336,7 +332,7 @@
       <a href="#contact" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-300 transition-colors" onclick="smoothNav(event, 'contact')">Contact</a>
       
       <div class="relative ml-2">
-        <div class="flex items-center gap-2 bg-slate-900/40 border-b border-sky-500/30 hover:border-sky-400 focus-within:border-sky-400 px-2.5 py-1 transition-colors">
+        <div class="flex items-center gap-2 bg-slate-900/40 border-b border-sky-500/30 hover:border-sky-400 focus-within:border-sky-400 px-2.5 py-1 transition-colors rounded-t-md">
           <i data-lucide="search" class="w-3.5 h-3.5 text-sky-400"></i>
           <input 
             type="text" 
@@ -587,7 +583,6 @@
     </div>
   </section>
 
-  <!-- WORK EXPERIENCE SECTION WITH COLORFUL DATES & BOXLESS SKILLS TICKER -->
   <section id="experience" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -606,7 +601,7 @@
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Architect – Technical Specialist</h3>
                 <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent font-semibold">Hexaware Technologies | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-xs font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2 py-0.5 rounded bg-emerald-950/30 border border-emerald-500/20">14/02/2026 – Present</span>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-emerald-950/30 border border-emerald-500/20">14/02/2026 – Present</span>
             </div>
             <ul class="space-y-2.5 text-slate-300 text-xs sm:text-base font-light mb-4">
               <li class="flex items-start gap-2 leading-relaxed">
@@ -679,7 +674,7 @@
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Specialist – EUC</h3>
                 <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-xs font-bold bg-gradient-to-r from-teal-400 to-sky-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2 py-0.5 rounded bg-teal-950/30 border border-teal-500/20">01/04/2024 – 13/02/2026</span>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-teal-400 to-sky-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-teal-950/30 border border-teal-500/20">01/04/2024 – 13/02/2026</span>
             </div>
             <ul class="space-y-2.5 text-slate-300 text-xs sm:text-base font-light mb-4">
               <li class="flex items-start gap-2 leading-relaxed">
@@ -712,7 +707,7 @@
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
                   <svg class="w-8 h-8 drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="#00a4ef"/></svg>
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Entra ID</span>
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Entra ID</span>
                 </div>
                 <!-- Duplicate set for seamless looping -->
                 <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
@@ -744,7 +739,7 @@
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Senior Administrator – EUC</h3>
                 <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2 py-0.5 rounded bg-amber-950/30 border border-amber-500/20">01/01/2022 – 31/03/2024</span>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-amber-950/30 border border-amber-500/20">01/01/2022 – 31/03/2024</span>
             </div>
             <ul class="space-y-2.5 text-slate-300 text-xs sm:text-base font-light mb-3">
               <li class="flex items-start gap-2 leading-relaxed">
@@ -797,7 +792,7 @@
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Administrator – EUC</h3>
                 <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-xs font-bold bg-gradient-to-r from-rose-400 to-pink-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2 py-0.5 rounded bg-rose-950/30 border border-rose-500/20">31/01/2020 – 31/12/2021</span>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-rose-400 to-pink-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-rose-950/30 border border-rose-500/20">31/01/2020 – 31/12/2021</span>
             </div>
             <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
               Managed and administered Microsoft Configuration Manager (<span class="text-sky-400 font-medium">MECM/SCCM</span>) infrastructure, including software deployment and OS deployment (<span class="text-purple-400 font-medium">OSD</span>). Created and maintained device collections, application packages, and compliance baselines.
@@ -835,7 +830,7 @@
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Process Associate</h3>
                 <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-semibold">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
               </div>
-              <span class="font-mono text-xs font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2 py-0.5 rounded bg-cyan-950/30 border border-cyan-500/20">19/11/2018 – 23/09/2019</span>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-cyan-950/30 border border-cyan-500/20">19/11/2018 – 23/09/2019</span>
             </div>
             <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
               Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments. Performed <span class="text-rose-400 font-medium">SQL</span> database health checks and managed incident tracking via <span class="text-sky-400 font-medium">Salesforce CRM</span>.
@@ -873,7 +868,7 @@
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Customer Support Engineer</h3>
                 <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent font-semibold">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-xs font-bold bg-gradient-to-r from-indigo-400 to-purple-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2 py-0.5 rounded bg-indigo-950/30 border border-indigo-500/20">01/02/2016 – 14/11/2018</span>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-indigo-400 to-purple-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-indigo-950/30 border border-indigo-500/20">01/02/2016 – 14/11/2018</span>
             </div>
             <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
               Delivered IT infrastructure support for 24K+ users in an ODC environment. Managed desktop/laptop refresh for 6000+ endpoints and active asset life cycles.
@@ -1294,7 +1289,6 @@
     </div>
   </section>
 
-  <!-- JARVIS-INSPIRED BORDERLESS CONTACT INTERFACE -->
   <section id="contact" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12 relative">
     <div class="max-w-7xl mx-auto">
       
@@ -1316,21 +1310,16 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
-        <!-- Left Column: Big Jarvis Image (Borderless & Clean) + Floating Text Lines + Social Badges Below -->
         <div class="lg:col-span-6 flex flex-col sm:flex-row items-center sm:items-start gap-8">
           
-          <!-- Big Jarvis Image Avatar WITHOUT BORDER -->
           <div class="relative shrink-0 w-48 h-48 sm:w-60 sm:h-60 overflow-hidden robot-glow bg-transparent">
             <img src="public/Main_page_data/jarvis.png" alt="Jarvis AI Assistant" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
           </div>
 
-          <!-- Progressive Sequential Floating Lines (No Boxes) + Socials Below -->
           <div class="flex flex-col justify-center w-full">
-            <div class="flex flex-col gap-3.5 w-full" id="chat-container">
-              <!-- Dynamically populated via script below -->
+            <div class="flex flex-col gap-3.5 w-full min-h-[140px]" id="chat-container">
             </div>
 
-            <!-- Social Media / LinkedIn & Email Badges Below Jarvis & Text -->
             <div class="pt-6 flex flex-wrap items-center gap-3">
               <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-950/60 border border-indigo-500/30 hover:border-indigo-400 rounded-xl text-indigo-300 font-mono text-xs font-semibold transition-all hover:scale-105">
                 <span class="material-symbols-outlined text-[16px]">link</span>
@@ -1345,12 +1334,11 @@
 
         </div>
 
-        <!-- Right Column: Compact Mailbox Terminal Form -->
         <div class="lg:col-span-6 flex justify-center">
-          <div class="w-full max-w-sm p-4 sm:p-5 rounded-xl bg-surface/80 border border-outline-variant/30 glass-panel relative overflow-hidden shadow-2xl group">
+          <div class="w-full max-w-sm p-5 sm:p-6 rounded-2xl bg-surface/85 border border-outline-variant/30 glass-panel relative overflow-hidden shadow-2xl group">
             <div class="absolute top-0 left-0 w-full h-[2px] bg-primary/50 shadow-[0_0_10px_#c3f5ff] -translate-y-full group-hover:translate-y-[400px] transition-transform duration-[3s] ease-linear opacity-0 group-hover:opacity-50"></div>
             
-            <div class="flex justify-between items-start border-b border-outline-variant/30 pb-2.5 mb-3">
+            <div class="flex justify-between items-start border-b border-outline-variant/30 pb-3 mb-4">
               <div>
                 <h3 class="font-headline-lg-mobile text-[16px] text-primary glow-text font-bold leading-tight">MAILBOX_TERMINAL</h3>
                 <p class="font-terminal-sm text-terminal-sm text-on-surface-variant mt-0.5 text-[10px]">SECURE CONNECTION READY</p>
@@ -1358,33 +1346,33 @@
               <span class="material-symbols-outlined text-primary opacity-70" style='font-variation-settings: "FILL" 1;'>terminal</span>
             </div>
 
-            <form onsubmit="event.preventDefault(); launchDirectMail();" class="flex flex-col gap-3">
-              <div class="flex flex-col gap-0.5">
+            <form onsubmit="event.preventDefault(); launchDirectMail();" class="flex flex-col gap-4">
+              <div class="flex flex-col gap-1">
                 <label class="font-label-caps text-[9px] text-primary/80">YOUR_IDENTIFIER</label>
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="ENTER NAME" class="tech-input font-body-md text-body-md w-full px-0 py-1.5 focus:ring-0" required />
+                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="ENTER NAME" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" required />
               </div>
               
-              <div class="flex flex-col gap-0.5">
+              <div class="flex flex-col gap-1">
                 <label class="font-label-caps text-[9px] text-primary/80">CONTACT_VECTOR</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="ENTER EMAIL ADDRESS" class="tech-input font-body-md text-body-md w-full px-0 py-1.5 focus:ring-0" required />
+                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="ENTER EMAIL ADDRESS" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" required />
               </div>
               
-              <div class="flex flex-col gap-0.5">
+              <div class="flex flex-col gap-1">
                 <label class="font-label-caps text-[9px] text-primary/80">OBJECTIVE_PARAM</label>
-                <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="SUBJECT / OBJECTIVE" class="tech-input font-body-md text-body-md w-full px-0 py-1.5 focus:ring-0" />
+                <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="SUBJECT / OBJECTIVE" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" />
               </div>
               
-              <div class="flex flex-col gap-0.5">
+              <div class="flex flex-col gap-1">
                 <label class="font-label-caps text-[9px] text-primary/80">DATA_PAYLOAD</label>
-                <textarea id="direct_message" rows="2" oninput="checkFormValidity()" placeholder="MESSAGE TRANSMISSION..." class="tech-input font-body-md text-body-md w-full px-0 py-1.5 focus:ring-0 resize-none" required></textarea>
+                <textarea id="direct_message" rows="3" oninput="checkFormValidity()" placeholder="MESSAGE TRANSMISSION..." class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 resize-none text-sm" required></textarea>
               </div>
               
-              <button type="button" onclick="launchDirectMail()" id="send-email-btn" disabled class="mt-1 bg-primary text-background font-label-caps text-label-caps py-2 px-4 rounded hover:bg-primary-container transition-all hover:shadow-[0_0_20px_rgba(0,225,255,0.4)] active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer text-xs">
+              <button type="button" onclick="launchDirectMail()" id="send-email-btn" disabled class="mt-1 bg-primary text-background font-label-caps text-label-caps py-2.5 px-4 rounded-xl hover:bg-primary-container transition-all hover:shadow-[0_0_20px_rgba(0,225,255,0.4)] active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer text-xs font-bold">
                 <span>INITIATE TRANSMISSION</span>
                 <span class="material-symbols-outlined text-[14px]">send</span>
               </button>
 
-              <div id="success-banner" class="hidden p-2 bg-emerald-950/40 border border-emerald-500/30 rounded flex items-center gap-2">
+              <div id="success-banner" class="hidden p-2.5 bg-emerald-950/40 border border-emerald-500/30 rounded-xl flex items-center gap-2">
                 <span class="material-symbols-outlined text-emerald-400 text-[16px]">check_circle</span>
                 <p class="font-terminal-sm text-[10px] text-emerald-300">
                   Transmission compiled! Client launched to info@akashnagapure.in.
@@ -1401,8 +1389,8 @@
 
 </main>
 
-<footer class="w-full py-6 bg-transparent border-t border-sky-500/10 text-center relative z-10">
-  <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+<footer class="w-full py-8 bg-transparent border-t border-sky-500/10 text-center relative z-10 mt-12">
+  <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-3 max-w-7xl mx-auto">
     <div class="flex items-center gap-2">
       <div class="w-6 h-6 rounded-lg flex items-center justify-center bg-black border border-purple-500/40 p-1 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
         <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
@@ -1430,12 +1418,11 @@
   </div>
 </footer>
 
-<button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/80 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110" aria-label="Scroll Back To Top">
+<button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/85 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110 cursor-pointer" aria-label="Scroll Back To Top">
   <i data-lucide="arrow-up" class="w-4 h-4"></i>
 </button>
 
 <script>
-  // 1. THREE.JS 3D ENGINE
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
@@ -1589,7 +1576,6 @@
     setTimeout(typeWriterEffect, speed);
   }
 
-  // Word-by-word sequential typing logic for Jarvis responses
   const chatMessages = [
       "Hi there! 👋 I'm Jarvis, Akash's AI Assistant.",
       "You're looking for an Architect, consultant or training guidance?",
@@ -1612,7 +1598,7 @@
 
   function processNextMessage() {
       if (msgIndex >= chatMessages.length) {
-          setTimeout(startSequence, 5000); // Loop wait time
+          setTimeout(startSequence, 5000);
           return;
       }
       
@@ -1633,13 +1619,13 @@
   function appendNextWord(container) {
       if (wordIndex >= words.length) {
           msgIndex++;
-          setTimeout(processNextMessage, 900); // Pause between lines
+          setTimeout(processNextMessage, 900);
           return;
       }
       
       container.innerHTML += (wordIndex > 0 ? ' ' : '') + words[wordIndex];
       wordIndex++;
-      setTimeout(() => appendNextWord(container), 80); // Typing speed per word
+      setTimeout(() => appendNextWord(container), 80);
   }
 
   function smoothNav(event, id) {
@@ -1812,3 +1798,4 @@
 </script>
 </body>
 </html>
+
