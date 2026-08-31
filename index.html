@@ -394,9 +394,10 @@
           <h1 class="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] animate-name-glow">
             Akash Nagapure
           </h1>
-          <div class="font-mono text-base sm:text-xl font-medium bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent tracking-wide min-h-[28px] sm:min-h-[32px] flex items-center">
-            <span id="typewriter-text"></span>
-            <span class="animate-pulse ml-1 inline-block w-2 sm:w-2.5 h-4 sm:h-5 bg-indigo-400"></span>
+          <!-- Locked fixed height wrapper (h-[60px] sm:h-[36px]) prevents any layout shifting or screen bouncing on mobile when phrases wrap -->
+          <div class="font-mono text-sm sm:text-xl font-medium bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent tracking-wide h-[60px] sm:h-[36px] flex items-center overflow-hidden leading-snug">
+            <span id="typewriter-text" class="inline-block"></span>
+            <span class="animate-pulse ml-1 inline-block w-2 sm:w-2.5 h-4 sm:h-5 bg-indigo-400 shrink-0"></span>
           </div>
         </div>
 
@@ -733,7 +734,7 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Senior Administrator – EUC</h3>
-                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
               </div>
               <span class="font-mono text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-amber-950/30 border border-amber-500/20">01/01/2022 – 31/03/2024</span>
             </div>
@@ -1794,4 +1795,3 @@
 </script>
 </body>
 </html>
-
