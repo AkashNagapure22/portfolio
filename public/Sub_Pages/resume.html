@@ -40,6 +40,7 @@
       scroll-behavior: smooth;
       scroll-padding-top: 5.5rem;
       background-color: #020617;
+      perspective: 1200px;
     }
     body {
       background-color: #020617 !important;
@@ -49,6 +50,7 @@
       margin: 0;
       padding: 0;
       position: relative;
+      transform-style: preserve-3d;
     }
     #three-bg-canvas {
       position: fixed;
@@ -59,38 +61,58 @@
       z-index: 0;
       pointer-events: none;
     }
+    
+    /* Advanced 3D Depth & Glass Effects */
     .glass-card-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.96) 100%);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                  0 0 30px rgba(56, 189, 248, 0.05);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+                  0 0 40px rgba(56, 189, 248, 0.08);
+      transform: translateZ(20px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
     }
     .glass-card-3d:hover {
-      border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
-                  0 0 50px rgba(56, 189, 248, 0.15);
+      transform: translateY(-4px) translateZ(35px);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 45px 80px -15px rgba(56, 189, 248, 0.2),
+                  0 0 60px rgba(56, 189, 248, 0.12),
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
     }
+    
     .holo-glow {
       position: relative;
+      transform-style: preserve-3d;
     }
     .holo-glow::after {
       content: '';
       position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #38bdf8, transparent, #6366f1, transparent, #38bdf8);
+      inset: -3px;
+      background: linear-gradient(45deg, #38bdf8, #6366f1, #38bdf8);
       border-radius: inherit;
       z-index: -1;
-      opacity: 0.3;
-      filter: blur(12px);
-      transition: opacity 0.3s ease;
+      opacity: 0.25;
+      filter: blur(16px);
+      transition: opacity 0.4s ease;
     }
     .holo-glow:hover::after {
-      opacity: 0.8;
+      opacity: 0.6;
     }
+
+    .icon-3d-badge {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .icon-3d-badge:hover {
+      transform: translateY(-2px) scale(1.05);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -117,7 +139,7 @@
     <div class="flex items-center justify-between h-14">
       <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group">
         <div class="h-9 w-9 flex items-center justify-center shrink-0">
-          <img src="../Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+          <img src="public/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col">
           <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">
@@ -144,8 +166,8 @@
   <div class="glass-card-3d p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 holo-glow">
     <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-5 text-center sm:text-left">
       <div class="relative shrink-0">
-        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-40 blur-sm"></div>
-        <img src="../Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="88" height="88" class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
+        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-50 blur-md"></div>
+        <img src="public/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="88" height="88" class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl object-cover border-2 border-sky-400/60 shadow-2xl" onerror="this.onerror=null; this.src='public/Main_page_data/placeholder.gif';" />
       </div>
       <div>
         <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
@@ -153,7 +175,7 @@
       </div>
     </div>
     <div class="flex items-center shrink-0">
-      <a href="public/Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 active:scale-95 transition-all">
+      <a href="public/Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_25px_rgba(56,189,248,0.4)] hover:scale-105 active:scale-95 transition-all">
         <i data-lucide="download" class="w-4 h-4"></i>
         <span>Download PDF Resume</span>
       </a>
@@ -161,16 +183,16 @@
   </div>
 
   <div class="glass-card-3d p-5 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-    <div class="flex items-center space-x-2 text-slate-300">
+    <div class="flex items-center space-x-2.5 text-slate-300">
       <i data-lucide="phone" class="w-4 h-4 text-sky-400 shrink-0"></i>
       <span>+91 9860457155</span>
     </div>
-    <div class="flex items-center space-x-2 text-slate-300">
-      <i data-lucide="mail" class="w-4 h-4 text-sky-400 shrink-0"></i>
+    <div class="flex items-center space-x-2.5 text-slate-300">
+      <img src="../images/Icons_AVIF/Outlook-icon.png" alt="Email" class="w-4 h-4 object-contain shrink-0" />
       <span>akashnagapure@live.com</span>
     </div>
-    <div class="flex items-center space-x-2 text-slate-300">
-      <img src="LinkedIn.svg" alt="LinkedIn" class="w-4 h-4 shrink-0" />
+    <div class="flex items-center space-x-2.5 text-slate-300">
+      <img src="../images/Icons_AVIF/LinkedIn (1).svg" alt="LinkedIn" class="w-4 h-4 object-contain shrink-0" />
       <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-300 underline underline-offset-2">linkedin.com/in/anagapure</a>
     </div>
   </div>
@@ -188,37 +210,42 @@
   <div class="glass-card-3d p-6 rounded-2xl space-y-4">
     <div class="flex items-center space-x-3">
       <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
-      <h2 class="font-sans text-base font-bold text-white uppercase tracking-wider">Core Competencies</h2>
+      <h2 class="font-sans text-base font-bold text-white uppercase tracking-wider">Core Competencies & Stack</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
-        <div class="flex items-center space-x-2">
-          <img src="microsoftstore-companyportal.png" alt="Intune" class="w-5 h-5 object-contain" />
+      
+      <div class="icon-3d-badge p-4 rounded-xl space-y-2.5">
+        <div class="flex items-center space-x-2.5">
+          <img src="../images/Icons_AVIF/microsoftstore-companyportal.png" alt="Intune" class="w-6 h-6 object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
           <strong class="text-sky-300 font-mono text-xs">Microsoft Intune & Autopilot</strong>
         </div>
-        <p class="text-slate-300 font-light">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch, Connected Cache.</p>
+        <p class="text-slate-300 font-light leading-relaxed">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch, Connected Cache.</p>
       </div>
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
-        <div class="flex items-center space-x-2">
-          <img src="SCCM.png" alt="SCCM" class="w-5 h-5 object-contain" />
+
+      <div class="icon-3d-badge p-4 rounded-xl space-y-2.5">
+        <div class="flex items-center space-x-2.5">
+          <img src="../images/Icons_AVIF/SCCM.png" alt="SCCM" class="w-6 h-6 object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
           <strong class="text-sky-300 font-mono text-xs">SCCM / MECM</strong>
         </div>
-        <p class="text-slate-300 font-light">Task Sequence Management, OSD, Driver Import, Patch Deployment, DP Configuration, Maintenance & Compliance Baselines.</p>
+        <p class="text-slate-300 font-light leading-relaxed">Task Sequence Management, OSD, Driver Import, Patch Deployment, DP Configuration, Maintenance & Compliance Baselines.</p>
       </div>
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
-        <div class="flex items-center space-x-2">
-          <img src="citrix-workspaceapp.png" alt="Citrix" class="w-5 h-5 object-contain" />
+
+      <div class="icon-3d-badge p-4 rounded-xl space-y-2.5">
+        <div class="flex items-center space-x-2.5">
+          <img src="../images/Icons_AVIF/citrix-workspaceapp.png" alt="Virtualization" class="w-6 h-6 object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
           <strong class="text-sky-300 font-mono text-xs">Cloud & Virtualization</strong>
         </div>
-        <p class="text-slate-300 font-light">Co-Management, Azure AD, Conditional Access, Defender, AVD, Windows 365, Citrix, FSLogix, Workspace ONE, VMware Horizon.</p>
+        <p class="text-slate-300 font-light leading-relaxed">Co-Management, Azure AD, Conditional Access, Defender, AVD, Windows 365, Citrix, FSLogix, Workspace ONE, VMware Horizon.</p>
       </div>
-      <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-2">
-        <div class="flex items-center space-x-2">
-          <img src="microsoft-powershellcore.png" alt="PowerShell" class="w-5 h-5 object-contain" />
+
+      <div class="icon-3d-badge p-4 rounded-xl space-y-2.5">
+        <div class="flex items-center space-x-2.5">
+          <img src="../images/Icons_AVIF/microsoft-powershellcore.png" alt="PowerShell" class="w-6 h-6 object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
           <strong class="text-sky-300 font-mono text-xs">Automation & Security</strong>
         </div>
-        <p class="text-slate-300 font-light">PowerShell Automation, SQL Reporting, GPO Migration to Intune, BitLocker, Disk Encryption, LAPS, CrowdStrike EDR, Zscaler.</p>
+        <p class="text-slate-300 font-light leading-relaxed">PowerShell Automation, SQL Reporting, GPO Migration to Intune, BitLocker, Disk Encryption, LAPS, CrowdStrike EDR, Zscaler.</p>
       </div>
+
     </div>
   </div>
 
@@ -229,7 +256,9 @@
     </div>
 
     <div class="space-y-6">
-      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+      
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2 relative group">
+        <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-sky-400 shadow-[0_0_10px_#38bdf8]"></div>
         <div class="flex flex-col sm:flex-row sm:items-center justify-between">
           <h3 class="font-bold text-white text-sm sm:text-base">Architect – Technical Specialist | Hexaware Technologies</h3>
           <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
@@ -245,7 +274,8 @@
         </ul>
       </div>
 
-      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2 relative group">
+        <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-sky-400 shadow-[0_0_10px_#38bdf8]"></div>
         <div class="flex flex-col sm:flex-row sm:items-center justify-between">
           <h3 class="font-bold text-white text-sm sm:text-base">Medline Industries India Pvt. Ltd, Pune</h3>
           <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 – 13/02/2026</span>
@@ -261,7 +291,8 @@
         </ul>
       </div>
 
-      <div class="border-l-2 border-sky-400 pl-4 space-y-2">
+      <div class="border-l-2 border-sky-400 pl-4 space-y-2 relative group">
+        <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-sky-400 shadow-[0_0_10px_#38bdf8]"></div>
         <div class="flex flex-col sm:flex-row sm:items-center justify-between">
           <h3 class="font-bold text-white text-sm sm:text-base">Customer Support Engineer | VDA Info Solutions</h3>
           <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 – 14/11/2018</span>
@@ -272,6 +303,7 @@
           <li class="flex items-start gap-2"><span class="text-sky-400 font-mono">▹</span> Monitored SCCM, BIOS, boot compliance, and device patch levels while managing ageing tickets.</li>
         </ul>
       </div>
+
     </div>
   </div>
 
@@ -282,9 +314,9 @@
         <h2 class="font-sans text-base font-bold text-white uppercase tracking-wider">Certifications</h2>
       </div>
       <ul class="space-y-2 text-xs font-sans text-slate-300">
-        <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
-        <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i><span>Microsoft Certified: Azure Administrator Associate (AZ-104)</span></li>
-        <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i><span>ITIL 4 Foundation</span></li>
+        <li class="flex items-center space-x-2.5"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
+        <li class="flex items-center space-x-2.5"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i><span>Microsoft Certified: Azure Administrator Associate (AZ-104)</span></li>
+        <li class="flex items-center space-x-2.5"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i><span>ITIL 4 Foundation</span></li>
       </ul>
     </div>
 
@@ -322,12 +354,12 @@
     </div>
     
     <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
-      <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <img src="LinkedIn.svg" alt="LinkedIn" class="w-3.5 h-3.5" /> LinkedIn
+      <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1.5">
+        <img src="../images/Icons_AVIF/LinkedIn (1).svg" alt="LinkedIn" class="w-3.5 h-3.5 object-contain" /> LinkedIn
       </a>
       <span>•</span>
-      <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <i data-lucide="mail" class="w-3.5 h-3.5"></i> Email
+      <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1.5">
+        <img src="../images/Icons_AVIF/Outlook-icon.png" alt="Email" class="w-3.5 h-3.5 object-contain" /> Email
       </a>
       <span>•</span>
       <a href="Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors">Privacy Policy</a>
