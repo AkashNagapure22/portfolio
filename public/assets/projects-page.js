@@ -15,6 +15,12 @@
       const description = card.querySelector('p')?.textContent.trim() || 'Open the complete implementation guide.';
       const accent = category === 'sccm' ? 'indigo' : category === 'powershell' ? 'teal' : 'sky';
       const visual = category === 'sccm' ? '/images/Main_Page_Images/project_sccm_1781110806653.avif' : category === 'powershell' ? '/images/Main_Page_Images/project_Modern-GPO-Alternatives.avif' : '/images/Blogs_Images/AutopatchA-Z.avif';
+      const icons = category === 'sccm'
+        ? [['server', 'Configuration Manager (SCCM)', 'text-indigo-400'], ['cloud', 'Microsoft Intune', 'text-sky-400']]
+        : category === 'powershell'
+          ? [['terminal', 'PowerShell', 'text-teal-400'], ['cloud', 'Microsoft Graph', 'text-sky-400']]
+          : [['cloud', 'Microsoft Intune', 'text-sky-400'], ['layers', 'Windows Autopilot', 'text-indigo-400']];
+      const iconMarkup = icons.map(([icon, label, color]) => `<div class="tooltip-container"><span class="tooltip-text">${label}</span><i data-lucide="${icon}" class="w-7 h-7 ${color}"></i></div>`).join('');
       card.className = `searchable-card py-6 border-b border-white/5 last:border-0 block group guide-feature-card`;
       card.innerHTML = `
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -23,6 +29,7 @@
             <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">${title}</h3>
             <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">${description}</p>
             <div class="pt-2"><span class="btn-live-project">READ GUIDE <i data-lucide="arrow-right" class="w-4 h-4"></i></span></div>
+            <div class="pt-3 flex flex-wrap items-center gap-4">${iconMarkup}</div>
           </div>
           <div class="lg:col-span-5"><div class="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-slate-900/60 group border border-slate-800"><img src="${visual}" alt="${title}" width="500" height="312" loading="lazy" class="w-full h-full object-cover filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500" /></div></div>
         </div>`;
