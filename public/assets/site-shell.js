@@ -223,6 +223,11 @@ function enhanceArticleTemplate() {
 }
 
 function initArticleComments() {
+  const isBlogArticle = window.location.pathname.startsWith('/Blogs/')
+    && !window.location.pathname.endsWith('/Blogs/')
+    && !window.location.pathname.endsWith('/Blogs/index.html')
+    && !window.location.pathname.endsWith('/Blogs/Autopatchblog.html');
+  if (!isBlogArticle) return;
   const article = document.querySelector('.article-shell');
   if (!article || article.querySelector('.article-comments')) return;
   const articleId = window.location.pathname.split('/').pop().replace(/\.html$/, '').toLowerCase() || 'home';
