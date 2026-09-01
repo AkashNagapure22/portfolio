@@ -216,7 +216,7 @@
       animation: nameGlow 4s ease-in-out infinite;
     }
 
-    .玻璃-panel, .glass-panel {
+    .glass-panel {
       background-color: rgba(30, 41, 59, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -1250,7 +1250,7 @@
               <div>
                 <div class="relative aspect-video w-full bg-slate-950">
                   <img src="images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_06</div>
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_03</div>
                 </div>
                 <div class="p-6">
                   <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
@@ -1312,10 +1312,10 @@
         
         <div class="lg:col-span-6 flex flex-col sm:flex-row items-center sm:items-start gap-8">
           
-          <!-- Box-free floating Jarvis robot element integrated seamlessly into the background -->
-          <div class="relative shrink-0 w-44 h-44 sm:w-56 sm:h-56 overflow-visible bg-transparent flex items-center justify-center my-auto">
-            <div class="absolute inset-0 bg-sky-500/10 rounded-full filter blur-3xl pointer-events-none animate-pulse"></div>
-            <img src="/Main_page_data/jarvis.png" alt="Jarvis AI Assistant" class="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(56,189,248,0.4)] transition-transform duration-700 hover:scale-105 relative z-10" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          <!-- Robot / Assistant Visual Integration (Box-free background element) -->
+          <div class="relative shrink-0 w-48 h-48 sm:w-60 sm:h-60 overflow-visible bg-transparent flex items-center justify-center">
+            <div class="absolute inset-0 bg-sky-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
+            <img src="/Main_page_data/jarvis.png" alt="Jarvis AI Assistant" class="w-full h-full object-contain robot-glow relative z-10" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
 
           <div class="flex flex-col justify-center w-full">
@@ -1324,7 +1324,7 @@
 
             <div class="pt-6 flex flex-wrap items-center gap-3">
               <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-950/60 border border-indigo-500/30 hover:border-indigo-400 rounded-xl text-indigo-300 font-mono text-xs font-semibold transition-all hover:scale-105">
-                <img src="/public/images/Icons_AVIF/LinkedIn.svg" alt="LinkedIn Logo" width="16" height="16" class="w-4 h-4 object-contain filter drop-shadow-[0_0_4px_rgba(56,189,248,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                <img src="/public/images/Icons_AVIF/LinkedIn.svg" alt="LinkedIn Logo" width="16" height="16" class="w-4 h-4 object-contain filter drop-shadow-[0_0_4_rgba(56,189,248,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 <span>LINKEDIN</span>
               </a>
               <a href="mailto:info@akashnagapure.in" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-950/60 border border-sky-500/30 hover:border-sky-400 rounded-xl text-sky-300 font-mono text-xs font-semibold transition-all hover:scale-105">
@@ -1739,9 +1739,9 @@
     { title: "Certifications", sectionId: "certifications", keywords: "az-900 az-104 az-140 md-102 itil credentials microsoft badges" },
     { title: "Work Experience", sectionId: "experience", keywords: "hexaware medline capgemini jobs history timeline role" },
     { title: "Education", sectionId: "education", keywords: "degree bachelor university amravati college hsc school" },
-    { title: "Self-Hosted Homelab", sectionId: "home", keywords: "homelab server infrastructure hardware proxmox" },
-    { title: "Strategic Gaming", sectionId: "home", keywords: "games strategy tactical playbooks" },
-    { title: "Coin Collection", sectionId: "home", keywords: "numismatics vault history coins collection" },
+    { title: "Self-Hosted Homelab", sectionId: "hobbies", keywords: "homelab server infrastructure hardware proxmox" },
+    { title: "Strategic Gaming", sectionId: "hobbies", keywords: "games strategy tactical playbooks" },
+    { title: "Coin Collection", sectionId: "hobbies", keywords: "numismatics vault history coins collection" },
     { title: "Key Projects", sectionId: "projects", keywords: "vdi migration sccm intune autopilot windows 365 servicenow case studies" },
     { title: "Direct Contact", sectionId: "contact", keywords: "email linkedin dispatch message inquiry hire" }
   ];
@@ -1795,7 +1795,7 @@
 
     const matches = searchableIndex.filter(item => 
       item.title.toLowerCase().includes(trimmed) || 
-      item.keywords.toLowerCase().items(trimmed)
+      item.keywords.toLowerCase().includes(trimmed)
     );
 
     if (matches.length === 0) {
