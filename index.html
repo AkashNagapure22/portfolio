@@ -51,6 +51,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <!-- Spline Viewer Script for 3D Interactive Component Integration -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
     tailwind.config = {
@@ -111,6 +113,17 @@
       pointer-events: none;
       contain: strict;
       transform: translate3d(0, 0, 0);
+    }
+
+    /* Sleek Cursor Trail Canvas */
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
     }
 
     .section-seamless {
@@ -273,6 +286,7 @@
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-[100dvh] w-full">
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
 <header class="w-full relative z-50 transition-all duration-300">
   <div class="w-full overflow-hidden bg-slate-950/60 backdrop-blur-md py-2 px-4 text-[11px] font-mono border-b border-sky-500/10">
@@ -396,7 +410,6 @@
           <h1 class="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] animate-name-glow">
             Akash Nagapure
           </h1>
-          <!-- Locked fixed height wrapper (h-[60px] sm:h-[36px]) prevents any layout shifting or screen bouncing on mobile when phrases wrap -->
           <div class="font-mono text-sm sm:text-xl font-medium bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent tracking-wide h-[60px] sm:h-[36px] flex items-center overflow-hidden leading-snug">
             <span id="typewriter-text" class="inline-block"></span>
             <span class="animate-pulse ml-1 inline-block w-2 sm:w-2.5 h-4 sm:h-5 bg-indigo-400 shrink-0"></span>
@@ -1519,6 +1532,78 @@
     }
   }
 
+  /* Sleek Line Cursor Trail Logic */
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
   function triggerBadgeConfetti(event, badgeName) {
     if (typeof confetti === 'function') {
       const rect = event.currentTarget.getBoundingClientRect();
@@ -1792,6 +1877,7 @@
     lucide.createIcons();
     init3DBackground();
     animate3DBackground();
+    initCursorTrail();
     typeWriterEffect();
     startSequence();
   });
