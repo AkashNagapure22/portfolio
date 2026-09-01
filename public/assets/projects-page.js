@@ -1,4 +1,21 @@
 (() => {
+  const relocateGuides = () => {
+    const staging = document.getElementById('guide-staging');
+    if (!staging) return;
+    const targets = {
+      sccm: document.getElementById('sccm'),
+      intune: document.getElementById('intune'),
+      powershell: document.getElementById('powershell')
+    };
+    staging.querySelectorAll('a[href^="/Blogs/"]').forEach((card) => {
+      const path = card.getAttribute('href') || '';
+      const category = path.includes('/sccm-') ? 'sccm' : path.includes('/powershell-') ? 'powershell' : 'intune';
+      card.classList.add('border-t', 'mt-6', 'pt-6');
+      targets[category]?.appendChild(card);
+    });
+    staging.remove();
+  };
+
   const canvas = document.getElementById('three-bg-canvas');
   const isMobile = window.innerWidth < 768;
 
@@ -57,6 +74,7 @@
 
   window.scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   document.addEventListener('DOMContentLoaded', () => {
+    relocateGuides();
     if (window.lucide) window.lucide.createIcons();
     document.querySelectorAll('#back-to-top-btn').forEach((button) => {
       window.addEventListener('scroll', () => button.classList.toggle('hidden', window.scrollY <= 350), { passive: true });
