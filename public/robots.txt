@@ -1,6 +1,4 @@
-# Allow all web crawlers to index the site
 User-agent: *
 Allow: /
 
-# Point directly to your XML sitemap
-Sitemap: https://akashnagapure.in/sitemap.xml
+Sitemap: https://www.akashnagapure.in/sitemap.xml
