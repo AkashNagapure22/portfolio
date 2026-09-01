@@ -197,9 +197,35 @@ function initVoteButtons() {
   });
 }
 
+function enhanceArticleTemplate() {
+  document.querySelectorAll('.article-shell').forEach((article) => {
+    article.classList.add('article-template');
+    article.querySelectorAll('.article-body section').forEach((section, index) => {
+      section.style.setProperty('--section-index', index);
+    });
+    const headings = [...article.querySelectorAll('.article-body section > h2')];
+    if (headings.length > 2 && !article.querySelector('.toc')) {
+      const toc = document.createElement('nav');
+      toc.className = 'toc';
+      toc.setAttribute('aria-label', 'Table of contents');
+      toc.innerHTML = '<h2>Table of contents</h2><ol></ol>';
+      const list = toc.querySelector('ol');
+      headings.forEach((heading, index) => {
+        const id = heading.id || `article-section-${index + 1}`;
+        heading.id = id;
+        const item = document.createElement('li');
+        item.innerHTML = `<a href="#${id}">${heading.textContent}</a>`;
+        list.appendChild(item);
+      });
+      article.querySelector('.article-body').before(toc);
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   injectHeader();
   injectFooter();
   initThreeBackground();
   initVoteButtons();
+  enhanceArticleTemplate();
 });
