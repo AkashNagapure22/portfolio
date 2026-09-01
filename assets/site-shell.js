@@ -1,8 +1,6 @@
 window.SITE_EMAIL = 'info@akashnagapure.in';
 window.SITE_SEARCH_INDEX = [
-  { title: 'Windows Autopatch & Hotpatch', url: '/Blogs/autopatch.html', keywords: 'autopatch hotpatch intune windows updates' },
-  { title: 'Co-Management Strategies', url: '/Blogs/co-management-strategies.html', keywords: 'co-management sccm intune hybrid enterprise' },
-  { title: 'Advanced OSD Task Sequences', url: '/Blogs/advanced-osd-task-sequences.html', keywords: 'osd task sequence imaging sccm deployment' },
+  { title: 'Windows Autopatch & Hotpatch', url: '/Blogs/Autopatchblog.html', keywords: 'autopatch hotpatch intune windows updates' },
   { title: 'SCCM Application Model Design', url: '/Blogs/sccm-application-model.html', keywords: 'sccm application model detection dependency supersedence packaging' },
   { title: 'SCCM Content Distribution', url: '/Blogs/sccm-content-distribution.html', keywords: 'sccm content distribution point boundary transfer logs' },
   { title: 'SCCM Hardware Inventory', url: '/Blogs/sccm-hardware-inventory.html', keywords: 'sccm hardware inventory wmi collection reporting' },
@@ -30,11 +28,15 @@ function injectHeader() {
       <header class="site-header">
         <div class="inner">
           <a class="brand" href="/" aria-label="Home">
-            <span class="brand-mark"><img src="/images/Main_Page_Images/Logo.avif" alt="Akash Nagapure logo" width="42" height="42" /></span>
+            <span class="brand-mark"><img src="/Main_page_data/Logo.avif" alt="Akash Nagapure logo" width="42" height="42" /></span>
             <span class="brand-copy"><strong>Akash Nagapure</strong><span>Fleet Architect</span></span>
           </a>
           <div class="site-actions">
-            <a class="icon-button" href="/" aria-label="Home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg></a>
+            <a class="icon-button" href="/" aria-label="Home">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/>
+              </svg>
+            </a>
             <div class="search-shell">
               <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"/><path d="M16 16 21 21"/></svg>
               <input id="site-search" type="search" placeholder="Quick search..." aria-label="Search site" />
@@ -55,7 +57,7 @@ function injectFooter() {
       <footer class="site-footer">
         <div class="inner">
           <div class="brand" aria-label="Footer brand">
-            <span class="brand-mark"><img src="/images/Main_Page_Images/Logo.avif" alt="Akash Nagapure logo" width="42" height="42" /></span>
+            <span class="brand-mark"><img src="/Main_page_data/Logo.avif" alt="Akash Nagapure logo" width="42" height="42" /></span>
             <span class="brand-copy"><strong>Akash Nagapure</strong><span>Precision Systems</span></span>
           </div>
           <div class="footer-links">
@@ -78,18 +80,25 @@ function bindGlobalSearch() {
   const input = document.getElementById('site-search');
   const resultsBox = document.getElementById('site-search-results');
   if (!input || !resultsBox) return;
+
   const renderMatches = (query) => {
     const q = query.trim().toLowerCase();
     if (!q) {
       resultsBox.classList.remove('open');
-      resultsBox.innerHTML = ''; return;
+      resultsBox.innerHTML = '';
+      return;
     }
-    const matches = window.SITE_SEARCH_INDEX.filter((item) => item.title.toLowerCase().includes(q) || item.keywords.toLowerCase().includes(q)).slice(0, 7);
+
+    const matches = window.SITE_SEARCH_INDEX.filter((item) => {
+      return item.title.toLowerCase().includes(q) || item.keywords.toLowerCase().includes(q);
+    }).slice(0, 7);
+
     if (!matches.length) {
       resultsBox.innerHTML = '<div class="search-result-item" style="opacity:0.7;">No matching guide found</div>';
       resultsBox.classList.add('open');
       return;
     }
+
     resultsBox.innerHTML = matches.map((item) => `
       <a class="search-result-item" href="${item.url}">
         <span>${item.title}</span>
@@ -98,6 +107,7 @@ function bindGlobalSearch() {
     `).join('');
     resultsBox.classList.add('open');
   };
+
   input.addEventListener('input', (event) => renderMatches(event.target.value));
   document.addEventListener('click', (event) => {
     if (!event.target.closest('.search-shell')) {
@@ -111,13 +121,16 @@ function initThreeBackground() {
   const canvas = document.getElementById('three-bg-canvas');
   if (!canvas || canvas.dataset.ready === 'true') return;
   canvas.dataset.ready = 'true';
+
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 55;
-  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile, powerPreference: 'high-performance' });
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.3 : 1.8));
   renderer.setSize(window.innerWidth, window.innerHeight);
+
   const count = isMobile ? 1000 : 2600;
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(count * 3);
@@ -127,19 +140,37 @@ function initThreeBackground() {
     positions[i + 2] = (Math.random() - 0.5) * 380;
   }
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const material = new THREE.PointsMaterial({ color: 0x67e8f9, size: isMobile ? 1.2 : 1.05, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false });
+
+  const material = new THREE.PointsMaterial({
+    color: 0x67e8f9,
+    size: isMobile ? 1.2 : 1.05,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+
   const particles = new THREE.Points(geometry, material);
   scene.add(particles);
+
   const grid = new THREE.GridHelper(1400, isMobile ? 36 : 70, 0x22d3ee, 0x0f172a);
-  grid.position.y = -260; grid.material.transparent = true; grid.material.opacity = 0.24;
+  grid.position.y = -260;
+  grid.material.transparent = true;
+  grid.material.opacity = 0.24;
   scene.add(grid);
-  let mouseX = 0; let mouseY = 0; let targetX = 0; let targetY = 0;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let targetX = 0;
+  let targetY = 0;
+
   if (!isMobile) {
     window.addEventListener('pointermove', (event) => {
       mouseX = (event.clientX / window.innerWidth - 0.5) * 0.9;
       mouseY = (event.clientY / window.innerHeight - 0.5) * 0.9;
     }, { passive: true });
   }
+
   const tick = () => {
     requestAnimationFrame(tick);
     targetX += (mouseX - targetX) * 0.025;
@@ -149,7 +180,9 @@ function initThreeBackground() {
     grid.rotation.y += 0.0008;
     renderer.render(scene, camera);
   };
+
   requestAnimationFrame(tick);
+
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -160,6 +193,7 @@ function initThreeBackground() {
 function initVoteButtons() {
   const buttons = document.querySelectorAll('.vote-button');
   if (!buttons.length) return;
+
   const readState = (articleId) => {
     try {
       return JSON.parse(localStorage.getItem(`vote_state_${articleId}`) || 'null');
@@ -167,6 +201,7 @@ function initVoteButtons() {
       return null;
     }
   };
+
   const setVote = (button, value) => {
     const articleId = button.dataset.article || 'default';
     const state = { value, at: Date.now() };
@@ -179,6 +214,7 @@ function initVoteButtons() {
       }
     });
   };
+
   buttons.forEach((button) => {
     const articleId = button.dataset.article || 'default';
     const current = readState(articleId);
@@ -186,6 +222,7 @@ function initVoteButtons() {
       button.classList.add('is-voted');
       button.setAttribute('aria-pressed', 'true');
     }
+
     button.addEventListener('click', () => {
       const currentState = readState(articleId);
       if (currentState && currentState.value) {
@@ -203,6 +240,7 @@ function enhanceArticleTemplate() {
     article.querySelectorAll('.article-body section').forEach((section, index) => {
       section.style.setProperty('--section-index', index);
     });
+
     const headings = [...article.querySelectorAll('.article-body section > h2')];
     if (headings.length > 2 && !article.querySelector('.toc')) {
       const toc = document.createElement('nav');
@@ -227,9 +265,12 @@ function initArticleComments() {
     && !window.location.pathname.endsWith('/Blogs/')
     && !window.location.pathname.endsWith('/Blogs/index.html')
     && !window.location.pathname.endsWith('/Blogs/Autopatchblog.html');
+
   if (!isBlogArticle) return;
+
   const article = document.querySelector('.article-shell');
   if (!article || article.querySelector('.article-comments')) return;
+
   const articleId = window.location.pathname.split('/').pop().replace(/\.html$/, '').toLowerCase() || 'home';
   const section = document.createElement('section');
   section.className = 'article-comments';
@@ -246,9 +287,17 @@ function initArticleComments() {
     <div class="comment-list" aria-live="polite"><p class="article-comments-intro">Loading discussion...</p></div>
   `;
   article.appendChild(section);
+
   const form = section.querySelector('form');
   const list = section.querySelector('.comment-list');
-  const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+  const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[character]);
+
   const render = (comments) => {
     if (!comments.length) {
       list.innerHTML = '<p class="article-comments-intro">No comments yet. Start the discussion.</p>';
@@ -261,6 +310,7 @@ function initArticleComments() {
       </article>
     `).join('');
   };
+
   const load = async () => {
     try {
       const response = await fetch(`/api/comments?article_id=${encodeURIComponent(articleId)}`, { headers: { Accept: 'application/json' } });
@@ -270,14 +320,20 @@ function initArticleComments() {
       list.innerHTML = '<p class="article-comments-intro">Discussion is temporarily unavailable.</p>';
     }
   };
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const data = new FormData(form);
     const button = form.querySelector('button');
     button.disabled = true;
     button.textContent = 'Posting...';
+
     try {
-      const response = await fetch('/api/comments', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ author: data.get('author'), email: data.get('email'), content: data.get('content'), article_id: articleId }) });
+      const response = await fetch('/api/comments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ author: data.get('author'), email: data.get('email'), content: data.get('content'), article_id: articleId })
+      });
       if (!response.ok) throw new Error('Unable to post comment');
       form.reset();
       await load();
@@ -288,6 +344,7 @@ function initArticleComments() {
       button.textContent = 'Post comment';
     }
   });
+
   load();
 }
 
