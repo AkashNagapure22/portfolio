@@ -1,4 +1,90 @@
 window.SITE_EMAIL = 'info@akashnagapure.in';
+
+function initGlobalCursorTrail() {
+  if (document.querySelector('#site-global-cursor-canvas')) return;
+  const canvas = document.createElement('canvas');
+  canvas.id = 'site-global-cursor-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  Object.assign(canvas.style, {
+    position: 'fixed',
+    inset: '0',
+    width: '100vw',
+    height: '100vh',
+    pointerEvents: 'none',
+    zIndex: '99999',
+    display: 'block'
+  });
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  const trailCount = 18;
+  const points = Array.from({ length: trailCount }, () => ({ x: window.innerWidth / 2, y: window.innerHeight / 2, dx: 0, dy: 0 }));
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  let mouse = { x: width / 2, y: height / 2 };
+
+  const resize = () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  };
+
+  const updatePointer = (event) => {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+  };
+
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('pointermove', updatePointer, { passive: true });
+  window.addEventListener('touchmove', (event) => {
+    if (event.touches && event.touches[0]) {
+      mouse.x = event.touches[0].clientX;
+      mouse.y = event.touches[0].clientY;
+    }
+  }, { passive: true });
+  resize();
+
+  function render() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, width, height);
+    ctx.beginPath();
+    for (let i = 0; i < points.length; i += 1) {
+      const current = points[i];
+      if (i === 0) {
+        current.dx += (mouse.x - current.x) * 0.18;
+        current.dx *= 0.52;
+        current.x += current.dx;
+        current.dy += (mouse.y - current.y) * 0.18;
+        current.dy *= 0.52;
+        current.y += current.dy;
+        ctx.moveTo(current.x, current.y);
+      } else {
+        const previous = points[i - 1];
+        current.dx += (previous.x - current.x) * 0.18;
+        current.dx *= 0.52;
+        current.x += current.dx;
+        current.dy += (previous.y - current.y) * 0.18;
+        current.dy *= 0.52;
+        current.y += current.dy;
+        ctx.lineTo(current.x, current.y);
+      }
+    }
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.7)';
+    ctx.lineWidth = 2.2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGlobalCursorTrail, { once: true });
+} else {
+  initGlobalCursorTrail();
+}
+
 window.SITE_SEARCH_INDEX = [
   { title: 'Windows Autopatch & Hotpatch', url: '/Blogs/autopatch.html', keywords: 'autopatch hotpatch intune windows updates' },
   { title: 'Co-Management Strategies', url: '/Blogs/co-management-strategies.html', keywords: 'co-management sccm intune hybrid enterprise' },

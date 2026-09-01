@@ -248,17 +248,32 @@
   <!-- HERO: the 3D signature -->
   <section class="grid lg:grid-cols-12 gap-10 items-center">
     <div class="lg:col-span-5 space-y-6">
-      <span class="eyebrow">System Architecture // Live</span>
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-teal-500/30 bg-teal-500/10 text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-teal-300">
+        <img src="/images/Icons_AVIF/Infrastructure.png" alt="" width="14" height="14" onerror="this.style.display='none';" />
+        System Architecture // Live
+      </div>
       <h1 class="display-title text-4xl sm:text-5xl">The Stack<br>I Run.</h1>
       <p class="text-slate-400 text-sm leading-relaxed max-w-md">
         A device leaves the desk, gets managed, gets secured, gets moved onto virtual and cloud infrastructure, then runs on autopilot.
         <span class="text-accent">Four layers</span>, bottom to top — that's the map of everything below.
       </p>
-      <div class="stack-legend pt-2" id="stack-legend">
-        <a href="#endpoint"><span class="tag">L1</span> Endpoint Management</a>
-        <a href="#security"><span class="tag">L2</span> Identity & Security</a>
-        <a href="#virtualization"><span class="tag">L3</span> Virtualization & Cloud</a>
-        <a href="#automation"><span class="tag">L4</span> Automation & ITSM</a>
+      <div class="grid grid-cols-2 gap-3 pt-2 max-w-md">
+        <a href="#endpoint" class="panel-card rounded-xl px-3 py-2 flex items-center gap-2 text-left hover:-translate-y-0.5 transition-transform">
+          <img src="/images/Icons_AVIF/SCCM.png" alt="" width="18" height="18" class="object-contain" onerror="this.style.display='none';" />
+          <span class="text-xs font-mono text-slate-200">L1 Endpoint</span>
+        </a>
+        <a href="#security" class="panel-card rounded-xl px-3 py-2 flex items-center gap-2 text-left hover:-translate-y-0.5 transition-transform">
+          <img src="/images/Icons_AVIF/Azure-Dark.svg" alt="" width="18" height="18" class="object-contain" onerror="this.style.display='none';" />
+          <span class="text-xs font-mono text-slate-200">L2 Security</span>
+        </a>
+        <a href="#virtualization" class="panel-card rounded-xl px-3 py-2 flex items-center gap-2 text-left hover:-translate-y-0.5 transition-transform">
+          <img src="/images/Icons_AVIF/vmware.png" alt="" width="18" height="18" class="object-contain" onerror="this.style.display='none';" />
+          <span class="text-xs font-mono text-slate-200">L3 Cloud</span>
+        </a>
+        <a href="#automation" class="panel-card rounded-xl px-3 py-2 flex items-center gap-2 text-left hover:-translate-y-0.5 transition-transform">
+          <img src="/images/Icons_AVIF/microsoft-powershellcore.png" alt="" width="18" height="18" class="object-contain" onerror="this.style.display='none';" />
+          <span class="text-xs font-mono text-slate-200">L4 Automation</span>
+        </a>
       </div>
     </div>
 
