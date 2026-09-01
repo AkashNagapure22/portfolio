@@ -10,10 +10,26 @@
     staging.querySelectorAll('a[href^="/Blogs/"]').forEach((card) => {
       const path = card.getAttribute('href') || '';
       const category = path.includes('/sccm-') ? 'sccm' : path.includes('/powershell-') ? 'powershell' : 'intune';
-      card.classList.add('border-t', 'mt-6', 'pt-6');
+      const label = card.querySelector('span')?.textContent.trim() || 'Technical Guide';
+      const title = card.querySelector('h3')?.textContent.trim() || 'Technical Guide';
+      const description = card.querySelector('p')?.textContent.trim() || 'Open the complete implementation guide.';
+      const accent = category === 'sccm' ? 'indigo' : category === 'powershell' ? 'teal' : 'sky';
+      const visual = category === 'sccm' ? '/images/Main_Page_Images/project_sccm_1781110806653.avif' : category === 'powershell' ? '/images/Main_Page_Images/project_Modern-GPO-Alternatives.avif' : '/images/Blogs_Images/AutopatchA-Z.avif';
+      card.className = `searchable-card py-6 border-b border-white/5 last:border-0 block group guide-feature-card`;
+      card.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center gap-3"><span class="px-3 py-1 bg-${accent}-950/90 text-${accent}-300 border border-${accent}-500/50 text-[10px] font-mono font-bold rounded-lg uppercase shadow-lg">Published Guide</span><span class="text-xs text-sky-400 font-mono uppercase tracking-widest">• ${label}</span></div>
+            <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">${title}</h3>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">${description}</p>
+            <div class="pt-2"><span class="btn-live-project">READ GUIDE <i data-lucide="arrow-right" class="w-4 h-4"></i></span></div>
+          </div>
+          <div class="lg:col-span-5"><div class="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-slate-900/60 group border border-slate-800"><img src="${visual}" alt="${title}" width="500" height="312" loading="lazy" class="w-full h-full object-cover filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500" /></div></div>
+        </div>`;
       targets[category]?.appendChild(card);
     });
     staging.remove();
+    if (window.lucide) window.lucide.createIcons();
   };
 
   const canvas = document.getElementById('three-bg-canvas');

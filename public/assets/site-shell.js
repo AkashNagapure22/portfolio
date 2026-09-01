@@ -222,10 +222,75 @@ function enhanceArticleTemplate() {
   });
 }
 
+function initArticleComments() {
+  const article = document.querySelector('.article-shell');
+  if (!article || article.querySelector('.article-comments')) return;
+  const articleId = window.location.pathname.split('/').pop().replace(/\.html$/, '').toLowerCase() || 'home';
+  const section = document.createElement('section');
+  section.className = 'article-comments';
+  section.dataset.articleId = articleId;
+  section.innerHTML = `
+    <h2>Technical discussion</h2>
+    <p class="article-comments-intro">Ask a question or share an implementation note. This discussion is tracked under article ID <strong>${articleId}</strong>.</p>
+    <form class="comment-form">
+      <input name="author" type="text" maxlength="80" placeholder="Your name or handle" required />
+      <input name="email" type="email" maxlength="160" placeholder="Your email address" required />
+      <textarea name="content" maxlength="4000" placeholder="Share a question or implementation note..." required></textarea>
+      <button type="submit">Post comment</button>
+    </form>
+    <div class="comment-list" aria-live="polite"><p class="article-comments-intro">Loading discussion...</p></div>
+  `;
+  article.appendChild(section);
+  const form = section.querySelector('form');
+  const list = section.querySelector('.comment-list');
+  const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+  const render = (comments) => {
+    if (!comments.length) {
+      list.innerHTML = '<p class="article-comments-intro">No comments yet. Start the discussion.</p>';
+      return;
+    }
+    list.innerHTML = comments.map((comment) => `
+      <article class="comment-item">
+        <header><span>${escape(comment.author)}</span><time>${escape(comment.date || '')}</time></header>
+        <p>${escape(comment.content)}</p>
+      </article>
+    `).join('');
+  };
+  const load = async () => {
+    try {
+      const response = await fetch(`/api/comments?article_id=${encodeURIComponent(articleId)}`, { headers: { Accept: 'application/json' } });
+      if (!response.ok) throw new Error('Unable to load comments');
+      render(await response.json());
+    } catch (error) {
+      list.innerHTML = '<p class="article-comments-intro">Discussion is temporarily unavailable.</p>';
+    }
+  };
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const button = form.querySelector('button');
+    button.disabled = true;
+    button.textContent = 'Posting...';
+    try {
+      const response = await fetch('/api/comments', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ author: data.get('author'), email: data.get('email'), content: data.get('content'), article_id: articleId }) });
+      if (!response.ok) throw new Error('Unable to post comment');
+      form.reset();
+      await load();
+    } catch (error) {
+      list.innerHTML = '<p class="article-comments-intro">Your comment could not be posted. Please try again.</p>';
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Post comment';
+    }
+  });
+  load();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   injectHeader();
   injectFooter();
   initThreeBackground();
   initVoteButtons();
   enhanceArticleTemplate();
+  initArticleComments();
 });

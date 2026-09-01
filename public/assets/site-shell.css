@@ -136,6 +136,20 @@ a { color: inherit; text-decoration: none; }
 .vote-button:hover { transform: translateY(-1px); }
 .vote-button.is-voted { border-color: rgba(52,211,153,0.6); background: rgba(5,150,105,0.12); color: var(--emerald); }
 .vote-button[data-vote='down'].is-voted { color: #fda4af; border-color: rgba(251,113,133,0.4); background: rgba(190,24,93,0.12); }
+.article-comments { margin-top: 34px; padding-top: 28px; border-top: 1px solid rgba(103,232,249,0.16); }
+.article-comments h2 { margin: 0 0 8px; font-size: 1.35rem; }
+.article-comments-intro { margin: 0 0 18px; color: var(--muted); font-size: .86rem; line-height: 1.7; }
+.comment-form { display: grid; gap: 12px; }
+.comment-form input, .comment-form textarea { width: 100%; border: 1px solid rgba(148,163,184,.2); border-radius: 12px; background: rgba(2,6,23,.7); color: var(--text); padding: .78rem .9rem; font: inherit; font-size: .82rem; outline: none; }
+.comment-form input:focus, .comment-form textarea:focus { border-color: rgba(103,232,249,.6); box-shadow: 0 0 0 3px rgba(34,211,238,.1); }
+.comment-form textarea { min-height: 110px; resize: vertical; }
+.comment-form button { width: fit-content; border: 1px solid rgba(103,232,249,.35); border-radius: 12px; background: rgba(8,47,73,.35); color: var(--cyan); padding: .72rem 1rem; font-weight: 800; cursor: pointer; }
+.comment-form button:hover { background: rgba(8,145,178,.2); }
+.comment-list { display: grid; gap: 10px; margin-top: 18px; }
+.comment-item { padding: 14px; border: 1px solid rgba(148,163,184,.15); border-radius: 14px; background: rgba(15,23,42,.45); }
+.comment-item header { display: flex; justify-content: space-between; gap: 12px; color: var(--cyan); font-size: .76rem; font-weight: 800; }
+.comment-item time { color: var(--muted); font-size: .68rem; font-weight: 500; }
+.comment-item p { margin: 8px 0 0; color: var(--muted); line-height: 1.65; font-size: .82rem; white-space: pre-wrap; }
 .site-footer {
   position: relative; z-index: 1; border-top: 1px solid rgba(103,232,249,0.12); background: rgba(2,6,23,0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 24px 18px 38px;
 }
