@@ -169,65 +169,11 @@
   </style>
 </head>
 
-<body class="skills-page selection:bg-teal-300/25 selection:text-teal-200 flex flex-col justify-between min-h-screen w-full font-sans">
+<body class="site-shell skills-page selection:bg-teal-300/25 selection:text-teal-200 flex flex-col justify-between min-h-screen w-full font-sans">
 
 <a href="#main-content" class="skip-link">Skip to content</a>
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
-
-<header class="fixed top-0 w-full z-50 bg-[#090d16]/92 backdrop-blur-xl border-b border-white/[0.07] shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 gap-4">
-      <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group cursor-pointer shrink-0">
-        <div class="h-9 w-9 flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_8px_rgba(94,234,212,0.45)] group-hover:scale-105 transition-transform">
-          <img src="/Main_page_data/Logo.avif" alt="Akash Nagapure Logo" width="36" height="36" class="h-full w-full object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-        </div>
-        <div class="flex-col hidden sm:flex">
-          <span class="font-mono font-bold text-base text-white tracking-tight leading-none group-hover:text-teal-300 transition-colors">Akash Nagapure</span>
-          <span class="font-mono text-[9px] text-amber-300/80 font-semibold tracking-widest whitespace-nowrap mt-1">TECHNICAL ARSENAL · v2</span>
-        </div>
-      </a>
-
-      <nav class="hidden xl:flex items-center space-x-1 overflow-x-auto no-scrollbar py-1 shrink-0" id="nav-menu" aria-label="Primary">
-        <a href="https://www.akashnagapure.in" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all flex items-center justify-center cursor-pointer" title="Main Hub">
-          <img src="/images/Icons_AVIF/Home.png" alt="Home" width="18" height="18" class="object-contain filter brightness-125 hover:scale-110 transition-transform" />
-        </a>
-        <a href="#skills-section" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-teal-300 transition-all font-mono whitespace-nowrap nav-link">Skills</a>
-        <a href="#endpoint" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-teal-300 transition-all font-mono whitespace-nowrap nav-link">L1 Endpoint</a>
-        <a href="#security" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-teal-300 transition-all font-mono whitespace-nowrap nav-link">L2 Security</a>
-        <a href="#virtualization" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-teal-300 transition-all font-mono whitespace-nowrap nav-link">L3 Cloud</a>
-        <a href="#automation" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-teal-300 transition-all font-mono whitespace-nowrap nav-link">L4 Automation</a>
-      </nav>
-
-      <div class="relative flex-grow max-w-xs sm:max-w-sm">
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center cursor-pointer text-teal-300/70 hover:text-teal-300 transition-colors" onclick="focusSearchInput()" title="Click to search">
-          <img src="/images/Icons_AVIF/search.png" alt="" width="16" height="16" class="object-contain opacity-80 filter brightness-200" onerror="this.style.display='none';" />
-        </div>
-        <input type="text" id="skills-search-input" oninput="filterSkills(this.value)" placeholder="Search skills, tools, tech…" aria-label="Search skills"
-          class="w-full pl-9 pr-8 py-1.5 bg-white/[0.04] border border-transparent hover:border-teal-500/30 focus:border-teal-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono shadow-inner" />
-        <button id="search-clear-btn" onclick="clearSearch()" aria-label="Clear search" class="hidden absolute inset-y-0 right-2 flex items-center text-slate-500 hover:text-white cursor-pointer">
-          <i data-lucide="x" class="w-3.5 h-3.5"></i>
-        </button>
-      </div>
-
-      <div class="flex items-center xl:hidden">
-        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-teal-300 hover:bg-white/5 focus:outline-none cursor-pointer" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu-drawer">
-          <i data-lucide="menu" class="w-5 h-5" id="menu-icon"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-[#090d16]/98 border-b border-white/10 backdrop-blur-2xl px-6 py-4 space-y-2 font-mono text-xs shadow-2xl">
-    <a href="https://www.akashnagapure.in" onclick="toggleMobileMenu()" class="block py-2 text-teal-300 hover:text-white flex items-center gap-2 border-b border-white/10">
-      <img src="/images/Icons_AVIF/Home.png" alt="" width="16" height="16" class="object-contain filter brightness-125" /> Main Hub
-    </a>
-    <a href="#skills-section" onclick="toggleMobileMenu()" class="block py-1.5 text-slate-300 hover:text-teal-300">Skills Overview</a>
-    <a href="#endpoint" onclick="toggleMobileMenu()" class="block py-1.5 text-slate-300 hover:text-teal-300">L1 — Endpoint Management</a>
-    <a href="#security" onclick="toggleMobileMenu()" class="block py-1.5 text-slate-300 hover:text-teal-300">L2 — Identity & Security</a>
-    <a href="#virtualization" onclick="toggleMobileMenu()" class="block py-1.5 text-slate-300 hover:text-teal-300">L3 — Virtualization & Cloud</a>
-    <a href="#automation" onclick="toggleMobileMenu()" class="block py-1.5 text-slate-300 hover:text-teal-300">L4 — Automation & ITSM</a>
-  </div>
-</header>
+<div data-site-header></div>
 
 <main id="main-content" class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 space-y-24 flex-grow w-full relative z-10">
 
@@ -536,33 +482,13 @@
   </section>
 </main>
 
-<footer class="w-full py-8 bg-transparent border-t border-white/[0.06] text-center relative z-10">
-  <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-3 max-w-7xl mx-auto">
-    <div class="flex items-center gap-2.5">
-      <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-teal-400/40 font-mono text-[11px] font-extrabold text-amber-300 shadow-[0_0_10px_rgba(94,234,212,0.25)]">AN</div>
-      <span class="font-mono font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
-    </div>
-    <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
-      <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-teal-300 transition-colors flex items-center gap-1">
-        <i data-lucide="share-2" class="w-3.5 h-3.5"></i> LinkedIn
-      </a>
-      <span>•</span>
-      <a href="mailto:info@akashnagapure.in" class="hover:text-teal-300 transition-colors flex items-center gap-1">
-        <i data-lucide="mail" class="w-3.5 h-3.5"></i> Email
-      </a>
-      <span>•</span>
-      <a href="/Sub_Pages/privacy.html" class="hover:text-teal-300 transition-colors">Privacy Policy</a>
-      <span>•</span>
-      <a href="/Sub_Pages/terms.html" class="hover:text-teal-300 transition-colors">Terms of Service</a>
-    </div>
-    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mt-1">© 2026. All rights reserved.</span>
-  </div>
-</footer>
+<div data-site-footer></div>
 
 <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-[#10182a]/90 border border-teal-400/40 text-teal-300 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(94,234,212,0.25)] transition-all z-50 hover:scale-110 cursor-pointer" aria-label="Scroll back to top">
   <i data-lucide="arrow-up" class="w-4 h-4"></i>
 </button>
 
+<script src="/assets/site-shell.js"></script>
 <script>
   const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
