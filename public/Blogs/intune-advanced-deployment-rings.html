@@ -155,10 +155,10 @@
       <header class="space-y-4 searchable-block">
         <div class="flex items-center gap-2">
           <span class="px-3.5 py-1.5 bg-sky-950/85 border border-sky-500/30 rounded-full font-mono text-[10px] text-sky-400 uppercase tracking-wider">Intune</span>
-          <span class="px-3.5 py-1.5 bg-slate-900/80 border border-slate-700 rounded-full font-mono text-[10px] text-slate-300 uppercase tracking-wider">Release control</span>
-          <span class="px-3.5 py-1.5 bg-slate-900/80 border border-slate-700 rounded-full font-mono text-[10px] text-slate-400 uppercase tracking-wider">10 min read</span>
+          <span class="px-3.5 py-1.5 bg-indigo-950/85 border border-indigo-500/30 rounded-full font-mono text-[10px] text-indigo-400 uppercase tracking-wider">Release control</span>
+          <span class="px-3.5 py-1.5 bg-teal-950/85 border border-teal-500/30 rounded-full font-mono text-[10px] text-teal-400 uppercase tracking-wider">10 min read</span>
         </div>
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Advanced Intune Deployment Rings</h1>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Advanced <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">Intune Deployment Rings</span></h1>
         <p class="text-slate-400 text-sm sm:text-base font-light">Rings are a decision system, not a set of arbitrary percentages. Build them around exposure, supportability, and the evidence required to widen a release.</p>
       </header>
 
@@ -166,29 +166,32 @@
         
         <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Define ring purpose</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Use a preview ring for engineering validation, a pilot ring for representative users, and production rings for controlled scale. Keep emergency or executive populations explicit so they do not accidentally inherit a broad assignment.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Use a <span class="text-sky-400 font-semibold">preview ring</span> for engineering validation, a <span class="text-indigo-400 font-semibold">pilot ring</span> for representative users, and <span class="text-teal-400 font-semibold">production rings</span> for controlled scale. Keep emergency or executive populations explicit so they do not accidentally inherit a broad assignment.</p>
         </section>
 
         <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Separate membership from policy</h2>
           <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Dynamic groups can express device ownership and platform attributes, but they should not carry every release decision. Use dedicated ring groups or filters so an operator can understand why a device received a change.</p>
-          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl font-mono text-xs text-sky-300 overflow-x-auto shadow-inner">
-            <code>Ring 0  = endpoint engineering<br>Ring 1  = volunteer pilot users<br>Ring 2  = standard production<br>Ring 3  = critical and regulated devices</code>
+          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl font-mono text-xs overflow-x-auto shadow-inner space-y-1">
+            <code><span class="text-sky-400 font-bold">Ring 0</span> = endpoint engineering</code><br>
+            <code><span class="text-indigo-400 font-bold">Ring 1</span> = volunteer pilot users</code><br>
+            <code><span class="text-teal-400 font-bold">Ring 2</span> = standard production</code><br>
+            <code><span class="text-amber-400 font-bold">Ring 3</span> = critical and regulated devices</code>
           </div>
         </section>
 
         <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Use exit criteria</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Before widening, review install success, help-desk contacts, crash telemetry, and rollback readiness. Put a time window and an owner on every ring. A ring without an expiry becomes a permanent exception.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Before widening, review <span class="text-sky-400 font-medium">install success</span>, <span class="text-indigo-400 font-medium">help-desk contacts</span>, <span class="text-teal-400 font-medium">crash telemetry</span>, and <span class="text-amber-400 font-medium">rollback readiness</span>. Put a time window and an owner on every ring. A ring without an expiry becomes a permanent exception.</p>
         </section>
 
         <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Operational checklist</h2>
           <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 font-mono">
-            <li>Define purpose and owner for each ring.</li>
-            <li>Use explicit exclusions for critical populations.</li>
-            <li>Set a validation window before expansion.</li>
-            <li>Record rollback criteria in the change record.</li>
+            <li>Define purpose and owner for <span class="text-sky-400">each ring</span>.</li>
+            <li>Use explicit exclusions for <span class="text-rose-400">critical populations</span>.</li>
+            <li>Set a validation window before <span class="text-teal-400">expansion</span>.</li>
+            <li>Record rollback criteria in the <span class="text-indigo-400">change record</span>.</li>
           </ul>
         </section>
 
@@ -200,7 +203,7 @@
 
         <section class="space-y-6 pt-6">
           <div class="border-b border-white/10 pb-3">
-            <h3 class="text-xl font-bold text-white tracking-tight uppercase font-sans">Read more</h3>
+            <h3 class="text-xl font-bold text-white tracking-tight uppercase font-sans">Read <span class="text-sky-400">more</span></h3>
           </div>
           <div class="grid grid-cols-1 gap-6">
             
