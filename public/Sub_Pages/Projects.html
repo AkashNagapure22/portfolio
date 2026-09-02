@@ -73,50 +73,34 @@
       z-index: 99999;
       pointer-events: none;
     }
-    .glass-card-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                  0 0 30px rgba(56, 189, 248, 0.05);
+    .blog-card {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.25s ease;
     }
-    .holo-glow {
-      position: relative;
+    .blog-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
     }
-    .holo-glow::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #38bdf8, transparent, #6366f1, transparent, #38bdf8);
-      border-radius: inherit;
-      z-index: -1;
-      opacity: 0.3;
-      filter: blur(12px);
-    }
-
-    .btn-live-project {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(to right, #38bdf8, #0ea5e9);
-      color: #020617;
-      font-weight: 800;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 10px 20px;
+    .filter-pill {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 6px 14px;
       border-radius: 9999px;
-      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      cursor: pointer;
       transition: all 0.2s ease;
-      text-decoration: none;
     }
-    .btn-live-project:hover {
-      background: linear-gradient(to right, #7dd3fc, #38bdf8);
-      transform: translateY(-1px);
+    .filter-pill:hover, .filter-pill.active {
+      background: #f8fafc;
+      color: #020617;
+      border-color: #f8fafc;
+      font-weight: 700;
     }
-
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #020617; }
     ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
@@ -129,327 +113,358 @@
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-<header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20 gap-4">
-      <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-sky-400 hover:text-white transition-colors">
-        <span class="w-10 h-10 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center overflow-hidden">
-          <img src="/Main_page_data/Logo.avif" alt="Logo" class="w-full h-full object-cover" />
-        </span>
-        <div class="flex flex-col">
-          <strong class="font-sans font-extrabold text-white text-sm sm:text-base tracking-tight">Akash Nagapure</strong>
-          <span class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">Blogs & Architecture</span>
-        </div>
-      </a>
-
-      <!-- Subdomain Navigation & Category Jump Menu -->
-      <nav class="hidden md:flex items-center space-x-5 font-mono text-xs">
-        <a href="https://www.akashnagapure.in" class="text-slate-300 hover:text-sky-400 transition-colors">Home</a>
-        <a href="https://blogs.akashnagapure.in" class="text-sky-400 font-bold border-b-2 border-sky-400 pb-1">Blogs</a>
-        <a href="#intune" class="text-slate-300 hover:text-sky-400 transition-colors">Intune</a>
-        <a href="#sccm" class="text-slate-300 hover:text-indigo-400 transition-colors">SCCM</a>
-        <a href="#powershell" class="text-slate-300 hover:text-teal-400 transition-colors">PowerShell</a>
-        <a href="#activedirectory" class="text-slate-300 hover:text-amber-400 transition-colors">aD</a>
-        <a href="https://resume.akashnagapure.in" class="text-slate-300 hover:text-amber-400 transition-colors">Resume</a>
-      </nav>
-
-      <div class="relative max-w-[180px] sm:max-w-xs w-full">
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-sky-400">
-          <i data-lucide="search" class="w-4 h-4"></i>
-        </div>
-        <input type="text" id="global-search-input" oninput="filterArticles(this.value)" placeholder="Search guides..." class="w-full pl-9 pr-3 py-2 bg-slate-900/80 border border-slate-700/60 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
+<!-- Minimal Navbar: Only Logo on Left -->
+<header class="w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-white/10 py-4 px-6 sm:px-12">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-sky-400 hover:text-white transition-colors">
+      <span class="w-10 h-10 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center overflow-hidden shadow-md">
+        <img src="/Main_page_data/Logo.avif" alt="Logo" class="w-full h-full object-cover" />
+      </span>
+      <div class="flex flex-col">
+        <strong class="font-sans font-extrabold text-white text-sm sm:text-base tracking-tight">Akash Nagapure</strong>
+        <span class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">Architecture Blog</span>
       </div>
-    </div>
+    </a>
   </div>
 </header>
 
-<main class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 space-y-16 flex-grow w-full relative z-10">
+<main class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 space-y-12 flex-grow w-full relative z-10">
 
-  <section class="projects-section space-y-16">
-    <div class="glass-card-3d rounded-3xl p-8 sm:p-12 relative overflow-hidden holo-glow">
-      <div class="max-w-3xl space-y-4">
-        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-sky-950/80 border border-sky-500/30 rounded-full font-mono text-xs text-sky-400 uppercase tracking-wider">
-          Enterprise Infrastructure Knowledge Base
-        </div>
-        <h1 class="font-sans text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Technical Blogs & Architecture Labs
-        </h1>
-        <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-          Explore in-depth tutorials and expert insights on <span class="text-sky-400 font-semibold">Microsoft Intune</span>, <span class="text-indigo-400 font-semibold">Configuration Manager</span>, <span class="text-teal-400 font-semibold">PowerShell automation</span>, and <span class="text-purple-400 font-semibold">cloud infrastructure</span>.
-        </p>
+  <!-- Magic UI Blog Style Hero Header -->
+  <div class="space-y-4 pt-4">
+    <h1 class="font-sans text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+      Architecture Blog
+    </h1>
+    <p class="font-sans text-slate-400 text-base sm:text-lg font-light">
+      Latest field notes, guides, and updates from Akash Nagapure.
+    </p>
 
-        <div class="flex flex-wrap gap-4 pt-4 border-t border-white/10 mt-6">
-          <div class="flex items-center gap-2 px-4 py-2 bg-emerald-950/80 border border-emerald-500/50 rounded-xl shadow-lg shadow-emerald-500/10">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-xs font-mono font-bold text-emerald-300">21 Published Articles</span>
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 bg-sky-950/80 border border-sky-500/50 rounded-xl shadow-lg shadow-sky-500/10">
-            <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
-            <span class="text-xs font-mono font-bold text-sky-300">SCCM / Intune / PowerShell / aD</span>
-          </div>
-        </div>
-      </div>
+    <!-- Category Filter Pills -->
+    <div class="flex flex-wrap gap-2 pt-4">
+      <button class="filter-pill active" onclick="filterCategory('all', this)">All 14</button>
+      <button class="filter-pill" onclick="filterCategory('intune', this)">Microsoft Intune 4</button>
+      <button class="filter-pill" onclick="filterCategory('sccm', this)">SCCM / MECM 6</button>
+      <button class="filter-pill" onclick="filterCategory('powershell', this)">PowerShell 5</button>
+      <button class="filter-pill" onclick="filterCategory('ad', this)">Active Directory 1</button>
     </div>
+  </div>
 
-    <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl mb-8">
-      <i data-lucide="search-x" class="w-10 h-10 text-sky-400 mx-auto mb-2"></i>
-      <h3 class="text-white font-bold text-lg">No matching technical articles found</h3>
-      <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Autopatch", "Intune", "SCCM", or "PowerShell".</p>
-    </div>
+  <div id="search-empty-state" class="hidden text-center py-12 blog-card mb-8">
+    <i data-lucide="search-x" class="w-10 h-10 text-sky-400 mx-auto mb-2"></i>
+    <h3 class="text-white font-bold text-lg">No matching technical articles found</h3>
+    <p class="text-slate-400 text-xs font-mono mt-1">Try selecting a different category or refining your search.</p>
+  </div>
 
-    <div class="space-y-20" id="articles-container">
+  <!-- Article Cards Grid (Magic UI Card Style) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
 
-      <!-- 1. MICROSOFT INTUNE CATEGORY -->
-      <div id="intune" class="space-y-10 scroll-mt-32 blog-category-block">
-        <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
-          <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-          <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">1. <span class="text-sky-400">Microsoft Intune</span> & Modern Workplace</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Autopatch & Updates</span>
-              <h3 class="text-xl font-bold text-white mt-1">Microsoft Autopatch: The A-to-Z Enterprise Deployment</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Zero-touch rings, automated driver validation, and real-time compliance tracking.</p>
-            </div>
-            <div><a href="/Blogs/Autopatchblog.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Provisioning</span>
-              <h3 class="text-xl font-bold text-white mt-1">Windows Autopilot Zero-Touch Provisioning</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Factory-to-user device provisioning and hardware hash collection strategies.</p>
-            </div>
-            <div><a href="/Blogs/intune-autopilot-troubleshooting.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Packaging</span>
-              <h3 class="text-xl font-bold text-white mt-1">Intune Win32 Packaging & Deployment</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Make install commands, strict detection rules, and automated recovery agree.</p>
-            </div>
-            <div><a href="/Blogs/intune-win32-packaging.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Rollout Channels</span>
-              <h3 class="text-xl font-bold text-white mt-1">Advanced Intune Deployment Rings</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Establish progressive release channels governed by calculated risk and evidence.</p>
-            </div>
-            <div><a href="/Blogs/intune-advanced-deployment-rings.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-        </div>
-
-        <!-- Read More Section (3 Related Articles) -->
-        <div class="pt-4 border-t border-sky-500/20 space-y-4">
-          <h4 class="text-xs font-mono uppercase tracking-widest text-sky-400 font-bold">Related Intune Guides (Read More):</h4>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a href="/Blogs/intune-compliance-policies.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-400 transition-all block">
-              <span class="text-[10px] font-mono text-sky-300">Compliance Architecture</span>
-              <h5 class="text-sm font-bold text-white mt-1">Intune Compliance Policies</h5>
-            </a>
-            <a href="/Blogs/intune-autopilot-troubleshooting.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-400 transition-all block">
-              <span class="text-[10px] font-mono text-sky-300">Autopilot ESP</span>
-              <h5 class="text-sm font-bold text-white mt-1">Autopilot Troubleshooting</h5>
-            </a>
-            <a href="/Blogs/powershell-intune-reporting.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-400 transition-all block">
-              <span class="text-[10px] font-mono text-sky-300">Graph Reporting</span>
-              <h5 class="text-sm font-bold text-white mt-1">PowerShell Intune Reporting</h5>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. SCCM / MECM CATEGORY -->
-      <div id="sccm" class="space-y-10 scroll-mt-32 blog-category-block">
-        <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
-          <div class="w-1.5 h-6 bg-gradient-to-b from-indigo-400 to-indigo-600 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.6)]"></div>
-          <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">2. <span class="text-indigo-400">SCCM / MECM</span> & Co-Management</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Hybrid Migration</span>
-              <h3 class="text-xl font-bold text-white mt-1">SCCM to Intune Co-Management Migration</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Step-by-step transition of workload authorities without service interruption.</p>
-            </div>
-            <div><a href="/Blogs/sccm-intune-migration-guardrails.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Application Design</span>
-              <h3 class="text-xl font-bold text-white mt-1">SCCM Application Model Design</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Master detection methods, dependencies, and supersedence chains.</p>
-            </div>
-            <div><a href="/Blogs/sccm-application-model.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Infrastructure</span>
-              <h3 class="text-xl font-bold text-white mt-1">SCCM Content Distribution</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Boundaries, distribution point health, and automated failure recovery.</p>
-            </div>
-            <div><a href="/Blogs/sccm-content-distribution.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Imaging & OSD</span>
-              <h3 class="text-xl font-bold text-white mt-1">SCCM OSD Engineering & Imaging</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Build robust imaging sequences with explicit validation checkpoints.</p>
-            </div>
-            <div><a href="/Blogs/sccm-osd-engineering.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-        </div>
-
-        <!-- Read More Section (3 Related Articles) -->
-        <div class="pt-4 border-t border-indigo-500/20 space-y-4">
-          <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-bold">Related SCCM Guides (Read More):</h4>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a href="/Blogs/sccm-hardware-inventory.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-400 transition-all block">
-              <span class="text-[10px] font-mono text-indigo-300">Hardware Inventory</span>
-              <h5 class="text-sm font-bold text-white mt-1">Hardware Inventory Optimization</h5>
-            </a>
-            <a href="/Blogs/sccm-client-health-remediation.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-400 transition-all block">
-              <span class="text-[10px] font-mono text-indigo-300">Client Health</span>
-              <h5 class="text-sm font-bold text-white mt-1">Client Health & Remediation</h5>
-            </a>
-            <a href="/Blogs/sccm-patch-management-lifecycle.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-400 transition-all block">
-              <span class="text-[10px] font-mono text-indigo-300">Software Updates</span>
-              <h5 class="text-sm font-bold text-white mt-1">Patch Management Lifecycle</h5>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. POWERSHELL AUTOMATION CATEGORY -->
-      <div id="powershell" class="space-y-10 scroll-mt-32 blog-category-block">
-        <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
-          <div class="w-1.5 h-6 bg-gradient-to-b from-teal-400 to-teal-600 rounded-full shadow-[0_0_10px_rgba(45,212,191,0.6)]"></div>
-          <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">3. <span class="text-teal-400">PowerShell Automation</span> & Microsoft Graph</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">VDI Scripting</span>
-              <h3 class="text-xl font-bold text-white mt-1">Automated DesktopInfo Telemetry</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Advanced PowerShell initialization scripts for enterprise VDI fleets.</p>
-            </div>
-            <div><a href="/Blogs/powershell-device-inventory.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">Drift Control</span>
-              <h3 class="text-xl font-bold text-white mt-1">PowerShell Compliance Automation</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Close endpoint configuration drift automatically using safe repair tasks.</p>
-            </div>
-            <div><a href="/Blogs/powershell-compliance-automation.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">Graph Reporting</span>
-              <h3 class="text-xl font-bold text-white mt-1">PowerShell Intune Reporting</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Build focused Microsoft Graph reports tailored for operators.</p>
-            </div>
-            <div><a href="/Blogs/powershell-intune-reporting.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">Script Design</span>
-              <h3 class="text-xl font-bold text-white mt-1">PowerShell Remediation Scripts</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Design detection and repair pairs that remain completely safe to rerun.</p>
-            </div>
-            <div><a href="/Blogs/powershell-remediation-scripts.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-        </div>
-
-        <!-- Read More Section (3 Related Articles) -->
-        <div class="pt-4 border-t border-teal-500/20 space-y-4">
-          <h4 class="text-xs font-mono uppercase tracking-widest text-teal-400 font-bold">Related PowerShell Guides (Read More):</h4>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a href="/Blogs/powershell-graph-authentication.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-teal-400 transition-all block">
-              <span class="text-[10px] font-mono text-teal-300">Graph Security</span>
-              <h5 class="text-sm font-bold text-white mt-1">Graph Authentication Security</h5>
-            </a>
-            <a href="/Blogs/powershell-device-inventory.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-teal-400 transition-all block">
-              <span class="text-[10px] font-mono text-teal-300">Device Signals</span>
-              <h5 class="text-sm font-bold text-white mt-1">PowerShell Device Inventory</h5>
-            </a>
-            <a href="/Blogs/powershell-compliance-automation.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-teal-400 transition-all block">
-              <span class="text-[10px] font-mono text-teal-300">Remediation</span>
-              <h5 class="text-sm font-bold text-white mt-1">Remediation Scripts Design</h5>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. ACTIVE DIRECTORY / AD CATEGORY -->
-      <div id="activedirectory" class="space-y-10 scroll-mt-32 blog-category-block">
-        <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
-          <div class="w-1.5 h-6 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.6)]"></div>
-          <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">4. <span class="text-amber-400">Active Directory (aD)</span> & GPO Modernization</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400">Policy Migration</span>
-              <h3 class="text-xl font-bold text-white mt-1">Migrating Legacy GPOs to Intune</h3>
-              <p class="text-xs text-slate-300 mt-2 font-light">Utilize Policy Analytics to map on-premises Group Policies directly to cloud settings.</p>
-            </div>
-            <div><a href="/Blogs/intune-compliance-policies.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Discussion Section -->
-  <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-14 space-y-8">
-    <div class="flex items-center gap-4">
-      <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">TECHNICAL DISCUSSION & Q&A</h2>
-      <div class="h-px flex-grow bg-white/10"></div>
-    </div>
-
-    <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl border border-sky-500/30 space-y-5 shadow-2xl" onsubmit="handleCommentSubmit(event)">
-      <h3 class="text-base font-bold text-white font-mono flex items-center gap-2">
-        <i data-lucide="message-square-plus" class="w-4 h-4 text-sky-400"></i> Join the Engineering Discussion
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input type="text" id="author" placeholder="Your Name / Handle *" required class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono" />
-        <input type="email" id="email" placeholder="Your Email Address *" required class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono" />
-      </div>
+    <!-- Card 1 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="intune">
       <div>
-        <textarea id="content" rows="3" placeholder="Ask a question about lab architecture, share feedback, or start a discussion..." required class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs leading-relaxed resize-none"></textarea>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/AutopatchA-Z.avif" alt="Microsoft Autopatch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Autopatch</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Microsoft Autopatch: The A-to-Z Enterprise Deployment</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Zero-touch update rings, automated driver validation, and real-time compliance tracking for enterprise fleets.</p>
+        </div>
       </div>
-      <button type="submit" id="submit-btn" class="px-6 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] transition-all cursor-pointer font-mono">
-        Post Comment
-      </button>
-    </form>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/Autopatchblog.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
 
-    <div id="comments-container" class="space-y-4">
-      <p class="text-slate-400 text-xs font-mono">Loading discussion...</p>
-    </div>
-  </section>
+    <!-- Card 2 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="intune">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Autopilotblog.avif" alt="Windows Autopilot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Provisioning</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Windows Autopilot Zero-Touch Provisioning</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Factory-to-user device provisioning workflows and hardware hash collection strategies.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/intune-autopilot-troubleshooting.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
 
+    <!-- Card 3 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="intune">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/AutopatchA-Z.avif" alt="Win32 Packaging" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Packaging</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Intune Win32 Packaging & Deployment</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Make install commands, strict detection rules, and automated recovery scripts agree.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/intune-win32-packaging.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="intune">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Autopilotblog.avif" alt="Deployment Rings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Rollout</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Advanced Intune Deployment Rings</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Establish progressive release channels governed by calculated risk and evidence.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/intune-advanced-deployment-rings.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 5 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="sccm">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Comanagementblog.avif" alt="Co-Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Migration</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM to Intune Co-Management Migration</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Step-by-step transition of workload authorities without service interruption.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/sccm-intune-migration-guardrails.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 6 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="sccm">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Comanagementblog.avif" alt="Application Model" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Architecture</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Application Model Design</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Master detection methods, dependencies, and supersedence chains.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/sccm-application-model.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 7 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="sccm">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Comanagementblog.avif" alt="Content Distribution" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Infrastructure</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Content Distribution</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Boundaries, distribution point health, and automated failure recovery.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/sccm-content-distribution.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 8 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="sccm">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Comanagementblog.avif" alt="Hardware Inventory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Telemetry</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Hardware Inventory Optimization</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Collect decision-ready hardware signals efficiently without overloading client performance.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/sccm-hardware-inventory.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 9 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="sccm">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Comanagementblog.avif" alt="Client Health" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Operations</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Client Health & Remediation</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Measure, monitor, and repair management signals progressively across endpoints.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/sccm-client-health-remediation.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 10 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="sccm">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Comanagementblog.avif" alt="OSD Engineering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Imaging</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM OSD Engineering & Imaging</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Build robust imaging sequences with explicit validation checkpoints.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/sccm-osd-engineering.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 11 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="powershell">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Desktopinfoblog.avif" alt="DesktopInfo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / VDI</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Automated DesktopInfo Telemetry</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Advanced PowerShell initialization scripts for enterprise VDI fleets.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/powershell-device-inventory.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 12 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="powershell">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Desktopinfoblog.avif" alt="Compliance Automation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Drift</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Compliance Automation</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Close endpoint configuration drift automatically using safe repair tasks.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/powershell-compliance-automation.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 13 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="powershell">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Desktopinfoblog.avif" alt="Intune Reporting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Graph</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Intune Reporting</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Build focused Microsoft Graph reports tailored for operators.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/powershell-intune-reporting.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 14 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="powershell">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Desktopinfoblog.avif" alt="Remediation Scripts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Maintenance</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Remediation Scripts</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Design detection and repair pairs that remain completely safe to rerun.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/powershell-remediation-scripts.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 15 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="powershell">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Desktopinfoblog.avif" alt="Graph Authentication" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Security</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Graph Authentication Security</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Leverage least-privilege identity applications and predictable token management.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/powershell-graph-authentication.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+    <!-- Card 16 -->
+    <article class="blog-card flex flex-col justify-between searchable-card" data-category="ad">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="/images/Blogs_Images/Gpoblog.avif" alt="GPO Migration" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400">Active Directory / GPO</span>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Migrating Legacy GPOs to Intune</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Utilize Policy Analytics to map on-premises Group Policies directly to cloud settings.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0">
+        <a href="/Blogs/intune-compliance-policies.html" class="btn-live-project w-full justify-center">Read Article</a>
+      </div>
+    </article>
+
+  </div>
 </main>
 
-<footer class="w-full py-8 bg-slate-950/80 border-t border-sky-500/10 text-center relative z-10 mt-20">
+<!-- Discussion Section -->
+<section id="discussion" class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28 border-t border-white/10 pt-14 pb-20 space-y-8 w-full relative z-10">
+  <div class="flex items-center gap-4">
+    <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
+    <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">TECHNICAL DISCUSSION & Q&A</h2>
+    <div class="h-px flex-grow bg-white/10"></div>
+  </div>
+
+  <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl border border-sky-500/30 space-y-5 shadow-2xl" onsubmit="handleCommentSubmit(event)">
+    <h3 class="text-base font-bold text-white font-mono flex items-center gap-2">
+      <i data-lucide="message-square-plus" class="w-4 h-4 text-sky-400"></i> Join the Engineering Discussion
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="text" id="author" placeholder="Your Name / Handle *" required class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono" />
+      <input type="email" id="email" placeholder="Your Email Address *" required class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono" />
+    </div>
+    <div>
+      <textarea id="content" rows="3" placeholder="Ask a question about lab architecture, share feedback, or start a discussion..." required class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs leading-relaxed resize-none"></textarea>
+    </div>
+    <button type="submit" id="submit-btn" class="px-6 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] transition-all cursor-pointer font-mono">
+      Post Comment
+    </button>
+  </form>
+
+  <div id="comments-container" class="space-y-4">
+    <p class="text-slate-400 text-xs font-mono">Loading discussion...</p>
+  </div>
+</section>
+
+<footer class="w-full py-8 bg-slate-950/80 border-t border-white/10 text-center relative z-10">
   <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-3">
-    <span class="font-sans font-bold text-white text-sm">Akash Nagapure</span>
+    <span class="font-sans font-bold text-sm text-white">Akash Nagapure</span>
     <p class="text-xs font-mono text-slate-400">Microsoft Intune & VMware Architect</p>
     <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400 mt-1">
       <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors">Privacy Policy</a>
@@ -591,13 +606,37 @@
     else btn.classList.add("hidden");
   });
 
+  function filterCategory(category, btn) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.searchable-card');
+    const emptyState = document.getElementById('search-empty-state');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (category === 'all' || cardCat === category) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (emptyState) {
+      if (visibleCount === 0) emptyState.classList.remove('hidden');
+      else emptyState.classList.add('hidden');
+    }
+  }
+
   function filterArticles(query) {
     const filter = query.toLowerCase().trim();
-    const blocks = document.querySelectorAll('.searchable-card');
+    const cards = document.querySelectorAll('.searchable-card');
     const emptyState = document.getElementById('search-empty-state');
     let visible = 0;
 
-    blocks.forEach(card => {
+    cards.forEach(card => {
       const text = card.innerText.toLowerCase();
       if (text.includes(filter)) {
         card.style.display = '';
@@ -608,8 +647,8 @@
     });
 
     if (emptyState) {
-      if (visible === 0 && filter !== '') emptyState.classList.add('hidden');
-      else emptyState.classList.remove('hidden');
+      if (visible === 0 && filter !== '') emptyState.classList.remove('hidden');
+      else emptyState.classList.add('hidden');
     }
   }
 
@@ -622,15 +661,24 @@
         container.innerHTML = '<p class="text-slate-400 text-xs font-mono">No comments yet. Start the engineering discussion!</p>';
         return;
       }
-      container.innerHTML = data.map(c => `
+      container.innerHTML = data.map(c => {
+        let dateStr = 'Recent';
+        if (c.created_at) {
+          const parsed = new Date(c.created_at);
+          if (!isNaN(parsed.getTime())) {
+            dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          }
+        }
+        return `
         <div class="glass-card-3d p-4 rounded-xl space-y-1">
           <div class="flex justify-between text-xs font-mono text-sky-400">
             <strong>${c.author}</strong>
-            <span class="text-slate-500">${new Date(c.created_at).toLocaleDateString()}</span>
+            <span class="text-slate-500">${dateStr}</span>
           </div>
           <p class="text-slate-300 text-xs">${c.content}</p>
         </div>
-      `).join('');
+      `;
+      }).join('');
     } catch {
       container.innerHTML = '<p class="text-slate-400 text-xs font-mono">Discussion board ready.</p>';
     }
@@ -647,7 +695,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ author, email, content, article_id: 'projects' })
       });
-      document.getElementById('author').value = '';
+      document.getElementById('author.value' || 'author') ? document.getElementById('author').value = '' : null;
       document.getElementById('email').value = '';
       document.getElementById('content').value = '';
       await loadComments();
