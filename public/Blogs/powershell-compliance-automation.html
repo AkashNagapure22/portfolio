@@ -1,8 +1,935 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>PowerShell Compliance Automation | Akash Nagapure</title><meta name="description" content="Use PowerShell detection and remediation to automate endpoint compliance with evidence and guardrails." /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="/assets/site-shell.css" /></head>
-<body class="site-shell"><canvas id="three-bg-canvas" aria-hidden="true"></canvas><div data-site-header></div><main class="site-main"><article class="article-shell"><div class="article-meta"><span class="pill">PowerShell</span><span class="pill">Compliance</span><span class="pill">12 min read</span></div><h1>PowerShell Compliance Automation for Endpoint Teams</h1><p class="lead">A remediation script should make a narrow correction, report what happened, and remain safe when the platform runs it again tomorrow.</p><div class="article-body"><section><h2>Separate detection from repair</h2><p>Detection should be read-only and fast. Remediation should validate preconditions, make one targeted change, and emit a useful result. This separation makes failures diagnosable and prevents a repair script from masking drift.</p></section><section><h2>Use guardrails</h2><p>Check operating system, service state, and required registry paths before changing anything. Log the old and new state without writing secrets or personal data.</p><pre class="code-block"><code>$key = 'HKLM:\SOFTWARE\Contoso\Baseline'
-$current = (Get-ItemProperty $key -ErrorAction SilentlyContinue).Version
-if ($current -ne '2026.09') {
-  Set-ItemProperty -Path $key -Name Version -Value '2026.09'
-}
-Write-Output "BaselineVersion=$((Get-ItemProperty $key).Version)"</code></pre></section><section><h2>Measure the outcome</h2><p>Track detection rate, remediation success, retry count, and the most common failure reason. Compliance improves when the team can distinguish an endpoint that is fixed from one that is unreachable or excluded.</p></section><section><h2>Operational checklist</h2><ul><li>Keep detection read-only.</li><li>Validate preconditions before repair.</li><li>Make the change idempotent.</li><li>Return evidence that an operator can act on.</li></ul></section><section><h2>Related technical articles</h2><div class="related-grid"><a class="related-card" href="/Blogs/intune-compliance-policies.html"><span>Intune</span><h3>Compliance Policy Architecture</h3></a><a class="related-card" href="/Blogs/powershell-remediation-scripts.html"><span>PowerShell</span><h3>Remediation Script Design</h3></a><a class="related-card" href="/Blogs/powershell-intune-reporting.html"><span>PowerShell</span><h3>Intune Reporting</h3></a></div></section></div><div class="vote-bar"><button class="vote-button" type="button" data-article="powershell-compliance-automation" data-vote="up">Helpful</button><button class="vote-button" type="button" data-article="powershell-compliance-automation" data-vote="down">Not helpful</button></div></article></main><div data-site-footer></div><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="/assets/site-shell.js"></script></body></html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  
+  <title>PowerShell Compliance Automation | Akash Nagapure</title>
+  <meta name="description" content="Use PowerShell detection and remediation to automate endpoint compliance with evidence and guardrails." />
+  <link rel="canonical" href="https://blogs.akashnagapure.in/powershell-compliance-automation.html" />
+  <link rel="icon" href="/Main_page_data/Logo.avif" type="image/avif" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Core Scripts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "ui-sans-serif", "system-ui", "sans-serif"],
+            mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 6rem;
+      background-color: #020617;
+    }
+    body {
+      background-color: #020617 !important;
+      color: #f8fafc !important;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    #three-bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
+    }
+    .glass-card-3d {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                  0 0 30px rgba(56, 189, 248, 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card-3d:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 35px 60px -15px rgba(56, 189, 248, 0.2);
+    }
+    .blog-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .blog-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+    .blog-card:hover h4 {
+      text-decoration: underline;
+    }
+    .blog-card:hover p {
+      text-decoration: underline;
+    }
+    .nav-link.active-link {
+      color: #38bdf8 !important;
+      border-bottom: 2px solid #38bdf8;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+
+<body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
+
+<canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+<!-- Top Header Navigation -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 gap-4">
+      <a href="https://blogs.akashnagapure.in" class="flex items-center space-x-2 text-sky-400 hover:text-white transition-colors font-mono text-xs sm:text-sm shrink-0">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Back to Technical Blogs Hub</span>
+      </a>
+
+      <!-- Live Article Search Bar -->
+      <div class="relative flex-grow max-w-[220px] sm:max-w-xs">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-sky-400/70">
+          <i data-lucide="search" class="w-3.5 h-3.5"></i>
+        </div>
+        <input type="text" id="article-search-input" oninput="filterArticleContent(this.value)" placeholder="Search guide..." 
+          class="w-full pl-9 pr-3 py-1.5 bg-slate-900/60 border border-slate-700/60 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 flex-grow w-full relative z-10">
+  
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+    
+    <!-- Left Main Content Column -->
+    <div class="lg:col-span-8 space-y-12">
+      
+      <!-- Header Banner -->
+      <header class="space-y-4 searchable-block">
+        <div class="flex items-center gap-2">
+          <span class="px-3.5 py-1.5 bg-teal-950/85 border border-teal-500/30 rounded-full font-mono text-[10px] text-teal-400 uppercase tracking-wider">PowerShell</span>
+          <span class="px-3.5 py-1.5 bg-sky-950/85 border border-sky-500/30 rounded-full font-mono text-[10px] text-sky-400 uppercase tracking-wider">Compliance</span>
+          <span class="px-3.5 py-1.5 bg-slate-900/80 border border-slate-700 rounded-full font-mono text-[10px] text-slate-400 uppercase tracking-wider">12 min read</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight"><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-400">PowerShell Compliance Automation</span> for Endpoint Teams</h1>
+        <p class="text-slate-400 text-sm sm:text-base font-light">A remediation script should make a narrow correction, report what happened, and remain safe when the platform runs it again tomorrow.</p>
+      </header>
+
+      <article class="space-y-12 text-slate-300 leading-relaxed">
+        
+        <!-- Section 1 -->
+        <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-teal-400 pl-4">Separate detection from repair</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Detection should be read-only and fast. Remediation should validate preconditions, make one targeted change, and emit a useful result. This separation makes failures diagnosable and prevents a repair script from masking drift.</p>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-teal-400 pl-4">Use guardrails</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Check operating system, service state, and required registry paths before changing anything. Log the old and new state without writing secrets or personal data.</p>
+          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl font-mono text-xs overflow-x-auto shadow-inner space-y-1">
+            <code><span class="text-teal-400">$key</span> = <span class="text-amber-300">'HKLM:\SOFTWARE\Contoso\Baseline'</span></code><br>
+            <code><span class="text-teal-400">$current</span> = (Get-ItemProperty $key -ErrorAction SilentlyContinue).Version</code><br>
+            <code>if (<span class="text-teal-400">$current</span> -ne <span class="text-amber-300">'2026.09'</span>) {</code><br>
+            <code>&nbsp;&nbsp;Set-ItemProperty -Path $key -Name Version -Value <span class="text-amber-300">'2026.09'</span></code><br>
+            <code>}</code><br>
+            <code>Write-Output <span class="text-amber-300">"BaselineVersion=$((Get-ItemProperty $key).Version)"</span></code>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-teal-400 pl-4">Measure the outcome</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Track detection rate, remediation success, retry count, and the most common failure reason. Compliance improves when the team can distinguish an endpoint that is fixed from one that is unreachable or excluded.</p>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-teal-400 pl-4">Operational checklist</h2>
+          <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 font-mono">
+            <li>Keep detection <span class="text-teal-400">read-only</span>.</li>
+            <li>Validate preconditions before <span class="text-sky-400">repair</span>.</li>
+            <li>Make the change <span class="text-indigo-400">idempotent</span>.</li>
+            <li>Return evidence that an operator can <span class="text-amber-400">act on</span>.</li>
+          </ul>
+        </section>
+
+        <!-- Search Empty State Warning -->
+        <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl">
+          <i data-lucide="search-x" class="w-10 h-10 text-teal-400 mx-auto mb-2"></i>
+          <h3 class="text-white font-bold text-lg">No matching guide content found</h3>
+          <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "detection", "guardrails", "outcome", or "checklist".</p>
+        </div>
+
+        <!-- Read More: Related Articles Section -->
+        <section class="space-y-6 pt-6">
+          <div class="border-b border-white/10 pb-3">
+            <h3 class="text-xl font-bold text-white tracking-tight uppercase font-sans">Read <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-400">more</span></h3>
+          </div>
+          <div class="grid grid-cols-1 gap-6">
+            
+            <a href="/Blogs/intune-compliance-policies.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
+              <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
+                <img src="/images/Blogs_Images/Autopilotblog.avif" alt="Compliance Policies" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              </div>
+              <div class="space-y-2 flex-grow">
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Compliance</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 05, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">Compliance Policy Architecture</h4>
+                <p class="text-slate-400 text-xs leading-relaxed font-light">Build Intune compliance policies with clear signals, grace periods, exclusions, and remediation paths.</p>
+              </div>
+            </a>
+
+            <a href="/Blogs/powershell-remediation-scripts.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
+              <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
+                <img src="/images/Blogs_Images/Desktopinfoblog.avif" alt="Remediation Scripts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              </div>
+              <div class="space-y-2 flex-grow">
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Maintenance</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 15, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">Remediation Script Design</h4>
+                <p class="text-slate-400 text-xs leading-relaxed font-light">Design detection and repair pairs that remain completely safe to rerun across distributed fleets.</p>
+              </div>
+            </a>
+
+            <a href="/Blogs/powershell-intune-reporting.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
+              <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
+                <img src="/images/Blogs_Images/AutopatchA-Z.avif" alt="Intune Reporting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              </div>
+              <div class="space-y-2 flex-grow">
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Reporting</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 10, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">Intune Reporting Automation</h4>
+                <p class="text-slate-400 text-xs leading-relaxed font-light">Extract rich tenant telemetry and compliance data via Microsoft Graph API and PowerShell workflows.</p>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- Modern Discussion & Comments Section -->
+        <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-10 space-y-8">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+              <i data-lucide="message-square" class="w-5 h-5 text-teal-400"></i> Technical Discussion & Q&A
+            </h2>
+            <span class="font-mono text-xs text-teal-400 bg-teal-950/60 px-3 py-1 rounded-full border border-teal-500/30">Secure PostgreSQL Board</span>
+          </div>
+
+          <!-- Modern Comment Form Card -->
+          <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 shadow-2xl relative overflow-hidden" onsubmit="handleCommentSubmit(event)">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-sky-500"></div>
+            <h3 class="text-sm font-bold text-white font-mono flex items-center gap-2">
+              <i data-lucide="message-square-plus" class="w-4 h-4 text-teal-400"></i> Join the Engineering Discussion
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input 
+                type="text" 
+                id="author" 
+                placeholder="Your Name / Handle *" 
+                required 
+                class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-teal-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono"
+              />
+              <input 
+                type="email" 
+                id="email" 
+                placeholder="Your Email Address *" 
+                required 
+                class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-teal-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono"
+              />
+            </div>
+
+            <div>
+              <textarea 
+                id="content" 
+                rows="3" 
+                placeholder="Ask a question about PowerShell compliance automation, share feedback, or start a discussion..." 
+                required 
+                class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-teal-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs leading-relaxed resize-none"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              id="submit-btn"
+              class="px-6 py-3 bg-gradient-to-r from-teal-400 to-sky-500 hover:from-teal-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] transition-all cursor-pointer font-mono"
+            >
+              Post Comment
+            </button>
+          </form>
+
+          <!-- Interactive Comments Feed Container -->
+          <div id="comments-container" class="space-y-4">
+            <p class="text-slate-400 text-xs font-mono">Loading discussion threads...</p>
+          </div>
+        </section>
+
+      </article>
+    </div>
+
+    <!-- Right Sidebar Column (Author, TOC, Advertisement & Votes) -->
+    <div class="lg:col-span-4 space-y-6 sticky top-28">
+      
+      <!-- Author Profile Card -->
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4">
+        <div class="flex items-center space-x-3">
+          <img src="/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure" width="48" height="48" class="w-12 h-12 rounded-xl object-cover border border-teal-400/40 shadow-md" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          <div>
+            <h3 class="font-sans font-bold text-white text-sm">Akash Nagapure</h3>
+            <p class="font-mono text-[10px] text-teal-400 uppercase tracking-widest">Microsoft Intune and VMware Architect</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 font-light leading-relaxed">
+          Microsoft Intune and VMware Architect specialized in designing scalable cloud infrastructure and zero-trust modern workspace solutions.
+        </p>
+      </div>
+
+      <!-- On This Page Table of Contents -->
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4">
+        <h3 class="font-sans font-bold text-white text-sm uppercase tracking-wider font-mono border-b border-white/10 pb-2">On this page</h3>
+        <nav class="space-y-2 font-mono text-xs" id="nav-menu">
+          <a href="#section-1" class="block text-slate-400 hover:text-teal-400 transition-colors nav-link py-1">1. Separate detection from repair</a>
+          <a href="#section-2" class="block text-slate-400 hover:text-teal-400 transition-colors nav-link py-1">2. Use guardrails</a>
+          <a href="#section-3" class="block text-slate-400 hover:text-teal-400 transition-colors nav-link py-1">3. Measure the outcome</a>
+          <a href="#section-4" class="block text-slate-400 hover:text-teal-400 transition-colors nav-link py-1">4. Operational checklist</a>
+          <a href="#discussion" class="block text-slate-400 hover:text-teal-400 transition-colors nav-link py-1">5. Discussion & Q&A</a>
+        </nav>
+      </div>
+
+      <!-- Advertisement Section -->
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4 relative overflow-hidden group border-teal-500/30">
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-sky-500/10 pointer-events-none"></div>
+        <div class="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-slate-900 border border-white/10 shadow-lg">
+          <img src="/images/Main_Page_Images/hobby_homelab.avif" alt="Enterprise Homelab" width="300" height="168" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="space-y-2 relative">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[9px] uppercase tracking-widest text-teal-400 bg-teal-950/80 px-2 py-0.5 rounded border border-teal-500/30">Sponsored</span>
+          </div>
+          <h4 class="font-sans font-bold text-white text-sm">Enterprise Lab Blueprints Pro</h4>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Accelerate your cloud architecture transitions with ready-to-deploy Intune policies, configuration baselines, and automated scripts.
+          </p>
+        </div>
+        <div class="relative pt-1">
+          <a href="https://www.akashnagapure.in" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 bg-gradient-to-r from-teal-400 to-sky-500 hover:from-teal-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] transition-all font-mono">
+            Access Pro Blueprints
+          </a>
+        </div>
+      </div>
+
+      <!-- Helpful Vote Bar Card with Live Database State -->
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4 text-center">
+        <h3 class="font-sans font-bold text-white text-sm">Was this guide helpful?</h3>
+        <div class="flex items-center justify-center gap-3">
+          <button id="vote-btn-helpful" class="vote-button px-4 py-2 bg-slate-900 border border-slate-700 hover:border-teal-400 text-teal-400 font-mono text-xs rounded-xl transition-all flex items-center gap-1.5 cursor-pointer" type="button" data-article="powershell-compliance-automation" data-vote="up">
+            <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> Helpful
+          </button>
+          <button id="vote-btn-nothelpful" class="vote-button px-4 py-2 bg-slate-900 border border-slate-700 hover:border-rose-400 text-rose-400 font-mono text-xs rounded-xl transition-all flex items-center gap-1.5 cursor-pointer" type="button" data-article="powershell-compliance-automation" data-vote="down">
+            <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i> Not helpful
+          </button>
+        </div>
+        <p id="vote-stats-display" class="font-mono text-[11px] text-slate-400 pt-1">Loading community feedback...</p>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- Standardized Compact Footer with Icons -->
+<footer class="w-full py-6 sm:py-8 bg-slate-950/90 border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+                <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
+        </div>
+        
+        <!-- Footer Links with Matching Icons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">share</span> LinkedIn
+            </a>
+            <span>•</span>
+            <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">description</span> Terms of Service
+            </a>
+        </div>
+
+        <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
+    </div>
+</footer>
+
+<button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/80 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110" aria-label="Scroll Back To Top">
+  <i data-lucide="arrow-up" class="w-4 h-4"></i>
+</button>
+
+<script>
+  // 1. THREE.JS 3D BACKGROUND ENGINE
+  let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
+  let mouseX = 0, mouseY = 0;
+  let targetX = 0, targetY = 0;
+  let isPageVisible = true;
+  const isMobile = window.innerWidth < 768;
+
+  function init3DBackground() {
+    const canvas = document.getElementById('three-bg-canvas');
+    if (!canvas) return;
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 50;
+
+    renderer = new THREE.WebGLRenderer({ 
+      canvas: canvas, 
+      antialias: !isMobile, 
+      alpha: true, 
+      powerPreference: "high-performance"
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
+
+    const count = isMobile ? 1500 : 3500;
+    particlesGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+
+    for (let i = 0; i < count * 3; i += 3) {
+      positions[i] = (Math.random() - 0.5) * 800;
+      positions[i + 1] = (Math.random() - 0.5) * 2800;
+      positions[i + 2] = (Math.random() - 0.5) * 600;
+    }
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      color: 0x38bdf8,
+      size: isMobile ? 1.3 : 1.1,
+      transparent: true,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending
+    });
+
+    particlesMesh = new THREE.Points(particlesGeo, particleMat);
+    scene.add(particlesMesh);
+
+    gridHelper = new THREE.GridHelper(1400, isMobile ? 50 : 100, 0x0284c7, 0x0f172a);
+    gridHelper.position.y = -220;
+    gridHelper.material.transparent = true;
+    gridHelper.material.opacity = 0.22;
+    scene.add(gridHelper);
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.0006;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.0006;
+      }, { passive: true });
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (!camera || !renderer) return;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }, 150);
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      isPageVisible = !document.hidden;
+    });
+  }
+
+  const clock = new THREE.Clock();
+  function animate3DBackground() {
+    requestAnimationFrame(animate3DBackground);
+    if (!isPageVisible) return;
+
+    const elapsedTime = clock.getElapsedTime();
+    targetX += (mouseX - targetX) * 0.04;
+    targetY += (mouseY - targetY) * 0.04;
+
+    if (particlesMesh) {
+      particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
+      particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
+    }
+    if (gridHelper) {
+      gridHelper.rotation.y = elapsedTime * 0.003;
+    }
+    if (renderer && scene && camera) {
+      renderer.render(scene, camera);
+    }
+  }
+
+  /* Sleek Line Cursor Trail Logic */
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
+  // 2. SCROLL & UI HELPERS
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.addEventListener("scroll", () => {
+    const backToTopBtn = document.getElementById("back-to-top-btn");
+    if (!backToTopBtn) return;
+    if (window.scrollY > 350) {
+      backToTopBtn.classList.remove("hidden");
+    } else {
+      backToTopBtn.classList.add("hidden");
+    }
+  }, { passive: true });
+
+  // 3. ARTICLE CONTENT SEARCH FILTER
+  window.filterArticleContent = function(query) {
+    const filter = query.toLowerCase().trim();
+    const blocks = document.querySelectorAll('.searchable-block');
+    const emptyState = document.getElementById('search-empty-state');
+    let visibleCount = 0;
+
+    blocks.forEach(block => {
+      const textContent = block.innerText.toLowerCase();
+      if (textContent.includes(filter)) {
+        block.style.display = '';
+        visibleCount++;
+      } else {
+        block.style.display = 'none';
+      }
+    });
+
+    if (emptyState) {
+      if (visibleCount === 0 && filter !== '') {
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+      }
+    }
+  };
+
+  // 4. SCROLL SPY
+  const navLinks = document.querySelectorAll('#nav-menu a[href^="#"]');
+  const sections = document.querySelectorAll('section.searchable-block[id], div#discussion');
+
+  const navObserverOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active-link');
+          if (link.getAttribute('href'] === `#${id}`) {
+            link.classList.add('active-link');
+          }
+        });
+      }
+    });
+  }, navObserverOptions);
+
+  sections.forEach(section => navObserver.observe(section));
+
+  // 5. COMMENTS & VOTE SYSTEM
+  const ARTICLE_ID = 'powershell-compliance-automation';
+  const API_URL = '/api/comments';
+  const VOTES_API_URL = '/api/votes';
+
+  const VOTE_MANAGER = {
+    getVoteKey(articleId) { return `votes_${articleId}_${this.getUserId()}`; },
+    getUserId() {
+      let userId = localStorage.getItem('portfolio_user_id');
+      if (!userId) {
+        userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('portfolio_user_id', userId);
+      }
+      return userId;
+    },
+    hasVoted(articleId, voteType) {
+      const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+      return votes[`voted_${voteType}`] === true;
+    },
+    recordVote(articleId, voteType) {
+      const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
+      votes[`voted_${voteType}`] = true;
+      localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
+    }
+  };
+
+  async function loadVoteStats() {
+    const statsDisplay = document.getElementById('vote-stats-display');
+    const helpfulBtn = document.getElementById('vote-btn-helpful');
+    const notHelpfulBtn = document.getElementById('vote-btn-nothelpful');
+    if (!statsDisplay) return;
+
+    try {
+      const res = await fetch(`${VOTES_API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
+      const data = await res.json();
+      if (res.ok && data) {
+        const helpfulCount = data.helpful || 0;
+        if (helpfulCount > 0) {
+          statsDisplay.innerText = `${helpfulCount} ${helpfulCount === 1 ? 'person' : 'people'} found this helpful`;
+        } else {
+          statsDisplay.innerText = 'Be the first to rate this guide helpful!';
+        }
+
+        if (VOTE_MANAGER.hasVoted(ARTICLE_ID, 'up') && helpfulBtn) {
+          helpfulBtn.style.opacity = '0.5';
+          helpfulBtn.style.pointerEvents = 'none';
+        }
+        if (VOTE_MANAGER.hasVoted(ARTICLE_ID, 'down') && notHelpfulBtn) {
+          notHelpfulBtn.style.opacity = '0.5';
+          notHelpfulBtn.style.pointerEvents = 'none';
+        }
+      }
+    } catch (err) {
+      statsDisplay.innerText = 'Community feedback enabled';
+    }
+  }
+
+  async function loadComments() {
+    const container = document.getElementById('comments-container');
+    try {
+      const response = await fetch(`${API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
+      const comments = await response.json();
+      if (!response.ok) throw new Error();
+
+      if (!comments || comments.length === 0) {
+        container.innerHTML = '<p class="text-slate-400 text-xs font-mono">No comments yet. Be the first to start the discussion!</p>';
+        return;
+      }
+
+      const commentMap = {};
+      const topLevelComments = [];
+
+      comments.forEach(comment => {
+        comment.replies = [];
+        commentMap[comment.id] = comment;
+        if (comment.parent_id && commentMap[comment.parent_id]) {
+          commentMap[comment.parent_id].replies.push(comment);
+        } else if (!comment.parent_id) {
+          topLevelComments.push(comment);
+        }
+      });
+
+      container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
+      if (window.lucide) lucide.createIcons();
+    } catch (err) {
+      container.innerHTML = '<p class="text-slate-400 text-xs font-mono">Discussion thread ready.</p>';
+    }
+  }
+
+  function renderCommentNode(comment) {
+    let dateStr = 'Recent';
+    if (comment.created_at) {
+      const parsed = new Date(comment.created_at);
+      if (!isNaN(parsed.getTime())) {
+        dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+    }
+
+    const repliesHTML = comment.replies && comment.replies.length > 0 
+      ? `<div class="mt-4 pl-4 sm:pl-6 border-l-2 border-sky-500/20 space-y-4">
+          ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
+         </div>`
+      : '';
+
+    const likedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID + '_comment_' + comment.id, 'like');
+    const dislikedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID + '_comment_' + comment.id, 'dislike');
+
+    const likeClass = likedAlready ? 'opacity-50 pointer-events-none text-sky-400' : 'text-slate-400 hover:text-sky-400';
+    const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400' : 'text-slate-400 hover:text-rose-400';
+
+    return `
+      <div class="glass-card-3d p-5 rounded-2xl border border-slate-800 space-y-3" id="comment-${comment.id}">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-sky-400 font-mono">${escapeHTML(comment.author)}</span>
+          <span class="text-slate-500 font-mono text-[10px]">${dateStr}</span>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm whitespace-pre-line leading-relaxed font-light">${escapeHTML(comment.content)}</p>
+        <div class="flex items-center space-x-3 text-xs pt-1 font-mono">
+          <button type="button" onclick="handleVote(event, ${comment.id}, 'like')" class="inline-flex items-center space-x-1.5 ${likeClass} transition-colors bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-800 cursor-pointer">
+            <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+            <span>${comment.likes || 0}</span>
+          </button>
+          <button type="button" onclick="handleVote(event, ${comment.id}, 'dislike')" class="inline-flex items-center space-x-1.5 ${dislikeClass} transition-colors bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-800 cursor-pointer">
+            <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
+            <span>${comment.dislikes || 0}</span>
+          </button>
+          <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1.5 text-sky-400 hover:text-sky-300 transition-colors bg-sky-950/40 px-3 py-1.5 rounded-xl border border-sky-500/20 cursor-pointer">
+            <i data-lucide="reply" class="w-3.5 h-3.5"></i>
+            <span>Reply</span>
+          </button>
+        </div>
+
+        <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-4 pt-4 border-t border-slate-800 bg-slate-950/60 p-4 rounded-xl" onsubmit="event.preventDefault(); postReply(${comment.id});">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
+            <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
+          </div>
+          <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 resize-none"></textarea>
+          <div class="flex space-x-2">
+            <button type="submit" class="px-4 py-1.5 bg-sky-400 hover:bg-sky-300 text-slate-950 text-xs font-bold rounded-xl font-mono cursor-pointer shadow-md">Submit Reply</button>
+            <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-xl font-mono cursor-pointer">Cancel</button>
+          </div>
+        </form>
+        ${repliesHTML}
+      </div>
+    `;
+  }
+
+  function toggleReplyForm(commentId) {
+    document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
+    if (window.lucide) lucide.createIcons();
+  }
+
+  async function handleVote(event, id, action) {
+    const trackingKey = ARTICLE_ID + '_comment_' + id;
+    if (VOTE_MANAGER.hasVoted(trackingKey, action)) return;
+    VOTE_MANAGER.recordVote(trackingKey, action);
+    const btn = event.currentTarget;
+    if (btn) btn.classList.add('opacity-50', 'pointer-events-none');
+
+    try {
+      const res = await fetch(API_URL, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action })
+      });
+      if (res.ok) await loadComments();
+    } catch (err) {
+      console.error('Comment vote failed', err);
+    }
+  }
+
+  async function postReply(parentId) {
+    const author = document.getElementById(`reply-author-${parentId}`).value.trim();
+    const email = document.getElementById(`reply-email-${parentId}`).value.trim();
+    const content = document.getElementById(`reply-content-${parentId}`).value.trim();
+    if (!author || !email || !content) return;
+
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
+      });
+      if (res.ok) await loadComments();
+    } catch (err) {
+      console.error('Failed to post reply', err);
+    }
+  }
+
+  window.handleCommentSubmit = async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const author = document.getElementById('author').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const content = document.getElementById('content').value.trim();
+    if (!author || !email || !content) return;
+
+    btn.disabled = true;
+    btn.innerText = 'Posting...';
+
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ author, email, content, parent_id: null, article_id: ARTICLE_ID })
+      });
+      if (res.ok) {
+        document.getElementById('author').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('content').value = '';
+        await loadComments();
+      }
+    } catch (err) {
+      console.error('Failed to post comment', err);
+    } finally {
+      btn.disabled = false;
+      btn.innerText = 'Post Comment';
+    }
+  };
+
+  // Vote Button Handlers for Helpful Bar with Database Sync & Dynamic Counter
+  document.querySelectorAll('.vote-button').forEach(button => {
+    button.addEventListener('click', async (e) => {
+      const voteType = button.getAttribute('data-vote'); // 'up' or 'down'
+      if (VOTE_MANAGER.hasVoted(ARTICLE_ID, voteType)) return;
+
+      VOTE_MANAGER.recordVote(ARTICLE_ID, voteType);
+      button.style.opacity = '0.5';
+      button.style.pointerEvents = 'none';
+
+      try {
+        const res = await fetch(VOTES_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ article_id: ARTICLE_ID, vote: voteType })
+        });
+        if (res.ok) {
+          await loadVoteStats();
+        }
+      } catch (err) {
+        console.error('Vote submission failed', err);
+      }
+    });
+  });
+
+  function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) lucide.createIcons();
+    init3DBackground();
+    animate3DBackground();
+    initCursorTrail();
+    loadComments();
+    loadVoteStats();
+  });
+</script>
+</body>
+</html>
