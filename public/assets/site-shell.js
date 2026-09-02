@@ -85,10 +85,19 @@ if (document.readyState === 'loading') {
   initGlobalCursorTrail();
 }
 
+window.SITE_NAV_ITEMS = [
+  { label: 'Home', href: '/', slug: 'home' },
+  { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+  { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+  { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+  { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+  { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+  { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+  { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+];
+
 window.SITE_SEARCH_INDEX = [
-  { title: 'Windows Autopatch & Hotpatch', url: '/Blogs/autopatch.html', keywords: 'autopatch hotpatch intune windows updates' },
-  { title: 'Co-Management Strategies', url: '/Blogs/co-management-strategies.html', keywords: 'co-management sccm intune hybrid enterprise' },
-  { title: 'Advanced OSD Task Sequences', url: '/Blogs/advanced-osd-task-sequences.html', keywords: 'osd task sequence imaging sccm deployment' },
+  { title: 'Windows Autopatch & Hotpatch', url: '/Blogs/Autopatchblog.html', keywords: 'autopatch hotpatch intune windows updates' },
   { title: 'SCCM Application Model Design', url: '/Blogs/sccm-application-model.html', keywords: 'sccm application model detection dependency supersedence packaging' },
   { title: 'SCCM Content Distribution', url: '/Blogs/sccm-content-distribution.html', keywords: 'sccm content distribution point boundary transfer logs' },
   { title: 'SCCM Hardware Inventory', url: '/Blogs/sccm-hardware-inventory.html', keywords: 'sccm hardware inventory wmi collection reporting' },
@@ -110,8 +119,27 @@ window.SITE_SEARCH_INDEX = [
   { title: 'Home', url: '/', keywords: 'home architecture portfolio' }
 ];
 
+function resolveActiveNav() {
+  const pathname = window.location.pathname.toLowerCase();
+  const match = pathname.replace(/\/+$/, '');
+  if (!match || match === '/') return 'home';
+  if (match.includes('/blogs')) return 'blogs';
+  if (match.includes('/sub_pages/projects')) return 'projects';
+  if (match.includes('/sub_pages/skills')) return 'skills';
+  if (match.includes('/sub_pages/reading')) return 'reading';
+  if (match.includes('/sub_pages/coins')) return 'coins';
+  if (match.includes('/sub_pages/homelab')) return 'homelab';
+  if (match.includes('/sub_pages/resume')) return 'resume';
+  return 'home';
+}
+
 function injectHeader() {
   document.querySelectorAll('[data-site-header]').forEach((node) => {
+    const activeSlug = resolveActiveNav();
+    const navMarkup = window.SITE_NAV_ITEMS.map((item) => `
+      <a class="nav-link ${activeSlug === item.slug ? 'is-active' : ''}" href="${item.href}">${item.label}</a>
+    `).join('');
+
     node.innerHTML = `
       <header class="site-header">
         <div class="inner">
@@ -119,6 +147,7 @@ function injectHeader() {
             <span class="brand-mark"><img src="/images/Main_Page_Images/Logo.avif" alt="Akash Nagapure logo" width="42" height="42" /></span>
             <span class="brand-copy"><strong>Akash Nagapure</strong><span>Fleet Architect</span></span>
           </a>
+          <nav class="main-nav" aria-label="Main navigation">${navMarkup}</nav>
           <div class="site-actions">
             <a class="icon-button" href="/" aria-label="Home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg></a>
             <div class="search-shell">
