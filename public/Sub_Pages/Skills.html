@@ -51,6 +51,16 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+    #cursor-trail-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 99999;
+        pointer-events: none;
+    }
+
     /* 3D Glassmorphism Cards */
     .glass-card-3d {
         background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
@@ -115,6 +125,8 @@
 <body class="bg-background text-slate-100 overflow-x-hidden font-body-md selection:bg-sky-500 selection:text-slate-950 min-h-screen flex flex-col justify-between">
 
 <canvas id="three-bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
 <script>
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
@@ -186,9 +198,82 @@
     if (renderer && scene && camera) renderer.render(scene, camera);
   }
 
+  /* Sleek Line Cursor Trail Logic */
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     init3DBackground();
     animate3DBackground();
+    initCursorTrail();
   });
 </script>
 
@@ -497,7 +582,7 @@
         <div class="flex items-center gap-2.5">
             <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
-                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
             <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
@@ -579,7 +664,7 @@
                 const id = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
                     link.classList.remove('active-link');
-                    if (link.getAttribute('href'] === `#${id}`) {
+                    if (link.getAttribute('href') === `#${id}`) {
                         link.classList.add('active-link');
                     }
                 });
