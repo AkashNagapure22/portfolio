@@ -105,6 +105,7 @@ window.SITE_MENU_CONFIG = {
     ]
   }
 };
+
 window.SITE_SEARCH_INDEX = [
   { title: 'Windows Autopatch & Hotpatch', url: '/Blogs/Autopatchblog.html', keywords: 'autopatch hotpatch intune windows updates' },
   { title: 'SCCM Application Model Design', url: '/Blogs/sccm-application-model.html', keywords: 'sccm application model detection dependency supersedence packaging' },
