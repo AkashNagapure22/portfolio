@@ -95,6 +95,12 @@
       border-color: rgba(56, 189, 248, 0.4);
       transform: translateY(-2px);
     }
+    .blog-card:hover h4 {
+      text-decoration: underline;
+    }
+    .blog-card:hover p {
+      text-decoration: underline;
+    }
     .nav-link.active-link {
       color: #38bdf8 !important;
       border-bottom: 2px solid #38bdf8;
@@ -144,7 +150,7 @@
   
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
     
-    <div class="lg:col-span-8 space-y-10">
+    <div class="lg:col-span-8 space-y-12">
       
       <header class="space-y-4 searchable-block">
         <div class="flex items-center gap-2">
@@ -156,27 +162,27 @@
         <p class="text-slate-400 text-sm sm:text-base font-light">Rings are a decision system, not a set of arbitrary percentages. Build them around exposure, supportability, and the evidence required to widen a release.</p>
       </header>
 
-      <article class="space-y-10 text-slate-300 leading-relaxed">
+      <article class="space-y-12 text-slate-300 leading-relaxed">
         
-        <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Define ring purpose</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Use a preview ring for engineering validation, a pilot ring for representative users, and production rings for controlled scale. Keep emergency or executive populations explicit so they do not accidentally inherit a broad assignment.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Use a preview ring for engineering validation, a pilot ring for representative users, and production rings for controlled scale. Keep emergency or executive populations explicit so they do not accidentally inherit a broad assignment.</p>
         </section>
 
-        <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Separate membership from policy</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Dynamic groups can express device ownership and platform attributes, but they should not carry every release decision. Use dedicated ring groups or filters so an operator can understand why a device received a change.</p>
-          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl font-mono text-xs text-sky-300 overflow-x-auto">
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Dynamic groups can express device ownership and platform attributes, but they should not carry every release decision. Use dedicated ring groups or filters so an operator can understand why a device received a change.</p>
+          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl font-mono text-xs text-sky-300 overflow-x-auto shadow-inner">
             <code>Ring 0  = endpoint engineering<br>Ring 1  = volunteer pilot users<br>Ring 2  = standard production<br>Ring 3  = critical and regulated devices</code>
           </div>
         </section>
 
-        <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Use exit criteria</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Before widening, review install success, help-desk contacts, crash telemetry, and rollback readiness. Put a time window and an owner on every ring. A ring without an expiry becomes a permanent exception.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Before widening, review install success, help-desk contacts, crash telemetry, and rollback readiness. Put a time window and an owner on every ring. A ring without an expiry becomes a permanent exception.</p>
         </section>
 
-        <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">Operational checklist</h2>
           <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 font-mono">
             <li>Define purpose and owner for each ring.</li>
@@ -203,8 +209,11 @@
                 <img src="/images/Blogs_Images/AutopatchA-Z.avif" alt="Autopatch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
               </div>
               <div class="space-y-2 flex-grow">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune</span>
-                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors">Autopatch and Hotpatch Deployment</h4>
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 14, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">Autopatch and Hotpatch Deployment</h4>
                 <p class="text-slate-400 text-xs leading-relaxed font-light">Zero-touch update rings, automated driver validation, and real-time compliance tracking for enterprise fleets.</p>
               </div>
             </a>
@@ -214,8 +223,11 @@
                 <img src="/images/Blogs_Images/Autopilotblog.avif" alt="Compliance Policy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
               </div>
               <div class="space-y-2 flex-grow">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune</span>
-                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors">Compliance Policy Architecture</h4>
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 08, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">Compliance Policy Architecture</h4>
                 <p class="text-slate-400 text-xs leading-relaxed font-light">Establish strict conditional access baseline controls and automated remediation rules across endpoints.</p>
               </div>
             </a>
@@ -225,8 +237,11 @@
                 <img src="/images/Blogs_Images/Comanagementblog.avif" alt="Co-Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
               </div>
               <div class="space-y-2 flex-grow">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM</span>
-                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">Co-Management Strategies</h4>
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 29, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">Co-Management Strategies</h4>
                 <p class="text-slate-400 text-xs leading-relaxed font-light">Step-by-step transition of workload authorities from on-premises SCCM to cloud-native Intune seamlessly.</p>
               </div>
             </a>
@@ -302,7 +317,9 @@
             <p class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">Microsoft Intune and VMware Architect</p>
           </div>
         </div>
-     
+        <p class="text-xs text-slate-300 font-light leading-relaxed">
+          Microsoft Intune and VMware Architect specialized in designing scalable cloud infrastructure and zero-trust modern workspace solutions.
+        </p>
       </div>
 
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
