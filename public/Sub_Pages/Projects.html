@@ -132,6 +132,7 @@
         </div>
       </a>
 
+      <!-- Subdomain Navigation & Category Jump Menu -->
       <nav class="hidden md:flex items-center space-x-5 font-mono text-xs">
         <a href="https://www.akashnagapure.in" class="text-slate-300 hover:text-sky-400 transition-colors">Home</a>
         <a href="https://blogs.akashnagapure.in" class="text-sky-400 font-bold border-b-2 border-sky-400 pb-1">Blogs</a>
@@ -139,7 +140,6 @@
         <a href="#sccm" class="text-slate-300 hover:text-indigo-400 transition-colors">SCCM</a>
         <a href="#powershell" class="text-slate-300 hover:text-teal-400 transition-colors">PowerShell</a>
         <a href="#activedirectory" class="text-slate-300 hover:text-amber-400 transition-colors">AD</a>
-        <a href="#similar-articles" class="text-slate-300 hover:text-emerald-400 transition-colors">Read More</a>
         <a href="https://resume.akashnagapure.in" class="text-slate-300 hover:text-amber-400 transition-colors">Resume</a>
       </nav>
 
@@ -189,262 +189,224 @@
 
     <div class="space-y-20" id="articles-container">
 
+      <!-- 1. MICROSOFT INTUNE CATEGORY -->
       <div id="intune" class="space-y-10 scroll-mt-32 blog-category-block">
         <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
           <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
           <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">1. <span class="text-sky-400">Microsoft Intune</span> & Modern Workplace</h2>
         </div>
 
-        <div class="searchable-card py-6 border-b border-white/5 last:border-0">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="flex items-center gap-3">
-                <span class="px-3 py-1 bg-emerald-950/90 text-emerald-400 border border-emerald-500/50 text-[10px] font-mono font-bold rounded-full uppercase shadow-lg">✓ Completed Article</span>
-                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">• Autopatch & Updates</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight"><span class="text-sky-400">Microsoft Autopatch:</span> The <span class="text-emerald-400">A-to-Z</span> Enterprise Deployment</h3>
-              <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-                Looking for a robust <span class="text-sky-400 font-medium">automatic update strategy</span>? Autopatch pairs your enterprise with <span class="text-emerald-400 font-medium">zero-touch rings, automated driver validation</span>, and real-time compliance tracking.
-              </p>
-              <div class="pt-2">
-                <a href="/Blogs/Autopatchblog.html" class="btn-live-project">
-                  READ ARTICLE <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-              </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Autopatch & Updates</span>
+              <h3 class="text-xl font-bold text-white mt-1">Microsoft Autopatch: The A-to-Z Enterprise Deployment</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Zero-touch rings, automated driver validation, and real-time compliance tracking.</p>
             </div>
-            <div class="lg:col-span-5">
-              <div class="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-transparent group">
-                <img src="/images/Blogs_Images/AutopatchA-Z.avif" alt="Microsoft Autopatch Deployment" width="500" height="312" loading="lazy" class="w-full h-full object-cover filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-              </div>
+            <div><a href="/Blogs/Autopatchblog.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Provisioning</span>
+              <h3 class="text-xl font-bold text-white mt-1">Windows Autopilot Zero-Touch Provisioning</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Factory-to-user device provisioning and hardware hash collection strategies.</p>
             </div>
+            <div><a href="/Blogs/intune-autopilot-troubleshooting.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Packaging</span>
+              <h3 class="text-xl font-bold text-white mt-1">Intune Win32 Packaging & Deployment</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Make install commands, strict detection rules, and automated recovery agree.</p>
+            </div>
+            <div><a href="/Blogs/intune-win32-packaging.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Rollout Channels</span>
+              <h3 class="text-xl font-bold text-white mt-1">Advanced Intune Deployment Rings</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Establish progressive release channels governed by calculated risk and evidence.</p>
+            </div>
+            <div><a href="/Blogs/intune-advanced-deployment-rings.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
           </div>
         </div>
 
-        <div class="searchable-card py-6 border-b border-white/5 last:border-0">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="flex items-center gap-3">
-                <span class="px-3 py-1 bg-emerald-950/90 text-emerald-400 border border-emerald-500/50 text-[10px] font-mono font-bold rounded-full uppercase shadow-lg">✓ Completed Article</span>
-                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">• Zero-Touch Provisioning</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight"><span class="text-sky-400">Windows Autopilot</span> Zero-Touch <span class="text-purple-400">Provisioning</span></h3>
-              <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-                Factory-to-user device provisioning workflows, <span class="text-sky-400 font-medium">hardware hash collection strategies</span>, and automated <span class="text-purple-400 font-medium">Win32 application wrappers</span>.
-              </p>
-              <div class="pt-2">
-                <a href="/Blogs/intune-autopilot-troubleshooting.html" class="btn-live-project">
-                  READ ARTICLE <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-              </div>
-            </div>
-            <div class="lg:col-span-5">
-              <div class="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-transparent group">
-                <img src="/images/Blogs_Images/Autopilotblog.avif" alt="Windows Autopilot Zero-Touch" width="500" height="312" loading="lazy" class="w-full h-full object-cover filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-              </div>
-            </div>
+        <!-- Read More Section (3 Related Articles) -->
+        <div class="pt-4 border-t border-sky-500/20 space-y-4">
+          <h4 class="text-xs font-mono uppercase tracking-widest text-sky-400 font-bold">Related Intune Guides (Read More):</h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/Blogs/intune-compliance-policies.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-400 transition-all block">
+              <span class="text-[10px] font-mono text-sky-300">Compliance Architecture</span>
+              <h5 class="text-sm font-bold text-white mt-1">Intune Compliance Policies</h5>
+            </a>
+            <a href="/Blogs/intune-autopilot-troubleshooting.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-400 transition-all block">
+              <span class="text-[10px] font-mono text-sky-300">Autopilot ESP</span>
+              <h5 class="text-sm font-bold text-white mt-1">Autopilot Troubleshooting</h5>
+            </a>
+            <a href="/Blogs/powershell-intune-reporting.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-400 transition-all block">
+              <span class="text-[10px] font-mono text-sky-300">Graph Reporting</span>
+              <h5 class="text-sm font-bold text-white mt-1">PowerShell Intune Reporting</h5>
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- 2. SCCM / MECM CATEGORY -->
       <div id="sccm" class="space-y-10 scroll-mt-32 blog-category-block">
         <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
           <div class="w-1.5 h-6 bg-gradient-to-b from-indigo-400 to-indigo-600 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.6)]"></div>
           <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">2. <span class="text-indigo-400">SCCM / MECM</span> & Co-Management</h2>
         </div>
 
-        <div class="searchable-card py-6">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="flex items-center gap-3">
-                <span class="px-3 py-1 bg-emerald-950/90 text-emerald-400 border border-emerald-500/50 text-[10px] font-mono font-bold rounded-full uppercase shadow-lg">✓ Completed Article</span>
-                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">• Hybrid Migration</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight"><span class="text-indigo-400">SCCM to Intune</span> Co-Management <span class="text-sky-400">Migration</span></h3>
-              <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-                Step-by-step transition of <span class="text-indigo-400 font-medium">workload authorities</span> from on-premises SCCM to cloud-native Intune without service interruption.
-              </p>
-              <div class="pt-2">
-                <a href="/Blogs/sccm-intune-migration-guardrails.html" class="btn-live-project">
-                  READ ARTICLE <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-              </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Hybrid Migration</span>
+              <h3 class="text-xl font-bold text-white mt-1">SCCM to Intune Co-Management Migration</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Step-by-step transition of workload authorities without service interruption.</p>
             </div>
-            <div class="lg:col-span-5">
-              <div class="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-transparent group">
-                <img src="/images/Blogs_Images/Comanagementblog.avif" alt="SCCM Co-Management" width="500" height="312" loading="lazy" class="w-full h-full object-cover filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-              </div>
+            <div><a href="/Blogs/sccm-intune-migration-guardrails.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Application Design</span>
+              <h3 class="text-xl font-bold text-white mt-1">SCCM Application Model Design</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Master detection methods, dependencies, and supersedence chains.</p>
             </div>
+            <div><a href="/Blogs/sccm-application-model.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Infrastructure</span>
+              <h3 class="text-xl font-bold text-white mt-1">SCCM Content Distribution</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Boundaries, distribution point health, and automated failure recovery.</p>
+            </div>
+            <div><a href="/Blogs/sccm-content-distribution.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">Imaging & OSD</span>
+              <h3 class="text-xl font-bold text-white mt-1">SCCM OSD Engineering & Imaging</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Build robust imaging sequences with explicit validation checkpoints.</p>
+            </div>
+            <div><a href="/Blogs/sccm-osd-engineering.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+        </div>
+
+        <!-- Read More Section (3 Related Articles) -->
+        <div class="pt-4 border-t border-indigo-500/20 space-y-4">
+          <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-bold">Related SCCM Guides (Read More):</h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/Blogs/sccm-hardware-inventory.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-400 transition-all block">
+              <span class="text-[10px] font-mono text-indigo-300">Hardware Inventory</span>
+              <h5 class="text-sm font-bold text-white mt-1">Hardware Inventory Optimization</h5>
+            </a>
+            <a href="/Blogs/sccm-client-health-remediation.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-400 transition-all block">
+              <span class="text-[10px] font-mono text-indigo-300">Client Health</span>
+              <h5 class="text-sm font-bold text-white mt-1">Client Health & Remediation</h5>
+            </a>
+            <a href="/Blogs/sccm-patch-management-lifecycle.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-400 transition-all block">
+              <span class="text-[10px] font-mono text-indigo-300">Software Updates</span>
+              <h5 class="text-sm font-bold text-white mt-1">Patch Management Lifecycle</h5>
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- 3. POWERSHELL AUTOMATION CATEGORY -->
       <div id="powershell" class="space-y-10 scroll-mt-32 blog-category-block">
         <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
           <div class="w-1.5 h-6 bg-gradient-to-b from-teal-400 to-teal-600 rounded-full shadow-[0_0_10px_rgba(45,212,191,0.6)]"></div>
           <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">3. <span class="text-teal-400">PowerShell Automation</span> & Microsoft Graph</h2>
         </div>
 
-        <div class="searchable-card py-6">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="flex items-center gap-3">
-                <span class="px-3 py-1 bg-emerald-950/90 text-emerald-400 border border-emerald-500/50 text-[10px] font-mono font-bold rounded-full uppercase shadow-lg">✓ Completed Article</span>
-                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">• Graph API Scripting</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">Automated <span class="text-teal-400">Multi-User DesktopInfo</span> Telemetry Delivery</h3>
-              <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-                Advanced <span class="text-teal-400 font-medium">PowerShell initialization scripts</span> and Win32 packaging wrappers for enterprise VDI fleets.
-              </p>
-              <div class="pt-2">
-                <a href="/Blogs/powershell-device-inventory.html" class="btn-live-project">
-                  READ ARTICLE <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-              </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">VDI Scripting</span>
+              <h3 class="text-xl font-bold text-white mt-1">Automated DesktopInfo Telemetry</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Advanced PowerShell initialization scripts for enterprise VDI fleets.</p>
             </div>
-            <div class="lg:col-span-5">
-              <div class="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-transparent group">
-                <img src="/images/Blogs_Images/Desktopinfoblog.avif" alt="PowerShell Automation" width="500" height="312" loading="lazy" class="w-full h-full object-cover filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-              </div>
+            <div><a href="/Blogs/powershell-device-inventory.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">Drift Control</span>
+              <h3 class="text-xl font-bold text-white mt-1">PowerShell Compliance Automation</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Close endpoint configuration drift automatically using safe repair tasks.</p>
             </div>
+            <div><a href="/Blogs/powershell-compliance-automation.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">Graph Reporting</span>
+              <h3 class="text-xl font-bold text-white mt-1">PowerShell Intune Reporting</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Build focused Microsoft Graph reports tailored for operators.</p>
+            </div>
+            <div><a href="/Blogs/powershell-intune-reporting.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">Script Design</span>
+              <h3 class="text-xl font-bold text-white mt-1">PowerShell Remediation Scripts</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Design detection and repair pairs that remain completely safe to rerun.</p>
+            </div>
+            <div><a href="/Blogs/powershell-remediation-scripts.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
+          </div>
+        </div>
+
+        <!-- Read More Section (3 Related Articles) -->
+        <div class="pt-4 border-t border-teal-500/20 space-y-4">
+          <h4 class="text-xs font-mono uppercase tracking-widest text-teal-400 font-bold">Related PowerShell Guides (Read More):</h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/Blogs/powershell-graph-authentication.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-teal-400 transition-all block">
+              <span class="text-[10px] font-mono text-teal-300">Graph Security</span>
+              <h5 class="text-sm font-bold text-white mt-1">Graph Authentication Security</h5>
+            </a>
+            <a href="/Blogs/powershell-device-inventory.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-teal-400 transition-all block">
+              <span class="text-[10px] font-mono text-teal-300">Device Signals</span>
+              <h5 class="text-sm font-bold text-white mt-1">PowerShell Device Inventory</h5>
+            </a>
+            <a href="/Blogs/powershell-compliance-automation.html" class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-teal-400 transition-all block">
+              <span class="text-[10px] font-mono text-teal-300">Remediation</span>
+              <h5 class="text-sm font-bold text-white mt-1">Remediation Scripts Design</h5>
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- 4. ACTIVE DIRECTORY / AD CATEGORY -->
       <div id="activedirectory" class="space-y-10 scroll-mt-32 blog-category-block">
         <div class="flex items-center gap-4 border-b border-sky-500/30 pb-3">
           <div class="w-1.5 h-6 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.6)]"></div>
           <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">4. <span class="text-amber-400">Active Directory (AD)</span> & GPO Modernization</h2>
         </div>
 
-        <div class="searchable-card py-6">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="flex items-center gap-3">
-                <span class="px-3 py-1 bg-emerald-950/90 text-emerald-400 border border-emerald-500/50 text-[10px] font-mono font-bold rounded-full uppercase shadow-lg">✓ Completed Article</span>
-                <span class="text-xs text-sky-400 font-mono uppercase tracking-widest">• Policy Analytics</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">Migrating Legacy <span class="text-amber-400">GPOs to Intune</span> Settings Catalog</h3>
-              <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-                Utilizing <span class="text-amber-400 font-medium">Intune Policy Analytics</span> to audit, clean up technical debt, and map on-premises Group Policies directly to cloud configuration profiles.
-              </p>
-              <div class="pt-2">
-                <a href="/Blogs/intune-compliance-policies.html" class="btn-live-project">
-                  READ ARTICLE <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-              </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="searchable-card glass-card-3d p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400">Policy Migration</span>
+              <h3 class="text-xl font-bold text-white mt-1">Migrating Legacy GPOs to Intune</h3>
+              <p class="text-xs text-slate-300 mt-2 font-light">Utilize Policy Analytics to map on-premises Group Policies directly to cloud settings.</p>
             </div>
-            <div class="lg:col-span-5">
-              <div class="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl bg-transparent group">
-                <img src="/images/Blogs_Images/Gpoblog.avif" alt="GPO to Intune Migration" width="500" height="312" loading="lazy" class="w-full h-full object-cover filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-              </div>
-            </div>
+            <div><a href="/Blogs/intune-compliance-policies.html" class="btn-live-project">READ ARTICLE <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a></div>
           </div>
-        </div>
-      </div>
-
-      <div id="similar-articles" class="space-y-8 pt-12 border-t border-sky-500/30 scroll-mt-32">
-        <div class="flex items-center gap-3">
-          <div class="w-1.5 h-6 bg-gradient-to-b from-emerald-400 to-teal-600 rounded-full shadow-[0_0_10px_rgba(52,211,153,0.6)]"></div>
-          <h2 class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">
-            Read More: <span class="text-emerald-400">Similar Knowledge Base Articles</span>
-          </h2>
-        </div>
-        <p class="text-slate-300 text-sm sm:text-base font-light">
-          Expand your enterprise architecture reading with these additional field guides covering Intune packaging, SCCM maintenance, and PowerShell automation.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          
-          <a class="searchable-card group block p-6 rounded-2xl border border-sky-500/20 bg-slate-950/60 hover:border-sky-400/70 hover:-translate-y-1 transition-all" href="/Blogs/sccm-application-model.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">SCCM / Design</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-sky-300">Application Model Design</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Detection, dependencies, supersedence, and release evidence.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-sky-500/20 bg-slate-950/60 hover:border-sky-400/70 hover:-translate-y-1 transition-all" href="/Blogs/sccm-content-distribution.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">SCCM / Infrastructure</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-sky-300">Content Distribution</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Boundaries, distribution points, hashes, and recovery.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-sky-500/20 bg-slate-950/60 hover:border-sky-400/70 hover:-translate-y-1 transition-all" href="/Blogs/sccm-hardware-inventory.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">SCCM / Telemetry</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-sky-300">Hardware Inventory</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Collect decision-ready endpoint signals without noise.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-sky-500/20 bg-slate-950/60 hover:border-sky-400/70 hover:-translate-y-1 transition-all" href="/Blogs/sccm-client-health-remediation.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">SCCM / Operations</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-sky-300">Client Health Remediation</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Measure and repair management signals progressively.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-sky-500/20 bg-slate-950/60 hover:border-sky-400/70 hover:-translate-y-1 transition-all" href="/Blogs/sccm-osd-engineering.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">SCCM / Imaging</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-sky-300">OSD Engineering</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Build imaging sequences with explicit checkpoints.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-sky-500/20 bg-slate-950/60 hover:border-sky-400/70 hover:-translate-y-1 transition-all" href="/Blogs/sccm-patch-management-lifecycle.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">SCCM / Patching</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-sky-300">Patch Management Lifecycle</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Stage releases, measure quality, and govern exceptions.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-emerald-500/20 bg-slate-950/60 hover:border-emerald-400/70 hover:-translate-y-1 transition-all" href="/Blogs/intune-win32-packaging.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400">Intune / Packaging</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-emerald-300">Win32 Packaging</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Make install, detection, and recovery agree.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-emerald-500/20 bg-slate-950/60 hover:border-emerald-400/70 hover:-translate-y-1 transition-all" href="/Blogs/intune-advanced-deployment-rings.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400">Intune / Rollout</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-emerald-300">Deployment Rings</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Progressive releases based on risk and evidence.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-emerald-500/20 bg-slate-950/60 hover:border-emerald-400/70 hover:-translate-y-1 transition-all" href="/Blogs/intune-compliance-policies.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400">Intune / Compliance</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-emerald-300">Compliance Architecture</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Connect policy signals to useful remediation paths.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-violet-500/20 bg-slate-950/60 hover:border-violet-400/70 hover:-translate-y-1 transition-all" href="/Blogs/powershell-compliance-automation.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-violet-400">PowerShell / Automation</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-violet-300">Compliance Automation</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Close endpoint drift with safe, observable repairs.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-violet-500/20 bg-slate-950/60 hover:border-violet-400/70 hover:-translate-y-1 transition-all" href="/Blogs/powershell-intune-reporting.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-violet-400">PowerShell / Reporting</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-violet-300">Intune Reporting</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Build focused Graph reports for operators.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-violet-500/20 bg-slate-950/60 hover:border-violet-400/70 hover:-translate-y-1 transition-all" href="/Blogs/powershell-remediation-scripts.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-violet-400">PowerShell / Maintenance</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-violet-300">Remediation Scripts</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Design detection and repair pairs safe to rerun.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-violet-500/20 bg-slate-950/60 hover:border-violet-400/70 hover:-translate-y-1 transition-all" href="/Blogs/powershell-graph-authentication.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-violet-400">PowerShell / Security</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-violet-300">Graph Authentication</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Use least-privilege identity for automation.</p>
-          </a>
-
-          <a class="searchable-card group block p-6 rounded-2xl border border-violet-500/20 bg-slate-950/60 hover:border-violet-400/70 hover:-translate-y-1 transition-all" href="/Blogs/powershell-device-inventory.html">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-violet-400">PowerShell / Inventory</span>
-            <h3 class="text-xl font-extrabold text-white mt-2 group-hover:text-violet-300">Device Inventory</h3>
-            <p class="text-sm text-slate-400 leading-relaxed mt-2">Create useful, fresh endpoint inventory snapshots.</p>
-          </a>
-
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- Discussion Section -->
   <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-14 space-y-8">
     <div class="flex items-center gap-4">
       <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
