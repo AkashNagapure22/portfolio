@@ -56,6 +56,15 @@
       z-index: -10;
       pointer-events: none;
     }
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
+    }
     .glass-card-3d {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
       backdrop-filter: blur(25px);
@@ -88,6 +97,7 @@
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
 <!-- Minimal Navbar: Only Logo on Left -->
 <header class="w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-white/10 py-4 px-6 sm:px-12 relative shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
@@ -138,6 +148,11 @@
         <p>Links to third-party services such as LinkedIn, Microsoft Learn, or community resources are managed externally and carry their own terms, content policies, and availability commitments.</p>
       </section>
 
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">5. User comments and submissions</h2>
+        <p>By posting comments or questions on this site, you grant Akash Nagapure the right to display, moderate, or remove user-generated text. You agree not to post unlawful, defamatory, malicious, or spam content through the interactive discussion features.</p>
+      </section>
+
     </div>
   </article>
 
@@ -149,37 +164,37 @@
     <div class="flex items-center gap-2.5">
       <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
         <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
-          <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
     </div>
     
-    <!-- Footer Links with Material Symbols Icons -->
+    <!-- Footer Links with Matching Icons -->
     <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
       <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <span class="material-symbols-outlined text-[14px]">share</span> LinkedIn
+        <span class="material-symbols-outlined text-sm">share</span> LinkedIn
       </a>
-      <span class="opacity-50">•</span>
-      <a href="mailto:info@akashnagapure.in" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <span class="material-symbols-outlined text-[14px]">mail</span> Contact Mail
+      <span>•</span>
+      <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
       </a>
-      <span class="opacity-50">•</span>
+      <span>•</span>
       <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <span class="material-symbols-outlined text-[14px]">privacy_tip</span> Privacy Policy
+        <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
       </a>
-      <span class="opacity-50">•</span>
+      <span>•</span>
       <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <span class="material-symbols-outlined text-[14px]">description</span> Terms of Service
+        <span class="material-symbols-outlined text-sm">description</span> Terms of Service
       </a>
     </div>
 
-    <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5 opacity-80">© 2026. All Rights Reserved. Engineered with Precision.</span>
+    <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
   </div>
 </footer>
 
 <script>
-  let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
+  let scene, camera, renderer, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
   let isPageVisible = true;
@@ -274,9 +289,82 @@
     }
   }
 
+  /* Sleek Line Cursor Trail Logic */
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     init3DBackground();
     animate3DBackground();
+    initCursorTrail();
   });
 </script>
 </body>
