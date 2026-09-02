@@ -136,6 +136,7 @@
 <canvas id="three-bg-canvas"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
+<!-- Custom Toast Notification Container -->
 <div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
 
 <script>
@@ -214,7 +215,6 @@
     }
   }
 
-  /* Sleek Line Cursor Trail Logic */
   class Point {
     constructor(x, y) {
       this.x = x;
@@ -286,31 +286,40 @@
     renderTrail();
   }
 
-  // Toast Trigger Notification Handler
-  function showResumeToast(event) {
+  // Guaranteed Toast Trigger & Download Function
+  function downloadResumeWithToast(fileUrl, fileName) {
     const container = document.getElementById('toast-container');
-    if (!container) return;
+    if (container) {
+      const toastEl = document.createElement('div');
+      toastEl.className = "pointer-events-auto toast-animate flex items-center gap-3 px-4 py-3 bg-slate-900/95 border border-emerald-500/50 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.9)] backdrop-blur-xl text-white";
+      toastEl.innerHTML = `
+        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-[11px] font-bold text-emerald-400 font-mono tracking-wider">SUCCESS!</span>
+          <span class="text-xs text-slate-200">Success! Resume is Downloaded successfully</span>
+        </div>
+      `;
+      container.appendChild(toastEl);
 
-    const toastEl = document.createElement('div');
-    toastEl.className = "pointer-events-auto toast-animate flex items-center gap-3 px-4 py-3 bg-slate-900/95 border border-emerald-500/40 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl text-white";
-    toastEl.innerHTML = `
-      <div class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
-        <span class="material-symbols-outlined text-sm font-bold">check</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-xs font-semibold text-emerald-400 font-mono">SUCCESS!</span>
-        <span class="text-xs text-slate-200">Resume is downloaded successfully.</span>
-      </div>
-    `;
+      setTimeout(() => {
+        toastEl.style.opacity = '0';
+        toastEl.style.transform = 'translateY(10px)';
+        toastEl.style.transition = 'all 0.3s ease';
+        setTimeout(() => toastEl.remove(), 300);
+      }, 3500);
+    }
 
-    container.appendChild(toastEl);
-
-    setTimeout(() => {
-      toastEl.style.opacity = '0';
-      toastEl.style.transform = 'translateY(10px)';
-      toastEl.style.transition = 'all 0.3s ease';
-      setTimeout(() => toastEl.remove(), 300);
-    }, 3500);
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = fileName;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -381,10 +390,11 @@
         </div>
       </div>
       <div class="flex items-center gap-3 shrink-0">
-        <a href="/Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" onclick="showResumeToast(event)" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all cursor-pointer">
+        <!-- Download PDF Resume Button connected to reliable Toast handler -->
+        <button type="button" onclick="downloadResumeWithToast('/Main_page_data/Akash_Resume.pdf', 'Akash_Resume.pdf')" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all cursor-pointer active:scale-95">
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Download PDF Resume</span>
-        </a>
+        </button>
       </div>
     </div>
 
