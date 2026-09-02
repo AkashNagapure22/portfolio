@@ -9,12 +9,10 @@
   <link rel="canonical" href="https://blogs.akashnagapure.in/Autopatchblog.html" />
   <link rel="icon" href="/Main_page_data/Logo.avif" type="image/avif" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-  <!-- Core Scripts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -84,6 +82,25 @@
       border-color: rgba(56, 189, 248, 0.45);
       box-shadow: 0 35px 60px -15px rgba(56, 189, 248, 0.2);
     }
+    .blog-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .blog-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+    .blog-card:hover h4 {
+      text-decoration: underline;
+    }
+    .blog-card:hover p {
+      text-decoration: underline;
+    }
     .nav-link.active-link {
       color: #38bdf8 !important;
       border-bottom: 2px solid #38bdf8;
@@ -110,7 +127,6 @@
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-<!-- Top Header Navigation -->
 <header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 gap-4">
@@ -119,7 +135,6 @@
         <span>Back to Technical Blogs Hub</span>
       </a>
 
-      <!-- Live Article Search Bar -->
       <div class="relative flex-grow max-w-[220px] sm:max-w-xs">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-sky-400/70">
           <i data-lucide="search" class="w-3.5 h-3.5"></i>
@@ -135,71 +150,64 @@
   
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
     
-    <!-- Left Main Content Column -->
-    <div class="lg:col-span-8 space-y-10">
+    <div class="lg:col-span-8 space-y-12">
       
-      <!-- Header Banner -->
       <header class="space-y-4 searchable-block">
-        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-sky-950/80 border border-sky-500/30 rounded-full font-mono text-xs text-sky-400 uppercase tracking-wider">
-          Enterprise Technical Guide
+        <div class="flex items-center gap-2">
+          <span class="px-3.5 py-1.5 bg-sky-950/85 border border-sky-500/30 rounded-full font-mono text-[10px] text-sky-400 uppercase tracking-wider">Intune</span>
+          <span class="px-3.5 py-1.5 bg-indigo-950/85 border border-indigo-500/30 rounded-full font-mono text-[10px] text-indigo-400 uppercase tracking-wider">Autopatch</span>
+          <span class="px-3.5 py-1.5 bg-teal-950/85 border border-teal-500/30 rounded-full font-mono text-[10px] text-teal-400 uppercase tracking-wider">12 min read</span>
         </div>
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Windows Autopatch & Rebootless Hotpatch Deployment</h1>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Windows <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">Autopatch & Rebootless Hotpatch</span> Deployment</h1>
         <p class="text-slate-400 text-sm sm:text-base font-light">Step-by-step enterprise deployment guide for Windows Autopatch and rebootless Hotpatching across Microsoft Intune environments.</p>
       </header>
 
-      <article class="space-y-10 text-slate-300 leading-relaxed">
+      <article class="space-y-12 text-slate-300 leading-relaxed">
         
-        <!-- Section 1 -->
-        <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">1. Prerequisites, Licensing & RBAC</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Before beginning an enterprise Autopatch deployment, verify that your tenant meets core subscription and infrastructure requirements:</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Before beginning an enterprise Autopatch deployment, verify that your tenant meets core subscription and infrastructure requirements:</p>
           <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 font-mono">
-            <li><strong>Licensing:</strong> Microsoft 365 Business Premium, Windows 10/11 Enterprise E3/E5, or Windows 365 Enterprise.</li>
-            <li><strong>Roles & Permissions:</strong> Requires Global Administrator access for initial tenant consent and Intune Administrator / Policy and Profile Manager roles for ongoing policy assignment.</li>
-            <li><strong>Operating System:</strong> Target devices must run Windows 11 Enterprise (version 24H2 or later).</li>
-            <li><strong>Virtualization-Based Security (VBS):</strong> VBS must be provisioned and running to secure in-memory code patches.</li>
+            <li><strong class="text-sky-400">Licensing:</strong> Microsoft 365 Business Premium, Windows 10/11 Enterprise E3/E5, or Windows 365 Enterprise.</li>
+            <li><strong class="text-indigo-400">Roles & Permissions:</strong> Requires Global Administrator access for initial tenant consent and Intune Administrator / Policy and Profile Manager roles for ongoing policy assignment.</li>
+            <li><strong class="text-teal-400">Operating System:</strong> Target devices must run Windows 11 Enterprise (version 24H2 or later).</li>
+            <li><strong class="text-amber-400">Virtualization-Based Security (VBS):</strong> VBS must be provisioned and running to secure in-memory code patches.</li>
           </ul>
         </section>
 
-        <!-- Section 2 -->
-        <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">2. Understanding Hotpatch & Baseline Cycles</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Hotpatching allows monthly security updates to be applied to running processes in-memory without forcing device reboots. This drastically minimizes downtime for critical frontline or mission-critical endpoints.</p>
-          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl space-y-2">
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Hotpatching allows monthly security updates to be applied to running processes in-memory without forcing device reboots. This drastically minimizes downtime for critical frontline or mission-critical endpoints.</p>
+          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl space-y-2 shadow-inner">
             <h3 class="font-mono text-xs sm:text-sm font-bold text-sky-400">Quarterly Baseline vs. Hotpatch Months</h3>
             <p class="text-xs text-slate-300 leading-relaxed font-light">
-              Devices receive standard cumulative updates (requiring a restart) during quarterly baseline months (<strong>January, April, July, October</strong>). During the remaining 8 months of the year, security patches are delivered entirely as rebootless hotpatches, cutting standard annual reboots down from 12 to 4.
+              Devices receive standard cumulative updates (requiring a restart) during quarterly baseline months (<strong class="text-sky-400">January, April, July, October</strong>). During the remaining 8 months of the year, security patches are delivered entirely as <span class="text-teal-400 font-semibold">rebootless hotpatches</span>, cutting standard annual reboots down from 12 to 4.
             </p>
           </div>
         </section>
 
-        <!-- Section 3 -->
-        <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">3. Configuring Deployment Rings & Policies</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Planning your deployment rings is essential. While default Autopatch groups exist, custom targeting groups can be synchronized with SCCM device collections or managed directly via Microsoft Intune.</p>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Configure the <strong>Windows Quality Update Policy</strong> in the Intune Admin Center by navigating to <em>Devices → Windows updates → Quality updates</em>, enabling security updates, and toggling the hotpatch parameter to apply updates without restarting when available.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Planning your deployment rings is essential. While default Autopatch groups exist, custom targeting groups can be synchronized with SCCM device collections or managed directly via Microsoft Intune.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Configure the <strong class="text-indigo-400">Windows Quality Update Policy</strong> in the Intune Admin Center by navigating to <em class="text-sky-300">Devices → Windows updates → Quality updates</em>, enabling security updates, and toggling the hotpatch parameter to apply updates without restarting when available.</p>
         </section>
 
-        <!-- Section 4 -->
-        <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">4. Release Schedules & Deferrals</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">Define update behavior by establishing deferral days, deadline windows, and grace periods. Test rings should use 0 deferral days for immediate validation, whereas production rings require broader rollout windows to monitor stability.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Define update behavior by establishing <span class="text-sky-400 font-medium">deferral days</span>, <span class="text-indigo-400 font-medium">deadline windows</span>, and <span class="text-teal-400 font-medium">grace periods</span>. Test rings should use 0 deferral days for immediate validation, whereas production rings require broader rollout windows to monitor stability.</p>
         </section>
 
-        <!-- Section 5 -->
-        <section id="section-5" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+        <section id="section-5" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">5. Verification & Troubleshooting</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light">On target devices, verify VBS status via <em>System Information</em> (ensuring it shows as Running and Enabled) and check registry paths under <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Update</code> for <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">AllowRebootlessUpdates = 1</code>.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">On target devices, verify VBS status via <em class="text-sky-300">System Information</em> (ensuring it shows as Running and Enabled) and check registry paths under <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Update</code> for <code class="text-teal-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">AllowRebootlessUpdates = 1</code>.</p>
         </section>
 
-        <!-- Search Empty State Warning -->
         <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl">
           <i data-lucide="search-x" class="w-10 h-10 text-sky-400 mx-auto mb-2"></i>
           <h3 class="text-white font-bold text-lg">No matching guide content found</h3>
           <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Licensing", "Hotpatch", "Rings", or "VBS".</p>
         </div>
 
-        <!-- Official References -->
         <section class="glass-card-3d p-6 rounded-2xl space-y-3">
           <h3 class="text-base font-bold text-white uppercase font-mono flex items-center gap-2">
             <i data-lucide="bookmark" class="w-4 h-4 text-sky-400"></i> Official References
@@ -210,36 +218,43 @@
           </ul>
         </section>
 
-        <!-- Read More: Related Articles Section -->
         <section class="space-y-6 pt-6">
-          <div class="flex items-center gap-3 border-b border-sky-500/20 pb-3">
-            <div class="w-1.5 h-5 bg-sky-400 rounded-full"></div>
-            <h3 class="text-lg font-bold text-white font-mono tracking-wide uppercase">Read Next: Related Articles</h3>
+          <div class="border-b border-white/10 pb-3">
+            <h3 class="text-xl font-bold text-white tracking-tight uppercase font-sans">Read <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">more</span></h3>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/Blogs/intune-autopilot-troubleshooting.html" class="glass-card-3d p-5 rounded-2xl block group hover:border-sky-400 transition-all">
-              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Provisioning</span>
-              <h4 class="text-base font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">Windows Autopilot Zero-Touch Provisioning</h4>
-              <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2">Factory-to-user device provisioning workflows, hardware hash collection strategies, and automated Win32 application wrappers.</p>
-              <div class="mt-4 flex items-center gap-1 text-xs text-sky-400 font-mono font-bold">
-                <span>Read Article</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          <div class="grid grid-cols-1 gap-6">
+            
+            <a href="/Blogs/intune-autopilot-troubleshooting.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
+              <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
+                <img src="/images/Blogs_Images/Autopilotblog.avif" alt="Autopilot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              </div>
+              <div class="space-y-2 flex-grow">
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Provisioning</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 10, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">Windows Autopilot Zero-Touch Provisioning</h4>
+                <p class="text-slate-400 text-xs leading-relaxed font-light">Factory-to-user device provisioning workflows, hardware hash collection strategies, and automated Win32 application wrappers.</p>
               </div>
             </a>
 
-            <a href="/Blogs/sccm-intune-migration-guardrails.html" class="glass-card-3d p-5 rounded-2xl block group hover:border-sky-400 transition-all">
-              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Migration</span>
-              <h4 class="text-base font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">SCCM to Intune Co-Management Migration</h4>
-              <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2">Step-by-step transition of workload authorities (Client Apps, Software Updates, Endpoint Protection) from on-premises SCCM to cloud-native Intune.</p>
-              <div class="mt-4 flex items-center gap-1 text-xs text-sky-400 font-mono font-bold">
-                <span>Read Article</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            <a href="/Blogs/sccm-intune-migration-guardrails.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
+              <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
+                <img src="/images/Blogs_Images/Comanagementblog.avif" alt="Co-Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              </div>
+              <div class="space-y-2 flex-grow">
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Migration</span>
+                  <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 24, 2026</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">SCCM to Intune Co-Management Migration</h4>
+                <p class="text-slate-400 text-xs leading-relaxed font-light">Step-by-step transition of workload authorities from on-premises SCCM to cloud-native Intune seamlessly.</p>
               </div>
             </a>
+
           </div>
         </section>
 
-        <!-- Modern Discussion & Comments Section -->
         <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-10 space-y-8">
           <div class="flex items-center justify-between">
             <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
@@ -248,7 +263,6 @@
             <span class="font-mono text-xs text-sky-400 bg-sky-950/60 px-3 py-1 rounded-full border border-sky-500/30">Secure PostgreSQL Board</span>
           </div>
 
-          <!-- Modern Comment Form Card -->
           <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 shadow-2xl relative overflow-hidden" onsubmit="handleCommentSubmit(event)">
             <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 to-indigo-500"></div>
             <h3 class="text-sm font-bold text-white font-mono flex items-center gap-2">
@@ -276,7 +290,7 @@
               <textarea 
                 id="content" 
                 rows="3" 
-                placeholder="Ask a question about deployment rings, share feedback, or start a discussion..." 
+                placeholder="Ask a question about Autopatch & Hotpatching, share feedback, or start a discussion..." 
                 required 
                 class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs leading-relaxed resize-none"
               ></textarea>
@@ -291,7 +305,6 @@
             </button>
           </form>
 
-          <!-- Interactive Comments Feed Container -->
           <div id="comments-container" class="space-y-4">
             <p class="text-slate-400 text-xs font-mono">Loading discussion threads...</p>
           </div>
@@ -300,24 +313,21 @@
       </article>
     </div>
 
-    <!-- Right Sidebar Column (Magic UI Author & On This Page Cards) -->
     <div class="lg:col-span-4 space-y-6 sticky top-28">
       
-      <!-- Author Profile Card -->
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
           <img src="/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure" width="48" height="48" class="w-12 h-12 rounded-xl object-cover border border-sky-400/40 shadow-md" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           <div>
             <h3 class="font-sans font-bold text-white text-sm">Akash Nagapure</h3>
-            <p class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">Fleet Architect</p>
+            <p class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">Microsoft Intune and VMware Architect</p>
           </div>
         </div>
         <p class="text-xs text-slate-300 font-light leading-relaxed">
-          Expert insights and architectural field guides on Microsoft Intune, Configuration Manager, and modern enterprise automation.
+          Microsoft Intune and VMware Architect specialized in designing scalable cloud infrastructure and zero-trust modern workspace solutions.
         </p>
       </div>
 
-      <!-- On This Page Table of Contents -->
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <h3 class="font-sans font-bold text-white text-sm uppercase tracking-wider font-mono border-b border-white/10 pb-2">On this page</h3>
         <nav class="space-y-2 font-mono text-xs" id="nav-menu">
@@ -330,24 +340,38 @@
         </nav>
       </div>
 
-      <!-- Magic UI Promo / Pro Card -->
       <div class="glass-card-3d p-6 rounded-2xl space-y-4 relative overflow-hidden group border-sky-500/30">
         <div class="absolute inset-0 bg-gradient-to-br from-sky-500/10 to-indigo-500/10 pointer-events-none"></div>
         <div class="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-slate-900 border border-white/10 shadow-lg">
           <img src="/images/Main_Page_Images/hobby_homelab.avif" alt="Enterprise Homelab" width="300" height="168" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
         </div>
         <div class="space-y-2 relative">
-          <h4 class="font-sans font-bold text-white text-sm">Enterprise Lab Blueprints</h4>
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[9px] uppercase tracking-widest text-sky-400 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-500/30">Sponsored</span>
+          </div>
+          <h4 class="font-sans font-bold text-white text-sm">Enterprise Lab Blueprints Pro</h4>
           <p class="text-xs text-slate-300 font-light leading-relaxed">
-            Explore advanced virtual machine lab architectures, domain controller security policies, and custom PowerShell scripts.
+            Accelerate your cloud architecture transitions with ready-to-deploy Intune policies, configuration baselines, and automated scripts.
           </p>
         </div>
         <div class="relative pt-1">
-          <a href="https://www.akashnagapure.in" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-sky-400 hover:text-white transition-colors">
-            <span>Explore Architecture Labs</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          <a href="https://www.akashnagapure.in" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] transition-all font-mono">
+            Access Pro Blueprints
           </a>
         </div>
+      </div>
+
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4 text-center">
+        <h3 class="font-sans font-bold text-white text-sm">Was this guide helpful?</h3>
+        <div class="flex items-center justify-center gap-3">
+          <button id="vote-btn-helpful" class="vote-button px-4 py-2 bg-slate-900 border border-slate-700 hover:border-sky-400 text-sky-400 font-mono text-xs rounded-xl transition-all flex items-center gap-1.5 cursor-pointer" type="button" data-article="autopatchblog" data-vote="up">
+            <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> Helpful
+          </button>
+          <button id="vote-btn-nothelpful" class="vote-button px-4 py-2 bg-slate-900 border border-slate-700 hover:border-rose-400 text-rose-400 font-mono text-xs rounded-xl transition-all flex items-center gap-1.5 cursor-pointer" type="button" data-article="autopatchblog" data-vote="down">
+            <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i> Not helpful
+          </button>
+        </div>
+        <p id="vote-stats-display" class="font-mono text-[11px] text-slate-400 pt-1">Loading community feedback...</p>
       </div>
 
     </div>
@@ -355,7 +379,6 @@
   </div>
 </main>
 
-<!-- Standardized Compact Footer with Icons -->
 <footer class="w-full py-6 sm:py-8 bg-slate-950/90 border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
     <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
         <div class="flex items-center gap-2.5">
@@ -367,7 +390,6 @@
             <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
         </div>
         
-        <!-- Footer Links with Matching Icons -->
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
             <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
@@ -633,6 +655,7 @@
   // 5. COMMENTS & VOTE SYSTEM
   const ARTICLE_ID = 'autopatchblog';
   const API_URL = '/api/comments';
+  const VOTES_API_URL = '/api/votes';
 
   const VOTE_MANAGER = {
     getVoteKey(articleId) { return `votes_${articleId}_${this.getUserId()}`; },
@@ -644,21 +667,47 @@
       }
       return userId;
     },
-    hasVoted(articleId, commentId, action) {
+    hasVoted(articleId, voteType) {
       const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
-      return votes[`${commentId}_${action}`] === true;
+      return votes[`voted_${voteType}`] === true;
     },
-    recordVote(articleId, commentId, action) {
+    recordVote(articleId, voteType) {
       const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
-      votes[`${commentId}_${action}`] = true;
-      localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
-    },
-    clearVote(articleId, commentId, action) {
-      const votes = JSON.parse(localStorage.getItem(this.getVoteKey(articleId)) || '{}');
-      delete votes[`${commentId}_${action}`];
+      votes[`voted_${voteType}`] = true;
       localStorage.setItem(this.getVoteKey(articleId), JSON.stringify(votes));
     }
   };
+
+  async function loadVoteStats() {
+    const statsDisplay = document.getElementById('vote-stats-display');
+    const helpfulBtn = document.getElementById('vote-btn-helpful');
+    const notHelpfulBtn = document.getElementById('vote-btn-nothelpful');
+    if (!statsDisplay) return;
+
+    try {
+      const res = await fetch(`${VOTES_API_URL}?article_id=${encodeURIComponent(ARTICLE_ID)}`);
+      const data = await res.json();
+      if (res.ok && data) {
+        const helpfulCount = data.helpful || 0;
+        if (helpfulCount > 0) {
+          statsDisplay.innerText = `${helpfulCount} ${helpfulCount === 1 ? 'person' : 'people'} found this helpful`;
+        } else {
+          statsDisplay.innerText = 'Be the first to rate this guide helpful!';
+        }
+
+        if (VOTE_MANAGER.hasVoted(ARTICLE_ID, 'up') && helpfulBtn) {
+          helpfulBtn.style.opacity = '0.5';
+          helpfulBtn.style.pointerEvents = 'none';
+        }
+        if (VOTE_MANAGER.hasVoted(ARTICLE_ID, 'down') && notHelpfulBtn) {
+          notHelpfulBtn.style.opacity = '0.5';
+          notHelpfulBtn.style.pointerEvents = 'none';
+        }
+      }
+    } catch (err) {
+      statsDisplay.innerText = 'Community feedback enabled';
+    }
+  }
 
   async function loadComments() {
     const container = document.getElementById('comments-container');
@@ -707,8 +756,8 @@
          </div>`
       : '';
 
-    const likedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'like');
-    const dislikedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID, comment.id, 'dislike');
+    const likedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID + '_comment_' + comment.id, 'like');
+    const dislikedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID + '_comment_' + comment.id, 'dislike');
 
     const likeClass = likedAlready ? 'opacity-50 pointer-events-none text-sky-400' : 'text-slate-400 hover:text-sky-400';
     const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400' : 'text-slate-400 hover:text-rose-400';
@@ -757,8 +806,9 @@
   }
 
   async function handleVote(event, id, action) {
-    if (VOTE_MANAGER.hasVoted(ARTICLE_ID, id, action)) return;
-    VOTE_MANAGER.recordVote(ARTICLE_ID, id, action);
+    const trackingKey = ARTICLE_ID + '_comment_' + id;
+    if (VOTE_MANAGER.hasVoted(trackingKey, action)) return;
+    VOTE_MANAGER.recordVote(trackingKey, action);
     const btn = event.currentTarget;
     if (btn) btn.classList.add('opacity-50', 'pointer-events-none');
 
@@ -769,9 +819,8 @@
         body: JSON.stringify({ id, action })
       });
       if (res.ok) await loadComments();
-      else VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
     } catch (err) {
-      VOTE_MANAGER.clearVote(ARTICLE_ID, id, action);
+      console.error('Comment vote failed', err);
     }
   }
 
@@ -824,6 +873,31 @@
     }
   };
 
+  // Vote Button Handlers for Helpful Bar with Database Sync & Dynamic Counter
+  document.querySelectorAll('.vote-button').forEach(button => {
+    button.addEventListener('click', async (e) => {
+      const voteType = button.getAttribute('data-vote'); // 'up' or 'down'
+      if (VOTE_MANAGER.hasVoted(ARTICLE_ID, voteType)) return;
+
+      VOTE_MANAGER.recordVote(ARTICLE_ID, voteType);
+      button.style.opacity = '0.5';
+      button.style.pointerEvents = 'none';
+
+      try {
+        const res = await fetch(VOTES_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ article_id: ARTICLE_ID, vote: voteType })
+        });
+        if (res.ok) {
+          await loadVoteStats();
+        }
+      } catch (err) {
+        console.error('Vote submission failed', err);
+      }
+    });
+  });
+
   function escapeHTML(str) {
     return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
   }
@@ -834,6 +908,7 @@
     animate3DBackground();
     initCursorTrail();
     loadComments();
+    loadVoteStats();
   });
 </script>
 </body>
