@@ -12,7 +12,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
   <!-- Core Scripts -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -40,7 +40,7 @@
     }
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 5.5rem;
+      scroll-padding-top: 6rem;
       background-color: #020617;
     }
     body {
@@ -59,6 +59,15 @@
       width: 100vw;
       height: 100vh;
       z-index: 0;
+      pointer-events: none;
+    }
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
       pointer-events: none;
     }
     .glass-card-3d {
@@ -99,27 +108,19 @@
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
 <!-- Top Header Navigation -->
 <header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 gap-4">
       <a href="https://blogs.akashnagapure.in" class="flex items-center space-x-2 text-sky-400 hover:text-white transition-colors font-mono text-xs sm:text-sm shrink-0">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
         <span>Back to Technical Blogs Hub</span>
       </a>
 
-      <!-- Section Jump Menu -->
-      <div class="hidden md:flex items-center space-x-2 shrink-0 font-mono text-xs" id="nav-menu">
-        <a href="#section-1" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">1. Prereq</a>
-        <a href="#section-2" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">2. Hotpatch</a>
-        <a href="#section-3" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">3. Rings</a>
-        <a href="#section-4" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">4. Schedules</a>
-        <a href="#section-5" class="px-2 py-1 text-slate-300 hover:text-sky-400 nav-link">5. Verify</a>
-      </div>
-
       <!-- Live Article Search Bar -->
-      <div class="relative flex-grow max-w-[180px] sm:max-w-xs">
+      <div class="relative flex-grow max-w-[220px] sm:max-w-xs">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-sky-400/70">
           <i data-lucide="search" class="w-3.5 h-3.5"></i>
         </div>
@@ -130,191 +131,263 @@
   </div>
 </header>
 
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 flex-grow w-full relative z-10">
-
-  <!-- Header -->
-  <header class="mb-10 searchable-block">
-    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-sky-950/80 border border-sky-500/30 rounded-full font-mono text-xs text-sky-400 uppercase tracking-wider mb-4">
-      Enterprise Technical Guide
-    </div>
-    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Windows Autopatch & Rebootless Hotpatch Deployment</h1>
-  </header>
-
-  <article class="space-y-10 text-slate-300 leading-relaxed">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 flex-grow w-full relative z-10">
+  
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
     
-    <!-- Section 1 -->
-    <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
-      <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">1. Prerequisites, Licensing & RBAC</h2>
-      <p class="text-xs sm:text-sm text-slate-300 font-light">Before beginning an enterprise Autopatch deployment, verify that your tenant meets core subscription and infrastructure requirements:</p>
-      <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 font-mono">
-        <li><strong>Licensing:</strong> Microsoft 365 Business Premium, Windows 10/11 Enterprise E3/E5, or Windows 365 Enterprise.</li>
-        <li><strong>Roles & Permissions:</strong> Requires Global Administrator access for initial tenant consent and Intune Administrator / Policy and Profile Manager roles for ongoing policy assignment.</li>
-        <li><strong>Operating System:</strong> Target devices must run Windows 11 Enterprise (version 24H2 or later).</li>
-        <li><strong>Virtualization-Based Security (VBS):</strong> VBS must be provisioned and running to secure in-memory code patches.</li>
-      </ul>
-    </section>
+    <!-- Left Main Content Column -->
+    <div class="lg:col-span-8 space-y-10">
+      
+      <!-- Header Banner -->
+      <header class="space-y-4 searchable-block">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-sky-950/80 border border-sky-500/30 rounded-full font-mono text-xs text-sky-400 uppercase tracking-wider">
+          Enterprise Technical Guide
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Windows Autopatch & Rebootless Hotpatch Deployment</h1>
+        <p class="text-slate-400 text-sm sm:text-base font-light">Step-by-step enterprise deployment guide for Windows Autopatch and rebootless Hotpatching across Microsoft Intune environments.</p>
+      </header>
 
-    <!-- Section 2 -->
-    <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
-      <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">2. Understanding Hotpatch & Baseline Cycles</h2>
-      <p class="text-xs sm:text-sm text-slate-300 font-light">Hotpatching allows monthly security updates to be applied to running processes in-memory without forcing device reboots. This drastically minimizes downtime for critical frontline or mission-critical endpoints.</p>
-      <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl space-y-2">
-        <h3 class="font-mono text-xs sm:text-sm font-bold text-sky-400">Quarterly Baseline vs. Hotpatch Months</h3>
-        <p class="text-xs text-slate-300 leading-relaxed font-light">
-          Devices receive standard cumulative updates (requiring a restart) during quarterly baseline months (<strong>January, April, July, October</strong>). During the remaining 8 months of the year, security patches are delivered entirely as rebootless hotpatches, cutting standard annual reboots down from 12 to 4.
+      <article class="space-y-10 text-slate-300 leading-relaxed">
+        
+        <!-- Section 1 -->
+        <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">1. Prerequisites, Licensing & RBAC</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light">Before beginning an enterprise Autopatch deployment, verify that your tenant meets core subscription and infrastructure requirements:</p>
+          <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 font-mono">
+            <li><strong>Licensing:</strong> Microsoft 365 Business Premium, Windows 10/11 Enterprise E3/E5, or Windows 365 Enterprise.</li>
+            <li><strong>Roles & Permissions:</strong> Requires Global Administrator access for initial tenant consent and Intune Administrator / Policy and Profile Manager roles for ongoing policy assignment.</li>
+            <li><strong>Operating System:</strong> Target devices must run Windows 11 Enterprise (version 24H2 or later).</li>
+            <li><strong>Virtualization-Based Security (VBS):</strong> VBS must be provisioned and running to secure in-memory code patches.</li>
+          </ul>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">2. Understanding Hotpatch & Baseline Cycles</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light">Hotpatching allows monthly security updates to be applied to running processes in-memory without forcing device reboots. This drastically minimizes downtime for critical frontline or mission-critical endpoints.</p>
+          <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl space-y-2">
+            <h3 class="font-mono text-xs sm:text-sm font-bold text-sky-400">Quarterly Baseline vs. Hotpatch Months</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-light">
+              Devices receive standard cumulative updates (requiring a restart) during quarterly baseline months (<strong>January, April, July, October</strong>). During the remaining 8 months of the year, security patches are delivered entirely as rebootless hotpatches, cutting standard annual reboots down from 12 to 4.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">3. Configuring Deployment Rings & Policies</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light">Planning your deployment rings is essential. While default Autopatch groups exist, custom targeting groups can be synchronized with SCCM device collections or managed directly via Microsoft Intune.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light">Configure the <strong>Windows Quality Update Policy</strong> in the Intune Admin Center by navigating to <em>Devices → Windows updates → Quality updates</em>, enabling security updates, and toggling the hotpatch parameter to apply updates without restarting when available.</p>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">4. Release Schedules & Deferrals</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light">Define update behavior by establishing deferral days, deadline windows, and grace periods. Test rings should use 0 deferral days for immediate validation, whereas production rings require broader rollout windows to monitor stability.</p>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="section-5" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">5. Verification & Troubleshooting</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light">On target devices, verify VBS status via <em>System Information</em> (ensuring it shows as Running and Enabled) and check registry paths under <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Update</code> for <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">AllowRebootlessUpdates = 1</code>.</p>
+        </section>
+
+        <!-- Search Empty State Warning -->
+        <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl">
+          <i data-lucide="search-x" class="w-10 h-10 text-sky-400 mx-auto mb-2"></i>
+          <h3 class="text-white font-bold text-lg">No matching guide content found</h3>
+          <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Licensing", "Hotpatch", "Rings", or "VBS".</p>
+        </div>
+
+        <!-- Official References -->
+        <section class="glass-card-3d p-6 rounded-2xl space-y-3">
+          <h3 class="text-base font-bold text-white uppercase font-mono flex items-center gap-2">
+            <i data-lucide="bookmark" class="w-4 h-4 text-sky-400"></i> Official References
+          </h3>
+          <ul class="space-y-2 text-xs text-sky-400 font-mono">
+            <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/prepare/windows-autopatch-prerequisites" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Windows Autopatch Prerequisites</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/manage/windows-autopatch-hotpatch-updates" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Managing Hotpatch Updates in Autopatch</a></li>
+          </ul>
+        </section>
+
+        <!-- Read More: Related Articles Section -->
+        <section class="space-y-6 pt-6">
+          <div class="flex items-center gap-3 border-b border-sky-500/20 pb-3">
+            <div class="w-1.5 h-5 bg-sky-400 rounded-full"></div>
+            <h3 class="text-lg font-bold text-white font-mono tracking-wide uppercase">Read Next: Related Articles</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/Blogs/intune-autopilot-troubleshooting.html" class="glass-card-3d p-5 rounded-2xl block group hover:border-sky-400 transition-all">
+              <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Provisioning</span>
+              <h4 class="text-base font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">Windows Autopilot Zero-Touch Provisioning</h4>
+              <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2">Factory-to-user device provisioning workflows, hardware hash collection strategies, and automated Win32 application wrappers.</p>
+              <div class="mt-4 flex items-center gap-1 text-xs text-sky-400 font-mono font-bold">
+                <span>Read Article</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </a>
+
+            <a href="/Blogs/sccm-intune-migration-guardrails.html" class="glass-card-3d p-5 rounded-2xl block group hover:border-sky-400 transition-all">
+              <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Migration</span>
+              <h4 class="text-base font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">SCCM to Intune Co-Management Migration</h4>
+              <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2">Step-by-step transition of workload authorities (Client Apps, Software Updates, Endpoint Protection) from on-premises SCCM to cloud-native Intune.</p>
+              <div class="mt-4 flex items-center gap-1 text-xs text-sky-400 font-mono font-bold">
+                <span>Read Article</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Modern Discussion & Comments Section -->
+        <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-10 space-y-8">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+              <i data-lucide="message-square" class="w-5 h-5 text-sky-400"></i> Technical Discussion & Q&A
+            </h2>
+            <span class="font-mono text-xs text-sky-400 bg-sky-950/60 px-3 py-1 rounded-full border border-sky-500/30">Secure PostgreSQL Board</span>
+          </div>
+
+          <!-- Modern Comment Form Card -->
+          <form id="comment-form" class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 shadow-2xl relative overflow-hidden" onsubmit="handleCommentSubmit(event)">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 to-indigo-500"></div>
+            <h3 class="text-sm font-bold text-white font-mono flex items-center gap-2">
+              <i data-lucide="message-square-plus" class="w-4 h-4 text-sky-400"></i> Join the Engineering Discussion
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input 
+                type="text" 
+                id="author" 
+                placeholder="Your Name / Handle *" 
+                required 
+                class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono"
+              />
+              <input 
+                type="email" 
+                id="email" 
+                placeholder="Your Email Address *" 
+                required 
+                class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs font-mono"
+              />
+            </div>
+
+            <div>
+              <textarea 
+                id="content" 
+                rows="3" 
+                placeholder="Ask a question about deployment rings, share feedback, or start a discussion..." 
+                required 
+                class="w-full p-3.5 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-all text-xs leading-relaxed resize-none"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              id="submit-btn"
+              class="px-6 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] transition-all cursor-pointer font-mono"
+            >
+              Post Comment
+            </button>
+          </form>
+
+          <!-- Interactive Comments Feed Container -->
+          <div id="comments-container" class="space-y-4">
+            <p class="text-slate-400 text-xs font-mono">Loading discussion threads...</p>
+          </div>
+        </section>
+
+      </article>
+    </div>
+
+    <!-- Right Sidebar Column (Magic UI Author & On This Page Cards) -->
+    <div class="lg:col-span-4 space-y-6 sticky top-28">
+      
+      <!-- Author Profile Card -->
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4">
+        <div class="flex items-center space-x-3">
+          <img src="/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure" width="48" height="48" class="w-12 h-12 rounded-xl object-cover border border-sky-400/40 shadow-md" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          <div>
+            <h3 class="font-sans font-bold text-white text-sm">Akash Nagapure</h3>
+            <p class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">Fleet Architect</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 font-light leading-relaxed">
+          Expert insights and architectural field guides on Microsoft Intune, Configuration Manager, and modern enterprise automation.
         </p>
       </div>
-    </section>
 
-    <!-- Section 3 -->
-    <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
-      <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">3. Configuring Deployment Rings & Policies</h2>
-      <p class="text-xs sm:text-sm text-slate-300 font-light">Planning your deployment rings is essential. While default Autopatch groups exist, custom targeting groups can be synchronized with SCCM device collections or managed directly via Microsoft Intune.</p>
-      <p class="text-xs sm:text-sm text-slate-300 font-light">Configure the <strong>Windows Quality Update Policy</strong> in the Intune Admin Center by navigating to <em>Devices → Windows updates → Quality updates</em>, enabling security updates, and toggling the hotpatch parameter to apply updates without restarting when available.</p>
-    </section>
+      <!-- On This Page Table of Contents -->
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4">
+        <h3 class="font-sans font-bold text-white text-sm uppercase tracking-wider font-mono border-b border-white/10 pb-2">On this page</h3>
+        <nav class="space-y-2 font-mono text-xs" id="nav-menu">
+          <a href="#section-1" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">1. Prerequisites & Licensing</a>
+          <a href="#section-2" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">2. Hotpatch & Baseline Cycles</a>
+          <a href="#section-3" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">3. Deployment Rings & Policies</a>
+          <a href="#section-4" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">4. Release Schedules</a>
+          <a href="#section-5" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">5. Verification & Testing</a>
+          <a href="#discussion" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">6. Discussion & Q&A</a>
+        </nav>
+      </div>
 
-    <!-- Section 4 -->
-    <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
-      <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">4. Release Schedules & Deferrals</h2>
-      <p class="text-xs sm:text-sm text-slate-300 font-light">Define update behavior by establishing deferral days, deadline windows, and grace periods. Test rings should use 0 deferral days for immediate validation, whereas production rings require broader rollout windows to monitor stability.</p>
-    </section>
+      <!-- Magic UI Promo / Pro Card -->
+      <div class="glass-card-3d p-6 rounded-2xl space-y-4 relative overflow-hidden group border-sky-500/30">
+        <div class="absolute inset-0 bg-gradient-to-br from-sky-500/10 to-indigo-500/10 pointer-events-none"></div>
+        <div class="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-slate-900 border border-white/10 shadow-lg">
+          <img src="/images/Main_Page_Images/hobby_homelab.avif" alt="Enterprise Homelab" width="300" height="168" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="space-y-2 relative">
+          <h4 class="font-sans font-bold text-white text-sm">Enterprise Lab Blueprints</h4>
+          <p class="text-xs text-slate-300 font-light leading-relaxed">
+            Explore advanced virtual machine lab architectures, domain controller security policies, and custom PowerShell scripts.
+          </p>
+        </div>
+        <div class="relative pt-1">
+          <a href="https://www.akashnagapure.in" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-sky-400 hover:text-white transition-colors">
+            <span>Explore Architecture Labs</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
 
-    <!-- Section 5 -->
-    <section id="section-5" class="searchable-block scroll-mt-28 space-y-4 glass-card-3d p-6 sm:p-8 rounded-2xl">
-      <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">5. Verification & Troubleshooting</h2>
-      <p class="text-xs sm:text-sm text-slate-300 font-light">On target devices, verify VBS status via <em>System Information</em> (ensuring it shows as Running and Enabled) and check registry paths under <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Update</code> for <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">AllowRebootlessUpdates = 1</code>.</p>
-    </section>
-
-    <!-- Search Empty State Warning -->
-    <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl">
-      <i data-lucide="search-x" class="w-10 h-10 text-sky-400 mx-auto mb-2"></i>
-      <h3 class="text-white font-bold text-lg">No matching guide content found</h3>
-      <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Licensing", "Hotpatch", "Rings", or "VBS".</p>
     </div>
 
-    <!-- Official References -->
-    <section class="glass-card-3d p-6 rounded-2xl space-y-3">
-      <h3 class="text-base font-bold text-white uppercase font-mono flex items-center gap-2">
-        <i data-lucide="bookmark" class="w-4 h-4 text-sky-400"></i> Official References
-      </h3>
-      <ul class="space-y-2 text-xs text-sky-400 font-mono">
-        <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/prepare/windows-autopatch-prerequisites" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Windows Autopatch Prerequisites</a></li>
-        <li><a href="https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/manage/windows-autopatch-hotpatch-updates" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Managing Hotpatch Updates in Autopatch</a></li>
-      </ul>
-    </section>
-
-    <!-- Read More: Related Articles Section -->
-    <section class="space-y-6 pt-6">
-      <div class="flex items-center gap-3 border-b border-sky-500/20 pb-3">
-        <div class="w-1.5 h-5 bg-sky-400 rounded-full"></div>
-        <h3 class="text-lg font-bold text-white font-mono tracking-wide uppercase">Read Next: Related Articles</h3>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href="/Blogs/intune-autopilot-troubleshooting.html" class="glass-card-3d p-5 rounded-2xl block group hover:border-sky-400 transition-all">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Provisioning</span>
-          <h4 class="text-base font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">Windows Autopilot Zero-Touch Provisioning</h4>
-          <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2">Factory-to-user device provisioning workflows, hardware hash collection strategies, and automated Win32 application wrappers.</p>
-          <div class="mt-4 flex items-center gap-1 text-xs text-sky-400 font-mono font-bold">
-            <span>Read Article</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-          </div>
-        </a>
-
-        <a href="/Blogs/sccm-intune-migration-guardrails.html" class="glass-card-3d p-5 rounded-2xl block group hover:border-sky-400 transition-all">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Migration</span>
-          <h4 class="text-base font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">SCCM to Intune Co-Management Migration</h4>
-          <p class="text-xs text-slate-400 mt-2 font-light line-clamp-2">Step-by-step transition of workload authorities (Client Apps, Software Updates, Endpoint Protection) from on-premises SCCM to cloud-native Intune.</p>
-          <div class="mt-4 flex items-center gap-1 text-xs text-sky-400 font-mono font-bold">
-            <span>Read Article</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- Discussion & Comments Section -->
-    <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-10 space-y-6">
-      <h2 class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-        <i data-lucide="message-square" class="w-5 h-5 text-sky-400"></i> Discussion & Technical Q&A
-      </h2>
-
-      <!-- Comment Form -->
-      <form id="comment-form" class="glass-card-3d p-6 rounded-2xl space-y-4 shadow-2xl" onsubmit="handleCommentSubmit(event)">
-        <h3 class="text-sm font-bold text-white font-mono">Join the Discussion</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input 
-            type="text" 
-            id="author" 
-            placeholder="Your Name *" 
-            required 
-            class="w-full p-3 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-colors text-xs font-mono"
-          />
-          <input 
-            type="email" 
-            id="email" 
-            placeholder="Your Email *" 
-            required 
-            class="w-full p-3 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-colors text-xs font-mono"
-          />
-        </div>
-
-        <div>
-          <textarea 
-            id="content" 
-            rows="3" 
-            placeholder="Write your comment or question about Autopatch & Hotpatching..." 
-            required 
-            class="w-full p-3 bg-slate-900/90 border border-slate-700/60 focus:border-sky-400 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-colors text-xs leading-relaxed resize-none"
-          ></textarea>
-        </div>
-
-        <button 
-          type="submit" 
-          id="submit-btn"
-          class="px-6 py-2.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] transition-all cursor-pointer font-mono"
-        >
-          Post Comment
-        </button>
-      </form>
-
-      <!-- Feed Container -->
-      <div id="comments-container" class="space-y-4">
-        <p class="text-slate-500 text-xs font-mono">Loading discussion...</p>
-      </div>
-    </section>
-
-  </article>
+  </div>
 </main>
 
-<!-- Standardized Global Footer -->
-<footer class="w-full py-8 bg-transparent border-t border-sky-500/10 text-center relative z-10">
-  <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-3 max-w-7xl mx-auto">
-    <div class="flex items-center gap-2.5">
-      <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/40 p-1 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
-        <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
-          <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
-    </div>
-    
-    <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
-      <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <i data-lucide="share-2" class="w-3.5 h-3.5"></i> LinkedIn
-      </a>
-      <span>•</span>
-      <a href="mailto:info@akashnagapure.in" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-        <i data-lucide="mail" class="w-3.5 h-3.5"></i> Email
-      </a>
-      <span>•</span>
-      <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors">Privacy Policy</a>
-      <span>•</span>
-      <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors">Terms of Service</a>
-    </div>
+<!-- Standardized Compact Footer with Icons -->
+<footer class="w-full py-6 sm:py-8 bg-slate-950/90 border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+                <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
+        </div>
+        
+        <!-- Footer Links with Matching Icons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">share</span> LinkedIn
+            </a>
+            <span>•</span>
+            <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">description</span> Terms of Service
+            </a>
+        </div>
 
-    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mt-1">© 2026. All Rights Reserved.</span>
-  </div>
+        <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
+    </div>
 </footer>
 
 <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/80 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110" aria-label="Scroll Back To Top">
@@ -418,6 +491,78 @@
     }
   }
 
+  /* Sleek Line Cursor Trail Logic */
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
   // 2. SCROLL & UI HELPERS
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -461,7 +606,7 @@
 
   // 4. SCROLL SPY
   const navLinks = document.querySelectorAll('#nav-menu a[href^="#"]');
-  const sections = document.querySelectorAll('section.searchable-block[id]');
+  const sections = document.querySelectorAll('section.searchable-block[id], div#discussion');
 
   const navObserverOptions = {
     root: null,
@@ -523,7 +668,7 @@
       if (!response.ok) throw new Error();
 
       if (!comments || comments.length === 0) {
-        container.innerHTML = '<p class="text-slate-500 text-xs font-mono">No comments yet. Be the first to start the discussion!</p>';
+        container.innerHTML = '<p class="text-slate-400 text-xs font-mono">No comments yet. Be the first to start the discussion!</p>';
         return;
       }
 
@@ -543,17 +688,21 @@
       container.innerHTML = topLevelComments.map(comment => renderCommentNode(comment)).join('');
       if (window.lucide) lucide.createIcons();
     } catch (err) {
-      container.innerHTML = '<p class="text-slate-500 text-xs font-mono">Discussion thread ready.</p>';
+      container.innerHTML = '<p class="text-slate-400 text-xs font-mono">Discussion thread ready.</p>';
     }
   }
 
   function renderCommentNode(comment) {
-    const formattedDate = comment.created_at ? new Date(comment.created_at).toLocaleString('en-US', {
-      month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true
-    }) : 'Just now';
+    let dateStr = 'Recent';
+    if (comment.created_at) {
+      const parsed = new Date(comment.created_at);
+      if (!isNaN(parsed.getTime())) {
+        dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+    }
 
     const repliesHTML = comment.replies && comment.replies.length > 0 
-      ? `<div class="mt-3 pl-4 border-l-2 border-sky-500/20 space-y-3">
+      ? `<div class="mt-4 pl-4 sm:pl-6 border-l-2 border-sky-500/20 space-y-4">
           ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
          </div>`
       : '';
@@ -565,36 +714,36 @@
     const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400' : 'text-slate-400 hover:text-rose-400';
 
     return `
-      <div class="p-4 glass-card-3d rounded-2xl border border-slate-800 space-y-2.5" id="comment-${comment.id}">
-        <div class="flex items-center justify-between text-xs text-slate-400">
-          <span class="font-bold text-sky-400 font-mono text-xs">${escapeHTML(comment.author)}</span>
-          <span class="text-slate-500 font-mono text-[10px]">${formattedDate}</span>
+      <div class="glass-card-3d p-5 rounded-2xl border border-slate-800 space-y-3" id="comment-${comment.id}">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-sky-400 font-mono">${escapeHTML(comment.author)}</span>
+          <span class="text-slate-500 font-mono text-[10px]">${dateStr}</span>
         </div>
-        <p class="text-slate-300 text-xs whitespace-pre-line leading-relaxed font-light">${escapeHTML(comment.content)}</p>
+        <p class="text-slate-300 text-xs sm:text-sm whitespace-pre-line leading-relaxed font-light">${escapeHTML(comment.content)}</p>
         <div class="flex items-center space-x-3 text-xs pt-1 font-mono">
-          <button type="button" onclick="handleVote(event, ${comment.id}, 'like')" class="inline-flex items-center space-x-1 ${likeClass} transition-colors bg-slate-900/60 px-2.5 py-1 rounded-lg border border-slate-800 cursor-pointer">
-            <i data-lucide="thumbs-up" class="w-3 h-3"></i>
+          <button type="button" onclick="handleVote(event, ${comment.id}, 'like')" class="inline-flex items-center space-x-1.5 ${likeClass} transition-colors bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-800 cursor-pointer">
+            <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
             <span>${comment.likes || 0}</span>
           </button>
-          <button type="button" onclick="handleVote(event, ${comment.id}, 'dislike')" class="inline-flex items-center space-x-1 ${dislikeClass} transition-colors bg-slate-900/60 px-2.5 py-1 rounded-lg border border-slate-800 cursor-pointer">
-            <i data-lucide="thumbs-down" class="w-3 h-3"></i>
+          <button type="button" onclick="handleVote(event, ${comment.id}, 'dislike')" class="inline-flex items-center space-x-1.5 ${dislikeClass} transition-colors bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-800 cursor-pointer">
+            <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
             <span>${comment.dislikes || 0}</span>
           </button>
-          <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 transition-colors bg-sky-950/40 px-2.5 py-1 rounded-lg border border-sky-500/20 cursor-pointer">
-            <i data-lucide="reply" class="w-3 h-3"></i>
+          <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1.5 text-sky-400 hover:text-sky-300 transition-colors bg-sky-950/40 px-3 py-1.5 rounded-xl border border-sky-500/20 cursor-pointer">
+            <i data-lucide="reply" class="w-3.5 h-3.5"></i>
             <span>Reply</span>
           </button>
         </div>
 
-        <form id="reply-form-${comment.id}" class="hidden space-y-2.5 mt-3 pt-3 border-t border-slate-800 bg-slate-950/60 p-3 rounded-xl" onsubmit="event.preventDefault(); postReply(${comment.id});">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-            <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
-            <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
+        <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-4 pt-4 border-t border-slate-800 bg-slate-950/60 p-4 rounded-xl" onsubmit="event.preventDefault(); postReply(${comment.id});">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
+            <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
           </div>
-          <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 resize-none"></textarea>
+          <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 resize-none"></textarea>
           <div class="flex space-x-2">
-            <button type="submit" class="px-3 py-1 bg-sky-400 hover:bg-sky-300 text-slate-950 text-xs font-bold rounded-lg font-mono cursor-pointer">Submit Reply</button>
-            <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-lg font-mono cursor-pointer">Cancel</button>
+            <button type="submit" class="px-4 py-1.5 bg-sky-400 hover:bg-sky-300 text-slate-950 text-xs font-bold rounded-xl font-mono cursor-pointer shadow-md">Submit Reply</button>
+            <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-xl font-mono cursor-pointer">Cancel</button>
           </div>
         </form>
         ${repliesHTML}
@@ -683,6 +832,7 @@
     if (window.lucide) lucide.createIcons();
     init3DBackground();
     animate3DBackground();
+    initCursorTrail();
     loadComments();
   });
 </script>
