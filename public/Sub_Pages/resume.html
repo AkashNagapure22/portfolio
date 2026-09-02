@@ -286,8 +286,8 @@
     renderTrail();
   }
 
-  // Toast Trigger & Download Function
-  function downloadResumeWithToast(fileUrl, fileName) {
+  // Guaranteed Toast Trigger & Download Function
+  function downloadResume() {
     const container = document.getElementById('toast-container');
     if (container) {
       const toastEl = document.createElement('div');
@@ -314,9 +314,8 @@
     }
 
     const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = fileName;
-    link.target = '_blank';
+    link.href = '/Main_page_data/Akash_Resume.pdf';
+    link.download = 'Akash_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -390,8 +389,8 @@
         </div>
       </div>
       <div class="flex items-center gap-3 shrink-0">
-        <!-- Download PDF Resume Button with functional Toast handler -->
-        <button type="button" onclick="downloadResumeWithToast('/Main_page_data/Akash_Resume.pdf', 'Akash_Resume.pdf')" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all cursor-pointer active:scale-95">
+        <!-- Download PDF Resume Button with guaranteed active JavaScript trigger -->
+        <button type="button" onclick="downloadResume()" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all cursor-pointer active:scale-95">
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Download PDF Resume</span>
         </button>
