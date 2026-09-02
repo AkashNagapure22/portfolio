@@ -1,14 +1,110 @@
 window.SITE_EMAIL = 'info@akashnagapure.in';
-window.SITE_NAV_ITEMS = [
-  { label: 'Home', href: '/', slug: 'home' },
-  { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
-  { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
-  { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
-  { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
-  { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
-  { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
-  { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
-];
+window.SITE_MENU_CONFIG = {
+  home: {
+    title: 'Home',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  },
+  blogs: {
+    title: 'Blogs',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  },
+  projects: {
+    title: 'Projects',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  },
+  skills: {
+    title: 'Skills',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  },
+  reading: {
+    title: 'Reading',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  },
+  coins: {
+    title: 'Coins',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  },
+  homelab: {
+    title: 'HomeLab',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  },
+  resume: {
+    title: 'Resume',
+    nav: [
+      { label: 'Home', href: '/', slug: 'home' },
+      { label: 'Blogs', href: '/Blogs/index.html', slug: 'blogs' },
+      { label: 'Projects', href: '/Sub_Pages/Projects.html', slug: 'projects' },
+      { label: 'Skills', href: '/Sub_Pages/Skills.html', slug: 'skills' },
+      { label: 'Reading', href: '/Sub_Pages/Reading.html', slug: 'reading' },
+      { label: 'Coins', href: '/Sub_Pages/Coins.html', slug: 'coins' },
+      { label: 'HomeLab', href: '/Sub_Pages/HomeLab.html', slug: 'homelab' },
+      { label: 'Resume', href: '/Sub_Pages/resume.html', slug: 'resume' }
+    ]
+  }
+};
 window.SITE_SEARCH_INDEX = [
   { title: 'Windows Autopatch & Hotpatch', url: '/Blogs/Autopatchblog.html', keywords: 'autopatch hotpatch intune windows updates' },
   { title: 'SCCM Application Model Design', url: '/Blogs/sccm-application-model.html', keywords: 'sccm application model detection dependency supersedence packaging' },
@@ -46,10 +142,17 @@ function resolveActiveNav() {
   return 'home';
 }
 
+function getPageHeaderConfig() {
+  const activeSlug = resolveActiveNav();
+  const config = window.SITE_MENU_CONFIG[activeSlug] || window.SITE_MENU_CONFIG.home;
+  const navItems = config.nav.map((item) => ({ ...item }));
+  return { activeSlug, pageLabel: config.title, navItems };
+}
+
 function injectHeader() {
   document.querySelectorAll('[data-site-header]').forEach((node) => {
-    const activeSlug = resolveActiveNav();
-    const navMarkup = window.SITE_NAV_ITEMS.map((item) => `
+    const { activeSlug, pageLabel, navItems } = getPageHeaderConfig();
+    const navMarkup = navItems.map((item) => `
       <a class="nav-link ${activeSlug === item.slug ? 'is-active' : ''}" href="${item.href}">${item.label}</a>
     `).join('');
 
@@ -58,7 +161,7 @@ function injectHeader() {
         <div class="inner">
           <a class="brand" href="/" aria-label="Home">
             <span class="brand-mark"><img src="/Main_page_data/Logo.avif" alt="Akash Nagapure logo" width="42" height="42" /></span>
-            <span class="brand-copy"><strong>Akash Nagapure</strong><span>Fleet Architect</span></span>
+            <span class="brand-copy"><strong>Akash Nagapure</strong><span>${pageLabel}</span></span>
           </a>
           <nav class="main-nav" aria-label="Main navigation">${navMarkup}</nav>
           <div class="site-actions">
@@ -82,7 +185,7 @@ function injectHeader() {
           </div>
         </div>
         <nav class="mobile-nav" aria-label="Mobile navigation">
-          ${window.SITE_NAV_ITEMS.map((item) => `
+          ${navItems.map((item) => `
             <a class="mobile-nav-link ${activeSlug === item.slug ? 'is-active' : ''}" href="${item.href}">${item.label}</a>
           `).join('')}
         </nav>
