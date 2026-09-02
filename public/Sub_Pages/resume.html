@@ -122,12 +122,21 @@
     .holo-glow:hover::after {
       opacity: 0.8;
     }
+    @keyframes slideInUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .toast-animate {
+      animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
 
 <canvas id="three-bg-canvas"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+<div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
 
 <script>
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
@@ -277,6 +286,33 @@
     renderTrail();
   }
 
+  // Toast Trigger Notification Handler
+  function showResumeToast(event) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toastEl = document.createElement('div');
+    toastEl.className = "pointer-events-auto toast-animate flex items-center gap-3 px-4 py-3 bg-slate-900/95 border border-emerald-500/40 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl text-white";
+    toastEl.innerHTML = `
+      <div class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
+        <span class="material-symbols-outlined text-sm font-bold">check</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xs font-semibold text-emerald-400 font-mono">SUCCESS!</span>
+        <span class="text-xs text-slate-200">Resume is downloaded successfully.</span>
+      </div>
+    `;
+
+    container.appendChild(toastEl);
+
+    setTimeout(() => {
+      toastEl.style.opacity = '0';
+      toastEl.style.transform = 'translateY(10px)';
+      toastEl.style.transition = 'all 0.3s ease';
+      setTimeout(() => toastEl.remove(), 300);
+    }, 3500);
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     init3DBackground();
     animate3DBackground();
@@ -345,7 +381,7 @@
         </div>
       </div>
       <div class="flex items-center gap-3 shrink-0">
-        <a href="/Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all">
+        <a href="/Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" onclick="showResumeToast(event)" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all cursor-pointer">
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Download PDF Resume</span>
         </a>
@@ -411,7 +447,7 @@
       <div class="space-y-6">
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-            <h3 class="font-bold text-white text-base">Specialist – Technical Specialist | Hexaware Technologies</h3>
+            <h3 class="font-bold text-white text-base">Architect – Technical Specialist | Hexaware Technologies</h3>
             <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
           </div>
           <p class="font-mono text-xs text-slate-400 italic">Client: Hiscox (EU)</p>
