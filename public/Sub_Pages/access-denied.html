@@ -6,12 +6,10 @@
   <title>403 - Access Restricted | Akash Nagapure</title>
   <meta name="robots" content="noindex, follow" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-  <!-- Core Scripts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -57,6 +55,15 @@
       z-index: 0;
       pointer-events: none;
     }
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
+    }
     .glass-card-3d {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
       backdrop-filter: blur(25px);
@@ -91,36 +98,22 @@
 <body class="selection:bg-rose-500/25 selection:text-rose-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-<!-- Top Header Navigation -->
-<header class="relative z-50 w-full bg-slate-950/90 backdrop-blur-xl border-b border-rose-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-14">
-      <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group">
-        <div class="h-9 w-9 flex items-center justify-center shrink-0">
-          <img src="/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(244,63,94,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-        </div>
-        <div class="flex flex-col">
-          <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-rose-300 transition-colors">
-            Akash Nagapure
-          </span>
-          <span class="font-mono text-[9px] text-rose-400 font-semibold tracking-wider uppercase mt-1">
-            Endpoint Security Core
-          </span>
-        </div>
-      </a>
-
-      <div class="flex items-center">
-        <a href="https://www.akashnagapure.in" class="px-4 py-2 rounded-lg font-sans text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 border border-slate-700/50 hover:border-rose-400 transition-all flex items-center gap-2">
-          <i data-lucide="home" class="w-4 h-4 text-rose-400"></i>
-          <span>Main Hub / Home</span>
-        </a>
+<header class="w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-rose-500/20 py-4 px-6 sm:px-12 relative shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-rose-400 hover:text-white transition-colors">
+      <span class="w-10 h-10 rounded-xl bg-slate-900 border border-rose-500/30 flex items-center justify-center overflow-hidden shadow-md">
+        <img src="/Main_page_data/Logo.avif" alt="Logo" class="w-full h-full object-cover" />
+      </span>
+      <div class="flex flex-col">
+        <strong class="font-sans font-extrabold text-white text-sm sm:text-base tracking-tight">Akash Nagapure</strong>
+        <span class="font-mono text-[10px] text-rose-400 uppercase tracking-widest">Endpoint Security Core</span>
       </div>
-    </div>
+    </a>
   </div>
 </header>
 
-<!-- 403 Restricted Stage -->
 <main class="relative z-10 flex-grow flex items-center justify-center px-4 py-12">
   <div class="glass-card-3d p-8 sm:p-12 rounded-3xl max-w-xl w-full text-center space-y-6 shadow-2xl relative overflow-hidden">
     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 via-amber-500 to-rose-500"></div>
@@ -141,7 +134,7 @@
         <i data-lucide="shield-check" class="w-4 h-4"></i>
         <span>Return to Main Hub</span>
       </a>
-      <a href="mailto:info@akashnagapure.in" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-slate-900/80 border border-slate-700/80 hover:border-rose-400 text-white font-sans font-semibold text-xs rounded-xl hover:bg-slate-800 transition-all">
+      <a href="mailto:akashnagapure@live.com" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-slate-900/80 border border-slate-700/80 hover:border-rose-400 text-white font-sans font-semibold text-xs rounded-xl hover:bg-slate-800 transition-all">
         <i data-lucide="mail" class="w-4 h-4 text-rose-400"></i>
         <span>Request Access</span>
       </a>
@@ -149,34 +142,37 @@
   </div>
 </main>
 
-<!-- Standardized Global Footer -->
-<footer class="w-full py-8 bg-transparent border-t border-rose-500/10 text-center relative z-10">
-  <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-3 max-w-7xl mx-auto">
-    <div class="flex items-center gap-2.5">
-      <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/40 p-1 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
-        <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
-          <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
-    </div>
-    
-    <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
-      <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-rose-400 transition-colors flex items-center gap-1">
-        <i data-lucide="share-2" class="w-3.5 h-3.5"></i> LinkedIn
-      </a>
-      <span>•</span>
-      <a href="mailto:info@akashnagapure.in" class="hover:text-rose-400 transition-colors flex items-center gap-1">
-        <i data-lucide="mail" class="w-3.5 h-3.5"></i> Email
-      </a>
-      <span>•</span>
-      <a href="/Sub_Pages/privacy.html" class="hover:text-rose-400 transition-colors">Privacy Policy</a>
-      <span>•</span>
-      <a href="/Sub_Pages/terms.html" class="hover:text-rose-400 transition-colors">Terms of Service</a>
-    </div>
+<footer class="w-full py-6 sm:py-8 bg-slate-950 border-t border-rose-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+                <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
+        </div>
+        
+        <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-rose-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">share</span> LinkedIn
+            </a>
+            <span>•</span>
+            <a href="mailto:akashnagapure@live.com" class="hover:text-rose-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-rose-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-rose-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">description</span> Terms of Service
+            </a>
+        </div>
 
-    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mt-1">© 2026. All Rights Reserved.</span>
-  </div>
+        <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
+    </div>
 </footer>
 
 <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/80 border border-rose-400/40 text-rose-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(244,63,94,0.3)] transition-all z-50 hover:scale-110" aria-label="Scroll Back To Top">
@@ -280,6 +276,78 @@
     }
   }
 
+  /* Sleek Line Cursor Trail Logic */
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(244, 63, 94, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -298,6 +366,7 @@
     if (window.lucide) lucide.createIcons();
     init3DBackground();
     animate3DBackground();
+    initCursorTrail();
   });
 </script>
 </body>
