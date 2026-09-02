@@ -149,18 +149,73 @@ function injectHeader() {
           </a>
           <nav class="main-nav" aria-label="Main navigation">${navMarkup}</nav>
           <div class="site-actions">
-            <a class="icon-button" href="/" aria-label="Home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg></a>
-            <div class="search-shell">
-              <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"/><path d="M16 16 21 21"/></svg>
-              <input id="site-search" type="search" placeholder="Quick search..." aria-label="Search site" />
-              <div id="site-search-results" class="search-results" aria-live="polite"></div>
-            </div>
+            <button class="icon-button site-search-toggle" type="button" aria-label="Open search">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="6"/><path d="M16 16 21 21"/>
+              </svg>
+            </button>
+            <button class="icon-button mobile-menu-toggle" type="button" aria-label="Open menu">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/>
+              </svg>
+            </button>
           </div>
         </div>
+        <div class="search-panel" aria-live="polite">
+          <div class="search-shell">
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"/><path d="M16 16 21 21"/></svg>
+            <input id="site-search" type="search" placeholder="Quick search..." aria-label="Search site" />
+            <div id="site-search-results" class="search-results" aria-live="polite"></div>
+          </div>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+          ${window.SITE_NAV_ITEMS.map((item) => `
+            <a class="mobile-nav-link ${activeSlug === item.slug ? 'is-active' : ''}" href="${item.href}">${item.label}</a>
+          `).join('')}
+        </nav>
       </header>
     `;
   });
   bindGlobalSearch();
+  bindMenuControls();
+}
+
+function bindMenuControls() {
+  const toggleButtons = document.querySelectorAll('.mobile-menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const searchToggle = document.querySelector('.site-search-toggle');
+  const searchPanel = document.querySelector('.search-panel');
+
+  toggleButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!mobileNav) return;
+      const isOpen = mobileNav.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
+  if (searchToggle && searchPanel) {
+    searchToggle.addEventListener('click', () => {
+      const isOpen = searchPanel.classList.toggle('is-open');
+      searchToggle.setAttribute('aria-expanded', String(isOpen));
+      const input = searchPanel.querySelector('#site-search');
+      if (isOpen && input) {
+        setTimeout(() => input.focus(), 60);
+      }
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    const insideSearch = event.target.closest('.search-panel') || event.target.closest('.site-search-toggle');
+    const insideMenu = event.target.closest('.mobile-nav') || event.target.closest('.mobile-menu-toggle');
+    if (!insideSearch) {
+      searchPanel?.classList.remove('is-open');
+    }
+    if (!insideMenu) {
+      mobileNav?.classList.remove('is-open');
+      document.querySelectorAll('.mobile-menu-toggle').forEach((button) => button.setAttribute('aria-expanded', 'false'));
+    }
+  });
 }
 
 function injectFooter() {
