@@ -51,6 +51,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <!-- Spline Viewer Script -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
@@ -270,6 +271,39 @@
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* Seamless integration styles for Spline viewer */
+    spline-viewer {
+      background: transparent !important;
+      background-color: transparent !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    spline-viewer::part(canvas) {
+      background: transparent !important;
+    }
+    spline-viewer::part(logo),
+    spline-viewer .watermark,
+    spline-viewer div#logo,
+    spline-viewer a[href*="spline.design"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    /* Header scroll-up / scroll-down reveal logic */
+    header.site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      transition: transform 0.3s ease-in-out;
+    }
+    header.site-header.header-hidden {
+      transform: translateY(-100%);
+    }
+
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -292,7 +326,7 @@
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-<header class="w-full fixed top-0 z-50 transition-all duration-300">
+<header id="main-header" class="site-header">
   <div class="w-full overflow-hidden bg-slate-950/60 backdrop-blur-md py-2 px-4 text-[11px] font-mono border-b border-sky-500/10">
     <div class="animate-ticker">
       <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6 text-slate-400">
@@ -1174,9 +1208,10 @@
         
         <div class="lg:col-span-6 flex flex-col sm:flex-row items-center sm:items-start gap-8">
           
-          <div class="relative shrink-0 w-full sm:w-[320px] h-[320px] overflow-hidden bg-transparent rounded-2xl border border-sky-500/20 shadow-2xl flex items-center justify-center">
-            <div class="absolute inset-0 bg-sky-500/5 rounded-full filter blur-3xl pointer-events-none"></div>
-            <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" class="w-full h-full"></spline-viewer>
+          <!-- Spline Interactive 3D Model seamlessly embedded without background boxes or watermark text -->
+          <div class="relative shrink-0 w-full sm:w-[320px] h-[320px] overflow-visible bg-transparent flex items-center justify-center">
+            <div class="absolute inset-0 bg-transparent rounded-full filter blur-3xl pointer-events-none"></div>
+            <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" class="w-full h-full relative z-10 bg-transparent"></spline-viewer>
           </div>
 
           <div class="flex flex-col justify-center w-full">
@@ -1457,6 +1492,33 @@
     renderTrail();
   }
 
+  // Header scroll-up / scroll-down reveal logic (Header hides on scroll down, reveals on scroll up)
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", () => {
+    const header = document.getElementById("main-header");
+    const backToTopBtn = document.getElementById("back-to-top-btn");
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (!header) return;
+
+    if (currentScroll > lastScrollTop && currentScroll > 120) {
+      // Scroll down -> hide header upwards
+      header.classList.add("header-hidden");
+    } else {
+      // Scroll up -> reveal header
+      header.classList.remove("header-hidden");
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
+    if (backToTopBtn) {
+      if (currentScroll > 350) {
+        backToTopBtn.classList.remove("hidden");
+      } else {
+        backToTopBtn.classList.add("hidden");
+      }
+    }
+  }, { passive: true });
+
   function triggerBadgeConfetti(event, badgeName) {
     if (typeof confetti === 'function') {
       const rect = event.currentTarget.getBoundingClientRect();
@@ -1587,16 +1649,6 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  window.addEventListener("scroll", () => {
-    const backToTopBtn = document.getElementById("back-to-top-btn");
-    if (!backToTopBtn) return;
-    if (window.scrollY > 350) {
-      backToTopBtn.classList.remove("hidden");
-    } else {
-      backToTopBtn.classList.add("hidden");
-    }
-  }, { passive: true });
-
   const searchableIndex = [
     { title: "Home", sectionId: "home", keywords: "profile bio architect hero start" },
     { title: "About me", sectionId: "about", keywords: "experience summary background bio fleet" },
@@ -1724,6 +1776,7 @@
     window.location.href = `mailto:info@akashnagapure.in?subject=${encodeURIComponent(subjectVal)}&body=${encodeURIComponent(body)}`;
   }
 
+  // Hide/show watermark inside Spline shadow DOM
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
     init3DBackground();
@@ -1731,6 +1784,15 @@
     initCursorTrail();
     typeWriterEffect();
     startSequence();
+
+    // Aggressive interval to strip watermark/logo element inside shadowRoot
+    const splineObserver = setInterval(() => {
+      const viewer = document.querySelector('spline-viewer');
+      if (viewer && viewer.shadowRoot) {
+        const shadowElements = viewer.shadowRoot.querySelectorAll('#logo, .watermark, a[href*="spline.design"], div[class*="logo"]');
+        shadowElements.forEach(el => el.remove());
+      }
+    }, 500);
   });
 </script>
 </body>
