@@ -6,6 +6,7 @@
   <title>Akash Nagapure | Foodie Portfolio & Culinary Vault</title>
   <meta name="description" content="Explore the foodie portfolio and culinary adventures of Akash Nagapure, featuring restaurant reviews, food bucket lists, and local delicacies." />
   <link rel="canonical" href="https://food.akashnagapure.in/" />
+  <link rel="icon" href="/Main_page_data/Logo.avif" type="image/avif" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://food.akashnagapure.in/" />
@@ -15,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -42,7 +43,7 @@
     }
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 5.5rem;
+      scroll-padding-top: 6rem;
       background-color: #020617;
     }
     body {
@@ -63,18 +64,51 @@
       z-index: 0;
       pointer-events: none;
     }
-    .glass-card {
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
+    }
+    .glass-card-3d {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                  0 0 30px rgba(56, 189, 248, 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    .glass-card:hover {
+    .glass-card-3d:hover {
       border-color: rgba(56, 189, 248, 0.45);
-      box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 35px 60px -15px rgba(56, 189, 248, 0.2);
+    }
+    .blog-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .blog-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
       transform: translateY(-2px);
+    }
+    .blog-card:hover h4 {
+      text-decoration: underline;
+    }
+    .blog-card:hover p {
+      text-decoration: underline;
+    }
+    .nav-link.active-link {
+      color: #38bdf8 !important;
+      border-bottom: 2px solid #38bdf8;
     }
 
     /* 3D Flip Card Styles */
@@ -110,11 +144,6 @@
     .carousel-slide.active { display: block; animation: zoomInFade 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes zoomInFade { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: scale(1); } }
 
-    .nav-link.active-link {
-      color: #38bdf8 !important;
-      border-bottom: 2px solid #38bdf8;
-    }
-
     .review-details {
       max-height: 0;
       overflow: hidden;
@@ -139,6 +168,7 @@
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
 <header class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="flex items-center justify-between px-4 sm:px-8 py-3 max-w-7xl mx-auto gap-4">
@@ -212,28 +242,28 @@
 <main class="relative z-10 pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto space-y-16 md:space-y-24 flex-grow w-full">
 
   <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 scroll-mt-28">
-    <div class="glass-card p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
+    <div class="glass-card-3d p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
       <div class="p-2.5 bg-sky-950/60 rounded-xl text-sky-400 mb-2 border border-sky-500/20">
         <i data-lucide="utensils-crossed" class="w-6 h-6 sm:w-7 sm:h-7"></i>
       </div>
       <div class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">640+</div>
       <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider font-mono mt-1">Dishes Tried</div>
     </div>
-    <div class="glass-card p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
+    <div class="glass-card-3d p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
       <div class="p-2.5 bg-sky-950/60 rounded-xl text-sky-400 mb-2 border border-sky-500/20">
         <i data-lucide="store" class="w-6 h-6 sm:w-7 sm:h-7"></i>
       </div>
       <div class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">185</div>
       <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider font-mono mt-1">Spots Visited</div>
     </div>
-    <div class="glass-card p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
+    <div class="glass-card-3d p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
       <div class="p-2.5 bg-sky-950/60 rounded-xl text-sky-400 mb-2 border border-sky-500/20">
         <i data-lucide="flame" class="w-6 h-6 sm:w-7 sm:h-7"></i>
       </div>
       <div class="font-sans text-2xl sm:text-3xl text-white font-extrabold tracking-tight">92%</div>
       <div class="text-[10px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider font-mono mt-1">Spice Tolerance</div>
     </div>
-    <div class="glass-card p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
+    <div class="glass-card-3d p-5 sm:p-6 flex flex-col items-center justify-center text-center rounded-2xl">
       <div class="p-2.5 bg-sky-950/60 rounded-xl text-sky-400 mb-2 border border-sky-500/20">
         <i data-lucide="award" class="w-6 h-6 sm:w-7 sm:h-7"></i>
       </div>
@@ -245,11 +275,11 @@
   <section id="current-craving" class="overflow-hidden scroll-mt-28">
     <div class="flex items-center gap-4 mb-6 md:mb-8">
       <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">CURRENT CRAVINGS</h2>
+      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">CURRENT <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">CRAVINGS</span></h2>
       <div class="h-px flex-grow bg-white/10"></div>
     </div>
     
-    <div class="relative w-full min-h-[460px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-2xl overflow-hidden glass-card group">
+    <div class="relative w-full min-h-[460px] sm:min-h-[380px] md:aspect-[2.8/1] rounded-2xl overflow-hidden glass-card-3d group">
       <div class="carousel-slide active absolute inset-0">
         <img alt="Mutton Curry" class="w-full h-full object-cover" src="/images/Food_Images/Mutton_Curry.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
         <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-slate-950 via-slate-950/80 md:via-slate-950/60 to-transparent"></div>
@@ -290,14 +320,14 @@
   <section id="todo-list" class="scroll-mt-28">
     <div class="flex items-center gap-4 mb-6 md:mb-8">
       <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">FOOD BUCKET LIST</h2>
+      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">FOOD <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">BUCKET LIST</span></h2>
       <div class="h-px flex-grow bg-white/10"></div>
     </div>
     
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6" id="food-bucket-grid">
       <div class="flip-card aspect-[2/3] cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card overflow-hidden">
+          <div class="flip-card-front glass-card-3d overflow-hidden">
             <img alt="Puneri Misal Pav" class="w-full h-full object-cover" src="/images/Food_Images/misalpav.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent"></div>
             <div class="absolute top-2.5 right-2.5">
@@ -310,7 +340,7 @@
               </div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-between text-center">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-between text-center">
             <div class="space-y-2 mt-2">
               <i data-lucide="utensils" class="w-6 h-6 text-sky-400 mx-auto"></i>
               <h4 class="font-bold text-xs text-white font-sans">Puneri Misal Pav</h4>
@@ -325,7 +355,7 @@
 
       <div class="flip-card aspect-[2/3] cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card overflow-hidden">
+          <div class="flip-card-front glass-card-3d overflow-hidden">
             <img alt="SPDP Vaishali" class="w-full h-full object-cover" src="/images/Food_Images/spdp.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent"></div>
             <div class="absolute top-2.5 right-2.5">
@@ -336,7 +366,7 @@
               <div class="text-[10px] text-sky-400 uppercase font-mono">Click to Flip ↻</div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-between text-center">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-between text-center">
             <div class="space-y-2 mt-2">
               <i data-lucide="utensils" class="w-6 h-6 text-sky-400 mx-auto"></i>
               <h4 class="font-bold text-xs text-white font-sans">SPDP (Dahi Puri)</h4>
@@ -351,7 +381,7 @@
 
       <div class="flip-card aspect-[2/3] cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card overflow-hidden">
+          <div class="flip-card-front glass-card-3d overflow-hidden">
             <img alt="Mango Mastani" class="w-full h-full object-cover" src="/images/Food_Images/mangomastani.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent"></div>
             <div class="absolute top-2.5 right-2.5">
@@ -362,7 +392,7 @@
               <div class="text-[10px] text-sky-400 uppercase font-mono">Click to Flip ↻</div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-between text-center">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-between text-center">
             <div class="space-y-2 mt-2">
               <i data-lucide="coffee" class="w-6 h-6 text-sky-400 mx-auto"></i>
               <h4 class="font-bold text-xs text-white font-sans">Mango Mastani</h4>
@@ -377,7 +407,7 @@
 
       <div class="flip-card aspect-[2/3] cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card overflow-hidden">
+          <div class="flip-card-front glass-card-3d overflow-hidden">
             <img alt="Sambhar Vadi Amravati" class="w-full h-full object-cover" src="/images/Food_Images/sambharwadi.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent"></div>
             <div class="absolute top-2.5 right-2.5">
@@ -388,7 +418,7 @@
               <div class="text-[10px] text-sky-400 uppercase font-mono">Click to Flip ↻</div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-between text-center">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-between text-center">
             <div class="space-y-2 mt-2">
               <i data-lucide="utensils" class="w-6 h-6 text-sky-400 mx-auto"></i>
               <h4 class="font-bold text-xs text-white font-sans">Sambhar Vadi & Gila Vada</h4>
@@ -403,7 +433,7 @@
 
       <div class="flip-card aspect-[2/3] cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card overflow-hidden">
+          <div class="flip-card-front glass-card-3d overflow-hidden">
             <img alt="Aaloo Bonda Rassa" class="w-full h-full object-cover" src="/images/Food_Images/alubonda.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent"></div>
             <div class="absolute top-2.5 right-2.5">
@@ -414,7 +444,7 @@
               <div class="text-[10px] text-sky-400 uppercase font-mono">Click to Flip ↻</div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-between text-center">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-between text-center">
             <div class="space-y-2 mt-2">
               <i data-lucide="utensils" class="w-6 h-6 text-sky-400 mx-auto"></i>
               <h4 class="font-bold text-xs text-white font-sans">Aaloo Bonda Rassa</h4>
@@ -429,7 +459,7 @@
 
       <div class="flip-card aspect-[2/3] cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card overflow-hidden">
+          <div class="flip-card-front glass-card-3d overflow-hidden">
             <img alt="Amravati Gup Chup" class="w-full h-full object-cover" src="/images/Food_Images/Panipuri.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent"></div>
             <div class="absolute top-2.5 right-2.5">
@@ -440,7 +470,7 @@
               <div class="text-[10px] text-sky-400 uppercase font-mono">Click to Flip ↻</div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-between text-center">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-between text-center">
             <div class="space-y-2 mt-2">
               <i data-lucide="utensils" class="w-6 h-6 text-sky-400 mx-auto"></i>
               <h4 class="font-bold text-xs text-white font-sans">Amravati Gup Chup</h4>
@@ -458,14 +488,14 @@
   <section id="favorites" class="scroll-mt-28">
     <div class="flex items-center gap-4 mb-6 md:mb-8">
       <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">HALL OF FAME DISHES</h2>
+      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">HALL OF <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">FAME DISHES</span></h2>
       <div class="h-px flex-grow bg-white/10"></div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="hall-of-fame-grid">
       <div class="flip-card h-36 cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card p-4 flex gap-4 rounded-2xl">
+          <div class="flip-card-front glass-card-3d p-4 flex gap-4 rounded-2xl">
             <div class="w-20 h-28 shrink-0 rounded-xl overflow-hidden relative">
               <img alt="Butter Chicken" class="w-full h-full object-cover" src="/Main_page_data/placeholder.gif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             </div>
@@ -480,7 +510,7 @@
               <div class="mt-2 text-[9px] font-bold text-sky-400 px-2 py-0.5 border border-sky-500/30 rounded w-fit font-mono bg-sky-950/40">PERFECT 10/10</div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-center items-center text-center rounded-2xl border border-sky-500/40">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-center items-center text-center rounded-2xl border border-sky-500/40">
             <i data-lucide="map-pin" class="w-5 h-5 text-sky-400 mb-1"></i>
             <h4 class="font-bold text-xs text-white">Old Delhi Butter Chicken</h4>
             <div class="text-[11px] text-slate-300 font-light mt-1"><strong>Spot:</strong> Moti Mahal Deluxe</div>
@@ -492,7 +522,7 @@
 
       <div class="flip-card h-36 cursor-pointer food-search-item" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front glass-card p-4 flex gap-4 rounded-2xl">
+          <div class="flip-card-front glass-card-3d p-4 flex gap-4 rounded-2xl">
             <div class="w-20 h-28 shrink-0 rounded-xl overflow-hidden relative">
               <img alt="Dum Mutton Biryani" class="w-full h-full object-cover" src="/images/Food_Images/Mutton_Curry.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             </div>
@@ -507,7 +537,7 @@
               <div class="mt-2 text-[9px] font-bold text-sky-400 px-2 py-0.5 border border-sky-500/30 rounded w-fit font-mono bg-sky-950/40">LEGENDARY AROMA</div>
             </div>
           </div>
-          <div class="flip-card-back glass-card p-4 flex flex-col justify-center items-center text-center rounded-2xl border border-sky-500/40">
+          <div class="flip-card-back glass-card-3d p-4 flex flex-col justify-center items-center text-center rounded-2xl border border-sky-500/40">
             <i data-lucide="map-pin" class="w-5 h-5 text-sky-400 mb-1"></i>
             <h4 class="font-bold text-xs text-white">Dum Mutton Biryani</h4>
             <div class="text-[11px] text-slate-300 font-light mt-1"><strong>Spot:</strong> Bawarchi Restaurant</div>
@@ -523,10 +553,10 @@
     <div>
       <div class="flex items-center gap-3 mb-6">
         <i data-lucide="heart" class="w-5 h-5 text-sky-400"></i>
-        <h2 class="font-sans text-xl sm:text-2xl text-white font-extrabold tracking-tight uppercase">GO-TO CUISINES</h2>
+        <h2 class="font-sans text-xl sm:text-2xl text-white font-extrabold tracking-tight uppercase">GO-TO <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">CUISINES</span></h2>
       </div>
       <div class="space-y-4">
-        <div class="glass-card flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
+        <div class="glass-card-3d flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
           <div class="w-14 h-14 rounded-2xl bg-sky-950/60 border border-sky-500/30 flex items-center justify-center shrink-0 text-sky-400">
             <i data-lucide="soup" class="w-7 h-7"></i>
           </div>
@@ -535,7 +565,7 @@
             <p class="text-slate-300 text-xs sm:text-sm font-light">Traditional sweet flatbread stuffed with spiced chana dal, jaggery & topped with melted pure ghee.</p>
           </div>
         </div>
-        <div class="glass-card flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
+        <div class="glass-card-3d flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
           <div class="w-14 h-14 rounded-2xl bg-sky-950/60 border border-sky-500/30 flex items-center justify-center shrink-0 text-sky-400">
             <i data-lucide="utensils" class="w-7 h-7"></i>
           </div>
@@ -550,10 +580,10 @@
     <div>
       <div class="flex items-center gap-3 mb-6">
         <i data-lucide="sparkles" class="w-5 h-5 text-sky-400"></i>
-        <h2 class="font-sans text-xl sm:text-2xl text-white font-extrabold tracking-tight uppercase">STREET FOOD LEGENDS</h2>
+        <h2 class="font-sans text-xl sm:text-2xl text-white font-extrabold tracking-tight uppercase">STREET FOOD <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">LEGENDS</span></h2>
       </div>
       <div class="space-y-4">
-        <div class="glass-card flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
+        <div class="glass-card-3d flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
           <div class="w-14 h-14 rounded-2xl bg-sky-950/60 border border-sky-500/30 flex items-center justify-center shrink-0 text-sky-400">
             <i data-lucide="pizza" class="w-7 h-7"></i>
           </div>
@@ -562,7 +592,7 @@
             <p class="text-slate-300 text-xs sm:text-sm font-light">Golden fried pastry filled with spiced potato-pea mixture, served with tamarind chutney.</p>
           </div>
         </div>
-        <div class="glass-card flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
+        <div class="glass-card-3d flex p-5 gap-4 sm:gap-6 rounded-2xl items-center food-search-item">
           <div class="w-14 h-14 rounded-2xl bg-sky-950/60 border border-sky-500/30 flex items-center justify-center shrink-0 text-sky-400">
             <i data-lucide="cookie" class="w-7 h-7"></i>
           </div>
@@ -578,12 +608,12 @@
   <section id="reviews" class="scroll-mt-28">
     <div class="flex items-center gap-4 mb-6 md:mb-8">
       <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">CRITIC REVIEWS</h2>
+      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">CRITIC <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">REVIEWS</span></h2>
       <div class="h-px flex-grow bg-white/10"></div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="glass-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between food-search-item">
+      <div class="glass-card-3d p-6 sm:p-7 rounded-2xl flex flex-col justify-between food-search-item">
         <div>
           <div class="flex justify-between items-start mb-3">
             <h3 class="font-sans text-lg sm:text-xl text-white font-bold">Chicken Dum Biryani</h3>
@@ -635,7 +665,7 @@
         </button>
       </div>
 
-      <div class="glass-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between food-search-item">
+      <div class="glass-card-3d p-6 sm:p-7 rounded-2xl flex flex-col justify-between food-search-item">
         <div>
           <div class="flex justify-between items-start mb-3">
             <h3 class="font-sans text-lg sm:text-xl text-white font-bold">Saoji Mutton Curry</h3>
@@ -696,11 +726,11 @@
   <section id="discussion" class="scroll-mt-28 border-t border-sky-500/20 pt-12 space-y-8">
     <div class="flex items-center gap-4">
       <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">DISCUSSION & FOODIE Q&A</h2>
+      <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">DISCUSSION & <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">FOODIE Q&A</span></h2>
       <div class="h-px flex-grow bg-white/10"></div>
     </div>
 
-    <form id="comment-form" class="glass-card p-6 sm:p-7 rounded-2xl border border-sky-500/20 space-y-4">
+    <form id="comment-form" class="glass-card-3d p-6 sm:p-7 rounded-2xl border border-sky-500/20 space-y-4">
       <h3 class="text-base font-bold text-white font-mono flex items-center gap-2">
         <i data-lucide="message-square-plus" class="w-4 h-4 text-sky-400"></i> Join the Conversation
       </h3>
@@ -1045,7 +1075,7 @@
     const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400' : 'text-slate-400 hover:text-rose-400';
 
     return `
-      <div class="p-4 glass-card rounded-2xl border border-slate-800 space-y-2.5" id="comment-${comment.id}">
+      <div class="p-4 glass-card-3d rounded-2xl border border-slate-800 space-y-2.5" id="comment-${comment.id}">
         <div class="flex items-center justify-between text-xs text-slate-400">
           <span class="font-bold text-sky-400 font-mono text-xs">${escapeHTML(comment.author)}</span>
           <span class="text-slate-500 font-mono text-[10px]">${formattedDate}</span>
