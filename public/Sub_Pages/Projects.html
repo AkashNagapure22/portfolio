@@ -88,6 +88,12 @@
       transform: translateY(-4px);
       box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.2);
     }
+    .blog-card:hover h2 {
+      text-decoration: underline;
+    }
+    .blog-card:hover p {
+      text-decoration: underline;
+    }
     .filter-pill {
       background: rgba(15, 23, 42, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -136,7 +142,7 @@
 
   <div class="space-y-4 pt-4">
     <h1 class="font-sans text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
-      Architecture Blog
+      Architecture <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">Blog</span>
     </h1>
     <p class="font-sans text-slate-400 text-base sm:text-lg font-light">
       Latest field notes, guides, and updates from Akash Nagapure.
@@ -164,9 +170,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/AutopatchA-Z.avif" alt="Microsoft Autopatch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Autopatch</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors">Microsoft Autopatch: The A-to-Z Enterprise Deployment</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Autopatch</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 14, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Microsoft Autopatch: The A-to-Z Enterprise Deployment</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Zero-touch update rings, automated driver validation, and real-time compliance tracking for enterprise fleets.</p>
         </div>
       </div>
@@ -180,9 +189,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Autopilotblog.avif" alt="Windows Autopilot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Provisioning</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors">Windows Autopilot Zero-Touch Provisioning</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Provisioning</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 10, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Windows Autopilot Zero-Touch Provisioning</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Factory-to-user device provisioning workflows and hardware hash collection strategies.</p>
         </div>
       </div>
@@ -196,9 +208,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/AutopatchA-Z.avif" alt="Win32 Packaging" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Packaging</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors">Intune Win32 Packaging & Deployment</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Packaging</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 25, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Intune Win32 Packaging & Deployment</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Make install commands, strict detection rules, and automated recovery scripts agree.</p>
         </div>
       </div>
@@ -212,9 +227,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Autopilotblog.avif" alt="Deployment Rings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Rollout</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors">Advanced Intune Deployment Rings</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400">Intune / Rollout</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 21, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Advanced Intune Deployment Rings</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Establish progressive release channels governed by calculated risk and evidence.</p>
         </div>
       </div>
@@ -228,9 +246,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Comanagementblog.avif" alt="Co-Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Migration</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">SCCM to Intune Co-Management Migration</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Migration</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 16, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM to Intune Co-Management Migration</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Step-by-step transition of workload authorities without service interruption.</p>
         </div>
       </div>
@@ -244,9 +265,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Comanagementblog.avif" alt="Application Model" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Architecture</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">SCCM Application Model Design</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Architecture</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 14, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Application Model Design</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Master detection methods, dependencies, and supersedence chains.</p>
         </div>
       </div>
@@ -260,9 +284,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Comanagementblog.avif" alt="Content Distribution" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Infrastructure</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">SCCM Content Distribution</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Infrastructure</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 19, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Content Distribution</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Boundaries, distribution point health, and automated failure recovery.</p>
         </div>
       </div>
@@ -276,9 +303,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Comanagementblog.avif" alt="Hardware Inventory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Telemetry</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">SCCM Hardware Inventory Optimization</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Telemetry</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 18, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Hardware Inventory Optimization</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Collect decision-ready hardware signals efficiently without overloading client performance.</p>
         </div>
       </div>
@@ -292,9 +322,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Comanagementblog.avif" alt="Client Health" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Operations</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">SCCM Client Health & Remediation</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Operations</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 11, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM Client Health & Remediation</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Measure, monitor, and repair management signals progressively across endpoints.</p>
         </div>
       </div>
@@ -308,9 +341,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Comanagementblog.avif" alt="OSD Engineering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Imaging</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">SCCM OSD Engineering & Imaging</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-indigo-400">SCCM / Imaging</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 08, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">SCCM OSD Engineering & Imaging</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Build robust imaging sequences with explicit validation checkpoints.</p>
         </div>
       </div>
@@ -324,9 +360,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="DesktopInfo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / VDI</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-teal-300 transition-colors">Automated DesktopInfo Telemetry</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / VDI</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 04, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Automated DesktopInfo Telemetry</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Advanced PowerShell initialization scripts for enterprise VDI fleets.</p>
         </div>
       </div>
@@ -340,9 +379,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Compliance Automation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Drift</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-teal-300 transition-colors">PowerShell Compliance Automation</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Drift</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 02, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Compliance Automation</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Close endpoint configuration drift automatically using safe repair tasks.</p>
         </div>
       </div>
@@ -356,9 +398,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Intune Reporting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Graph</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-teal-300 transition-colors">PowerShell Intune Reporting</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Graph</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 10, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Intune Reporting</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Build focused Microsoft Graph reports tailored for operators.</p>
         </div>
       </div>
@@ -372,9 +417,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Remediation Scripts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Maintenance</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-teal-300 transition-colors">PowerShell Remediation Scripts</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Maintenance</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 15, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Remediation Scripts</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Design detection and repair pairs that remain completely safe to rerun.</p>
         </div>
       </div>
@@ -388,9 +436,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Graph Authentication" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Security</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-teal-300 transition-colors">Graph Authentication Security</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Security</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 12, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Graph Authentication Security</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Leverage least-privilege identity applications and predictable token management.</p>
         </div>
       </div>
@@ -404,9 +455,12 @@
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
           <img src="https://www.akashnagapure.in/images/Blogs_Images/Gpoblog.avif" alt="GPO Migration" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
         </div>
-        <div class="p-6 space-y-3">
-          <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400">Active Directory / GPO</span>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-amber-300 transition-colors">Migrating Legacy GPOs to Intune</h2>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400">Active Directory / GPO</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 08, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Migrating Legacy GPOs to Intune</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Utilize Policy Analytics to map on-premises Group Policies directly to cloud settings.</p>
         </div>
       </div>
@@ -421,7 +475,7 @@
 <section id="discussion" class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28 border-t border-white/10 pt-14 pb-20 space-y-8 w-full relative z-10">
   <div class="flex items-center gap-4">
     <div class="w-1.5 h-6 bg-gradient-to-b from-sky-400 to-sky-600 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.6)]"></div>
-    <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">TECHNICAL DISCUSSION & Q&A</h2>
+    <h2 class="font-sans text-xl sm:text-2xl text-white tracking-tight font-extrabold uppercase">TECHNICAL DISCUSSION & <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">Q&A</span></h2>
     <div class="h-px flex-grow bg-white/10"></div>
   </div>
 
@@ -677,7 +731,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ author, email, content, article_id: 'projects' })
       });
-      document.getElementById('author').value = '&#8203;';
+      document.getElementById('author').value = '';
       document.getElementById('email').value = '';
       document.getElementById('content').value = '';
       await loadComments();
