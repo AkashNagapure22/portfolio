@@ -1,3 +1,16 @@
+Skip to content
+Deployments
+3YUPPaVYT
+Source
+Deployment
+Logs
+Resources
+Source
+Open Graph
+Source
+Output
+vote-manager.js
+
 const VOTE_MANAGER = {
   // Get storage key for votes based on article and user ID
   getVoteKey(articleId) {
@@ -40,10 +53,4 @@ const VOTE_MANAGER = {
   // Clear all votes for an article (optional utility for testing/resetting)
   clearAllVotes(articleId) {
     localStorage.removeItem(this.getVoteKey(articleId));
-  }
-};
-
-// Add a check to handle the case when the user ID is not found in local storage
-if (VOTE_MANAGER.getUserId() === 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)) {
-  VOTE_MANAGER.clearAllVotes();
-}
+Deployments
