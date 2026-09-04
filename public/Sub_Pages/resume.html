@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html class="dark scroll-smooth" lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- Primary SEO Meta Tags -->
   <title>Akash Nagapure | Curriculum Vitae & Professional Resume</title>
   <meta name="title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect Resume">
   <meta name="description" content="Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience." />
-  <link rel="canonical" href="https://www.akashnagapure.in/Sub_Pages/resume.html" />
+  <link rel="canonical" href="https://resume.akashnagapure.in/" />
+  <link rel="icon" href="/Main_page_data/Logo.avif" type="image/avif" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-  <!-- Core Styling and Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -67,6 +66,15 @@
       z-index: -10;
       pointer-events: none;
     }
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
+    }
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -114,11 +122,22 @@
     .holo-glow:hover::after {
       opacity: 0.8;
     }
+    @keyframes slideInUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .toast-animate {
+      animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
 
 <canvas id="three-bg-canvas"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+<div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
+
 <script>
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
@@ -195,9 +214,116 @@
     }
   }
 
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
+  // Guaranteed Toast Trigger & Download Function
+  function downloadResume() {
+    const container = document.getElementById('toast-container');
+    if (container) {
+      const toastEl = document.createElement('div');
+      toastEl.className = "pointer-events-auto toast-animate flex items-center gap-3 px-4 py-3 bg-slate-900/95 border border-emerald-500/50 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.9)] backdrop-blur-xl text-white";
+      toastEl.innerHTML = `
+        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-[11px] font-bold text-emerald-400 font-mono tracking-wider">SUCCESS!</span>
+          <span class="text-xs text-slate-200">Success! Resume is Downloaded successfully</span>
+        </div>
+      `;
+      container.appendChild(toastEl);
+
+      setTimeout(() => {
+        toastEl.style.opacity = '0';
+        toastEl.style.transform = 'translateY(10px)';
+        toastEl.style.transition = 'all 0.3s ease';
+        setTimeout(() => toastEl.remove(), 300);
+      }, 3500);
+    }
+
+    const link = document.createElement('a');
+    link.href = '/Main_page_data/Akash_Resume.pdf';
+    link.download = 'Akash_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     init3DBackground();
     animate3DBackground();
+    initCursorTrail();
   });
 </script>
 
@@ -205,9 +331,9 @@
 <nav id="portfolio-navbar" class="relative w-full z-50 transition-all duration-300 bg-slate-950/90 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-12">
-      <a href="../index.html" class="flex items-center space-x-3 group cursor-pointer">
+      <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group cursor-pointer">
         <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
-          <img src="../Main_page_data/Logo.avif" alt="Akash Nagapure Logo" width="40" height="40" loading="eager" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';" />
+          <img src="/Main_page_data/Logo.avif" alt="Akash Nagapure Logo" width="40" height="40" loading="eager" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
         </div>
         <div class="flex flex-col">
           <span class="font-sans font-bold text-lg text-white tracking-tight leading-none drop-shadow">
@@ -219,10 +345,12 @@
         </div>
       </a>
 
-      <!-- Clean Main Menu (Home Only) -->
-      <div class="hidden lg:flex items-center space-x-1">
-        <a href="../index.html" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
+      <div class="hidden lg:flex items-center space-x-2">
+        <a href="https://www.akashnagapure.in" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
           <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
+        </a>
+        <a href="https://blogs.akashnagapure.in" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">article</span> Blogs
         </a>
       </div>
 
@@ -235,8 +363,11 @@
   </div>
 
   <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
-    <a href="../index.html" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+    <a href="https://www.akashnagapure.in" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
       <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
+    </a>
+    <a href="https://blogs.akashnagapure.in" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">article</span> Blogs
     </a>
   </div>
 </nav>
@@ -245,12 +376,11 @@
 <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-4xl mx-auto space-y-8">
     
-    <!-- Resume Top Action Bar with Photo -->
     <div class="flex flex-col sm:flex-row items-center justify-between gap-6 glass-card-3d p-6 rounded-2xl holo-glow">
       <div class="flex items-center space-x-5 text-center sm:text-left">
         <div class="relative shrink-0">
           <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-40 blur-sm"></div>
-          <img src="../Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="85" height="85" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner grayscale hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null; this.src='../public/Main_page_data/placeholder.gif';" />
+          <img src="/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="85" height="85" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner grayscale hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
         </div>
         <div>
           <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
@@ -258,14 +388,13 @@
         </div>
       </div>
       <div class="flex items-center gap-3 shrink-0">
-        <a href="../Main_page_data/Akash_Resume.pdf" download="Akash_Resume.pdf" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all">
+        <button type="button" onclick="downloadResume()" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all cursor-pointer active:scale-95">
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Download PDF Resume</span>
-        </a>
+        </button>
       </div>
     </div>
 
-    <!-- Contact details card -->
     <div class="glass-card-3d p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
       <div class="flex items-center space-x-2 text-slate-300">
         <i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>
@@ -281,7 +410,6 @@
       </div>
     </div>
 
-    <!-- Professional Summary -->
     <div class="glass-card-3d p-7 rounded-2xl space-y-3">
       <div class="flex items-center space-x-3">
         <i data-lucide="user-check" class="w-5 h-5 text-sky-400"></i>
@@ -292,7 +420,6 @@
       </p>
     </div>
 
-    <!-- Core Competencies -->
     <div class="glass-card-3d p-7 rounded-2xl space-y-4">
       <div class="flex items-center space-x-3">
         <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
@@ -318,7 +445,6 @@
       </div>
     </div>
 
-    <!-- Work Experience -->
     <div class="glass-card-3d p-7 rounded-2xl space-y-6">
       <div class="flex items-center space-x-3">
         <i data-lucide="briefcase" class="w-5 h-5 text-sky-400"></i>
@@ -328,7 +454,7 @@
       <div class="space-y-6">
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-            <h3 class="font-bold text-white text-base">Specialist – Technical Specialist | Hexaware Technologies</h3>
+            <h3 class="font-bold text-white text-base">Architect – Technical Specialist | Hexaware Technologies</h3>
             <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
           </div>
           <p class="font-mono text-xs text-slate-400 italic">Client: Hiscox (EU)</p>
@@ -398,7 +524,6 @@
       </div>
     </div>
 
-    <!-- Certifications & Academic Profile Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
@@ -425,7 +550,6 @@
       </div>
     </div>
 
-    <!-- Hobbies & Personal Details -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
@@ -451,7 +575,6 @@
       </div>
     </div>
 
-    <!-- Declaration -->
     <div class="glass-card-3d p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-4">
       <p class="italic">I hereby declare that the information provided above is true to the best of my knowledge and belief.</p>
       <div class="text-right shrink-0 font-mono">
@@ -463,7 +586,6 @@
   </div>
 </main>
 
-<!-- Standardized Compact Footer with Icons -->
 <footer class="w-full py-6 sm:py-8 bg-surface-dim border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
     <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
         <div class="flex items-center gap-2.5">
@@ -475,7 +597,6 @@
             <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
         </div>
         
-        <!-- Footer Links with Matching Icons -->
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
             <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
@@ -485,11 +606,11 @@
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
-            <a href="privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
             </a>
             <span>•</span>
-            <a href="terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">description</span> Terms of Service
             </a>
         </div>
