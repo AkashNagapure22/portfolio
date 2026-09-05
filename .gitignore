@@ -59,16 +59,11 @@ public/Main_page_data/*
 !public/Main_page_data/Akash_Resume.pdf
 !public/Main_page_data/Logo.avif
 !public/Main_page_data/placeholder.gif
-!404.html
-!access-denied.html
 !data
 !index.html
-!maintenance.html
 !metadata.json
 !package.json
-!privacy.html
 !README.md
-!terms.html
 !tsconfig.json
 !vercel.json
 !vite.config.ts
@@ -81,4 +76,3 @@ api/*
 !.gitignore
 !.nojekyll
 !.github/
-!site.webmanifest
