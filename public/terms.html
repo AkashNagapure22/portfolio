@@ -258,7 +258,7 @@
       resizeTimer = setTimeout(() => {
         if (!camera || !renderer) return;
         camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+        camera.updateProjectionMetrics();
         renderer.setSize(window.innerWidth, window.innerHeight);
       }, 150);
     }, { passive: true });
