@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akash Nagapure | Release Version Control & Changelog</title>
+<meta name="description" content="Official version control ledger tracking all minor and major releases, architectural adjustments, and feature rollouts for Akash Nagapure's portfolio." />
+<link rel="canonical" href="https://www.akashnagapure.in/Sub_Pages/changelog.html" />
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#38bdf8",
+                    "primary-glow": "#0ea5e9",
+                    secondary: "#6366f1",
+                    "surface-container": "#0f172a",
+                    background: "#020617",
+                    "surface-dim": "#0d0b12"
+                },
+                fontFamily: {
+                    sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+                    mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
+                    "headline-md": ["Geist", "sans-serif"]
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    html { scroll-padding-top: 110px; scroll-behavior: smooth; }
+    
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+
+    #cursor-trail-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 99999;
+        pointer-events: none;
+    }
+
+    #three-bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -10;
+        pointer-events: none;
+    }
+
+    /* 3D Glassmorphism Cards */
+    .glass-card-3d {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(56, 189, 248, 0.18);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
+                    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                    0 0 30px rgba(56, 189, 248, 0.05);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .glass-card-3d:hover {
+        border-color: rgba(56, 189, 248, 0.55);
+        box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
+                    0 0 50px rgba(56, 189, 248, 0.15);
+        transform: translateY(-3px);
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+</style>
+</head>
+<body class="bg-background text-slate-100 overflow-x-hidden font-sans selection:bg-sky-500/20 selection:text-sky-300 min-h-screen flex flex-col justify-between">
+
+<canvas id="three-bg-canvas"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+<script>
+  let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
+  let mouseX = 0, mouseY = 0;
+  let targetX = 0, targetY = 0;
+
+  function init3DBackground() {
+    const canvas = document.getElementById('three-bg-canvas');
+    if (!canvas) return;
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 50;
+
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const count = 3500;
+    particlesGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+
+    for (let i = 0; i < count * 3; i += 3) {
+      positions[i] = (Math.random() - 0.5) * 500;
+      positions[i + 1] = (Math.random() - 0.5) * 600;
+      positions[i + 2] = (Math.random() - 0.5) * 300;
+    }
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      color: 0x38bdf8,
+      size: 0.8,
+      transparent: true,
+      opacity: 0.9,
+      blending: THREE.AdditiveBlending
+    });
+
+    particlesMesh = new THREE.Points(particlesGeo, particleMat);
+    scene.add(particlesMesh);
+
+    gridHelper = new THREE.GridHelper(600, 60, 0x0284c7, 0x0f172a);
+    gridHelper.position.y = -100;
+    gridHelper.material.transparent = true;
+    gridHelper.material.opacity = 0.25;
+    scene.add(gridHelper);
+
+    document.addEventListener('mousemove', (event) => {
+      mouseX = (event.clientX - window.innerWidth / 2) * 0.0005;
+      mouseY = (event.clientY - window.innerHeight / 2) * 0.0005;
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  }
+
+  let clock = new THREE.Clock();
+  function animate3DBackground() {
+    requestAnimationFrame(animate3DBackground);
+    const elapsedTime = clock.getElapsedTime();
+    targetX += (mouseX - targetX) * 0.05;
+    targetY += (mouseY - targetY) * 0.05;
+
+    if(particlesMesh) {
+      particlesMesh.rotation.y = elapsedTime * 0.02 + targetX;
+      particlesMesh.rotation.x = elapsedTime * 0.01 + targetY;
+    }
+    if(gridHelper) gridHelper.rotation.y = elapsedTime * 0.005;
+    if (renderer && scene && camera) renderer.render(scene, camera);
+  }
+
+  class Point {
+    constructor(x, y) {
+      this.x = x; this.y = y; this.dx = 0; this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening; this.dx *= 0.5; this.x += this.dx;
+      this.dy += (y - this.y) * dampening; this.dy *= 0.5; this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+    const points = [];
+    for (let i = 0; i < 20; i++) { points.push(new Point(mouse.x, mouse.y)); }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      points[0].update(mouse.x, mouse.y, 0.25);
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.stroke();
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    init3DBackground();
+    animate3DBackground();
+    initCursorTrail();
+  });
+</script>
+
+<header>
+<nav class="relative w-full z-50 transition-all duration-300 bg-slate-950/90 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-12">
+      <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group cursor-pointer">
+        <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
+          <img src="/Main_page_data/Logo.avif" alt="Akash Nagapure Logo" width="40" height="40" loading="eager" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-sans font-bold text-lg text-white tracking-tight leading-none drop-shadow">
+            Akash Nagapure
+          </span>
+          <span class="font-mono text-[10px] text-sky-400 font-medium tracking-widest mt-1">
+            Version Control & Changelog
+          </span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center space-x-2">
+        <a href="https://www.akashnagapure.in" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
+        </a>
+        <a href="https://blogs.akashnagapure.in" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">article</span> Blogs
+        </a>
+      </div>
+
+      <div class="flex items-center lg:hidden">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
+    <a href="https://www.akashnagapure.in" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
+    </a>
+    <a href="https://blogs.akashnagapure.in" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">article</span> Blogs
+    </a>
+  </div>
+</nav>
+</header>
+
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="p-3 bg-sky-400 text-slate-950 hover:bg-sky-300 font-bold rounded-full shadow-2xl transition-all flex items-center justify-center cursor-pointer" aria-label="Scroll to top">
+        <span class="material-symbols-outlined text-xl">arrow_upward</span>
+    </button>
+</div>
+
+<main class="content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10 flex-grow w-full">
+
+    <div class="space-y-3 text-center sm:text-left border-b border-white/10 pb-6 animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm">history</span> System Release Pipeline
+        </div>
+        <h1 class="font-headline-md text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Version Control Ledger</h1>
+        <p class="text-slate-400 font-mono text-xs max-w-2xl">Complete chronological tracking of major platform upgrades, minor code enhancements, and emergency routing patches.</p>
+    </div>
+
+    <div class="glass-card-3d p-5 rounded-2xl flex flex-wrap items-center justify-between gap-4 animate-fade-in-up">
+        <div class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
+            <span class="material-symbols-outlined text-base">filter_list</span> Release Filters:
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+            <select id="filter-year" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
+                <option value="all">All Years (2026)</option>
+                <option value="2026">2026</option>
+            </select>
+            <select id="filter-month" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
+                <option value="all">All Months</option>
+                <option value="september">September</option>
+                <option value="august">August</option>
+                <option value="july">July</option>
+                <option value="june">June</option>
+            </select>
+            <select id="filter-type" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
+                <option value="all">All Release Types</option>
+                <option value="major">Major Release</option>
+                <option value="minor">Minor Release</option>
+                <option value="patch">Small Patch</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="space-y-8" id="releases-container">
+
+        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-400 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
+            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-mono font-bold text-white">v3.0.0</span>
+                    <h2 class="text-white font-headline-md text-xl font-bold">Subdomain Architecture & Multi-Page Static Restructuring</h2>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">
+                    <span class="material-symbols-outlined text-sm">calendar_today</span> September 5, 2026
+                </div>
+            </div>
+            <p class="text-xs text-slate-300 font-mono leading-relaxed">Major system refactoring to resolve production edge routing, decoupling subdomains into clean independent entry points and migrating subpages for direct public asset delivery.</p>
+            
+            <details class="group bg-slate-900/50 border border-white/10 rounded-xl p-3 cursor-pointer">
+                <summary class="flex items-center justify-between text-xs font-mono text-sky-400 font-bold uppercase tracking-wider select-none">
+                    <span>View Architectural Improvements & Fixes</span>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
+                </summary>
+                <div class="mt-3 pt-3 border-t border-white/10 space-y-2">
+                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
+                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Standardized Vercel Edge routing rewrites across all 10 specialized subdomains (Skills, Homelab, Games, Coins, Food, Reading, Resume, Courses, Puzzle, Projects).</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Moved static subpages into the `public/Sub_Pages/` deployment directory to ensure proper static file inclusion during builds.</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Published unified multi-host XML sitemap (`sitemap.xml`) indexing all subdomain routes for robust search engine indexing.</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong class="text-white">Bug Fix:</strong> Resolved 404 routing errors where subdomains fallback to the root `index.html`.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-purple-400 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
+            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-purple-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-mono font-bold text-white">v2.0.0</span>
+                    <h2 class="text-white font-headline-md text-xl font-bold">Domain Acquisition & Dynamic Finance Automation</h2>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-purple-500/30 text-purple-400 font-mono text-xs">
+                    <span class="material-symbols-outlined text-sm">calendar_today</span> August 15, 2026
+                </div>
+            </div>
+            <p class="text-xs text-slate-300 font-mono leading-relaxed">Infra milestone establishing brand independence and automated tracking logic for personal financial workflows.</p>
+            
+            <details class="group bg-slate-900/50 border border-white/10 rounded-xl p-3 cursor-pointer">
+                <summary class="flex items-center justify-between text-xs font-mono text-purple-400 font-bold uppercase tracking-wider select-none">
+                    <span>View Features & Improvements</span>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
+                </summary>
+                <div class="mt-3 pt-3 border-t border-white/10 space-y-2">
+                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
+                        <li class="flex items-start gap-2"><span class="text-purple-400 font-bold">▹</span> Purchased and mapped custom domain name `akashnagapure.in` through GoDaddy with direct Vercel DNS integration.</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400 font-bold">▹</span> Developed dynamic personal expense tracker inside Google Sheets utilizing custom Apps Script formulas for automated self-transfer balancing.</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400 font-bold">▹</span> Implemented coin collection inventory structure tracking specific attributes (denomination, mint, metal type).</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong class="text-white">Bug Fix:</strong> Resolved multi-bank account balance desynchronization inside automated Apps Script routines.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-500/50 animate-fade-in-up" data-year="2026" data-month="july" data-type="minor">
+            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-700 text-slate-200 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Minor Release</div>
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-mono font-bold text-white">v1.5.0</span>
+                    <h2 class="text-white font-headline-md text-xl font-bold">Portfolio Layout Refinement & Reading Progress</h2>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 font-mono text-xs">
+                    <span class="material-symbols-outlined text-sm">calendar_today</span> July 22, 2026
+                </div>
+            </div>
+            <p class="text-xs text-slate-300 font-mono leading-relaxed">Refined presentation layouts and added reading tracker tracking metrics for professional literature like Corporate Chanakya.</p>
+            
+            <details class="group bg-slate-900/50 border border-white/10 rounded-xl p-3 cursor-pointer">
+                <summary class="flex items-center justify-between text-xs font-mono text-slate-300 font-bold uppercase tracking-wider select-none">
+                    <span>View UI & Feature Updates</span>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
+                </summary>
+                <div class="mt-3 pt-3 border-t border-white/10 space-y-2">
+                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
+                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Updated blog and article entry presentations to compact tile layouts instead of wide row blocks.</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Configured reading metrics carousel tracking page progression and tech strategy interests.</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong class="text-white">Bug Fix:</strong> Fixed mobile viewport overflow issues on wide row cards.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-slate-500 animate-fade-in-up" data-year="2026" data-month="june" data-type="patch">
+            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-800 text-slate-400 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Small Patch</div>
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                <div class="flex items-center gap-3">
+                    <span class="text-xl font-mono font-bold text-white">v1.1.2</span>
+                    <h2 class="text-white font-headline-md text-lg font-bold">Intune DesktopInfo Script & Environment Setup</h2>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-mono text-xs">
+                    <span class="material-symbols-outlined text-sm">calendar_today</span> June 10, 2026
+                </div>
+            </div>
+            <p class="text-xs text-slate-300 font-mono leading-relaxed">Automated enterprise endpoint delivery package configurations.</p>
+            
+            <details class="group bg-slate-900/50 border border-white/10 rounded-xl p-3 cursor-pointer">
+                <summary class="flex items-center justify-between text-xs font-mono text-slate-400 font-bold uppercase tracking-wider select-none">
+                    <span>View Patch Notes & Fixes</span>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
+                </summary>
+                <div class="mt-3 pt-3 border-t border-white/10 space-y-2">
+                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
+                        <li class="flex items-start gap-2"><span class="text-slate-400 font-bold">▹</span> Tested and deployed automated multi-user delivery script for DesktopInfo using Microsoft Intune Win32 packaging wrappers.</li>
+                        <li class="flex items-start gap-2"><span class="text-slate-400 font-bold">▹</span> Initialized portfolio repository hosted on GitHub with Vercel deployment targets.</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong class="text-white">Bug Fix:</strong> Corrected parameter syntax in PowerShell initialization configuration files.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+    </div>
+</main>
+
+<script>
+    function filterReleases() {
+        const selectedYear = document.getElementById('filter-year').value;
+        const selectedMonth = document.getElementById('filter-month').value;
+        const selectedType = document.getElementById('filter-type').value;
+
+        const cards = document.querySelectorAll('.release-card');
+
+        cards.forEach(card => {
+            const cardYear = card.getAttribute('data-year');
+            const cardMonth = card.getAttribute('data-month');
+            const cardType = card.getAttribute('data-type');
+
+            let matchesYear = (selectedYear === 'all' || cardYear === selectedYear);
+            let matchesMonth = (selectedMonth === 'all' || cardMonth === selectedMonth);
+            let matchesType = (selectedType === 'all' || cardType === selectedType);
+
+            if (matchesYear && matchesMonth && matchesType) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu-drawer');
+        menu.classList.toggle('hidden');
+    }
+</script>
+
+<footer class="w-full py-6 sm:py-8 bg-surface-dim border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+                <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 M70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
+        </div>
+        
+        <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">share</span> LinkedIn
+            </a>
+            <span>•</span>
+            <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">description</span> Terms of Service
+            </a>
+        </div>
+
+        <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
+    </div>
+</footer>
+
+</body>
+</html>
+
+```
