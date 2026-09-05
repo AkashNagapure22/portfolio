@@ -1,0 +1,23 @@
+{
+  "name": "Akash Nagapure | Microsoft Intune, SCCM & VMware Architect",
+  "short_name": "Akash Nagapure",
+  "description": "Portfolio of Akash Nagapure - Enterprise Fleet Architect specializing in Microsoft Intune, SCCM, and VMware virtualization.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "/Main_page_data/Logo.avif",
+      "sizes": "192x192",
+      "type": "image/avif",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Main_page_data/Logo.avif",
+      "sizes": "512x512",
+      "type": "image/avif",
+      "purpose": "any maskable"
+    }
+  ]
+}
