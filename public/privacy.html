@@ -122,35 +122,40 @@
         <span class="px-3 py-1 bg-sky-950/60 text-sky-400 border border-sky-500/30 rounded-full font-mono text-[10px] uppercase font-bold tracking-widest">Privacy</span>
         <span class="px-3 py-1 bg-slate-900 text-slate-400 border border-slate-700 rounded-full font-mono text-[10px] uppercase font-bold tracking-widest">Updated 2026</span>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Privacy & Cookie Policy</h1>
-      <p class="text-slate-300 text-base leading-relaxed font-light">Welcome to our privacy page. Protecting your personal data is important to us. This policy details how Akash Nagapure's professional portfolio and technical labs handle visitor information, ensuring clear transparency and data security across our network.</p>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Privacy Policy</h1>
+      <p class="text-slate-300 text-base leading-relaxed font-light">Your privacy is important to us. It is our policy to respect your privacy regarding any information we may collect from you across our website, https://www.akashnagapure.in. We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
     </header>
+
+    <!-- Included Image Asset Integration -->
+    <div class="w-full overflow-hidden rounded-2xl border border-sky-500/20 shadow-2xl bg-slate-900/40 p-2">
+      <img src="/Main_page_data/About_me.avif" alt="Privacy and Data Security illustration" width="800" height="400" class="w-full h-auto object-cover rounded-xl filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+    </div>
 
     <div class="space-y-8 text-slate-300 font-light leading-relaxed text-sm sm:text-base">
       
       <section class="space-y-3">
-        <h3 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">1. Information we collect</h3>
-        <p>We collect only the data needed to respond to direct technical inquiries, manage contact submissions, and preserve minimal local UI state for vote moderation and interaction persistence. We do not sell or lease user data to third-party marketing entities.</p>
+        <h2 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">1. Information Collection & Web Server Logs</h2>
+        <p>When you visit the site, our web server may record information in its server log including your IP address, your username if logged in, requested URLs, dates and methods of requests, status codes, referring URLs, transferred bytes, and your browser or operating system platform. Unless required by legal process, we do not link IP addresses to personally identifiable information.</p>
       </section>
       
       <section class="space-y-3">
-        <h3 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">2. Cookies and local storage</h3>
-        <p>We may use browser local storage to remember vote state and session preferences. This helps prevent duplicate user voting on article interactions while keeping the experience fast and lightweight. No invasive tracking or third-party ad cookies are utilized on this domain.</p>
+        <h2 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">2. Google Analytics</h2>
+        <p>We use Google Analytics software to perform site usage analytics. Google Analytics collects anonymous information from users to help analyze site usage and referrals. This data is used primarily to optimize the website experience and assist in developing professional insights. Information collected includes the user's IP address, network location, and geographic location via cookies.</p>
       </section>
       
       <section class="space-y-3">
-        <h3 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">3. Use of data</h3>
-        <p>Submitted contact details are used exclusively to respond to projects, collaboration inquiries, and technical discussions. We do not share those records with unrelated third parties or external advertising networks under any circumstances.</p>
+        <h2 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">3. Cookies and Local Storage</h2>
+        <p>A cookie is a piece of data stored on the user's computer tied to information about the user. We use essential, functionality, analytics, and performance cookies to track usage for security, preferences, and optimized experiences. If you wish to disable cookies, you may do so through your individual browser options.</p>
       </section>
       
       <section class="space-y-3">
-        <h3 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">4. Third-party services</h3>
-        <p>Assets may be delivered through public CDNs and cloud-hosting services like Vercel and GitHub, and external links to LinkedIn or other platforms are governed by their own individual privacy policies and independent operating standards.</p>
+        <h2 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">4. Pixel Tags & Third-Party Services</h2>
+        <p>We use pixel tags to track website usage and collect activity data, such as visited pages and interaction durations. Our site may link to external sites not operated by us; please be aware that we have no control over the content or practices of these external platforms.</p>
       </section>
 
       <section class="space-y-3">
-        <h3 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">5. Comments and interactive data</h3>
-        <p>When you participate in technical discussions and post comments on our articles or labs, we store the name, email address, and comment content you provide. This information is displayed publicly on the discussion board and retained to maintain community engineering engagement.</p>
+        <h2 class="text-xl font-bold text-white border-l-2 border-sky-400 pl-3 font-sans tracking-tight">5. Data Retention & Policy Updates</h2>
+        <p>We retain collected information only as long as necessary to provide requested services, protecting it within commercially acceptable means to prevent loss or unauthorized access. We review our security measures and privacy policy on a periodic basis and post updates accordingly.</p>
       </section>
 
     </div>
@@ -328,7 +333,7 @@
     window.addEventListener('touchmove', (e) => {
       if (e.touches.length > 0) {
         mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0],clientY;
+        mouse.y = e.touches[0].clientY;
       }
     }, { passive: true });
 
