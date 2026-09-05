@@ -133,8 +133,8 @@
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                  0 0 30px rgba(56, 189, 248, 0.05);
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(56, 189, 248, 0.05);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card-3d:hover {
@@ -381,6 +381,7 @@
       <a href="#projects" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-teal-400 transition-colors" onclick="smoothNav(event, 'projects')">Projects</a>
       <a href="#hobbies" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-pink-400 transition-colors" onclick="smoothNav(event, 'hobbies')">Hobby</a>
       <a href="#contact" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-300 transition-colors" onclick="smoothNav(event, 'contact')">Contact me</a>
+      <a href="/changelog.html" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors flex items-center gap-1"><i data-lucide="history" class="w-3.5 h-3.5"></i>Changelog</a>
       
       <div class="relative ml-2">
         <div class="flex items-center gap-2 bg-slate-900/40 border-b border-sky-500/30 hover:border-sky-400 focus-within:border-sky-400 px-2.5 py-1 transition-colors rounded-t-md">
@@ -426,6 +427,7 @@
     <a href="#projects" class="block w-full text-base font-medium text-teal-400 hover:text-white" onclick="smoothNav(event, 'projects')">Projects</a>
     <a href="#hobbies" class="block w-full text-base font-medium text-pink-400 hover:text-white" onclick="smoothNav(event, 'hobbies')">Hobby</a>
     <a href="#contact" class="block w-full text-base font-medium text-sky-300 hover:text-white" onclick="smoothNav(event, 'contact')">Contact me</a>
+    <a href="/changelog.html" class="block w-full text-base font-medium text-sky-400 hover:text-white flex items-center gap-2"><i data-lucide="history" class="w-4 h-4"></i>Changelog</a>
   </div>
 </header>
 
@@ -853,7 +855,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
@@ -894,7 +896,7 @@
           </div>
         </div>
 
-        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
@@ -935,7 +937,7 @@
           </div>
         </div>
 
-        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
@@ -976,7 +978,7 @@
           </div>
         </div>
 
-        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
@@ -1017,7 +1019,7 @@
           </div>
         </div>
 
-        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
@@ -1058,7 +1060,7 @@
           </div>
         </div>
 
-        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
@@ -1308,6 +1310,10 @@
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
+            <a href="/changelog.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">history</span> Changelog
+            </a>
+            <span>•</span>
             <a href="https://www.akashnagapure.in/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
             </a>
@@ -1519,6 +1525,16 @@
       }
     }
   }, { passive: true });
+
+  function toggleFlip(clickedCard) {
+    const allCards = document.querySelectorAll('.flip-card-container');
+    allCards.forEach(card => {
+      if (card !== clickedCard) {
+        card.classList.remove('is-flipped');
+      }
+    });
+    clickedCard.classList.toggle('is-flipped');
+  }
 
   function triggerBadgeConfetti(event, badgeName) {
     if (typeof confetti === 'function') {
