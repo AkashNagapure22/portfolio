@@ -11,15 +11,15 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "skills.akashnagapure.in" }], "destination": "/Sub_Pages/Skills.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "food.akashnagapure.in" }], "destination": "/Sub_Pages/Food.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "blogs.akashnagapure.in" }], "destination": "/Sub_Pages/Projects.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "resume.akashnagapure.in" }], "destination": "/Sub_Pages/resume.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "courses.akashnagapure.in" }], "destination": "/Sub_Pages/courses.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "homelab.akashnagapure.in" }], "destination": "/Sub_Pages/HomeLab.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "reading.akashnagapure.in" }], "destination": "/Sub_Pages/Reading.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "gaming.akashnagapure.in" }], "destination": "/Sub_Pages/Game.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "coins.akashnagapure.in" }], "destination": "/Sub_Pages/Coins.html" },
-    { "source": "/(.*)", "has": [{ "type": "host", "value": "puzzle.akashnagapure.in" }], "destination": "/Sub_Pages/Puzzle.html" }
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "skills.akashnagapure.in" }], "destination": "/Skills.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "food.akashnagapure.in" }], "destination": "/Food.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "blogs.akashnagapure.in" }], "destination": "/Projects.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "resume.akashnagapure.in" }], "destination": "/resume.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "courses.akashnagapure.in" }], "destination": "/courses.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "homelab.akashnagapure.in" }], "destination": "/HomeLab.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "reading.akashnagapure.in" }], "destination": "/Reading.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "gaming.akashnagapure.in" }], "destination": "/Game.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "coins.akashnagapure.in" }], "destination": "/Coins.html" },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "puzzle.akashnagapure.in" }], "destination": "/Puzzle.html" }
   ]
 }
