@@ -182,29 +182,37 @@
     const count = 3500;
     particlesGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
+    const scales = new Float32Array(count);
 
     for (let i = 0; i < count * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 500;
-      positions[i + 1] = (Math.random() - 0.5) * 600;
-      positions[i + 2] = (Math.random() - 0.5) * 300;
+      positions[i] = (Math.random() - 0.5) * 1000;
+      positions[i + 1] = (Math.random() - 0.5) * 3000;
+      positions[i + 2] = (Math.random() - 0.5) * 800;
     }
+    
+    for (let i = 0; i < count; i++) {
+      scales[i] = Math.random() * 1.8 + 0.4;
+    }
+
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particlesGeo.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
 
     const particleMat = new THREE.PointsMaterial({
       color: 0x38bdf8,
-      size: 0.8,
+      size: 1.5,
       transparent: true,
       opacity: 0.9,
-      blending: THREE.AdditiveBlending
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
     });
 
     particlesMesh = new THREE.Points(particlesGeo, particleMat);
     scene.add(particlesMesh);
 
-    gridHelper = new THREE.GridHelper(600, 60, 0x0284c7, 0x0f172a);
-    gridHelper.position.y = -100;
+    gridHelper = new THREE.GridHelper(1600, 60, 0x0284c7, 0x0f172a);
+    gridHelper.position.y = -250;
     gridHelper.material.transparent = true;
-    gridHelper.material.opacity = 0.25;
+    gridHelper.material.opacity = 0.18;
     scene.add(gridHelper);
 
     document.addEventListener('mousemove', (event) => {
@@ -362,6 +370,7 @@
 
     <section class="skills-page space-y-16">
 
+        <!-- SECTION 1: Core Technologies Wheel & Marquee Carousel -->
         <div id="tech-stack" class="pt-4 scroll-mt-32 searchable-skill-card relative animate-fade-in-up">
             
             <div class="text-center mb-12 space-y-3">
@@ -372,227 +381,248 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
+                <!-- Left Hand Side: Core Technology Wheel (Floating Icons without borders/backgrounds) -->
                 <div class="lg:col-span-6 flex justify-center items-center">
                     <div class="orbit-container p-4 w-full max-w-lg">
+                        <!-- Center Core Badge -->
                         <div class="absolute z-20 flex flex-col items-center justify-center w-20 h-20 rounded-full bg-slate-950/80 border border-sky-400/60 shadow-[0_0_25px_rgba(56,189,248,0.4)]">
                             <span class="material-symbols-outlined text-sky-400 text-2xl animate-pulse">hub</span>
-                            <span class="font-mono text-[9px] text-sky-300 font-bold mt-1 uppercase tracking-tighter">Core</span>
+                            <span class="font-mono text-[9px] text-sky-300 font-bold mt-1 uppercase tracking-tighter">CORE</span>
                         </div>
 
+                        <!-- Inner Orbit Ring (Radius: 90px) -->
                         <div class="orbit-ring" style="width: 180px; height: 180px;">
                             <div class="orbit-item" style="--radius: 90px; --speed: 20s; animation-delay: 0s;">
-                                <div class="w-10 h-10 -ml-5 -mt-5 rounded-full bg-slate-950/90 border border-sky-500/50 flex items-center justify-center text-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.4)] overflow-hidden p-1.5" title="Microsoft Intune">
-                                    <img src="public/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                                <div class="w-10 h-10 -ml-5 -mt-5 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.7)] overflow-hidden p-1" title="Microsoft Intune">
+                                    <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                             </div>
                             <div class="orbit-item" style="--radius: 90px; --speed: 20s; animation-delay: -6.6s;">
-                                <div class="w-10 h-10 -ml-5 -mt-5 rounded-full bg-slate-950/90 border border-sky-500/50 flex items-center justify-center text-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.4)] overflow-hidden p-1.5" title="Microsoft Azure">
-                                    <img src="public/images/icons/Microsoft-Azure.png" alt="Azure" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                                <div class="w-10 h-10 -ml-5 -mt-5 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.7)] overflow-hidden p-1" title="Microsoft Azure">
+                                    <img src="/images/icons/Microsoft-Azure.png" alt="Azure" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                             </div>
                             <div class="orbit-item" style="--radius: 90px; --speed: 20s; animation-delay: -13.3s;">
-                                <div class="w-10 h-10 -ml-5 -mt-5 rounded-full bg-slate-950/90 border border-sky-500/50 flex items-center justify-center text-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.4)] overflow-hidden p-1.5" title="PowerShell Core">
-                                    <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                                <div class="w-10 h-10 -ml-5 -mt-5 flex items-center justify-center text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.7)] overflow-hidden p-1" title="PowerShell Core">
+                                    <img src="/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Outer Orbit Ring (Radius: 155px, Reversed) -->
                         <div class="orbit-ring" style="width: 310px; height: 310px;">
                             <div class="orbit-item reverse" style="--radius: 155px; --speed: 30s; animation-delay: 0s;">
-                                <div class="w-10 h-10 -ml-5 -mt-5 rounded-full bg-slate-950/90 border border-indigo-500/50 flex items-center justify-center text-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.4)] overflow-hidden p-1.5" title="VMware">
-                                    <img src="public/images/icons/vmware.png" alt="VMware" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                                <div class="w-10 h-10 -ml-5 -mt-5 flex items-center justify-center text-indigo-400 drop-shadow-[0_0_12px_rgba(99,102,241,0.7)] overflow-hidden p-1" title="VMware">
+                                    <img src="/images/icons/vmware.png" alt="VMware" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                             </div>
                             <div class="orbit-item reverse" style="--radius: 155px; --speed: 30s; animation-delay: -10s;">
-                                <div class="w-10 h-10 -ml-5 -mt-5 rounded-full bg-slate-950/90 border border-indigo-500/50 flex items-center justify-center text-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.4)]" title="Operating System">
-                                    <span class="material-symbols-outlined text-lg">computer</span>
+                                <div class="w-10 h-10 -ml-5 -mt-5 flex items-center justify-center text-indigo-400 drop-shadow-[0_0_12px_rgba(99,102,241,0.7)] overflow-hidden p-1" title="Operating System">
+                                    <span class="material-symbols-outlined text-2xl">computer</span>
                                 </div>
                             </div>
                             <div class="orbit-item reverse" style="--radius: 155px; --speed: 30s; animation-delay: -20s;">
-                                <div class="w-10 h-10 -ml-5 -mt-5 rounded-full bg-slate-950/90 border border-indigo-500/50 flex items-center justify-center text-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.4)] overflow-hidden p-1.5" title="SCCM">
-                                    <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
+                                <div class="w-10 h-10 -ml-5 -mt-5 flex items-center justify-center text-indigo-400 drop-shadow-[0_0_12px_rgba(99,102,241,0.7)] overflow-hidden p-1" title="SCCM">
+                                    <img src="/images/icons/SCCM.png" alt="SCCM" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Right Hand Side: Tools and Applications Marquee Carousel with Fixed Paths -->
                 <div class="lg:col-span-6 space-y-8 overflow-hidden marquee-container py-4">
                     
+                    <!-- Marquee Track 1 -->
                     <div class="marquee-track-ltr space-x-12 items-center">
                         <div class="flex items-center space-x-12">
+                            <!-- 1Password -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/1Password.png" alt="1Password" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/1Password.png" alt="1Password" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">1Password</span>
                             </div>
 
+                            <!-- 7-Zip -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/7-Zip.png" alt="7-Zip" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/7-Zip.png" alt="7-Zip" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">7-Zip</span>
                             </div>
 
+                            <!-- Adobe Acrobat Reader -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/Adobe-AcrobatReader.png" alt="Adobe Acrobat" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/adobe-acrobatreader.png" alt="Adobe Acrobat" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Acrobat</span>
                             </div>
 
+                            <!-- AppVolumes -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/AppVolumes.png" alt="AppVolumes" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/AppVolumes.png" alt="AppVolumes" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">AppVolumes</span>
                             </div>
 
+                            <!-- Google Chrome -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/google-chrome.png" alt="Chrome" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/google-chrome.png" alt="Chrome" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Chrome</span>
                             </div>
 
+                            <!-- Microsoft Edge -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/Edge.png" alt="Edge" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/Edge.png" alt="Edge" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Edge</span>
                             </div>
                         </div>
 
+                        <!-- Duplicate set for infinite loop smoothness -->
                         <div class="flex items-center space-x-12">
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/1Password.png" alt="1Password" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/1Password.png" alt="1Password" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">1Password</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/7-Zip.png" alt="7-Zip" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/7-Zip.png" alt="7-Zip" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">7-Zip</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/Adobe-AcrobatReader.png" alt="Adobe Acrobat" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/adobe-acrobatreader.png" alt="Adobe Acrobat" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Acrobat</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/AppVolumes.png" alt="AppVolumes" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/AppVolumes.png" alt="AppVolumes" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">AppVolumes</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/google-chrome.png" alt="Chrome" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/google-chrome.png" alt="Chrome" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Chrome</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/Edge.png" alt="Edge" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/Edge.png" alt="Edge" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Edge</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Marquee Track 2 -->
                     <div class="marquee-track-ltr space-x-12 items-center" style="animation-duration: 32s;">
                         <div class="flex items-center space-x-12">
+                            <!-- Microsoft Teams -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/microsoft-teams.png" alt="Teams" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/microsoft-teams.png" alt="Teams" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Teams</span>
                             </div>
 
+                            <!-- Microsoft Outlook -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/microsoft-outlook.png" alt="Outlook" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/microsoft-outlook.png" alt="Outlook" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Outlook</span>
                             </div>
 
+                            <!-- VS Code -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/microsoft-vscode.png" alt="VS Code" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/microsoft-vscode.png" alt="VS Code" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">VS Code</span>
                             </div>
 
+                            <!-- Citrix Workspace -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Citrix</span>
                             </div>
 
+                            <!-- Zoom -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/zoom.png" alt="Zoom" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/zoom.png" alt="Zoom" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Zoom</span>
                             </div>
 
+                            <!-- VLC Media Player -->
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/vlc.png" alt="VLC" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/vlc.png" alt="VLC" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">VLC</span>
                             </div>
                         </div>
 
+                        <!-- Duplicate set for infinite loop smoothness -->
                         <div class="flex items-center space-x-12">
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/microsoft-teams.png" alt="Teams" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/microsoft-teams.png" alt="Teams" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Teams</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/microsoft-outlook.png" alt="Outlook" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/microsoft-outlook.png" alt="Outlook" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Outlook</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/microsoft-vscode.png" alt="VS Code" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/microsoft-vscode.png" alt="VS Code" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">VS Code</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Citrix</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/zoom.png" alt="Zoom" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/zoom.png" alt="Zoom" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">Zoom</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center text-center group cursor-pointer w-24 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="mb-2 text-sky-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.9)] group-hover:scale-125 transition-transform duration-300 w-10 h-10 flex items-center justify-center">
-                                    <img src="public/images/icons/vlc.png" alt="VLC" class="w-full h-full object-contain filter drop-shadow" />
+                                    <img src="/images/icons/vlc.png" alt="VLC" class="w-full h-full object-contain filter drop-shadow" onerror="this.onerror=null; this.src='../Main_page_data/placeholder.gif';" />
                                 </div>
                                 <span class="font-sans font-bold text-white text-xs tracking-wider">VLC</span>
                             </div>
@@ -604,6 +634,7 @@
             </div>
         </div>
 
+        <!-- SECTION 2: Detailed Skills Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8" id="skills-grid">
             
             <div id="endpoint" class="glass-card-3d p-7 rounded-2xl space-y-4 scroll-mt-32 searchable-skill-card">
