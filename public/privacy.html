@@ -99,6 +99,7 @@
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
+<!-- Minimal Navbar: Only Logo on Left -->
 <header class="w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-white/10 py-4 px-6 sm:px-12 relative shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-sky-400 hover:text-white transition-colors">
@@ -125,6 +126,7 @@
       <p class="text-slate-300 text-base leading-relaxed font-light">Your privacy matters. We respect your data when you visit our website at https://www.akashnagapure.in. We only ask for info when we need it to help you. We collect data fairly with your consent and explain why we need it.</p>
     </header>
 
+    <!-- Professional Image Asset Integration -->
     <div class="w-full overflow-hidden rounded-2xl border border-sky-500/20 shadow-2xl bg-slate-900/40 p-2">
       <img src="/images/Main_Page_Images/privacypolicy.avif" alt="Privacy and Data Security illustration" width="800" height="400" class="w-full h-auto object-cover rounded-xl filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
     </div>
@@ -173,6 +175,7 @@
       <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
     </div>
     
+    <!-- Footer Links with Matching Icons -->
     <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
       <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
         <span class="material-symbols-outlined text-sm">share</span> LinkedIn
@@ -196,7 +199,7 @@
 </footer>
 
 <script>
-  let scene, camera, renderer, particlesMesh, gridHelper;
+  let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
   let isPageVisible = true;
@@ -219,6 +222,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
 
+    // 3D Starfield Depth Setup
     const count = isMobile ? 1500 : 3500;
     particlesGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
