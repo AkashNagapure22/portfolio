@@ -444,14 +444,16 @@
           <div class="absolute -inset-4 rounded-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl group-hover:opacity-100 transition-opacity"></div>
           
           <div class="relative w-full h-full p-2 flex flex-col justify-center items-center overflow-hidden">
-            <video
-              src="/public/Main_page_data/Avideo.mp4"
-              autoplay
-              muted
-              loop
-              playsinline
+            <img
+              src="/Main_page_data/akash_profile_1781110763642.avif"
+              alt="Akash Nagapure Profile Portrait"
+              width="400"
+              height="400"
+              fetchpriority="high"
+              loading="eager"
               class="w-full h-full rounded-2xl object-cover aspect-square shadow-2xl transition-transform duration-700 group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)]"
-            ></video>
+              onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';"
+            />
 
             <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-slate-950/90 border border-indigo-500/30 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 shadow-2xl flex items-center gap-3">
               <div class="p-2 bg-indigo-950/80 rounded-xl text-indigo-400">
@@ -511,17 +513,20 @@
           </div>
         </div>
 
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="w-full max-w-md">
-            <img 
-              src="/Main_page_data/About_me.avif"
-              alt="About Me Graphic" 
-              width="450" 
-              height="380" 
-              loading="lazy" 
-              class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(129,140,248,0.25)] hover:scale-105 transition-transform duration-500" 
-              onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';"
-            />
+        <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
+          <div class="relative w-full aspect-square group">
+            <div class="absolute -inset-4 rounded-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl group-hover:opacity-100 transition-opacity"></div>
+            
+            <div class="relative w-full h-full p-2 flex flex-col justify-center items-center overflow-hidden">
+              <video
+                src="public/Main_page_data/Avideo.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                class="w-full h-full rounded-2xl object-cover aspect-square shadow-2xl transition-transform duration-700 group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)]"
+              ></video>
+            </div>
           </div>
         </div>
       </div>
@@ -1186,11 +1191,11 @@
 
             <div class="pt-6 flex flex-wrap items-center gap-3">
               <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-950/60 border border-indigo-500/30 hover:border-indigo-400 rounded-xl text-indigo-300 font-mono text-xs font-semibold transition-all hover:scale-105">
-                <img src="public/images/icons/linkedin.svg" alt="LinkedIn" class="w-4 h-4 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <img src="public/images/icons/LinkedIn.svg" alt="LinkedIn Logo" class="w-4 h-4 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                 <span>LINKEDIN</span>
               </a>
               <a href="mailto:info@akashnagapure.in" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-950/60 border border-sky-500/30 hover:border-sky-400 rounded-xl text-sky-300 font-mono text-xs font-semibold transition-all hover:scale-105">
-                <img src="public/images/icons/email.svg" alt="Email" class="w-4 h-4 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <img src="public/images/icons/Microsoft365.png" alt="Email Logo" class="w-4 h-4 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                 <span>EMAIL DIRECT</span>
               </a>
             </div>
