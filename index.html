@@ -50,7 +50,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
@@ -202,14 +201,14 @@
     }
 
     @keyframes marqueeLeftToRight {
-      0% { transform: translate3d(-20%, 0, 0); }
-      50% { transform: translate3d(20%, 0, 0); }
-      100% { transform: translate3d(-20%, 0, 0); }
+      0% { transform: translate3d(-30%, 0, 0); }
+      50% { transform: translate3d(30%, 0, 0); }
+      100% { transform: translate3d(-30%, 0, 0); }
     }
     .skills-track-ltr {
       display: flex;
       width: max-content;
-      animation: marqueeLeftToRight 15s ease-in-out infinite;
+      animation: marqueeLeftToRight 16s ease-in-out infinite;
     }
     .skills-track-ltr:hover {
       animation-play-state: paused;
@@ -399,7 +398,6 @@
 
 <main class="w-full flex-grow pt-24">
 
-  <!-- HOME SECTION -->
   <section id="home" class="section-seamless min-h-[calc(100vh-6rem)] flex items-center justify-center py-12 sm:py-16 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       
@@ -472,7 +470,6 @@
     </div>
   </section>
 
-  <!-- ABOUT ME SECTION -->
   <section id="about" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -536,7 +533,6 @@
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
   <section id="certifications" class="section-seamless py-16 sm:py-24 text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
       
@@ -609,7 +605,6 @@
     </div>
   </section>
 
-  <!-- WORK HISTORY SECTION WITH ICON-ONLY LTR MARQUEE -->
   <section id="experience" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -620,7 +615,6 @@
 
       <div class="space-y-12 relative before:absolute before:left-3 sm:before:left-5 before:top-2 before:bottom-2 before:w-[1.5px] before:bg-gradient-to-b before:from-purple-500 before:via-indigo-500 before:to-slate-800">
         
-        <!-- Job 1 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -647,41 +641,44 @@
             </ul>
             
             <div class="w-full overflow-hidden py-3 relative">
-              <div class="skills-track-ltr flex items-center gap-12">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Microsoft Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+              <div class="skills-track-ltr flex items-center gap-10">
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Microsoft Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azure.png" alt="Azure AD" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Microsoft-Azure.png" alt="Azure AD" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Azure AD</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-windows365.png" alt="Windows 365" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,137,214,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Microsoft-Windows365.png" alt="Windows 365" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,137,214,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-teal-300 text-[11px] font-mono rounded-lg border border-teal-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Windows 365 / AVD</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-emerald-300 text-[11px] font-mono rounded-lg border border-emerald-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Citrix Workspace</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/icons8-vmware-vsphere-480.png" alt="VMware" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/icons8-vmware-vsphere-480.png" alt="VMware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-purple-300 text-[11px] font-mono rounded-lg border border-purple-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">VMware vSphere</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">PowerShell Core</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-onedrive.png" alt="OneDrive" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-onedrive.png" alt="OneDrive" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft OneDrive</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Azure-Dark.svg" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Azure</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Job 2 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -709,28 +706,31 @@
 
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-12">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/sccm.png" alt="SCCM" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">SCCM / MECM</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Azure Data Studio (SQL)</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">PowerShell Core</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Microsoft365.png" alt="Microsoft 365" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft 365</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Job 3 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -754,16 +754,16 @@
 
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-12">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/sccm.png" alt="SCCM" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">MECM / SCCM</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azure.png" alt="Entra ID" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/Microsoft-Azure.png" alt="Entra ID" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Entra ID</span>
                 </div>
               </div>
@@ -771,7 +771,6 @@
           </div>
         </div>
 
-        <!-- Job 4 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -788,12 +787,12 @@
 
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-12">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/sccm.png" alt="SCCM OSD" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/SCCM.png" alt="SCCM OSD" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">MECM / SCCM OSD</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/7-zip.png" alt="7-Zip" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/7-Zip.png" alt="7-Zip" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Application Packaging (7-Zip)</span>
                 </div>
               </div>
@@ -801,7 +800,6 @@
           </div>
         </div>
 
-        <!-- Job 5 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -818,12 +816,12 @@
 
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-12">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">SQL Database Health</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/google-chrome.png" alt="Chrome Support" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/google-chrome.png" alt="Chrome Support" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Global L2 Support Platforms</span>
                 </div>
               </div>
@@ -831,7 +829,6 @@
           </div>
         </div>
 
-        <!-- Job 6 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -848,12 +845,12 @@
 
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-12">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-windowsapp.png" alt="Windows" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-windowsapp.png" alt="Windows" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">ODC Infrastructure</span>
                 </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/lenovo.png" alt="Lenovo Hardware" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/lenovo.png" alt="Lenovo Hardware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Hardware & Asset Refresh</span>
                 </div>
               </div>
@@ -865,7 +862,6 @@
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -906,7 +902,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -1171,7 +1166,6 @@
     </div>
   </section>
 
-  <!-- HOBBIES -->
   <section id="hobbies" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -1255,7 +1249,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12 relative">
     <div class="max-w-7xl mx-auto">
       
@@ -1598,7 +1591,6 @@
     clickedCard.classList.toggle('is-flipped');
   }
 
-  // Pure robust native DOM confetti fallback/engine guaranteed to work across all platforms (Git, Vercel, Local)
   function triggerBadgeConfetti(event, badgeName) {
     const rect = event.currentTarget.getBoundingClientRect();
     const originX = rect.left + rect.width / 2;
