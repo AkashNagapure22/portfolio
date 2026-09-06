@@ -129,6 +129,113 @@
     .toast-animate {
       animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
+    /* Uiverse Download/Open Button Styles */
+    .container {
+      --transition: 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .label {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(14, 165, 233, 0.25) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 14px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: var(--transition);
+      user-select: none;
+      backdrop-filter: blur(12px);
+    }
+
+    .label:hover {
+      border-color: rgba(56, 189, 248, 0.8);
+      box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .input {
+      display: none;
+    }
+
+    .circle {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      background: #020617;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .label:hover .circle {
+      border-color: #38bdf8;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      color: #38bdf8;
+      transition: var(--transition);
+    }
+
+    .square {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #38bdf8;
+      border-radius: 2px;
+      transform: translateY(-150%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .input:checked ~ .circle .icon {
+      transform: translateY(150%);
+      opacity: 0;
+    }
+
+    .input:checked ~ .circle .square {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .title {
+      position: relative;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #f8fafc;
+      letter-spacing: 0.05em;
+      transition: var(--transition);
+    }
+
+    .title:nth-of-type(2) {
+      position: absolute;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .input:checked ~ .title:nth-of-type(1) {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    .input:checked ~ .title:nth-of-type(2) {
+      transform: translateY(0);
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
@@ -388,10 +495,19 @@
         </div>
       </div>
       <div class="flex items-center gap-3 shrink-0">
-        <button type="button" onclick="downloadResume()" class="inline-flex items-center space-x-2 px-5 py-3 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-extrabold text-xs rounded-xl shadow-lg transition-all cursor-pointer active:scale-95">
-          <i data-lucide="download" class="w-4 h-4"></i>
-          <span>Download PDF Resume</span>
-        </button>
+        <div class="container" onclick="downloadResume()">
+          <label class="label">
+            <input type="checkbox" class="input" />
+            <span class="circle">
+              <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19V5m0 14-4-4m4 4 4-4"></path>
+              </svg>
+              <div class="square"></div>
+            </span>
+            <p class="title">Download</p>
+            <p class="title">Open</p>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -633,7 +749,3 @@
 </script>
 </body>
 </html>
-
-
-
-
