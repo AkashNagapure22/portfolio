@@ -50,7 +50,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js"></script>
+  <!-- Reliable fallback + local vendor support for canvas-confetti -->
+  <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js'"></script>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
@@ -399,6 +400,7 @@
 
 <main class="w-full flex-grow pt-24">
 
+  <!-- HOME SECTION WITH PROFILE IMAGE -->
   <section id="home" class="section-seamless min-h-[calc(100vh-6rem)] flex items-center justify-center py-12 sm:py-16 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       
@@ -471,6 +473,7 @@
     </div>
   </section>
 
+  <!-- ABOUT ME SECTION WITH VIDEO -->
   <section id="about" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -534,6 +537,7 @@
     </div>
   </section>
 
+  <!-- CERTIFICATIONS WITH WORKING CONFETTI -->
   <section id="certifications" class="section-seamless py-16 sm:py-24 text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
       
@@ -1157,6 +1161,7 @@
     </div>
   </section>
 
+  <!-- CONTACT SECTION WITH BORDERLESS ICON-ONLY SOCIALS -->
   <section id="contact" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12 relative">
     <div class="max-w-7xl mx-auto">
       
@@ -1189,11 +1194,12 @@
             <div class="flex flex-col gap-3.5 w-full min-h-[140px]" id="chat-container">
             </div>
 
-            <div class="pt-6 flex flex-wrap items-center gap-4">
-              <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center p-2 bg-transparent hover:scale-110 transition-transform" aria-label="LinkedIn Profile">
+            <!-- BORDERLESS ICON-ONLY SOCIAL LINKS -->
+            <div class="pt-6 flex flex-wrap items-center gap-5">
+              <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="p-1 hover:scale-110 transition-transform focus:outline-none" aria-label="LinkedIn Profile">
                 <img src="public/images/icons/LinkedIn.svg" alt="LinkedIn" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
               </a>
-              <a href="mailto:info@akashnagapure.in" class="inline-flex items-center justify-center p-2 bg-transparent hover:scale-110 transition-transform" aria-label="Direct Email">
+              <a href="mailto:info@akashnagapure.in" class="p-1 hover:scale-110 transition-transform focus:outline-none" aria-label="Direct Email">
                 <img src="public/images/icons/Microsoft365.png" alt="Email" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
               </a>
             </div>
