@@ -3,6 +3,13 @@
 assets/*
 !assets/site-shell.css
 !assets/site-shell.js
+!assets/vendor/
+assets/vendor/*
+!assets/vendor/canvas-confetti/
+assets/vendor/canvas-confetti/*
+!assets/vendor/canvas-confetti/dist/
+assets/vendor/canvas-confetti/dist/*
+!assets/vendor/canvas-confetti/dist/confetti.browser.js
 !public/
 !public/Blogs/
 public/Blogs/*
@@ -29,6 +36,13 @@ public/assets/*
 !public/assets/site-shell.css
 !public/assets/site-shell.js
 !public/assets/projects-page.js
+!public/assets/vendor/
+public/assets/vendor/*
+!public/assets/vendor/canvas-confetti/
+public/assets/vendor/canvas-confetti/*
+!public/assets/vendor/canvas-confetti/dist/
+public/assets/vendor/canvas-confetti/dist/*
+!public/assets/vendor/canvas-confetti/dist/confetti.browser.js
 !public/Sub_Pages/
 public/Sub_Pages/*
 !public/Sub_Pages/Coins.html

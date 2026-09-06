@@ -50,8 +50,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- Reliable fallback + local vendor support for canvas-confetti -->
-  <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js'"></script>
+  <!-- canvas-confetti: local vendor first (served from /assets), CDN onerror fallback -->
+  <script src="/assets/vendor/canvas-confetti/dist/confetti.browser.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js'"></script>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
@@ -1506,19 +1506,59 @@
   }
 
   function triggerBadgeConfetti(event, badgeName) {
-    if (typeof confetti === 'function') {
-      const rect = event.currentTarget.getBoundingClientRect();
-      const x = (rect.left + rect.width / 2) / window.innerWidth;
-      const y = (rect.top + rect.height / 2) / window.innerHeight;
+    // Capture the badge's position synchronously (before the event object is
+    // cleared) so it also works in the async on-demand script-load fallback.
+    const rect = event.currentTarget.getBoundingClientRect();
+    const originX = Math.min(Math.max((rect.left + rect.width / 2) / window.innerWidth, 0.05), 0.95);
+    const originY = Math.min(Math.max((rect.top + rect.height / 2) / window.innerHeight, 0.05), 0.95);
 
+    const fireConfetti = () => {
+      // Primary burst from the clicked badge.
       confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { x: Math.max(0.1, Math.min(0.9, x)), y: Math.max(0.1, Math.min(0.9, y)) },
-        colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff'],
-        disableForReducedMotion: true
+        particleCount: 90,
+        spread: 75,
+        startVelocity: 35,
+        ticks: 250,
+        origin: { x: originX, y: originY },
+        colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff']
       });
+
+      // Small trailing burst for a richer celebration.
+      setTimeout(() => {
+        confetti({
+          particleCount: 40,
+          startVelocity: 28,
+          spread: 60,
+          origin: { x: originX, y: originY },
+          colors: ['#38bdf8', '#818cf8', '#34d399']
+        });
+      }, 160);
+    };
+
+    if (typeof confetti === 'function') {
+      fireConfetti();
+      return;
     }
+
+    // Safety net: if the confetti library didn't load for any reason,
+    // inject it on demand (local vendor first, CDN fallback) before firing.
+    const injectConfetti = (src, onLoaded, onFailed) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = onLoaded;
+      script.onerror = onFailed;
+      document.head.appendChild(script);
+    };
+
+    injectConfetti(
+      '/assets/vendor/canvas-confetti/dist/confetti.browser.js',
+      fireConfetti,
+      () => injectConfetti(
+        'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js',
+        fireConfetti,
+        null
+      )
+    );
   }
 
   const phrases = [
