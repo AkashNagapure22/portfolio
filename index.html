@@ -189,8 +189,7 @@
 
     @keyframes tickerScroll {
       0% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(-50%, 0, 0); }
-      100% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
     }
     .animate-ticker {
       display: flex;
@@ -201,17 +200,16 @@
       animation-play-state: paused;
     }
 
-    @keyframes marqueeBounce {
+    @keyframes skillScroll {
       0% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(-40%, 0, 0); }
-      100% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
     }
-    .skills-track-bounce {
+    .skills-track {
       display: flex;
       width: max-content;
-      animation: marqueeBounce 20s ease-in-out infinite;
+      animation: skillScroll 25s linear infinite;
     }
-    .skills-track-bounce:hover {
+    .skills-track:hover {
       animation-play-state: paused;
     }
 
@@ -267,6 +265,7 @@
       letter-spacing: 0.05em;
     }
 
+    /* Seamless integration styles for Spline viewer */
     spline-viewer {
       background: transparent !important;
       background-color: transparent !important;
@@ -286,6 +285,7 @@
       pointer-events: none !important;
     }
 
+    /* Header scroll-up / scroll-down reveal logic */
     header.site-header {
       position: fixed;
       top: 0;
@@ -399,7 +399,6 @@
 
 <main class="w-full flex-grow pt-24">
 
-  <!-- HOME SECTION -->
   <section id="home" class="section-seamless min-h-[calc(100vh-6rem)] flex items-center justify-center py-12 sm:py-16 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       
@@ -472,7 +471,6 @@
     </div>
   </section>
 
-  <!-- ABOUT ME SECTION -->
   <section id="about" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -536,7 +534,6 @@
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
   <section id="certifications" class="section-seamless py-16 sm:py-24 text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
       
@@ -609,7 +606,6 @@
     </div>
   </section>
 
-  <!-- WORK HISTORY SECTION WITH ICON-ONLY ROLLING SKILLS MARQUEE -->
   <section id="experience" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -620,7 +616,6 @@
 
       <div class="space-y-12 relative before:absolute before:left-3 sm:before:left-5 before:top-2 before:bottom-2 before:w-[1.5px] before:bg-gradient-to-b before:from-purple-500 before:via-indigo-500 before:to-slate-800">
         
-        <!-- Job 1 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -647,41 +642,32 @@
             </ul>
             
             <div class="w-full overflow-hidden py-3 relative">
-              <div class="skills-track-bounce flex items-center gap-10">
+              <div class="skills-track flex items-center gap-12">
                 <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Microsoft Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <svg class="w-8 h-8 drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" viewBox="0 0 24 24" fill="none"><path d="M11.4 2H2v9.4h9.4V2zM22 2h-9.4v9.4H22V2zM11.4 12.6H2V22h9.4v-9.4zM22 12.6h-9.4V22H22v-9.4z" fill="#00a4ef"/></svg>
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azure.png" alt="Azure AD" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <svg class="w-8 h-8 drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" viewBox="0 0 24 24" fill="none"><path d="M3.5 19.5l6-15 6 15h-12z" fill="#0072c6"/></svg>
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Azure AD</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-windows365.png" alt="Windows 365" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,137,214,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-teal-300 text-[11px] font-mono rounded-lg border border-teal-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Windows 365 / AVD</span>
+                  <svg class="w-8 h-8 drop-shadow-[0_0_8px_rgba(0,137,214,0.4)]" viewBox="0 0 24 24" fill="none"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="#0089d6"/></svg>
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-teal-300 text-[11px] font-mono rounded-lg border border-teal-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Azure Virtual Desktop</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-emerald-300 text-[11px] font-mono rounded-lg border border-emerald-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Citrix Workspace</span>
+                  <svg class="w-8 h-8 drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" viewBox="0 0 24 24" fill="none"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" fill="#00b0ff"/></svg>
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-emerald-300 text-[11px] font-mono rounded-lg border border-emerald-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Citrix</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/icons8-vmware-vsphere-480.png" alt="VMware" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <svg class="w-8 h-8 drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="#a855f7"/></svg>
                   <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-purple-300 text-[11px] font-mono rounded-lg border border-purple-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">VMware vSphere</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">PowerShell Core</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-onedrive.png" alt="OneDrive" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft OneDrive</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Job 2 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -706,31 +692,9 @@
                 <span>Deployed AVD session hosts and integrated with <span class="text-indigo-400 font-medium">Microsoft Entra ID</span> for secure RBAC and conditional access.</span>
               </li>
             </ul>
-
-            <div class="w-full overflow-hidden py-3 relative">
-              <div class="skills-track-bounce flex items-center gap-6">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/sccm.png" alt="SCCM" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">SCCM / MECM</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Azure Data Studio (SQL)</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">PowerShell Core</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        <!-- Job 3 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -751,27 +715,9 @@
                 <span>Designed and implemented device management policies, software deployment strategies, and OS provisioning.</span>
               </li>
             </ul>
-
-            <div class="w-full overflow-hidden py-3 relative">
-              <div class="skills-track-bounce flex items-center gap-6">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/sccm.png" alt="SCCM" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">MECM / SCCM</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azure.png" alt="Entra ID" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Entra ID</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        <!-- Job 4 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -785,23 +731,9 @@
             <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
               Managed and administered Microsoft Configuration Manager (<span class="text-sky-400 font-medium">MECM/SCCM</span>) infrastructure, including software deployment and OS deployment (<span class="text-purple-400 font-medium">OSD</span>). Created and maintained device collections, application packages, and compliance baselines.
             </p>
-
-            <div class="w-full overflow-hidden py-3 relative">
-              <div class="skills-track-bounce flex items-center gap-6">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/sccm.png" alt="SCCM OSD" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">MECM / SCCM OSD</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/7-zip.png" alt="7-Zip" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Application Packaging (7-Zip)</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        <!-- Job 5 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -815,23 +747,9 @@
             <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
               Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments. Performed <span class="text-rose-400 font-medium">SQL</span> database health checks and managed incident tracking via <span class="text-sky-400 font-medium">Salesforce CRM</span>.
             </p>
-
-            <div class="w-full overflow-hidden py-3 relative">
-              <div class="skills-track-bounce flex items-center gap-6">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">SQL Database Health</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/google-chrome.png" alt="Chrome Support" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Global L2 Support Platforms</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        <!-- Job 6 -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
           <div>
@@ -845,19 +763,6 @@
             <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
               Delivered IT infrastructure support for 24K+ users in an ODC environment. Managed desktop/laptop refresh for 6000+ endpoints and active asset life cycles.
             </p>
-
-            <div class="w-full overflow-hidden py-3 relative">
-              <div class="skills-track-bounce flex items-center gap-6">
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/microsoft-windowsapp.png" alt="Windows" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">ODC Infrastructure</span>
-                </div>
-                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/lenovo.png" alt="Lenovo Hardware" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
-                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Hardware & Asset Refresh</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -865,7 +770,6 @@
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -906,7 +810,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -1171,7 +1074,6 @@
     </div>
   </section>
 
-  <!-- HOBBIES -->
   <section id="hobbies" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
@@ -1255,7 +1157,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12 relative">
     <div class="max-w-7xl mx-auto">
       
@@ -1388,7 +1289,7 @@
             </a>
         </div>
 
-        <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision. Owner Akash Nagapure.</span>
+        <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision.</span>
     </div>
 </footer>
 
