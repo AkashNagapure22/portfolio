@@ -1,58 +1,1815 @@
-function triggerBadgeConfetti(event, badgeName) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const originX = rect.left + rect.width / 2;
-    const originY = rect.top + rect.height / 2;
-    const colors = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff', '#ec4899'];
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" name="viewport" />
+  
+  <title>Akash Nagapure | Microsoft Intune, SCCM & VMware Architect</title>
+  <meta name="title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect" />
+  <meta name="description" content="Portfolio of Akash Nagapure - Enterprise Fleet Architect specializing in Microsoft Intune, SCCM, and VMware virtualization." />
+  <link rel="canonical" href="https://www.akashnagapure.in/" />
+  <link rel="icon" href="/Main_page_data/Logo.avif" type="image/avif" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-    // Create 75 physical confetti particles
-    for (let i = 0; i < 75; i++) {
-      const particle = document.createElement('div');
-      particle.style.position = 'fixed';
-      particle.style.left = originX + 'px';
-      particle.style.top = originY + 'px';
-      
-      // Randomized shapes (squares and circles)
-      const size = 6 + Math.random() * 8;
-      particle.style.width = size + 'px';
-      particle.style.height = (size * (Math.random() > 0.5 ? 0.6 : 1)) + 'px';
-      particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      particle.style.borderRadius = Math.random() > 0.5 ? '50%': '2px';
-      particle.style.pointerEvents = 'none';
-      particle.style.zIndex = '100000';
-      particle.style.transform = `rotate(${Math.random() * 360}deg)`;
-      document.body.appendChild(particle);
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-      // Physics trajectory variables
-      const angle = (Math.random() * Math.PI) - (Math.PI / 2) + (Math.random() > 0.5 ? 0 : Math.PI);
-      const velocity = 6 + Math.random() * 12;
-      let vx = Math.cos(angle) * velocity;
-      let vy = Math.sin(angle) * velocity - 4;
-      let opacity = 1;
-      let rotationSpeed = (Math.random() - 0.5) * 20;
-      let currentRotation = Math.random() * 360;
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.akashnagapure.in/" />
+  <meta property="og:title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect" />
+  <meta property="og:description" content="Enterprise endpoint security specialist, virtualization engineer, and cloud systems architect." />
+  <meta property="og:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
 
-      const animateParticle = () => {
-        const currentLeft = parseFloat(particle.style.left);
-        const currentTop = parseFloat(particle.style.top);
-        
-        particle.style.left = (currentLeft + vx) + 'px';
-        particle.style.top = (currentTop + vy) + 'px';
-        
-        vy += 0.5; // Gravity acceleration
-        vx *= 0.98; // Air resistance
-        opacity -= 0.015; // Fade out
-        currentRotation += rotationSpeed;
-        
-        particle.style.opacity = opacity;
-        particle.style.transform = `rotate(${currentRotation}deg)`;
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.akashnagapure.in/" />
+  <meta property="twitter:title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect" />
+  <meta property="twitter:description" content="Enterprise endpoint security specialist, virtualization engineer, and cloud systems architect." />
+  <meta property="twitter:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
 
-        if (opacity > 0) {
-          requestAnimationFrame(animateParticle);
-        } else {
-          particle.remove();
-        }
-      };
-
-      requestAnimationFrame(animateParticle);
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Akash Nagapure",
+      "jobTitle": "Microsoft Intune & VMware Architect",
+      "description": "Enterprise endpoint security specialist and systems engineer managing 35,000+ endpoints.",
+      "url": "https://www.akashnagapure.in/",
+      "sameAs": ["https://www.linkedin.com/in/anagapure"],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Hexaware Technologies"
+      }
     }
   }
+  </script>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface-variant": "#bac9cc",
+            "surface": "#0b1326",
+            "primary": "#c3f5ff",
+            "primary-container": "#00e5ff",
+            "background": "#0b1326",
+            "on-surface": "#dae2fd",
+            "outline-variant": "#3b494c"
+          },
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "ui-sans-serif", "system-ui", "sans-serif"],
+            mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 6rem;
+      background-color: #020617;
+      text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: #020617 !important;
+      color: #f8fafc !important;
+      overflow-x: hidden;
+      width: 100%;
+      min-height: 100dvh;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    #three-bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      contain: strict;
+      transform: translate3d(0, 0, 0);
+    }
+
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
+    }
+
+    .glass-card-3d {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(56, 189, 248, 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card-3d:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 35px 60px -15px rgba(56, 189, 248, 0.2);
+    }
+
+    .section-seamless {
+      background: transparent !important;
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      scroll-margin-top: 6rem;
+    }
+
+    .flip-card-container {
+      perspective: 1000px;
+      -webkit-perspective: 1000px;
+      touch-action: manipulation;
+    }
+    
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      will-change: transform;
+    }
+    
+    .flip-card-container.is-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+    
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 1.25rem;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    .flip-card-back {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+
+    @keyframes tickerScroll {
+      0% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(-50%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+    .animate-ticker {
+      display: flex;
+      width: 200%;
+      animation: tickerScroll 30s linear infinite;
+    }
+    .animate-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeBounce {
+      0% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(-40%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+    .skills-track-bounce {
+      display: flex;
+      width: max-content;
+      animation: marqueeBounce 20s ease-in-out infinite;
+    }
+    .skills-track-bounce:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -6px, 0); }
+    }
+    .cert-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .cert-float:nth-child(2) { animation-delay: 0.9s; }
+    .cert-float:nth-child(3) { animation-delay: 1.8s; }
+    .cert-float:nth-child(4) { animation-delay: 2.7s; }
+    .cert-float:nth-child(5) { animation-delay: 3.6s; }
+
+    @keyframes nameGlow {
+      0%, 100% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(99, 102, 241, 0.2); }
+      50% { text-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 0 20px rgba(129, 140, 248, 0.6); }
+    }
+    .animate-name-glow {
+      animation: nameGlow 4s ease-in-out infinite;
+    }
+
+    .glass-panel {
+      background-color: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(195, 245, 255, 0.12);
+      box-shadow: inset 0 0 15px rgba(0, 225, 255, 0.05), 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .glow-text {
+      text-shadow: 0 0 12px rgba(0, 225, 255, 0.6);
+    }
+
+    .tech-input {
+      background-color: rgba(0, 0, 0, 0.25);
+      border: none;
+      border-bottom: 1px solid rgba(195, 245, 255, 0.3);
+      color: #c3f5ff;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tech-input:focus {
+      outline: none;
+      border-bottom-color: #00e5ff;
+      box-shadow: 0 1px 0 0 #00e5ff;
+      background-color: rgba(0, 229, 255, 0.06);
+    }
+    .tech-input::placeholder {
+      font-family: 'JetBrains Mono', monospace;
+      color: #849396;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    spline-viewer {
+      background: transparent !important;
+      background-color: transparent !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    spline-viewer::part(canvas) {
+      background: transparent !important;
+    }
+    spline-viewer::part(logo),
+    spline-viewer .watermark,
+    spline-viewer div#logo,
+    spline-viewer a[href*="spline.design"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    header.site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      transition: transform 0.3s ease-in-out;
+    }
+    header.site-header.header-hidden {
+      transform: translateY(-100%);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+
+<body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-[100dvh] w-full">
+
+<canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+<header id="main-header" class="site-header">
+  <div class="w-full overflow-hidden bg-slate-950/60 backdrop-blur-md py-2 px-4 text-[11px] font-mono border-b border-sky-500/10">
+    <div class="animate-ticker">
+      <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6 text-slate-400">
+        <span class="inline-flex items-center gap-1.5 text-amber-400 font-semibold">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+          STATUS: 🚧
+        </span>
+        <span class="bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent font-bold">
+          The website is still under construction and a work in progress, but the foundation is taking shape.
+        </span>
+        <a href="https://blogs.akashnagapure.in" class="text-sky-400 hover:text-white underline underline-offset-4 transition-colors">
+          Click here to view the latest blog →
+        </a>
+      </div>
+      <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6 text-slate-400">
+        <span class="inline-flex items-center gap-1.5 text-amber-400 font-semibold">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+          STATUS: 🚧
+        </span>
+        <span class="bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent font-bold">
+          The website is still under construction and a work in progress, but the foundation is taking shape.
+        </span>
+        <a href="https://blogs.akashnagapure.in" class="text-sky-400 hover:text-white underline underline-offset-4 transition-colors">
+          Click here to view the latest blog →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="w-full bg-slate-950/90 backdrop-blur-xl px-4 sm:px-8 py-3.5 flex items-center justify-between max-w-7xl mx-auto border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+    <a href="#home" class="flex items-center gap-3 group" onclick="smoothNav(event, 'home')">
+      <div class="h-9 w-9 flex items-center justify-center shrink-0">
+        <img src="/Main_page_data/Logo.avif" alt="Logo" width="36" height="36" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+      </div>
+      <div class="flex flex-col">
+        <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">
+          Akash Nagapure
+        </span>
+        <span class="font-mono text-[9px] bg-gradient-to-r from-sky-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent font-bold tracking-wider uppercase mt-1">
+          Fleet Architect
+        </span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-6">
+      <a href="#home" class="nav-item-link font-sans text-xs font-semibold text-sky-400 tracking-wide hover:text-sky-300 transition-colors" onclick="smoothNav(event, 'home')">Home</a>
+      <a href="#about" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-indigo-400 transition-colors" onclick="smoothNav(event, 'about')">About me</a>
+      <a href="#certifications" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-emerald-400 transition-colors" onclick="smoothNav(event, 'certifications')">Certifications</a>
+      <a href="#experience" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-purple-400 transition-colors" onclick="smoothNav(event, 'experience')">Work experience</a>
+      <a href="#education" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-amber-400 transition-colors" onclick="smoothNav(event, 'education')">Education</a>
+      <a href="#projects" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-teal-400 transition-colors" onclick="smoothNav(event, 'projects')">Projects</a>
+      <a href="#hobbies" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-pink-400 transition-colors" onclick="smoothNav(event, 'hobbies')">Hobby</a>
+      <a href="#contact" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-300 transition-colors" onclick="smoothNav(event, 'contact')">Contact me</a>
+      <a href="/changelog.html" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-400 transition-colors flex items-center gap-1"><i data-lucide="history" class="w-3.5 h-3.5"></i>Changelog</a>
+    </div>
+
+    <div class="flex items-center gap-3 lg:hidden">
+      <button id="mobile-toggle-btn" onclick="toggleMobileNav()" class="p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Navigation Drawer">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-drawer" class="hidden lg:hidden w-full bg-slate-950/95 backdrop-blur-2xl px-6 py-6 border-b border-sky-500/10 space-y-3">
+    <a href="#home" class="block w-full text-base font-semibold text-sky-400" onclick="smoothNav(event, 'home')">Home</a>
+    <a href="#about" class="block w-full text-base font-medium text-indigo-400 hover:text-white" onclick="smoothNav(event, 'about')">About me</a>
+    <a href="#certifications" class="block w-full text-base font-medium text-emerald-400 hover:text-white" onclick="smoothNav(event, 'certifications')">Certifications</a>
+    <a href="#experience" class="block w-full text-base font-medium text-purple-400 hover:text-white" onclick="smoothNav(event, 'experience')">Work experience</a>
+    <a href="#education" class="block w-full text-base font-medium text-amber-400 hover:text-white" onclick="smoothNav(event, 'education')">Education</a>
+    <a href="#projects" class="block w-full text-base font-medium text-teal-400 hover:text-white" onclick="smoothNav(event, 'projects')">Projects</a>
+    <a href="#hobbies" class="block w-full text-base font-medium text-pink-400 hover:text-white" onclick="smoothNav(event, 'hobbies')">Hobby</a>
+    <a href="#contact" class="block w-full text-base font-medium text-sky-300 hover:text-white" onclick="smoothNav(event, 'contact')">Contact me</a>
+    <a href="/changelog.html" class="block w-full text-base font-medium text-sky-400 hover:text-white flex items-center gap-2"><i data-lucide="history" class="w-4 h-4"></i>Changelog</a>
+  </div>
+</header>
+
+<main class="w-full flex-grow pt-24">
+
+  <!-- HOME SECTION -->
+  <section id="home" class="section-seamless min-h-[calc(100vh-6rem)] flex items-center justify-center py-12 sm:py-16 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <div class="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
+        <div class="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-slate-900/40 border border-emerald-500/30">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-400 tracking-wider uppercase">
+            AVAILABLE FOR WORK
+          </span>
+        </div>
+
+        <div class="space-y-3 w-full">
+          <h1 class="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] animate-name-glow">
+            Akash Nagapure
+          </h1>
+          <div class="font-mono text-sm sm:text-xl font-medium bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent tracking-wide h-[60px] sm:h-[36px] flex items-center overflow-hidden leading-snug">
+            <span id="typewriter-text" class="inline-block"></span>
+            <span class="animate-pulse ml-1 inline-block w-2 sm:w-2.5 h-4 sm:h-5 bg-indigo-400 shrink-0"></span>
+          </div>
+        </div>
+
+        <p class="max-w-xl font-sans text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed font-light">
+          Optimizing Modern Endpoints with Precision, Security, and Virtualization Expertise. Certified IT Professional specializing in <span class="text-sky-400 font-medium">Microsoft Intune</span>, Microsoft Endpoint Manager, <span class="text-purple-400 font-medium">SCCM</span>, <span class="text-indigo-400 font-medium">VMware</span>, and cloud-native infrastructure automation.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto pt-2">
+          <a href="https://resume.akashnagapure.in" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 hover:opacity-90 text-slate-950 font-sans font-bold text-sm rounded-full shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>Resume</span>
+          </a>
+          <a href="https://blogs.akashnagapure.in" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900/60 border border-indigo-500/40 hover:border-indigo-400 text-white font-sans font-semibold text-sm rounded-full hover:bg-slate-800/80 hover:scale-105 active:scale-95 transition-all">
+            <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i>
+            <span>Technical Blogs</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
+        <div class="relative w-full aspect-square group">
+          <div class="absolute -inset-4 rounded-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl group-hover:opacity-100 transition-opacity"></div>
+          
+          <div class="relative w-full h-full p-2 flex flex-col justify-center items-center overflow-hidden">
+            <img
+              src="/Main_page_data/akash_profile_1781110763642.avif"
+              alt="Akash Nagapure Profile Portrait"
+              width="400"
+              height="400"
+              fetchpriority="high"
+              loading="eager"
+              class="w-full h-full rounded-2xl object-cover aspect-square shadow-2xl transition-transform duration-700 group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)]"
+              onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';"
+            />
+
+            <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-slate-950/90 border border-indigo-500/30 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 shadow-2xl flex items-center gap-3">
+              <div class="p-2 bg-indigo-950/80 rounded-xl text-indigo-400">
+                <i data-lucide="cloud" class="w-4 h-4 sm:w-5 sm:h-5 animate-pulse"></i>
+              </div>
+              <div class="flex flex-col text-left">
+                <span class="font-sans font-extrabold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent text-base sm:text-lg tracking-tight leading-none">35000+</span>
+                <span class="font-mono text-[8px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-wider mt-1">Endpoints Managed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT ME SECTION -->
+  <section id="about" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-1.5 h-8 bg-gradient-to-b from-indigo-400 via-purple-400 to-pink-500 rounded-full shadow-[0_0_10px_rgba(129,140,248,0.6)]"></div>
+          <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            About <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Me</span>
+          </h2>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-900/40 border border-indigo-500/20 rounded-full text-indigo-300 font-mono text-xs backdrop-blur-md w-fit">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-indigo-400"></i>
+          <span>Pune, India</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <h3 class="font-sans text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2.5">
+            <i data-lucide="cpu" class="w-5 h-5 text-indigo-400"></i>
+            Architect Behind The Screens
+          </h3>
+          <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune</span> and <span class="text-indigo-400 font-medium">VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
+          </p>
+          <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+            When I am not scaling cloud infrastructure or fine-tuning <span class="text-purple-400 font-medium">PowerShell automation scripts</span>, my free time is dedicated to building and breaking configurations in my <span class="text-sky-300 font-medium">self-hosted homelab</span>, collecting rare and historical coins (<span class="text-amber-400 font-medium">numismatics</span>), diving into sci-fi and tech strategy literature, or sharpening tactical thinking through strategic gaming and speedcubing.
+          </p>
+
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="https://skills.akashnagapure.in" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-950/40 hover:bg-sky-900/60 border border-sky-400/30 text-sky-300 font-mono text-xs uppercase font-bold tracking-wider transition-all hover:scale-105">
+              <i data-lucide="cpu" class="w-4 h-4"></i>
+              <span>View Skills →</span>
+            </a>
+            <a href="https://courses.akashnagapure.in" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-950/40 hover:bg-indigo-900/60 border border-indigo-400/30 text-indigo-300 font-mono text-xs uppercase font-bold tracking-wider transition-all hover:scale-105">
+              <i data-lucide="award" class="w-4 h-4"></i>
+              <span>View Courses Completed →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
+          <div class="relative w-full aspect-square group">
+            <div class="absolute -inset-4 rounded-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl group-hover:opacity-100 transition-opacity"></div>
+            
+            <div class="relative w-full h-full p-2 flex flex-col justify-center items-center overflow-hidden">
+              <video
+                src="public/Main_page_data/Avideo.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                class="w-full h-full rounded-2xl object-cover aspect-square shadow-2xl transition-transform duration-700 group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)]"
+              ></video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="section-seamless py-16 sm:py-24 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+      
+      <div class="max-w-3xl mx-auto mb-14 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-950/40 border border-emerald-500/30 rounded-full mb-3 shadow-[0_0_15px_rgba(52,211,153,0.2)]">
+          <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i>
+          <span class="font-mono text-xs text-emerald-400 font-bold uppercase tracking-wider">CREDENTIALS</span>
+        </div>
+        <h2 class="font-sans text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">
+          Professional <span class="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">Certifications</span>
+        </h2>
+        <p class="font-sans text-slate-400 text-sm sm:text-base">
+          Validated expertise across the Microsoft cloud and endpoint management spectrum. (Tap badges to celebrate!)
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 justify-center items-start">
+        
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-900')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="/images/Main_Page_Images/AZ-900.avif" alt="AZ-900" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">AZ-900</h3>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">March 2022</p>
+          </div>
+        </div>
+
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-104')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="/images/Main_Page_Images/AZ-104.avif" alt="AZ-104" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">AZ-104</h3>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">April 2026</p>
+          </div>
+        </div>
+
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-140')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="/images/Main_Page_Images/AZ-140.avif" alt="AZ-140" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">AZ-140</h3>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">Sep 2026</p>
+          </div>
+        </div>
+
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'MD-102')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="/images/Main_Page_Images/MD-102.avif" alt="MD-102" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">MD-102</h3>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">Sep 2026</p>
+          </div>
+        </div>
+
+        <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'ITIL-4')">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+            <img src="/images/Main_Page_Images/ITIL-V.avif" alt="ITIL 4" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">ITIL 4</h3>
+            <p class="font-mono text-xs text-slate-400 mt-0.5">Dec 2021</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK HISTORY SECTION WITH ICON-ONLY ROLLING SKILLS MARQUEE -->
+  <section id="experience" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="flex items-center gap-3 mb-12">
+        <i data-lucide="briefcase" class="w-7 h-7 sm:w-8 sm:h-8 text-purple-400"></i>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Work <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">History</span></h2>
+      </div>
+
+      <div class="space-y-12 relative before:absolute before:left-3 sm:before:left-5 before:top-2 before:bottom-2 before:w-[1.5px] before:bg-gradient-to-b before:from-purple-500 before:via-indigo-500 before:to-slate-800">
+        
+        <!-- Job 1 -->
+        <div class="relative pl-8 sm:pl-14 group">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Architect – Technical Specialist</h3>
+                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent font-semibold">Hexaware Technologies | Pune, Maharashtra</p>
+              </div>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-emerald-950/30 border border-emerald-500/20">14/02/2026 – Present</span>
+            </div>
+            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-base font-light mb-4">
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-purple-400 font-mono shrink-0">▹</span> 
+                <span>Led enterprise migrations of home drives to Microsoft OneDrive and architected Modern Workplace solutions using <span class="text-sky-400 font-medium">Intune</span>, <span class="text-teal-400 font-medium">Autopilot</span>, and <span class="text-blue-400 font-medium">Azure AD</span>.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-purple-400 font-mono shrink-0">▹</span> 
+                <span>Designed Virtual Desktop Infrastructure (VDI) using <span class="text-indigo-400 font-medium">Azure Virtual Desktop</span> and <span class="text-blue-400 font-medium">Windows 365</span>, integrated with <span class="text-emerald-400 font-medium">Citrix</span> for secure remote access.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-purple-400 font-mono shrink-0">▹</span> 
+                <span>Managed endpoint security and configuration policies via <span class="text-sky-400 font-medium">Intune</span>, <span class="text-amber-400 font-medium">GPO</span>, and <span class="text-pink-400 font-medium">FSLogix</span> profile optimization.</span>
+              </li>
+            </ul>
+            
+            <div class="w-full overflow-hidden py-3 relative">
+              <div class="skills-track-bounce flex items-center gap-10">
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Microsoft Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-azure.png" alt="Azure AD" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Azure AD</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-windows365.png" alt="Windows 365" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,137,214,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-teal-300 text-[11px] font-mono rounded-lg border border-teal-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Windows 365 / AVD</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/citrix-workspaceapp.png" alt="Citrix" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-emerald-300 text-[11px] font-mono rounded-lg border border-emerald-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Citrix Workspace</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/icons8-vmware-vsphere-480.png" alt="VMware" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-purple-300 text-[11px] font-mono rounded-lg border border-purple-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">VMware vSphere</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">PowerShell Core</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-onedrive.png" alt="OneDrive" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft OneDrive</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="relative pl-8 sm:pl-14 group">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Specialist – EUC</h3>
+                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+              </div>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-teal-400 to-sky-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-teal-950/30 border border-teal-500/20">01/04/2024 – 13/02/2026</span>
+            </div>
+            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-base font-light mb-4">
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-teal-400 font-mono shrink-0">▹</span> 
+                <span>Managed lifecycle for 5000+ endpoints using <span class="text-sky-400 font-medium">Intune</span> and <span class="text-indigo-400 font-medium">SCCM</span>, including Autopatch setup and ring deployment.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-teal-400 font-mono shrink-0">▹</span> 
+                <span>Developed <span class="text-blue-400 font-medium">PowerShell</span> and <span class="text-rose-400 font-medium">SQL</span> scripts for patch compliance and device health dashboards.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-teal-400 font-mono shrink-0">▹</span> 
+                <span>Deployed AVD session hosts and integrated with <span class="text-indigo-400 font-medium">Microsoft Entra ID</span> for secure RBAC and conditional access.</span>
+              </li>
+            </ul>
+
+            <div class="w-full overflow-hidden py-3 relative">
+              <div class="skills-track-bounce flex items-center gap-6">
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/sccm.png" alt="SCCM" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">SCCM / MECM</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Azure Data Studio (SQL)</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-powershellcore.png" alt="PowerShell" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">PowerShell Core</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="relative pl-8 sm:pl-14 group">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Senior Administrator – EUC</h3>
+                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+              </div>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-amber-950/30 border border-amber-500/20">01/01/2022 – 31/03/2024</span>
+            </div>
+            <ul class="space-y-2.5 text-slate-300 text-xs sm:text-base font-light mb-3">
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-teal-400 font-mono shrink-0">▹</span> 
+                <span>Led the administration and optimization of enterprise endpoint management solutions, including <span class="text-sky-400 font-medium">Microsoft Intune</span>, <span class="text-indigo-400 font-medium">MECM/SCCM</span>, and <span class="text-blue-400 font-medium">Microsoft Entra ID</span>.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-relaxed">
+                <span class="text-teal-400 font-mono shrink-0">▹</span> 
+                <span>Designed and implemented device management policies, software deployment strategies, and OS provisioning.</span>
+              </li>
+            </ul>
+
+            <div class="w-full overflow-hidden py-3 relative">
+              <div class="skills-track-bounce flex items-center gap-6">
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Intune</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/sccm.png" alt="SCCM" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">MECM / SCCM</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-azure.png" alt="Entra ID" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Microsoft Entra ID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 4 -->
+        <div class="relative pl-8 sm:pl-14 group">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Administrator – EUC</h3>
+                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent font-semibold">Medline Industries India Pvt. Ltd | Pune, Maharashtra</p>
+              </div>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-rose-400 to-pink-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-rose-950/30 border border-rose-500/20">31/01/2020 – 31/12/2021</span>
+            </div>
+            <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
+              Managed and administered Microsoft Configuration Manager (<span class="text-sky-400 font-medium">MECM/SCCM</span>) infrastructure, including software deployment and OS deployment (<span class="text-purple-400 font-medium">OSD</span>). Created and maintained device collections, application packages, and compliance baselines.
+            </p>
+
+            <div class="w-full overflow-hidden py-3 relative">
+              <div class="skills-track-bounce flex items-center gap-6">
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/sccm.png" alt="SCCM OSD" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-indigo-300 text-[11px] font-mono rounded-lg border border-indigo-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">MECM / SCCM OSD</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/7-zip.png" alt="7-Zip" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Application Packaging (7-Zip)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 5 -->
+        <div class="relative pl-8 sm:pl-14 group">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Process Associate</h3>
+                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-semibold">Capgemini Technology Services | Client: IBM Merge Healthcare</p>
+              </div>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-cyan-950/30 border border-cyan-500/20">19/11/2018 – 23/09/2019</span>
+            </div>
+            <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
+              Delivered L2 support for global healthcare platforms (DICOM/HL7) and Windows OS environments. Performed <span class="text-rose-400 font-medium">SQL</span> database health checks and managed incident tracking via <span class="text-sky-400 font-medium">Salesforce CRM</span>.
+            </p>
+
+            <div class="w-full overflow-hidden py-3 relative">
+              <div class="skills-track-bounce flex items-center gap-6">
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-azuredatastudio.png" alt="SQL" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">SQL Database Health</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/google-chrome.png" alt="Chrome Support" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Global L2 Support Platforms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 6 -->
+        <div class="relative pl-8 sm:pl-14 group">
+          <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-slate-700 group-hover:bg-purple-400 transition-colors"></div>
+          <div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Customer Support Engineer</h3>
+                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent font-semibold">VDA Info Solutions Private Limited | Pune, Maharashtra</p>
+              </div>
+              <span class="font-mono text-xs font-bold bg-gradient-to-r from-indigo-400 to-purple-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-indigo-950/30 border border-indigo-500/20">01/02/2016 – 14/11/2018</span>
+            </div>
+            <p class="text-slate-300 text-xs sm:text-base font-light leading-relaxed mb-4">
+              Delivered IT infrastructure support for 24K+ users in an ODC environment. Managed desktop/laptop refresh for 6000+ endpoints and active asset life cycles.
+            </p>
+
+            <div class="w-full overflow-hidden py-3 relative">
+              <div class="skills-track-bounce flex items-center gap-6">
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/microsoft-windowsapp.png" alt="Windows" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-sky-300 text-[11px] font-mono rounded-lg border border-sky-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">ODC Infrastructure</span>
+                </div>
+                <div class="relative group/skill flex items-center justify-center shrink-0 w-10 h-10 transition-transform hover:scale-125 cursor-pointer">
+                  <img src="public/images/icons/lenovo.png" alt="Lenovo Hardware" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-950 text-rose-300 text-[11px] font-mono rounded-lg border border-rose-500/40 opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl z-50">Hardware & Asset Refresh</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="flex items-center gap-3 mb-10">
+        <i data-lucide="graduation-cap" class="w-7 h-7 sm:w-8 sm:h-8 text-amber-400"></i>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Education & <span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Academy</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        
+        <div class="space-y-3 p-6 rounded-2xl bg-slate-900/30 border border-amber-500/20 backdrop-blur-md">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-amber-400 uppercase tracking-wider font-semibold">Undergraduate</span>
+            <span class="font-mono text-xs text-slate-400">2010 - 2014</span>
+          </div>
+          <h3 class="font-sans font-bold text-xl text-white">Bachelor of Computer Science & Engineering</h3>
+          <p class="font-mono text-xs text-amber-300/80">IBSS College of Engineering • Amravati University</p>
+          <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+            Specialized in Enterprise Computer Networks, Database Architectures, and Operating System Foundations.
+          </p>
+        </div>
+
+        <div class="space-y-3 p-6 rounded-2xl bg-slate-900/30 border border-amber-500/20 backdrop-blur-md">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-amber-400 uppercase tracking-wider font-semibold">Higher Secondary</span>
+            <span class="font-mono text-xs text-slate-400">2010</span>
+          </div>
+          <h3 class="font-sans font-bold text-xl text-white">Higher Secondary Certificate (HSC)</h3>
+          <p class="font-mono text-xs text-amber-300/80">Maharashtra State Board</p>
+          <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+            12th Board Examinations with a focus on Mathematics, Physics, and Advanced Electronics.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-teal-950/40 border border-teal-500/30 rounded-full mb-3 shadow-[0_0_12px_rgba(45,212,191,0.2)]">
+          <i data-lucide="folder-kanban" class="w-4 h-4 text-teal-400"></i>
+          <span class="font-mono text-xs text-teal-400 font-bold uppercase tracking-wider">Engineering Cases</span>
+        </div>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">Key <span class="bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent">Projects</span></h2>
+        <p class="font-sans text-slate-400 text-sm sm:text-base">Case studies of engineered solutions and successful enterprise deployments. (Tap cards to spin)</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Horizon" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_01</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>VDI Migration (Win 7 to 10)</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-7 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/90">
+              <div class="space-y-4">
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Execution Timeline</span>
+                  <p class="text-white text-sm font-semibold">6 Months</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Key Architectural Outcome</span>
+                  <p class="text-slate-200 text-xs leading-relaxed">Resolved driver & resource bottlenecks for 3k+ virtual endpoints.</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Core Stack</span>
+                  <p class="text-teal-300 text-xs font-mono">VMware Horizon, vSphere</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400 pt-3 border-t border-white/10">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_02</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>SCCM to Intune Migration</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Architected a Hybrid Azure AD Join environment enabling phased migration from on-prem SCCM to cloud-native Intune.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-7 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/90">
+              <div class="space-y-4">
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Execution Timeline</span>
+                  <p class="text-white text-sm font-semibold">8 Months</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Key Architectural Outcome</span>
+                  <p class="text-slate-200 text-xs leading-relaxed">Smooth workload authority shift without losing security controls.</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Core Stack</span>
+                  <p class="text-teal-300 text-xs font-mono">AAD Connect, Hybrid Join</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400 pt-3 border-t border-white/10">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Windows Autopilot" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_03</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>Autopilot Zero-Touch</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Custom global factory-to-user OS provisioning model utilizing dynamic application packaging matrices.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-7 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/90">
+              <div class="space-y-4">
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Execution Timeline</span>
+                  <p class="text-white text-sm font-semibold">4 Months</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Key Architectural Outcome</span>
+                  <p class="text-slate-200 text-xs leading-relaxed">Reduced device setup tracks from 4 hours to under 30 minutes.</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Core Stack</span>
+                  <p class="text-teal-300 text-xs font-mono">Windows Autopilot, Win32</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400 pt-3 border-t border-white/10">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_04</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>Windows 365 Setup</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Deployed Cloud PCs providing flexible, persistent, and secure virtual workspaces for remote-first teams.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-7 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/90">
+              <div class="space-y-4">
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Execution Timeline</span>
+                  <p class="text-white text-sm font-semibold">3 Months</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Key Architectural Outcome</span>
+                  <p class="text-slate-200 text-xs leading-relaxed">Improved user login speeds by 30% globally.</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Core Stack</span>
+                  <p class="text-teal-300 text-xs font-mono">Windows 365 Enterprise</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400 pt-3 border-t border-white/10">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_05</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>GPO to Intune Profiles</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Modernized endpoint management by migrating complex legacy GPOs to cloud-native Intune Configuration Profiles.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-7 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/90">
+              <div class="space-y-4">
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Execution Timeline</span>
+                  <p class="text-white text-sm font-semibold">3 Months</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Key Architectural Outcome</span>
+                  <p class="text-slate-200 text-xs leading-relaxed">Achieved a 50% reduction in policy conflict support tickets.</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Core Stack</span>
+                  <p class="text-teal-300 text-xs font-mono">Settings Catalog, AD Policies</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400 pt-3 border-t border-white/10">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_03</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>ServiceNow & Intune Sync</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Integrated Microsoft Intune with ServiceNow, automating asset management, CI syncing, and incident workflows.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-7 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/90">
+              <div class="space-y-4">
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Execution Timeline</span>
+                  <p class="text-white text-sm font-semibold">3 Months</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Key Architectural Outcome</span>
+                  <p class="text-slate-200 text-xs leading-relaxed">Real-time CMDB inventory accuracy with zero manual audits.</p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Core Stack</span>
+                  <p class="text-teal-300 text-xs font-mono">Microsoft Graph API, CMDB</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400 pt-3 border-t border-white/10">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section id="hobbies" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="max-w-3xl mb-12">
+        <div class="flex items-center gap-2 text-pink-400 font-mono text-xs uppercase tracking-wider mb-2">
+          <i data-lucide="compass" class="w-4 h-4"></i>
+          <span>Extracurricular focus</span>
+        </div>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Interests & <span class="bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">Hobbies</span></h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <a href="https://homelab.akashnagapure.in" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
+            <img src="images/Main_Page_Images/hobby_homelab.avif" alt="Homelab" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Self-Hosted Homelab</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+          </div>
+          <p class="font-mono text-xs text-slate-400">Explore Infrastructure Topology →</p>
+        </a>
+
+        <a href="https://gaming.akashnagapure.in" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
+            <img src="images/Main_Page_Images/hobby_gaming.avif" alt="Gaming" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Strategic Gaming</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+          </div>
+          <p class="font-mono text-xs text-slate-400">Tactical Playbooks & Stats →</p>
+        </a>
+
+        <a href="https://food.akashnagapure.in" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
+            <img src="images/Main_Page_Images/Food_Poster.avif" alt="Food" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Culinary & Foodie</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+          </div>
+          <p class="font-mono text-xs text-slate-400">Gastronomy & Recipes →</p>
+        </a>
+
+        <a href="https://reading.akashnagapure.in" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
+            <img src="images/Main_Page_Images/hobby_reading.avif" alt="Reading" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Reading</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+          </div>
+          <p class="font-mono text-xs text-slate-400">Sci-Fi & Strategy Archive →</p>
+        </a>
+
+        <a href="https://coins.akashnagapure.in" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
+            <img src="images/Main_Page_Images/hobby_coins.avif" alt="Coins" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Coin Collection</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+          </div>
+          <p class="font-mono text-xs text-slate-400">Numismatic Vault →</p>
+        </a>
+
+        <a href="https://puzzle.akashnagapure.in" class="group block space-y-3">
+          <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
+            <img src="images/Main_Page_Images/3_3_Cube.avif" alt="Puzzles" width="487" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Speedcubing & Puzzles</h3>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+          </div>
+          <p class="font-mono text-xs text-slate-400">Permutations & Puzzles →</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12 relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4 border-b border-sky-500/20 pb-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-sky-950/60 border border-sky-500/30 rounded-full mb-3 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+            <span class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">// JARVIS_COMMUNICATION_INTERFACE</span>
+          </div>
+          <h2 class="font-sans text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Let's <span class="bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Connect!</span>
+          </h2>
+          <p class="font-sans text-slate-300 text-xs sm:text-sm mt-1">Establish a Secure Transmission</p>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-950/80 border border-emerald-500/30 px-4 py-2 rounded-full w-fit">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="font-mono text-xs text-emerald-400 font-bold uppercase tracking-wider">SYSTEM ONLINE</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-6 flex flex-col sm:flex-row items-center sm:items-start gap-8">
+          
+          <div class="relative shrink-0 w-full sm:w-[320px] h-[320px] overflow-visible bg-transparent flex items-center justify-center">
+            <div class="absolute inset-0 bg-transparent rounded-full filter blur-3xl pointer-events-none"></div>
+            <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" class="w-full h-full relative z-10 bg-transparent"></spline-viewer>
+          </div>
+
+          <div class="flex flex-col justify-center w-full">
+            <div class="flex flex-col gap-3.5 w-full min-h-[140px]" id="chat-container">
+            </div>
+
+            <div class="pt-6 flex flex-wrap items-center gap-5">
+              <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="p-1 hover:scale-110 transition-transform focus:outline-none" aria-label="LinkedIn Profile">
+                <img src="public/images/icons/LinkedIn.svg" alt="LinkedIn" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+              </a>
+              <a href="mailto:info@akashnagapure.in" class="p-1 hover:scale-110 transition-transform focus:outline-none" aria-label="Direct Email">
+                <img src="public/images/icons/Microsoft365.png" alt="Email" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lg:col-span-6 flex justify-center">
+          <div class="w-full max-w-sm p-5 sm:p-6 rounded-2xl bg-surface/85 border border-outline-variant/30 glass-panel relative overflow-hidden shadow-2xl group">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-primary/50 shadow-[0_0_10px_#c3f5ff] -translate-y-full group-hover:translate-y-[400px] transition-transform duration-[3s] ease-linear opacity-0 group-hover:opacity-50"></div>
+            
+            <div class="flex justify-between items-start border-b border-outline-variant/30 pb-3 mb-4">
+              <div>
+                <h3 class="font-headline-lg-mobile text-[16px] text-primary glow-text font-bold leading-tight">MAILBOX_TERMINAL</h3>
+                <p class="font-terminal-sm text-terminal-sm text-on-surface-variant mt-0.5 text-[10px]">SECURE CONNECTION READY</p>
+              </div>
+              <span class="material-symbols-outlined text-primary opacity-70" style='font-variation-settings: "FILL" 1;'>terminal</span>
+            </div>
+
+            <form onsubmit="event.preventDefault(); launchDirectMail();" class="flex flex-col gap-4">
+              <div class="flex flex-col gap-1">
+                <label class="font-label-caps text-[9px] text-primary/80">YOUR_IDENTIFIER</label>
+                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="ENTER NAME" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" required />
+              </div>
+              
+              <div class="flex flex-col gap-1">
+                <label class="font-label-caps text-[9px] text-primary/80">CONTACT_VECTOR</label>
+                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="ENTER EMAIL ADDRESS" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" required />
+              </div>
+              
+              <div class="flex flex-col gap-1">
+                <label class="font-label-caps text-[9px] text-primary/80">OBJECTIVE_PARAM</label>
+                <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="SUBJECT / OBJECTIVE" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" />
+              </div>
+              
+              <div class="flex flex-col gap-1">
+                <label class="font-label-caps text-[9px] text-primary/80">DATA_PAYLOAD</label>
+                <textarea id="direct_message" rows="3" oninput="checkFormValidity()" placeholder="MESSAGE TRANSMISSION..." class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 resize-none text-sm" required></textarea>
+              </div>
+              
+              <button type="button" onclick="launchDirectMail()" id="send-email-btn" disabled class="mt-1 bg-primary text-background font-label-caps text-label-caps py-2.5 px-4 rounded-xl hover:bg-primary-container transition-all hover:shadow-[0_0_20px_rgba(0,225,255,0.4)] active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer text-xs font-bold">
+                <span>INITIATE TRANSMISSION</span>
+                <span class="material-symbols-outlined text-[14px]">send</span>
+              </button>
+
+              <div id="success-banner" class="hidden p-2.5 bg-emerald-950/40 border border-emerald-500/30 rounded-xl flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-400 text-[16px]">check_circle</span>
+                <p class="font-terminal-sm text-[10px] text-emerald-300">
+                  Transmission compiled! Client launched to info@akashnagapure.in.
+                </p>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="w-full py-6 sm:py-8 bg-slate-950/90 border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+                <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
+                    <path d="M25 75 L45 25 L55 25 L75 75 M32 58 L68 58 L70 25 L75 75 L80 35" fill="none" stroke="#a855f7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
+        </div>
+        
+        <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
+            <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">share</span> LinkedIn
+            </a>
+            <span>•</span>
+            <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
+            </a>
+            <span>•</span>
+            <a href="/changelog.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">history</span> Changelog
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
+            </a>
+            <span>•</span>
+            <a href="https://www.akashnagapure.in/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">description</span> Terms of Service
+            </a>
+        </div>
+
+        <span class="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">© 2026. All Rights Reserved. Engineered with Precision. Owner Akash Nagapure.</span>
+    </div>
+</footer>
+
+<button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/85 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110 cursor-pointer" aria-label="Scroll Back To Top">
+  <i data-lucide="arrow-up" class="w-4 h-4"></i>
+</button>
+
+<script>
+  let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
+  let mouseX = 0, mouseY = 0;
+  let targetX = 0, targetY = 0;
+  let isPageVisible = true;
+  const isMobile = window.innerWidth < 768;
+
+  function init3DBackground() {
+    const canvas = document.getElementById('three-bg-canvas');
+    if (!canvas) return;
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 50;
+
+    renderer = new THREE.WebGLRenderer({ 
+      canvas: canvas, 
+      antialias: !isMobile, 
+      alpha: true, 
+      powerPreference: "high-performance"
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
+
+    const count = isMobile ? 1500 : 4500;
+    particlesGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+
+    for (let i = 0; i < count * 3; i += 3) {
+      positions[i] = (Math.random() - 0.5) * 800;
+      positions[i + 1] = (Math.random() - 0.5) * 2800;
+      positions[i + 2] = (Math.random() - 0.5) * 600;
+    }
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      color: 0x38bdf8,
+      size: isMobile ? 1.3 : 1.1,
+      transparent: true,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending
+    });
+
+    particlesMesh = new THREE.Points(particlesGeo, particleMat);
+    scene.add(particlesMesh);
+
+    gridHelper = new THREE.GridHelper(1400, isMobile ? 50 : 100, 0x0284c7, 0x0f172a);
+    gridHelper.position.y = -220;
+    gridHelper.material.transparent = true;
+    gridHelper.material.opacity = 0.22;
+    scene.add(gridHelper);
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.0006;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.0006;
+      }, { passive: true });
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (!camera || !renderer) return;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }, 150);
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      isPageVisible = !document.hidden;
+    });
+  }
+
+  const clock = new THREE.Clock();
+  function animate3DBackground() {
+    requestAnimationFrame(animate3DBackground);
+    if (!isPageVisible) return;
+
+    const elapsedTime = clock.getElapsedTime();
+
+    targetX += (mouseX - targetX) * 0.04;
+    targetY += (mouseY - targetY) * 0.04;
+
+    if (particlesMesh) {
+      particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
+      particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
+    }
+    if (gridHelper) {
+      gridHelper.rotation.y = elapsedTime * 0.003;
+    }
+    if (renderer && scene && camera) {
+      renderer.render(scene, camera);
+    }
+  }
+
+  class Point {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.dx = 0;
+      this.dy = 0;
+    }
+    update(x, y, dampening) {
+      this.dx += (x - this.x) * dampening;
+      this.dx *= 0.5;
+      this.x += this.dx;
+      this.dy += (y - this.y) * dampening;
+      this.dy *= 0.5;
+      this.y += this.dy;
+    }
+  }
+
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursor-trail-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let mouse = { x: width / 2, y: height / 2 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    const trailsCount = 20;
+    const points = [];
+    for (let i = 0; i < trailsCount; i++) {
+      points.push(new Point(mouse.x, mouse.y));
+    }
+
+    function renderTrail() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      points[0].update(mouse.x, mouse.y, 0.25);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      requestAnimationFrame(renderTrail);
+    }
+    renderTrail();
+  }
+
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", () => {
+    const header = document.getElementById("main-header");
+    const backToTopBtn = document.getElementById("back-to-top-btn");
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (!header) return;
+
+    if (currentScroll > lastScrollTop && currentScroll > 120) {
+      header.classList.add("header-hidden");
+    } else {
+      header.classList.remove("header-hidden");
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
+    if (backToTopBtn) {
+      if (currentScroll > 350) {
+        backToTopBtn.classList.remove("hidden");
+      } else {
+        backToTopBtn.classList.add("hidden");
+      }
+    }
+  }, { passive: true });
+
+  function toggleFlip(clickedCard) {
+    const allCards = document.querySelectorAll('.flip-card-container');
+    allCards.forEach(card => {
+      if (card !== clickedCard) {
+        card.classList.remove('is-flipped');
+      }
+    });
+    clickedCard.classList.toggle('is-flipped');
+  }
+
+  function triggerBadgeConfetti(event, badgeName) {
+    if (typeof confetti === 'function') {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { x: Math.max(0.1, Math.min(0.9, x)), y: Math.max(0.1, Math.min(0.9, y)) },
+        colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff'],
+        disableForReducedMotion: true,
+        zIndex: 100000
+      });
+    } else {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const originX = rect.left + rect.width / 2;
+      const originY = rect.top + rect.height / 2;
+      const colors = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff'];
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.left = originX + 'px';
+        particle.style.top = originY + 'px';
+        particle.style.width = '8px';
+        particle.style.height = '8px';
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '100000';
+        document.body.appendChild(particle);
+
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 4 + Math.random() * 8;
+        const vx = Math.cos(angle) * speed;
+        let vy = Math.sin(angle) * speed - 3;
+        let opacity = 1;
+
+        const animateParticle = () => {
+          const currentLeft = parseFloat(particle.style.left);
+          const currentTop = parseFloat(particle.style.top);
+          particle.style.left = (currentLeft + vx) + 'px';
+          particle.style.top = (currentTop + vy) + 'px';
+          vy += 0.4;
+          opacity -= 0.025;
+          particle.style.opacity = opacity;
+
+          if (opacity > 0) {
+            requestAnimationFrame(animateParticle);
+          } else {
+            particle.remove();
+          }
+        };
+        requestAnimationFrame(animateParticle);
+      }
+    }
+  }
+
+  const phrases = [
+    "Microsoft Intune & VMware Architect",
+    "Securing endpoints and scaling cloud virtualization",
+    "Building automated, zero-trust enterprise workplaces."
+  ];
+
+  let currentPhraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typingSpeed = 60;
+  const deletingSpeed = 35;
+  const pauseTime = 2200;
+
+  function typeWriterEffect() {
+    const targetElement = document.getElementById("typewriter-text");
+    if (!targetElement) return;
+
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    if (isDeleting) {
+      targetElement.textContent = currentPhrase.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      targetElement.textContent = currentPhrase.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let speed = isDeleting ? deletingSpeed : typingSpeed;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      speed = pauseTime;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      speed = 400;
+    }
+
+    setTimeout(typeWriterEffect, speed);
+  }
+
+  const chatMessages = [
+    "Hi there! 👋 I'm Jarvis, Akash's AI Assistant.",
+    "You're looking for an Architect, consultant or training guidance?",
+    "Have a technical question, project idea, hobby-related thought, feedback or any suggestion?",
+    "Feel free to send me an email. I'd be happy to connect, exchange ideas, share knowledge and have a great conversation. 😊",
+    "Your message is always welcome! 🚀"
+  ];
+
+  let msgIndex = 0;
+  let wordIndex = 0;
+  let words = [];
+
+  function startSequence() {
+      const chatContainer = document.getElementById('chat-container');
+      if (!chatContainer) return;
+      chatContainer.innerHTML = '';
+      msgIndex = 0;
+      processNextMessage();
+  }
+
+  function processNextMessage() {
+      if (msgIndex >= chatMessages.length) {
+          setTimeout(startSequence, 5000);
+          return;
+      }
+      
+      const msg = chatMessages[msgIndex];
+      words = msg.split(' ');
+      wordIndex = 0;
+      
+      const chatContainer = document.getElementById('chat-container');
+      if (!chatContainer) return;
+
+      const lineContainer = document.createElement('div');
+      lineContainer.className = `font-sans text-[14px] sm:text-[15px] leading-snug tracking-tight font-medium ${msgIndex === 0 ? 'text-sky-400 font-bold' : msgIndex === chatMessages.length - 1 ? 'text-emerald-400 font-bold' : 'text-indigo-200'}`;
+      chatContainer.appendChild(lineContainer);
+      
+      appendNextWord(lineContainer);
+  }
+
+  function appendNextWord(container) {
+      if (wordIndex >= words.length) {
+          msgIndex++;
+          setTimeout(processNextMessage, 900);
+          return;
+      }
+      
+      container.innerHTML += (wordIndex > 0 ? ' ' : '') + words[wordIndex];
+      wordIndex++;
+      setTimeout(() => appendNextWord(container), 80);
+  }
+
+  function smoothNav(event, id) {
+    if (event) event.preventDefault();
+    const targetElement = document.getElementById(id);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    const drawer = document.getElementById("mobile-drawer");
+    if (drawer && !drawer.classList.contains("hidden")) {
+      drawer.classList.add("hidden");
+    }
+  }
+
+  function toggleMobileNav() {
+    const drawer = document.getElementById("mobile-drawer");
+    if (drawer) drawer.classList.toggle("hidden");
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function checkFormValidity() {
+    const name = document.getElementById("direct_name")?.value.trim() || "";
+    const email = document.getElementById("direct_email")?.value.trim() || "";
+    const message = document.getElementById("direct_message")?.value.trim() || "";
+    const sendBtn = document.getElementById("send-email-btn");
+
+    if (sendBtn) {
+      sendBtn.disabled = !(name && email && message);
+    }
+  }
+
+  function launchDirectMail() {
+    const name = document.getElementById("direct_name")?.value.trim() || "";
+    const email = document.getElementById("direct_email")?.value.trim() || "";
+    const subjectVal = document.getElementById("direct_subject")?.value.trim() || "Consultation Request";
+    const message = document.getElementById("direct_message")?.value.trim() || "";
+
+    const body = `Hello Akash,\n\n${message}\n\n------------------------------\nSender Name: ${name}\nSender Email: ${email}\n`;
+    const banner = document.getElementById("success-banner");
+    if (banner) banner.classList.remove("hidden");
+
+    window.location.href = `mailto:info@akashnagapure.in?subject=${encodeURIComponent(subjectVal)}&body=${encodeURIComponent(body)}`;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+    init3DBackground();
+    animate3DBackground();
+    initCursorTrail();
+    typeWriterEffect();
+    startSequence();
+
+    const splineObserver = setInterval(() => {
+      const viewer = document.querySelector('spline-viewer');
+      if (viewer && viewer.shadowRoot) {
+        const shadowElements = viewer.shadowRoot.querySelectorAll('#logo, .watermark, a[href*="spline.design"], div[class*="logo"]');
+        shadowElements.forEach(el => el.remove());
+      }
+    }, 500);
+  });
+</script>
+</body>
+</html>
