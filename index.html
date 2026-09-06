@@ -1505,6 +1505,18 @@
     clickedCard.classList.toggle('is-flipped');
   }
 
+  // Worker-free confetti cannon: renders on a plain canvas in the main thread.
+  // Avoids the OffscreenCanvas/blob worker path, which this site's CSP
+  // (default-src 'self' https: data:) would block — keeping confetti working
+  // in every browser with zero console errors.
+  let confettiCannon = null;
+  function getConfettiCannon() {
+    if (!confettiCannon && typeof window.confetti === 'function' && typeof window.confetti.create === 'function') {
+      confettiCannon = window.confetti.create(null, { useWorker: false, resize: true });
+    }
+    return confettiCannon;
+  }
+
   function triggerBadgeConfetti(event, badgeName) {
     // Capture the badge's position synchronously (before the event object is
     // cleared) so it also works in the async on-demand script-load fallback.
@@ -1513,8 +1525,11 @@
     const originY = Math.min(Math.max((rect.top + rect.height / 2) / window.innerHeight, 0.05), 0.95);
 
     const fireConfetti = () => {
+      const cannon = getConfettiCannon();
+      if (!cannon) return;
+
       // Primary burst from the clicked badge.
-      confetti({
+      cannon({
         particleCount: 90,
         spread: 75,
         startVelocity: 35,
@@ -1525,7 +1540,7 @@
 
       // Small trailing burst for a richer celebration.
       setTimeout(() => {
-        confetti({
+        cannon({
           particleCount: 40,
           startVelocity: 28,
           spread: 60,
