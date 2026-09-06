@@ -50,7 +50,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js"></script>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
@@ -1189,12 +1189,12 @@
             <div class="flex flex-col gap-3.5 w-full min-h-[140px]" id="chat-container">
             </div>
 
-            <div class="pt-6 flex flex-wrap items-center gap-3">
-              <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center p-3 bg-indigo-950/60 border border-indigo-500/30 hover:border-indigo-400 rounded-xl text-indigo-300 transition-all hover:scale-105" aria-label="LinkedIn Profile">
-                <img src="public/images/icons/LinkedIn.svg" alt="LinkedIn Logo" class="w-5 h-5 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+            <div class="pt-6 flex flex-wrap items-center gap-4">
+              <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center p-2 bg-transparent hover:scale-110 transition-transform" aria-label="LinkedIn Profile">
+                <img src="public/images/icons/LinkedIn.svg" alt="LinkedIn" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
               </a>
-              <a href="mailto:info@akashnagapure.in" class="inline-flex items-center justify-center p-3 bg-sky-950/60 border border-sky-500/30 hover:border-sky-400 rounded-xl text-sky-300 transition-all hover:scale-105" aria-label="Direct Email">
-                <img src="public/images/icons/Microsoft365.png" alt="Email Logo" class="w-5 h-5 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+              <a href="mailto:info@akashnagapure.in" class="inline-flex items-center justify-center p-2 bg-transparent hover:scale-110 transition-transform" aria-label="Direct Email">
+                <img src="public/images/icons/Microsoft365.png" alt="Email" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
               </a>
             </div>
           </div>
@@ -1506,8 +1506,8 @@
       const y = (rect.top + rect.height / 2) / window.innerHeight;
 
       confetti({
-        particleCount: 50,
-        spread: 60,
+        particleCount: 80,
+        spread: 70,
         origin: { x: Math.max(0.1, Math.min(0.9, x)), y: Math.max(0.1, Math.min(0.9, y)) },
         colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff'],
         disableForReducedMotion: true
