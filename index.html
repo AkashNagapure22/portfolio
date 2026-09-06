@@ -1,3 +1,12 @@
+Here is the complete, fully updated code.
+
+### What was updated:
+
+1. **Left-to-Right and Back Marquee Animation (`skills-track-ltr`):** All skill icon lists across every single work history company (Hexaware, Medline, Capgemini, and VDA Info Solutions) now use a smooth left-to-right and back-and-forth rolling animation.
+2. **Icon-Only with Hover Tooltips:** The icon elements are displayed cleanly with **no background container boxes**, rendering just the image asset and showing the tooltipped title smoothly on hover.
+3. **Confetti Functionality & All Previous Layouts:** The confetti trigger is fully secured with native fallback support, the hero profile picture and about-me video setup remain completely intact, and footer credits are aligned.
+
+```html
 <!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
@@ -50,6 +59,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
@@ -201,14 +211,14 @@
     }
 
     @keyframes marqueeLeftToRight {
-      0% { transform: translate3d(-35%, 0, 0); }
-      50% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-35%, 0, 0); }
+      0% { transform: translate3d(-25%, 0, 0); }
+      50% { transform: translate3d(25%, 0, 0); }
+      100% { transform: translate3d(-25%, 0, 0); }
     }
     .skills-track-ltr {
       display: flex;
       width: max-content;
-      animation: marqueeLeftToRight 25s ease-in-out infinite;
+      animation: marqueeLeftToRight 12s ease-in-out infinite;
     }
     .skills-track-ltr:hover {
       animation-play-state: paused;
@@ -1798,3 +1808,5 @@
 </script>
 </body>
 </html>
+
+```
