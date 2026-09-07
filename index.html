@@ -1621,13 +1621,13 @@
     clickedCard.classList.toggle('is-flipped');
   }
 
-  function triggerBadgeConfetti(event, badgeName) {
+function triggerBadgeConfetti(event, badgeName) {
     const rect = event.currentTarget.getBoundingClientRect();
     const originX = (rect.left + rect.width / 2) / window.innerWidth;
     const originY = (rect.top + rect.height / 2) / window.innerHeight;
 
-    if (typeof confetti === 'function') {
-      confetti({
+    if (typeof window.confetti === 'function') {
+      window.confetti({
         particleCount: 100,
         spread: 70,
         origin: { x: originX, y: originY },
