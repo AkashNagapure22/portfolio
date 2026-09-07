@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" name="viewport" />
   <title>Akash Nagapure | Technical Blogs & Enterprise Labs</title>
-  <meta name="description" content="Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, IT administration, and cloud technologies by Akash Nagapure." />
+  <meta name="description" content="Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, IT administration, AVD, VMware, and cloud technologies by Akash Nagapure." />
   <link rel="canonical" href="https://blogs.akashnagapure.in/" />
   <link rel="icon" href="https://www.akashnagapure.in/Main_page_data/Logo.avif" type="image/avif" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://blogs.akashnagapure.in/" />
   <meta property="og:title" content="Akash Nagapure | Technical Blogs & Enterprise Labs" />
-  <meta property="og:description" content="Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, and cloud technologies." />
+  <meta property="og:description" content="Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, AVD, VMware, and cloud technologies." />
   <meta property="og:image" content="https://www.akashnagapure.in/images/Main_Page_Images/hobby_homelab.avif" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -149,10 +149,13 @@
     </p>
 
     <div class="flex flex-wrap gap-2 pt-4">
-      <button class="filter-pill active" id="pill-all" onclick="filterCategory('all', this)">All 16</button>
+      <button class="filter-pill active" id="pill-all" onclick="filterCategory('all', this)">All 20</button>
       <button class="filter-pill" id="pill-intune" onclick="filterCategory('intune', this)">Microsoft Intune 4</button>
       <button class="filter-pill" id="pill-sccm" onclick="filterCategory('sccm', this)">SCCM / MECM 6</button>
-      <button class="filter-pill" id="pill-powershell" onclick="filterCategory('powershell', this)">PowerShell 5</button>
+      <button class="filter-pill" id="pill-w365" onclick="filterCategory('w365', this)">Windows 365 2</button>
+      <button class="filter-pill" id="pill-avd" onclick="filterCategory('avd', this)">Azure Virtual Desktop 2</button>
+      <button class="filter-pill" id="pill-vmware" onclick="filterCategory('vmware', this)">VMware / Horizon 2</button>
+      <button class="filter-pill" id="pill-powershell" onclick="filterCategory('powershell', this)">PowerShell 3</button>
       <button class="filter-pill" id="pill-ad" onclick="filterCategory('ad', this)">Active Directory 1</button>
     </div>
   </div>
@@ -355,6 +358,120 @@
       </div>
     </a>
 
+    <a href="/Blogs/windows-365-enterprise-provisioning.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="w365">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="https://www.akashnagapure.in/images/Blogs_Images/Autopilotblog.avif" alt="Windows 365 Enterprise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400">Windows 365 / Cloud PC</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 20, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Windows 365 Enterprise: Custom Image Deployment</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Streamlining Cloud PC provisioning with custom gallery images and Intune policies.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-emerald-400 gap-1">
+        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </a>
+
+    <a href="/Blogs/windows-365-resilience-monitoring.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="w365">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="https://www.akashnagapure.in/images/Blogs_Images/Autopilotblog.avif" alt="Windows 365 Monitoring" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400">Windows 365 / Operations</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 18, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Cloud PC Health & Connection Monitoring</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Proactive remediation strategies for Cloud PC network connectivity and user performance.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-emerald-400 gap-1">
+        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </a>
+
+    <a href="/Blogs/avd-host-pool-scaling.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="avd">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="https://www.akashnagapure.in/images/Blogs_Images/AutopatchA-Z.avif" alt="AVD Scaling" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-cyan-400">AVD / Infrastructure</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 12, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Advanced AVD Host Pool Auto-Scaling</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Optimizing compute costs and user concurrency with dynamic session host scaling algorithms.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-cyan-400 gap-1">
+        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </a>
+
+    <a href="/Blogs/avd-fslogix-profile-containers.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="avd">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="https://www.akashnagapure.in/images/Blogs_Images/AutopatchA-Z.avif" alt="FSLogix Profiles" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-cyan-400">AVD / FSLogix</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">June 05, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">FSLogix Profile Containers in Enterprise AVD</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Configuring Azure Files and Azure NetApp Files for reliable user profile redirection.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-cyan-400 gap-1">
+        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </a>
+
+    <a href="/Blogs/vmware-horizon-instant-clones.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="vmware">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="VMware Horizon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-violet-400">VMware / Horizon</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 30, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">VMware Horizon Instant Clone Architecture</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Rapid desktop provisioning and golden image maintenance workflows in enterprise data centers.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-violet-400 gap-1">
+        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </a>
+
+    <a href="/Blogs/vmware-dem-profile-management.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="vmware">
+      <div>
+        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+          <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Dynamic Environment Manager" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+        </div>
+        <div class="p-6 space-y-2">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-violet-400">VMware / DEM</span>
+            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 28, 2026</span>
+          </div>
+          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Dynamic Environment Manager (DEM) Optimization</h2>
+          <p class="text-slate-400 text-xs leading-relaxed font-light">Streamlining user settings and application configurations across virtual desktop pools.</p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-violet-400 gap-1">
+        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </a>
+
     <a href="/Blogs/powershell-device-inventory.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="powershell">
       <div>
         <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
@@ -405,44 +522,6 @@
           </div>
           <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Intune Reporting</h2>
           <p class="text-slate-400 text-xs leading-relaxed font-light">Build focused Microsoft Graph reports tailored for operators.</p>
-        </div>
-      </div>
-      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-teal-400 gap-1">
-        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-      </div>
-    </a>
-
-    <a href="/Blogs/powershell-remediation-scripts.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="powershell">
-      <div>
-        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
-          <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Remediation Scripts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
-        </div>
-        <div class="p-6 space-y-2">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Maintenance</span>
-            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 15, 2026</span>
-          </div>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">PowerShell Remediation Scripts</h2>
-          <p class="text-slate-400 text-xs leading-relaxed font-light">Design detection and repair pairs that remain completely safe to rerun.</p>
-        </div>
-      </div>
-      <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-teal-400 gap-1">
-        <span>Read Article</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-      </div>
-    </a>
-
-    <a href="/Blogs/powershell-graph-authentication.html" class="blog-card flex flex-col justify-between searchable-card group cursor-pointer" data-category="powershell">
-      <div>
-        <div class="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
-          <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Graph Authentication" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
-        </div>
-        <div class="p-6 space-y-2">
-          <div class="flex flex-col">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-400">PowerShell / Security</span>
-            <span class="text-[11px] font-mono text-slate-500 mt-0.5">May 12, 2026</span>
-          </div>
-          <h2 class="text-xl font-bold text-white tracking-tight leading-snug">Graph Authentication Security</h2>
-          <p class="text-slate-400 text-xs leading-relaxed font-light">Leverage least-privilege identity applications and predictable token management.</p>
         </div>
       </div>
       <div class="p-6 pt-0 flex items-center text-xs font-mono font-bold text-teal-400 gap-1">
@@ -510,7 +589,7 @@
             </div>
             <span class="font-sans font-extrabold text-sm text-white tracking-tight">Akash Nagapure</span>
         </div>
-        
+
         <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-400">
             <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
@@ -603,7 +682,7 @@
     const canvas = document.getElementById('cursor-trail-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    
+
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
@@ -639,7 +718,7 @@
         points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
         ctx.lineTo(points[i].x, points[i].y);
       }
-      
+
       points[0].update(mouse.x, mouse.y, 0.25);
 
       ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
