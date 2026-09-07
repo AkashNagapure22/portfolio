@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Akash Nagapure | Release Version Control & Changelog</title>
-<meta name="description" content="Official version control ledger tracking all minor and major releases, technical article publications, and structural edge patches from inception to date." />
+<title>Akash Nagapure | Release Version Control & Upcoming Roadmap</title>
+<meta name="description" content="Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches." />
 <link rel="canonical" href="https://www.akashnagapure.in/changelog.html" />
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -232,7 +232,7 @@
             Akash Nagapure
           </span>
           <span class="font-mono text-[10px] text-sky-400 font-medium tracking-widest mt-1">
-            Version Control & Changelog
+            Releases & Roadmap
           </span>
         </div>
       </a>
@@ -271,20 +271,55 @@
     </button>
 </div>
 
-<main class="content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10 flex-grow w-full">
+<main class="content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 flex-grow w-full">
 
     <div class="space-y-3 text-center sm:text-left border-b border-white/10 pb-6 animate-fade-in-up">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
             <span class="material-symbols-outlined text-sm">history</span> System Release Pipeline
         </div>
-        <h1 class="font-headline-md text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Version Control Ledger</h1>
-        <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Welcome to the official system update log for Akash Nagapure's enterprise engineering portfolio. This page serves as a transparent chronological record tracking all major platform upgrades, technical article publications, performance optimizations, and infrastructure security patches implemented across our network architecture from inception to date.</p>
+        <h1 class="font-headline-md text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Version Control & Roadmap</h1>
+        <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Explore both our upcoming engineering roadmap and our historical version control logs. Track planned features, upcoming technical articles, performance optimizations, and past updates across our portfolio infrastructure.</p>
     </div>
 
-    <!-- Classy Interactive Filter & Date Navigation Section -->
+    <section class="space-y-6 animate-fade-in-up">
+        <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
+            <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-indigo-400">upcoming</span>
+                <h2 class="font-headline-md text-2xl font-bold text-white">Upcoming Releases & Roadmap</h2>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden">
+                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
+                <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
+                    <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
+                </div>
+                <h3 class="text-white text-lg font-bold">Interactive Homelab Topology Viewer</h3>
+                <p class="text-xs text-slate-300 font-mono leading-relaxed">Developing an interactive 3D/2D node map showcasing self-hosted virtualization clusters, storage arrays, and network firewalls.</p>
+                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-indigo-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span> Status: Architecture Planning
+                </div>
+            </div>
+
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden">
+                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
+                <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
+                    <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
+                </div>
+                <h3 class="text-white text-lg font-bold">Advanced Numismatics Vault Catalog</h3>
+                <p class="text-xs text-slate-300 font-mono leading-relaxed">Expanding the coin collection archive with high-resolution image zoom inspectors, historical grading sheets, and rarity indexes.</p>
+                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-purple-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> Status: UI Mockups & Data Entry
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="glass-card-3d p-5 rounded-2xl flex flex-wrap items-center justify-between gap-4 animate-fade-in-up">
         <h2 class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
-            <span class="material-symbols-outlined text-base">filter_list</span> Release Filters:
+            <span class="material-symbols-outlined text-base">filter_list</span> Release History Filters:
         </h2>
         <div class="flex flex-wrap items-center gap-3">
             <select id="filter-year" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
@@ -309,7 +344,6 @@
 
     <div class="space-y-8" id="releases-container">
 
-        <!-- RELEASE V3.2.0 (15 Technical Articles Launch) -->
         <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-400 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
             <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
@@ -350,7 +384,6 @@
             </details>
         </div>
 
-        <!-- RELEASE V3.1.0 -->
         <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-400 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
             <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
@@ -378,7 +411,6 @@
             </details>
         </div>
 
-        <!-- RELEASE V3.0.0 -->
         <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-400 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
             <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
@@ -406,7 +438,6 @@
             </details>
         </div>
 
-        <!-- RELEASE V2.0.0 -->
         <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-purple-400 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
             <div class="absolute -top-3 left-6 px-3 py-0.5 bg-purple-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
@@ -433,7 +464,6 @@
             </details>
         </div>
 
-        <!-- RELEASE V1.5.0 -->
         <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-500/50 animate-fade-in-up" data-year="2026" data-month="july" data-type="minor">
             <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-700 text-slate-200 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Minor Release</div>
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
@@ -460,7 +490,6 @@
             </details>
         </div>
 
-        <!-- RELEASE V1.1.2 -->
         <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-slate-500 animate-fade-in-up" data-year="2026" data-month="june" data-type="patch">
             <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-800 text-slate-400 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Small Patch</div>
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
@@ -487,7 +516,6 @@
             </details>
         </div>
 
-        <!-- INITIAL SITE CREATION (v1.0.0) -->
         <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-emerald-400 animate-fade-in-up" data-year="2026" data-month="june" data-type="major">
             <div class="absolute -top-3 left-6 px-3 py-0.5 bg-emerald-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Inception Release</div>
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
@@ -588,19 +616,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
