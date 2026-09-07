@@ -1,10 +1,3 @@
-To fix the confetti issue permanently so that clicking any certificate badge (like AZ-104 or MD-102) reliably triggers the celebration burst, the issue in your code was that the `onclick` handler was attached to the outer container (`div.cert-float`), but pointer events or inner image elements were capturing or stopping the click coordinates.
-
-Additionally, we need to make sure the `canvas-confetti` script library is loaded properly and has a built-in fallback.
-
-Here is your fully updated, verified **`index.html`** file with the confetti interaction explicitly bound, mouse coordinate tracking fixed, and all your timeline sections, career history points, and icon tickers fully intact:
-
-```html
 <!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
