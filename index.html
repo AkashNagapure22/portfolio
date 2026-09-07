@@ -50,6 +50,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <script>
@@ -518,7 +519,7 @@
             
             <div class="relative w-full h-full p-2 flex flex-col justify-center items-center overflow-hidden">
               <video
-                src="public/Main_page_data/Avideo.mp4"
+                src="/Main_page_data/Avideo.mp4"
                 autoplay
                 muted
                 loop
@@ -552,50 +553,50 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 justify-center items-start">
         
         <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-900')">
-          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300 pointer-events-none">
             <img src="/images/Main_Page_Images/AZ-900.avif" alt="AZ-900" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-4 text-center">
+          <div class="mt-4 text-center pointer-events-none">
             <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">AZ-900</h3>
             <p class="font-mono text-xs text-slate-400 mt-0.5">March 2022</p>
           </div>
         </div>
 
         <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-104')">
-          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300 pointer-events-none">
             <img src="/images/Main_Page_Images/AZ-104.avif" alt="AZ-104" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-4 text-center">
+          <div class="mt-4 text-center pointer-events-none">
             <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">AZ-104</h3>
             <p class="font-mono text-xs text-slate-400 mt-0.5">April 2026</p>
           </div>
         </div>
 
         <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'AZ-140')">
-          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300 pointer-events-none">
             <img src="/images/Main_Page_Images/AZ-140.avif" alt="AZ-140" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-4 text-center">
+          <div class="mt-4 text-center pointer-events-none">
             <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">AZ-140</h3>
             <p class="font-mono text-xs text-slate-400 mt-0.5">Sep 2026</p>
           </div>
         </div>
 
         <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'MD-102')">
-          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300 pointer-events-none">
             <img src="/images/Main_Page_Images/MD-102.avif" alt="MD-102" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-4 text-center">
+          <div class="mt-4 text-center pointer-events-none">
             <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">MD-102</h3>
             <p class="font-mono text-xs text-slate-400 mt-0.5">Sep 2026</p>
           </div>
         </div>
 
         <div class="cert-float flex flex-col items-center justify-center p-2 cursor-pointer group" onclick="triggerBadgeConfetti(event, 'ITIL-4')">
-          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
+          <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300 pointer-events-none">
             <img src="/images/Main_Page_Images/ITIL-V.avif" alt="ITIL 4" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
-          <div class="mt-4 text-center">
+          <div class="mt-4 text-center pointer-events-none">
             <h3 class="font-sans font-bold text-white text-sm sm:text-base tracking-wide group-hover:text-emerald-300 transition-colors">ITIL 4</h3>
             <p class="font-mono text-xs text-slate-400 mt-0.5">Dec 2021</p>
           </div>
@@ -615,6 +616,7 @@
 
       <div class="space-y-16 relative before:absolute before:left-3 sm:before:left-5 before:top-2 before:bottom-2 before:w-[1.5px] before:bg-gradient-to-b before:from-purple-500 before:via-indigo-500 before:to-slate-800">
         
+        <!-- Job 1: Hexaware Technologies -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -643,31 +645,31 @@
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Intune</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-indigo-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">SCCM</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-cyan-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Active Directory (AD)</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Azure</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-Edge.png" alt="Edge" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,120,212,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-Edge.png" alt="Edge" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,120,212,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-200 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Microsoft Edge</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/vmware.png" alt="VMware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/vmware.png" alt="VMware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-purple-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">VMware</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Citrix-WorkspaceApp.png" alt="Citrix" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Citrix-WorkspaceApp.png" alt="Citrix" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-emerald-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Citrix</span>
                 </div>
               </div>
@@ -675,6 +677,7 @@
           </div>
         </div>
 
+        <!-- Job 2: Specialist – EUC -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -703,23 +706,23 @@
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Intune</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-indigo-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">SCCM</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-cyan-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Active Directory (AD)</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Azure</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/vmware.png" alt="VMware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/vmware.png" alt="VMware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-purple-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">VMware</span>
                 </div>
               </div>
@@ -727,6 +730,7 @@
           </div>
         </div>
 
+        <!-- Job 3: Senior Administrator – EUC -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -755,19 +759,19 @@
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Intune</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-indigo-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">SCCM</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Azure</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-cyan-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Active Directory (AD)</span>
                 </div>
               </div>
@@ -775,6 +779,7 @@
           </div>
         </div>
 
+        <!-- Job 4: Administrator – EUC -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -795,15 +800,15 @@
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-indigo-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">SCCM</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-cyan-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Active Directory (AD)</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Microsoft-Azure.png" alt="Azure" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-sky-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Azure</span>
                 </div>
               </div>
@@ -811,6 +816,7 @@
           </div>
         </div>
 
+        <!-- Job 5: Process Associate -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -831,15 +837,15 @@
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-cyan-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Active Directory (AD)</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-indigo-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">SCCM</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Citrix-WorkspaceApp.png" alt="Citrix" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Citrix-WorkspaceApp.png" alt="Citrix" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-emerald-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Citrix</span>
                 </div>
               </div>
@@ -847,6 +853,7 @@
           </div>
         </div>
 
+        <!-- Job 6: Customer Support Engineer -->
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
@@ -867,19 +874,19 @@
             <div class="w-full overflow-hidden py-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-indigo-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">SCCM</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/vmware.png" alt="VMware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/vmware.png" alt="VMware" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-purple-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">VMware</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/Citrix-WorkspaceApp.png" alt="Citrix" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/Citrix-WorkspaceApp.png" alt="Citrix" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-emerald-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Citrix</span>
                 </div>
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
-                  <img src="public/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                  <img src="/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-cyan-300 text-[11px] font-mono font-medium opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">Active Directory (AD)</span>
                 </div>
               </div>
@@ -950,7 +957,7 @@
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
                 <div class="relative aspect-video w-full bg-slate-950">
-                  <img src="images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Horizon" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <img src="/images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Horizon" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_01</div>
                 </div>
                 <div class="p-6">
@@ -991,7 +998,7 @@
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
                 <div class="relative aspect-video w-full bg-slate-950">
-                  <img src="images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <img src="/images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_02</div>
                 </div>
                 <div class="p-6">
@@ -1032,7 +1039,7 @@
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
                 <div class="relative aspect-video w-full bg-slate-950">
-                  <img src="images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Windows Autopilot" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <img src="/images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Windows Autopilot" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_03</div>
                 </div>
                 <div class="p-6">
@@ -1073,7 +1080,7 @@
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
                 <div class="relative aspect-video w-full bg-slate-950">
-                  <img src="images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <img src="/images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_04</div>
                 </div>
                 <div class="p-6">
@@ -1114,7 +1121,7 @@
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
                 <div class="relative aspect-video w-full bg-slate-950">
-                  <img src="images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <img src="/images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_05</div>
                 </div>
                 <div class="p-6">
@@ -1155,7 +1162,7 @@
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
               <div>
                 <div class="relative aspect-video w-full bg-slate-950">
-                  <img src="images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <img src="/images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_03</div>
                 </div>
                 <div class="p-6">
@@ -1210,7 +1217,7 @@
         
         <a href="https://homelab.akashnagapure.in" class="group block space-y-3">
           <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
-            <img src="images/Main_Page_Images/hobby_homelab.avif" alt="Homelab" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <img src="/images/Main_Page_Images/hobby_homelab.avif" alt="Homelab" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex items-center justify-between">
             <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Self-Hosted Homelab</h3>
@@ -1221,7 +1228,7 @@
 
         <a href="https://gaming.akashnagapure.in" class="group block space-y-3">
           <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
-            <img src="images/Main_Page_Images/hobby_gaming.avif" alt="Gaming" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <img src="/images/Main_Page_Images/hobby_gaming.avif" alt="Gaming" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex items-center justify-between">
             <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Strategic Gaming</h3>
@@ -1232,7 +1239,7 @@
 
         <a href="https://food.akashnagapure.in" class="group block space-y-3">
           <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
-            <img src="images/Main_Page_Images/Food_Poster.avif" alt="Food" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <img src="/images/Main_Page_Images/Food_Poster.avif" alt="Food" width="458" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex items-center justify-between">
             <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Culinary & Foodie</h3>
@@ -1243,7 +1250,7 @@
 
         <a href="https://reading.akashnagapure.in" class="group block space-y-3">
           <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
-            <img src="images/Main_Page_Images/hobby_reading.avif" alt="Reading" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <img src="/images/Main_Page_Images/hobby_reading.avif" alt="Reading" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex items-center justify-between">
             <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Reading</h3>
@@ -1254,7 +1261,7 @@
 
         <a href="https://coins.akashnagapure.in" class="group block space-y-3">
           <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
-            <img src="images/Main_Page_Images/hobby_coins.avif" alt="Coins" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <img src="/images/Main_Page_Images/hobby_coins.avif" alt="Coins" width="387" height="310" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex items-center justify-between">
             <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Coin Collection</h3>
@@ -1265,7 +1272,7 @@
 
         <a href="https://puzzle.akashnagapure.in" class="group block space-y-3">
           <div class="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-pink-500/20 group-hover:border-pink-500/50 transition-colors">
-            <img src="images/Main_Page_Images/3_3_Cube.avif" alt="Puzzles" width="487" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <img src="/images/Main_Page_Images/3_3_Cube.avif" alt="Puzzles" width="487" height="305" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
           <div class="flex items-center justify-between">
             <h3 class="font-bold text-white text-lg group-hover:text-pink-300 transition-colors">Speedcubing & Puzzles</h3>
@@ -1312,10 +1319,10 @@
 
             <div class="pt-6 flex flex-wrap items-center gap-5">
               <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noreferrer" class="p-1 hover:scale-110 transition-transform focus:outline-none" aria-label="LinkedIn Profile">
-                <img src="public/images/icons/LinkedIn.svg" alt="LinkedIn" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <img src="/images/icons/LinkedIn.svg" alt="LinkedIn" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
               </a>
               <a href="mailto:info@akashnagapure.in" class="p-1 hover:scale-110 transition-transform focus:outline-none" aria-label="Direct Email">
-                <img src="public/images/icons/Microsoft365.png" alt="Email" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
+                <img src="/images/icons/Microsoft365.png" alt="Email" class="w-7 h-7 object-contain" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
               </a>
             </div>
           </div>
@@ -1627,34 +1634,55 @@
 
     if (typeof window.confetti === 'function') {
       window.confetti({
-        particleCount: 100,
+        particleCount: 80,
         spread: 70,
+        startVelocity: 30,
         origin: { x: originX, y: originY },
         colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff']
       });
     } else {
-      // Guaranteed Native DOM Fallback
-      const burst = document.createElement('div');
-      burst.style.cssText = `position:fixed; left:${rect.left + rect.width/2}px; top:${rect.top + rect.height/2}px; z-index:99999; pointer-events:none;`;
-      document.body.appendChild(burst);
-      
+      // Robust animated particle burst fallback with layout reflow forcing
+      const container = document.createElement('div');
+      container.style.cssText = `position: fixed; left: ${rect.left + rect.width / 2}px; top: ${rect.top + rect.height / 2}px; width: 0; height: 0; z-index: 99999; pointer-events: none;`;
+      document.body.appendChild(container);
+
+      const colors = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff'];
       for (let i = 0; i < 35; i++) {
         const particle = document.createElement('div');
-        const color = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff'][Math.floor(Math.random() * 5)];
-        particle.style.cssText = `position:absolute; width:8px; height:8px; background:${color}; border-radius:50%; opacity:1; transition: all 0.6s ease-out;`;
-        burst.appendChild(particle);
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 6 + 4;
         
+        particle.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size * 0.6}px;
+          background-color: ${color};
+          border-radius: 2px;
+          left: 0;
+          top: 0;
+          opacity: 1;
+          transform: translate(0, 0) rotate(0deg) scale(1);
+          transition: transform 0.8s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.8s ease-out;
+        `;
+        container.appendChild(particle);
+
         const angle = Math.random() * Math.PI * 2;
-        const speed = 50 + Math.random() * 70;
-        const tx = Math.cos(angle) * speed;
-        const ty = Math.sin(angle) * speed;
-        
+        const distance = Math.random() * 110 + 40;
+        const targetX = Math.cos(angle) * distance;
+        const targetY = Math.sin(angle) * distance - 40;
+        const rotation = Math.random() * 360;
+
+        particle.getBoundingClientRect();
+
         setTimeout(() => {
-          particle.style.transform = `translate(${tx}px, ${ty}px) scale(0)";`;
+          particle.style.transform = `translate(${targetX}px, ${targetY}px) rotate(${rotation}deg) scale(0.4)`;
           particle.style.opacity = '0';
-        }, 20);
+        }, 15);
       }
-      setTimeout(() => burst.remove(), 700);
+
+      setTimeout(() => {
+        container.remove();
+      }, 900);
     }
   }
 
