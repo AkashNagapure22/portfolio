@@ -215,19 +215,6 @@
       animation-play-state: paused;
     }
 
-    @keyframes floatSlow {
-      0%, 100% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(0, -6px, 0); }
-    }
-    .cert-float {
-      animation: floatSlow 5s ease-in-out infinite;
-      cursor: pointer;
-    }
-    .cert-float:nth-child(2) { animation-delay: 0.9s; }
-    .cert-float:nth-child(3) { animation-delay: 1.8s; }
-    .cert-float:nth-child(4) { animation-delay: 2.7s; }
-    .cert-float:nth-child(5) { animation-delay: 3.6s; }
-
     @keyframes nameGlow {
       0%, 100% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 40px rgba(99, 102, 241, 0.2); }
       50% { text-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 0 20px rgba(129, 140, 248, 0.6); }
@@ -553,7 +540,7 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 justify-center items-start">
         
-        <div class="cert-float flex flex-col items-center justify-center p-2 group" onclick="triggerBadgeConfetti(event, 'AZ-900')">
+        <div class="flex flex-col items-center justify-center p-2 group cursor-pointer" onclick="triggerBadgeConfetti(event, 'AZ-900')">
           <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
             <img src="/images/Main_Page_Images/AZ-900.avif" alt="AZ-900" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
@@ -563,7 +550,7 @@
           </div>
         </div>
 
-        <div class="cert-float flex flex-col items-center justify-center p-2 group" onclick="triggerBadgeConfetti(event, 'AZ-104')">
+        <div class="flex flex-col items-center justify-center p-2 group cursor-pointer" onclick="triggerBadgeConfetti(event, 'AZ-104')">
           <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
             <img src="/images/Main_Page_Images/AZ-104.avif" alt="AZ-104" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
@@ -573,7 +560,7 @@
           </div>
         </div>
 
-        <div class="cert-float flex flex-col items-center justify-center p-2 group" onclick="triggerBadgeConfetti(event, 'AZ-140')">
+        <div class="flex flex-col items-center justify-center p-2 group cursor-pointer" onclick="triggerBadgeConfetti(event, 'AZ-140')">
           <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
             <img src="/images/Main_Page_Images/AZ-140.avif" alt="AZ-140" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
@@ -583,7 +570,7 @@
           </div>
         </div>
 
-        <div class="cert-float flex flex-col items-center justify-center p-2 group" onclick="triggerBadgeConfetti(event, 'MD-102')">
+        <div class="flex flex-col items-center justify-center p-2 group cursor-pointer" onclick="triggerBadgeConfetti(event, 'MD-102')">
           <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
             <img src="/images/Main_Page_Images/MD-102.avif" alt="MD-102" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
@@ -593,7 +580,7 @@
           </div>
         </div>
 
-        <div class="cert-float flex flex-col items-center justify-center p-2 group" onclick="triggerBadgeConfetti(event, 'ITIL-4')">
+        <div class="flex flex-col items-center justify-center p-2 group cursor-pointer" onclick="triggerBadgeConfetti(event, 'ITIL-4')">
           <div class="relative transform group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300">
             <img src="/images/Main_Page_Images/ITIL-V.avif" alt="ITIL 4" width="128" height="128" loading="lazy" class="w-24 sm:w-32 h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_20px_35px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
           </div>
@@ -1631,9 +1618,9 @@
     if (typeof window.confetti === 'function') {
       try {
         window.confetti({
-          particleCount: 100,
-          spread: 80,
-          startVelocity: 35,
+          particleCount: 120,
+          spread: 90,
+          startVelocity: 40,
           origin: { x: originX, y: originY },
           colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff', '#ec4899']
         });
@@ -1644,7 +1631,6 @@
     }
 
     if (!fired) {
-      // Robust native DOM fallback burst animation
       const container = document.createElement('div');
       container.style.cssText = `position: fixed; left: ${rect.left + rect.width / 2}px; top: ${rect.top + rect.height / 2}px; width: 0; height: 0; z-index: 99999; pointer-events: none;`;
       document.body.appendChild(container);
@@ -1846,5 +1832,3 @@
 </script>
 </body>
 </html>
-
-```
