@@ -1633,6 +1633,29 @@
         origin: { x: originX, y: originY },
         colors: ['#38bdf8', '#818cf8', '#34d399', '#f59e0b', '#ffffff']
       });
+    } else {
+      // Fallback native effect if CDN fails
+      const burst = document.createElement('div');
+      burst.style.cssText = `position:fixed; left:${rect.left + rect.width/2}px; top:${rect.top + rect.height/2}px; z-index:99999; pointer-events:none;`;
+      document.body.appendChild(burst);
+      
+      for (let i = 0; i < 35; i++) {
+        const particle = document.createElement('div');
+        const color = ['#38bdf8', '#818cf8', '#34d399', '#f59e0b'][Math.floor(Math.random() * 4)];
+        particle.style.cssText = `position:absolute; width:8px; height:8px; background:${color}; border-radius:50%; opacity:1; transition: all 0.6s ease-out;`;
+        burst.appendChild(particle);
+        
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 50 + Math.random() * 70;
+        const tx = Math.cos(angle) * speed;
+        const ty = Math.sin(angle) * speed;
+        
+        setTimeout(() => {
+          particle.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
+          particle.style.opacity = '0';
+        }, 20);
+      }
+      setTimeout(() => burst.remove(), 700);
     }
   }
 
