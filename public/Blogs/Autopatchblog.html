@@ -313,8 +313,37 @@
       </article>
     </div>
 
-    <div class="lg:col-span-4 space-y-6 sticky top-28">
+    <div class="lg:col-span-4 space-y-6">
       
+      <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+        <div class="absolute -right-20 -top-20 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all pointer-events-none"></div>
+
+        <div class="flex flex-col gap-3 relative z-10">
+          <div class="space-y-1 text-left">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-950/60 border border-sky-500/30 text-sky-300 font-mono text-[9px] uppercase font-bold tracking-widest">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+              Sponsored Slot
+            </div>
+          </div>
+
+          <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
+            <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
+              <img src="/images/Blogs_Images/your_ad.jpg" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+            </a>
+          </div>
+
+          <div class="w-full">
+            <a 
+              href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" 
+              class="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 hover:opacity-90 text-slate-950 font-sans font-bold text-[11px] uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            >
+              <span class="material-symbols-outlined text-[14px]">campaign</span>
+              <span>Inquire About Ad Space</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
           <img src="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure" width="48" height="48" class="w-12 h-12 rounded-xl object-cover border border-sky-400/40 shadow-md" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
@@ -340,37 +369,6 @@
         </nav>
       </div>
 
-      <div class="w-full p-6 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
-        <div class="absolute -right-20 -top-20 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all pointer-events-none"></div>
-
-        <div class="flex flex-col gap-4 relative z-10">
-          <div class="space-y-2 text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950/60 border border-sky-500/30 text-sky-300 font-mono text-[10px] uppercase font-bold tracking-widest">
-              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
-              Sponsored Slot Available
-            </div>
-            <h3 class="font-sans font-extrabold text-lg text-white tracking-tight">
-              Promote Your Brand to Enterprise Tech Leaders
-            </h3>
-          </div>
-
-          <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
-            <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
-              <img src="/images/Blogs_Images/your_ad.jpg" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
-            </a>
-          </div>
-
-          <div class="w-full pt-1">
-            <a 
-              href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" 
-              class="w-full flex items-center justify-center gap-2.5 py-3 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 hover:opacity-90 text-slate-950 font-sans font-bold text-xs uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            >
-              <span class="material-symbols-outlined text-[16px]">campaign</span>
-              <span>Inquire About Ad Space</span>
-            </a>
-          </div>
-        </div>
-      </div>
       <div class="glass-card-3d p-6 rounded-2xl space-y-4 text-center">
         <h3 class="font-sans font-bold text-white text-sm">Was this guide helpful?</h3>
         <div class="flex items-center justify-center gap-3">
@@ -903,10 +901,10 @@
           body: JSON.stringify({ article_id: ARTICLE_ID, vote: voteType })
         });
         if (res.ok) {
-          await loadComments();
+          await loadVoteStats();
         }
       } catch (err) {
-        console.error('Vote submission failed', err);
+        console.error('Vote submission fixed', err);
       }
     });
   });
