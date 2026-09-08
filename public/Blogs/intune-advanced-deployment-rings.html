@@ -74,8 +74,8 @@
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                  0 0 30px rgba(56, 189, 248, 0.05);
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(56, 189, 248, 0.05);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card-3d:hover {
@@ -310,7 +310,7 @@
       </article>
     </div>
 
-    <div class="lg:col-span-4 space-y-6 sticky top-28">
+    <div class="lg:col-span-4 space-y-6">
       
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
@@ -325,6 +325,35 @@
         </p>
       </div>
 
+      <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+        <div class="absolute -right-20 -top-20 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all pointer-events-none"></div>
+
+        <div class="flex flex-col gap-3 relative z-10">
+          <div class="space-y-1 text-left">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-950/60 border border-sky-500/30 text-sky-300 font-mono text-[9px] uppercase font-bold tracking-widest">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+              Sponsored Slot
+            </div>
+          </div>
+
+          <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
+            <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
+              <img src="/images/Blogs_Images/your_ad.jpg" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+            </a>
+          </div>
+
+          <div class="w-full">
+            <a 
+              href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" 
+              class="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 hover:opacity-90 text-slate-950 font-sans font-bold text-[11px] uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            >
+              <span class="material-symbols-outlined text-[14px]">campaign</span>
+              <span>Inquire About Ad Space</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <h3 class="font-sans font-bold text-white text-sm uppercase tracking-wider font-mono border-b border-white/10 pb-2">On this page</h3>
         <nav class="space-y-2 font-mono text-xs" id="nav-menu">
@@ -334,27 +363,6 @@
           <a href="#section-4" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">4. Operational checklist</a>
           <a href="#discussion" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">5. Discussion & Q&A</a>
         </nav>
-      </div>
-
-      <div class="glass-card-3d p-6 rounded-2xl space-y-4 relative overflow-hidden group border-sky-500/30">
-        <div class="absolute inset-0 bg-gradient-to-br from-sky-500/10 to-indigo-500/10 pointer-events-none"></div>
-        <div class="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-slate-900 border border-white/10 shadow-lg">
-          <img src="https://www.akashnagapure.in/images/Main_Page_Images/hobby_homelab.avif" alt="Enterprise Homelab" width="300" height="168" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
-        </div>
-        <div class="space-y-2 relative">
-          <div class="flex items-center justify-between">
-            <span class="font-mono text-[9px] uppercase tracking-widest text-sky-400 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-500/30">Sponsored</span>
-          </div>
-          <h4 class="font-sans font-bold text-white text-sm">Enterprise Lab Blueprints Pro</h4>
-          <p class="text-xs text-slate-300 font-light leading-relaxed">
-            Accelerate your cloud architecture transitions with ready-to-deploy Intune policies, configuration baselines, and automated scripts.
-          </p>
-        </div>
-        <div class="relative pt-1">
-          <a href="https://www.akashnagapure.in" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] transition-all font-mono">
-            Access Pro Blueprints
-          </a>
-        </div>
       </div>
 
       <div class="glass-card-3d p-6 rounded-2xl space-y-4 text-center">
@@ -391,15 +399,15 @@
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
             </a>
             <span>•</span>
-            <a href="mailto:akashnagapure.live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
-            <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="https://www.akashnagapure.in/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
             </a>
             <span>•</span>
-            <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="https://www.akashnagapure.in/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">description</span> Terms of Service
             </a>
         </div>
@@ -723,9 +731,9 @@
       comments.forEach(comment => {
         comment.replies = [];
         commentMap[comment.id] = comment;
-        if (comment.parent_id && commentMap[comment.parent_id]) {
-          commentMap[comment.parent_id].replies.push(comment);
-        } else if (!comment.parent_id) {
+        if (comment.parentId && commentMap[comment.parentId]) {
+          commentMap[comment.parentId].replies.push(comment);
+        } else if (!comment.parentId) {
           topLevelComments.push(comment);
         }
       });
@@ -739,10 +747,13 @@
 
   function renderCommentNode(comment) {
     let dateStr = 'Recent';
-    if (comment.created_at) {
-      const parsed = new Date(comment.created_at);
+    if (comment.date) {
+      const parsed = new Date(comment.date);
       if (!isNaN(parsed.getTime())) {
-        dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const day = String(parsed.getDate()).padStart(2, '0');
+        const month = String(parsed.getMonth() + 1).padStart(2, '0');
+        const year = parsed.getFullYear();
+        dateStr = `${day}/${month}/${year}`;
       }
     }
 
