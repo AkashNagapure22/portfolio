@@ -1589,15 +1589,23 @@
 
   function triggerBadgeConfetti(event, badgeName) {
     const fireBurst = () => {
+      const confettiFn = window.confetti || (typeof confetti === 'function' ? confetti : null);
+      
+      if (!confettiFn) {
+        fallbackPulse(event);
+        return;
+      }
+
       try {
         const count = 200;
         const defaults = { 
           origin: { y: 0.7 },
-          zIndex: 100005 
+          zIndex: 100005,
+          useWorker: false 
         };
 
         function fire(particleRatio, opts) {
-          window.confetti({
+          confettiFn({
             ...defaults,
             ...opts,
             particleCount: Math.floor(count * particleRatio)
@@ -1610,6 +1618,7 @@
         fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8, origin: { x: 0.5, y: 0.7 } });
       } catch (err) {
         console.warn("confetti execution error:", err);
+        fallbackPulse(event);
       }
     };
 
@@ -1618,13 +1627,8 @@
     } else {
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js';
-      script.onload = () => {
-        if (typeof window.confetti === 'function') {
-          fireBurst();
-        } else {
-          fallbackPulse(event);
-        }
-      };
+      script.async = true;
+      script.onload = () => fireBurst();
       script.onerror = () => fallbackPulse(event);
       document.head.appendChild(script);
     }
