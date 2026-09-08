@@ -308,7 +308,7 @@
       </article>
     </div>
 
-    <div class="lg:col-span-4 space-y-6">
+    <div class="lg:col-span-4 space-y-6 sticky top-28">
       
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
@@ -336,7 +336,7 @@
 
           <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
             <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
-              <img src="/images/Blogs_Images/your_ad.jpg" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+              <img src="https://www.akashnagapure.in/images/Blogs_Images/your_ad.avif" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
             </a>
           </div>
 
@@ -745,13 +745,10 @@
 
   function renderCommentNode(comment) {
     let dateStr = 'Recent';
-    if (comment.created_at) {
-      const parsed = new Date(comment.created_at);
+    if (comment.created_at || comment.date) {
+      const parsed = new Date(comment.created_at || comment.date);
       if (!isNaN(parsed.getTime())) {
-        const day = String(parsed.getDate()).padStart(2, '0');
-        const month = String(parsed.getMonth() + 1).padStart(2, '0');
-        const year = parsed.getFullYear();
-        dateStr = `${day}/${month}/${year}`;
+        dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
     }
 
@@ -903,8 +900,8 @@
     });
   });
 
-  function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  function escapeHTML(srcStr) {
+    return srcStr.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
   }
 
   document.addEventListener('DOMContentLoaded', () => {
