@@ -82,6 +82,22 @@
         transform: translateY(-3px);
     }
 
+    /* Floating Animation for Roadmap Cards */
+    @keyframes floatAnimation {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+    .animate-float {
+        animation: floatAnimation 4s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+        animation: floatAnimation 4s ease-in-out 2s infinite;
+    }
+
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -318,7 +334,7 @@
         <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.</p>
     </div>
 
-    <!-- Upcoming Releases & Roadmap Section (Horizontal Left-to-Right Scroll on Mobile, Grid on Desktop) -->
+    <!-- Upcoming Releases & Roadmap Section (Horizontal Left-to-Right Scrolling with Floating Effect & View More Details) -->
     <section class="space-y-6 animate-fade-in-up">
         <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
             <div class="flex items-center gap-2.5">
@@ -328,31 +344,72 @@
             <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
         </div>
 
-        <!-- Left to Right Flex Container -->
-        <div class="flex md:grid md:grid-cols-2 gap-6 overflow-x-auto pb-4 pt-1 snap-x scrollbar-thin">
-            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] md:w-auto snap-start">
-                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
-                <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
-                    <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
+        <!-- Left to Right Scrolling Container -->
+        <div class="flex gap-6 overflow-x-auto pb-4 pt-2 snap-x scrollbar-thin">
+            
+            <!-- Roadmap Card 1 -->
+            <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-indigo-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
+                    <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
+                        <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
+                    </div>
+                    <h3 class="text-white text-lg font-bold">Interactive Homelab Topology Viewer</h3>
+                    <p class="text-xs text-slate-300 font-mono leading-relaxed">Developing an interactive 3D/2D node map showcasing self-hosted virtualization clusters, storage arrays, and network firewalls.</p>
+                    <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-indigo-400">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span> Status: Architecture Planning
+                    </div>
                 </div>
-                <h3 class="text-white text-lg font-bold">Interactive Homelab Topology Viewer</h3>
-                <p class="text-xs text-slate-300 font-mono leading-relaxed">Developing an interactive 3D/2D node map showcasing self-hosted virtualization clusters, storage arrays, and network firewalls.</p>
-                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-indigo-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span> Status: Architecture Planning
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-[11px] font-mono text-slate-400">Milestone: Alpha Build</span>
+                    <button onclick="alert('Viewing details for v3.3.0: Interactive Homelab Topology Viewer')" class="text-xs font-mono font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition-colors cursor-pointer">
+                        View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </button>
                 </div>
             </div>
 
-            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] md:w-auto snap-start">
-                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
-                <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
-                    <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
+            <!-- Roadmap Card 2 -->
+            <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-purple-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float-delayed flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
+                    <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
+                        <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
+                    </div>
+                    <h3 class="text-white text-lg font-bold">Advanced Numismatics Vault Catalog</h3>
+                    <p class="text-xs text-slate-300 font-mono leading-relaxed">Expanding the coin collection archive with high-resolution image zoom inspectors, historical grading sheets, and rarity indexes.</p>
+                    <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-purple-400">
+                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> Status: UI Mockups & Data Entry
+                    </div>
                 </div>
-                <h3 class="text-white text-lg font-bold">Advanced Numismatics Vault Catalog</h3>
-                <p class="text-xs text-slate-300 font-mono leading-relaxed">Expanding the coin collection archive with high-resolution image zoom inspectors, historical grading sheets, and rarity indexes.</p>
-                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-purple-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> Status: UI Mockups & Data Entry
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-[11px] font-mono text-slate-400">Milestone: Schema Design</span>
+                    <button onclick="alert('Viewing details for v3.4.0: Advanced Numismatics Vault Catalog')" class="text-xs font-mono font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1 transition-colors cursor-pointer">
+                        View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </button>
                 </div>
             </div>
+
+            <!-- Roadmap Card 3 (Extra example card to enhance horizontal layout) -->
+            <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-teal-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-teal-400 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-500/30">Target: Q1 2027</div>
+                    <div class="flex items-center gap-2 text-teal-300 font-mono text-xs font-bold">
+                        <span class="material-symbols-outlined text-sm">schedule</span> v4.0.0 Pipeline
+                    </div>
+                    <h3 class="text-white text-lg font-bold">Automated Graph API Telemetry Engine</h3>
+                    <p class="text-xs text-slate-300 font-mono leading-relaxed">Proactive alerting framework leveraging Azure Functions and Teams webhooks to catch endpoint compliance regressions.</p>
+                    <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-teal-400">
+                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping"></span> Status: Research & Scoping
+                    </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-[11px] font-mono text-slate-400">Milestone: PoC Testing</span>
+                    <button onclick="alert('Viewing details for v4.0.0: Automated Graph API Telemetry Engine')" class="text-xs font-mono font-bold text-teal-400 hover:text-teal-300 flex items-center gap-1 transition-colors cursor-pointer">
+                        View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+
         </div>
     </section>
 
