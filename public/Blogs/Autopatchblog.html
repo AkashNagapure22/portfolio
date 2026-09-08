@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
@@ -734,9 +735,9 @@
       comments.forEach(comment => {
         comment.replies = [];
         commentMap[comment.id] = comment;
-        if (comment.parent_id && commentMap[comment.parent_id]) {
-          commentMap[comment.parent_id].replies.push(comment);
-        } else if (!comment.parent_id) {
+        if (comment.parentId && commentMap[comment.parentId]) {
+          commentMap[comment.parentId].replies.push(comment);
+        } else if (!comment.parentId) {
           topLevelComments.push(comment);
         }
       });
@@ -750,8 +751,8 @@
 
   function renderCommentNode(comment) {
     let dateStr = 'Recent';
-    if (comment.created_at) {
-      const parsed = new Date(comment.created_at);
+    if (comment.date) {
+      const parsed = new Date(comment.date);
       if (!isNaN(parsed.getTime())) {
         const day = String(parsed.getDate()).padStart(2, '0');
         const month = String(parsed.getMonth() + 1).padStart(2, '0');
@@ -923,3 +924,5 @@
 </script>
 </body>
 </html>
+
+```
