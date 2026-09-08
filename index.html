@@ -1610,17 +1610,16 @@
   }
 
   function triggerBadgeConfetti(event, badgeName) {
-    // Check if confetti library is available globally
-    if (typeof confetti === 'function') {
+    const fireBurst = () => {
       try {
         const count = 200;
         const defaults = { 
           origin: { y: 0.7 },
-          zIndex: 100005 // Fixes stacking collision with cursor trail canvas
+          zIndex: 100005 
         };
 
         function fire(particleRatio, opts) {
-          confetti({
+          window.confetti({
             ...defaults,
             ...opts,
             particleCount: Math.floor(count * particleRatio)
@@ -1631,13 +1630,29 @@
         fire(0.25, { spread: 26, startVelocity: 55, origin: { x: 0.8, y: 0.8 } });
         fire(0.2, { spread: 60, origin: { x: 0.5, y: 0.6 } });
         fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8, origin: { x: 0.5, y: 0.7 } });
-        return;
       } catch (err) {
         console.warn("confetti execution error:", err);
       }
-    }
+    };
 
-    // Fallback animation if CDN fails to load in production Git/Vercel setup
+    if (typeof window.confetti === 'function') {
+      fireBurst();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js';
+      script.onload = () => {
+        if (typeof window.confetti === 'function') {
+          fireBurst();
+        } else {
+          fallbackPulse(event);
+        }
+      };
+      script.onerror = () => fallbackPulse(event);
+      document.head.appendChild(script);
+    }
+  }
+
+  function fallbackPulse(event) {
     const badgeElement = event.currentTarget;
     if (badgeElement) {
       badgeElement.classList.add('animate-pulse');
