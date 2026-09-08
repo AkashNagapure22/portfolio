@@ -291,7 +291,24 @@
     </button>
 </div>
 
-<main class="content max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 flex-grow w-full">
+<main class="content max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 flex-grow w-full">
+
+    <!-- Top Notification Button / Banner for Latest Article -->
+    <div class="w-full animate-fade-in-up">
+        <a href="https://blogs.akashnagapure.in/Blogs/Autopatchblog.html" class="glass-card-3d px-4 py-3 rounded-2xl flex items-center justify-between gap-4 group cursor-pointer border border-sky-500/30 hover:border-sky-400 transition-all shadow-[0_0_20px_rgba(56,189,248,0.15)]">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <span class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase tracking-widest shadow-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping"></span> New Release
+                </span>
+                <p class="text-xs sm:text-sm font-mono text-slate-200 truncate group-hover:text-sky-300 transition-colors">
+                    <strong class="text-white">Latest Article:</strong> Windows Autopatch & Rebootless Hotpatch Deployment is now live!
+                </p>
+            </div>
+            <div class="shrink-0 flex items-center gap-1 text-xs font-mono font-bold text-sky-400 group-hover:translate-x-1 transition-transform">
+                <span>Read Update</span> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </div>
+        </a>
+    </div>
 
     <div class="space-y-3 text-center sm:text-left border-b border-white/10 pb-6 animate-fade-in-up">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
@@ -301,7 +318,7 @@
         <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.</p>
     </div>
 
-    <!-- Upcoming Releases & Roadmap Section -->
+    <!-- Upcoming Releases & Roadmap Section (Horizontal Left-to-Right Scroll on Mobile, Grid on Desktop) -->
     <section class="space-y-6 animate-fade-in-up">
         <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
             <div class="flex items-center gap-2.5">
@@ -311,8 +328,9 @@
             <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden">
+        <!-- Left to Right Flex Container -->
+        <div class="flex md:grid md:grid-cols-2 gap-6 overflow-x-auto pb-4 pt-1 snap-x scrollbar-thin">
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] md:w-auto snap-start">
                 <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
                 <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
                     <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
@@ -324,7 +342,7 @@
                 </div>
             </div>
 
-            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden">
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] md:w-auto snap-start">
                 <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
                 <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
                     <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
