@@ -209,7 +209,7 @@
             
             <a href="/Blogs/powershell-compliance-automation.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
               <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
-                <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Compliance Automation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+                <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Compliance Automation" width="192" height="120" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
               </div>
               <div class="space-y-2 flex-grow">
                 <div class="flex flex-col">
@@ -223,7 +223,7 @@
 
             <a href="/Blogs/intune-advanced-deployment-rings.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
               <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
-                <img src="https://www.akashnagapure.in/images/Blogs_Images/Autopilotblog.avif" alt="Deployment Rings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+                <img src="https://www.akashnagapure.in/images/Blogs_Images/Autopilotblog.avif" alt="Deployment Rings" width="192" height="120" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
               </div>
               <div class="space-y-2 flex-grow">
                 <div class="flex flex-col">
@@ -237,7 +237,7 @@
 
             <a href="/Blogs/powershell-remediation-scripts.html" class="blog-card flex flex-col sm:flex-row items-center gap-6 p-4 group">
               <div class="relative w-full sm:w-48 aspect-[16/10] bg-slate-900 rounded-lg overflow-hidden shrink-0">
-                <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Remediation Scripts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+                <img src="https://www.akashnagapure.in/images/Blogs_Images/Desktopinfoblog.avif" alt="Remediation Scripts" width="192" height="120" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
               </div>
               <div class="space-y-2 flex-grow">
                 <div class="flex flex-col">
@@ -310,7 +310,7 @@
       </article>
     </div>
 
-    <div class="lg:col-span-4 space-y-6">
+    <div class="lg:col-span-4 space-y-6 sticky top-28">
       
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
@@ -338,7 +338,7 @@
 
           <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
             <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
-              <img src="/images/Blogs_Images/your_ad.jpg" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+              <img src="https://www.akashnagapure.in/images/Blogs_Images/your_ad.avif" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
             </a>
           </div>
 
@@ -361,7 +361,7 @@
           <a href="#section-2" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">2. Make exceptions visible</a>
           <a href="#section-3" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">3. Connect compliance to action</a>
           <a href="#section-4" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">4. Operational checklist</a>
-          <a href="#discussion" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">5. Discussion & Q&A</a>
+          <a href="#discussion" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">5. Discussion & Q&A`</a>
         </nav>
       </div>
 
@@ -502,15 +502,15 @@
     if (!isPageVisible) return;
 
     const elapsedTime = clock.getElapsedTime();
-    targetX += (mouseX - targetX) * 0.04;
-    targetY += (mouseY - targetY) * 0.04;
+    targetX += (mouseX - targetX) * 0.05;
+    targetY += (mouseY - targetY) * 0.05;
 
     if (particlesMesh) {
       particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
-      particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
+      particlesMesh.rotation.x = elapsedTime * 0.01 + targetY;
     }
     if (gridHelper) {
-      gridHelper.rotation.y = elapsedTime * 0.003;
+      gridHelper.rotation.y = elapsedTime * 0.005;
     }
     if (renderer && scene && camera) {
       renderer.render(scene, camera);
@@ -731,9 +731,9 @@
       comments.forEach(comment => {
         comment.replies = [];
         commentMap[comment.id] = comment;
-        if (comment.parentId && commentMap[comment.parentId]) {
-          commentMap[comment.parentId].replies.push(comment);
-        } else if (!comment.parentId) {
+        if (comment.parent_id && commentMap[comment.parent_id]) {
+          commentMap[comment.parent_id].replies.push(comment);
+        } else if (!comment.parent_id) {
           topLevelComments.push(comment);
         }
       });
@@ -747,13 +747,10 @@
 
   function renderCommentNode(comment) {
     let dateStr = 'Recent';
-    if (comment.date) {
-      const parsed = new Date(comment.date);
+    if (comment.created_at || comment.date) {
+      const parsed = new Date(comment.created_at || comment.date);
       if (!isNaN(parsed.getTime())) {
-        const day = String(parsed.getDate()).padStart(2, '0');
-        const month = String(parsed.getMonth() + 1).padStart(2, '0');
-        const year = parsed.getFullYear();
-        dateStr = `${day}/${month}/${year}`;
+        dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
     }
 
@@ -905,8 +902,8 @@
     });
   });
 
-  function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  function escapeHTML(srcStr) {
+    return srcStr.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
   }
 
   document.addEventListener('DOMContentLoaded', () => {
