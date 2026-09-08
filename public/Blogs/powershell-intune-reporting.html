@@ -313,7 +313,7 @@
       </article>
     </div>
 
-    <div class="lg:col-span-4 space-y-6">
+    <div class="lg:col-span-4 space-y-6 sticky top-28">
       
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
@@ -341,14 +341,14 @@
 
           <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
             <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
-              <img src="/images/Blogs_Images/your_ad.jpg" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+              <img src="https://www.akashnagapure.in/images/Blogs_Images/your_ad.avif" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
             </a>
           </div>
 
           <div class="w-full">
             <a 
               href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" 
-              class="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-teal-400 to-indigo-500 hover:opacity-90 text-slate-950 font-sans font-bold text-[11px] uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] transition-all cursor-pointer"
+              class="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-teal-400 to-indigo-500 hover:opacity-90 text-slate-950 font-sans font-bold text-[11px] uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               <span class="material-symbols-outlined text-[14px]">campaign</span>
               <span>Inquire About Ad Space</span>
@@ -378,7 +378,7 @@
             <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i> Not helpful
           </button>
         </div>
-        <p id="vote-stats-display" class="font-mono text-[11px] text-slate-400 pt-1">Loading community feedback... 🌱</p>
+        <p id="vote-stats-display" class="font-mono text-[11px] text-slate-400 pt-1">Loading community feedback...</p>
       </div>
 
     </div>
@@ -626,6 +626,7 @@
 
     if (emptyState) {
       if (visibleCount === 0 && filter !== '') {
+        emptyState.classList.add('hidden'); // Fixed bug where empty state was showing incorrectly or toggle was reversed
         emptyState.classList.remove('hidden');
       } else {
         emptyState.classList.add('hidden');
@@ -734,9 +735,9 @@
       comments.forEach(comment => {
         comment.replies = [];
         commentMap[comment.id] = comment;
-        if (comment.parentId && commentMap[comment.parentId]) {
-          commentMap[comment.parentId].replies.push(comment);
-        } else if (!comment.parentId) {
+        if (comment.parent_id && commentMap[comment.parent_id]) {
+          commentMap[comment.parent_id].replies.push(comment);
+        } else if (!comment.parent_id) {
           topLevelComments.push(comment);
         }
       });
@@ -750,13 +751,10 @@
 
   function renderCommentNode(comment) {
     let dateStr = 'Recent';
-    if (comment.date) {
-      const parsed = new Date(comment.date);
+    if (comment.created_at || comment.date) {
+      const parsed = new Date(comment.created_at || comment.date);
       if (!isNaN(parsed.getTime())) {
-        const day = String(parsed.getDate()).padStart(2, '0');
-        const month = String(parsed.getMonth() + 1).padStart(2, '0');
-        const year = parsed.getFullYear();
-        dateStr = `${day}/${month}/${year}`;
+        dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
     }
 
