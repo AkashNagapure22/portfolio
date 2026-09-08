@@ -779,7 +779,13 @@
       container.innerHTML = data.map(c => {
         let dateStr = 'Recent';
         if (c.created_at) {
-          const parsed = new Date(c.created_at);
+          let parsed;
+          if (typeof c.created_at === 'number') {
+            // Handle Unix timestamps in seconds or milliseconds
+            parsed = new Date(c.created_at < 1e12 ? c.created_at * 1000 : c.created_at);
+          } else {
+            parsed = new Date(c.created_at);
+          }
           if (!isNaN(parsed.getTime())) {
             dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
           }
