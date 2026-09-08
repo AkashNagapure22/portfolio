@@ -301,6 +301,44 @@
         <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.</p>
     </div>
 
+    <!-- Upcoming Releases & Roadmap Section -->
+    <section class="space-y-6 animate-fade-in-up">
+        <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
+            <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-indigo-400">upcoming</span>
+                <h2 class="font-headline-md text-2xl font-bold text-white">Upcoming Releases & Roadmap</h2>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden">
+                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
+                <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
+                    <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
+                </div>
+                <h3 class="text-white text-lg font-bold">Interactive Homelab Topology Viewer</h3>
+                <p class="text-xs text-slate-300 font-mono leading-relaxed">Developing an interactive 3D/2D node map showcasing self-hosted virtualization clusters, storage arrays, and network firewalls.</p>
+                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-indigo-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span> Status: Architecture Planning
+                </div>
+            </div>
+
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden">
+                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
+                <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
+                    <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
+                </div>
+                <h3 class="text-white text-lg font-bold">Advanced Numismatics Vault Catalog</h3>
+                <p class="text-xs text-slate-300 font-mono leading-relaxed">Expanding the coin collection archive with high-resolution image zoom inspectors, historical grading sheets, and rarity indexes.</p>
+                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-purple-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> Status: UI Mockups & Data Entry
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
     <div class="glass-card-3d p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 animate-fade-in-up">
         <div class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
             <span class="material-symbols-outlined text-base">filter_list</span> Filter Releases:
@@ -326,8 +364,10 @@
         </div>
     </div>
 
+    <!-- Vercel Timeline Layout -->
     <div class="timeline-container space-y-12 pl-0 md:pl-8" id="releases-container">
 
+        <!-- 4 September Release -->
         <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
             <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                 4 September
@@ -371,6 +411,7 @@
             </div>
         </div>
 
+        <!-- 3 September Release -->
         <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
             <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                 3 September
@@ -387,6 +428,7 @@
             </div>
         </div>
 
+        <!-- 1 September Release -->
         <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
             <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                 1 September
@@ -403,6 +445,7 @@
             </div>
         </div>
 
+        <!-- 15 August Release -->
         <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
             <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                 15 August
@@ -419,6 +462,7 @@
             </div>
         </div>
 
+        <!-- 22 July Release -->
         <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="july" data-type="minor">
             <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                 22 July
@@ -435,6 +479,7 @@
             </div>
         </div>
 
+        <!-- 10 June Release -->
         <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="patch">
             <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                 10 June
@@ -451,6 +496,7 @@
             </div>
         </div>
 
+        <!-- 1 June Inception Release -->
         <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="major">
             <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                 1 June
