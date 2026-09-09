@@ -201,6 +201,27 @@
       animation: nameGlow 4s ease-in-out infinite;
     }
 
+    @keyframes orbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes counterRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+    .animate-orbit {
+      animation: orbit 40s linear infinite;
+    }
+    .animate-orbit:hover {
+      animation-play-state: paused;
+    }
+    .counter-rotate {
+      animation: counterRotate 40s linear infinite;
+    }
+    .animate-orbit:hover .counter-rotate {
+      animation-play-state: paused;
+    }
+
     .glass-panel {
       background-color: rgba(30, 41, 59, 0.75);
       backdrop-filter: blur(16px);
@@ -336,7 +357,7 @@
       <a href="#about" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-indigo-400 transition-colors" onclick="smoothNav(event, 'about')">About me</a>
       <a href="#certifications" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-emerald-400 transition-colors" onclick="smoothNav(event, 'certifications')">Certifications</a>
       <a href="#experience" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-purple-400 transition-colors" onclick="smoothNav(event, 'experience')">Work experience</a>
-      <a href="#education" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-amber-400 transition-colors" onclick="smoothNav(event, 'education')">Education</a>
+      <a href="#education" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-amber-400 transition-colors" onclick="smoothNav(event, 'education')">Education & Core Values</a>
       <a href="#projects" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-teal-400 transition-colors" onclick="smoothNav(event, 'projects')">Projects</a>
       <a href="#hobbies" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-pink-400 transition-colors" onclick="smoothNav(event, 'hobbies')">Hobby</a>
       <a href="#contact" class="nav-item-link font-sans text-xs font-medium text-slate-300 tracking-wide hover:text-sky-300 transition-colors" onclick="smoothNav(event, 'contact')">Contact me</a>
@@ -355,7 +376,7 @@
     <a href="#about" class="block w-full text-base font-medium text-indigo-400 hover:text-white" onclick="smoothNav(event, 'about')">About me</a>
     <a href="#certifications" class="block w-full text-base font-medium text-emerald-400 hover:text-white" onclick="smoothNav(event, 'certifications')">Certifications</a>
     <a href="#experience" class="block w-full text-base font-medium text-purple-400 hover:text-white" onclick="smoothNav(event, 'experience')">Work experience</a>
-    <a href="#education" class="block w-full text-base font-medium text-amber-400 hover:text-white" onclick="smoothNav(event, 'education')">Education</a>
+    <a href="#education" class="block w-full text-base font-medium text-amber-400 hover:text-white" onclick="smoothNav(event, 'education')">Education & Core Values</a>
     <a href="#projects" class="block w-full text-base font-medium text-teal-400 hover:text-white" onclick="smoothNav(event, 'projects')">Projects</a>
     <a href="#hobbies" class="block w-full text-base font-medium text-pink-400 hover:text-white" onclick="smoothNav(event, 'hobbies')">Hobby</a>
     <a href="#contact" class="block w-full text-base font-medium text-sky-300 hover:text-white" onclick="smoothNav(event, 'contact')">Contact me</a>
@@ -861,41 +882,89 @@
   <section id="education" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
-      <div class="flex items-center gap-3 mb-10">
-        <i data-lucide="graduation-cap" class="w-7 h-7 sm:w-8 sm:h-8 text-amber-400"></i>
-        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Education & <span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Academy</span>
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
-        <div class="space-y-3 p-6 rounded-2xl bg-slate-900/30 border border-amber-500/20 backdrop-blur-md">
-          <div class="flex items-center justify-between">
-            <span class="font-mono text-xs text-amber-400 uppercase tracking-wider font-semibold">Undergraduate</span>
-            <span class="font-mono text-xs text-slate-400">2010 - 2014</span>
+        <div class="space-y-8 text-left">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-xs font-semibold">
+              <span class="material-symbols-outlined text-sm">school</span> Academic Background
+            </div>
+            <h2 class="font-headline text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Education</h2>
           </div>
-          <h3 class="font-sans font-bold text-xl text-white">Bachelor of Computer Science & Engineering</h3>
-          <p class="font-mono text-xs text-amber-300/80">IBSS College of Engineering • Amravati University</p>
-          <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
-            Specialized in Enterprise Computer Networks, Database Architectures, and Operating System Foundations.
-          </p>
+
+          <div class="space-y-6">
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 relative border-l-4 border-l-amber-400">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-400">Undergraduate</span>
+                <span class="text-xs font-mono text-slate-400">2010 - 2014</span>
+              </div>
+              <h3 class="text-white text-lg font-bold">Bachelor of Computer Science & Engineering</h3>
+              <p class="text-xs text-amber-200/80 font-mono">IBSS College of Engineering • Amravati University</p>
+              <p class="text-xs text-slate-300 font-mono leading-relaxed pt-1">Specialized in Enterprise Computer Networks, Database Architectures, and Operating System Foundations.</p>
+            </div>
+
+            <div class="glass-card-3d p-6 rounded-2xl space-y-3 relative border-l-4 border-l-amber-400">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-400">Higher Secondary</span>
+                <span class="text-xs font-mono text-slate-400">2010</span>
+              </div>
+              <h3 class="text-white text-lg font-bold">Higher Secondary Certificate (HSC)</h3>
+              <p class="text-xs text-amber-200/80 font-mono">Maharashtra State Board</p>
+              <p class="text-xs text-slate-300 font-mono leading-relaxed pt-1">12th Board Examinations with a focus on Mathematics, Physics, and Advanced Electronics.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="space-y-3 p-6 rounded-2xl bg-slate-900/30 border border-amber-500/20 backdrop-blur-md">
-          <div class="flex items-center justify-between">
-            <span class="font-mono text-xs text-amber-400 uppercase tracking-wider font-semibold">Higher Secondary</span>
-            <span class="font-mono text-xs text-slate-400">2010</span>
+        <div class="flex flex-col items-center justify-center space-y-6">
+          <div class="text-center">
+            <h2 class="font-headline text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Core Value</h2>
           </div>
-          <h3 class="font-sans font-bold text-xl text-white">Higher Secondary Certificate (HSC)</h3>
-          <p class="font-mono text-xs text-amber-300/80">Maharashtra State Board</p>
-          <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
-            12th Board Examinations with a focus on Mathematics, Physics, and Advanced Electronics.
-          </p>
+
+          <div class="relative w-[480px] h-[480px] sm:w-[540px] sm:h-[540px] flex items-center justify-center">
+            
+            <div class="absolute z-10 w-44 h-44 sm:w-52 sm:h-52 flex items-center justify-center">
+              <div class="absolute inset-0 bg-sky-500/10 blur-2xl rounded-full"></div>
+              <img src="../Main_page_data/Meditation.avif" alt="Meditation Avatar" class="relative z-10 w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(56,189,248,0.3)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            </div>
+
+            <div class="absolute inset-0 w-full h-full animate-orbit pointer-events-auto cursor-pointer">
+              
+              <div class="absolute top-4 left-1/2 -translate-x-1/2 w-56 text-center">
+                <div class="counter-rotate space-y-1">
+                  <h3 class="text-white font-headline text-sm font-bold tracking-wide">Excellence</h3>
+                  <p class="text-xs text-slate-300 font-mono leading-snug">Sustainable architecture & clean code</p>
+                </div>
+              </div>
+
+              <div class="absolute top-1/2 right-4 -translate-y-1/2 w-56 text-center">
+                <div class="counter-rotate space-y-1">
+                  <h3 class="text-white font-headline text-sm font-bold tracking-wide">Accountable</h3>
+                  <p class="text-xs text-slate-300 font-mono leading-snug">Stand for decisions & mistakes</p>
+                </div>
+              </div>
+
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 text-center">
+                <div class="counter-rotate space-y-1">
+                  <h3 class="text-white font-headline text-sm font-bold tracking-wide">Kindness</h3>
+                  <p class="text-xs text-slate-300 font-mono leading-snug">Always eager to help others</p>
+                </div>
+              </div>
+
+              <div class="absolute top-1/2 left-4 -translate-y-1/2 w-56 text-center">
+                <div class="counter-rotate space-y-1">
+                  <h3 class="text-white font-headline text-sm font-bold tracking-wide">Passion</h3>
+                  <p class="text-xs text-slate-300 font-mono leading-snug">Love what I do</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
         </div>
 
       </div>
-  </div>
+
+    </div>
   </section>
 
   <section id="projects" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
