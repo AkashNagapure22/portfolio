@@ -316,58 +316,61 @@
 <!-- Optimized Asymmetric Grid Layout: Left Nav (col-span-2), Center Content (col-span-7), Right Ads (col-span-3) -->
 <div class="w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-10 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow relative z-10">
 
-    <!-- Left Sidebar -->
-    <aside class="lg:col-span-2 space-y-8 lg:sticky lg:top-24 h-fit text-left">
-        <div class="relative">
+    <!-- Left Sidebar with Expandable/Collapsible Versioning List -->
+    <aside class="lg:col-span-2 space-y-6 lg:sticky lg:top-24 h-fit text-left flex flex-col">
+        <div class="relative shrink-0">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
                 <span class="material-symbols-outlined text-sm">search</span>
             </span>
-            <input type="text" placeholder="Search changelog..." class="w-full pl-9 pr-3 py-2.5 bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono shadow-inner" />
+            <input type="text" placeholder="Search changelog..." class="w-full pl-9 pr-3 py-2 bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono shadow-inner" />
         </div>
 
-        <nav class="space-y-6 text-xs font-mono">
+        <nav class="space-y-4 text-xs font-mono">
             <div class="space-y-2">
-                <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Versioning</div>
-                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
-                    <a href="#overview" class="block py-1.5 px-2 rounded-lg text-sky-400 bg-sky-500/10 font-bold transition-colors">Overview</a>
-                    <a href="#v321" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.1 (Sep 2026)</a>
-                    <a href="#v320" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.0 (Sep 2026)</a>
-                    <a href="#v310" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.0 (Sep 2026)</a>
-                    <a href="#v300" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.0.0 (Sep 2026)</a>
-                    <a href="#v220" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.2.0 (Aug 2026)</a>
-                    <a href="#v210" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.1.0 (Aug 2026)</a>
+                <div class="flex items-center justify-between font-bold uppercase tracking-wider text-slate-400 px-2 cursor-pointer hover:text-white transition-colors" onclick="toggleVersionList()">
+                    <span>Versioning</span>
+                    <span id="version-toggle-icon" class="material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
+                </div>
+                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2 max-h-48 overflow-y-auto transition-all duration-300 pr-1" id="version-sidebar-links">
+                    <a href="#overview" class="block py-1 px-2 rounded-lg text-sky-400 bg-sky-500/10 font-bold transition-colors">Overview</a>
+                    <a href="#v350" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.5.0 (Sep 2026)</a>
+                    <a href="#v341" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.4.1 (Sep 2026)</a>
+                    <a href="#v340" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.4.0 (Sep 2026)</a>
+                    <a href="#v335" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.5 (Sep 2026)</a>
+                    <a href="#v334" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.4 (Sep 2026)</a>
+                    <a href="#v332" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.2 (Sep 2026)</a>
+                    <a href="#v331" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.1 (Sep 2026)</a>
+                    <a href="#v330" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.0 (Sep 2026)</a>
+                    <a href="#v325" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.5 (Sep 2026)</a>
+                    <a href="#v321" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.1 (Sep 2026)</a>
+                    <a href="#v320" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.0 (Sep 2026)</a>
+                    <a href="#v311" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.1 (Sep 2026)</a>
+                    <a href="#v310" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.0 (Sep 2026)</a>
+                    <a href="#v300" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.0.0 (Sep 2026)</a>
+                    <a href="#v221" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.2.1 (Aug 2026)</a>
+                    <a href="#v220" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.2.0 (Aug 2026)</a>
+                    <a href="#v211" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.1.1 (Aug 2026)</a>
+                    <a href="#v210" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.1.0 (Aug 2026)</a>
                 </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 pt-2 border-t border-slate-800">
                 <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Essentials</div>
                 <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
-                    <a href="#roadmap" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Upcoming Roadmap</span>
+                    <a href="#roadmap" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Roadmap</span>
                         <span class="material-symbols-outlined text-sm">chevron_right</span>
                     </a>
-                    <a href="https://blogs.akashnagapure.in" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Technical Blogs Hub</span>
+                    <a href="https://blogs.akashnagapure.in" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Blogs Hub</span>
                         <span class="material-symbols-outlined text-sm">open_in_new</span>
                     </a>
-                    <a href="https://www.akashnagapure.in" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Main Portfolio</span>
-                        <span class="material-symbols-outlined text-sm">open_in_new</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Tools & Vaults</div>
-                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
-                    <a href="#discussion" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">Engineering Q&A</a>
-                    <a href="https://www.linkedin.com/in/anagapure" target="_blank" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">LinkedIn Network</a>
                 </div>
             </div>
         </nav>
     </aside>
 
-    <!-- Center Main Content (Expanded to col-span-7) -->
+    <!-- Center Main Content -->
     <main class="lg:col-span-7 space-y-12 w-full text-left" id="overview">
 
         <div class="space-y-3 border-b border-white/10 pb-6 animate-fade-in-up pt-2">
@@ -391,34 +394,34 @@
                 <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden animate-float flex flex-col justify-between">
                     <div class="space-y-2">
                         <div class="flex items-center justify-between text-[10px] font-mono font-bold text-indigo-400">
-                            <span>v3.3.0</span><span>Q4 2026</span>
+                            <span>v4.1.0</span><span>Q4 2026</span>
                         </div>
                         <h3 class="text-white text-sm font-bold">Homelab Topology Viewer</h3>
-                        <p class="text-[11px] text-slate-300 font-mono leading-relaxed">3D node map showcasing virtualization clusters & storage arrays.</p>
+                        <p class="text-[11px] text-slate-300 font-mono leading-relaxed">3D node map showcasing virtualization clusters & storage arrays[cite: 10].</p>
                     </div>
-                    <button onclick="alert('Viewing v3.3.0 details')" class="text-[11px] font-mono font-bold text-indigo-400 hover:text-indigo-300 pt-2 flex items-center gap-1">Details →</button>
+                    <button onclick="alert('Viewing v4.1.0 details')" class="text-[11px] font-mono font-bold text-indigo-400 hover:text-indigo-300 pt-2 flex items-center gap-1">Details →</button>
                 </div>
 
                 <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden animate-float-delayed flex flex-col justify-between">
                     <div class="space-y-2">
                         <div class="flex items-center justify-between text-[10px] font-mono font-bold text-purple-400">
-                            <span>v3.4.0</span><span>Q4 2026</span>
+                            <span>v4.2.0</span><span>Q4 2026</span>
                         </div>
-                        <h3 class="text-white text-sm font-bold">Numismatics Vault</h3>
-                        <p class="text-[11px] text-slate-300 font-mono leading-relaxed">Coin collection archive with high-res zoom inspectors & ratings.</p>
+                        <h3 class="text-white text-sm font-bold">Advanced Numismatics Vault</h3>
+                        <p class="text-[11px] text-slate-300 font-mono leading-relaxed">Coin collection archive with high-res zoom inspectors & ratings[cite: 6].</p>
                     </div>
-                    <button onclick="alert('Viewing v3.4.0 details')" class="text-[11px] font-mono font-bold text-purple-400 hover:text-purple-300 pt-2 flex items-center gap-1">Details →</button>
+                    <button onclick="alert('Viewing v4.2.0 details')" class="text-[11px] font-mono font-bold text-purple-400 hover:text-purple-300 pt-2 flex items-center gap-1">Details →</button>
                 </div>
 
                 <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-teal-400 relative overflow-hidden animate-float flex flex-col justify-between">
                     <div class="space-y-2">
                         <div class="flex items-center justify-between text-[10px] font-mono font-bold text-teal-400">
-                            <span>v4.0.0</span><span>Q1 2027</span>
+                            <span>v5.0.0</span><span>Q1 2027</span>
                         </div>
                         <h3 class="text-white text-sm font-bold">Graph API Telemetry</h3>
                         <p class="text-[11px] text-slate-300 font-mono leading-relaxed">Proactive alerting framework via Azure Functions & Teams webhooks.</p>
                     </div>
-                    <button onclick="alert('Viewing v4.0.0 details')" class="text-[11px] font-mono font-bold text-teal-400 hover:text-teal-300 pt-2 flex items-center gap-1">Details →</button>
+                    <button onclick="alert('Viewing v5.0.0 details')" class="text-[11px] font-mono font-bold text-teal-400 hover:text-teal-300 pt-2 flex items-center gap-1">Details →</button>
                 </div>
             </div>
         </section>
@@ -450,28 +453,159 @@
 
         <div class="timeline-container space-y-12 pl-0 md:pl-8" id="releases-container">
 
-            <!-- v3.2.1 Entry -->
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v321" data-year="2026" data-month="september" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    6 September
-                </div>
+            <!-- v3.5.0 Entry (Major Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v350" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">9 September</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-sky-400">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.1 • Major Release</div>
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.5.0 • Major Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Subpage Ecosystem Expansion (Coins, Reading, Homelab, Gaming, Food)</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">Ecosystem Rollout</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Deployed fully functional standalone subpages across Coin Vault[cite: 6], Reading Library[cite: 3], Homelab Clusters[cite: 10], Gaming Rigs[cite: 9], and Culinary Journals[cite: 8] with high-res asset pipelines.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.4.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v341" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">7 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.4.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">High-Resolution Coin Image Asset Pipeline</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Numismatics Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Embedded high-resolution numismatic coin photography with interactive zoom inspectors, grading metadata, and historical mint marks onto the coin subpage[cite: 6].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.4.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v340" data-year="2026" data-month="september" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">7 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.4.0 • Minor Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Hobby Section & Modular Subpage Architecture</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Ecosystem Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Introduced the dedicated Hobby section linking out to specialized subpages for coin collections[cite: 6], technical reading logs[cite: 3], homelab builds[cite: 10], gaming setups[cite: 9], and food journals[cite: 8].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.5 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v335" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.5 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Created 404, Privacy, Terms, & Maintenance Pages</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Legal & Error Suites</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Deployed production-ready templates for custom 404 error states, legal privacy policies, terms of service agreements, and automated system maintenance screens.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.4 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v334" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.4 • Small Patch</div>
                         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
                             <h2 class="text-white font-headline-md text-xl font-bold">Interactive Certifications & Confetti Triggers</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">UX Polish</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Edge Hotfix</span>
                         </div>
                         <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Integrated animated certification badges with localized confetti triggers on successful credential verification. Separated Skills and Courses into dedicated modular sub-pages.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- v3.2.0 Entry -->
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v320" data-year="2026" data-month="september" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    4 September
+            <!-- v3.3.2 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v332" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.2 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Homelab Node Status Polling Fix</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Homelab Patch</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Optimized WebSocket heartbeat polling interval for cluster telemetry in the homelab subpage[cite: 10].</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- v3.3.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v331" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Reading Library Progress Bar Sync</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Reading Patch</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Fixed localStorage state synchronization bugs on book completion checkboxes inside the reading list subpage[cite: 3].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v330" data-year="2026" data-month="september" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.0 • Minor Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Hobby Section & Modular Subpage Architecture</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Ecosystem Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Introduced the dedicated Hobby section linking out to specialized subpages for coin collections[cite: 6], technical reading logs[cite: 3], homelab builds[cite: 10], gaming setups[cite: 9], and food journals[cite: 8].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.2.5 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v325" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.5 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">404, Privacy, Terms, & Maintenance Pages</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Legal & Error Suites</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Deployed production-ready templates for custom 404 error states, legal privacy policies, terms of service agreements, and automated system maintenance screens.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.2.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v321" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Interactive Certifications & Confetti Triggers</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Edge Hotfix</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Integrated animated certification badges with localized confetti triggers on successful credential verification. Separated Skills and Courses into dedicated modular sub-pages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.2.0 Entry (Major Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v320" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">4 September</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-sky-400">
                         <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.0 • Major Release</div>
@@ -511,28 +645,39 @@
                 </div>
             </div>
 
-            <!-- v3.1.0 Entry -->
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v310" data-year="2026" data-month="september" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    3 September
-                </div>
+            <!-- v3.1.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v311" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">3 September</div>
                 <div class="flex-grow space-y-6 w-full">
-                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-indigo-400">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-indigo-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.1.0 • Major Release</div>
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.1.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Metadata Hotfix & OG Image Cache Clear</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Edge Patch</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Resolved cached Open Graph thumbnail inconsistencies across social channels and optimized font load priority for faster mobile First Contentful Paint (FCP).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.1.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v310" data-year="2026" data-month="september" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">3 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.1.0 • Minor Release</div>
                         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
                             <h2 class="text-white font-headline-md text-xl font-bold">Clean Blog URL Routing & Edge Optimization</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-indigo-500/30 text-indigo-300 font-mono text-xs">Vercel Deployment</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Vercel Deployment</span>
                         </div>
                         <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Configured Vercel rewrites and sitemap mappings to ensure clean subdomain structure for `blogs.akashnagapure.in` and optimized search crawler indexing.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- v3.0.0 Entry -->
+            <!-- v3.0.0 Entry (Major Release) -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v300" data-year="2026" data-month="september" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    1 September
-                </div>
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">1 September</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-purple-400">
                         <div class="absolute -top-3 left-6 px-3 py-0.5 bg-purple-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.0.0 • Major Release</div>
@@ -545,11 +690,24 @@
                 </div>
             </div>
 
-            <!-- v2.2.0 Entry -->
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v220" data-year="2026" data-month="august" data-type="minor">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    22 August
+            <!-- v2.2.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v221" data-year="2026" data-month="august" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">25 August</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.2.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Mobile Navigation Drawer Click Event Fix</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Hotfix</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Patched event listener bugs on mobile viewport navigation drawers ensuring smooth toggle states and proper Z-index stacking contexts.</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- v2.2.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v220" data-year="2026" data-month="august" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">22 August</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
                         <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.2.0 • Minor Release</div>
@@ -562,11 +720,24 @@
                 </div>
             </div>
 
-            <!-- v2.1.0 Entry -->
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v210" data-year="2026" data-month="august" data-type="minor">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    19 August
+            <!-- v2.1.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v211" data-year="2026" data-month="august" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">20 August</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.1.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Robots.txt & Sitemap Schema Adjustment</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">SEO Patch</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Refined crawler directives inside robots.txt to prevent duplicate index matching on legacy parameters and confirmed XML sitemap hierarchy.</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- v2.1.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v210" data-year="2026" data-month="august" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">19 August</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
                         <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.1.0 • Minor Release</div>
@@ -654,6 +825,57 @@
         const menu = document.getElementById('mobile-menu-drawer');
         menu.classList.toggle('hidden');
     }
+
+    // Toggle Version List Expansion
+    function toggleVersionList() {
+        const listContainer = document.getElementById('version-sidebar-links');
+        const icon = document.getElementById('version-toggle-icon');
+        if (listContainer.style.maxHeight && listContainer.style.maxHeight !== '0px') {
+            listContainer.style.maxHeight = '0px';
+            listContainer.style.opacity = '0';
+            icon.style.transform = 'rotate(-90deg)';
+        } else {
+            listContainer.style.maxHeight = '300px';
+            listContainer.style.opacity = '1';
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // Scroll Spy for Left Sidebar Version Highlighting
+    document.addEventListener('DOMContentLoaded', () => {
+        const listContainer = document.getElementById('version-sidebar-links');
+        listContainer.style.maxHeight = '300px';
+        listContainer.style.overflowY = 'auto';
+        listContainer.style.transition = 'max-height 0.3s ease, opacity 0.3s ease';
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20px 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    if (id) {
+                        document.querySelectorAll('#version-sidebar-links a').forEach(link => {
+                            link.classList.remove('text-sky-400', 'bg-sky-500/10', 'font-bold');
+                            link.classList.add('text-slate-300');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.remove('text-slate-300');
+                                link.classList.add('text-sky-400', 'bg-sky-500/10', 'font-bold');
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.release-card, #overview, #roadmap').forEach(section => {
+            observer.observe(section);
+        });
+    });
 </script>
 
 <footer class="w-full py-6 sm:py-8 bg-surface-dim border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
