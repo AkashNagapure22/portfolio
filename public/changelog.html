@@ -251,6 +251,16 @@
   });
 </script>
 
+<div class="w-full bg-sky-500/10 border-b border-sky-500/20 py-2.5 px-4 sm:px-8 text-center relative z-50">
+    <a href="https://blogs.akashnagapure.in/Blogs/Autopatchblog.html" class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-mono text-slate-200 hover:text-sky-300 transition-colors group">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase tracking-widest">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping"></span> New
+        </span>
+        <span>Windows Autopatch & Rebootless Hotpatch Deployment is now live!</span>
+        <span class="material-symbols-outlined text-sm font-bold text-sky-400 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </a>
+</div>
+
 <header>
 <nav class="relative w-full z-50 transition-all duration-300 bg-slate-950/90 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -303,13 +313,10 @@
     </button>
 </div>
 
-<!-- Main Layout Container with Stripe / Vercel style Documentation Sidebar -->
 <div class="w-full px-4 sm:px-6 lg:px-12 py-10 flex flex-col lg:flex-row gap-10 flex-grow relative z-10">
 
-    <!-- Left Sticky Sidebar Documentation Navigation (Stripe Style) -->
     <aside class="w-full lg:w-72 shrink-0 space-y-8 lg:sticky lg:top-24 h-fit text-left">
         
-        <!-- Search Box -->
         <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
                 <span class="material-symbols-outlined text-sm">search</span>
@@ -318,7 +325,6 @@
         </div>
 
         <nav class="space-y-6 text-xs font-mono">
-            <!-- VERSIONING GROUP -->
             <div class="space-y-2">
                 <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Versioning</div>
                 <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
@@ -333,7 +339,6 @@
                 </div>
             </div>
 
-            <!-- ESSENTIALS GROUP -->
             <div class="space-y-2">
                 <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Essentials</div>
                 <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
@@ -352,7 +357,6 @@
                 </div>
             </div>
 
-            <!-- TOOLS GROUP -->
             <div class="space-y-2">
                 <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Tools & Vaults</div>
                 <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
@@ -363,27 +367,9 @@
         </nav>
     </aside>
 
-    <!-- Main Content Area -->
-    <main class="content flex-grow space-y-12 w-full">
+    <main class="content flex-grow space-y-12 w-full" id="overview">
 
-        <!-- Top Notification Button / Banner for Latest Article -->
-        <div class="w-full animate-fade-in-up text-left" id="overview">
-            <a href="https://blogs.akashnagapure.in/Blogs/Autopatchblog.html" class="glass-card-3d px-4 py-3 rounded-2xl flex items-center justify-between gap-4 group cursor-pointer border border-sky-500/30 hover:border-sky-400 transition-all shadow-[0_0_20px_rgba(56,189,248,0.15)]">
-                <div class="flex items-center gap-3 overflow-hidden">
-                    <span class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase tracking-widest shadow-md">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping"></span> New Release
-                    </span>
-                    <p class="text-xs sm:text-sm font-mono text-slate-200 truncate group-hover:text-sky-300 transition-colors">
-                        <strong class="text-white">Latest Article:</strong> Windows Autopatch & Rebootless Hotpatch Deployment is now live!
-                    </p>
-                </div>
-                <div class="shrink-0 flex items-center gap-1 text-xs font-mono font-bold text-sky-400 group-hover:translate-x-1 transition-transform">
-                    <span>Read Update</span> <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="space-y-3 border-b border-white/10 pb-6 animate-fade-in-up text-left">
+        <div class="space-y-3 border-b border-white/10 pb-6 animate-fade-in-up text-left pt-2">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
                 <span class="material-symbols-outlined text-sm">history</span> System Release Pipeline
             </div>
@@ -391,7 +377,6 @@
             <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.</p>
         </div>
 
-        <!-- Upcoming Releases & Roadmap Section -->
         <section id="roadmap" class="space-y-6 animate-fade-in-up text-left">
             <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
                 <div class="flex items-center gap-2.5">
@@ -401,10 +386,8 @@
                 <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
             </div>
 
-            <!-- Left-aligned Horizontal Scrolling Container -->
             <div class="flex justify-start gap-6 overflow-x-auto pb-4 pt-2 snap-x scrollbar-thin">
                 
-                <!-- Roadmap Card 1 -->
                 <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-indigo-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between text-left">
                     <div class="space-y-3">
                         <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
@@ -425,7 +408,6 @@
                     </div>
                 </div>
 
-                <!-- Roadmap Card 2 -->
                 <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-purple-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float-delayed flex flex-col justify-between text-left">
                     <div class="space-y-3">
                         <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
@@ -446,7 +428,6 @@
                     </div>
                 </div>
 
-                <!-- Roadmap Card 3 -->
                 <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-teal-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between text-left">
                     <div class="space-y-3">
                         <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-teal-400 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-500/30">Target: Q1 2027</div>
@@ -470,7 +451,6 @@
             </div>
         </section>
 
-        <!-- Filter Bar -->
         <div class="glass-card-3d p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 animate-fade-in-up">
             <div class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
                 <span class="material-symbols-outlined text-base">filter_list</span> Filter Releases:
@@ -496,10 +476,8 @@
             </div>
         </div>
 
-        <!-- Vercel Timeline Layout -->
         <div class="timeline-container space-y-12 pl-0 md:pl-8 text-left" id="releases-container">
 
-            <!-- 4 September Release -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v320" data-year="2026" data-month="september" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     4 September
@@ -543,7 +521,6 @@
                 </div>
             </div>
 
-            <!-- 3 September Release -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v310" data-year="2026" data-month="september" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     3 September
@@ -560,7 +537,6 @@
                 </div>
             </div>
 
-            <!-- 1 September Release -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v300" data-year="2026" data-month="september" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     1 September
@@ -577,7 +553,6 @@
                 </div>
             </div>
 
-            <!-- 15 August Release -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     15 August
@@ -594,7 +569,6 @@
                 </div>
             </div>
 
-            <!-- 22 July Release -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="july" data-type="minor">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     22 July
@@ -611,7 +585,6 @@
                 </div>
             </div>
 
-            <!-- 10 June Release -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="patch">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     10 June
@@ -628,7 +601,6 @@
                 </div>
             </div>
 
-            <!-- 1 June Inception Release -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     1 June
