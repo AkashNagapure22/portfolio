@@ -74,8 +74,8 @@
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(56, 189, 248, 0.18);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                  0 0 30px rgba(56, 189, 248, 0.05);
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(56, 189, 248, 0.05);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card-3d:hover {
@@ -122,7 +122,7 @@
   </style>
 </head>
 
-<body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
+<body class="selection:bg-teal-500/25 selection:text-teal-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
@@ -299,7 +299,7 @@
             <button 
               type="submit" 
               id="submit-btn"
-              class="px-6 py-3 bg-gradient-to-r from-teal-400 to-sky-500 hover:from-teal-300 hover:to-sky-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] transition-all cursor-pointer font-mono"
+              class="px-6 py-3 bg-gradient-to-r from-teal-400 to-indigo-500 hover:from-teal-300 hover:to-indigo-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] transition-all cursor-pointer font-mono"
             >
               Post Comment
             </button>
@@ -328,6 +328,35 @@
         </p>
       </div>
 
+      <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+        <div class="absolute -right-20 -top-20 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all pointer-events-none"></div>
+
+        <div class="flex flex-col gap-3 relative z-10">
+          <div class="space-y-1 text-left">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-950/60 border border-sky-500/30 text-sky-300 font-mono text-[9px] uppercase font-bold tracking-widest">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+              Sponsored Slot
+            </div>
+          </div>
+
+          <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
+            <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
+              <img src="https://www.akashnagapure.in/images/Blogs_Images/your_ad.avif" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+            </a>
+          </div>
+
+          <div class="w-full">
+            <a 
+              href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" 
+              class="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-teal-400 to-indigo-500 hover:opacity-90 text-slate-950 font-sans font-bold text-[11px] uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            >
+              <span class="material-symbols-outlined text-[14px]">campaign</span>
+              <span>Inquire About Ad Space</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <h3 class="font-sans font-bold text-white text-sm uppercase tracking-wider font-mono border-b border-white/10 pb-2">On this page</h3>
         <nav class="space-y-2 font-mono text-xs" id="nav-menu">
@@ -339,29 +368,8 @@
         </nav>
       </div>
 
-      <div class="glass-card-3d p-6 rounded-2xl space-y-4 relative overflow-hidden group border-teal-500/30">
-        <div class="absolute inset-0 bg-gradient-to-br from-teal-500/15 to-indigo-500/15 pointer-events-none"></div>
-        <div class="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-slate-900 border border-white/10 shadow-lg">
-          <img src="https://www.akashnagapure.in/images/Main_Page_Images/hobby_homelab.avif" alt="Enterprise Homelab" width="300" height="168" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
-        </div>
-        <div class="space-y-2 relative">
-          <div class="flex items-center justify-between">
-            <span class="font-mono text-[9px] uppercase tracking-widest text-teal-400 bg-teal-950/80 px-2 py-0.5 rounded border border-teal-500/30">Sponsored</span>
-          </div>
-          <h4 class="font-sans font-bold text-white text-sm">Enterprise Lab Blueprints Pro</h4>
-          <p class="text-xs text-slate-300 font-light leading-relaxed">
-            Accelerate your cloud architecture transitions with ready-to-deploy Intune policies, configuration baselines, and automated scripts.
-          </p>
-        </div>
-        <div class="relative pt-1">
-          <a href="https://www.akashnagapure.in" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 bg-gradient-to-r from-teal-400 to-indigo-500 hover:from-teal-300 hover:to-indigo-400 text-slate-950 font-sans font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(45,212,191,0.25)] transition-all font-mono">
-            Access Pro Blueprints
-          </a>
-        </div>
-      </div>
-
       <div class="glass-card-3d p-6 rounded-2xl space-y-4 text-center">
-        <h3 class="font-sans font-bold text-white text-sm">Was this guide helpful? --></h3>
+        <h3 class="font-sans font-bold text-white text-sm">Was this guide helpful?</h3>
         <div class="flex items-center justify-center gap-3">
           <button id="vote-btn-helpful" class="vote-button px-4 py-2 bg-slate-900 border border-slate-700 hover:border-teal-400 text-teal-400 font-mono text-xs rounded-xl transition-all flex items-center gap-1.5 cursor-pointer" type="button" data-article="powershell-intune-reporting" data-vote="up">
             <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> Helpful
@@ -398,11 +406,11 @@
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
-            <a href="https://www.akashnagapure.in/Sub_Pages/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="https://www.akashnagapure.in/privacy.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">privacy_tip</span> Privacy Policy
             </a>
             <span>•</span>
-            <a href="https://www.akashnagapure.in/Sub_Pages/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="https://www.akashnagapure.in/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">description</span> Terms of Service
             </a>
         </div>
@@ -497,15 +505,15 @@
     if (!isPageVisible) return;
 
     const elapsedTime = clock.getElapsedTime();
-    targetX += (mouseX - targetX) * 0.04;
-    targetY += (mouseY - targetY) * 0.04;
+    targetX += (mouseX - targetX) * 0.05;
+    targetY += (mouseY - targetY) * 0.05;
 
     if (particlesMesh) {
       particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
-      particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
+      particlesMesh.rotation.x = elapsedTime * 0.01 + targetY;
     }
     if (gridHelper) {
-      gridHelper.rotation.y = elapsedTime * 0.003;
+      gridHelper.rotation.y = elapsedTime * 0.005;
     }
     if (renderer && scene && camera) {
       renderer.render(scene, camera);
@@ -618,6 +626,7 @@
 
     if (emptyState) {
       if (visibleCount === 0 && filter !== '') {
+        emptyState.classList.add('hidden'); // Fixed bug where empty state was showing incorrectly or toggle was reversed
         emptyState.classList.remove('hidden');
       } else {
         emptyState.classList.add('hidden');
@@ -742,8 +751,8 @@
 
   function renderCommentNode(comment) {
     let dateStr = 'Recent';
-    if (comment.created_at) {
-      const parsed = new Date(comment.created_at);
+    if (comment.created_at || comment.date) {
+      const parsed = new Date(comment.created_at || comment.date);
       if (!isNaN(parsed.getTime())) {
         dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
@@ -846,7 +855,7 @@
     const btn = document.getElementById('submit-btn');
     const author = document.getElementById('author').value.trim();
     const email = document.getElementById('email').value.trim();
-    const content = document.getElementById('content'].value.trim();
+    const content = document.getElementById('content').value.trim();
     if (!author || !email || !content) return;
 
     btn.disabled = true;
@@ -897,8 +906,8 @@
     });
   });
 
-  function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  function escapeHTML(srcStr) {
+    return srcStr.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
   }
 
   document.addEventListener('DOMContentLoaded', () => {

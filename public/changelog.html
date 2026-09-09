@@ -6,6 +6,7 @@
 <title>Akash Nagapure | Release Version Control & Upcoming Roadmap</title>
 <meta name="description" content="Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches." />
 <link rel="canonical" href="https://www.akashnagapure.in/changelog.html" />
+<link rel="icon" href="https://www.akashnagapure.in/Main_page_data/Logo.avif" type="image/avif" />
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -81,12 +82,43 @@
         transform: translateY(-3px);
     }
 
+    /* Floating Animation for Roadmap Cards */
+    @keyframes floatAnimation {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+        animation: floatAnimation 4s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+        animation: floatAnimation 4s ease-in-out 2s infinite;
+    }
+
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
     .animate-fade-in-up {
         animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Vercel-style Timeline Line */
+    .timeline-container {
+        position: relative;
+    }
+    .timeline-container::before {
+        content: '';
+        position: absolute;
+        top: 1.5rem;
+        bottom: 1.5rem;
+        left: 130px;
+        width: 2px;
+        background: rgba(56, 189, 248, 0.15);
+    }
+    @media (max-width: 768px) {
+        .timeline-container::before {
+            left: 20px;
+        }
     }
 </style>
 </head>
@@ -219,6 +251,16 @@
   });
 </script>
 
+<div class="w-full bg-sky-500/10 border-b border-sky-500/20 py-2.5 px-4 sm:px-8 text-center relative z-50">
+    <a href="https://blogs.akashnagapure.in/Blogs/Autopatchblog.html" class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-mono text-slate-200 hover:text-sky-300 transition-colors group">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase tracking-widest">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping"></span> New
+        </span>
+        <span>Windows Autopatch & Rebootless Hotpatch Deployment is now live!</span>
+        <span class="material-symbols-outlined text-sm font-bold text-sky-400 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </a>
+</div>
+
 <header>
 <nav class="relative w-full z-50 transition-all duration-300 bg-slate-950/90 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -271,280 +313,314 @@
     </button>
 </div>
 
-<main class="content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 flex-grow w-full">
+<div class="w-full px-4 sm:px-6 lg:px-12 py-10 flex flex-col lg:flex-row gap-10 flex-grow relative z-10">
 
-    <div class="space-y-3 text-center sm:text-left border-b border-white/10 pb-6 animate-fade-in-up">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm">history</span> System Release Pipeline
-        </div>
-        <h1 class="font-headline-md text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Version Control & Roadmap</h1>
-        <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Explore both our upcoming engineering roadmap and our historical version control logs. Track planned features, upcoming technical articles, performance optimizations, and past updates across our portfolio infrastructure.</p>
-    </div>
-
-    <section class="space-y-6 animate-fade-in-up">
-        <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
-            <div class="flex items-center gap-2.5">
-                <span class="material-symbols-outlined text-indigo-400">upcoming</span>
-                <h2 class="font-headline-md text-2xl font-bold text-white">Upcoming Releases & Roadmap</h2>
-            </div>
-            <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
+    <aside class="w-full lg:w-72 shrink-0 space-y-8 lg:sticky lg:top-24 h-fit text-left">
+        
+        <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                <span class="material-symbols-outlined text-sm">search</span>
+            </span>
+            <input type="text" placeholder="Search changelog..." class="w-full pl-9 pr-3 py-2 bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden">
-                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
-                <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
-                    <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
-                </div>
-                <h3 class="text-white text-lg font-bold">Interactive Homelab Topology Viewer</h3>
-                <p class="text-xs text-slate-300 font-mono leading-relaxed">Developing an interactive 3D/2D node map showcasing self-hosted virtualization clusters, storage arrays, and network firewalls.</p>
-                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-indigo-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span> Status: Architecture Planning
+        <nav class="space-y-6 text-xs font-mono">
+            <div class="space-y-2">
+                <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Versioning</div>
+                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
+                    <a href="#overview" class="block py-1.5 px-2 rounded-lg text-sky-400 bg-sky-500/10 font-bold transition-colors">Overview</a>
+                    <a href="#v320" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.0 (Sep 2026)</a>
+                    <a href="#v310" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.0 (Sep 2026)</a>
+                    <a href="#v300" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.0.0 (Sep 2026)</a>
+                    <a href="#previous-versions" class="block py-1.5 px-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Previous versions</span>
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="glass-card-3d p-6 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden">
-                <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
-                <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
-                    <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
-                </div>
-                <h3 class="text-white text-lg font-bold">Advanced Numismatics Vault Catalog</h3>
-                <p class="text-xs text-slate-300 font-mono leading-relaxed">Expanding the coin collection archive with high-resolution image zoom inspectors, historical grading sheets, and rarity indexes.</p>
-                <div class="pt-2 flex items-center gap-2 text-[11px] font-mono text-purple-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> Status: UI Mockups & Data Entry
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="glass-card-3d p-5 rounded-2xl flex flex-wrap items-center justify-between gap-4 animate-fade-in-up">
-        <h2 class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
-            <span class="material-symbols-outlined text-base">filter_list</span> Release History Filters:
-        </h2>
-        <div class="flex flex-wrap items-center gap-3">
-            <select id="filter-year" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
-                <option value="all">All Years (2026)</option>
-                <option value="2026">2026</option>
-            </select>
-            <select id="filter-month" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
-                <option value="all">All Months</option>
-                <option value="september">September</option>
-                <option value="august">August</option>
-                <option value="july">July</option>
-                <option value="june">June</option>
-            </select>
-            <select id="filter-type" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
-                <option value="all">All Release Types</option>
-                <option value="major">Major Release</option>
-                <option value="minor">Minor Release</option>
-                <option value="patch">Small Patch</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="space-y-8" id="releases-container">
-
-        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-400 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-mono font-bold text-white">v3.2.0</span>
-                    <h3 class="text-white font-headline-md text-xl font-bold">15 Technical Articles</h3>
-                </div>
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">
-                    <span class="material-symbols-outlined text-sm">calendar_today</span> September 5, 2026
+            <div class="space-y-2">
+                <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Essentials</div>
+                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
+                    <a href="#roadmap" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Upcoming Roadmap</span>
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                    <a href="https://blogs.akashnagapure.in" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Technical Blogs Hub</span>
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                    <a href="https://www.akashnagapure.in" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Main Portfolio</span>
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
                 </div>
             </div>
-            <p class="text-xs text-slate-300 font-mono leading-relaxed">Published 15 guides covering Intune, SCCM, PowerShell, and AVD.</p>
-            
-            <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between text-xs font-mono text-sky-400 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
-                    <span>View Published Articles</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
-                </summary>
-                <div class="mt-2 pt-2 space-y-2">
-                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">1.</span> Windows Autopilot Zero-Touch Provisioning.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">2.</span> Advanced Win32 App Packaging.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">3.</span> Windows Autopatch Rings Setup.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">4.</span> GPO to Intune Catalog Migration.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">5.</span> PowerShell Proactive Remediations.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">6.</span> AVD & FSLogix Containers.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">7.</span> SCCM to Intune Co-Management.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">8.</span> Zero Trust Conditional Access.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">9.</span> ServiceNow Graph API Sync.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">10.</span> VMware vSphere Optimization.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">11.</span> SCCM Task Sequence Troubleshooting.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">12.</span> Defender for Endpoint Integration.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">13.</span> Windows 365 Cloud PC Provisioning.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">14.</span> SQL Server Performance Tuning.</li>
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">15.</span> ITIL 4 Service Frameworks.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-400 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-mono font-bold text-white">v3.1.0</span>
-                    <h3 class="text-white font-headline-md text-xl font-bold">Clean Blog URL Routing</h3>
-                </div>
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">
-                    <span class="material-symbols-outlined text-sm">calendar_today</span> September 5, 2026
+            <div class="space-y-2">
+                <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Tools & Vaults</div>
+                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
+                    <a href="#discussion" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">Engineering Q&A</a>
+                    <a href="https://www.linkedin.com/in/anagapure" target="_blank" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">LinkedIn Network</a>
                 </div>
             </div>
-            <p class="text-xs text-slate-300 font-mono leading-relaxed">Configured Vercel rules to remove folder paths from blogs.</p>
-            
-            <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between text-xs font-mono text-sky-400 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
-                    <span>View Details</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
-                </summary>
-                <div class="mt-2 pt-2 space-y-2">
-                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Added Vercel rewrite rules to strip blog prefixes.</li>
-                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong class="text-white">Fix:</strong> Fixed broken links on social shares.</li>
-                    </ul>
-                </div>
-            </details>
+        </nav>
+    </aside>
+
+    <main class="content flex-grow space-y-12 w-full" id="overview">
+
+        <div class="space-y-3 border-b border-white/10 pb-6 animate-fade-in-up text-left pt-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
+                <span class="material-symbols-outlined text-sm">history</span> System Release Pipeline
+            </div>
+            <h1 class="font-headline-md text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Changelog & Version Control</h1>
+            <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.</p>
         </div>
 
-        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-400 animate-fade-in-up" data-year="2026" data-month="september" data-type="major">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-mono font-bold text-white">v3.0.0</span>
-                    <h3 class="text-white font-headline-md text-xl font-bold">Subdomain Restructuring</h3>
+        <section id="roadmap" class="space-y-6 animate-fade-in-up text-left">
+            <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-indigo-400">upcoming</span>
+                    <h2 class="font-headline-md text-2xl font-bold text-white">Upcoming Releases & Roadmap</h2>
                 </div>
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">
-                    <span class="material-symbols-outlined text-sm">calendar_today</span> September 1, 2026
+                <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
+            </div>
+
+            <div class="flex justify-start gap-6 overflow-x-auto pb-4 pt-2 snap-x scrollbar-thin">
+                
+                <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-indigo-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between text-left">
+                    <div class="space-y-3">
+                        <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
+                        <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
+                            <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
+                        </div>
+                        <h3 class="text-white text-lg font-bold">Interactive Homelab Topology Viewer</h3>
+                        <p class="text-xs text-slate-300 font-mono leading-relaxed">Developing an interactive 3D/2D node map showcasing self-hosted virtualization clusters, storage arrays, and network firewalls.</p>
+                        <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-indigo-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span> Status: Architecture Planning
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-slate-400">Milestone: Alpha Build</span>
+                        <button onclick="alert('Viewing details for v3.3.0: Interactive Homelab Topology Viewer')" class="text-xs font-mono font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition-colors cursor-pointer">
+                            View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-purple-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float-delayed flex flex-col justify-between text-left">
+                    <div class="space-y-3">
+                        <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
+                        <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
+                            <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
+                        </div>
+                        <h3 class="text-white text-lg font-bold">Advanced Numismatics Vault Catalog</h3>
+                        <p class="text-xs text-slate-300 font-mono leading-relaxed">Expanding the coin collection archive with high-resolution image zoom inspectors, historical grading sheets, and rarity indexes.</p>
+                        <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-purple-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> Status: UI Mockups & Data Entry
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-slate-400">Milestone: Schema Design</span>
+                        <button onclick="alert('Viewing details for v3.4.0: Advanced Numismatics Vault Catalog')" class="text-xs font-mono font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1 transition-colors cursor-pointer">
+                            View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-teal-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between text-left">
+                    <div class="space-y-3">
+                        <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-teal-400 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-500/30">Target: Q1 2027</div>
+                        <div class="flex items-center gap-2 text-teal-300 font-mono text-xs font-bold">
+                            <span class="material-symbols-outlined text-sm">schedule</span> v4.0.0 Pipeline
+                        </div>
+                        <h3 class="text-white text-lg font-bold">Automated Graph API Telemetry Engine</h3>
+                        <p class="text-xs text-slate-300 font-mono leading-relaxed">Proactive alerting framework leveraging Azure Functions and Teams webhooks to catch endpoint compliance regressions.</p>
+                        <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-teal-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping"></span> Status: Research & Scoping
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-slate-400">Milestone: PoC Testing</span>
+                        <button onclick="alert('Viewing details for v4.0.0: Automated Graph API Telemetry Engine')" class="text-xs font-mono font-bold text-teal-400 hover:text-teal-300 flex items-center gap-1 transition-colors cursor-pointer">
+                            View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="glass-card-3d p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 animate-fade-in-up">
+            <div class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
+                <span class="material-symbols-outlined text-base">filter_list</span> Filter Releases:
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <select id="filter-year" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
+                    <option value="all">All Years</option>
+                    <option value="2026">2026</option>
+                </select>
+                <select id="filter-month" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
+                    <option value="all">All Months</option>
+                    <option value="september">September</option>
+                    <option value="august">August</option>
+                    <option value="july">July</option>
+                    <option value="june">June</option>
+                </select>
+                <select id="filter-type" onchange="filterReleases()" class="bg-black/60 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl px-3 py-1.5 text-xs text-white font-mono focus:outline-none transition-all">
+                    <option value="all">All Release Types</option>
+                    <option value="major">Major Release</option>
+                    <option value="minor">Minor Release</option>
+                    <option value="patch">Small Patch</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="timeline-container space-y-12 pl-0 md:pl-8 text-left" id="releases-container">
+
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v320" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    4 September
+                </div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-sky-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.0 • Major Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">17 Technical Articles Hub Expansion</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">Production Rollout</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Expanded portfolio architecture hubs, adding dedicated enterprise documentation covering Intune Autopatch, SCCM OSD Checkpoints, and Microsoft Graph PowerShell reporting modules.</p>
+                        <details class="group cursor-pointer">
+                            <summary class="flex items-center justify-between text-xs font-mono text-sky-400 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
+                                <span>View Published Articles Index</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
+                            </summary>
+                            <div class="mt-2 pt-2 space-y-1">
+                                <ul class="space-y-1.5 text-xs text-slate-300 font-mono">
+                                    <li>• Windows Autopatch & Rebootless Hotpatch Deployment</li>
+                                    <li>• SCCM Patch Management As a Lifecycle</li>
+                                    <li>• SCCM OSD Engineering with Explicit Checkpoints</li>
+                                    <li>• SCCM to Intune Migration Guardrails</li>
+                                    <li>• SCCM Hardware Inventory Without Noise</li>
+                                    <li>• SCCM Content Distribution That Scales</li>
+                                    <li>• SCCM Client Health Remediation</li>
+                                    <li>• SCCM Application Model Design That Survives Change</li>
+                                    <li>• PowerShell Remediation Scripts That Are Safe to Rerun</li>
+                                    <li>• PowerShell Graph Authentication with Least Privilege</li>
+                                    <li>• PowerShell Intune Reporting Without Brittle Exports</li>
+                                    <li>• PowerShell Device Inventory for Useful Fleet Signals</li>
+                                    <li>• PowerShell Compliance Automation for Endpoint Teams</li>
+                                    <li>• Intune Win32 Packaging That Reports the Truth</li>
+                                    <li>• Intune Compliance Policy Architecture</li>
+                                    <li>• Advanced Intune Deployment Rings</li>
+                                    <li>• Windows Autopilot Troubleshooting Guide</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <p class="text-xs text-slate-300 font-mono leading-relaxed">Decoupled subdomains into independent entry points.</p>
-            
-            <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between text-xs font-mono text-sky-400 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
-                    <span>View Details</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
-                </summary>
-                <div class="mt-2 pt-2 space-y-2">
-                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Standardized Vercel Edge routing for subdomains.</li>
-                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong class="text-white">Fix:</strong> Resolved 404 routing errors.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-purple-400 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-purple-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Major Release</div>
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-mono font-bold text-white">v2.0.0</span>
-                    <h3 class="text-white font-headline-md text-xl font-bold">Custom Domain Integration</h3>
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v310" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    3 September
                 </div>
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-purple-500/30 text-purple-400 font-mono text-xs">
-                    <span class="material-symbols-outlined text-sm">calendar_today</span> August 15, 2026
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-indigo-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-indigo-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.1.0 • Major Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Clean Blog URL Routing & Edge Optimization</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-indigo-500/30 text-indigo-300 font-mono text-xs">Vercel Deployment</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Configured Vercel rewrites and sitemap mappings to ensure clean subdomain structure for `blogs.akashnagapure.in` and optimized search crawler indexing.</p>
+                    </div>
                 </div>
             </div>
-            <p class="text-xs text-slate-300 font-mono leading-relaxed">Acquired and mapped custom domain configuration.</p>
-            
-            <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between text-xs font-mono text-purple-400 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
-                    <span>View Details</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
-                </summary>
-                <div class="mt-2 pt-2 space-y-2">
-                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                        <li class="flex items-start gap-2"><span class="text-purple-400 font-bold">▹</span> Mapped `akashnagapure.in` via Vercel DNS.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-sky-500/50 animate-fade-in-up" data-year="2026" data-month="july" data-type="minor">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-700 text-slate-200 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Minor Release</div>
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-mono font-bold text-white">v1.5.0</span>
-                    <h3 class="text-white font-headline-md text-xl font-bold">Layout Refinement</h3>
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v300" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    1 September
                 </div>
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 font-mono text-xs">
-                    <span class="material-symbols-outlined text-sm">calendar_today</span> July 22, 2026
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-purple-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-purple-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.0.0 • Major Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Subdomain Restructuring & Astro Migration</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-purple-500/30 text-purple-300 font-mono text-xs">Architecture Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Transitioned main site and technical blog hubs into decoupled subdomains with high-performance glassmorphic UI components and Three.js particle backgrounds.</p>
+                    </div>
                 </div>
             </div>
-            <p class="text-xs text-slate-300 font-mono leading-relaxed">Improved layout and added reading metrics tracking.</p>
-            
-            <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between text-xs font-mono text-slate-300 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
-                    <span>View Details</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
-                </summary>
-                <div class="mt-2 pt-2 space-y-2">
-                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                        <li class="flex items-start gap-2"><span class="text-sky-400 font-bold">▹</span> Switched blogs to compact tile format.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-slate-500 animate-fade-in-up" data-year="2026" data-month="june" data-type="patch">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-800 text-slate-400 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Small Patch</div>
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                <div class="flex items-center gap-3">
-                    <span class="text-xl font-mono font-bold text-white">v1.1.2</span>
-                    <h3 class="text-white font-headline-md text-lg font-bold">Endpoint Scripting Setup</h3>
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    15 August
                 </div>
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-mono text-xs">
-                    <span class="material-symbols-outlined text-sm">calendar_today</span> June 10, 2026
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.0.0 • Major Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Custom Domain Integration</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">DNS Routing</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Successfully configured DNS records and primary domain routing for `akashnagapure.in` on Vercel with full SSL certificate provisioning.</p>
+                    </div>
                 </div>
             </div>
-            <p class="text-xs text-slate-300 font-mono leading-relaxed">Automated delivery packages and modules.</p>
-            
-            <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between text-xs font-mono text-slate-400 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
-                    <span>View Details</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
-                </summary>
-                <div class="mt-2 pt-2 space-y-2">
-                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                        <li class="flex items-start gap-2"><span class="text-slate-400 font-bold">▹</span> Tested Intune Win32 packaging wrappers.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-        <div class="release-card glass-card-3d p-6 sm:p-8 rounded-2xl space-y-5 relative border-l-4 border-l-emerald-400 animate-fade-in-up" data-year="2026" data-month="june" data-type="major">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-emerald-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">Inception Release</div>
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-mono font-bold text-white">v1.0.0</span>
-                    <h3 class="text-white font-headline-md text-xl font-bold">Initial Website Creation</h3>
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="july" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    22 July
                 </div>
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-emerald-500/30 text-emerald-400 font-mono text-xs">
-                    <span class="material-symbols-outlined text-sm">calendar_today</span> June 1, 2026
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-slate-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-700 text-slate-200 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v1.5.0 • Minor Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Layout Refinement & Analytics</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 font-mono text-xs">UI Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Improved grid responsiveness, added reading metrics tracking, and integrated secure PostgreSQL comment boards across portfolio pages.</p>
+                    </div>
                 </div>
             </div>
-            <p class="text-xs text-slate-300 font-mono leading-relaxed">Foundation of the portfolio website.</p>
-            
-            <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider select-none py-2 border-t border-white/10">
-                    <span>View Setup Steps</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-sm">expand_more</span>
-                </summary>
-                <div class="mt-2 pt-2 space-y-2">
-                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">1.</span> Initialized GitHub repository.</li>
-                        <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">2.</span> Configured Tailwind CSS and Three.js cards.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-    </div>
-</main>
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    10 June
+                </div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-slate-600">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-800 text-slate-400 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v1.1.2 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Endpoint Scripting Setup</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-mono text-xs">Script Automation</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Released initial PowerShell deployment scripts for DesktopInfo telemetry across enterprise environments.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    1 June
+                </div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-emerald-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-emerald-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v1.0.0 • Inception Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Initial Website Creation</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-emerald-500/30 text-emerald-400 font-mono text-xs">Genesis</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Foundation of the portfolio website, establishing core personal branding, professional experience highlights, and initial project showcases.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
 
 <script>
     function filterReleases() {
@@ -564,7 +640,7 @@
             let matchesType = (selectedType === 'all' || cardType === selectedType);
 
             if (matchesYear && matchesMonth && matchesType) {
-                card.style.display = 'block';
+                card.style.display = 'flex';
             } else {
                 card.style.display = 'none';
             }
@@ -606,7 +682,7 @@
             </a>
             <span>•</span>
             <a href="https://www.akashnagapure.in/terms.html" class="hover:text-sky-400 transition-colors flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">description</span> Terms of Service
+                <span class="material-symbols-outlined span text-sm">description</span> Terms of Service
             </a>
         </div>
 
