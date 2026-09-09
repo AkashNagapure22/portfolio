@@ -263,7 +263,7 @@
 
 <header>
 <nav class="relative w-full z-50 transition-all duration-300 bg-slate-950/90 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-  <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-12">
       <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group cursor-pointer">
         <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
@@ -313,14 +313,16 @@
     </button>
 </div>
 
-<div class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow relative z-10">
+<!-- Optimized Asymmetric Grid Layout: Left Nav (col-span-2), Center Content (col-span-7), Right Ads (col-span-3) -->
+<div class="w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-10 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow relative z-10">
 
-    <aside class="lg:col-span-3 space-y-8 lg:sticky lg:top-24 h-fit text-left">
+    <!-- Left Sidebar -->
+    <aside class="lg:col-span-2 space-y-8 lg:sticky lg:top-24 h-fit text-left">
         <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
                 <span class="material-symbols-outlined text-sm">search</span>
             </span>
-            <input type="text" placeholder="Search changelog..." class="w-full pl-9 pr-3 py-2.5 bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
+            <input type="text" placeholder="Search changelog..." class="w-full pl-9 pr-3 py-2.5 bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono shadow-inner" />
         </div>
 
         <nav class="space-y-6 text-xs font-mono">
@@ -328,13 +330,12 @@
                 <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Versioning</div>
                 <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
                     <a href="#overview" class="block py-1.5 px-2 rounded-lg text-sky-400 bg-sky-500/10 font-bold transition-colors">Overview</a>
+                    <a href="#v321" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.1 (Sep 2026)</a>
                     <a href="#v320" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.0 (Sep 2026)</a>
                     <a href="#v310" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.0 (Sep 2026)</a>
                     <a href="#v300" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.0.0 (Sep 2026)</a>
-                    <a href="#previous-versions" class="block py-1.5 px-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Previous versions</span>
-                        <span class="material-symbols-outlined text-sm">chevron_right</span>
-                    </a>
+                    <a href="#v220" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.2.0 (Aug 2026)</a>
+                    <a href="#v210" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.1.0 (Aug 2026)</a>
                 </div>
             </div>
 
@@ -366,7 +367,8 @@
         </nav>
     </aside>
 
-    <main class="lg:col-span-6 space-y-12 w-full text-left" id="overview">
+    <!-- Center Main Content (Expanded to col-span-7) -->
+    <main class="lg:col-span-7 space-y-12 w-full text-left" id="overview">
 
         <div class="space-y-3 border-b border-white/10 pb-6 animate-fade-in-up pt-2">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
@@ -448,6 +450,24 @@
 
         <div class="timeline-container space-y-12 pl-0 md:pl-8" id="releases-container">
 
+            <!-- v3.2.1 Entry -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v321" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    6 September
+                </div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-sky-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.1 • Major Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Interactive Certifications & Confetti Triggers</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">UX Polish</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Integrated animated certification badges with localized confetti triggers on successful credential verification. Separated Skills and Courses into dedicated modular sub-pages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.2.0 Entry -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v320" data-year="2026" data-month="september" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     4 September
@@ -491,6 +511,7 @@
                 </div>
             </div>
 
+            <!-- v3.1.0 Entry -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v310" data-year="2026" data-month="september" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     3 September
@@ -507,6 +528,7 @@
                 </div>
             </div>
 
+            <!-- v3.0.0 Entry -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v300" data-year="2026" data-month="september" data-type="major">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
                     1 September
@@ -523,18 +545,36 @@
                 </div>
             </div>
 
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
+            <!-- v2.2.0 Entry -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v220" data-year="2026" data-month="august" data-type="minor">
                 <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    15 August
+                    22 August
                 </div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.0.0 • Major Release</div>
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.2.0 • Minor Release</div>
                         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                            <h2 class="text-white font-headline-md text-xl font-bold">Custom Domain Integration</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">DNS Routing</span>
+                            <h2 class="text-white font-headline-md text-xl font-bold">Subdomain Expansion & Navigation Sync</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Routing Update</span>
                         </div>
-                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Successfully configured DNS records and primary domain routing for `akashnagapure.in` on Vercel with full SSL certificate provisioning.</p>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Expanded dedicated subdomains for homelab, gaming, reading, and numismatics vaults with unified cross-site navigation links.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v2.1.0 Entry -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v210" data-year="2026" data-month="august" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
+                    19 August
+                </div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.1.0 • Minor Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Crawler & SEO Optimization Suite</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">SEO Enhancement</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Refined metadata tags, Open Graph card definitions, and XML sitemaps for improved search engine crawler visibility and indexing across search endpoints.</p>
                     </div>
                 </div>
             </div>
@@ -542,8 +582,9 @@
         </div>
     </main>
 
+    <!-- Right Sidebar -->
     <aside class="lg:col-span-3 space-y-6 lg:sticky lg:top-24 h-fit text-left">
-        <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-sky-400">
+        <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-sky-400 shadow-lg">
             <div class="flex items-center gap-1.5 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
                 <span class="material-symbols-outlined text-sm">campaign</span> Featured Insights
             </div>
@@ -554,7 +595,7 @@
             </a>
         </div>
 
-        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl relative overflow-hidden group">
+        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl relative overflow-hidden group shadow-lg">
             <div class="absolute -right-20 -top-20 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all pointer-events-none"></div>
 
             <div class="flex flex-col gap-3 relative z-10">
@@ -616,7 +657,7 @@
 </script>
 
 <footer class="w-full py-6 sm:py-8 bg-surface-dim border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
-    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-[1500px] mx-auto">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-[1700px] mx-auto">
         <div class="flex items-center gap-2.5">
             <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
