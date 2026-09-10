@@ -602,15 +602,15 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
-          <!-- Interactive Light Switch Component -->
+          <!-- Interactive Light Switch Component using public avif asset paths -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
                   <div id="about-me-image" class="interactive-image">
                       <div class="glow-light"><span></span></div>
                       
-                      <!-- Main Image: Light Off / Light On toggle -->
-                      <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="C:\Users\akash\OneDrive\Desktop\MAgic\light_off.jpg" alt="A dark desk workspace. Switch on the lamp!" />
+                      <!-- Main Image: Light Off / Light On toggle using updated avif paths -->
+                      <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="/public/Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
                       <button class="light-switch" title="Turn on the lamp"></button>
                       <img class="click-me-twinkle" src="https://elliottprogrammer.com/images/star-1.svg" />
@@ -2056,7 +2056,7 @@
       }
     }, 500);
 
-    // Interactive Light Switch Component with clean boolean toggle and soft glow
+    // Interactive Light Switch Component using public avif asset paths
     const clickMeTwinkle = document.querySelector("img.click-me-twinkle");
     const lightSwitchTwinkler = new Twinkler(clickMeTwinkle, [1000, 4000]);
     lightSwitchTwinkler.start();
@@ -2097,11 +2097,11 @@
             isLightOn = !isLightOn;
 
             if (isLightOn) {
-                deskImg.src = "C:\\Users\\akash\\OneDrive\\Desktop\\MAgic\\Light_on.jpg";
+                deskImg.src = "/public/Main_page_data/Light_on.avif";
                 aboutMeImageContainer.classList.add("light-active");
                 if (captionLabel) captionLabel.innerHTML = `Great! The room is illuminated. 💡`;
             } else {
-                deskImg.src = "C:\\Users\\akash\\OneDrive\\Desktop\\MAgic\\light_off.jpg";
+                deskImg.src = "/public/Main_page_data/light_off.avif";
                 aboutMeImageContainer.classList.remove("light-active");
                 if (captionLabel) captionLabel.innerHTML = `Hey! Switch on the light!<br/>It's dark in here!💡`;
             }
