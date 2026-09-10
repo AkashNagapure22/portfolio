@@ -610,7 +610,7 @@
                       <div class="glow-light"><span></span></div>
                       
                       <!-- Main Image: Light Off / Light On toggle using public avif paths -->
-                      <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="/public/Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
+                      <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src=../Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
                       <button class="light-switch" title="Turn on the lamp"></button>
                       <img class="click-me-twinkle" src="https://elliottprogrammer.com/images/star-1.svg" />
@@ -2097,11 +2097,11 @@
             isLightOn = !isLightOn;
 
             if (isLightOn) {
-                deskImg.src = "/public/Main_page_data/Light_on.avif";
+                deskImg.src = "../Main_page_data/Light_on.avif";
                 aboutMeImageContainer.classList.add("light-active");
                 if (captionLabel) captionLabel.innerHTML = `Great! The room is illuminated. 💡`;
             } else {
-                deskImg.src = "/public/Main_page_data/light_off.avif";
+                deskImg.src = "../Main_page_data/light_off.avif";
                 aboutMeImageContainer.classList.remove("light-active");
                 if (captionLabel) captionLabel.innerHTML = `Hey! Switch on the light!<br/>It's dark in here!💡`;
             }
