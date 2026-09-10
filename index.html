@@ -287,7 +287,7 @@
       transform: translateY(-100%);
     }
 
-    /* Interactive Light Switch Game Styles */
+    /* Interactive Light Switch Game Styles with Red Indicator Dot */
     #about-me {
         margin: 0 auto;
         max-width: 500px;
@@ -348,19 +348,25 @@
         left: -30%;
     }
 
+    /* Styled Visible Red Button / Dot over the lamp switch */
     button.light-switch {
         display: block;
         position: absolute;
         cursor: pointer;
         z-index: 10;
-        background: none;
-        border: none;
-        padding: 0;
-        width: 8%;
-        height: 8%;
-        top: 25.5%;
-        left: 81%;
-        transform: rotateZ(-65deg);  
+        background: #ef4444;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.8), 0 0 5px rgba(255, 255, 255, 0.9);
+        width: 24px;
+        height: 24px;
+        top: 26.5%;
+        left: 82.5%;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    button.light-switch:hover {
+        transform: scale(1.2);
+        background-color: #dc2626;
     }
 
     .interactive-image-wrapper {
@@ -602,16 +608,17 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
-          <!-- Interactive Light Switch Component using correct relative public asset paths -->
+          <!-- Interactive Light Switch Component with visible red switch button -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
                   <div id="about-me-image" class="interactive-image">
                       <div class="glow-light"><span></span></div>
                       
-                      <!-- Main Image: Light Off / Light On toggle with valid relative paths -->
+                      <!-- Main Image: Light Off / Light On toggle using relative avif asset paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="./Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
+                      <!-- Visible Red Button on Lamp -->
                       <button class="light-switch" title="Turn on the lamp"></button>
                       <img class="click-me-twinkle" src="https://elliottprogrammer.com/images/star-1.svg" />
                       
@@ -2056,7 +2063,7 @@
       }
     }, 500);
 
-    // Interactive Light Switch Component with persistent multi-toggle support
+    // Interactive Light Switch Component using relative avif paths with proper multiple toggling
     const clickMeTwinkle = document.querySelector("img.click-me-twinkle");
     const lightSwitchTwinkler = new Twinkler(clickMeTwinkle, [1000, 4000]);
     lightSwitchTwinkler.start();
