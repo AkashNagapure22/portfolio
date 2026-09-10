@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   
-  <title>Windows Autopatch & Hotpatch Guide | Akash Nagapure</title>
-  <meta name="description" content="Step-by-step enterprise deployment guide for Windows Autopatch and rebootless Hotpatching across Microsoft Intune environments." />
+  <title>Windows Autopatch & Hotpatch Enterprise Guide | Akash Nagapure</title>
+  <meta name="description" content="Comprehensive step-by-step enterprise deployment guide for Windows Autopatch, modern ring management, and rebootless Hotpatching across Microsoft Intune." />
   <link rel="canonical" href="https://blogs.akashnagapure.in/Blogs/Autopatchblog.html" />
   <link rel="icon" href="https://www.akashnagapure.in/Main_page_data/Logo.avif" type="image/avif" />
 
@@ -95,12 +95,6 @@
       border-color: rgba(56, 189, 248, 0.4);
       transform: translateY(-2px);
     }
-    .blog-card:hover h4 {
-      text-decoration: underline;
-    }
-    .blog-card:hover p {
-      text-decoration: underline;
-    }
     .nav-link.active-link {
       color: #38bdf8 !important;
       border-bottom: 2px solid #38bdf8;
@@ -158,54 +152,58 @@
           <span class="px-3.5 py-1.5 bg-indigo-950/85 border border-indigo-500/30 rounded-full font-mono text-[10px] text-indigo-400 uppercase tracking-wider">Autopatch</span>
           <span class="px-3.5 py-1.5 bg-teal-950/85 border border-teal-500/30 rounded-full font-mono text-[10px] text-teal-400 uppercase tracking-wider">12 min read</span>
         </div>
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Windows <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">Autopatch & Rebootless Hotpatch</span> Deployment</h1>
-        <p class="text-slate-400 text-sm sm:text-base font-light">Step-by-step enterprise deployment guide for Windows Autopatch and rebootless Hotpatching across Microsoft Intune environments.</p>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Windows <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400">Autopatch & Rebootless Hotpatch</span> Enterprise Deployment</h1>
+        <p class="text-slate-400 text-sm sm:text-base font-light">Complete step-by-step enterprise deployment guide for Windows Autopatch, modern ring provisioning, prerequisite remediation, and zero-reboot hotpatch management across Microsoft Intune.</p>
       </header>
 
       <article class="space-y-12 text-slate-300 leading-relaxed">
         
         <section id="section-1" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
-          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">1. Prerequisites, Licensing & RBAC</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Before beginning an enterprise Autopatch deployment, verify that your tenant meets core subscription and infrastructure requirements:</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">1. Licensing, Prerequisites & RBAC</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">With recent updates, Windows Autopatch features have expanded eligibility. Verify tenant readiness against the following parameters:</p>
           <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 font-mono">
-            <li><strong class="text-sky-400">Licensing:</strong> Microsoft 365 Business Premium, Windows 10/11 Enterprise E3/E5, or Windows 365 Enterprise.</li>
-            <li><strong class="text-indigo-400">Roles & Permissions:</strong> Requires Global Administrator access for initial tenant consent and Intune Administrator / Policy and Profile Manager roles for ongoing policy assignment.</li>
-            <li><strong class="text-teal-400">Operating System:</strong> Target devices must run Windows 11 Enterprise (version 24H2 or later).</li>
-            <li><strong class="text-amber-400">Virtualization-Based Security (VBS):</strong> VBS must be provisioned and running to secure in-memory code patches.</li>
+            <li><strong class="text-sky-400">Licensing Entitlements:</strong> Available via Microsoft 365 Business Premium, A3+, E3+, and F3 licenses.</li>
+            <li><strong class="text-indigo-400">Endpoint Requirements:</strong> Windows 10/11 Pro, Enterprise, or Education managed via Microsoft Intune or Co-management (SCCM).</li>
+            <li><strong class="text-teal-400">Permissions:</strong> Global Administrator for initial tenant consent; Intune Administrator or Policy and Profile Manager for operational scoping.</li>
+            <li><strong class="text-amber-400">Security Prerequisites:</strong> Virtualization-Based Security (VBS) enabled for advanced in-memory hotpatching capabilities.</li>
           </ul>
         </section>
 
         <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
-          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">2. Understanding Hotpatch & Baseline Cycles</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Hotpatching allows monthly security updates to be applied to running processes in-memory without forcing device reboots. This drastically minimizes downtime for critical frontline or mission-critical endpoints.</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">2. Hotpatch Architecture & Baseline Cycles</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Hotpatching allows monthly security updates to install directly into process memory without requiring system restarts, significantly increasing productivity for enterprise fleets.</p>
           <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl space-y-2 shadow-inner">
-            <h3 class="font-mono text-xs sm:text-sm font-bold text-sky-400">Quarterly Baseline vs. Hotpatch Months</h3>
+            <h3 class="font-mono text-xs sm:text-sm font-bold text-sky-400">Quarterly Baselines vs. Hotpatch Months</h3>
             <p class="text-xs text-slate-300 leading-relaxed font-light">
-              Devices receive standard cumulative updates (requiring a restart) during quarterly baseline months (<strong class="text-sky-400">January, April, July, October</strong>). During the remaining 8 months of the year, security patches are delivered entirely as <span class="text-teal-400 font-semibold">rebootless hotpatches</span>, cutting standard annual reboots down from 12 to 4.
+              Endpoints receive standard cumulative updates during scheduled quarterly baseline months (<strong class="text-sky-400">January, April, July, October</strong>). In the intervening 8 months, updates are applied via <span class="text-teal-400 font-semibold">rebootless hotpatches</span>, reducing annual reboots from 12 down to 4.
             </p>
           </div>
         </section>
 
         <section id="section-3" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
-          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">3. Configuring Deployment Rings & Policies</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Planning your deployment rings is essential. While default Autopatch groups exist, custom targeting groups can be synchronized with SCCM device collections or managed directly via Microsoft Intune.</p>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Configure the <strong class="text-indigo-400">Windows Quality Update Policy</strong> in the Intune Admin Center by navigating to <em class="text-sky-300">Devices → Windows updates → Quality updates</em>, enabling security updates, and toggling the hotpatch parameter to apply updates without restarting when available.</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">3. Resolving Conflicting Registry Configurations</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">During readiness checks, devices with legacy Group Policies or SCCM client settings targeting Windows Update will trigger conflict alerts. Remove conflicting keys using Intune Remediations:</p>
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-sky-300 space-y-1">
+            <p class="text-slate-500"># PowerShell Remediation Snippet</p>
+            <p>Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "DoNotConnectToWindowsUpdateInternetLocations" -ErrorAction SilentlyContinue</p>
+            <p>Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "DisableWindowsUpdateAccess" -ErrorAction SilentlyContinue</p>
+          </div>
         </section>
 
         <section id="section-4" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
-          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">4. Release Schedules & Deferrals</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Define update behavior by establishing <span class="text-sky-400 font-medium">deferral days</span>, <span class="text-indigo-400 font-medium">deadline windows</span>, and <span class="text-teal-400 font-medium">grace periods</span>. Test rings should use 0 deferral days for immediate validation, whereas production rings require broader rollout windows to monitor stability.</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">4. Configuring Autopatch Groups & Update Rings</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Navigate to the <em class="text-sky-300">Microsoft Intune admin center → Devices → Windows update → Autopatch groups</em>. Create logical units linking Microsoft Entra security groups to deployment rings with automated halt, rollback, and selectivity thresholds.</p>
         </section>
 
         <section id="section-5" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
-          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">5. Verification & Troubleshooting</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">On target devices, verify VBS status via <em class="text-sky-300">System Information</em> (ensuring it shows as Running and Enabled) and check registry paths under <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Update</code> for <code class="text-teal-300 bg-slate-900 px-2 py-0.5 rounded font-mono text-xs">AllowRebootlessUpdates = 1</code>.</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-sky-400 pl-4">5. Verification, Reporting & Health Monitoring</h2>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Leverage <strong class="text-sky-400">Intune Update Reports</strong> and <strong class="text-indigo-400">Update Compliance</strong> to track real-time patch status, device readiness, and compliance percentages across your tenant.</p>
         </section>
 
         <div id="search-empty-state" class="hidden text-center py-12 glass-card-3d rounded-2xl">
           <i data-lucide="search-x" class="w-10 h-10 text-sky-400 mx-auto mb-2"></i>
           <h3 class="text-white font-bold text-lg">No matching guide content found</h3>
-          <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Licensing", "Hotpatch", "Rings", or "VBS".</p>
+          <p class="text-slate-400 text-xs font-mono mt-1">Try searching for keywords like "Licensing", "Hotpatch", "Rings", or "Conflicts".</p>
         </div>
 
         <section class="glass-card-3d p-6 rounded-2xl space-y-3">
@@ -360,11 +358,11 @@
       <div class="glass-card-3d p-6 rounded-2xl space-y-4">
         <h3 class="font-sans font-bold text-white text-sm uppercase tracking-wider font-mono border-b border-white/10 pb-2">On this page</h3>
         <nav class="space-y-2 font-mono text-xs" id="nav-menu">
-          <a href="#section-1" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">1. Prerequisites & Licensing</a>
-          <a href="#section-2" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">2. Hotpatch & Baseline Cycles</a>
-          <a href="#section-3" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">3. Deployment Rings & Policies</a>
-          <a href="#section-4" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">4. Release Schedules</a>
-          <a href="#section-5" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">5. Verification & Testing</a>
+          <a href="#section-1" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">1. Licensing & Prerequisites</a>
+          <a href="#section-2" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">2. Hotpatch & Baselines</a>
+          <a href="#section-3" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">3. Registry Conflicts</a>
+          <a href="#section-4" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">4. Autopatch Groups</a>
+          <a href="#section-5" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">5. Verification & Health</a>
           <a href="#discussion" class="block text-slate-400 hover:text-sky-400 transition-colors nav-link py-1">6. Discussion & Q&A</a>
         </nav>
       </div>
@@ -425,7 +423,6 @@
 </button>
 
 <script>
-  // 1. THREE.JS 3D BACKGROUND ENGINE
   let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
@@ -521,7 +518,6 @@
     }
   }
 
-  /* Sleek Line Cursor Trail Logic */
   class Point {
     constructor(x, y) {
       this.x = x;
@@ -557,12 +553,6 @@
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     });
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-      }
-    }, { passive: true });
 
     const trailsCount = 20;
     const points = [];
@@ -593,7 +583,6 @@
     renderTrail();
   }
 
-  // 2. SCROLL & UI HELPERS
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -608,7 +597,6 @@
     }
   }, { passive: true });
 
-  // 3. ARTICLE CONTENT SEARCH FILTER
   window.filterArticleContent = function(query) {
     const filter = query.toLowerCase().trim();
     const blocks = document.querySelectorAll('.searchable-block');
@@ -634,16 +622,10 @@
     }
   };
 
-  // 4. SCROLL SPY
   const navLinks = document.querySelectorAll('#nav-menu a[href^="#"]');
   const sections = document.querySelectorAll('section.searchable-block[id], div#discussion');
 
-  const navObserverOptions = {
-    root: null,
-    rootMargin: '-20% 0px -60% 0px',
-    threshold: 0
-  };
-
+  const navObserverOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 };
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -660,7 +642,6 @@
 
   sections.forEach(section => navObserver.observe(section));
 
-  // 5. COMMENTS & VOTE SYSTEM
   const ARTICLE_ID = 'autopatchblog';
   const API_URL = '/api/comments';
   const VOTES_API_URL = '/api/votes';
@@ -702,7 +683,6 @@
         } else {
           statsDisplay.innerText = 'Be the first to rate this guide helpful!';
         }
-
         if (VOTE_MANAGER.hasVoted(ARTICLE_ID, 'up') && helpfulBtn) {
           helpfulBtn.style.opacity = '0.5';
           helpfulBtn.style.pointerEvents = 'none';
@@ -763,15 +743,9 @@
 
     const repliesHTML = comment.replies && comment.replies.length > 0 
       ? `<div class="mt-4 pl-4 sm:pl-6 border-l-2 border-sky-500/20 space-y-4">
-          ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
+         ${comment.replies.map(reply => renderCommentNode(reply)).join('')}
          </div>`
       : '';
-
-    const likedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID + '_comment_' + comment.id, 'like');
-    const dislikedAlready = VOTE_MANAGER.hasVoted(ARTICLE_ID + '_comment_' + comment.id, 'dislike');
-
-    const likeClass = likedAlready ? 'opacity-50 pointer-events-none text-sky-400' : 'text-slate-400 hover:text-sky-400';
-    const dislikeClass = dislikedAlready ? 'opacity-50 pointer-events-none text-rose-400' : 'text-slate-400 hover:text-rose-400';
 
     return `
       <div class="glass-card-3d p-5 rounded-2xl border border-slate-800 space-y-3" id="comment-${comment.id}">
@@ -780,77 +754,8 @@
           <span class="text-slate-500 font-mono text-[10px]">${dateStr}</span>
         </div>
         <p class="text-slate-300 text-xs sm:text-sm whitespace-pre-line leading-relaxed font-light">${escapeHTML(comment.content)}</p>
-        <div class="flex items-center space-x-3 text-xs pt-1 font-mono">
-          <button type="button" onclick="handleVote(event, ${comment.id}, 'like')" class="inline-flex items-center space-x-1.5 ${likeClass} transition-colors bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-800 cursor-pointer">
-            <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
-            <span>${comment.likes || 0}</span>
-          </button>
-          <button type="button" onclick="handleVote(event, ${comment.id}, 'dislike')" class="inline-flex items-center space-x-1.5 ${dislikeClass} transition-colors bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-800 cursor-pointer">
-            <i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i>
-            <span>${comment.dislikes || 0}</span>
-          </button>
-          <button type="button" onclick="toggleReplyForm(${comment.id})" class="inline-flex items-center space-x-1.5 text-sky-400 hover:text-sky-300 transition-colors bg-sky-950/40 px-3 py-1.5 rounded-xl border border-sky-500/20 cursor-pointer">
-            <i data-lucide="reply" class="w-3.5 h-3.5"></i>
-            <span>Reply</span>
-          </button>
-        </div>
-
-        <form id="reply-form-${comment.id}" class="hidden space-y-3 mt-4 pt-4 border-t border-slate-800 bg-slate-950/60 p-4 rounded-xl" onsubmit="event.preventDefault(); postReply(${comment.id});">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="reply-author-${comment.id}" placeholder="Your Name *" required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
-            <input type="email" id="reply-email-${comment.id}" placeholder="Your Email *" required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 font-mono" />
-          </div>
-          <textarea id="reply-content-${comment.id}" rows="2" placeholder="Write a reply..." required class="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 resize-none"></textarea>
-          <div class="flex space-x-2">
-            <button type="submit" class="px-4 py-1.5 bg-sky-400 hover:bg-sky-300 text-slate-950 text-xs font-bold rounded-xl font-mono cursor-pointer shadow-md">Submit Reply</button>
-            <button type="button" onclick="toggleReplyForm(${comment.id})" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-xl font-mono cursor-pointer">Cancel</button>
-          </div>
-        </form>
-        ${repliesHTML}
       </div>
     `;
-  }
-
-  function toggleReplyForm(commentId) {
-    document.getElementById(`reply-form-${commentId}`).classList.toggle('hidden');
-    if (window.lucide) lucide.createIcons();
-  }
-
-  async function handleVote(event, id, action) {
-    const trackingKey = ARTICLE_ID + '_comment_' + id;
-    if (VOTE_MANAGER.hasVoted(trackingKey, action)) return;
-    VOTE_MANAGER.recordVote(trackingKey, action);
-    const btn = event.currentTarget;
-    if (btn) btn.classList.add('opacity-50', 'pointer-events-none');
-
-    try {
-      const res = await fetch(API_URL, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, action })
-      });
-      if (res.ok) await loadComments();
-    } catch (err) {
-      console.error('Comment vote failed', err);
-    }
-  }
-
-  async function postReply(parentId) {
-    const author = document.getElementById(`reply-author-${parentId}`).value.trim();
-    const email = document.getElementById(`reply-email-${parentId}`).value.trim();
-    const content = document.getElementById(`reply-content-${parentId}`).value.trim();
-    if (!author || !email || !content) return;
-
-    try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ author, email, content, parent_id: parentId, article_id: ARTICLE_ID })
-      });
-      if (res.ok) await loadComments();
-    } catch (err) {
-      console.error('Failed to post reply', err);
-    }
   }
 
   window.handleCommentSubmit = async function(e) {
@@ -884,10 +789,9 @@
     }
   };
 
-  // Vote Button Handlers for Helpful Bar with Database Sync & Dynamic Counter
   document.querySelectorAll('.vote-button').forEach(button => {
     button.addEventListener('click', async (e) => {
-      const voteType = button.getAttribute('data-vote'); // 'up' or 'down'
+      const voteType = button.getAttribute('data-vote');
       if (VOTE_MANAGER.hasVoted(ARTICLE_ID, voteType)) return;
 
       VOTE_MANAGER.recordVote(ARTICLE_ID, voteType);
@@ -895,14 +799,12 @@
       button.style.pointerEvents = 'none';
 
       try {
-        const res = await fetch(VOTES_API_URL, {
+        await fetch(VOTES_API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ article_id: ARTICLE_ID, vote: voteType })
         });
-        if (res.ok) {
-          await loadVoteStats();
-        }
+        await loadVoteStats();
       } catch (err) {
         console.error('Vote submission failed', err);
       }
