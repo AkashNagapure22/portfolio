@@ -287,7 +287,7 @@
       transform: translateY(-100%);
     }
 
-    /* Interactive Light Switch Game Styles (Balanced softer brightness) */
+    /* Interactive Light Switch Game Styles */
     #about-me {
         margin: 0 auto;
         max-width: 500px;
@@ -602,14 +602,14 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
-          <!-- Interactive Light Switch Component using public avif asset paths -->
+          <!-- Interactive Light Switch Component using public avif paths -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
                   <div id="about-me-image" class="interactive-image">
                       <div class="glow-light"><span></span></div>
                       
-                      <!-- Main Image: Light Off / Light On toggle using updated avif paths -->
+                      <!-- Main Image: Light Off / Light On toggle using avif paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="/public/Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
                       <button class="light-switch" title="Turn on the lamp"></button>
@@ -2056,7 +2056,7 @@
       }
     }, 500);
 
-    // Interactive Light Switch Component using public avif asset paths
+    // Interactive Light Switch Component using public avif paths
     const clickMeTwinkle = document.querySelector("img.click-me-twinkle");
     const lightSwitchTwinkler = new Twinkler(clickMeTwinkle, [1000, 4000]);
     lightSwitchTwinkler.start();
