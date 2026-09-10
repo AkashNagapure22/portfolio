@@ -2097,11 +2097,11 @@
             isLightOn = !isLightOn;
 
             if (isLightOn) {
-                deskImg.src = "/public/Main_page_data/Light_on.avif";
+                deskImg.src = "../Main_page_data/Light_on.avif";
                 aboutMeImageContainer.classList.add("light-active");
                 if (captionLabel) captionLabel.innerHTML = `Great! The room is illuminated. 💡`;
             } else {
-                deskImg.src = "/public/Main_page_data/light_off.avif";
+                deskImg.src = "../Main_page_data/light_off.avif";
                 aboutMeImageContainer.classList.remove("light-active");
                 if (captionLabel) captionLabel.innerHTML = `Hey! Switch on the light!<br/>It's dark in here!💡`;
             }
