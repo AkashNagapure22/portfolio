@@ -1,4 +1,6 @@
-<!DOCTYPE html><html class="dark scroll-smooth" lang="en"><head>
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" name="viewport" />
   
@@ -324,29 +326,37 @@
         opacity: 1;
     }
 
-    img.click-me-twinkle, img.twinkle-shine {
+    /* Small Red Dot acting as the twinkle indicator replacing the star image */
+    .click-me-twinkle, img.twinkle-shine {
         display: block;
         position: absolute;
-        width: 20px !important;
-        height: 20px !important;
-        max-width: 20px !important;
-        max-height: 20px !important;
+        width: 10px !important;
+        height: 10px !important;
+        max-width: 10px !important;
+        max-height: 10px !important;
+        background: #ef4444;
+        border: 1.5px solid #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(239, 68, 68, 0.9), 0 0 3px rgba(255, 255, 255, 0.9);
         transform: scale(0, 0);
         transform-origin: center center;
         pointer-events: none;
     }
-    img.click-me-twinkle {
-        top: 28%;
-        left: 84%;
-        opacity: 0.7;
-        z-index: 10;
+    .click-me-twinkle {
+        top: 27.5%;
+        left: 59.8%;
+        opacity: 0.9;
+        z-index: 20;
     }
     img.twinkle-shine {
         top: -60%;
         left: -30%;
+        background: none;
+        border: none;
+        box-shadow: none;
     }
 
-    /* Small Red Dot precisely positioned at the top tip of the lamp shade */
+    /* Small Red Button on Lamp Tip */
     button.light-switch {
         display: block;
         position: absolute;
@@ -587,7 +597,7 @@
             Architect Behind The Screens
           </h3>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune</span> and <span class="text-purple-400 font-medium">VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
+            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune</span> and <span class="text-indigo-400 font-medium">VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
           </p>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
             When I am not scaling cloud infrastructure or fine-tuning <span class="text-purple-400 font-medium">PowerShell automation scripts</span>, my free time is dedicated to building and breaking configurations in my <span class="text-sky-300 font-medium">self-hosted homelab</span>, collecting rare and historical coins (<span class="text-amber-400 font-medium">numismatics</span>), diving into sci-fi and tech strategy literature, or sharpening tactical thinking through strategic gaming and speedcubing.
@@ -606,7 +616,7 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
-          <!-- Interactive Light Switch Component with small lamp-tip red dot -->
+          <!-- Interactive Light Switch Component with red dot replacing the star -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
@@ -616,9 +626,10 @@
                       <!-- Main Image: Light Off / Light On toggle using relative avif asset paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="./Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
-                 <!-- Small Red Dot at the exact top tip of the lamp -->
-<button class="light-switch" title="Turn on the lamp"></button>
-<div class="red-dot-twinkle" style="background-color: red; width: 10px; height: 10px; border-radius: 50%; position: absolute; top: [top position]; left: [left position]; z-index: 1;"></div>
+                      <!-- Small Red Button on Lamp Tip -->
+                      <button class="light-switch" title="Turn on the lamp"></button>
+                      <!-- Small Red Dot Twinkle Element replacing the external star SVG -->
+                      <div class="click-me-twinkle"></div>
                       
                       <div class="interactive-image-wrapper">
                           <div class="interactive-image-text">
@@ -2009,7 +2020,7 @@
           if (!this.twinkleElement) return;
           gsap.to(this.twinkleElement, {
               duration: 0.2,
-              scale: 1,
+              scale: 1.4,
               rotation: 180,
               ease: "none",
               repeat: 1,
@@ -2061,8 +2072,8 @@
       }
     }, 500);
 
-    // Interactive Light Switch Component with precision lamp-tip red button positioning
-    const clickMeTwinkle = document.querySelector("img.click-me-twinkle");
+    // Interactive Light Switch Component with exact lamp-tip red dot button & twinkling indicator
+    const clickMeTwinkle = document.querySelector(".click-me-twinkle");
     const lightSwitchTwinkler = new Twinkler(clickMeTwinkle, [1000, 4000]);
     lightSwitchTwinkler.start();
 
