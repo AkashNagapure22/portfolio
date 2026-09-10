@@ -285,7 +285,7 @@
       transform: translateY(-100%);
     }
 
-    /* Interactive Light Switch Game Styles with Small Refined Red Indicator Dot */
+    /* Interactive Light Switch Game Styles with Precise Lamp-Tip Red Dot */
     #about-me {
         margin: 0 auto;
         max-width: 500px;
@@ -346,20 +346,20 @@
         left: -30%;
     }
 
-    /* Small & Precise Red Switch Button on Lamp Base */
+    /* Small Red Dot precisely positioned at the top tip of the lamp shade */
     button.light-switch {
         display: block;
         position: absolute;
         cursor: pointer;
-        z-index: 10;
+        z-index: 20;
         background: #ef4444;
         border: 1.5px solid #ffffff;
         border-radius: 50%;
-        box-shadow: 0 0 6px rgba(239, 68, 68, 0.8), 0 0 3px rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 6px rgba(239, 68, 68, 0.9), 0 0 3px rgba(255, 255, 255, 0.9);
         width: 12px;
         height: 12px;
         top: 27.5%;
-        left: 82.2%;
+        left: 59.8%;
         transition: transform 0.2s ease, background-color 0.2s ease;
     }
     button.light-switch:hover {
@@ -587,7 +587,7 @@
             Architect Behind The Screens
           </h3>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune</span> and <span class="text-indigo-400 font-medium">VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
+            I design automated, secure, and bulletproof device environments. As a <span class="text-sky-400 font-medium">Microsoft Intune</span> and <span class="text-purple-400 font-medium">VMware Architect</span> managing over <span class="text-emerald-400 font-medium">35,000+ endpoints</span>, I approach enterprise infrastructure through an engineering lens—treating client fleet configuration as a craft and zero-trust security as a baseline.
           </p>
           <p class="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
             When I am not scaling cloud infrastructure or fine-tuning <span class="text-purple-400 font-medium">PowerShell automation scripts</span>, my free time is dedicated to building and breaking configurations in my <span class="text-sky-300 font-medium">self-hosted homelab</span>, collecting rare and historical coins (<span class="text-amber-400 font-medium">numismatics</span>), diving into sci-fi and tech strategy literature, or sharpening tactical thinking through strategic gaming and speedcubing.
@@ -606,14 +606,17 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
+          <!-- Interactive Light Switch Component with small lamp-tip red dot -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
                   <div id="about-me-image" class="interactive-image">
                       <div class="glow-light"><span></span></div>
                       
+                      <!-- Main Image: Light Off / Light On toggle using relative avif asset paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="./Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
+                      <!-- Small Red Dot at the exact top tip of the lamp -->
                       <button class="light-switch" title="Turn on the lamp"></button>
                       <img class="click-me-twinkle" src="https://elliottprogrammer.com/images/star-1.svg" />
                       
@@ -640,7 +643,8 @@
                   </figcaption>
               </figure>
           </div>
-          </div>
+          <!-- End Interactive Light Switch Component -->
+        </div>
       </div>
 
     </div>
@@ -1106,6 +1110,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
+        <!-- Project 1 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1149,6 +1154,7 @@
           </div>
         </div>
 
+        <!-- Project 2 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1192,6 +1198,7 @@
           </div>
         </div>
 
+        <!-- Project 3 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1235,6 +1242,7 @@
           </div>
         </div>
 
+        <!-- Project 4 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1278,6 +1286,7 @@
           </div>
         </div>
 
+        <!-- Project 5 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1321,6 +1330,7 @@
           </div>
         </div>
 
+        <!-- Project 6 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -2051,7 +2061,7 @@
       }
     }, 500);
 
-    // Interactive Light Switch Component with small refined red dot switch
+    // Interactive Light Switch Component with precision lamp-tip red button positioning
     const clickMeTwinkle = document.querySelector("img.click-me-twinkle");
     const lightSwitchTwinkler = new Twinkler(clickMeTwinkle, [1000, 4000]);
     lightSwitchTwinkler.start();
