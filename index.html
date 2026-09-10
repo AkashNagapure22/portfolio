@@ -287,7 +287,7 @@
       transform: translateY(-100%);
     }
 
-    /* Interactive Light Switch Game Styles with Precise Lamp-Tip Red Dot */
+    /* Interactive Light Switch Game Styles */
     #about-me {
         margin: 0 auto;
         max-width: 500px;
@@ -326,55 +326,41 @@
         opacity: 1;
     }
 
-    /* Small Red Dot acting as the twinkle indicator replacing the star image */
-    .click-me-twinkle, img.twinkle-shine {
+    img.click-me-twinkle, img.twinkle-shine {
         display: block;
         position: absolute;
-        width: 10px !important;
-        height: 10px !important;
-        max-width: 10px !important;
-        max-height: 10px !important;
-        background: #ef4444;
-        border: 1.5px solid #ffffff;
-        border-radius: 50%;
-        box-shadow: 0 0 6px rgba(239, 68, 68, 0.9), 0 0 3px rgba(255, 255, 255, 0.9);
+        width: 20px !important;
+        height: 20px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
         transform: scale(0, 0);
         transform-origin: center center;
         pointer-events: none;
     }
-    .click-me-twinkle {
-        top: 27.5%;
-        left: 59.8%;
-        opacity: 0.9;
-        z-index: 20;
+    img.click-me-twinkle {
+        top: 28%;
+        left: 84%;
+        opacity: 0.7;
+        z-index: 10;
     }
     img.twinkle-shine {
         top: -60%;
         left: -30%;
-        background: none;
-        border: none;
-        box-shadow: none;
     }
 
-    /* Small Red Button on Lamp Tip */
     button.light-switch {
         display: block;
         position: absolute;
         cursor: pointer;
-        z-index: 20;
-        background: #ef4444;
-        border: 1.5px solid #ffffff;
-        border-radius: 50%;
-        box-shadow: 0 0 6px rgba(239, 68, 68, 0.9), 0 0 3px rgba(255, 255, 255, 0.9);
-        width: 12px;
-        height: 12px;
-        top: 27.5%;
-        left: 59.8%;
-        transition: transform 0.2s ease, background-color 0.2s ease;
-    }
-    button.light-switch:hover {
-        transform: scale(1.3);
-        background-color: #dc2626;
+        z-index: 10;
+        background: none;
+        border: none;
+        padding: 0;
+        width: 8%;
+        height: 8%;
+        top: 25.5%;
+        left: 81%;
+        transform: rotateZ(-65deg);  
     }
 
     .interactive-image-wrapper {
@@ -616,20 +602,18 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
-          <!-- Interactive Light Switch Component with red dot replacing the star -->
+          <!-- Interactive Light Switch Component using correct relative public asset paths -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
                   <div id="about-me-image" class="interactive-image">
                       <div class="glow-light"><span></span></div>
                       
-                      <!-- Main Image: Light Off / Light On toggle using relative avif asset paths -->
+                      <!-- Main Image: Light Off / Light On toggle with valid relative paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="./Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
-                      <!-- Small Red Button on Lamp Tip -->
                       <button class="light-switch" title="Turn on the lamp"></button>
-                      <!-- Small Red Dot Twinkle Element replacing the external star SVG -->
-                      <div class="click-me-twinkle"></div>
+                      <img class="click-me-twinkle" src="https://elliottprogrammer.com/images/star-1.svg" />
                       
                       <div class="interactive-image-wrapper">
                           <div class="interactive-image-text">
@@ -2020,7 +2004,7 @@
           if (!this.twinkleElement) return;
           gsap.to(this.twinkleElement, {
               duration: 0.2,
-              scale: 1.4,
+              scale: 1,
               rotation: 180,
               ease: "none",
               repeat: 1,
@@ -2072,8 +2056,8 @@
       }
     }, 500);
 
-    // Interactive Light Switch Component with exact lamp-tip red dot button & twinkling indicator
-    const clickMeTwinkle = document.querySelector(".click-me-twinkle");
+    // Interactive Light Switch Component with persistent multi-toggle support
+    const clickMeTwinkle = document.querySelector("img.click-me-twinkle");
     const lightSwitchTwinkler = new Twinkler(clickMeTwinkle, [1000, 4000]);
     lightSwitchTwinkler.start();
 
