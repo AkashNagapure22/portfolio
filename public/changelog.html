@@ -263,7 +263,7 @@
 
 <header>
 <nav class="relative w-full z-50 transition-all duration-300 bg-slate-950/90 backdrop-blur-xl py-3 border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-12">
       <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group cursor-pointer">
         <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
@@ -313,141 +313,116 @@
     </button>
 </div>
 
-<div class="w-full px-4 sm:px-6 lg:px-12 py-10 flex flex-col lg:flex-row gap-10 flex-grow relative z-10">
+<!-- Optimized Asymmetric Grid Layout: Left Nav (col-span-2), Center Content (col-span-7), Right Ads (col-span-3) -->
+<div class="w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-10 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow relative z-10">
 
-    <aside class="w-full lg:w-72 shrink-0 space-y-8 lg:sticky lg:top-24 h-fit text-left">
-        
-        <div class="relative">
+    <!-- Left Sidebar with Expandable/Collapsible Versioning List -->
+    <aside class="lg:col-span-2 space-y-6 lg:sticky lg:top-24 h-fit text-left flex flex-col">
+        <div class="relative shrink-0">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
                 <span class="material-symbols-outlined text-sm">search</span>
             </span>
-            <input type="text" placeholder="Search changelog..." class="w-full pl-9 pr-3 py-2 bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono" />
+            <input type="text" placeholder="Search changelog..." class="w-full pl-9 pr-3 py-2 bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 focus:border-sky-400 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-all font-mono shadow-inner" />
         </div>
 
-        <nav class="space-y-6 text-xs font-mono">
+        <nav class="space-y-4 text-xs font-mono">
             <div class="space-y-2">
-                <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Versioning</div>
-                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
-                    <a href="#overview" class="block py-1.5 px-2 rounded-lg text-sky-400 bg-sky-500/10 font-bold transition-colors">Overview</a>
-                    <a href="#v320" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.0 (Sep 2026)</a>
-                    <a href="#v310" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.0 (Sep 2026)</a>
-                    <a href="#v300" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.0.0 (Sep 2026)</a>
-                    <a href="#previous-versions" class="block py-1.5 px-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Previous versions</span>
-                        <span class="material-symbols-outlined text-sm">chevron_right</span>
-                    </a>
+                <div class="flex items-center justify-between font-bold uppercase tracking-wider text-slate-400 px-2 cursor-pointer hover:text-white transition-colors" onclick="toggleVersionList()">
+                    <span>Versioning</span>
+                    <span id="version-toggle-icon" class="material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
+                </div>
+                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2 max-h-48 overflow-y-auto transition-all duration-300 pr-1" id="version-sidebar-links">
+                    <a href="#overview" class="block py-1 px-2 rounded-lg text-sky-400 bg-sky-500/10 font-bold transition-colors">Overview</a>
+                    <a href="#v350" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.5.0 (Sep 2026)</a>
+                    <a href="#v341" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.4.1 (Sep 2026)</a>
+                    <a href="#v340" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.4.0 (Sep 2026)</a>
+                    <a href="#v335" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.5 (Sep 2026)</a>
+                    <a href="#v334" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.4 (Sep 2026)</a>
+                    <a href="#v332" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.2 (Sep 2026)</a>
+                    <a href="#v331" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.1 (Sep 2026)</a>
+                    <a href="#v330" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.3.0 (Sep 2026)</a>
+                    <a href="#v325" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.5 (Sep 2026)</a>
+                    <a href="#v321" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.1 (Sep 2026)</a>
+                    <a href="#v320" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.2.0 (Sep 2026)</a>
+                    <a href="#v311" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.1 (Sep 2026)</a>
+                    <a href="#v310" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.1.0 (Sep 2026)</a>
+                    <a href="#v300" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v3.0.0 (Sep 2026)</a>
+                    <a href="#v221" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.2.1 (Aug 2026)</a>
+                    <a href="#v220" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.2.0 (Aug 2026)</a>
+                    <a href="#v211" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.1.1 (Aug 2026)</a>
+                    <a href="#v210" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">v2.1.0 (Aug 2026)</a>
                 </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 pt-2 border-t border-slate-800">
                 <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Essentials</div>
                 <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
-                    <a href="#roadmap" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Upcoming Roadmap</span>
+                    <a href="#roadmap" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Roadmap</span>
                         <span class="material-symbols-outlined text-sm">chevron_right</span>
                     </a>
-                    <a href="https://blogs.akashnagapure.in" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Technical Blogs Hub</span>
+                    <a href="https://blogs.akashnagapure.in" class="block py-1 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
+                        <span>Blogs Hub</span>
                         <span class="material-symbols-outlined text-sm">open_in_new</span>
                     </a>
-                    <a href="https://www.akashnagapure.in" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors flex items-center justify-between">
-                        <span>Main Portfolio</span>
-                        <span class="material-symbols-outlined text-sm">open_in_new</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <div class="font-bold uppercase tracking-wider text-slate-400 px-2">Tools & Vaults</div>
-                <div class="space-y-1 pl-2 border-l border-slate-800 ml-2">
-                    <a href="#discussion" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">Engineering Q&A</a>
-                    <a href="https://www.linkedin.com/in/anagapure" target="_blank" class="block py-1.5 px-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition-colors">LinkedIn Network</a>
                 </div>
             </div>
         </nav>
     </aside>
 
-    <main class="content flex-grow space-y-12 w-full" id="overview">
+    <!-- Center Main Content -->
+    <main class="lg:col-span-7 space-y-12 w-full text-left" id="overview">
 
-        <div class="space-y-3 border-b border-white/10 pb-6 animate-fade-in-up text-left pt-2">
+        <div class="space-y-3 border-b border-white/10 pb-6 animate-fade-in-up pt-2">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 font-mono text-xs font-semibold">
                 <span class="material-symbols-outlined text-sm">history</span> System Release Pipeline
             </div>
-            <h1 class="font-headline-md text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Changelog & Version Control</h1>
-            <p class="text-slate-300 text-base leading-relaxed font-light max-w-2xl">Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.</p>
+            <h1 class="font-headline-md text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Changelog & Version Control</h1>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.</p>
         </div>
 
-        <section id="roadmap" class="space-y-6 animate-fade-in-up text-left">
+        <section id="roadmap" class="space-y-6 animate-fade-in-up">
             <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
                 <div class="flex items-center gap-2.5">
                     <span class="material-symbols-outlined text-indigo-400">upcoming</span>
-                    <h2 class="font-headline-md text-2xl font-bold text-white">Upcoming Releases & Roadmap</h2>
+                    <h2 class="font-headline-md text-xl sm:text-2xl font-bold text-white">Upcoming Releases & Roadmap</h2>
                 </div>
                 <span class="px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold">In Development</span>
             </div>
 
-            <div class="flex justify-start gap-6 overflow-x-auto pb-4 pt-2 snap-x scrollbar-thin">
-                
-                <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-indigo-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between text-left">
-                    <div class="space-y-3">
-                        <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-full border border-indigo-500/30">Target: Q4 2026</div>
-                        <div class="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold">
-                            <span class="material-symbols-outlined text-sm">schedule</span> v3.3.0 Pipeline
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-indigo-400 relative overflow-hidden animate-float flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-[10px] font-mono font-bold text-indigo-400">
+                            <span>v4.1.0</span><span>Q4 2026</span>
                         </div>
-                        <h3 class="text-white text-lg font-bold">Interactive Homelab Topology Viewer</h3>
-                        <p class="text-xs text-slate-300 font-mono leading-relaxed">Developing an interactive 3D/2D node map showcasing self-hosted virtualization clusters, storage arrays, and network firewalls.</p>
-                        <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-indigo-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span> Status: Architecture Planning
-                        </div>
+                        <h3 class="text-white text-sm font-bold">Homelab Topology Viewer</h3>
+                        <p class="text-[11px] text-slate-300 font-mono leading-relaxed">3D node map showcasing virtualization clusters & storage arrays[cite: 10].</p>
                     </div>
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-                        <span class="text-[11px] font-mono text-slate-400">Milestone: Alpha Build</span>
-                        <button onclick="alert('Viewing details for v3.3.0: Interactive Homelab Topology Viewer')" class="text-xs font-mono font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition-colors cursor-pointer">
-                            View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        </button>
-                    </div>
+                    <button onclick="alert('Viewing v4.1.0 details')" class="text-[11px] font-mono font-bold text-indigo-400 hover:text-indigo-300 pt-2 flex items-center gap-1">Details →</button>
                 </div>
 
-                <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-purple-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float-delayed flex flex-col justify-between text-left">
-                    <div class="space-y-3">
-                        <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-full border border-purple-500/30">Target: Q4 2026</div>
-                        <div class="flex items-center gap-2 text-purple-300 font-mono text-xs font-bold">
-                            <span class="material-symbols-outlined text-sm">schedule</span> v3.4.0 Pipeline
+                <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-purple-400 relative overflow-hidden animate-float-delayed flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-[10px] font-mono font-bold text-purple-400">
+                            <span>v4.2.0</span><span>Q4 2026</span>
                         </div>
-                        <h3 class="text-white text-lg font-bold">Advanced Numismatics Vault Catalog</h3>
-                        <p class="text-xs text-slate-300 font-mono leading-relaxed">Expanding the coin collection archive with high-resolution image zoom inspectors, historical grading sheets, and rarity indexes.</p>
-                        <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-purple-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> Status: UI Mockups & Data Entry
-                        </div>
+                        <h3 class="text-white text-sm font-bold">Advanced Numismatics Vault</h3>
+                        <p class="text-[11px] text-slate-300 font-mono leading-relaxed">Coin collection archive with high-res zoom inspectors & ratings[cite: 6].</p>
                     </div>
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-                        <span class="text-[11px] font-mono text-slate-400">Milestone: Schema Design</span>
-                        <button onclick="alert('Viewing details for v3.4.0: Advanced Numismatics Vault Catalog')" class="text-xs font-mono font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1 transition-colors cursor-pointer">
-                            View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        </button>
-                    </div>
+                    <button onclick="alert('Viewing v4.2.0 details')" class="text-[11px] font-mono font-bold text-purple-400 hover:text-purple-300 pt-2 flex items-center gap-1">Details →</button>
                 </div>
 
-                <div class="glass-card-3d p-6 rounded-2xl space-y-4 border-t-2 border-t-teal-400 relative overflow-hidden shrink-0 w-[300px] sm:w-[350px] snap-start animate-float flex flex-col justify-between text-left">
-                    <div class="space-y-3">
-                        <div class="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-teal-400 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-500/30">Target: Q1 2027</div>
-                        <div class="flex items-center gap-2 text-teal-300 font-mono text-xs font-bold">
-                            <span class="material-symbols-outlined text-sm">schedule</span> v4.0.0 Pipeline
+                <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-teal-400 relative overflow-hidden animate-float flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-[10px] font-mono font-bold text-teal-400">
+                            <span>v5.0.0</span><span>Q1 2027</span>
                         </div>
-                        <h3 class="text-white text-lg font-bold">Automated Graph API Telemetry Engine</h3>
-                        <p class="text-xs text-slate-300 font-mono leading-relaxed">Proactive alerting framework leveraging Azure Functions and Teams webhooks to catch endpoint compliance regressions.</p>
-                        <div class="pt-1 flex items-center gap-2 text-[11px] font-mono text-teal-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping"></span> Status: Research & Scoping
-                        </div>
+                        <h3 class="text-white text-sm font-bold">Graph API Telemetry</h3>
+                        <p class="text-[11px] text-slate-300 font-mono leading-relaxed">Proactive alerting framework via Azure Functions & Teams webhooks.</p>
                     </div>
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-                        <span class="text-[11px] font-mono text-slate-400">Milestone: PoC Testing</span>
-                        <button onclick="alert('Viewing details for v4.0.0: Automated Graph API Telemetry Engine')" class="text-xs font-mono font-bold text-teal-400 hover:text-teal-300 flex items-center gap-1 transition-colors cursor-pointer">
-                            View more details <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        </button>
-                    </div>
+                    <button onclick="alert('Viewing v5.0.0 details')" class="text-[11px] font-mono font-bold text-teal-400 hover:text-teal-300 pt-2 flex items-center gap-1">Details →</button>
                 </div>
-
             </div>
         </section>
 
@@ -476,12 +451,161 @@
             </div>
         </div>
 
-        <div class="timeline-container space-y-12 pl-0 md:pl-8 text-left" id="releases-container">
+        <div class="timeline-container space-y-12 pl-0 md:pl-8" id="releases-container">
 
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v320" data-year="2026" data-month="september" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    4 September
+            <!-- v3.5.0 Entry (Major Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v350" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">9 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-sky-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.5.0 • Major Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Subpage Ecosystem Expansion (Coins, Reading, Homelab, Gaming, Food)</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-sky-500/30 text-sky-400 font-mono text-xs">Ecosystem Rollout</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Deployed fully functional standalone subpages across Coin Vault[cite: 6], Reading Library[cite: 3], Homelab Clusters[cite: 10], Gaming Rigs[cite: 9], and Culinary Journals[cite: 8] with high-res asset pipelines.</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- v3.4.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v341" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">7 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.4.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">High-Resolution Coin Image Asset Pipeline</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Numismatics Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Embedded high-resolution numismatic coin photography with interactive zoom inspectors, grading metadata, and historical mint marks onto the coin subpage[cite: 6].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.4.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v340" data-year="2026" data-month="september" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">7 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.4.0 • Minor Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Hobby Section & Modular Subpage Architecture</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Ecosystem Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Introduced the dedicated Hobby section linking out to specialized subpages for coin collections[cite: 6], technical reading logs[cite: 3], homelab builds[cite: 10], gaming setups[cite: 9], and food journals[cite: 8].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.5 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v335" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.5 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Created 404, Privacy, Terms, & Maintenance Pages</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Legal & Error Suites</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Deployed production-ready templates for custom 404 error states, legal privacy policies, terms of service agreements, and automated system maintenance screens.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.4 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v334" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.4 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Interactive Certifications & Confetti Triggers</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Edge Hotfix</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Integrated animated certification badges with localized confetti triggers on successful credential verification. Separated Skills and Courses into dedicated modular sub-pages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.2 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v332" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.2 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Homelab Node Status Polling Fix</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Homelab Patch</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Optimized WebSocket heartbeat polling interval for cluster telemetry in the homelab subpage[cite: 10].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v331" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Reading Library Progress Bar Sync</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Reading Patch</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Fixed localStorage state synchronization bugs on book completion checkboxes inside the reading list subpage[cite: 3].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.3.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v330" data-year="2026" data-month="september" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.3.0 • Minor Release</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Hobby Section & Modular Subpage Architecture</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Ecosystem Update</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Introduced the dedicated Hobby section linking out to specialized subpages for coin collections[cite: 6], technical reading logs[cite: 3], homelab builds[cite: 10], gaming setups[cite: 9], and food journals[cite: 8].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.2.5 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v325" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.5 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">404, Privacy, Terms, & Maintenance Pages</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Legal & Error Suites</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Deployed production-ready templates for custom 404 error states, legal privacy policies, terms of service agreements, and automated system maintenance screens.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.2.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v321" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">6 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Interactive Certifications & Confetti Triggers</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Edge Hotfix</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Integrated animated certification badges with localized confetti triggers on successful credential verification. Separated Skills and Courses into dedicated modular sub-pages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.2.0 Entry (Major Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v320" data-year="2026" data-month="september" data-type="major">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">4 September</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-sky-400">
                         <div class="absolute -top-3 left-6 px-3 py-0.5 bg-sky-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.2.0 • Major Release</div>
@@ -521,26 +645,39 @@
                 </div>
             </div>
 
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v310" data-year="2026" data-month="september" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    3 September
-                </div>
+            <!-- v3.1.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v311" data-year="2026" data-month="september" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">3 September</div>
                 <div class="flex-grow space-y-6 w-full">
-                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-indigo-400">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-indigo-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.1.0 • Major Release</div>
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.1.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Metadata Hotfix & OG Image Cache Clear</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Edge Patch</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Resolved cached Open Graph thumbnail inconsistencies across social channels and optimized font load priority for faster mobile First Contentful Paint (FCP).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v3.1.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v310" data-year="2026" data-month="september" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">3 September</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.1.0 • Minor Release</div>
                         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
                             <h2 class="text-white font-headline-md text-xl font-bold">Clean Blog URL Routing & Edge Optimization</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-indigo-500/30 text-indigo-300 font-mono text-xs">Vercel Deployment</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Vercel Deployment</span>
                         </div>
                         <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Configured Vercel rewrites and sitemap mappings to ensure clean subdomain structure for `blogs.akashnagapure.in` and optimized search crawler indexing.</p>
                     </div>
                 </div>
             </div>
 
+            <!-- v3.0.0 Entry (Major Release) -->
             <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v300" data-year="2026" data-month="september" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    1 September
-                </div>
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">1 September</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-purple-400">
                         <div class="absolute -top-3 left-6 px-3 py-0.5 bg-purple-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v3.0.0 • Major Release</div>
@@ -553,72 +690,109 @@
                 </div>
             </div>
 
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="august" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    15 August
+            <!-- v2.2.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v221" data-year="2026" data-month="august" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">25 August</div>
+                <div class="flex-grow space-y-6 w-full">
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.2.1 • Small Patch</div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
+                            <h2 class="text-white font-headline-md text-xl font-bold">Mobile Navigation Drawer Click Event Fix</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">Hotfix</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Patched event listener bugs on mobile viewport navigation drawers ensuring smooth toggle states and proper Z-index stacking contexts.</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- v2.2.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v220" data-year="2026" data-month="august" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">22 August</div>
                 <div class="flex-grow space-y-6 w-full">
                     <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.0.0 • Major Release</div>
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.2.0 • Minor Release</div>
                         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                            <h2 class="text-white font-headline-md text-xl font-bold">Custom Domain Integration</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">DNS Routing</span>
+                            <h2 class="text-white font-headline-md text-xl font-bold">Subdomain Expansion & Navigation Sync</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">Routing Update</span>
                         </div>
-                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Successfully configured DNS records and primary domain routing for `akashnagapure.in` on Vercel with full SSL certificate provisioning.</p>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Expanded dedicated subdomains for homelab, gaming, reading, and numismatics vaults with unified cross-site navigation links.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="july" data-type="minor">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    22 July
-                </div>
+            <!-- v2.1.1 Entry (Small Patch) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v211" data-year="2026" data-month="august" data-type="patch">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">20 August</div>
                 <div class="flex-grow space-y-6 w-full">
-                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-slate-400">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-700 text-slate-200 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v1.5.0 • Minor Release</div>
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-amber-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-amber-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.1.1 • Small Patch</div>
                         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                            <h2 class="text-white font-headline-md text-xl font-bold">Layout Refinement & Analytics</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 font-mono text-xs">UI Update</span>
+                            <h2 class="text-white font-headline-md text-xl font-bold">Robots.txt & Sitemap Schema Adjustment</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 font-mono text-xs">SEO Patch</span>
                         </div>
-                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Improved grid responsiveness, added reading metrics tracking, and integrated secure PostgreSQL comment boards across portfolio pages.</p>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Refined crawler directives inside robots.txt to prevent duplicate index matching on legacy parameters and confirmed XML sitemap hierarchy.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="patch">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    10 June
-                </div>
+            <!-- v2.1.0 Entry (Minor Release) -->
+            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" id="v210" data-year="2026" data-month="august" data-type="minor">
+                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">19 August</div>
                 <div class="flex-grow space-y-6 w-full">
-                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-slate-600">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-slate-800 text-slate-400 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v1.1.2 • Small Patch</div>
+                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-teal-400">
+                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-teal-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v2.1.0 • Minor Release</div>
                         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                            <h2 class="text-white font-headline-md text-xl font-bold">Endpoint Scripting Setup</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-mono text-xs">Script Automation</span>
+                            <h2 class="text-white font-headline-md text-xl font-bold">Crawler & SEO Optimization Suite</h2>
+                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-teal-500/30 text-teal-300 font-mono text-xs">SEO Enhancement</span>
                         </div>
-                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Released initial PowerShell deployment scripts for DesktopInfo telemetry across enterprise environments.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="release-card relative flex flex-col md:flex-row items-start gap-6 animate-fade-in-up" data-year="2026" data-month="june" data-type="major">
-                <div class="md:w-28 shrink-0 pt-2 font-mono text-xs font-bold text-sky-400">
-                    1 June
-                </div>
-                <div class="flex-grow space-y-6 w-full">
-                    <div class="glass-card-3d p-6 sm:p-8 rounded-2xl space-y-4 relative border-l-4 border-l-emerald-400">
-                        <div class="absolute -top-3 left-6 px-3 py-0.5 bg-emerald-500 text-slate-950 font-mono text-[10px] font-extrabold uppercase rounded tracking-wider shadow-lg">v1.0.0 • Inception Release</div>
-                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4 pt-1">
-                            <h2 class="text-white font-headline-md text-xl font-bold">Initial Website Creation</h2>
-                            <span class="px-3 py-1 rounded-full bg-slate-900 border border-emerald-500/30 text-emerald-400 font-mono text-xs">Genesis</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Foundation of the portfolio website, establishing core personal branding, professional experience highlights, and initial project showcases.</p>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">Refined metadata tags, Open Graph card definitions, and XML sitemaps for improved search engine crawler visibility and indexing across search endpoints.</p>
                     </div>
                 </div>
             </div>
 
         </div>
     </main>
+
+    <!-- Right Sidebar -->
+    <aside class="lg:col-span-3 space-y-6 lg:sticky lg:top-24 h-fit text-left">
+        <div class="glass-card-3d p-5 rounded-2xl space-y-3 border-t-2 border-t-sky-400 shadow-lg">
+            <div class="flex items-center gap-1.5 text-sky-400 font-mono text-xs font-bold uppercase tracking-wider">
+                <span class="material-symbols-outlined text-sm">campaign</span> Featured Insights
+            </div>
+            <h3 class="text-white text-sm font-bold">Enterprise Endpoint Architecture</h3>
+            <p class="text-xs text-slate-300 font-mono leading-relaxed">Explore in-depth guides on zero-trust deployment rings, Windows Autopatch, and Graph API automation.</p>
+            <a href="https://blogs.akashnagapure.in" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-sky-400 hover:text-sky-300 transition-colors">
+                <span>Visit Blog Hub</span> <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
+        </div>
+
+        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl relative overflow-hidden group shadow-lg">
+            <div class="absolute -right-20 -top-20 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all pointer-events-none"></div>
+
+            <div class="flex flex-col gap-3 relative z-10">
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-950/60 border border-sky-500/30 text-sky-300 font-mono text-[9px] uppercase font-bold tracking-widest w-fit">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+                    Sponsored Slot
+                </div>
+
+                <div class="w-full overflow-hidden rounded-xl border border-sky-500/30 shadow-lg bg-slate-950">
+                    <a href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" class="block group/ad cursor-pointer">
+                        <img src="/images/Blogs_Images/your_ad.avif" alt="Promote Your Brand" class="w-full h-auto object-cover group-hover/ad:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://www.akashnagapure.in/Main_page_data/placeholder.gif';" />
+                    </a>
+                </div>
+
+                <div class="w-full">
+                    <a 
+                        href="mailto:info@akashnagapure.in?subject=Blog%20Advertising%20Inquiry" 
+                        class="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 hover:opacity-90 text-slate-950 font-sans font-bold text-[11px] uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                    >
+                        <span class="material-symbols-outlined text-[14px]">campaign</span>
+                        <span>Inquire About Ad Space</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
 
 </div>
 
@@ -651,10 +825,61 @@
         const menu = document.getElementById('mobile-menu-drawer');
         menu.classList.toggle('hidden');
     }
+
+    // Toggle Version List Expansion
+    function toggleVersionList() {
+        const listContainer = document.getElementById('version-sidebar-links');
+        const icon = document.getElementById('version-toggle-icon');
+        if (listContainer.style.maxHeight && listContainer.style.maxHeight !== '0px') {
+            listContainer.style.maxHeight = '0px';
+            listContainer.style.opacity = '0';
+            icon.style.transform = 'rotate(-90deg)';
+        } else {
+            listContainer.style.maxHeight = '300px';
+            listContainer.style.opacity = '1';
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // Scroll Spy for Left Sidebar Version Highlighting
+    document.addEventListener('DOMContentLoaded', () => {
+        const listContainer = document.getElementById('version-sidebar-links');
+        listContainer.style.maxHeight = '300px';
+        listContainer.style.overflowY = 'auto';
+        listContainer.style.transition = 'max-height 0.3s ease, opacity 0.3s ease';
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20px 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    if (id) {
+                        document.querySelectorAll('#version-sidebar-links a').forEach(link => {
+                            link.classList.remove('text-sky-400', 'bg-sky-500/10', 'font-bold');
+                            link.classList.add('text-slate-300');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.remove('text-slate-300');
+                                link.classList.add('text-sky-400', 'bg-sky-500/10', 'font-bold');
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.release-card, #overview, #roadmap').forEach(section => {
+            observer.observe(section);
+        });
+    });
 </script>
 
 <footer class="w-full py-6 sm:py-8 bg-surface-dim border-t border-sky-500/20 text-center relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
-    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-7xl mx-auto">
+    <div class="flex flex-col items-center justify-center text-center w-full px-4 gap-2.5 max-w-[1700px] mx-auto">
         <div class="flex items-center gap-2.5">
             <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-black border border-purple-500/50 p-1 shadow-[0_0_12px_rgba(168,85,247,0.4)]">
                 <svg viewBox="0 0 100 100" class="w-full h-full object-contain">
@@ -669,7 +894,7 @@
                 <span class="material-symbols-outlined text-sm">share</span> LinkedIn
             </a>
             <span>•</span>
-            <a href="mailto:akashnagapure@live.com" class="hover:text-sky-400 transition-colors flex items-center gap-1">
+            <a href="mailto:info@akashnagapure.in" class="hover:text-sky-400 transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">mail</span> Contact Mail
             </a>
             <span>•</span>
