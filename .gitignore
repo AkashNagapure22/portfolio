@@ -93,6 +93,10 @@ api/*
 !api/comments.js
 !api/contact.js
 !api/projects.js
+!api/votes.js
+!docs/
+docs/*
+!docs/*.md
 !.gitignore
 !.nojekyll
 !.github/

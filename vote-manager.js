@@ -8,7 +8,7 @@ const VOTE_MANAGER = {
   getUserId() {
     let userId = localStorage.getItem('portfolio_user_id');
     if (!userId) {
-      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11);
       localStorage.setItem('portfolio_user_id', userId);
     }
     return userId;
@@ -42,8 +42,3 @@ const VOTE_MANAGER = {
     localStorage.removeItem(this.getVoteKey(articleId));
   }
 };
-
-// Add a check to handle the case when the user ID is not found in local storage
-if (VOTE_MANAGER.getUserId() === 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)) {
-  VOTE_MANAGER.clearAllVotes();
-}
