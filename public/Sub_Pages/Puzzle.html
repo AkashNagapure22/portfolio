@@ -1112,9 +1112,14 @@
       const commentMap = {};
       const topLevelComments = [];
 
+      // First pass: register all comments in the map
       comments.forEach(comment => {
         comment.replies = [];
         commentMap[comment.id] = comment;
+      });
+
+      // Second pass: wire up parent-child relationships
+      comments.forEach(comment => {
         if (comment.parent_id && commentMap[comment.parent_id]) {
           commentMap[comment.parent_id].replies.push(comment);
         } else if (!comment.parent_id) {
