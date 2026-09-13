@@ -11,13 +11,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://puzzle.akashnagapure.in/" />
   <meta property="og:title" content="Akash Nagapure | Games & Puzzles Portfolio" />
-  <meta property="og:description" content="Explore the speedcubing and mechanical puzzle vault of Akash Nagapure." />
-  <meta property="og:image" content="https://www.akashnagapure.in/images/Main_Page_Images/3_3_Cube.avif" />
-
-  
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://puzzle.akashnagapure.in/" />
-  <meta property="og:title" content="Akash Nagapure | Games & Puzzles Portfolio" />
   <meta property="og:description" content="Explore the speedcubing and mechanical puzzle vault of Akash Nagapure, featuring twisty cubes, algorithms, and brain teasers." />
   <meta property="og:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
 
@@ -449,7 +442,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap-6" id="puzzle-inventory-grid">
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -486,7 +479,7 @@
         </div>
       </div>
 
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -523,7 +516,7 @@
         </div>
       </div>
 
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -572,7 +565,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap-6" id="puzzle-teasers-grid">
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="this.classList.toggle('flipped')">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -617,7 +610,7 @@
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6" id="puzzle-wishlist-grid">
-      <div class="inventory-flip-card cursor-pointer aspect-[2/3] puzzle-search-item" onclick="this.classList.toggle('flipped')">
+      <div class="inventory-flip-card cursor-pointer aspect-[2/3] puzzle-search-item" onclick="toggleFlipCard(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d overflow-hidden relative rounded-2xl">
             <img alt="21x21 Speedcube" class="w-full h-full object-cover" src="/images/Cube_Images/11_11_11.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
@@ -718,8 +711,10 @@
   let targetX = 0, targetY = 0;
   let isPageVisible = true;
   const isMobile = window.innerWidth < 768;
+  const isThreeAvailable = typeof THREE !== 'undefined';
 
   function init3DBackground() {
+    if (!isThreeAvailable) return;
     const canvas = document.getElementById('three-bg-canvas');
     if (!canvas) return;
 
@@ -787,10 +782,10 @@
     });
   }
 
-  const clock = new THREE.Clock();
+  const clock = isThreeAvailable ? new THREE.Clock() : null;
   function animate3DBackground() {
     requestAnimationFrame(animate3DBackground);
-    if (!isPageVisible) return;
+    if (!isThreeAvailable || !isPageVisible || !clock) return;
 
     const elapsedTime = clock.getElapsedTime();
     targetX += (mouseX - targetX) * 0.04;
@@ -894,6 +889,16 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Flip card click handler - prevents flipping when clicking interactive elements
+  window.toggleFlipCard = function(element, event) {
+    // Check if click target is an interactive element
+    const target = event.target;
+    if (target.closest('a') || target.closest('button') || target.closest('input') || target.closest('textarea') || target.closest('select')) {
+      return;
+    }
+    element.classList.toggle('flipped');
+  };
+
   window.addEventListener("scroll", () => {
     const backToTopBtn = document.getElementById("back-to-top-btn");
     if (!backToTopBtn) return;
@@ -934,8 +939,13 @@
     const filter = query.toLowerCase().trim();
     const topInput = document.getElementById('puzzle-search-top');
     const mobileInput = document.getElementById('puzzle-search-mobile');
-    if (topInput && topInput.value !== query) topInput.value = query;
-    if (mobileInput && mobileInput.value !== query) mobileInput.value = query;
+    // Only sync the other input if it's not the active element (prevents cursor jumping)
+    if (topInput && document.activeElement !== topInput && topInput.value !== query) {
+      topInput.value = query;
+    }
+    if (mobileInput && document.activeElement !== mobileInput && mobileInput.value !== query) {
+      mobileInput.value = query;
+    }
 
     const items = document.querySelectorAll('.puzzle-search-item');
     let totalVisible = 0;
