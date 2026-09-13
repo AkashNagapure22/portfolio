@@ -660,8 +660,60 @@
       </div>
     </a>
 
+    </div>
+
+  <!-- Pagination Component -->
+  <div class="flex items-center justify-center space-x-2 my-10 font-mono text-sm">
+    <button onclick="changePage(currentPage - 1)" id="prev-btn" class="px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-sky-500/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+      Prev
+    </button>
+    <div id="pagination-numbers" class="flex items-center space-x-2">
+      <!-- Injected dynamically via JavaScript -->
+    </div>
+    <button onclick="changePage(currentPage + 1)" id="next-btn" class="px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-sky-500/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+      Next
+    </button>
   </div>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 5;
+
+    function renderPagination() {
+      const container = document.getElementById('pagination-numbers');
+      if (!container) return;
+      container.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.textContent = i;
+
+        if (i === currentPage) {
+          pageBtn.className = "w-10 h-10 flex items-center justify-center rounded-lg bg-[#ccff00] text-slate-950 font-bold shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all";
+        } else {
+          pageBtn.className = "w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white hover:border-sky-400/50 transition-all";
+        }
+
+        pageBtn.onclick = () => changePage(i);
+        container.appendChild(pageBtn);
+      }
+
+      document.getElementById('prev-btn').disabled = currentPage === 1;
+      document.getElementById('next-btn').disabled = currentPage === totalPages;
+    }
+
+    function changePage(page) {
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      renderPagination();
+      console.log("Switched to page:", currentPage);
+    }
+
+    document.addEventListener('DOMContentLoaded', renderPagination);
+  </script>
+
 </main>
+
 
 <section id="discussion" class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28 border-t border-white/10 pt-14 pb-20 space-y-8 w-full relative z-10">
   <div class="flex items-center gap-4">
