@@ -51,9 +51,29 @@
 - Submission: `launchDirectMail()` opens mailto: with pre-filled body
 - Success banner: green emerald panel with checkmark icon
 
-### Footer
-- Logo SVG + name + copyright
-- Links: LinkedIn, Contact Mail, Changelog, Privacy Policy, Terms of Service
+### Footer (shared across all 42 pages)
+- Source of truth: `public/Sub_Pages/footer-template.html` (inlined per page)
+- 4-column link grid: Portfolio / Legal / Hobbies & Interests / Stay Updated
+- Bottom bar: clickable logo (`aria-label="Akash Nagapure Home"`) +
+  `© 2026 Akash Nagapure. All Rights Reserved.` + social icon links
+  (LinkedIn, GitHub, WhatsApp, Email)
+- The name intentionally appears only once (in the copyright line) — never
+  duplicated next to the logo
+
+### Newsletter Subscribe Form
+- Markup: `#footer-subscribe-form` with an `input[type="email"]` and submit button
+- Handler: `handleFooterSubscribe(form)`
+- Flow: disable button → `POST /api/subscribe` with `{ email }` → show
+  `Subscribed!` for 3s on success, `Failed`/`Error` otherwise
+- Duplicate emails return HTTP 200 with `alreadySubscribed: true`
+
+### Cookie Consent Banner
+- Markup: `#cookie-banner` with `#accept-cookies-btn` / `#deny-cookies-btn`
+- Hidden by default (`transform: translateY(100%)`), revealed by adding `.show`
+  1 second after `DOMContentLoaded`
+- Accept → stores `cookieConsent=accepted` + sets `non_essential_consent` cookie
+- Decline → stores `cookieConsent=denied` + clears the `non_essential_consent` cookie
+- Both actions fade the banner out (`opacity: 0`) then set `display: none`
 
 ### Back-to-Top Button
 - Fixed bottom-right, appears after 350px scroll

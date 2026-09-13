@@ -65,6 +65,7 @@ All API endpoints follow the same pattern:
 | comments             | id, article_id, author, email, content, parent_id, likes, dislikes, created_at | api/comments.js |
 | contact_submissions  | id, full_name, email, subject, message, created_at               | api/contact.js |
 | votes                | article_id (PK), helpful, not_helpful                            | api/votes.js   |
+| subscribers          | id, email (UNIQUE), subscribed_at                                | api/subscribe.js |
 
 ### API Endpoints
 
@@ -75,6 +76,10 @@ All API endpoints follow the same pattern:
 - GET    /api/projects                — List portfolio projects (static JSON)
 - GET    /api/votes?article_id=X      — Fetch helpful/not-helpful vote counts
 - POST   /api/votes                   — Record an article-level vote (up/down)
+- POST   /api/subscribe                — Add an email to the newsletter subscriber list
+                                        (creates the `subscribers` table on demand,
+                                        uses ON CONFLICT (email) DO NOTHING to
+                                        prevent duplicates)
 
 ## Client-Side Architecture
 
@@ -95,6 +100,30 @@ All API endpoints follow the same pattern:
 - Same 3D engine and cursor trail
 - Page-specific interactive components (coin filters, cube galleries, etc.)
 - Comment system on some pages
+
+### Shared Footer (inlined into every page)
+All 42 HTML files embed an identical footer block (source of truth:
+`public/Sub_Pages/footer-template.html`) containing:
+- Logo link + copyright + social links (LinkedIn, GitHub, WhatsApp, Email)
+- "Stay Updated" newsletter form (`#footer-subscribe-form`) calling
+  `handleFooterSubscribe()` → `POST /api/subscribe`
+- Cookie consent banner (`#cookie-banner`) with `#accept-cookies-btn` /
+  `#deny-cookies-btn`, plus `enableNonEssentialCookies()` /
+  `blockNonEssentialCookies()` helpers
+
+## Cookie Consent Model
+
+Consent is stored in `localStorage` under the key `cookieConsent`
+(`'accepted'` or `'denied'`). The legacy key `cookie_consent` is still read as a
+fallback so returning visitors keep their previous choice.
+
+| Action  | localStorage         | Non-essential cookie        |
+|---------|----------------------|-----------------------------|
+| Accept  | `cookieConsent=accepted` | `non_essential_consent=accepted` (1 year) |
+| Decline | `cookieConsent=denied`   | `non_essential_consent` deleted (`max-age=0`) |
+
+When no preference is stored, the banner slides in after a 1-second delay via
+the `.cookie-banner.show` class.
 
 ### Shared Utilities
 - vote-manager.js: VOTE_MANAGER object for localStorage-based vote tracking

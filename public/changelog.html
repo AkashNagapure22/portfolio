@@ -871,11 +871,6 @@
                             link.classList.remove('text-sky-400', 'bg-sky-500/10', 'font-bold');
                             link.classList.add('text-slate-300');
                             if (link.getAttribute('href') === `#${id}`) {
-        observer.observe(section);
-    });
-  });
-</script>
-
                                 link.classList.remove('text-slate-300');
                                 link.classList.add('text-sky-400', 'bg-sky-500/10', 'font-bold');
                             }
@@ -944,11 +939,10 @@
         </div>
         <hr class="border-slate-800 mb-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-            <a href="https://www.akashnagapure.in" class="flex items-center gap-2.5 group">
+            <a href="https://www.akashnagapure.in" class="flex items-center group" aria-label="Akash Nagapure Home">
                 <div class="h-9 w-9 flex items-center justify-center shrink-0">
                     <img src="/Main_page_data/Logo.avif" alt="Akash Nagapure Logo" width="36" height="36" loading="lazy" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
                 </div>
-                <span class="font-bold text-white text-lg group-hover:text-sky-400 transition-colors">Akash Nagapure</span>
             </a>
             <p class="text-slate-500 text-sm">&copy; 2026 Akash Nagapure. All Rights Reserved.</p>
             <div class="flex items-center gap-4">
@@ -970,8 +964,8 @@
         </div>
     </div>
     <div class="cookie-actions">
-        <button onclick="handleDeclineCookie()" class="btn btn-decline">Decline</button>
-        <button onclick="handleAcceptCookie()" class="btn btn-accept">Accept all cookies</button>
+        <button id="deny-cookies-btn" type="button" class="btn btn-decline">Decline</button>
+        <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
 <style>
@@ -991,9 +985,57 @@
 @media(max-width:640px){.cookie-banner{flex-direction:column;text-align:center;padding:12px}.cookie-content{flex-direction:column;gap:8px}.cookie-actions{width:100%;justify-content:center}}
 </style>
 <script>
-function handleAcceptCookie(){localStorage.setItem('cookie_consent','accepted');var b=document.getElementById('cookie-banner');if(b){b.classList.remove('show');setTimeout(function(){b.style.display='none'},400)}console.log('Cookies accepted')}
-function handleDeclineCookie(){localStorage.setItem('cookie_consent','declined');var b=document.getElementById('cookie-banner');if(b){b.classList.remove('show');setTimeout(function(){b.style.display='none'},400)}console.log('Cookies declined')}
+// Cookie consent handling (non-essential cookies stored only when accepted)
+document.addEventListener('DOMContentLoaded', function () {
+  var cookieBanner = document.getElementById('cookie-banner');
+  var acceptBtn = document.getElementById('accept-cookies-btn');
+  var denyBtn = document.getElementById('deny-cookies-btn');
+
+  // Check if a preference was already saved
+  var consent = localStorage.getItem('cookieConsent') || localStorage.getItem('cookie_consent');
+  if (consent) {
+    if (cookieBanner) cookieBanner.style.display = 'none';
+    if (consent === 'accepted') {
+      enableNonEssentialCookies();
+    } else {
+      blockNonEssentialCookies();
+    }
+  } else if (cookieBanner) {
+    setTimeout(function () { cookieBanner.classList.add('show'); }, 1000);
+  }
+
+  // Handle Accept click - store non-essential cookies
+  if (acceptBtn && cookieBanner) {
+    acceptBtn.addEventListener('click', function () {
+      localStorage.setItem('cookieConsent', 'accepted');
+      cookieBanner.style.opacity = '0';
+      cookieBanner.style.transition = 'opacity 0.3s ease';
+      setTimeout(function () { cookieBanner.style.display = 'none'; }, 300);
+      enableNonEssentialCookies();
+    });
+  }
+
+  // Handle Deny click - do not store non-essential cookies
+  if (denyBtn && cookieBanner) {
+    denyBtn.addEventListener('click', function () {
+      localStorage.setItem('cookieConsent', 'denied');
+      cookieBanner.style.opacity = '0';
+      cookieBanner.style.transition = 'opacity 0.3s ease';
+      setTimeout(function () { cookieBanner.style.display = 'none'; }, 300);
+      blockNonEssentialCookies();
+    });
+  }
+});
+
+function enableNonEssentialCookies() {
+  document.cookie = 'non_essential_consent=accepted; path=/; max-age=31536000; SameSite=Lax';
+  console.log('Cookies accepted: Non-essential cookies stored.');
+}
+
+function blockNonEssentialCookies() {
+  document.cookie = 'non_essential_consent=; path=/; max-age=0; SameSite=Lax';
+  console.log('Cookies denied: Non-essential cookies not stored.');
+}
 function handleFooterSubscribe(form){var emailInput=form.querySelector('input[type="email"]');var email=emailInput.value.trim();var btn=form.querySelector('button');if(!email)return;btn.textContent='Subscribing...';btn.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})}).then(function(res){if(res.ok){btn.textContent='Subscribed!';emailInput.value='';setTimeout(function(){btn.textContent='Subscribe'},3000)}else{btn.textContent='Failed';setTimeout(function(){btn.textContent='Subscribe'},2000)}}).catch(function(err){btn.textContent='Error';setTimeout(function(){btn.textContent='Subscribe'},2000)}).finally(function(){btn.disabled=false})}
-(function(){var c=localStorage.getItem('cookie_consent');var b=document.getElementById('cookie-banner');if(!c&&b){setTimeout(function(){b.classList.add('show')},1000)}})();
 </script></body>
 </html>

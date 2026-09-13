@@ -904,7 +904,7 @@
                 <h3 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Legal</h3>
                 <ul class="space-y-3">
                     <li><a href="https://www.akashnagapure.in/privacy.html" class="text-slate-400 hover:text-sky-400 text-sm transition-colors">Privacy Policy</a></li>
-                    <li><a href="https://www.akashnagapure.in/terms.html" class="text-slate-400 hover:text-sky-400 text-sm transition-colors">Terms of Service</a></li>
+                    <li><a href="https://www.akashnagapure.in/faq.html" class="text-slate-400 hover:text-sky-400 text-sm transition-colors">FAQ</a></li>
                     <li><a href="mailto:info@akashnagapure.in" class="text-slate-400 hover:text-sky-400 text-sm transition-colors">Contact</a></li>
                 </ul>
             </div>
@@ -945,8 +945,8 @@
         </div>
     </div>
     <div class="cookie-actions">
-        <button onclick="handleDeclineCookie()" class="btn btn-decline">Decline</button>
-        <button onclick="handleAcceptCookie()" class="btn btn-accept">Accept all cookies</button>
+        <button id="deny-cookies-btn" type="button" class="btn btn-decline">Decline</button>
+        <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
 <style>
@@ -966,9 +966,57 @@
 @media(max-width:640px){.cookie-banner{flex-direction:column;text-align:center;padding:12px}.cookie-content{flex-direction:column;gap:8px}.cookie-actions{width:100%;justify-content:center}}
 </style>
 <script>
-function handleAcceptCookie(){localStorage.setItem('cookie_consent','accepted');var b=document.getElementById('cookie-banner');if(b){b.classList.remove('show');setTimeout(function(){b.style.display='none'},400)}console.log('Cookies accepted')}
-function handleDeclineCookie(){localStorage.setItem('cookie_consent','declined');var b=document.getElementById('cookie-banner');if(b){b.classList.remove('show');setTimeout(function(){b.style.display='none'},400)}console.log('Cookies declined')}
-(function(){var c=localStorage.getItem('cookie_consent');var b=document.getElementById('cookie-banner');if(!c&&b){setTimeout(function(){b.classList.add('show')},1000)}})();
+// Cookie consent handling (non-essential cookies stored only when accepted)
+document.addEventListener('DOMContentLoaded', function () {
+  var cookieBanner = document.getElementById('cookie-banner');
+  var acceptBtn = document.getElementById('accept-cookies-btn');
+  var denyBtn = document.getElementById('deny-cookies-btn');
+
+  // Check if a preference was already saved
+  var consent = localStorage.getItem('cookieConsent') || localStorage.getItem('cookie_consent');
+  if (consent) {
+    if (cookieBanner) cookieBanner.style.display = 'none';
+    if (consent === 'accepted') {
+      enableNonEssentialCookies();
+    } else {
+      blockNonEssentialCookies();
+    }
+  } else if (cookieBanner) {
+    setTimeout(function () { cookieBanner.classList.add('show'); }, 1000);
+  }
+
+  // Handle Accept click - store non-essential cookies
+  if (acceptBtn && cookieBanner) {
+    acceptBtn.addEventListener('click', function () {
+      localStorage.setItem('cookieConsent', 'accepted');
+      cookieBanner.style.opacity = '0';
+      cookieBanner.style.transition = 'opacity 0.3s ease';
+      setTimeout(function () { cookieBanner.style.display = 'none'; }, 300);
+      enableNonEssentialCookies();
+    });
+  }
+
+  // Handle Deny click - do not store non-essential cookies
+  if (denyBtn && cookieBanner) {
+    denyBtn.addEventListener('click', function () {
+      localStorage.setItem('cookieConsent', 'denied');
+      cookieBanner.style.opacity = '0';
+      cookieBanner.style.transition = 'opacity 0.3s ease';
+      setTimeout(function () { cookieBanner.style.display = 'none'; }, 300);
+      blockNonEssentialCookies();
+    });
+  }
+});
+
+function enableNonEssentialCookies() {
+  document.cookie = 'non_essential_consent=accepted; path=/; max-age=31536000; SameSite=Lax';
+  console.log('Cookies accepted: Non-essential cookies stored.');
+}
+
+function blockNonEssentialCookies() {
+  document.cookie = 'non_essential_consent=; path=/; max-age=0; SameSite=Lax';
+  console.log('Cookies denied: Non-essential cookies not stored.');
+}
 </script>
 </body>
 </html>

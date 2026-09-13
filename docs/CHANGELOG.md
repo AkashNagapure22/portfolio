@@ -8,6 +8,66 @@ https://www.akashnagapure.in/changelog.html
 
 ---
 
+## [Unreleased] — v3.4.0
+
+### Summary
+Footer subscribe form wired to the database, cookie consent rewritten to honour
+accept/decline, and the `api/` folder un-ignored so serverless endpoints deploy.
+
+### Fixed
+- **`api/subscribe.js` was never deployed**: `.gitignore` line 196 contained
+  the broad rule `api/*` with only `!api/comments.js`, `!api/contact.js`,
+  `!api/projects.js`, and `!api/votes.js` as exceptions. `api/subscribe.js` was
+  therefore ignored by git and absent from the Vercel deployment, so every
+  footer subscribe request returned 404. Added `!api/subscribe.js` (and a
+  corrected `!.github/` line that had been concatenated onto the previous entry).
+- **`api/subscribe.js`**: Rewrote the handler to match the `subscribers` table
+  schema (`id`, `email`, `subscribed_at`). Added CORS + OPTIONS preflight
+  handling, an HTTP 405 guard for non-POST methods, safe body parsing
+  (string or object), email normalisation (trim + lower-case), server-side
+  regex validation, and `ON CONFLICT (email) DO NOTHING` deduplication that
+  reports `alreadySubscribed: true`. The table is now created with
+  `CREATE TABLE IF NOT EXISTS` on demand.
+- **All 42 HTML files — inline subscribe handler**: The success check
+  `if (data.success || res.ok)` referenced `res`, which is out of scope inside
+  the second `.then()` callback, throwing a `ReferenceError` on every
+  submission. Replaced with `if (data.success)`.
+- **All 42 HTML files — cookie consent**: Replaced the legacy
+  `handleAcceptCookie()` / `handleDeclineCookie()` pair (which did nothing but
+  hide the banner) with the requested `DOMContentLoaded` implementation using
+  `#accept-cookies-btn` / `#deny-cookies-btn`. Accept now writes
+  `localStorage.cookieConsent = 'accepted'` and sets the
+  `non_essential_consent` cookie for one year; Decline writes `'denied'` and
+  expires that cookie (`max-age=0`). The legacy `cookie_consent` key is still
+  read as a fallback so returning visitors keep their previous choice, and the
+  banner reveal logic was consolidated into a single 1-second delayed
+  `.show` class toggle.
+- **`public/Sub_Pages/Projects.html`**: Removed a duplicated trailing copy of
+  the entire document (two `<!DOCTYPE html>` declarations and two closing
+  `</html>` tags) that caused the browser to discard the second half of the
+  page. File truncated at the first well-formed end of document.
+
+### Changed
+- **`docs/`**: ARCHITECTURE.md now documents the `subscribers` table, the
+  `POST /api/subscribe` endpoint, the shared footer composition, and the
+  cookie consent model. COMPONENTS.md gained full Footer, Newsletter Subscribe
+  Form, and Cookie Consent Banner sections. FEATURES.md gained features 19 and
+  20 with an updated requirement mapping. REQUIREMENTS.md gained FR-10.8,
+  FR-12 (Newsletter Subscription) and FR-13 (Cookie Consent).
+- **`dist/`**: Regenerated via `npm run build` so the deployed output matches
+  `public/` and `index.html`.
+
+### Verified
+- `node --check api/subscribe.js` passes
+- `npm run build` succeeds (dist/index.html 136.91 kB, bundle 0.71 kB)
+- 85 HTML files contain the new `accept-cookies-btn` handler; zero references
+  to `handleAcceptCookie`/`handleDeclineCookie` or `data.success || res.ok` remain
+- Exactly one `<!DOCTYPE html>` per page across `public/` and `dist/`
+- No footer contains the old `flex items-center gap-2.5 group` pattern or a
+  duplicated "Akash Nagapure" label
+
+---
+
 ## [Unreleased] — v3.3.0
 
 ### Summary

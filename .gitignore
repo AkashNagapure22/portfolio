@@ -204,3 +204,5 @@ docs/*
 !.gitignore
 !.nojekyll
 !.github/
+!api/subscribe.js
+

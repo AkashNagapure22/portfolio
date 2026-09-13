@@ -40,7 +40,7 @@
             <div class="footer-col subscribe-col col-span-2 md:col-span-4 lg:col-span-1">
                 <h3 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Stay Updated</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">Get notified about new projects, blog posts, and updates.</p>
-                <form class="footer-subscribe-form" onsubmit="event.preventDefault(); handleFooterSubscribe(this);">
+                <form id="footer-subscribe-form" class="footer-subscribe-form">
                     <input type="email" placeholder="Your email address" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none mb-2" />
                     <button type="submit" class="w-full px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm rounded-lg transition-all">Subscribe</button>
                 </form>
@@ -73,8 +73,8 @@
         </div>
     </div>
     <div class="cookie-actions">
-        <button onclick="handleDeclineCookie()" class="btn btn-decline">Decline</button>
-        <button onclick="handleAcceptCookie()" class="btn btn-accept">Accept all cookies</button>
+        <button id="deny-cookies-btn" class="btn btn-decline">Decline</button>
+        <button id="accept-cookies-btn" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
 <style>
@@ -94,8 +94,96 @@
 @media(max-width:640px){.cookie-banner{flex-direction:column;text-align:center;padding:12px}.cookie-content{flex-direction:column;gap:8px}.cookie-actions{width:100%;justify-content:center}}
 </style>
 <script>
-function handleAcceptCookie(){localStorage.setItem('cookie_consent','accepted');var b=document.getElementById('cookie-banner');if(b){b.classList.remove('show');setTimeout(function(){b.style.display='none'},400)}console.log('Cookies accepted')}
-function handleDeclineCookie(){localStorage.setItem('cookie_consent','declined');var b=document.getElementById('cookie-banner');if(b){b.classList.remove('show');setTimeout(function(){b.style.display='none'},400)}console.log('Cookies declined')}
-function handleFooterSubscribe(form){var emailInput=form.querySelector('input[type="email"]');var email=emailInput.value.trim();var btn=form.querySelector('button');if(!email)return;btn.textContent='Subscribing...';btn.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})}).then(function(res){if(res.ok){btn.textContent='Subscribed!';emailInput.value='';setTimeout(function(){btn.textContent='Subscribe'},3000)}else{btn.textContent='Failed';setTimeout(function(){btn.textContent='Subscribe'},2000)}}).catch(function(err){btn.textContent='Error';setTimeout(function(){btn.textContent='Subscribe'},2000)}).finally(function(){btn.disabled=false})}
-(function(){var c=localStorage.getItem('cookie_consent');var b=document.getElementById('cookie-banner');if(!c&&b){setTimeout(function(){b.classList.add('show')},1000)}})();
+document.addEventListener('DOMContentLoaded', () => {
+  const cookieBanner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies-btn');
+  const denyBtn = document.getElementById('deny-cookies-btn');
+
+  // Check if a preference was already saved
+  const consent = localStorage.getItem('cookie_consent');
+  if (consent) {
+    if (cookieBanner) cookieBanner.style.display = 'none';
+    if (consent === 'accepted') {
+      enableNonEssentialCookies();
+    }
+  }
+
+  // Handle Accept click
+  if (acceptBtn && cookieBanner) {
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'accepted');
+      cookieBanner.style.opacity = '0';
+      cookieBanner.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => cookieBanner.style.display = 'none', 300);
+      enableNonEssentialCookies();
+    });
+  }
+
+  // Handle Deny click
+  if (denyBtn && cookieBanner) {
+    denyBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'denied');
+      cookieBanner.style.opacity = '0';
+      cookieBanner.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => cookieBanner.style.display = 'none', 300);
+      blockNonEssentialCookies();
+    });
+  }
+
+  // Handle footer subscribe form
+  const subscribeForm = document.getElementById('footer-subscribe-form');
+  if (subscribeForm) {
+    subscribeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleFooterSubscribe(subscribeForm);
+    });
+  }
+});
+
+function enableNonEssentialCookies() {
+  console.log("Cookies accepted: Analytics and tracking enabled.");
+}
+
+function blockNonEssentialCookies() {
+  console.log("Cookies denied: Non-essential tracking blocked.");
+}
+
+function handleFooterSubscribe(form) {
+  const emailInput = form.querySelector('input[type="email"]');
+  const email = emailInput.value.trim();
+  const btn = form.querySelector('button');
+  if (!email) return;
+  btn.textContent = 'Subscribing...';
+  btn.disabled = true;
+  fetch('/api/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.success) {
+      btn.textContent = 'Subscribed!';
+      emailInput.value = '';
+      setTimeout(function() { btn.textContent = 'Subscribe'; }, 3000);
+    } else {
+      btn.textContent = 'Failed';
+      setTimeout(function() { btn.textContent = 'Subscribe'; }, 2000);
+    }
+  })
+  .catch(function(err) {
+    btn.textContent = 'Error';
+    setTimeout(function() { btn.textContent = 'Subscribe'; }, 2000);
+  })
+  .finally(function() { btn.disabled = false; });
+}
+
+// Show cookie banner after delay if no preference saved
+(function() {
+  var c = localStorage.getItem('cookie_consent');
+  var b = document.getElementById('cookie-banner');
+  if (!c && b) {
+    setTimeout(function() { b.classList.add('show'); }, 1000);
+  }
+})();
 </script>

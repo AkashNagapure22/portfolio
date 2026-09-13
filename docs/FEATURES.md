@@ -120,6 +120,30 @@
 - **Description**: Production build minifies CSS/JS, code-splits assets,
   and generates a small 710-byte JS bundle for the root landing page.
 
+### 19. Newsletter Subscription
+- **Technology**: Serverless API (`/api/subscribe`) + Neon PostgreSQL
+- **Description**: Every page footer contains a "Stay Updated" email capture
+  form. Submitting a valid address inserts a row into the `subscribers` table
+  (`id`, `email`, `subscribed_at`).
+- **Validation**: Client-side `input[type="email"]` plus server-side regex
+  validation; emails are trimmed and lower-cased before insert.
+- **Deduplication**: `ON CONFLICT (email) DO NOTHING` — repeat submissions
+  return HTTP 200 with `alreadySubscribed: true` instead of an error.
+- **Table bootstrap**: The endpoint issues `CREATE TABLE IF NOT EXISTS` on each
+  request, so no manual migration is required.
+
+### 20. Cookie Consent Banner
+- **Technology**: Vanilla JavaScript + `localStorage` + `document.cookie`
+- **Description**: A bottom-anchored banner lets visitors accept or decline
+  non-essential cookies. The choice persists across visits via
+  `localStorage.cookieConsent`.
+- **Accept**: Writes the `non_essential_consent=accepted` cookie (1-year
+  `max-age`) and calls `enableNonEssentialCookies()`.
+- **Decline**: Expires the `non_essential_consent` cookie (`max-age=0`) and
+  calls `blockNonEssentialCookies()` — no non-essential cookies are stored.
+- **UX**: Slides in after a 1-second delay; fades out on either action.
+- **Compliance**: Links to `/privacy.html` ("Read Our Data Policy").
+
 ## Feature-to-Requirement Mapping
 
 | Feature | Requirement(s) |
@@ -141,5 +165,7 @@
 | Dark Theme | NFR-2, NFR-3 |
 | Responsive Design | NFR-2 |
 | Image Lazy Loading | NFR-1.3 |
+| Newsletter Subscription | FR-12.1–12.4, FR-10.8 |
+| Cookie Consent Banner | FR-13.1–13.5 |
 | Vite Build | NFR-1.1–1.2 |
 

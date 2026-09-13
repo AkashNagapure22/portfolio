@@ -70,6 +70,26 @@
 - **FR-10.5** `GET /api/projects` — List portfolio projects
 - **FR-10.6** `GET /api/votes?article_id=X` — Fetch helpful/not-helpful vote counts
 - **FR-10.7** `POST /api/votes` — Record an article-level vote
+- **FR-10.8** `POST /api/subscribe` — Add an email address to the newsletter
+  subscriber list; must reject invalid emails (HTTP 400), ignore duplicates
+  (`ON CONFLICT DO NOTHING` → `alreadySubscribed: true`), and create the
+  `subscribers` table (`id`, `email`, `subscribed_at`) on demand
+
+### FR-12: Newsletter Subscription
+- **FR-12.1** Every page footer displays a "Stay Updated" email capture form
+- **FR-12.2** Submitting a valid email stores it via `POST /api/subscribe`
+- **FR-12.3** The submit button reflects state: `Subscribing...` → `Subscribed!`
+  (3s), or `Failed`/`Error` on failure, then resets to `Subscribe`
+- **FR-12.4** Duplicate emails must not raise a user-facing error
+
+### FR-13: Cookie Consent
+- **FR-13.1** A consent banner is shown to first-time visitors (after a 1-second delay)
+- **FR-13.2** "Accept all cookies" persists `cookieConsent=accepted` and stores
+  the `non_essential_consent` cookie
+- **FR-13.3** "Decline" persists `cookieConsent=denied` and stores *no*
+  non-essential cookies (existing ones are expired)
+- **FR-13.4** The stored preference suppresses the banner on subsequent visits
+- **FR-13.5** The banner links to `/privacy.html` for the full data policy
 
 ### FR-11: Subdomain Routing
 - **FR-11.1** `blogs.akashnagapure.in` ? `/Sub_Pages/Projects.html`
