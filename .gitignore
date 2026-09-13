@@ -61,6 +61,8 @@ public/Sub_Pages/*
 !public/Sub_Pages/Reading.html
 !public/Sub_Pages/resume.html
 !public/Sub_Pages/Skills.html
+!public/Sub_Pages/faq.html
+!public/Sub_Pages/footer-template.html
 !public/robots.txt
 !public/sitemap.xml
 !public/images/
@@ -78,6 +80,8 @@ public/Main_page_data/*
 !public/Main_page_data/akash_profile_1781110763642.avif
 !public/Main_page_data/Akash_Resume.pdf
 !public/Main_page_data/Logo.avif
+!public/faq.html
+!public/changelog.html
 !public/Main_page_data/placeholder.gif
 !data
 !index.html

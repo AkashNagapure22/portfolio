@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" name="viewport" />
+  <title>FAQ | Akash Nagapure</title>
+  <meta name="description" content="Frequently asked questions about Akash Nagapure's portfolio, collaboration, blogs, and newsletter subscriptions." />
+  <link rel="canonical" href="https://www.akashnagapure.in/faq.html" />
+  <link rel="icon" href="/Main_page_data/Logo.avif" type="image/avif" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.akashnagapure.in/faq.html" />
+  <meta property="og:title" content="FAQ | Akash Nagapure" />
+  <meta property="og:description" content="Frequently asked questions about Akash Nagapure's portfolio, collaboration, blogs, and newsletter subscriptions." />
+  <meta property="og:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.akashnagapure.in/faq.html" />
+  <meta property="twitter:title" content="FAQ | Akash Nagapure" />
+  <meta property="twitter:description" content="Frequently asked questions about Akash Nagapure's portfolio, collaboration, blogs, and newsletter subscriptions." />
+  <meta property="twitter:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who is Akash Nagapure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Akash Nagapure is a Microsoft Certified EUC & Intune Specialist and enterprise fleet architect with 10+ years of experience in Microsoft Intune, SCCM, VMware, and Azure virtualization."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can we collaborate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can reach out via the contact form, email at info@akashnagapure.in, or WhatsApp for consulting, technical reviews, and architecture collaboration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I subscribe to the newsletter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter your email address in any Subscribe form on the site footer and you will be notified when new projects or blog posts are published."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "ui-sans-serif", "system-ui", "sans-serif"],
+            mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 6rem;
+    }
+    body {
+      background-color: #020617 !important;
+      color: #f8fafc !important;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    #three-bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -10;
+      pointer-events: none;
+    }
+    #cursor-trail-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      pointer-events: none;
+    }
+    .glass-card-3d {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9),
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                  0 0 30px rgba(56, 189, 248, 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card-3d:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 35px 60px -15px rgba(56, 189, 248, 0.2);
+    }
+    .faq-sidebar-link {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+    .faq-sidebar-link::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border: 1.5px solid #334155;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .faq-sidebar-link:hover {
+      color: #38bdf8;
+    }
+    .faq-sidebar-link.active-link {
+      color: #38bdf8;
+      font-weight: 500;
+    }
+    .faq-sidebar-link.active-link::before {
+      border-color: #38bdf8;
+      background-color: #38bdf8;
+    }
+    .faq-section-card {
+      scroll-margin-top: 7rem;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
+
+<canvas id="three-bg-canvas" aria-hidden="true"></canvas>
+<canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+<!-- Minimal Navbar: Only Logo on Left -->
+<header class="w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-white/10 py-4 px-6 sm:px-12 relative shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-sky-400 hover:text-white transition-colors">
+      <span class="w-10 h-10 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center overflow-hidden shadow-md">
+        <img src="/Main_page_data/Logo.avif" alt="Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+      </span>
+      <div class="flex flex-col">
+        <strong class="font-sans font-extrabold text-white text-sm sm:text-base tracking-tight">Akash Nagapure</strong>
+        <span class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">Fleet Architect</span>
+      </div>
+    </a>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full relative z-10">
+<!-- Decorative accent star -->
+  <div class="text-amber-400 text-2xl absolute right-10 top-8 opacity-60 select-none pointer-events-none" aria-hidden="true">✦</div>
+
+  <!-- Section Title Header -->
+  <div class="text-center mb-12">
+    <span class="inline-block bg-sky-950/60 text-sky-400 border border-sky-500/30 rounded-full font-mono text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 mb-4">Frequently Asked Questions</span>
+    <h1 class="font-sans text-4xl sm:text-5xl font-extrabold text-white tracking-tight text-center">
+      You ask? We <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-teal-400 italic">answer</span>
+    </h1>
+  </div>
+
+  <!-- Main Grid Area: Sidebar + Content -->
+  <div class="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 items-start">
+
+    <!-- Left Sidebar Navigation -->
+    <div class="glass-card-3d rounded-2xl p-6 lg:border-r lg:border-sky-500/20 space-y-6">
+      <h2 class="text-white text-sm font-bold uppercase tracking-wider border-b border-white/10 pb-3">Getting Started</h2>
+      <ul class="space-y-3">
+        <li><a href="#faq-start" class="faq-sidebar-link active-link">Getting Started</a></li>
+        <li><a href="#faq-collab" class="faq-sidebar-link">How we can collaborate</a></li>
+        <li><a href="#faq-blog" class="faq-sidebar-link">How to use the Blog</a></li>
+        <li><a href="#faq-subscribe" class="faq-sidebar-link">How to subscription</a></li>
+      </ul>
+
+      <h2 class="text-white text-sm font-bold uppercase tracking-wider border-b border-white/10 pb-3">Understanding</h2>
+      <ul class="space-y-3">
+        <li><a href="#faq-properties" class="faq-sidebar-link">Properties</a></li>
+        <li><a href="#faq-design" class="faq-sidebar-link">How to set Design Style</a></li>
+        <li><a href="#faq-mockup" class="faq-sidebar-link">How to use Mock up</a></li>
+        <li><a href="#faq-preview" class="faq-sidebar-link">Preview</a></li>
+      </ul>
+    </div>
+<!-- Right Content Body -->
+      <article class="faq-content space-y-8">
+
+        <section id="faq-start" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">Getting Started</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            Welcome to Akash Nagapure's technical portfolio. This site documents enterprise endpoint management,
+            cloud virtualization, and automation architectures built with Microsoft Intune, SCCM, VMware, and Azure.
+            You can browse the <a href="https://blogs.akashnagapure.in" class="text-sky-400 underline hover:text-sky-300 transition-colors">technical blogs</a>,
+            review the <a href="https://www.akashnagapure.in" class="text-sky-400 underline hover:text-sky-300 transition-colors">main portfolio</a>,
+            or jump straight into the sections that matter to you.
+          </p>
+          <h3 class="text-lg font-bold text-sky-400 mb-4">Various versions have evolved</h3>
+          <ol class="list-decimal space-y-2 text-slate-300 text-sm">
+            <li>Various versions of the lab have evolved across Intune, SCCM, and Azure.</li>
+            <li>Discover the undoubtable value of progressive deployment rings and telemetry.</li>
+            <li>Looked up one of the more obscure configuration patterns — and documented it.</li>
+          </ol>
+        </section>
+
+        <section id="faq-collab" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">How we can collaborate</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            Whether you need an architecture review, a migration strategy from SCCM to Intune, or hands-on
+            guidance for Windows 365 / AVD rollouts, reach out through the
+            <a href="mailto:info@akashnagapure.in" class="text-sky-400 underline hover:text-sky-300 transition-colors">contact email</a>,
+            the WhatsApp button on the main page, or the discussion sections on each page.
+          </p>
+          <h3 class="text-lg font-bold text-sky-400 mb-4">Ways to work together</h3>
+          <ol class="list-decimal space-y-2 text-slate-300 text-sm">
+            <li>Enterprise Endpoint Management consulting (Intune, SCCM, MEM).</li>
+            <li>Virtualization and Cloud VDI architecture (VMware, Citrix, AVD).</li>
+            <li>Automation, scripting, and ITSM process hardening.</li>
+          </ol>
+        </section>
+<section id="faq-blog" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">How to use the Blog</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            The <a href="https://blogs.akashnagapure.in" class="text-sky-400 underline hover:text-sky-300 transition-colors">Architecture Blog</a>
+            organizes every article by category (Intune, SCCM, Windows 365, AVD, VMware, PowerShell, Active Directory).
+            Use the category filter pills to narrow the grid, or open the discussion section at the bottom of the page
+            to ask questions about any article.
+          </p>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Pagination at the bottom of the blog grid lets you move between pages of articles without reloading the page.
+          </p>
+        </section>
+
+        <section id="faq-subscribe" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">How to subscription</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            Subscribe using the <em>Stay Updated</em> form in the footer of any page. Enter your email address and press
+            Subscribe. You will be added to the newsletter list and notified whenever new projects or blog posts are published.
+          </p>
+          <ul class="list-disc space-y-2 text-slate-300 text-sm">
+            <li>No spam — only project and blog announcements.</li>
+            <li>Unsubscribe anytime by contacting info@akashnagapure.in.</li>
+            <li>Your email is stored securely and never shared with third parties.</li>
+          </ul>
+        </section>
+
+        <section id="faq-properties" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">Properties</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            Each blog article includes a category badge, a publish date, and a short summary. The badge color indicates
+            the technology family, so you can scan the grid quickly and find exactly the topic you are looking for.
+          </p>
+        </section>
+
+        <section id="faq-design" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">How to set Design Style</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            The site is theme-oriented by default with a dark glass aesthetic. If you prefer to set your own reading style,
+            use your browser's color/contrast settings, or drop a message in the discussion section with your feedback —
+            the design is continuously refined based on visitor input.
+          </p>
+        </section>
+
+        <section id="faq-mockup" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">How to use Mock up</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            The flip-card layouts throughout the site (projects, puzzles, labs) act as interactive mockups: click any card
+            to flip it and reveal the step-by-step blueprint, architecture approach, or solution model on the back.
+          </p>
+        </section>
+
+        <section id="faq-preview" class="faq-section-card glass-card-3d p-6 sm:p-8 rounded-2xl">
+          <h2 class="font-sans text-2xl font-bold text-white mb-5">Preview</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-5">
+            New articles and lab releases are previewed on the homepage and announced through the newsletter.
+            Check the <a href="/changelog.html" class="text-sky-400 underline hover:text-sky-300 transition-colors">Changelog</a>
+            for the full release history and upcoming roadmap.
+          </p>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Still have questions? Use the discussion forms or write to
+            <a href="mailto:info@akashnagapure.in" class="text-sky-400 underline hover:text-sky-300 transition-colors">info@akashnagapure.in</a>.
+          </p>
+        </section>
+
+      </article>
+
+    </div>
+  </section>
+</main>
