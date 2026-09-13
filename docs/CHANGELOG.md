@@ -14,6 +14,11 @@ https://www.akashnagapure.in/changelog.html
 Code quality improvements, bug fixes, and comprehensive project documentation.
 
 ### Fixed
+- **All 36 HTML files**: Removed redundant "Akash Nagapure" text from footer. The name now appears only once in the copyright line, eliminating duplication with the logo alt text.
+- **FAQ page**: Fixed broken footer structure — removed misplaced `</main>` tag that was after `</html>`, added proper `</main>` before footer to ensure full-width display.
+- **Projects page**: Removed standalone "STAY UPDATED — NEWSLETTER" section (duplicate subscribe form). The footer subscribe form is now the single subscription point.
+- **Footer template** (`footer-template.html`): Updated to remove redundant name text.
+- **sitemap.xml**: Added missing FAQ page entry.
 - **`vote-manager.js`**: Removed broken dead-code block (lines 46–49) that
   compared a stored user ID against a freshly-generated random string —
   the comparison could never evaluate to `true`, so `clearAllVotes()` was
