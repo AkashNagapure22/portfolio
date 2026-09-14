@@ -1,4 +1,4 @@
-name: Deploy Portfolio
+﻿name: Deploy Portfolio
 
 # Controls when the workflow will run
 on:
@@ -21,6 +21,10 @@ jobs:
       with:
         node-version: '20'
 
+    # 2b. Guard: fail the deploy if any page contains mojibake
+    - name: Check HTML Encoding
+      shell: pwsh
+      run: ./tools/check-encoding.ps1
     # 3. Install dependencies with native Linux binding & build project
     - name: Install Dependencies & Build
       run: |

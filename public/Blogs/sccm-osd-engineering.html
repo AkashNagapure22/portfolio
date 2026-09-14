@@ -904,7 +904,7 @@
   });
 </script>
 
-<footer class="w-full bg-slate-950/30 border-t border-sky-500/20 relative z-10 backdrop-blur-md">
+<footer class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
             <div class="footer-col">
@@ -946,7 +946,7 @@
             <div class="footer-col subscribe-col col-span-2 md:col-span-4 lg:col-span-1">
                 <h3 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Stay Updated</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">Get notified about new projects, blog posts, and updates.</p>
-                <form class="footer-subscribe-form" onsubmit="event.preventDefault(); handleFooterSubscribe(this);">
+                <form id="footer-subscribe-form" class="footer-subscribe-form">
                     <input type="email" placeholder="Your email address" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none mb-2" />
                     <button type="submit" class="w-full px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm rounded-lg transition-all">Subscribe</button>
                 </form>
@@ -954,9 +954,12 @@
         </div>
         <hr class="border-slate-800 mb-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-            <a href="https://www.akashnagapure.in" class="flex items-center group" aria-label="Akash Nagapure Home">
+            <a href="https://www.akashnagapure.in" class="flex items-center gap-3 group" aria-label="Akash Nagapure Home">
                 <div class="h-9 w-9 flex items-center justify-center shrink-0">
                     <img src="/Main_page_data/Logo.avif" alt="Akash Nagapure Logo" width="36" height="36" loading="lazy" class="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">Akash Nagapure</span>
                 </div>
             </a>
             <p class="text-slate-500 text-sm">&copy; 2026 Akash Nagapure. All Rights Reserved.</p>
@@ -969,6 +972,7 @@
         </div>
     </div>
 </footer>
+
 <!-- Cookie Consent Banner -->
 <div id="cookie-banner" class="cookie-banner">
     <div class="cookie-content">
@@ -983,150 +987,8 @@
         <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
-<style>
-.cookie-banner{position:fixed;bottom:0;left:0;width:100%;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);border-top:2px solid #38bdf8;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 -4px 20px rgba(0,0,0,0.5);z-index:99999;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;transform:translateY(100%);transition:transform 0.4s ease}
-.cookie-banner.show{transform:translateY(0)}
-.cookie-content{display:flex;align-items:center;gap:16px}
-.cookie-icon{font-size:28px;color:#38bdf8}
-.cookie-text p{font-size:13px;color:#94a3b8;margin:0 0 4px 0;line-height:1.4}
-.cookie-text a{font-size:13px;font-weight:600;color:#ea580c;text-decoration:none}
-.cookie-text a:hover{text-decoration:underline}
-.cookie-actions{display:flex;gap:10px;flex-shrink:0}
-.btn{padding:8px 18px;font-size:13px;font-weight:500;border-radius:6px;cursor:pointer;border:none;transition:all 0.2s}
-.btn-decline{background:#1e293b;color:#94a3b8;border:1px solid #334155}
-.btn-decline:hover{background:#334155}
-.btn-accept{background:#38bdf8;color:#fff}
-.btn-accept:hover{background:#0ea5e9}
-@media(max-width:640px){.cookie-banner{flex-direction:column;text-align:center;padding:12px}.cookie-content{flex-direction:column;gap:8px}.cookie-actions{width:100%;justify-content:center}}
-</style>
-<script>
-// Cookie consent handling (non-essential cookies stored only when accepted)
-document.addEventListener('DOMContentLoaded', function () {
-  var cookieBanner = document.getElementById('cookie-banner');
-  var acceptBtn = document.getElementById('accept-cookies-btn');
-  var denyBtn = document.getElementById('deny-cookies-btn');
 
-  // Check if a preference was already saved
-  var consent = localStorage.getItem('cookieConsent') || localStorage.getItem('cookie_consent');
-  if (consent) {
-    if (cookieBanner) cookieBanner.style.display = 'none';
-    if (consent === 'accepted') {
-      enableNonEssentialCookies();
-    } else {
-      blockNonEssentialCookies();
-    }
-  } else if (cookieBanner) {
-    setTimeout(function () { cookieBanner.classList.add('show'); }, 1000);
-  }
 
-  // Handle Accept click - store non-essential cookies
-  if (acceptBtn && cookieBanner) {
-    acceptBtn.addEventListener('click', function () {
-      localStorage.setItem('cookieConsent', 'accepted');
-      cookieBanner.style.opacity = '0';
-      cookieBanner.style.transition = 'opacity 0.3s ease';
-      setTimeout(function () { cookieBanner.style.display = 'none'; }, 300);
-      enableNonEssentialCookies();
-    });
-  }
-
-  // Handle Deny click - do not store non-essential cookies
-  if (denyBtn && cookieBanner) {
-    denyBtn.addEventListener('click', function () {
-      localStorage.setItem('cookieConsent', 'denied');
-      cookieBanner.style.opacity = '0';
-      cookieBanner.style.transition = 'opacity 0.3s ease';
-      setTimeout(function () { cookieBanner.style.display = 'none'; }, 300);
-      blockNonEssentialCookies();
-    });
-  }
-});
-
-function enableNonEssentialCookies() {
-  document.cookie = 'non_essential_consent=accepted; path=/; max-age=31536000; SameSite=Lax';
-  console.log('Cookies accepted: Non-essential cookies stored.');
-}
-
-function blockNonEssentialCookies() {
-  document.cookie = 'non_essential_consent=; path=/; max-age=0; SameSite=Lax';
-  console.log('Cookies denied: Non-essential cookies not stored.');
-}
-function showToast(msg, type) {
-  var toast = document.getElementById('subscribe-toast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'subscribe-toast';
-    toast.setAttribute('role', 'status');
-    toast.setAttribute('aria-live', 'polite');
-    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:99999;max-width:340px;padding:14px 18px;border-radius:12px;font-family:JetBrains Mono,monospace;font-size:13px;line-height:1.4;color:#fff;box-shadow:0 12px 35px rgba(0,0,0,.55);opacity:0;transform:translateY(12px);transition:opacity .3s ease,transform .3s ease;pointer-events:none;display:flex;align-items:center;gap:10px;';
-    document.body.appendChild(toast);
-  }
-  var colors = { success: 'linear-gradient(135deg,#065f46,#0ea5e9)', warn: 'linear-gradient(135deg,#78350f,#d97706)', error: 'linear-gradient(135deg,#7f1d1d,#ef4444)' };
-  var icons = { success: '\u2713', warn: '\u24d8', error: '\u2715' };
-  toast.style.background = colors[type] || colors.success;
-  toast.innerHTML = '<span style="font-size:16px">' + (icons[type] || icons.success) + '</span><span>' + msg + '</span>';
-  requestAnimationFrame(function() { toast.style.opacity = '1'; toast.style.transform = 'translateY(0)'; });
-  clearTimeout(toast._t);
-  toast._t = setTimeout(function() { toast.style.opacity = '0'; toast.style.transform = 'translateY(12px)'; }, 3800);
-}
-function handleFooterSubscribe(form) {
-  var emailInput = form.querySelector('input[type="email"]');
-  var email = emailInput.value.trim();
-  var btn = form.querySelector('button');
-  if (!email) { showToast('Please enter your email address.', 'warn'); return; }
-  btn.textContent = 'Subscribing...';
-  btn.disabled = true;
-  fetch('/api/subscribe', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email })
-  })
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    if (data.success && data.alreadySubscribed) {
-      showToast('You are already subscribed with ' + email + '!', 'warn');
-      btn.textContent = 'Already Subscribed';
-      emailInput.value = '';
-      setTimeout(function() { btn.textContent = 'Subscribe'; }, 3500);
-    } else if (data.success) {
-      showToast('Subscribed successfully! Welcome aboard!', 'success');
-      btn.textContent = 'Subscribed!';
-      emailInput.value = '';
-      setTimeout(function() { btn.textContent = 'Subscribe'; }, 3000);
-    } else {
-      showToast(data.error || 'Subscription failed. Please try again.', 'error');
-      btn.textContent = 'Failed';
-      setTimeout(function() { btn.textContent = 'Subscribe'; }, 2500);
-    }
-  })
-  .catch(function(err) {
-    showToast('Network error - could not subscribe. Try again.', 'error');
-    btn.textContent = 'Error';
-    setTimeout(function() { btn.textContent = 'Subscribe'; }, 2500);
-  })
-  .finally(function() { btn.disabled = false; });
-}
-</script><script>
-(function () {
-  if (window.__cookieAckInit) return;
-  window.__cookieAckInit = true;
-  function ack(msg, type) {
-    if (typeof showToast === 'function') { showToast(msg, type); return; }
-    alert(msg);
-  }
-  var acceptBtn = document.getElementById('accept-cookies-btn');
-  var denyBtn = document.getElementById('deny-cookies-btn');
-  if (acceptBtn) {
-    acceptBtn.addEventListener('click', function () {
-      ack('Preferences saved - cookies accepted. Thank you!', 'success');
-    }, true);
-  }
-  if (denyBtn) {
-    denyBtn.addEventListener('click', function () {
-      ack('Preferences saved - only essential cookies will be used.', 'warn');
-    }, true);
-  }
-})();
-</script>
+<script src="/assets/js/footer-common.js"></script>
 </body>
 </html>
