@@ -1,7 +1,6 @@
 /* ============================================================
    footer-common.js — single source of truth for footer behaviour
    (toast notifications, newsletter subscribe, cookie consent)
-   Loaded by every page via <script src="/assets/js/footer-common.js"></script>
    ============================================================ */
 (function () {
   'use strict';
@@ -64,7 +63,12 @@
   /* ---------------- Cookie consent ---------------- */
   var COOKIE_KEY = 'cookie_consent';
 
-    function injectCookieCss() {
+  function safeStorage(key, value) {
+    try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); }
+    catch (e) { /* storage unavailable */ }
+  }
+
+  function injectCookieCss() {
     if (document.getElementById('footer-common-cookie-css')) return;
     var css = document.createElement('style');
     css.id = 'footer-common-cookie-css';
@@ -117,26 +121,21 @@
     var acceptBtn = document.getElementById('accept-cookies-btn');
     var denyBtn = document.getElementById('deny-cookies-btn');
 
-    /* Clone-replace buttons: sheds any legacy duplicate listeners */
-    if (acceptBtn) { var a2 = acceptBtn.cloneNode(true); acceptBtn.parentNode.replaceChild(a2, acceptBtn); acceptBtn = a2; }
-    if (denyBtn) { var d2 = denyBtn.cloneNode(true); denyBtn.parentNode.replaceChild(d2, denyBtn); denyBtn = d2; }
-
-    var consent = null;
-    try { consent = localStorage.getItem(COOKIE_KEY); } catch (e) { /* storage unavailable */ }
+    var consent = safeStorage(COOKIE_KEY);
 
     if (consent && banner) { banner.style.display = 'none'; }
     else if (banner) { setTimeout(function () { banner.classList.add('show'); }, 1000); }
 
     if (acceptBtn) {
       acceptBtn.addEventListener('click', function () {
-        try { localStorage.setItem(COOKIE_KEY, 'accepted'); } catch (e) { }
+        safeStorage(COOKIE_KEY, 'accepted');
         if (banner) hideBanner(banner);
         showToast('Preferences saved - cookies accepted. Thank you!', 'success');
       });
     }
     if (denyBtn) {
       denyBtn.addEventListener('click', function () {
-        try { localStorage.setItem(COOKIE_KEY, 'denied'); } catch (e) { }
+        safeStorage(COOKIE_KEY, 'denied');
         if (banner) hideBanner(banner);
         showToast('Preferences saved - only essential cookies will be used.', 'warn');
       });
