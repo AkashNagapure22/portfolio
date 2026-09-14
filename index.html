@@ -2290,7 +2290,29 @@ function blockNonEssentialCookies() {
   document.cookie = 'non_essential_consent=; path=/; max-age=0; SameSite=Lax';
   console.log('Cookies denied: Non-essential cookies not stored.');
 }
-</script></body>
+</script><script>
+(function () {
+  if (window.__cookieAckInit) return;
+  window.__cookieAckInit = true;
+  function ack(msg, type) {
+    if (typeof showToast === 'function') { showToast(msg, type); return; }
+    alert(msg);
+  }
+  var acceptBtn = document.getElementById('accept-cookies-btn');
+  var denyBtn = document.getElementById('deny-cookies-btn');
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', function () {
+      ack('Preferences saved - cookies accepted. Thank you!', 'success');
+    }, true);
+  }
+  if (denyBtn) {
+    denyBtn.addEventListener('click', function () {
+      ack('Preferences saved - only essential cookies will be used.', 'warn');
+    }, true);
+  }
+})();
+</script>
+</body>
 </html>
 
 
