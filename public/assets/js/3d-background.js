@@ -147,6 +147,8 @@
         requestAnimationFrame(animate);
         if (!visible) return;
         var t = clock.getElapsedTime();
+        /* colour effect: particles drift cyan -> violet -> cyan */
+        if (mat) { mat.color.setHSL(0.55 + 0.10 * Math.sin(t * 0.12), 0.85, 0.62); }
         targetX += (mouseX - targetX) * 0.04;
         targetY += (mouseY - targetY) * 0.04;
         points.rotation.y = t * 0.015 + targetX;

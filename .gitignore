@@ -206,7 +206,7 @@ docs/*
 !.github/
 !api/subscribe.js
 
-# Template system (footer + cookie + 3D background). Must ship to production.
+# Template system (footer + cookie + 3D background + effects). Must ship to production.
 !template/
 !template/footer-template.html
 !template/3d-background-template.html
@@ -217,6 +217,9 @@ docs/*
 !public/assets/js/footer-common.js
 !public/assets/js/3d-background.js
 !public/assets/js/template-loader.js
+!public/assets/js/site-effects.js
+!public/assets/css/
+!public/assets/css/site-effects.css
 !tools/
 !tools/apply-templates.mjs
 

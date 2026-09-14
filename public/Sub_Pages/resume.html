@@ -603,6 +603,10 @@
 
 
 
+
+
+
+
 <div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
 
 
@@ -1625,20 +1629,24 @@
     </div>
 </footer>
 
-<!-- Cookie Consent Banner (part of footer template so it ships with every page) -->
+<!-- Cookie Consent Banner — compact square card, bottom-right -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
-    <div class="cookie-content">
-        <div class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></div>
-        <div class="cookie-text">
-            <p>By clicking &quot;Accept all cookies&quot; you consent to cookies being stored on your device to improve website functionality and analyze site usage.</p>
-            <a href="https://www.akashnagapure.in/privacy.html">Read Our Data Policy <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i></a>
-        </div>
+    <div class="cookie-head">
+        <span class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></span>
+        <strong class="cookie-title">We value your privacy</strong>
+    </div>
+    <div class="cookie-text">
+        <p>By clicking &quot;Accept all cookies&quot; you consent to cookies being stored on your device to improve website functionality and analyze site usage.</p>
+        <a href="https://www.akashnagapure.in/privacy.html">Read Our Data Policy <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
     </div>
     <div class="cookie-actions">
         <button id="deny-cookies-btn" type="button" class="btn btn-decline">Decline</button>
         <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
+
+
+
 
 
 
@@ -1779,6 +1787,10 @@
 <script src="/assets/js/3d-background.js" defer></script>
 
 <script src="/assets/js/template-loader.js" defer></script>
+
+<link rel="stylesheet" href="/assets/css/site-effects.css">
+
+<script src="/assets/js/site-effects.js" defer></script>
 </body>
 </html>
 

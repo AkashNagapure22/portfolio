@@ -16,6 +16,8 @@ const THREE_CDN = '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/
 const BG_JS_TAG = '<script src="/assets/js/3d-background.js" defer></script>';
 const COMMON_JS_TAG = '<script src="/assets/js/footer-common.js" defer></script>';
 const LOADER_TAG = '<script src="/assets/js/template-loader.js" defer></script>';
+const FX_CSS_TAG = '<link rel="stylesheet" href="/assets/css/site-effects.css">';
+const FX_JS_TAG = '<script src="/assets/js/site-effects.js" defer></script>';
 
 /* Find a block <tag ...>...</tag>, optionally requiring id="...". Returns {start,end} or null. */
 function findBlock(html, tag, id) {
@@ -241,6 +243,8 @@ function patchTwo(file) {
   ensureOnce(BG_JS_TAG);
   ensureOnce(COMMON_JS_TAG);
   ensureOnce(LOADER_TAG);
+  ensureOnce(FX_CSS_TAG);
+  ensureOnce(FX_JS_TAG);
   // 8) Repair pages where </main> came AFTER footer: move stray </main> before footer
   const mainClose = html.search(/<\/main\s*>/i);
   const footerOpen = html.search(/<footer\b/i);
