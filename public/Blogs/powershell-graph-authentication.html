@@ -202,7 +202,7 @@
 
         <section id="section-2" class="searchable-block scroll-mt-28 space-y-4 pb-4 border-b border-white/10">
           <h2 class="text-xl sm:text-2xl font-bold text-white border-l-4 border-teal-400 pl-4">Scope and protect access</h2>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Grant only the Graph permissions required by the query or mutation. Record consent, rotate credentials through the platformÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢s secret store, and keep client secrets out of source control and transcripts.</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">Grant only the Graph permissions required by the query or mutation. Record consent, rotate credentials through the platform’s secret store, and keep client secrets out of source control and transcripts.</p>
           <div class="bg-slate-900/80 p-4 sm:p-5 border border-slate-800 rounded-xl font-mono text-xs overflow-x-auto shadow-inner space-y-1">
             <code>Connect-MgGraph -TenantId <span class="text-teal-400">$TenantId</span> -ClientId <span class="text-teal-400">$ClientId</span> -CertificateThumbprint <span class="text-teal-400">$Thumbprint</span> -NoWelcome</code><br>
             <code>Get-MgContext | Select-Object TenantId, ClientId, Scopes</code>
