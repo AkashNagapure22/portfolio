@@ -155,8 +155,119 @@
 
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
+<!-- Canonical 3D animation background (square effect + mouse effect).
+     Source of truth: /template/3d-background-template.html
+     Behaviour: /assets/js/3d-background.js (auto self-heals if canvases/scripts missing)
+     Applied to ALL pages via tools/apply-templates.mjs + /assets/js/template-loader.js -->
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <header class="fixed top-0 w-full z-50 bg-slate-950/30 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -428,7 +539,7 @@
   let isPageVisible = true;
   const isMobile = window.innerWidth < 768;
 
-  function init3DBackground() {
+  function __legacy_init3DBackground_DISABLED() {
     const canvas = document.getElementById('three-bg-canvas');
     if (!canvas) return;
 
@@ -497,7 +608,7 @@
   }
 
   const clock = new THREE.Clock();
-  function animate3DBackground() {
+  function __legacy_animate3DBackground_DISABLED() {
     requestAnimationFrame(animate3DBackground);
     if (!isPageVisible) return;
 
@@ -535,7 +646,7 @@
     }
   }
 
-  function initCursorTrail() {
+  function __legacy_initCursorTrail_DISABLED() {
     const canvas = document.getElementById('cursor-trail-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -908,15 +1019,16 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) lucide.createIcons();
-    init3DBackground();
-    animate3DBackground();
-    initCursorTrail();
+    void 0
+    void 0
+    void 0
     loadComments();
     loadVoteStats();
   });
 </script>
 
-<footer class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
+<!-- Canonical footer - source of truth (footer + cookie). Behaviour: /assets/js/footer-common.js. Runtime upgrade: /assets/js/template-loader.js -->
+<footer id="site-footer" class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
             <div class="footer-col">
@@ -958,8 +1070,8 @@
             <div class="footer-col subscribe-col col-span-2 md:col-span-4 lg:col-span-1">
                 <h3 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Stay Updated</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">Get notified about new projects, blog posts, and updates.</p>
-                <form id="footer-subscribe-form" class="footer-subscribe-form">
-                    <input type="email" placeholder="Your email address" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none mb-2" />
+                <form id="footer-subscribe-form" class="footer-subscribe-form" onsubmit="event.preventDefault(); if (window.handleFooterSubscribe) window.handleFooterSubscribe(this);">
+                    <input type="email" name="email" aria-label="Your email address" placeholder="Your email address" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none mb-2" />
                     <button type="submit" class="w-full px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm rounded-lg transition-all">Subscribe</button>
                 </form>
             </div>
@@ -985,12 +1097,12 @@
     </div>
 </footer>
 
-<!-- Cookie Consent Banner -->
-<div id="cookie-banner" class="cookie-banner">
+<!-- Cookie Consent Banner (part of footer template so it ships with every page) -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
     <div class="cookie-content">
-        <div class="cookie-icon"><i class="fa-solid fa-cookie"></i></div>
+        <div class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></div>
         <div class="cookie-text">
-            <p>By clicking "Accept all cookies" you consent to cookies being stored on your device to improve website functionality and analyze site usage.</p>
+            <p>By clicking &quot;Accept all cookies&quot; you consent to cookies being stored on your device to improve website functionality and analyze site usage.</p>
             <a href="https://www.akashnagapure.in/privacy.html">Read Our Data Policy <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i></a>
         </div>
     </div>
@@ -1001,6 +1113,91 @@
 </div>
 
 
-<script src="/assets/js/footer-common.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/assets/js/footer-common.js" defer></script>
+
+<script src="/assets/js/3d-background.js" defer></script>
+
+<script src="/assets/js/template-loader.js" defer></script>
 </body>
 </html>
