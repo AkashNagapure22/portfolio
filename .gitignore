@@ -226,6 +226,7 @@ docs/*
 !tools/check-encoding.ps1
 !tools/projects-guard.mjs
 !tools/projects-guard.test.mjs
+!tools/flip-cards.test.mjs
 !tools/projects-baseline.html
 !tools/install-guard-hooks.ps1
 

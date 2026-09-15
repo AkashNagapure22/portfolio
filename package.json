@@ -12,7 +12,8 @@
         "sync": "node scripts/auto-sync.mjs --once",
         "projects:check": "node tools/projects-guard.mjs",
         "projects:accept": "node tools/projects-guard.mjs --accept",
-        "test:guard": "node tools/projects-guard.test.mjs"
+        "test:guard": "node tools/projects-guard.test.mjs",
+        "test:flip": "node tools/flip-cards.test.mjs"
     },
     "dependencies": {
         "@google/genai": "^2.4.0",

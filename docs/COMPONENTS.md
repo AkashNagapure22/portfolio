@@ -41,8 +41,24 @@
 - Only one card open at a time (others auto-reset)
 
 ### Hobbies
-- Grid of hobby cards linking to subdomains
+- Landing page: grid of hobby cards linking to subdomains
 - Each card: image + label + external link
+- Hobby sub-pages (`Food`, `courses`, `Coins`, `Puzzle`) use click-to-flip
+  tiles with the same behaviour as the landing-page project cards:
+  - a tile rotates **only when clicked** — hovering never rotates it
+  - opening a tile returns every other tile on the page to its original
+    position, so at most one tile is open at a time
+- Behaviour: `public/assets/js/flip-cards.js` (`window.toggleHobbyFlip`),
+  loaded by the four flip pages. It handles all three class conventions:
+  `.flip-card` + `.flipped` (Food), `.flip-card-container` + `.is-flipped`
+  (courses), `.inventory-flip-card` + `.flipped` (Coins, Puzzle).
+  The 3D rotation itself stays in each page's CSS; the script only decides
+  which tile is open. Without the script the tiles still render (never rotate).
+- `public/assets/js/site-effects.js` skips flip tiles entirely, so the shared
+  scroll-reveal and pointer-tilt transforms cannot fight the flip transform
+  (an inline transform on `.flip-card-inner` would beat the `flipped` rule).
+- Tests: `npm run test:flip` drives the behaviour through an in-process DOM stub
+  and statically verifies all four pages.
 
 ### Contact (Terminal Form)
 - Styled as "MAILBOX_TERMINAL" with terminal icon
