@@ -24,20 +24,6 @@
   }
 
   ready(function () {
-    /* ---------- scroll progress bar ---------- */
-    var bar = document.createElement('div');
-    bar.className = 'fx-progress';
-    document.body.appendChild(bar);
-    function onScroll() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      var y = window.pageYOffset || h.scrollTop || 0;
-      bar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    onScroll();
-
     var main = document.querySelector('main') || document.body;
 
     /* ---------- text colour effect: shimmer every gradient headline ---------- */
