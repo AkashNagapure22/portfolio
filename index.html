@@ -82,13 +82,7 @@
       gap: 0.5rem; padding: 0.625rem 1rem; border-radius: 9999px;
       font-weight: 700; font-size: 0.875rem; line-height: 1.25rem;
     }
-    /* — Usability #12: anchor orbit labels to a shared circular path — */
-    .orbit-ring { position: relative; }
-    .orbit-ring::before {
-      content: ""; position: absolute; inset: 56px; border-radius: 9999px;
-      border: 1px dashed rgba(148, 163, 184, 0.35); pointer-events: none;
-    }
-    @media (max-width: 640px) { .orbit-ring::before { inset: 38px; } }
+    /* — Usability #12: core values float freely — dashed orbit ring removed — */
     /* — Usability #13: visible, higher-contrast terminal inputs — */
     .tech-input { border-bottom-color: rgba(148, 163, 184, 0.55); }
     .tech-input:hover { border-bottom-color: rgba(125, 211, 252, 0.8); }
@@ -252,7 +246,7 @@
     .animate-ticker {
       display: flex;
       width: 200%;
-      animation: tickerScroll 30s linear infinite;
+      animation: tickerScroll 60s linear infinite;
     }
     .animate-ticker:hover {
       animation-play-state: paused;
