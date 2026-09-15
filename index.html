@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -406,127 +406,8 @@
 
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-[100dvh] w-full">
 
-<!-- Canonical 3D animation background (square effect + mouse effect).
-     Source of truth: /template/3d-background-template.html
-     Behaviour: /assets/js/3d-background.js (auto self-heals if canvases/scripts missing)
-     Applied to ALL pages via tools/apply-templates.mjs + /assets/js/template-loader.js -->
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <header id="main-header" class="site-header">
   <div class="w-full overflow-hidden bg-slate-950/60 backdrop-blur-md py-2 px-4 text-[11px] font-mono border-b border-sky-500/10">
@@ -722,14 +603,12 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
-          <!-- Interactive Light Switch Component using correct relative public asset paths -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
                   <div id="about-me-image" class="interactive-image">
                       <div class="glow-light"><span></span></div>
                       
-                      <!-- Main Image: Light Off / Light On toggle with valid relative paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="./Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
                       <button class="light-switch" title="Turn on the lamp"></button>
@@ -758,8 +637,7 @@
                   </figcaption>
               </figure>
           </div>
-          <!-- End Interactive Light Switch Component -->
-        </div>
+          </div>
       </div>
 
     </div>
@@ -1225,7 +1103,6 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Project 1 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1269,7 +1146,6 @@
           </div>
         </div>
 
-        <!-- Project 2 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1313,7 +1189,6 @@
           </div>
         </div>
 
-        <!-- Project 3 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1357,7 +1232,6 @@
           </div>
         </div>
 
-        <!-- Project 4 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1401,7 +1275,6 @@
           </div>
         </div>
 
-        <!-- Project 5 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1445,7 +1318,6 @@
           </div>
         </div>
 
-        <!-- Project 6 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1674,8 +1546,6 @@
   </section>
 
 </main>
-
-
 
 <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/85 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110 cursor-pointer" aria-label="Scroll Back To Top">
   <i data-lucide="arrow-up" class="w-4 h-4"></i>
@@ -2127,9 +1997,6 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
-    void 0
-    void 0
-    void 0
     typeWriterEffect();
     startSequence();
 
@@ -2141,7 +2008,6 @@
       }
     }, 500);
 
-    // Interactive Light Switch Component with persistent multi-toggle support
     const clickMeTwinkle = document.querySelector("img.click-me-twinkle");
     const lightSwitchTwinkler = new Twinkler(clickMeTwinkle, [1000, 4000]);
     lightSwitchTwinkler.start();
@@ -2203,11 +2069,8 @@
         if (!lightSwitchTwinkler?.hasStarted && !hasLightBeenClicked) lightSwitchTwinkler.start();
     });
   });
-// Footer Newsletter Subscription Handler
-
 </script>
 
-<!-- Canonical footer - source of truth (footer + cookie). Behaviour: /assets/js/footer-common.js. Runtime upgrade: /assets/js/template-loader.js -->
 <footer id="site-footer" class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
@@ -2276,7 +2139,6 @@
     </div>
 </footer>
 
-<!-- Cookie Consent Banner — compact square card, bottom-right -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
     <div class="cookie-head">
         <span class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></span>
@@ -2292,104 +2154,10 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="/assets/js/footer-common.js" defer></script>
-
 <script src="/assets/js/3d-background.js" defer></script>
-
 <script src="/assets/js/template-loader.js" defer></script>
-
 <link rel="stylesheet" href="/assets/css/site-effects.css">
-
 <script src="/assets/js/site-effects.js" defer></script>
 </body>
 </html>
-
-
