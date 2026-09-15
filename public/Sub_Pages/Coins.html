@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -107,13 +107,13 @@
         -webkit-backdrop-filter: blur(25px);
         border: 1px solid rgba(56, 189, 248, 0.18);
         box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.85);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
+    /* Hover effect made static (removed translateY jitter) */
     .glass-card:hover {
         border-color: rgba(56, 189, 248, 0.45);
         box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.25);
-        transform: translateY(-2px);
     }
 
     .inventory-flip-card {
@@ -181,126 +181,8 @@
 </head>
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
-<!-- Canonical 3D animation background (square effect + mouse effect).
-     Source of truth: /template/3d-background-template.html
-     Behaviour: /assets/js/3d-background.js (auto self-heals if canvases/scripts missing)
-     Applied to ALL pages via tools/apply-templates.mjs + /assets/js/template-loader.js -->
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <header class="fixed top-0 w-full z-50 bg-slate-950/30 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.85)]">
     <div class="flex items-center justify-between px-4 sm:px-8 md:px-margin-desktop py-3.5 max-w-container-max mx-auto gap-4">
@@ -1577,8 +1459,6 @@
 
 </main>
 
-
-
 <script>
     // 1. THREE.JS 3D STAR FIELD & PARTICLES ENGINE
     let scene, camera, renderer, starField, gridHelper, particlesGeo;
@@ -1975,21 +1855,12 @@
         return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
     }
 
-    // Footer Newsletter Subscription Handler
-    async 
-
-
     document.addEventListener('DOMContentLoaded', () => {
         if (window.lucide) lucide.createIcons();
-        void 0
-        void 0
         loadComments();
     });
 </script>
 
-
-
-<!-- Canonical footer - source of truth (footer + cookie). Behaviour: /assets/js/footer-common.js. Runtime upgrade: /assets/js/template-loader.js -->
 <footer id="site-footer" class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
@@ -2058,7 +1929,6 @@
     </div>
 </footer>
 
-<!-- Cookie Consent Banner — compact square card, bottom-right -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
     <div class="cookie-head">
         <span class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></span>
@@ -2074,102 +1944,10 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="/assets/js/footer-common.js" defer></script>
-
 <script src="/assets/js/3d-background.js" defer></script>
-
 <script src="/assets/js/template-loader.js" defer></script>
-
 <link rel="stylesheet" href="/assets/css/site-effects.css">
-
 <script src="/assets/js/flip-cards.js" defer></script>
 <script src="/assets/js/site-effects.js" defer></script>
 </body>
