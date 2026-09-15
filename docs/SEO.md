@@ -8,7 +8,7 @@
 | `<meta name="description">` | Portfolio of Akash Nagapure - Enterprise Fleet Architect specializing in Microsoft Intune, SCCM, and VMware virtualization. |
 | `<meta name="title">` | Akash Nagapure \| Microsoft Intune, SCCM & VMware Architect |
 | `<link rel="canonical">` | https://www.akashnagapure.in/ |
-| `<link rel="icon">` | `/Main_page_data/Logo.avif` (AVIF format) |
+| `<link rel="icon">` | `/Main_page_data/Logo.gif` (GIF format) |
 
 ## Open Graph (og:)
 

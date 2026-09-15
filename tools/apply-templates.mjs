@@ -121,7 +121,7 @@ function patchOne(file) {
         '  <div class="max-w-7xl mx-auto flex items-center justify-between">\n' +
         '    <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-sky-400 hover:text-white transition-colors">\n' +
         '      <span class="w-10 h-10 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center overflow-hidden shadow-md">\n' +
-        '        <img src="/Main_page_data/Logo.avif" alt="Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src=\'/Main_page_data/placeholder.gif\';" />\n' +
+        '        <img src="/Main_page_data/Logo.gif" alt="Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src=\'/Main_page_data/placeholder.gif\';" />\n' +
         '      </span>\n' +
         '      <span class="flex flex-col">\n' +
         '        <strong class="font-sans font-extrabold text-white text-sm sm:text-base tracking-tight">Akash Nagapure</strong>\n' +

@@ -8,15 +8,15 @@
   "theme_color": "#020617",
   "icons": [
     {
-      "src": "/Main_page_data/Logo.avif",
+      "src": "/Main_page_data/Logo.gif",
       "sizes": "192x192",
-      "type": "image/avif",
+      "type": "image/gif",
       "purpose": "any maskable"
     },
     {
-      "src": "/Main_page_data/Logo.avif",
+      "src": "/Main_page_data/Logo.gif",
       "sizes": "512x512",
-      "type": "image/avif",
+      "type": "image/gif",
       "purpose": "any maskable"
     }
   ]
