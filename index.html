@@ -603,12 +603,14 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center relative w-full max-w-sm sm:max-w-md mx-auto">
+          <!-- Interactive Light Switch Component using correct relative public asset paths -->
           <div id="about-me" style="position: relative;">
               <audio id="click-sound" class="click-sound-elem" src="https://elliottprogrammer.com/audio/click.mp3" preload="auto"></audio>
               <figure>
                   <div id="about-me-image" class="interactive-image">
                       <div class="glow-light"><span></span></div>
                       
+                      <!-- Main Image: Light Off / Light On toggle with valid relative paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="./Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
                       <button class="light-switch" title="Turn on the lamp"></button>
@@ -637,7 +639,8 @@
                   </figcaption>
               </figure>
           </div>
-          </div>
+          <!-- End Interactive Light Switch Component -->
+        </div>
       </div>
 
     </div>
@@ -1103,6 +1106,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
+        <!-- Project 1 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1146,6 +1150,7 @@
           </div>
         </div>
 
+        <!-- Project 2 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1189,6 +1194,7 @@
           </div>
         </div>
 
+        <!-- Project 3 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1232,6 +1238,7 @@
           </div>
         </div>
 
+        <!-- Project 4 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1275,6 +1282,7 @@
           </div>
         </div>
 
+        <!-- Project 5 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1318,6 +1326,7 @@
           </div>
         </div>
 
+        <!-- Project 6 -->
         <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
@@ -1448,7 +1457,8 @@
   </div>
   </section>
 
-  <section id="contact" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12 relative">
+  <!-- Updated section padding from py-16 sm:py-24 to pt-16 pb-8 sm:pb-12 to remove dead space above footer -->
+  <section id="contact" class="section-seamless pt-16 pb-8 sm:pb-12 px-4 sm:px-8 lg:px-12 relative">
     <div class="max-w-7xl mx-auto">
       
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4 border-b border-sky-500/20 pb-6">
