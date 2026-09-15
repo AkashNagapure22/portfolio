@@ -16,7 +16,8 @@ $files = Get-ChildItem -Path $Root -Recurse -Include *.html |
   Where-Object { $_.FullName -notmatch '\\dist\\|\\node_modules\\' }
 $fail = 0
 foreach ($f in $files) {
-  $bytes = [System.IO.File]::ReadAllBytes($f.FullName)
+  try { $bytes = [System.IO.File]::ReadAllBytes($f.FullName) }
+  catch { Write-Output ('WARN ' + $f.FullName + ' could not be read (locked?) - skipped'); continue }
   $start = 0
   if ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) { $start = 3 }
   try { $text = $utf8.GetString($bytes[$start..($bytes.Length - 1)]) }

@@ -22,10 +22,18 @@ layer (dist/ + public/) for all HTML, images, and assets.
 ### Deployment (GitHub Actions to Vercel)
 1. Checkout repository
 2. Setup Node.js 20
-3. npm install
-4. npm install --os=linux --cpu=x64 @tailwindcss/oxide
-5. npm run build
-6. Vercel serves dist/, public/, api/, and middleware.js
+3. Guards: `tools/check-encoding.ps1` (mojibake scan across all HTML) and
+   `node tools/projects-guard.mjs` (frozen `#projects` section of index.html)
+4. npm install
+5. npm install --os=linux --cpu=x64 @tailwindcss/oxide
+6. npm run build
+7. Vercel serves dist/, public/, api/, and middleware.js
+
+### Protected Content
+The `#projects` section of `index.html` is frozen against a committed baseline
+(`tools/projects-baseline.html`). Any drift or mojibake fails the deploy.
+See `docs/PROJECTS-SECTION-GUARD.md` for the workflow and the intentional-change
+procedure (`npm run projects:accept`).
 
 ## Middleware Layer
 

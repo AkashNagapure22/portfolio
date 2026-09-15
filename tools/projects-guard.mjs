@@ -28,8 +28,12 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const argv = process.argv.slice(2);
 const flag = (...names) => names.some((n) => argv.includes(n));
 const value = (name, fallback) => {
-  const i = argv.indexOf(name);
-  return i !== -1 && argv[i + 1] ? argv[i + 1] : fallback;
+  const indices = argv.reduce((acc, a, i) => (a === name ? acc.concat(i) : acc), []);
+  if (indices.length > 1) {
+    console.error('[projects-guard] FAIL: ' + name + ' was given ' + indices.length + ' times');
+    process.exit(1);
+  }
+  return indices.length === 1 && argv[indices[0] + 1] ? argv[indices[0] + 1] : fallback;
 };
 
 const FILE = value('--file', join(ROOT, 'index.html'));
@@ -64,7 +68,8 @@ function readText(file) {
   if (!existsSync(file)) die('file not found: ' + file);
   const buf = readFileSync(file);
   try {
-    return new TextDecoder('utf-8', { fatal: true }).decode(buf);
+    // ignoreBOM keeps the U+FEFF so it can be detected (and re-emitted) losslessly
+    return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(buf);
   } catch {
     return die('not valid UTF-8: ' + relative(ROOT, file));
   }
@@ -118,18 +123,11 @@ function firstDiff(a, b) {
 }
 
 const target = readSection(FILE);
-const corruption = corruptionProblems(target.section);
-if (corruption.length) {
-  die('corrupted characters inside #projects:\n  - ' + corruption.join('\n  - ') +
-    '\n  use "node tools/projects-guard.mjs --heal" to restore the frozen baseline');
-}
-const structure = structureProblems(target.section);
-if (structure.length) {
-  die('#projects looks structurally broken:\n  - ' + structure.join('\n  - '));
-}
+const problems = [...corruptionProblems(target.section), ...structureProblems(target.section)];
 const current = stripEol(target.section);
 
 if (ACCEPT) {
+  if (problems.length) die('refusing to freeze a broken section as the baseline:\n  - ' + problems.join('\n  - '));
   writeFileSync(BASELINE, current + '\n', 'utf8');
   tag('baseline updated from ' + relative(ROOT, FILE) + ' → ' + relative(ROOT, BASELINE) + ' (' + current.length + ' chars)');
   tag('this is the only supported way to change the protected #projects section');
@@ -144,19 +142,21 @@ if (OVERRIDE) {
 if (!existsSync(BASELINE)) die('baseline missing: ' + relative(ROOT, BASELINE) + ' (create it once with: npm run projects:accept)');
 const baseline = stripEol(readText(BASELINE));
 
-if (baseline === current) {
+if (!problems.length && baseline === current) {
   tag('OK — ' + relative(ROOT, FILE) + ' #projects matches the frozen baseline');
   process.exit(0);
 }
 
 const offset = firstDiff(baseline, current);
-const report = '#projects drifted from the frozen baseline' +
-  '\n  baseline: ' + baseline.length + ' chars, file: ' + current.length + ' chars, first difference at offset ' + offset +
-  '\n  baseline: ' + snippet(baseline, offset) +
-  '\n  current : ' + snippet(current, offset);
+const report = problems.concat(baseline === current ? [] : [
+  '#projects drifted from the frozen baseline',
+  '  baseline: ' + baseline.length + ' chars, file: ' + current.length + ' chars, first difference at offset ' + offset,
+  '  baseline: ' + snippet(baseline, offset),
+  '  current : ' + snippet(current, offset),
+]);
 
 if (!HEAL) {
-  console.error('[projects-guard] FAIL: ' + report);
+  console.error('[projects-guard] FAIL: ' + report.join('\n'));
   console.error('[projects-guard] The #projects section is protected. If the change is intentional, run: npm run projects:accept');
   process.exit(1);
 }
@@ -164,6 +164,6 @@ if (!HEAL) {
 const restored = baseline.replace(/\n/g, target.eol);
 const healed = target.body.slice(0, target.start) + restored + target.body.slice(target.end);
 writeFileSync(FILE, (target.bom ? BOM : '') + healed, 'utf8');
-tag('WARNING: ' + report);
-tag('restored the frozen #projects section in ' + relative(ROOT, FILE) + ' from ' + relative(ROOT, BASELINE));
+tag('WARNING, restored the frozen #projects section in ' + relative(ROOT, FILE) + ' from ' + relative(ROOT, BASELINE) + ':');
+tag(report.join('\n'));
 process.exit(0);

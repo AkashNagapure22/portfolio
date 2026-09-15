@@ -11,10 +11,20 @@ https://www.akashnagapure.in/changelog.html
 ## [Unreleased] — v3.4.0
 
 ### Summary
+The frozen "Key Projects" section of `index.html` was restored after a
+CP437 round-trip corrupted it, and is now protected by a committed baseline,
+a guard script, a local pre-commit hook and a deploy-time check.
 Footer subscribe form wired to the database, cookie consent rewritten to honour
 accept/decline, and the `api/` folder un-ignored so serverless endpoints deploy.
 
 ### Fixed
+- **`index.html` — `#projects` section (mojibake)**: An unattended
+  PowerShell/Python read-write round-trip re-encoded the file in CP437, which
+  turned every `→` (UTF-8 `E2 86 92`) inside the six project cards into the
+  6-byte sequence `Î“Ã¥Ã†` (`CE 93 C3 A5 C3 86`). All six telemetry lines
+  rendered as garbage. The section was restored from commit `41ff402`
+  (`git checkout 41ff402 -- index.html`); the file is again byte-identical to
+  that revision apart from the intended content.
 - **`api/subscribe.js` was never deployed**: `.gitignore` line 196 contained
   the broad rule `api/*` with only `!api/comments.js`, `!api/contact.js`,
   `!api/projects.js`, and `!api/votes.js` as exceptions. `api/subscribe.js` was
@@ -47,6 +57,24 @@ accept/decline, and the `api/` folder un-ignored so serverless endpoints deploy.
   `</html>` tags) that caused the browser to discard the second half of the
   page. File truncated at the first well-formed end of document.
 
+### Added
+- **`tools/projects-guard.mjs`**: Diff-based guard for the frozen `#projects`
+  section of `index.html`. Compares the section against
+  `tools/projects-baseline.html`, rejects CP437/Windows-1252 mojibake and
+  broken card structure, prints the first differing offset, and can restore the
+  baseline (`--heal`) or re-freeze it after an intentional edit (`--accept`).
+  `--file`/`--baseline` allow testing against other copies. Exit 0 = matches.
+- **`tools/projects-baseline.html`**: Committed baseline of the frozen section
+  (newline-normalised, no BOM), whitelisted in `.gitignore`.
+- **`tools/install-guard-hooks.ps1`**: Installs `.git/hooks/pre-commit`, which
+  heals the section, re-stages the repair so the commit cannot record the
+  corrupted copy, and blocks the commit if the section cannot be repaired.
+- **`npm run projects:check` / `npm run projects:accept` / `npm run test:guard`**:
+  Scripts wrapping the guard's verify and re-freeze modes, plus the guard's
+  21-case regression suite (`tools/projects-guard.test.mjs`, runs in a temp dir).
+- **`docs/PROJECTS-SECTION-GUARD.md`**: Documents why the section is frozen,
+  what the guard checks, and the supported way to change it on purpose.
+
 ### Changed
 - **`docs/`**: ARCHITECTURE.md now documents the `subscribers` table, the
   `POST /api/subscribe` endpoint, the shared footer composition, and the
@@ -58,6 +86,13 @@ accept/decline, and the `api/` folder un-ignored so serverless endpoints deploy.
   `public/` and `index.html`.
 
 ### Verified
+- `node --check tools/projects-guard.mjs` passes
+- `node tools/projects-guard.mjs` reports the `#projects` section of
+  `index.html` as identical to `tools/projects-baseline.html` (6 clean `→`,
+  0 mojibake sequences, 82/82 balanced `<div>`, 6 flip cards)
+- Simulated drift, mojibake and broken-structure copies are all rejected
+  (exit 1); `--heal` restores each of them byte-for-byte; `--accept` refuses to
+  freeze a broken section
 - `node --check api/subscribe.js` passes
 - `npm run build` succeeds (dist/index.html 136.91 kB, bundle 0.71 kB)
 - 85 HTML files contain the new `accept-cookies-btn` handler; zero references
