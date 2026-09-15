@@ -21,6 +21,7 @@ same class of accident cannot reach a commit or a deployment again.
 | `index.html` | Holds the protected section. Only this one block is frozen. |
 | `tools/projects-baseline.html` | Committed copy of the frozen section (newline-normalised, no BOM). |
 | `tools/projects-guard.mjs` | The guard: verify / heal / accept. No dependencies. |
+| `tools/projects-guard.test.mjs` | 21-case regression suite for the guard (`npm run test:guard`). |
 | `tools/install-guard-hooks.ps1` | Installs the local `pre-commit` hook. |
 | `.github/workflows/deploy.yaml` | Runs `node tools/projects-guard.mjs` before the build, so drift fails the deploy. |
 
@@ -29,6 +30,7 @@ same class of accident cannot reach a commit or a deployment again.
 | Command | Effect |
 | --- | --- |
 | `npm run projects:check` | Verify only. Exit 0 when the section matches the baseline. |
+| `npm run test:guard` | Run the guard's regression suite (uses a temp dir, never touches the repo). |
 | `npm run projects:accept` | **Intentional** change: freeze the current section as the new baseline. |
 | `node tools/projects-guard.mjs --heal` | Verify, and if the section drifted, restore the baseline in `index.html`. Refuses an already-broken section. |
 | `node tools/projects-guard.mjs --file X --baseline Y` | Inspect another copy (used for testing). |
@@ -66,7 +68,9 @@ BOM that `index.html` uses.
 ## Local enforcement
 
 `powershell -NoProfile -ExecutionPolicy Bypass -File tools/install-guard-hooks.ps1`
-installs `.git/hooks/pre-commit`, which runs `--heal` followed by a strict
-verify: an accidental rewrite is reverted before the commit is created, and a
+installs `.git/hooks/pre-commit`, which runs `--heal`, then a strict verify, and
+finally re-stages `index.html` if the repair changed it — so a commit can never
+record the corrupted copy that was already staged when the hook started. A
 section that cannot be healed blocks the commit. The hook is local to this
-clone; GitHub Actions enforces the same check for everyone.
+clone; GitHub Actions enforces the same check for everyone (and additionally
+fails the deploy, so a bypassed hook is still caught before the site changes).
