@@ -562,7 +562,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap-6" id="puzzle-inventory-grid">
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleHobbyFlip(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -599,7 +599,7 @@
         </div>
       </div>
 
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleHobbyFlip(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -636,7 +636,7 @@
         </div>
       </div>
 
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleHobbyFlip(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -685,7 +685,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap-6" id="puzzle-teasers-grid">
-      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleFlipCard(this, event)">
+      <div class="inventory-flip-card cursor-pointer puzzle-search-item" onclick="toggleHobbyFlip(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d p-6 flex flex-col lg:flex-row gap-6 items-center">
             <div class="w-full lg:w-80 h-44 rounded-xl border border-sky-500/30 bg-slate-900/60 overflow-hidden shrink-0 relative flex items-center justify-center">
@@ -730,7 +730,7 @@
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6" id="puzzle-wishlist-grid">
-      <div class="inventory-flip-card cursor-pointer aspect-[2/3] puzzle-search-item" onclick="toggleFlipCard(this, event)">
+      <div class="inventory-flip-card cursor-pointer aspect-[2/3] puzzle-search-item" onclick="toggleHobbyFlip(this, event)">
         <div class="inventory-flip-inner">
           <div class="inventory-flip-front glass-card-3d overflow-hidden relative rounded-2xl">
             <img alt="21x21 Speedcube" class="w-full h-full object-cover" src="/images/Cube_Images/11_11_11.avif" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
@@ -1563,6 +1563,7 @@
 
 <link rel="stylesheet" href="/assets/css/site-effects.css">
 
+<script src="/assets/js/flip-cards.js" defer></script>
 <script src="/assets/js/site-effects.js" defer></script>
 </body>
 </html>
