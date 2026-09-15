@@ -54,6 +54,52 @@
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <style>
+    /* — Usability #1: consolidated type scale (8 steps) — */
+    /* Tailwind v4 browser build may not match escaped arbitrary selectors reliably,
+       so normalize with robust attribute selectors. */
+    [class*="text-[8px]"], [class*="text-[9px]"], [class*="text-[10px]"], [class*="text-[11px]"] { font-size: 0.75rem !important; line-height: 1rem !important; }
+    [class*="text-[13px]"], [class*="text-[14px]"] { font-size: 0.875rem !important; line-height: 1.25rem !important; }
+    [class*="text-[15px]"], [class*="text-[16px]"] { font-size: 1rem !important; line-height: 1.5rem !important; }
+
+    /* — Usability #2: consolidated text palette — */
+    /* Collapse near-duplicate sky/cyan and indigo/purple/slate text utilities. */
+    .text-sky-200, .text-sky-300, .text-cyan-300 { color: #7dd3fc !important; }
+    .text-indigo-300, .text-indigo-200, .text-purple-300 { color: #a5b4fc !important; }
+    .text-indigo-400 { color: #818cf8 !important; }
+    .text-slate-500 { color: #94a3b8 !important; }
+    .text-slate-200 { color: #cbd5e1 !important; }
+    .text-teal-300 { color: #5eead4 !important; }
+
+    /* — Usability #3: shared button geometry (same radius/min-height) — */
+    .btn-primary-shared {
+      min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem; padding: 0.625rem 1rem; border-radius: 9999px;
+      font-weight: 700; font-size: 0.875rem; line-height: 1.25rem;
+    }
+    /* — Usability #12: anchor orbit labels to a shared circular path — */
+    .orbit-ring { position: relative; }
+    .orbit-ring::before {
+      content: ""; position: absolute; inset: 56px; border-radius: 9999px;
+      border: 1px dashed rgba(148, 163, 184, 0.35); pointer-events: none;
+    }
+    @media (max-width: 640px) { .orbit-ring::before { inset: 38px; } }
+    /* — Usability #13: visible, higher-contrast terminal inputs — */
+    .tech-input { border-bottom-color: rgba(148, 163, 184, 0.55); }
+    .tech-input:hover { border-bottom-color: rgba(125, 211, 252, 0.8); }
+    /* — Usability #15: work-history dates stay adjacent + scannable — */
+    .work-date { font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+    /* — Usability #14: larger, higher-contrast lamp target — */
+    .lamp-switch { min-width: 48px; min-height: 48px; border-radius: 9999px; }
+    .lamp-switch::after {
+      content: ""; position: absolute; inset: -7px; border-radius: inherit;
+      border: 2px solid rgba(252, 211, 77, 0.75); opacity: 0.75;
+    }
+    /* — Usability #12/#14: respect motion + visible focus — */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-orbit, .counter-rotate, .animate-ticker, .skills-track, .skills-track-ltr { animation: none !important; }
+    }
+    :focus-visible { outline: 3px solid #7dd3fc; outline-offset: 3px; border-radius: 6px; }
+
     *, *::before, *::after {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -410,7 +456,7 @@
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
 <header id="main-header" class="site-header">
-  <div class="w-full overflow-hidden bg-slate-950/60 backdrop-blur-md py-2 px-4 text-[11px] font-mono border-b border-sky-500/10">
+  <div class="w-full overflow-hidden bg-slate-950/60 backdrop-blur-md py-2 px-4 text-xs font-mono border-b border-sky-500/10">
     <div class="animate-ticker">
       <div class="flex items-center gap-6 whitespace-nowrap shrink-0 pr-6 text-slate-400">
         <span class="inline-flex items-center gap-1.5 text-amber-400 font-semibold">
@@ -448,7 +494,7 @@
         <span class="font-sans font-bold text-base text-white tracking-tight leading-none group-hover:text-sky-300 transition-colors">
           Akash Nagapure
         </span>
-        <span class="font-mono text-[9px] bg-gradient-to-r from-sky-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent font-bold tracking-wider uppercase mt-1">
+        <span class="font-mono text-xs bg-gradient-to-r from-sky-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent font-bold tracking-wider">
           Fleet Architect
         </span>
       </div>
@@ -497,8 +543,8 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span class="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-400 tracking-wider uppercase">
-            AVAILABLE FOR WORK
+          <span class="font-mono text-xs font-bold text-emerald-400 tracking-wider">
+            Available for work
           </span>
         </div>
 
@@ -517,11 +563,11 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto pt-2">
-          <a href="https://resume.akashnagapure.in" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 hover:opacity-90 text-slate-950 font-sans font-bold text-sm rounded-full shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all">
+          <a href="https://resume.akashnagapure.in" class="btn-primary-shared inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500 hover:opacity-90 text-slate-950 font-sans font-bold text-sm rounded-full shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition-all">
             <i data-lucide="file-text" class="w-4 h-4"></i>
             <span>Resume</span>
           </a>
-          <a href="https://blogs.akashnagapure.in" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900/60 border border-indigo-500/40 hover:border-indigo-400 text-white font-sans font-semibold text-sm rounded-full hover:bg-slate-800/80 hover:scale-105 active:scale-95 transition-all">
+          <a href="https://blogs.akashnagapure.in" class="btn-primary-shared inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900/60 border border-indigo-500/40 hover:border-indigo-400 text-white font-sans font-semibold text-sm rounded-full hover:bg-slate-800/80 hover:scale-105 active:scale-95 transition-all">
             <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i>
             <span>Technical Blogs</span>
           </a>
@@ -550,7 +596,7 @@
               </div>
               <div class="flex flex-col text-left">
                 <span class="font-sans font-extrabold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent text-base sm:text-lg tracking-tight leading-none">35000+</span>
-                <span class="font-mono text-[8px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-wider mt-1">Endpoints Managed</span>
+                <span class="font-mono text-xs text-slate-400 font-semibold tracking-wider mt-1">Endpoints Managed</span>
               </div>
             </div>
           </div>
@@ -591,11 +637,11 @@
           </p>
 
           <div class="flex flex-wrap gap-3 pt-2">
-            <a href="https://skills.akashnagapure.in" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-950/40 hover:bg-sky-900/60 border border-sky-400/30 text-sky-300 font-mono text-xs uppercase font-bold tracking-wider transition-all hover:scale-105">
+            <a href="https://skills.akashnagapure.in" class="btn-primary-shared inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-950/40 hover:bg-sky-900/60 border border-sky-400/30 text-sky-300 font-mono text-xs font-bold tracking-wider transition-all hover:scale-105">
               <i data-lucide="cpu" class="w-4 h-4"></i>
               <span>View Skills →</span>
             </a>
-            <a href="https://courses.akashnagapure.in" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-950/40 hover:bg-indigo-900/60 border border-indigo-400/30 text-indigo-300 font-mono text-xs uppercase font-bold tracking-wider transition-all hover:scale-105">
+            <a href="https://courses.akashnagapure.in" class="btn-primary-shared inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-950/40 hover:bg-indigo-900/60 border border-indigo-400/30 text-indigo-300 font-mono text-xs font-bold tracking-wider transition-all hover:scale-105">
               <i data-lucide="award" class="w-4 h-4"></i>
               <span>View Courses Completed →</span>
             </a>
@@ -613,7 +659,7 @@
                       <!-- Main Image: Light Off / Light On toggle with valid relative paths -->
                       <img id="desk-img" class="main-image responsive rounded-2xl shadow-2xl" src="./Main_page_data/light_off.avif" alt="A dark desk workspace. Switch on the lamp!" />
                       
-                      <button class="light-switch" title="Turn on the lamp"></button>
+                      <button class="light-switch lamp-switch" title="Turn on the lamp" aria-label="Turn on the desk lamp" aria-pressed="false"></button>
                       <img class="click-me-twinkle" src="https://elliottprogrammer.com/images/star-1.svg" />
                       
                       <div class="interactive-image-wrapper">
@@ -731,12 +777,12 @@
         <div class="relative pl-8 sm:pl-14 group">
           <div class="absolute left-[7px] sm:left-[15px] top-2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.9)]"></div>
           <div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-start md:gap-3 mb-2">
               <div>
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Architect – Technical Specialist</h3>
-                <p class="font-mono text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent font-semibold">Hexaware Technologies | Pune, Maharashtra</p>
+                <p class="font-mono text-sm normal-case tracking-wide bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent font-semibold">Hexaware Technologies • Pune, Maharashtra</p>
               </div>
-              <span class="font-mono text-xs font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-emerald-950/30 border border-emerald-500/20">14/02/2026 – Present</span>
+              <span class="work-date font-mono text-xs font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mt-1 md:mt-0 px-2.5 py-1 rounded-full bg-emerald-950/30 border border-emerald-500/20">14/02/2026 – Present</span>
             </div>
             <ul class="space-y-2.5 text-slate-300 text-xs sm:text-base font-light mb-4">
               <li class="flex items-start gap-2 leading-relaxed">
@@ -1007,7 +1053,7 @@
   <section id="education" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
     <div class="max-w-7xl mx-auto">
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         
         <div class="space-y-8 text-left">
           <div class="space-y-2">
@@ -1040,7 +1086,7 @@
           </div>
         </div>
 
-        <div class="flex flex-col items-center justify-center space-y-6">
+        <div class="flex flex-col items-center justify-start space-y-6 lg:pt-[52px]">
           <div class="text-center">
             <h2 class="font-headline text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Core Value</h2>
           </div>
@@ -1052,30 +1098,30 @@
               <img src="../Main_page_data/Meditation.avif" alt="Meditation Avatar" class="relative z-10 w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(56,189,248,0.3)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
             </div>
 
-            <div class="absolute inset-0 w-full h-full animate-orbit pointer-events-auto cursor-pointer">
+            <div class="absolute inset-0 w-full h-full animate-orbit pointer-events-auto cursor-pointer orbit-ring" role="list" aria-label="Core values">
               
-              <div class="absolute top-4 left-1/2 -translate-x-1/2 w-56 text-center">
+              <div class="absolute top-4 left-1/2 -translate-x-1/2 w-56 text-center" role="listitem">
                 <div class="counter-rotate space-y-1">
                   <h3 class="text-white font-headline text-sm font-bold tracking-wide">Excellence</h3>
                   <p class="text-xs text-slate-300 font-mono leading-snug">Sustainable architecture & clean code</p>
                 </div>
               </div>
 
-              <div class="absolute top-1/2 right-4 -translate-y-1/2 w-56 text-center">
+              <div class="absolute top-1/2 right-4 -translate-y-1/2 w-56 text-center" role="listitem">
                 <div class="counter-rotate space-y-1">
                   <h3 class="text-white font-headline text-sm font-bold tracking-wide">Accountable</h3>
                   <p class="text-xs text-slate-300 font-mono leading-snug">Stand for decisions & mistakes</p>
                 </div>
               </div>
 
-              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 text-center">
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 text-center" role="listitem">
                 <div class="counter-rotate space-y-1">
                   <h3 class="text-white font-headline text-sm font-bold tracking-wide">Kindness</h3>
                   <p class="text-xs text-slate-300 font-mono leading-snug">Always eager to help others</p>
                 </div>
               </div>
 
-              <div class="absolute top-1/2 left-4 -translate-y-1/2 w-56 text-center">
+              <div class="absolute top-1/2 left-4 -translate-y-1/2 w-56 text-center" role="listitem">
                 <div class="counter-rotate space-y-1">
                   <h3 class="text-white font-headline text-sm font-bold tracking-wide">Passion</h3>
                   <p class="text-xs text-slate-300 font-mono leading-snug">Love what I do</p>
@@ -1464,7 +1510,7 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4 border-b border-sky-500/20 pb-6">
         <div>
           <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-sky-950/60 border border-sky-500/30 rounded-full mb-3 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
-            <span class="font-mono text-[10px] text-sky-400 uppercase tracking-widest">// JARVIS_COMMUNICATION_INTERFACE</span>
+            <span class="font-mono text-xs text-sky-400 normal-case tracking-widest">Communication interface</span>
           </div>
           <h2 class="font-sans text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Let's <span class="bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Connect!</span>
@@ -1473,7 +1519,7 @@
         </div>
         <div class="flex items-center gap-2 bg-slate-950/80 border border-emerald-500/30 px-4 py-2 rounded-full w-fit">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span class="font-mono text-xs text-emerald-400 font-bold uppercase tracking-wider">SYSTEM ONLINE</span>
+          <span class="font-mono text-xs text-emerald-400 font-bold tracking-wider">System online</span>
         </div>
       </div>
 
@@ -1508,41 +1554,41 @@
             
             <div class="flex justify-between items-start border-b border-outline-variant/30 pb-3 mb-4">
               <div>
-                <h3 class="font-headline-lg-mobile text-[16px] text-primary glow-text font-bold leading-tight">MAILBOX_TERMINAL</h3>
-                <p class="font-terminal-sm text-terminal-sm text-on-surface-variant mt-0.5 text-[10px]">SECURE CONNECTION READY</p>
+                <h3 class="text-base text-primary glow-text font-bold leading-tight">Mailbox Terminal</h3>
+                <p class="text-xs text-on-surface-variant mt-0.5">Secure connection ready</p>
               </div>
               <span class="material-symbols-outlined text-primary opacity-70" style='font-variation-settings: "FILL" 1;'>terminal</span>
             </div>
 
             <form onsubmit="event.preventDefault(); launchDirectMail();" class="flex flex-col gap-4">
               <div class="flex flex-col gap-1">
-                <label class="font-label-caps text-[9px] text-primary/80">YOUR_IDENTIFIER</label>
-                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="ENTER NAME" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" required />
+                <label for="direct_name" class="text-xs font-semibold text-primary/80">Your name</label>
+                <input id="direct_name" type="text" oninput="checkFormValidity()" placeholder="Enter your name" autocomplete="name" class="tech-input w-full px-0 py-2 focus:ring-0 text-sm" required />
               </div>
               
               <div class="flex flex-col gap-1">
-                <label class="font-label-caps text-[9px] text-primary/80">CONTACT_VECTOR</label>
-                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="ENTER EMAIL ADDRESS" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" required />
+                <label for="direct_email" class="text-xs font-semibold text-primary/80">Email address</label>
+                <input id="direct_email" type="email" oninput="checkFormValidity()" placeholder="Enter your email address" autocomplete="email" class="tech-input w-full px-0 py-2 focus:ring-0 text-sm" required />
               </div>
               
               <div class="flex flex-col gap-1">
-                <label class="font-label-caps text-[9px] text-primary/80">OBJECTIVE_PARAM</label>
-                <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="SUBJECT / OBJECTIVE" class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 text-sm" />
+                <label for="direct_subject" class="text-xs font-semibold text-primary/80">Subject</label>
+                <input id="direct_subject" type="text" oninput="checkFormValidity()" placeholder="Subject" autocomplete="off" class="tech-input w-full px-0 py-2 focus:ring-0 text-sm" />
               </div>
               
               <div class="flex flex-col gap-1">
-                <label class="font-label-caps text-[9px] text-primary/80">DATA_PAYLOAD</label>
-                <textarea id="direct_message" rows="3" oninput="checkFormValidity()" placeholder="MESSAGE TRANSMISSION..." class="tech-input font-body-md text-body-md w-full px-0 py-2 focus:ring-0 resize-none text-sm" required></textarea>
+                <label for="direct_message" class="text-xs font-semibold text-primary/80">Message</label>
+                <textarea id="direct_message" rows="3" oninput="checkFormValidity()" placeholder="Write your message" class="tech-input w-full px-0 py-2 focus:ring-0 resize-none text-sm" required></textarea>
               </div>
               
-              <button type="button" onclick="launchDirectMail()" id="send-email-btn" disabled class="mt-1 bg-primary text-background font-label-caps text-label-caps py-2.5 px-4 rounded-xl hover:bg-primary-container transition-all hover:shadow-[0_0_20px_rgba(0,225,255,0.4)] active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer text-xs font-bold">
-                <span>INITIATE TRANSMISSION</span>
-                <span class="material-symbols-outlined text-[14px]">send</span>
+              <button type="button" onclick="launchDirectMail()" id="send-email-btn" disabled class="btn-primary-shared mt-1 bg-primary text-background py-2.5 px-4 rounded-xl hover:bg-primary-container transition-all hover:shadow-[0_0_20px_rgba(0,225,255,0.4)] active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer text-xs font-bold">
+                <span class="text-xs font-bold">Initiate transmission</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">send</span>
               </button>
 
               <div id="success-banner" class="hidden p-2.5 bg-emerald-950/40 border border-emerald-500/30 rounded-xl flex items-center gap-2">
                 <span class="material-symbols-outlined text-emerald-400 text-[16px]">check_circle</span>
-                <p class="font-terminal-sm text-[10px] text-emerald-300">
+                <p class="text-xs text-emerald-300">
                   Transmission compiled! Client launched to info@akashnagapure.in.
                 </p>
               </div>
@@ -2053,6 +2099,9 @@
             clearTimeout(arrow1Timer);
 
             isLightOn = !isLightOn;
+            aboutMeLightSwitch.setAttribute("aria-pressed", String(isLightOn));
+            aboutMeLightSwitch.setAttribute("aria-label", isLightOn ? "Turn off the desk lamp" : "Turn on the desk lamp");
+            aboutMeLightSwitch.title = isLightOn ? "Turn off the lamp" : "Turn on the lamp";
 
             if (isLightOn) {
                 deskImg.src = "./Main_page_data/Light_on.avif";
@@ -2122,7 +2171,7 @@
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">Get notified about new projects, blog posts, and updates.</p>
                 <form id="footer-subscribe-form" class="footer-subscribe-form" onsubmit="event.preventDefault(); if (window.handleFooterSubscribe) window.handleFooterSubscribe(this);">
                     <input type="email" name="email" aria-label="Your email address" placeholder="Your email address" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none mb-2" />
-                    <button type="submit" class="w-full px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm rounded-lg transition-all">Subscribe</button>
+                    <button type="submit" class="btn-primary-shared w-full px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm rounded-lg transition-all">Subscribe</button>
                 </form>
             </div>
         </div>
@@ -2156,8 +2205,8 @@
         <a href="https://www.akashnagapure.in/privacy.html">Read Our Data Policy <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
     </div>
     <div class="cookie-actions">
-        <button id="deny-cookies-btn" type="button" class="btn btn-decline">Decline</button>
-        <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
+        <button id="deny-cookies-btn" type="button" class="btn btn-decline btn-primary-shared">Decline</button>
+        <button id="accept-cookies-btn" type="button" class="btn btn-accept btn-primary-shared">Accept all cookies</button>
     </div>
 </div>
 
