@@ -218,6 +218,7 @@ docs/*
 !public/assets/js/3d-background.js
 !public/assets/js/template-loader.js
 !public/assets/js/site-effects.js
+!public/assets/js/flip-cards.js
 !public/assets/css/
 !public/assets/css/site-effects.css
 !tools/

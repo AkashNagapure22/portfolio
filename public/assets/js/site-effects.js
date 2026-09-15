@@ -55,6 +55,20 @@
       '.footer-col'
     ].join(',');
 
+    /* ---------- flip tiles own their transforms ----------
+       .flip-card* / .inventory-flip-* spin with rotateY(180deg) when clicked.
+       The reveal + tilt effects below would otherwise write transforms onto
+       those very elements: an inline transform on .flip-card-inner beats the
+       "flipped" stylesheet rule, so the tile would wobble with the pointer
+       instead of flipping, and the reveal transform would wipe the
+       rotateY(180deg) that hides the back face. Skip them entirely.
+       Click behaviour lives in /assets/js/flip-cards.js. */
+    var FLIP_SEL = '.flip-card, .flip-card-container, .flip-card-inner, .flip-card-front, .flip-card-back, ' +
+      '.inventory-flip-card, .inventory-flip-inner, .inventory-flip-front, .inventory-flip-back';
+    function isFlip(el) {
+      try { return !!(el && el.closest && el.closest(FLIP_SEL)); } catch (e) { return false; }
+    }
+
     var io = null;
     if ('IntersectionObserver' in window) {
       io = new IntersectionObserver(function (entries) {
@@ -90,6 +104,7 @@
         tag(el, i % 2 === 0 ? 'left' : 'right');
       });
       main.querySelectorAll('[class*="card"], .glass-card-3d').forEach(function (el) {
+        if (isFlip(el)) return;
         tag(el, 'zoom');
       });
     } catch (e) {}
@@ -109,6 +124,7 @@
       var tilts = document.querySelectorAll('[class*="card"], .glass-card-3d');
       tilts.forEach(function (el) {
         if (el.hasAttribute('data-fx-tilt')) return;
+        if (isFlip(el)) return; // no hover rotation on flip tiles
         el.setAttribute('data-fx-tilt', '1');
         el.classList.add('fx-tilt');
         el.addEventListener('mousemove', function (ev) {
