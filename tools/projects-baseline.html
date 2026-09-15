@@ -1,0 +1,281 @@
+<section id="projects" class="section-seamless py-16 sm:py-24 px-4 sm:px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-teal-950/40 border border-teal-500/30 rounded-full mb-3 shadow-[0_0_12px_rgba(45,212,191,0.2)]">
+          <i data-lucide="folder-kanban" class="w-4 h-4 text-teal-400"></i>
+          <span class="font-mono text-xs text-teal-400 font-bold uppercase tracking-wider">Engineering Cases</span>
+        </div>
+        <h2 class="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">Key <span class="bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent">Projects</span></h2>
+        <p class="font-sans text-slate-400 text-sm sm:text-base">Case studies of engineered solutions and successful enterprise deployments. (Tap cards to spin)</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Project 1 -->
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="/images/Main_Page_Images/project_intune_1781110786338.avif" alt="VDI Horizon" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_01</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>VDI Migration (Win 7 to 10)</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Migrated 3,000+ virtual desktops from Windows 7 to Windows 10, ensuring lifecycle compliance and performance stability.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-5 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/95 space-y-2">
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Project Details</span>
+                <p class="text-white text-xs font-semibold">Duration: 6 Months | Users: 3,000+ VDI desktops</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Technology Used</span>
+                <p class="text-teal-300 text-xs font-mono">VMware Horizon, vSphere, Windows 10 Enterprise</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Dependencies</span>
+                <p class="text-slate-200 text-xs">Active Directory GPOs, SAN Storage Latency, User Profile Mappings.</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Lesson Learnt</span>
+                <p class="text-slate-200 text-xs leading-tight">Rigorous pilot testing on legacy graphic drivers prevents profile corruption during OS hops.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400 pt-1 border-t border-white/10 text-center">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="/images/Main_Page_Images/project_sccm_1781110806653.avif" alt="SCCM to Intune" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_02</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>SCCM to Intune Migration</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Architected a Hybrid Azure AD Join environment enabling phased migration from on-prem SCCM to cloud-native Intune.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-5 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/95 space-y-2">
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Project Details</span>
+                <p class="text-white text-xs font-semibold">Duration: 8 Months | Users: 12,000+ corporate clients</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Technology Used</span>
+                <p class="text-teal-300 text-xs font-mono">Microsoft Intune, SCCM, Azure AD Connect</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Dependencies</span>
+                <p class="text-slate-200 text-xs">Azure AD Tenant Synchronization, PKI Infrastructure.</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Lesson Learnt</span>
+                <p class="text-slate-200 text-xs leading-tight">Co-management workload shifting requires careful pilot ring definitions to avoid policy overrides.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400 pt-1 border-t border-white/10 text-center">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="/images/Main_Page_Images/project_autopilot_1781110823628.avif" alt="Windows Autopilot" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_03</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>Autopilot Zero-Touch</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Custom global factory-to-user OS provisioning model utilizing dynamic application packaging matrices.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-5 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/95 space-y-2">
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Project Details</span>
+                <p class="text-white text-xs font-semibold">Duration: 4 Months | Users: 5,000+ new devices</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Technology Used</span>
+                <p class="text-teal-300 text-xs font-mono">Windows Autopilot, Win32 Packaging, Graph API</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Dependencies</span>
+                <p class="text-slate-200 text-xs">OEM Hardware Hash Import, Internet Connectivity at Out-of-Box Experience.</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Lesson Learnt</span>
+                <p class="text-slate-200 text-xs leading-tight">Pre-caching large Win32 application binaries drastically cuts initial provisioning duration.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400 pt-1 border-t border-white/10 text-center">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="/images/Main_Page_Images/project_Windows-365.avif" alt="Windows 365" width="437" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_04</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>Windows 365 Setup</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Deployed Cloud PCs providing flexible, persistent, and secure virtual workspaces for remote-first teams.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-5 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/95 space-y-2">
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Project Details</span>
+                <p class="text-white text-xs font-semibold">Duration: 3 Months | Users: 1,500+ remote engineers</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Technology Used</span>
+                <p class="text-teal-300 text-xs font-mono">Windows 365 Enterprise, Azure Virtual Network</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Dependencies</span>
+                <p class="text-slate-200 text-xs">Azure Subscriptions, Domain Controller Connectivity, Intune Licensing.</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Lesson Learnt</span>
+                <p class="text-slate-200 text-xs leading-tight">Right-sizing Azure compute SKUs upfront prevents unnecessary licensing overhead.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400 pt-1 border-t border-white/10 text-center">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="/images/Main_Page_Images/project_Modern-GPO-Alternatives.avif" alt="GPO to Intune" width="428" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_05</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-extrabold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>GPO to Intune Profiles</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Modernized endpoint management by migrating complex legacy GPOs to cloud-native Intune Configuration Profiles.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-5 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/95 space-y-2">
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Project Details</span>
+                <p class="text-white text-xs font-semibold">Duration: 3 Months | Users: 8,000+ endpoints</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Technology Used</span>
+                <p class="text-teal-300 text-xs font-mono">Intune Settings Catalog, Administrative Templates</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Dependencies</span>
+                <p class="text-slate-200 text-xs">Group Policy Analytics Tool, Scope Tags Hierarchy.</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Lesson Learnt</span>
+                <p class="text-slate-200 text-xs leading-tight">Consolidating duplicate registry settings into unified profiles simplifies troubleshooting.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400 pt-1 border-t border-white/10 text-center">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="flip-card-container h-[420px] w-full cursor-pointer select-none" onclick="toggleFlip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front overflow-hidden flex flex-col justify-between border border-teal-500/20 rounded-2xl">
+              <div>
+                <div class="relative aspect-video w-full bg-slate-950">
+                  <img src="/images/Main_Page_Images/project_ServiceNow.avif" alt="ServiceNow" width="392" height="214" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+                  <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-950/90 border border-teal-500/30 rounded-lg text-[9px] font-mono font-bold uppercase tracking-widest text-teal-300">Case_03</div>
+                </div>
+                <div class="p-6">
+                  <h3 class="font-sans font-bold text-xl text-white mb-2 flex items-center justify-between">
+                    <span>ServiceNow & Intune Sync</span>
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-400"></i>
+                  </h3>
+                  <p class="font-sans text-slate-300 text-sm leading-relaxed font-light">
+                    Integrated Microsoft Intune with ServiceNow, automating asset management, CI syncing, and incident workflows.
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 text-xs font-mono text-teal-400">Touch to inspect telemetry →</div>
+            </div>
+
+            <div class="flip-card-back p-5 border border-teal-400 flex flex-col justify-between text-left rounded-2xl bg-slate-900/95 space-y-2">
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Project Details</span>
+                <p class="text-white text-xs font-semibold">Duration: 3 Months | Users: Enterprise-wide asset tracking</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Technology Used</span>
+                <p class="text-teal-300 text-xs font-mono">Microsoft Graph API, ServiceNow CMDB, REST Webhooks</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Dependencies</span>
+                <p class="text-slate-200 text-xs">ServiceNow Middleware, Azure App Registration Credentials.</p>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-teal-400 block uppercase font-bold">Lesson Learnt</span>
+                <p class="text-slate-200 text-xs leading-tight">Rate-limiting handling via pagination in Graph API queries ensures robust nocturnal syncs.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400 pt-1 border-t border-white/10 text-center">Tap to flip front</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+  </section>

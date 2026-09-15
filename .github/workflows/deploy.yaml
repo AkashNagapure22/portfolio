@@ -25,6 +25,12 @@ jobs:
     - name: Check HTML Encoding
       shell: pwsh
       run: ./tools/check-encoding.ps1
+
+    # 2c. Guard: the "#projects" section of index.html is frozen and must match
+    #     tools/projects-baseline.html (see docs/PROJECTS-SECTION-GUARD.md)
+    - name: Check Protected Projects Section
+      run: node tools/projects-guard.mjs
+
     # 3. Install dependencies with native Linux binding & build project
     - name: Install Dependencies & Build
       run: |

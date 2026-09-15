@@ -222,4 +222,8 @@ docs/*
 !public/assets/css/site-effects.css
 !tools/
 !tools/apply-templates.mjs
+!tools/check-encoding.ps1
+!tools/projects-guard.mjs
+!tools/projects-baseline.html
+!tools/install-guard-hooks.ps1
 

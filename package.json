@@ -9,9 +9,10 @@
         "preview": "vite preview",
         "clean": "rm -rf dist",
         "watch": "node scripts/auto-sync.mjs",
-      "sync": "node scripts/auto-sync.mjs --once"
-    },
-    "dependencies": {
+        "sync": "node scripts/auto-sync.mjs --once",
+        "projects:check": "node tools/projects-guard.mjs",
+        "projects:accept": "node tools/projects-guard.mjs --accept"
+    },    "dependencies": {
         "@google/genai": "^2.4.0",
         "@neondatabase/serverless": "^0.9.0",
         "@tailwindcss/vite": "^4.1.14",
