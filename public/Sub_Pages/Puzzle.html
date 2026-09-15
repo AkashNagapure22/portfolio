@@ -984,16 +984,6 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Flip card click handler - prevents flipping when clicking interactive elements
-  window.toggleFlipCard = function(element, event) {
-    // Check if click target is an interactive element
-    const target = event.target;
-    if (target.closest('a') || target.closest('button') || target.closest('input') || target.closest('textarea') || target.closest('select')) {
-      return;
-    }
-    element.classList.toggle('flipped');
-  };
-
   window.addEventListener("scroll", () => {
     const backToTopBtn = document.getElementById("back-to-top-btn");
     if (!backToTopBtn) return;

@@ -24,7 +24,8 @@ accept/decline, and the `api/` folder un-ignored so serverless endpoints deploy.
   6-byte sequence `Î“Ã¥Ã†` (`CE 93 C3 A5 C3 86`). All six telemetry lines
   rendered as garbage. The section was restored from commit `41ff402`
   (`git checkout 41ff402 -- index.html`); the file is again byte-identical to
-  that revision apart from the intended content.
+   that revision apart from the intended content.
+- **`public/Sub_Pages/Puzzle.html` — dead flip-tile handler**: removed the leftover `window.toggleFlipCard` definition. An earlier session had already rewired every puzzle tile to the shared `toggleHobbyFlip` from `/assets/js/flip-cards.js` (the handler that closes other tiles on click and ignores hover), so `toggleFlipCard` was unreachable. npm run test:flip is now 40/40.
 - **`api/subscribe.js` was never deployed**: `.gitignore` line 196 contained
   the broad rule `api/*` with only `!api/comments.js`, `!api/contact.js`,
   `!api/projects.js`, and `!api/votes.js` as exceptions. `api/subscribe.js` was

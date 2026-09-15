@@ -58,7 +58,9 @@
   scroll-reveal and pointer-tilt transforms cannot fight the flip transform
   (an inline transform on `.flip-card-inner` would beat the `flipped` rule).
 - Tests: `npm run test:flip` drives the behaviour through an in-process DOM stub
-  and statically verifies all four pages.
+    and statically verifies all four pages. Legacy handlers (`toggleFlipCard`,
+  inline `this.classList.toggle(...)`) are flagged as failures by the same suite,
+  so no hobby page can silently regress to single-tile-only behaviour.
 
 ### Contact (Terminal Form)
 - Styled as "MAILBOX_TERMINAL" with terminal icon
