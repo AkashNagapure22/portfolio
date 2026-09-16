@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -63,28 +63,6 @@
       z-index: 99999;
       pointer-events: none;
     }
-    .glass-card-3d {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                  inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-                  0 0 30px rgba(56, 189, 248, 0.05);
-    }
-    .holo-glow {
-      position: relative;
-    }
-    .holo-glow::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #38bdf8, transparent, #6366f1, transparent, #38bdf8);
-      border-radius: inherit;
-      z-index: -1;
-      opacity: 0.3;
-      filter: blur(12px);
-    }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #020617; }
     ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
@@ -95,14 +73,9 @@
 
 <body class="selection:bg-sky-500/25 selection:text-sky-300 flex flex-col justify-between min-h-screen w-full font-sans">
 
-<!-- Canonical 3D animation background (square effect + mouse effect).
-     Source of truth: /template/3d-background-template.html
-     Behaviour: /assets/js/3d-background.js (auto self-heals if canvases/scripts missing)
-     Applied to ALL pages via tools/apply-templates.mjs + /assets/js/template-loader.js -->
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-<!-- Minimal Navbar: Only Logo on Left -->
 <header class="w-full z-50 bg-slate-950/30 backdrop-blur-xl border-b border-white/10 py-4 px-6 sm:px-12 relative shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-sky-400 hover:text-white transition-colors">
@@ -119,7 +92,7 @@
 
 <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex-grow w-full relative z-10">
   
-  <article class="glass-card-3d p-8 sm:p-12 rounded-3xl holo-glow space-y-10">
+  <article class="p-4 sm:p-6 space-y-10">
     <header class="space-y-4 border-b border-white/10 pb-8">
       <div class="flex items-center gap-3">
         <span class="px-3 py-1 bg-sky-950/60 text-sky-400 border border-sky-500/30 rounded-full font-mono text-[10px] uppercase font-bold tracking-widest">Terms</span>
@@ -161,7 +134,6 @@
 
 </main>
 
-<!-- Canonical footer - source of truth (footer + cookie). Behaviour: /assets/js/footer-common.js. Runtime upgrade: /assets/js/template-loader.js -->
 <footer id="site-footer" class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
@@ -230,7 +202,6 @@
     </div>
 </footer>
 
-<!-- Cookie Consent Banner — compact square card, bottom-right -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
     <div class="cookie-head">
         <span class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></span>
