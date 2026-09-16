@@ -48,6 +48,9 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+  <!-- Google News Preferred Sources (SWG) -->
+  <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
+
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -474,6 +477,12 @@
         <p class="text-xs text-slate-300 font-light leading-relaxed">
           Microsoft Intune and VMware Architect specialized in designing scalable cloud infrastructure and zero-trust modern workspace solutions.
         </p>
+      </div>
+
+      <!-- Google Preferred Sources -->
+      <div class="glass-card-3d p-4 sm:p-5 rounded-2xl text-center space-y-2 w-full flex flex-col items-center">
+        <p class="text-[11px] font-mono text-slate-300">Add us as a preferred source for quick updates:</p>
+        <google-preferred-sources-button data-theme="dark"></google-preferred-sources-button>
       </div>
 
       <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/40 border border-sky-500/30 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">

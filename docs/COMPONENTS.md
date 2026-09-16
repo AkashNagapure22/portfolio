@@ -148,3 +148,19 @@
 - POST `/api/votes` — increments counter based on vote (up/down)
 - Display: "N people found this helpful" or "Be the first to rate"
 - Post-vote: opacity 0.5 + pointer-events none on clicked button
+
+### Google Preferred Sources Button (right sidebar)
+- Loader: `<script async src="https://news.google.com/swg/js/v1/publisher.js">`
+  in the page `<head>`, next to the other CDN scripts
+- Markup: `<google-preferred-sources-button data-theme="dark">` inside a
+  `.glass-card-3d p-4 sm:p-5 rounded-2xl text-center space-y-2` wrapper
+- Placement: `lg:col-span-4` sidebar stack — directly below the author profile
+  card and directly above the "Sponsored Slot" card; vertical rhythm comes from
+  the parent `space-y-6` so no extra margins are needed
+- Responsive behaviour: the sidebar column is full-width below `lg`, so the card
+  is already fluid; `w-full flex flex-col items-center` keeps the custom element
+  centred whatever display value the SWG script applies to it
+- Currently shipped on: `public/Blogs/Autopatchblog.html`
+- The element is rendered only when the publication is verified in Google
+  Publisher Center; elsewhere it is a harmless no-op (CSP in `vercel.json`
+  already allows `https:` scripts)
