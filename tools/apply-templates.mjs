@@ -263,8 +263,6 @@ function main() {
   const files = listHtml(ROOT).filter((p) => {
     const r = relative(ROOT, p).replace(/\\/g, '/');
     if (r.startsWith('template/') || r.startsWith('public/template/')) return false;
-    // tools/projects-baseline.html is a frozen <section> fragment, not a page.
-    if (r.startsWith('tools/')) return false;
     if (/(^|\/)(footer-template|3d-background-template)\.html$/.test(r)) return false;
     return true;
   });
@@ -284,4 +282,3 @@ function main() {
   console.log('Done. ' + patched + '/' + files.length + ' files updated.');
 }
 main();
-

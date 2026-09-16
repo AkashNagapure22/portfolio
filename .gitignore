@@ -231,4 +231,3 @@ docs/*
 !tools/flip-cards.test.mjs
 !tools/projects-baseline.html
 !tools/install-guard-hooks.ps1
-
