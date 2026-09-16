@@ -1,98 +1,160 @@
 # Design System
 
-> The complete visual design specification lives in [`pages/DESIGN.md`](../pages/DESIGN.md)
-> (a Material Design 3 / Material You "Cyber-Nexus" theme token file).
-> This document describes how that design system is **applied** in the live portfolio.
+The design system has two layers:
 
-## Color Palette (Applied)
+1. **Token reference — "Cyber-Nexus"** (Material You / Material Design 3 semantics):
+   the palette, type scale, shape and elevation tokens that were specified for the
+   project. They live in this file — the former duplicate copies in `pages/` and
+   `images/` were removed.
+2. **Application** — how those tokens are realised in the live portfolio. The site
+   is built with Tailwind utility classes, so the tokens act as the conceptual
+   reference and Tailwind classes are the implementation.
 
-| Role | Token | Hex | Usage |
-|---|---|---|---|
-| Background | `--background` | `#020617` | Page background (`<html>` + `<body>`) |
-| Surface | `--surface` | `#131315` | Glass panels, cards |
-| Primary (Cyan) | `--primary` | `#06b6d4` (Tailwind `sky-400`) | Primary actions, active links |
-| Secondary (Purple) | `--secondary` | `#a855f7` (Tailwind `purple-400`) | Premium highlights, tech badges |
-| Tertiary (Blue) | `--tertiary` | `#38bdf8` (Tailwind `sky-400`) | Progress bars, glows |
-| On-surface | `--on-surface` | `#e5e1e4` | Primary text |
-| Outline | `--outline` | `#94a3a8` (Tailwind `slate-400`) | Borders, secondary text |
+---
 
-**Note:** The `pages/DESIGN.md` tokens are defined but the actual HTML uses
-Tailwind CSS utility classes (e.g., `bg-slate-900`, `text-sky-400`). The design
-tokens serve as the conceptual reference; Tailwind classes are the implementation.
+## Token Reference — Cyber-Nexus
 
-## Typography (Applied)
+```yaml
+name: Cyber-Nexus
+colors:
+  surface: '#131315'
+  surface-dim: '#131315'
+  surface-bright: '#39393b'
+  surface-container-lowest: '#0e0e10'
+  surface-container-low: '#1c1b1d'
+  surface-container: '#201f21'
+  surface-container-high: '#2a2a2c'
+  surface-container-highest: '#353437'
+  on-surface: '#e5e1e4'
+  on-surface-variant: '#b9cacb'
+  inverse-surface: '#e5e1e4'
+  inverse-on-surface: '#313032'
+  outline: '#849495'
+  outline-variant: '#3a494b'
+  surface-tint: '#00dbe7'
+  primary: '#e1fdff'
+  on-primary: '#00363a'
+  primary-container: '#00f2ff'
+  on-primary-container: '#006a71'
+  inverse-primary: '#00696f'
+  secondary: '#ebb2ff'
+  on-secondary: '#520072'
+  secondary-container: '#b600f8'
+  on-secondary-container: '#fff6fc'
+  tertiary: '#f9f5ff'
+  on-tertiary: '#1100a9'
+  tertiary-container: '#d8d7ff'
+  on-tertiary-container: '#4241f5'
+  error: '#ffb4ab'
+  on-error: '#690005'
+  error-container: '#93000a'
+  on-error-container: '#ffdad6'
+  primary-fixed: '#74f5ff'
+  primary-fixed-dim: '#00dbe7'
+  on-primary-fixed: '#002022'
+  on-primary-fixed-variant: '#004f54'
+  secondary-fixed: '#f8d8ff'
+  secondary-fixed-dim: '#ebb2ff'
+  on-secondary-fixed: '#320047'
+  on-secondary-fixed-variant: '#74009f'
+  tertiary-fixed: '#e1e0ff'
+  tertiary-fixed-dim: '#c0c1ff'
+  on-tertiary-fixed: '#07006c'
+  on-tertiary-fixed-variant: '#2316de'
+  background: '#131315'
+  on-background: '#e5e1e4'
+  surface-variant: '#353437'
+rounded:
+  sm: 0.125rem
+  DEFAULT: 0.25rem
+  md: 0.375rem
+  lg: 0.5rem
+  xl: 0.75rem
+  full: 9999px
+spacing:
+  base: 8px
+  container-margin: 24px
+  gutter: 16px
+  section-gap: 64px
+```
 
-| Element | Font | Tailwind Class | Size | Weight |
-|---|---|---|---|---|
-| Logo / Name | Space Grotesk | `font-sans` | 6xl (72px) | `font-extrabold` |
-| Role title | Inter | `font-mono` | `text-sm` | `font-bold` |
-| Section headings | Space Grotesk | `font-sans` | 3xl–5xl | `font-extrabold` |
-| Body text | Inter | `font-sans` | base–lg | `font-light` |
-| Labels / data | JetBrains Mono | `font-mono` | xs–sm | `font-bold` |
+### Type scale (spec)
 
-**Note:** The `data` spec file references HelveticaNow Display, but the live site
-uses Google Fonts: **Plus Jakarta Sans** and **JetBrains Mono** loaded via
-`<link>` in `index.html`. Tailwind's default `font-sans` and `font-mono` map
-to these.
+| Token | Family | Size | Weight | Line height | Tracking |
+|---|---|---|---|---|---|
+| `display-lg` | Space Grotesk | 48px | 700 | 1.1 | -0.02em |
+| `display-lg-mobile` | Space Grotesk | 32px | 700 | 1.2 | — |
+| `headline-md` | Space Grotesk | 24px | 600 | 1.3 | — |
+| `body-lg` | Inter | 18px | 400 | 1.6 | — |
+| `body-md` | Inter | 16px | 400 | 1.5 | — |
+| `label-sm` | Geist | 12px | 500 | 1 | 0.1em |
 
-## Visual Style: Glassmorphism + Neo-Futurism
+### Brand & Style
 
-The design merges **glassmorphism** (translucent surfaces with backdrop blur)
-with **neo-futurism** (neon glows, geometric shapes). Deep blacks (#020617)
-provide the canvas; vibrant cyan and purple accents provide energy.
+The system evokes a premium, high-octane digital environment inspired by gaming
+culture and cyberpunk aesthetics. It prioritises immersion, depth and technical
+sophistication to appeal to enthusiasts who value a "pro-grade" interface.
 
-Key applied techniques:
-- `backdrop-blur` + `bg-opacity-75` or `rgba()` for glass panels
-- `drop-shadow` filters for icons and cards
-- Gradient text via `bg-clip-text text-transparent`
-- `glow` effects via `shadow-[0_0_XXpx_rgba(...)]`
-- `animate-pulse`, `animate-ping` for "live" indicators
+The visual style merges **Glassmorphism** with **Neo-Futurism**. The interface
+relies on deep, layered blacks to provide a canvas for vibrant, high-energy neon
+light sources. Elements appear as though they are projected onto semi-transparent
+physical surfaces, using back-glows and refractive properties to create a sense of
+three-dimensional space inside a digital screen.
 
-## Layout & Spacing
+### Colors
 
-- **Container**: `max-w-7xl mx-auto` (1280px max width)
-- **Gutter**: `px-4 sm:px-8 lg:px-12`
-- **Section gap**: `py-16 sm:py-24` (vertical rhythm)
-- **Baseline grid**: 8px increments (Tailwind's default spacing scale)
+A "Void-and-Vapor" palette: absolute blacks and deep navy ensure infinite contrast
+and visual comfort during long sessions.
 
-## Component Inventory
+- **Primary (Cyan):** critical actions, active states, primary data highlights — "Energy".
+- **Secondary (Purple):** premium features, levelling indicators, rarity tiers — "Power".
+- **Tertiary (Neon Blue):** supportive accents, progress bars, hover transitions — "Flow".
+- **Functional gradients:** always move Secondary → Primary to simulate the
+  chromatic shift of high-tech displays.
 
-| Component | Implementation |
-|---|---|
-| Glass card | `bg-slate-900/45 border border-slate-700/30 backdrop-blur` |
-| Neon button | `bg-gradient-to-r from-sky-400 to-purple-500 hover:opacity-90` |
-| Skill icon | `<img>` with `onerror` fallback + hover scale + tooltip span |
-| Timeline node | `<div class="absolute w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_12px...]">` |
-| Flip card | CSS `perspective` + `rotateY(180deg)` with `backface-visibility` |
-| Status chip | `bg-emerald-950/40 border border-emerald-500/30` |
-| Tech input | `bg-black/25 border-b-1 border-white/30 focus:border-cyan-400` |
+### Typography
 
-## Animation Catalog
+- **Headlines:** **Space Grotesk** — geometric and futuristic; tight-tracked and
+  occasionally uppercase to mimic a digital HUD.
+- **Body:** **Inter** — maximum legibility against dark backgrounds.
+- **Data/technical:** **Geist** — labels, monospaced data and micro-copy.
+- **Visual treatment:** headlines may use a very subtle "glitch" text-shadow
+  (1px cyan/magenta offset) at higher hierarchy levels.
 
-| Animation | Trigger | Duration | Ease |
-|---|---|---|---|
-| Name glow | Continuous | 4s | `ease-in-out infinite` |
-| Ticker scroll | Continuous | 30s | `linear infinite` |
-| Skills marquee | Hover pause | 16s | `ease-in-out infinite` |
-| Orbit rotation | Continuous + hover pause | 40s | `linear infinite` |
-| Flip card | Click toggle | 0.6s | `cubic-bezier(0.16,1,0.3,1)` |
-| Badge confetti | Click | Burst | N/A |
-| Cursor trail | Mouse move | Continuous | 0.25 dampening |
-| Typewriter | Page load | 60ms/char | `step-end` cursor blink |
-| Particle field | Continuous | N/A | 0.04 interpolation |
+### Layout & Spacing (spec)
 
-## 3D & Canvas Elements
+A **12-column fluid grid** on desktop and a **4-column grid** on mobile, with "zone"
+density: content-heavy areas (libraries) use a tight 16px gutter, while immersive
+storytelling areas use wide 64px gaps. Components align to an 8px baseline grid.
 
-| Canvas | ID | Purpose |
-|---|---|---|
-| Three.js | `three-bg-canvas` | Particle field + grid (z-index: 0) |
-| Cursor trail | `cursor-trail-canvas` | Animated trailing line |
-| Spline viewer | `<spline-viewer>` | 3D logo (watermark removed via JS) |
+### Elevation & Depth
 
-## Mobile Adaptations
+Depth comes from **light emission and opacity**, not traditional shadows.
 
-- Particle count reduced from 4500 → 1500
-- Grid segments reduced from 100 → 50
-- Mouse-trail disabled on mobile (touch only)
-- `backdrop-blur` reduced or removed on low-end devices
-- Mobile drawer replaces desktop nav
+- **Level 0 (Base):** deep navy (#12121a).
+- **Level 1 (Glass):** semi-transparent (15%) navy with 20px backdrop-blur.
+- **Level 2 (Active):** as Level 1 plus a 1px inner stroke using a Primary →
+  Secondary gradient.
+- **Glows:** higher elevation elements emit a soft 20%-opacity outer glow in their
+  accent colour, simulating light leaking from a screen.
+
+### Shapes
+
+"Hard-Tech" shape language: corners are softened slightly (4–12px) but never fully
+rounded or organic. Standard containers use a 4px radius, large cards 8px.
+Occasional 45° chamfered corners on buttons or decorative labels reinforce the
+industrial aesthetic.
+
+### Components (spec)
+
+- **Glass cards:** `backdrop-filter: blur(20px)`, 1px top-down gradient border,
+  hover state that triggers a glowing cyan outer shadow.
+- **Glow buttons:** solid cyan with black text; on hover a vibrant cyan bloom.
+  Secondary buttons are "ghost" style with a 1px purple border.
+- **Animated progress bars:** dual-gradient fill (cyan → blue) with a scrolling
+  scan-line texture.
+- **Inputs:** dark, recessed backgrounds with a bottom-only border that glows and
+  expands on focus.
+- **Status chips:** neon-dot indicator beside uppercase Geist type; "live" states
+  pulse subtly.
+- **HUD sliders:** high-contrast tracks with a square thumb.

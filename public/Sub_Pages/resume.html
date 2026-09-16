@@ -20,23 +20,15 @@
 
   <link rel="icon" href="/Main_page_data/Logo.gif" type="image/gif" />
 
-
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-
-
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-
 
   <script>
 
@@ -77,8 +69,6 @@
     }
 
   </script>
-
-
 
   <style>
 
@@ -258,8 +248,6 @@
 
     }
 
-
-
     /* Uiverse Download/Open Button Styles */
 
     .container {
@@ -273,8 +261,6 @@
       justify-content: center;
 
     }
-
-
 
     .label {
 
@@ -306,8 +292,6 @@
 
     }
 
-
-
     .label:hover {
 
       border-color: rgba(56, 189, 248, 0.8);
@@ -318,15 +302,11 @@
 
     }
 
-
-
     .input {
 
       display: none;
 
     }
-
-
 
     .circle {
 
@@ -354,8 +334,6 @@
 
     }
 
-
-
     .label:hover .circle {
 
       border-color: #38bdf8;
@@ -363,8 +341,6 @@
       box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
 
     }
-
-
 
     .icon {
 
@@ -377,8 +353,6 @@
       transition: var(--transition);
 
     }
-
-
 
     .square {
 
@@ -400,8 +374,6 @@
 
     }
 
-
-
     .input:checked ~ .circle .icon {
 
       transform: translateY(150%);
@@ -410,8 +382,6 @@
 
     }
 
-
-
     .input:checked ~ .circle .square {
 
       transform: translateY(0);
@@ -419,8 +389,6 @@
       opacity: 1;
 
     }
-
-
 
     .title {
 
@@ -442,8 +410,6 @@
 
     }
 
-
-
     .title:nth-of-type(2) {
 
       position: absolute;
@@ -454,8 +420,6 @@
 
     }
 
-
-
     .input:checked ~ .title:nth-of-type(1) {
 
       transform: translateY(-100%);
@@ -463,8 +427,6 @@
       opacity: 0;
 
     }
-
-
 
     .input:checked ~ .title:nth-of-type(2) {
 
@@ -487,428 +449,9 @@
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
 
-
-
 <script>
-
-  let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
-
-  let mouseX = 0, mouseY = 0;
-
-  let targetX = 0, targetY = 0;
-
-
-
-  function __legacy_init3DBackground_DISABLED() {
-
-    const canvas = document.getElementById('three-bg-canvas');
-
-    if (!canvas) return;
-
-    scene = new THREE.Scene();
-
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-    camera.position.z = 50;
-
-
-
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-
-
-    const count = 3500;
-
-    particlesGeo = new THREE.BufferGeometry();
-
-    const positions = new Float32Array(count * 3);
-
-
-
-    for (let i = 0; i < count * 3; i += 3) {
-
-      positions[i] = (Math.random() - 0.5) * 500;
-
-      positions[i + 1] = (Math.random() - 0.5) * 600;
-
-      positions[i + 2] = (Math.random() - 0.5) * 300;
-
-    }
-
-    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-
-
-    const particleMat = new THREE.PointsMaterial({
-
-      color: 0x38bdf8,
-
-      size: 0.8,
-
-      transparent: true,
-
-      opacity: 0.9,
-
-      blending: THREE.AdditiveBlending
-
-    });
-
-
-
-    particlesMesh = new THREE.Points(particlesGeo, particleMat);
-
-    scene.add(particlesMesh);
-
-
-
-    gridHelper = new THREE.GridHelper(600, 60, 0x0284c7, 0x0f172a);
-
-    gridHelper.position.y = -100;
-
-    gridHelper.material.transparent = true;
-
-    gridHelper.material.opacity = 0.25;
-
-    scene.add(gridHelper);
-
-
-
-    document.addEventListener('mousemove', (event) => {
-
-      mouseX = (event.clientX - window.innerWidth / 2) * 0.0012;
-
-      mouseY = (event.clientY - window.innerHeight / 2) * 0.0012;
-
-    });
-
-
-
-     window.addEventListener('resize', () => {
-
-      camera.aspect = window.innerWidth / window.innerHeight;
-
-      camera.updateProjectionMatrix();
-
-      renderer.setSize(window.innerWidth, window.innerHeight);
-
-    });
-
-  }
-
-
-
-  let clock = new THREE.Clock();
-
-  function __legacy_animate3DBackground_DISABLED() {
-
-    requestAnimationFrame(animate3DBackground);
-
-    const elapsedTime = clock.getElapsedTime();
-
-
-
-    targetX += (mouseX - targetX) * 0.05;
-
-    targetY += (mouseY - targetY) * 0.05;
-
-
-
-    if (camera && scene) {
-      camera.position.x = targetX * 40;
-      camera.position.y = -targetY * 40;
-      camera.lookAt(scene.position);
-    }
-    if(particlesMesh) {
-
-      particlesMesh.rotation.y = elapsedTime * 0.02 + targetX;
-
-      particlesMesh.rotation.x = elapsedTime * 0.01 + targetY;
-
-    }
-
-    if(gridHelper) {
-
-      gridHelper.rotation.y = elapsedTime * 0.005;
-
-    }
-
-    if (renderer && scene && camera) {
-
-      renderer.render(scene, camera);
-
-    }
-
-  }
-
-
-
-  class Point {
-
-    constructor(x, y) {
-
-      this.x = x;
-
-      this.y = y;
-
-      this.dx = 0;
-
-      this.dy = 0;
-
-    }
-
-    update(x, y, dampening) {
-
-      this.dx += (x - this.x) * dampening;
-
-      this.dx *= 0.5;
-
-      this.x += this.dx;
-
-      this.dy += (y - this.y) * dampening;
-
-      this.dy *= 0.5;
-
-      this.y += this.dy;
-
-    }
-
-  }
-
-
-
-  function __legacy_initCursorTrail_DISABLED() {
-
-    const canvas = document.getElementById('cursor-trail-canvas');
-
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-
-    
-
-    let width = (canvas.width = window.innerWidth);
-
-    let height = (canvas.height = window.innerHeight);
-
-
-
-     window.addEventListener('resize', () => {
-
-      width = canvas.width = window.innerWidth;
-
-      height = canvas.height = window.innerHeight;
-
-    });
-
-
-
-    let mouse = { x: width / 2, y: height / 2 };
-
-     window.addEventListener('mousemove', (e) => {
-
-      mouse.x = e.clientX;
-
-      mouse.y = e.clientY;
-
-    });
-
-     window.addEventListener('touchmove', (e) => {
-
-      if (e.touches.length > 0) {
-
-        mouse.x = e.touches[0].clientX;
-
-        mouse.y = e.touches[0].clientY;
-
-      }
-
-    }, { passive: true });
-
-
-
-    const trailsCount = 20;
-
-    const points = [];
-
-    for (let i = 0; i < trailsCount; i++) {
-
-      points.push(new Point(mouse.x, mouse.y));
-
-    }
-
-
-
-    function renderTrail() {
-
-      ctx.clearRect(0, 0, width, height);
-
-      ctx.beginPath();
-
-      ctx.moveTo(points[0].x, points[0].y);
-
-
-
-      for (let i = 1; i < points.length; i++) {
-
-        points[i].update(points[i - 1].x, points[i - 1].y, 0.25);
-
-        ctx.lineTo(points[i].x, points[i].y);
-
-      }
-
-      
-
-      points[0].update(mouse.x, mouse.y, 0.25);
-
-
-
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
-
-      ctx.lineWidth = 2.5;
-
-      ctx.lineCap = 'round';
-
-      ctx.lineJoin = 'round';
-
-      ctx.stroke();
-
-
-
-      requestAnimationFrame(renderTrail);
-
-    }
-
-    renderTrail();
-
-  }
-
-
 
   // Guaranteed Toast Trigger & Download Function
 
@@ -946,8 +489,6 @@
 
       container.appendChild(toastEl);
 
-
-
       setTimeout(() => {
 
         toastEl.style.opacity = '0';
@@ -961,8 +502,6 @@
       }, 3500);
 
     }
-
-
 
     const link = document.createElement('a');
 
@@ -978,8 +517,6 @@
 
   }
 
-
-
    window.addEventListener('DOMContentLoaded', () => {
 
     void 0
@@ -991,8 +528,6 @@
   });
 
 </script>
-
-
 
 <header>
 
@@ -1028,8 +563,6 @@
 
       </a>
 
-
-
       <div class="hidden lg:flex items-center space-x-2">
 
         <a href="https://www.akashnagapure.in" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
@@ -1046,8 +579,6 @@
 
       </div>
 
-
-
       <div class="flex items-center lg:hidden">
 
         <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Toggle Menu">
@@ -1061,8 +592,6 @@
     </div>
 
   </div>
-
-
 
   <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
 
@@ -1083,8 +612,6 @@
 </nav>
 
 </header>
-
-
 
 <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
 
@@ -1146,8 +673,6 @@
 
     </div>
 
-
-
     <div class="glass-card-3d p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
 
       <div class="flex items-center space-x-2 text-slate-300">
@@ -1176,8 +701,6 @@
 
     </div>
 
-
-
     <div class="glass-card-3d p-7 rounded-2xl space-y-3">
 
       <div class="flex items-center space-x-3">
@@ -1195,8 +718,6 @@
       </p>
 
     </div>
-
-
 
     <div class="glass-card-3d p-7 rounded-2xl space-y-4">
 
@@ -1246,8 +767,6 @@
 
     </div>
 
-
-
     <div class="glass-card-3d p-7 rounded-2xl space-y-6">
 
       <div class="flex items-center space-x-3">
@@ -1257,8 +776,6 @@
         <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Work Experience</h2>
 
       </div>
-
-
 
       <div class="space-y-6">
 
@@ -1294,8 +811,6 @@
 
         </div>
 
-
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
 
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
@@ -1328,8 +843,6 @@
 
         </div>
 
-
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
 
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
@@ -1352,8 +865,6 @@
 
         </div>
 
-
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
 
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
@@ -1375,8 +886,6 @@
           </ul>
 
         </div>
-
-
 
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
 
@@ -1404,8 +913,6 @@
 
     </div>
 
-
-
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
@@ -1429,8 +936,6 @@
         </ul>
 
       </div>
-
-
 
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
 
@@ -1456,8 +961,6 @@
 
     </div>
 
-
-
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
@@ -1479,8 +982,6 @@
         </ul>
 
       </div>
-
-
 
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
 
@@ -1506,8 +1007,6 @@
 
     </div>
 
-
-
     <div class="glass-card-3d p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-4">
 
       <p class="italic">I hereby declare that the information provided above is true to the best of my knowledge and belief.</p>
@@ -1522,23 +1021,13 @@
 
     </div>
 
-
-
   </div>
 
 </main>
 
-
-
-
-
-
-
 <script>
 
     if (window.lucide) lucide.createIcons();
-
-
 
     function toggleMobileMenu() {
 
@@ -1547,8 +1036,6 @@
         menu.classList.toggle('hidden');
 
     }
-
-
 
     function scrollToTop() {
 
@@ -1645,96 +1132,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style>
   /* --- Interactive 3D tilt (mouse-driven) --- */
   .glass-card-3d { transform-style: preserve-3d; will-change: transform; }
@@ -1793,7 +1190,4 @@
 <script src="/assets/js/site-effects.js" defer></script>
 </body>
 </html>
-
-
-
 

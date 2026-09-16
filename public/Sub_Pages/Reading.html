@@ -53,7 +53,6 @@
   <!-- Core Scripts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <script id="tailwind-config">
     tailwind.config = {
@@ -219,120 +218,6 @@
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Top Header Navigation -->
 <header class="fixed top-0 w-full z-50 bg-slate-950/30 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
   <div class="flex items-center justify-between px-4 sm:px-8 py-3 max-w-7xl mx-auto gap-4">
@@ -403,7 +288,6 @@
 <main class="relative z-10 pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto space-y-16 md:space-y-24 flex-grow w-full">
 
     <h1 class="sr-only">Literary Portfolio & Book Archive</h1>
-
 
   <!-- Literary Metrics Overview -->
   <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 scroll-mt-28">
@@ -960,109 +844,11 @@
 
 <!-- Standardized Global Footer -->
 
-
-
-
 <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-slate-900/80 border border-sky-400/40 text-sky-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all z-50 hover:scale-110" aria-label="Scroll Back To Top">
   <i data-lucide="arrow-up" class="w-4 h-4"></i>
 </button>
 
 <script>
-  // 1. THREE.JS 3D BACKGROUND ENGINE
-  let scene, camera, renderer, particlesGeo, particlesMesh, gridHelper;
-  let mouseX = 0, mouseY = 0;
-  let targetX = 0, targetY = 0;
-  let isPageVisible = true;
-  const isMobile = window.innerWidth < 768;
-
-  function __legacy_init3DBackground_DISABLED() {
-    const canvas = document.getElementById('three-bg-canvas');
-    if (!canvas) return;
-
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 50;
-
-    renderer = new THREE.WebGLRenderer({ 
-      canvas: canvas, 
-      antialias: !isMobile, 
-      alpha: true, 
-      powerPreference: "high-performance"
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
-
-    const count = isMobile ? 1500 : 3500;
-    particlesGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(count * 3);
-
-    for (let i = 0; i < count * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 800;
-      positions[i + 1] = (Math.random() - 0.5) * 2800;
-      positions[i + 2] = (Math.random() - 0.5) * 600;
-    }
-    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particleMat = new THREE.PointsMaterial({
-      color: 0x38bdf8,
-      size: isMobile ? 1.3 : 1.1,
-      transparent: true,
-      opacity: 0.85,
-      blending: THREE.AdditiveBlending
-    });
-
-    particlesMesh = new THREE.Points(particlesGeo, particleMat);
-    scene.add(particlesMesh);
-
-    gridHelper = new THREE.GridHelper(1400, isMobile ? 50 : 100, 0x0284c7, 0x0f172a);
-    gridHelper.position.y = -220;
-    gridHelper.material.transparent = true;
-    gridHelper.material.opacity = 0.22;
-    scene.add(gridHelper);
-
-    if (!isMobile) {
-      window.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX - window.innerWidth / 2) * 0.0006;
-        mouseY = (e.clientY - window.innerHeight / 2) * 0.0006;
-      }, { passive: true });
-    }
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (!camera || !renderer) return;
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      }, 150);
-    }, { passive: true });
-
-    document.addEventListener('visibilitychange', () => {
-      isPageVisible = !document.hidden;
-    });
-  }
-
-  const clock = new THREE.Clock();
-  function __legacy_animate3DBackground_DISABLED() {
-    requestAnimationFrame(animate3DBackground);
-    if (!isPageVisible) return;
-
-    const elapsedTime = clock.getElapsedTime();
-    targetX += (mouseX - targetX) * 0.04;
-    targetY += (mouseY - targetY) * 0.04;
-
-    if (particlesMesh) {
-      particlesMesh.rotation.y = elapsedTime * 0.015 + targetX;
-      particlesMesh.rotation.x = elapsedTime * 0.008 + targetY;
-    }
-    if (gridHelper) {
-      gridHelper.rotation.y = elapsedTime * 0.003;
-    }
-    if (renderer && scene && camera) {
-      renderer.render(scene, camera);
-    }
-  }
 
   // 2. SCROLL & UI HELPERS
   function toggleMobileMenu() {
@@ -1462,94 +1248,6 @@
         <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script src="/assets/js/footer-common.js" defer></script>
 
