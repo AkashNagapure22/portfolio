@@ -4,7 +4,8 @@
    looks exactly as before. Respects prefers-reduced-motion. */
 
 @media (prefers-reduced-motion: reduce) {
-  [data-fx], .fx-tilt, .fx-shimmer, .fx-float { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  [data-fx], .fx-tilt, .fx-shimmer, .fx-float, .fx-word { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  .fx-nav-link, .fx-nav-link::after { transition: none !important; animation: none !important; }
 }
 
 /* ---- scroll progress bar ---- */
@@ -62,3 +63,62 @@
 /* ---- button press feedback ---- */
 .fx-press { transition: transform .12s ease; }
 .fx-press:active { transform: scale(.96); }
+
+/* ==========================================================================
+   BIG TRANSPARENT HEADER — matches the transparent footer on every page.
+   site-effects.js tags the top navigation bar of each page with .fx-header
+   (body > header / body > nav), upgrades its size utilities and pads <main>.
+   The transparency below is static CSS: applied even if JS never runs.
+   ========================================================================== */
+.fx-header,
+.fx-header > *:not(#mobile-drawer) {
+  background-color: transparent !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-bottom-color: rgba(56, 189, 248, .22) !important;
+  transition: background-color .4s ease, box-shadow .4s ease;
+}
+
+/* header text floats directly over the animated background — keep it legible */
+.fx-header a, .fx-header strong, .fx-header span, .fx-header p {
+  text-shadow: 0 1px 12px rgba(2, 6, 23, .85);
+}
+
+/* subtle scrim appears only once the page is scrolled, so content sliding
+   under the fixed bar stays readable. Fully transparent at rest, like the footer. */
+.fx-header.fx-scrolled {
+  background-color: rgba(2, 6, 23, .78) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .55) !important;
+}
+
+/* ---- word effect: glowing gradient underline sweep on nav links ---- */
+.fx-nav-link { position: relative; }
+.fx-nav-link::after {
+  content: "";
+  position: absolute; left: 0; bottom: -3px; height: 2px; width: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+  box-shadow: 0 0 10px rgba(56, 189, 248, .8);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .35s cubic-bezier(.16, 1, .3, 1);
+}
+.fx-nav-link:hover::after, .fx-nav-link:focus-visible::after { transform: scaleX(1); }
+.fx-nav-link:hover, .fx-nav-link:focus-visible {
+  text-shadow: 0 0 16px rgba(56, 189, 248, .9);
+}
+
+/* ---- word effect: word-by-word rise on page titles ---- */
+.fx-word {
+  display: inline-block;
+  transition: opacity .6s cubic-bezier(.16, 1, .3, 1),
+              transform .6s cubic-bezier(.16, 1, .3, 1),
+              color .25s ease, text-shadow .25s ease;
+  transition-delay: calc(var(--fx-w, 0) * 60ms);
+}
+[data-fx] .fx-word { opacity: 0; transform: translateY(.6em); }
+[data-fx].fx-in .fx-word { opacity: 1; transform: none; }
+.fx-word:hover { transition-delay: 0ms; color: #7dd3fc; text-shadow: 0 0 18px rgba(56, 189, 248, .85); }

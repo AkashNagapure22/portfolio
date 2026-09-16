@@ -16,6 +16,74 @@
     l.id = 'fx-css'; l.rel = 'stylesheet'; l.href = '/assets/css/site-effects.css';
     document.head.appendChild(l);
   }
+
+  /* ---------- big transparent header (matches the footer) ----------
+     Runs on every page, and even with reduced motion: transparency and
+     sizing are not motion. Tags the top navigation bar with .fx-header,
+     upgrades its size utilities, tags text links for the glow effect,
+     and pads <main> so nothing hides under the taller fixed bar. */
+  function upgradeHeaders() {
+    try {
+      var SIZE_MAP = {
+        'h-16': 'h-24', 'h-12': 'h-16',
+        'py-3.5': 'py-6', 'py-3': 'py-6', 'py-4': 'py-6',
+        'h-9': 'h-14', 'w-9': 'w-14', 'w-10': 'w-14', 'h-10': 'h-14',
+        'text-base': 'text-lg', 'sm:text-base': 'sm:text-xl',
+        'text-[9px]': 'text-xs', 'text-[10px]': 'text-xs'
+      };
+      document.querySelectorAll('body > header, body > nav').forEach(function (h) {
+        if (h.classList.contains('fx-header')) return;
+        h.classList.add('fx-header');
+
+        /* bigger bar: swap size utilities in a single pass (no chained swaps) */
+        h.querySelectorAll('*').forEach(function (el) {
+          var toks = Array.prototype.slice.call(el.classList);
+          toks.forEach(function (t) {
+            if (SIZE_MAP[t] && !el.classList.contains(SIZE_MAP[t])) {
+              el.classList.replace(t, SIZE_MAP[t]);
+            }
+          });
+          /* nav links: text-xs -> text-sm so words get bigger */
+          if ((el.tagName === 'A' || el.tagName === 'BUTTON') && el.classList.contains('text-xs')) {
+            el.classList.replace('text-xs', 'text-sm');
+          }
+        });
+
+        /* word effect: glowing gradient underline on text nav links */
+        h.querySelectorAll('a').forEach(function (a) {
+          if (a.querySelector('img') || a.classList.contains('fx-nav-link')) return;
+          a.classList.add('fx-nav-link');
+        });
+      });
+
+      /* fixed bars are taller now — keep content clear of them */
+      var bar = document.querySelector('body > .fx-header');
+      var m = document.querySelector('main');
+      if (bar && m) {
+        var pos = getComputedStyle(bar).position;
+        if (pos === 'fixed' || pos === 'sticky') {
+          var pad = function () { m.style.paddingTop = (bar.offsetHeight + 40) + 'px'; };
+          pad();
+          setTimeout(pad, 350);  /* re-measure after Tailwind/webfonts settle */
+          setTimeout(pad, 1000);
+          window.addEventListener('resize', pad);
+        }
+      }
+
+      /* transparent at rest like the footer; gentle scrim only while scrolled */
+      var bars = document.querySelectorAll('.fx-header');
+      if (bars.length) {
+        var onScroll = function () {
+          var sc = (window.pageYOffset || document.documentElement.scrollTop || 0) > 40;
+          bars.forEach(function (b) { b.classList.toggle('fx-scrolled', sc); });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+    } catch (e) {}
+  }
+  ready(upgradeHeaders);
+
   if (reduce) return;
 
   function ready(fn) {
@@ -28,8 +96,42 @@
 
     /* ---------- text colour effect: shimmer every gradient headline ---------- */
     try {
-      main.querySelectorAll('[class*="bg-clip-text"]').forEach(function (el) {
+      document.querySelectorAll('[class*="bg-clip-text"]:not(.cookie-title)').forEach(function (el) {
         el.classList.add('fx-shimmer');
+      });
+    } catch (e) {}
+
+    /* ---------- word effect: word-by-word rise on page titles ----------
+       Splits direct text nodes of every <h1> into .fx-word spans and tags
+       element children (gradient words, icons) as single units. Words
+       cascade in when the title scrolls into view ([data-fx] + .fx-in)
+       and glow on hover. Gradient (bg-clip-text) children stay whole so
+       their background-clip:text rendering is never broken. */
+    try {
+      var wIdx = 0;
+      main.querySelectorAll('h1').forEach(function (h) {
+        if (h.hasAttribute('data-fx-words')) return;
+        h.setAttribute('data-fx-words', '1');
+        wIdx = 0;
+        Array.prototype.slice.call(h.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            if (!n.textContent.trim()) return;
+            var frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function (w) {
+              if (!w) return;
+              if (!w.trim()) { frag.appendChild(document.createTextNode(w)); return; }
+              var s = document.createElement('span');
+              s.className = 'fx-word';
+              s.textContent = w;
+              s.style.setProperty('--fx-w', wIdx++);
+              frag.appendChild(s);
+            });
+            h.replaceChild(frag, n);
+          } else if (n.nodeType === 1 && !n.classList.contains('fx-word')) {
+            n.classList.add('fx-word');
+            n.style.setProperty('--fx-w', wIdx++);
+          }
+        });
       });
     } catch (e) {}
 
