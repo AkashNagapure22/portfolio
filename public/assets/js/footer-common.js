@@ -27,19 +27,12 @@
   window.showToast = showToast;
 
   /* ---------------- Newsletter subscribe ---------------- */
-  /* Update only the label span so the arrow SVG inside the button survives. */
-  function setBtnLabel(btn, text) {
-    if (!btn) return;
-    var label = btn.querySelector('.btn-label');
-    if (label) { label.textContent = text; } else { btn.textContent = text; }
-  }
-
   function handleFooterSubscribe(form) {
     var emailInput = form.querySelector('input[type="email"]');
     var email = emailInput ? emailInput.value.trim() : '';
     var btn = form.querySelector('button');
     if (!email) { showToast('Please enter your email address.', 'warn'); return; }
-    if (btn) { setBtnLabel(btn, 'Subscribing...'); btn.disabled = true; }
+    if (btn) { btn.textContent = 'Subscribing...'; btn.disabled = true; }
     fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -57,41 +50,15 @@
         }
         showToast(msg, kind);
         if (emailInput) emailInput.value = '';
-        if (btn) { setBtnLabel(btn, label); setTimeout(function () { setBtnLabel(btn, 'Subscribe'); }, 3200); }
+        if (btn) { btn.textContent = label; setTimeout(function () { btn.textContent = 'Subscribe'; }, 3200); }
       })
       .catch(function () {
         showToast('Network error - could not subscribe. Try again.', 'error');
-        if (btn) { setBtnLabel(btn, 'Error'); setTimeout(function () { setBtnLabel(btn, 'Subscribe'); }, 2500); }
+        if (btn) { btn.textContent = 'Error'; setTimeout(function () { btn.textContent = 'Subscribe'; }, 2500); }
       })
       .finally(function () { if (btn) btn.disabled = false; });
   }
   window.handleFooterSubscribe = handleFooterSubscribe;
-
-  /* ---------------- Newsletter subscribe styles ----------------
-     Pill input-wrapper + white Subscribe button with a flying arrow
-     that jello-wobbles in on hover (scoped to .footer-subscribe-form). */
-  function injectSubscribeCss() {
-    if (document.getElementById('footer-subscribe-css')) return;
-    var css = document.createElement('style');
-    css.id = 'footer-subscribe-css';
-    css.textContent =
-      '.footer-subscribe-form .input-wrapper{width:100%;max-width:360px;height:45px;border-radius:20px;padding:5px;box-sizing:content-box;display:flex;align-items:center;background-color:#292524;border:1px solid rgba(56,189,248,.28);box-shadow:0 0 0 rgba(56,189,248,0);transition:box-shadow .3s ease}' +
-      '.footer-subscribe-form .input-wrapper:focus-within{box-shadow:0 0 18px rgba(56,189,248,.25)}' +
-      '.footer-subscribe-form .icon{width:30px;height:30px;flex-shrink:0;fill:#fff;margin-left:8px;transition:all .3s}' +
-      '.footer-subscribe-form .input{flex:1 1 auto;min-width:0;width:100%;max-width:170px;height:100%;border:none;outline:none;padding-left:15px;background-color:#292524;color:#fff;font-size:1em}' +
-      '.footer-subscribe-form .input::placeholder{color:#a8a29e}' +
-      '.footer-subscribe-form .input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #292524 inset;-webkit-text-fill-color:#fff}' +
-      '.footer-subscribe-form .Subscribe-btn{height:100%;width:95px;flex-shrink:0;border:none;border-radius:15px;color:#000;cursor:pointer;background-color:#fff;font-weight:500;font-size:13px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;transition:all .3s;font-family:inherit}' +
-      '.footer-subscribe-form .arrow{position:absolute;margin-right:150px;fill:currentColor;transition:all .3s}' +
-      '.footer-subscribe-form .input-wrapper:active .icon{transform:scale(1.3)}' +
-      '.footer-subscribe-form .Subscribe-btn:hover,.footer-subscribe-form .Subscribe-btn:focus-visible{background-color:#38bdf8;color:#020617}' +
-      '.footer-subscribe-form .Subscribe-btn:hover .arrow,.footer-subscribe-form .Subscribe-btn:focus-visible .arrow{margin-right:0;animation:jello-vertical .9s both;transform-origin:right}' +
-      '.footer-subscribe-form .Subscribe-btn:active{transform:scale(.9)}' +
-      '.footer-subscribe-form .Subscribe-btn:disabled{opacity:.7;cursor:wait}' +
-      '@keyframes jello-vertical{0%{transform:scale3d(1,1,1)}30%{transform:scale3d(.75,1.25,1)}40%{transform:scale3d(1.25,.75,1)}50%{transform:scale3d(.85,1.15,1)}65%{transform:scale3d(1.05,.95,1)}75%{transform:scale3d(.95,1.05,1)}100%{transform:scale3d(1,1,1)}}' +
-      '@media (prefers-reduced-motion: reduce){.footer-subscribe-form .arrow,.footer-subscribe-form .icon,.footer-subscribe-form .Subscribe-btn{transition:none;animation:none}}';
-    document.head.appendChild(css);
-  }
 
   /* ---------------- Cookie consent ---------------- */
   var COOKIE_KEY = 'cookie_consent';
@@ -182,7 +149,6 @@
   }
 
   onReady(function () {
-    injectSubscribeCss();
     injectCookieCss();
     wireCookies();
     var form = document.getElementById('footer-subscribe-form');
