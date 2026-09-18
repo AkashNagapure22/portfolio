@@ -8,6 +8,52 @@ https://www.akashnagapure.in/changelog.html
 
 ---
 
+## [Unreleased] — v3.5.0
+
+### Summary
+Full SEO + Answer-Engine (AI visibility) release: every page got keyword-rich
+meta, valid JSON-LD and breadcrumbs; robots.txt explicitly welcomes AI crawlers;
+new `llms.txt`/`llms-full.txt` discovery files; sitemap generator rebuilt and
+regenerated; FAQ expanded from 3 to 9 questions; docs rewritten.
+
+### Added
+- **`public/llms.txt` + `public/llms-full.txt`**: LLM discovery indexes (author
+  E-E-A-T, core pages, 10 hubs, all 23 articles by family, citation policy).
+- **`tools/build-llms-txt.mjs`** (`npm run llms`, `npm run llms:check`).
+- **`tools/build-sitemap.mjs`** (`npm run sitemap`, `npm run sitemap:check`) —
+  the generator the old sitemap header referenced but never existed.
+- **`tools/enrich-blog-schema.mjs`** (`npm run seo:blogs`): full BlogPosting
+  schema + breadcrumbs + article meta on all 23 guides.
+- **`tools/enrich-hub-schema.mjs`** (`npm run seo:hubs`): CollectionPage /
+  ProfilePage + breadcrumbs on the 10 Sub_Pages; blog hub gained an ItemList
+  of all 23 articles.
+- **`tools/validate-structured-data.mjs`** (`npm run seo:validate`): JSON-LD
+  validity + required-field gate across all 41 pages.
+- **`docs/AEO.md`**: answer-engine strategy (crawler matrix, llms.txt, E-E-A-T,
+  citation patterns, monitoring prompts).
+- **FAQ page**: 6 new visible Q&A (expertise, article usage, availability),
+  full 9-question FAQPage schema, keyword meta, breadcrumbs.
+- **`index.html`**: `@graph` WebSite + ProfilePage + Person (knowsAbout[13],
+  sameAs, worksFor), keyword/author/robots/theme-color meta, OG enrichments.
+- **`public/robots.txt`**: explicit allow-list for 25 AI/LLM crawler agents;
+  noindex utility pages + template partials disallowed to protect crawl budget.
+
+### Changed
+- **`docs/SEO.md`**: rewritten to match the shipped site (38-URL inventory,
+  meta matrix, schema inventory, keyword strategy, validation checklist).
+- **`docs/CONTENT.md`**: llms.txt / llms-full.txt added to the site map.
+- **`public/sitemap.xml`**: regenerated via the new generator (38 URLs, 11 hosts).
+- **Blog heads**: added `datePublished`/`dateModified` (from git history),
+  image, keywords, `mainEntityOfPage`, author/publisher, OG `article:*` tags.
+
+### Verified
+- `npm run seo:check` passes (sitemap drift + llms drift + structured data).
+- Validator covers 69 JSON-LD blocks across 41 pages with 0 problems.
+- `npm run projects:check`, `test:guard` (21/21), `test:flip` (40/40),
+  `check-encoding` all green.
+
+---
+
 ## [Unreleased] — v3.4.0
 
 ### Summary

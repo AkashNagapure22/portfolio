@@ -13,7 +13,15 @@
         "projects:check": "node tools/projects-guard.mjs",
         "projects:accept": "node tools/projects-guard.mjs --accept",
         "test:guard": "node tools/projects-guard.test.mjs",
-        "test:flip": "node tools/flip-cards.test.mjs"
+        "test:flip": "node tools/flip-cards.test.mjs",
+        "sitemap": "node tools/build-sitemap.mjs",
+        "sitemap:check": "node tools/build-sitemap.mjs --check",
+        "llms": "node tools/build-llms-txt.mjs",
+        "llms:check": "node tools/build-llms-txt.mjs --check",
+        "seo:blogs": "node tools/enrich-blog-schema.mjs",
+        "seo:hubs": "node tools/enrich-hub-schema.mjs",
+        "seo:validate": "node tools/validate-structured-data.mjs",
+        "seo:check": "node tools/build-sitemap.mjs --check && node tools/build-llms-txt.mjs --check && node tools/validate-structured-data.mjs"
     },
     "dependencies": {
         "@google/genai": "^2.4.0",
