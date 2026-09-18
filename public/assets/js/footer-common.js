@@ -27,12 +27,15 @@
   window.showToast = showToast;
 
   /* ---------------- Newsletter subscribe ---------------- */
+  var subscribeBusy = false;
   function handleFooterSubscribe(form) {
+    if (subscribeBusy) return;
     var emailInput = form.querySelector('input[type="email"]');
     var email = emailInput ? emailInput.value.trim() : '';
     var btn = form.querySelector('button');
     if (!email) { showToast('Please enter your email address.', 'warn'); return; }
     if (btn) { btn.textContent = 'Subscribing...'; btn.disabled = true; }
+    subscribeBusy = true;
     fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -56,7 +59,7 @@
         showToast('Network error - could not subscribe. Try again.', 'error');
         if (btn) { btn.textContent = 'Error'; setTimeout(function () { btn.textContent = 'Subscribe'; }, 2500); }
       })
-      .finally(function () { if (btn) btn.disabled = false; });
+      .finally(function () { subscribeBusy = false; if (btn) btn.disabled = false; });
   }
   window.handleFooterSubscribe = handleFooterSubscribe;
 

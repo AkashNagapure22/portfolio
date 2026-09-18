@@ -209,10 +209,10 @@
 
 
 
-<header class="fixed top-0 w-full z-50 bg-slate-950/30 backdrop-blur-xl border-b border-sky-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+<header class="fixed top-0 w-full z-50 bg-transparent border-b border-sky-500/20">
   <div class="flex items-center justify-between px-4 sm:px-8 py-3 max-w-7xl mx-auto gap-4">
     <div class="flex items-center gap-3 shrink-0">
-      <button onclick="goBack()" id="go-back-btn" aria-label="Go back" class="w-10 h-10 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center text-sky-400 hover:text-white hover:border-sky-400/60 transition-colors shadow-md shrink-0">
+      <button onclick="goBack()" id="go-back-btn" aria-label="Go back" class="w-11 h-11 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center text-sky-400 hover:text-white hover:border-sky-400/60 transition-colors shadow-md shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
       </button>
     <a href="https://www.akashnagapure.in" class="flex items-center gap-3 group shrink-0">
@@ -1171,7 +1171,7 @@
             <div class="footer-col subscribe-col col-span-2 md:col-span-4 lg:col-span-1">
                 <h3 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Stay Updated</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">Get notified about new projects, blog posts, and updates.</p>
-                <form id="footer-subscribe-form" class="footer-subscribe-form" onsubmit="event.preventDefault(); if (window.handleFooterSubscribe) window.handleFooterSubscribe(this);">
+                <form id="footer-subscribe-form" class="footer-subscribe-form">
                     <input type="email" name="email" aria-label="Your email address" placeholder="Your email address" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none mb-2" />
                     <button type="submit" class="btn-primary-shared w-full px-4 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm rounded-lg transition-all">Subscribe</button>
                 </form>
