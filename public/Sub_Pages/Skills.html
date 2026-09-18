@@ -814,5 +814,29 @@
 <script src="/assets/js/site-effects.js" defer></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  .auto-hide-header { transition: transform 0.3s ease-in-out; will-change: transform; }
+  .auto-hide-header.header-hidden { transform: translateY(-100%); }
+  @media (prefers-reduced-motion: reduce) { .auto-hide-header { transition: none; } }
+</style>
+<script>
+  (function () {
+    'use strict';
+    var hdr = document.querySelector('header.fixed.top-0, nav.fixed.top-0');
+    if (!hdr || hdr.dataset.autoHide) return;
+    hdr.dataset.autoHide = '1';
+    hdr.classList.add('auto-hide-header');
+    var lastY = 0;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y > lastY && y > 120) {
+        hdr.classList.add('header-hidden');
+      } else {
+        hdr.classList.remove('header-hidden');
+      }
+      lastY = y <= 0 ? 0 : y;
+    }, { passive: true });
+  })();
+</script>
 </body>
 </html>
