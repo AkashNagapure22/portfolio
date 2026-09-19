@@ -7,7 +7,7 @@
         "dev": "vite --port=3000 --host=0.0.0.0",
         "build": "vite build",
         "preview": "vite preview",
-        "clean": "rm -rf dist",
+        "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
         "watch": "node scripts/auto-sync.mjs",
         "sync": "node scripts/auto-sync.mjs --once",
         "projects:check": "node tools/projects-guard.mjs",
@@ -21,7 +21,8 @@
         "seo:blogs": "node tools/enrich-blog-schema.mjs",
         "seo:hubs": "node tools/enrich-hub-schema.mjs",
         "seo:validate": "node tools/validate-structured-data.mjs",
-        "seo:check": "node tools/build-sitemap.mjs --check && node tools/build-llms-txt.mjs --check && node tools/validate-structured-data.mjs"
+        "seo:meta": "node tools/audit-seo-meta.mjs",
+        "seo:check": "node tools/build-sitemap.mjs --check && node tools/build-llms-txt.mjs --check && node tools/validate-structured-data.mjs && node tools/audit-seo-meta.mjs"
     },
     "dependencies": {
         "@google/genai": "^2.4.0",

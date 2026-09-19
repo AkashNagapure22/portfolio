@@ -55,8 +55,9 @@
   The 3D rotation itself stays in each page's CSS; the script only decides
   which tile is open. Without the script the tiles still render (never rotate).
 - `public/assets/js/site-effects.js` skips flip tiles entirely, so the shared
-  scroll-reveal and pointer-tilt transforms cannot fight the flip transform
-  (an inline transform on `.flip-card-inner` would beat the `flipped` rule).
+  scroll-reveal transform cannot fight the flip transform (an inline transform
+  on `.flip-card-inner` would beat the `flipped` rule). The pointer-tilt effect
+  was removed completely — cards no longer rotate as the cursor moves over them.
 - Tests: `npm run test:flip` drives the behaviour through an in-process DOM stub
     and statically verifies all four pages. Legacy handlers (`toggleFlipCard`,
   inline `this.classList.toggle(...)`) are flagged as failures by the same suite,
@@ -70,7 +71,8 @@
 - Success banner: green emerald panel with checkmark icon
 
 ### Footer (shared across all 42 pages)
-- Source of truth: `public/Sub_Pages/footer-template.html` (inlined per page)
+- Source of truth: `template/footer-template.html` (shipped to
+  `public/template/footer-template.html`, then inlined per page)
 - 4-column link grid: Portfolio / Legal / Hobbies & Interests / Stay Updated
 - Bottom bar: clickable logo (`aria-label="Akash Nagapure Home"`) +
   `© 2026 Akash Nagapure. All Rights Reserved.` + social icon links

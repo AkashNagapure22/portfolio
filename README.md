@@ -17,6 +17,10 @@ The portfolio is **under active construction** and showcases:
 - **Blogs** – In-depth technical guides on SCCM, Intune, PowerShell, Azure Virtual Desktop, and more
 - **Contact** – A terminal-style interface that launches a pre-filled email
 
+## Preview
+
+![Akash Nagapure portfolio landing page](docs/images/design-reference.png)
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -74,24 +78,33 @@ npm run build
 │   ├── comments.js       # CRUD + voting for blog comments
 │   ├── contact.js        # Contact form submissions
 │   ├── projects.js       # Projects showcase data
+│   ├── subscribe.js      # Newsletter sign-ups
 │   └── votes.js          # Article helpful/not-helpful vote stats
 ├── public/               # Static assets served directly
-│   ├── Blogs/            # Technical blog articles (24 articles)
-│   ├── Sub_Pages/        # Hobby & project sub-pages
+│   ├── Blogs/            # Technical blog articles (23 articles + hub)
+│   ├── Sub_Pages/        # Hobby & project sub-pages (10 pages)
 │   ├── images/           # All images, icons, and illustrations
-│   ├── Main_page_data/   # Hero images, resume, video
+│   ├── Main_page_data/   # Hero images, profile photo, logo, resume PDF
+│   ├── assets/           # css/ + js/ runtime (site effects, flip cards, …)
+│   ├── template/         # Built copy of the shared footer / 3D-background
+│   ├── llms.txt          # AI answer-engine index (generated)
 │   ├── robots.txt
 │   └── sitemap.xml
-├── assets/               # Build-vendor assets (canvas-confetti)
-├── docs/                 # Project documentation
+├── docs/                 # Project documentation (+ docs/images/ reference shot)
+├── scripts/
+│   └── auto-sync.mjs     # `npm run sync` / `npm run watch` pipeline
+├── template/             # Shared footer + 3D-background sources (inlined by tools/)
+├── tools/                # Build, guard, test and SEO maintenance scripts
 ├── index.html            # Main landing page
 ├── middleware.js         # Subdomain routing middleware
-├── vote-manager.js       # Client-side localStorage vote tracking
 ├── vite.config.ts        # Vite build configuration
 ├── vercel.json           # Vercel deployment config
 ├── tsconfig.json         # TypeScript configuration
 └── package.json
 ```
+
+Everything above is tracked in git; `vote-manager.js` is embedded inline in the
+pages and no longer exists as a standalone file.
 
 ## Scripts
 
@@ -101,7 +114,12 @@ npm run build
 | `npm run build` | Production build |
 | `npm run preview` | Preview production build locally |
 | `npm run clean` | Remove the `dist/` directory |
-| `npm run lint` | Static app placeholder (no-op) |
+| `npm run sync` | One-shot: inline templates → sitemap → llms.txt → SEO audit |
+| `npm run watch` | Same pipeline, re-run on every source change |
+| `npm run seo:check` | Sitemap drift + llms drift + structured data + meta audit |
+| `npm run seo:meta` | Audit per-page titles/descriptions/OG/alt coverage |
+| `npm run projects:check` | Verify the frozen Projects section is intact |
+| `npm run test:guard` / `npm run test:flip` | Regression suites (21 + 40 cases) |
 
 ## License
 

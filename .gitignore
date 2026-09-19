@@ -51,7 +51,6 @@
 !public/Sub_Pages/resume.html
 !public/Sub_Pages/Skills.html
 !public/Sub_Pages/faq.html
-!public/Sub_Pages/footer-template.html
 !public/robots.txt
 !public/sitemap.xml
 !public/images/
@@ -163,7 +162,6 @@ public/Sub_Pages/*
 !public/Sub_Pages/resume.html
 !public/Sub_Pages/Skills.html
 !public/Sub_Pages/faq.html
-!public/Sub_Pages/footer-template.html
 !public/robots.txt
 !public/sitemap.xml
 !public/images/
@@ -231,3 +229,15 @@ docs/*
 !tools/flip-cards.test.mjs
 !tools/projects-baseline.html
 !tools/install-guard-hooks.ps1
+
+# --- Maintenance tooling, docs assets and generated SEO files (must stay tracked) ---
+!scripts/
+!scripts/*
+!tools/*
+!docs/images/
+!docs/images/*
+!public/llms.txt
+!public/llms-full.txt
+!public/site.webmanifest
+!public/robots.txt
+

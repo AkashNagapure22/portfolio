@@ -10,7 +10,7 @@
   'use strict';
   if (window.__tplBooted) return;
   window.__tplBooted = true;
-  var FOOTER_URLS = ['/template/footer-template.html', '/Sub_Pages/footer-template.html'];
+  var FOOTER_URLS = ['/template/footer-template.html'];
   var BG_JS = '/assets/js/3d-background.js';
   var COMMON_JS = '/assets/js/footer-common.js';
 

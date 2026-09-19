@@ -10,8 +10,8 @@
   var reduce = false;
   try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 
-  /* ---- inject stylesheet once ---- */
-  if (!document.getElementById('fx-css')) {
+  /* ---- inject stylesheet once (pages that already link it in <head> are skipped) ---- */
+  if (!document.getElementById('fx-css') && !document.querySelector('link[rel="stylesheet"][href="/assets/css/site-effects.css"]')) {
     var l = document.createElement('link');
     l.id = 'fx-css'; l.rel = 'stylesheet'; l.href = '/assets/css/site-effects.css';
     document.head.appendChild(l);
@@ -43,10 +43,10 @@
 
     /* ---------- flip tiles own their transforms ----------
        .flip-card* / .inventory-flip-* spin with rotateY(180deg) when clicked.
-       The reveal + tilt effects below would otherwise write transforms onto
+       The scroll-reveal effect below would otherwise write a transform onto
        those very elements: an inline transform on .flip-card-inner beats the
-       "flipped" stylesheet rule, so the tile would wobble with the pointer
-       instead of flipping, and the reveal transform would wipe the
+       "flipped" stylesheet rule, so the tile would never flip at all,
+       and the reveal transform would wipe the
        rotateY(180deg) that hides the back face. Skip them entirely.
        Click behaviour lives in /assets/js/flip-cards.js. */
     var FLIP_SEL = '.flip-card, .flip-card-container, .flip-card-inner, .flip-card-front, .flip-card-back, ' +
@@ -102,30 +102,6 @@
         el.classList.add('fx-in');
       });
     }, 2600);
-
-    /* ---------- 3D tilt on cards (pointer:fine devices only) ---------- */
-    var finePointer = false;
-    try { finePointer = window.matchMedia('(pointer: fine)').matches; } catch (e) {}
-    if (finePointer) {
-      var tilts = document.querySelectorAll('[class*="card"], .glass-card-3d');
-      tilts.forEach(function (el) {
-        if (el.hasAttribute('data-fx-tilt')) return;
-        if (isFlip(el)) return; // no hover rotation on flip tiles
-        el.setAttribute('data-fx-tilt', '1');
-        el.classList.add('fx-tilt');
-        el.addEventListener('mousemove', function (ev) {
-          var r = el.getBoundingClientRect();
-          var x = (ev.clientX - r.left) / r.width - 0.5;
-          var y = (ev.clientY - r.top) / r.height - 0.5;
-          el.classList.add('fx-tilt-on');
-          el.style.transform = 'perspective(900px) rotateY(' + (x * 7).toFixed(2) + 'deg) rotateX(' + (-y * 7).toFixed(2) + 'deg) translateY(-4px)';
-        });
-        el.addEventListener('mouseleave', function () {
-          el.classList.remove('fx-tilt-on');
-          el.style.transform = '';
-        });
-      });
-    }
 
     /* ---------- click ripple on buttons ---------- */
     document.addEventListener('click', function (ev) {

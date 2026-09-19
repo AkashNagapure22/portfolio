@@ -11,8 +11,9 @@ Validate everything with `npm run seo:check`.
 | `blogs.akashnagapure.in` | hub root + 23 article pages (`/Blogs/*.html`, priority 0.8) |
 | `reading`, `coins`, `homelab`, `resume`, `skills`, `courses`, `gaming`, `food`, `puzzle` (+ blogs hub) | 10 section roots via `middleware.js` subdomain rewrite |
 
-Excluded on purpose (noindex + robots Disallow + no canonical): `404.html`, `access-denied.html`, `maintenance.html`, `*/footer-template.html`, `*/3d-background-template.html`.
+Excluded on purpose (noindex + robots Disallow + no canonical): `404.html`, `access-denied.html`, `maintenance.html`, `template/footer-template.html`, `template/3d-background-template.html` (the latter two are also the only copy of the templates now — the stale `public/Sub_Pages/footer-template.html` duplicate is gone).
 Generator: `tools/build-sitemap.mjs` (`npm run sitemap`, `npm run sitemap:check`).
+Meta coverage: `tools/audit-seo-meta.mjs` (`npm run seo:meta`) checks title/description length, canonical, OG/Twitter tags, duplicate snippets, one `<h1>` per page and `<img alt>` coverage; `tools/fix-seo-meta.mjs` repairs dedupe/gaps in bulk.
 
 ## Meta matrix (every page has all of these)
 

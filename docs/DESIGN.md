@@ -158,3 +158,11 @@ industrial aesthetic.
 - **Status chips:** neon-dot indicator beside uppercase Geist type; "live" states
   pulse subtly.
 - **HUD sliders:** high-contrast tracks with a square thumb.
+
+## Reference
+
+![Design reference — shipped landing page](images/design-reference.png)
+
+The screenshot above is the visual reference for the token set in this file
+(`docs/images/design-reference.png`). It replaces the two identical copies that
+used to live in the removed `pages/` and `images/` folders.

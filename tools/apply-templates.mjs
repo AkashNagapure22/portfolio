@@ -263,6 +263,10 @@ function main() {
   const files = listHtml(ROOT).filter((p) => {
     const r = relative(ROOT, p).replace(/\\/g, '/');
     if (r.startsWith('template/') || r.startsWith('public/template/')) return false;
+    /* Never touch the repo's own tooling/docs: tools/projects-baseline.html is a
+       frozen snapshot (rewriting it corrupted the projects guard) and the docs
+       contain no deployable pages. */
+    if (r.startsWith('tools/') || r.startsWith('docs/') || r.startsWith('scripts/')) return false;
     if (/(^|\/)(footer-template|3d-background-template)\.html$/.test(r)) return false;
     return true;
   });

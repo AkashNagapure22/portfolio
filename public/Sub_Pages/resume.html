@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" class="dark scroll-smooth">
 
@@ -17,6 +17,18 @@
   <meta name="description" content="Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience." />
 
   <link rel="canonical" href="https://resume.akashnagapure.in/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Akash Nagapure" />
+  <meta property="og:url" content="https://resume.akashnagapure.in/" />
+  <meta property="og:title" content="Akash Nagapure | Curriculum Vitae & Professional Resume" />
+  <meta property="og:description" content="Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience." />
+  <meta property="og:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://resume.akashnagapure.in/" />
+  <meta property="twitter:title" content="Akash Nagapure | Curriculum Vitae & Professional Resume" />
+  <meta property="twitter:description" content="Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience." />
+  <meta property="twitter:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
+
 
   <link rel="icon" href="/Main_page_data/Logo.gif" type="image/gif" />
 
@@ -264,6 +276,8 @@
 
     .label {
 
+      font: inherit;
+
       position: relative;
 
       cursor: pointer;
@@ -299,12 +313,6 @@
       box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 
       transform: translateY(-2px);
-
-    }
-
-    .input {
-
-      display: none;
 
     }
 
@@ -354,42 +362,6 @@
 
     }
 
-    .square {
-
-      position: absolute;
-
-      width: 10px;
-
-      height: 10px;
-
-      background: #38bdf8;
-
-      border-radius: 2px;
-
-      transform: translateY(-150%);
-
-      opacity: 0;
-
-      transition: var(--transition);
-
-    }
-
-    .input:checked ~ .circle .icon {
-
-      transform: translateY(150%);
-
-      opacity: 0;
-
-    }
-
-    .input:checked ~ .circle .square {
-
-      transform: translateY(0);
-
-      opacity: 1;
-
-    }
-
     .title {
 
       position: relative;
@@ -407,32 +379,6 @@
       transition: var(--transition);
 
       white-space: nowrap;
-
-    }
-
-    .title:nth-of-type(2) {
-
-      position: absolute;
-
-      opacity: 0;
-
-      transform: translateY(100%);
-
-    }
-
-    .input:checked ~ .title:nth-of-type(1) {
-
-      transform: translateY(-100%);
-
-      opacity: 0;
-
-    }
-
-    .input:checked ~ .title:nth-of-type(2) {
-
-      transform: translateY(0);
-
-      opacity: 1;
 
     }
 
@@ -546,6 +492,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
 
 <script>
@@ -600,17 +578,32 @@
 
     }
 
-    const link = document.createElement('a');
+    /* Hard download: the PDF is fetched as a blob and saved through an object
+       URL, so the browser can only *save* it. A plain <a href> to a PDF is
+       opened in the built-in viewer by most browsers instead. */
+    const RESUME_URL = '/Main_page_data/Akash_Resume.pdf';
+    const RESUME_NAME = 'Akash_Nagapure_Resume.pdf';
 
-    link.href = '/Main_page_data/Akash_Resume.pdf';
+    function saveResume(href, revoke) {
+      const link = document.createElement('a');
+      link.href = href;
+      link.download = RESUME_NAME;
+      link.rel = 'noopener';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      if (revoke) setTimeout(() => URL.revokeObjectURL(href), 4000);
+    }
 
-    link.download = 'Akash_Resume.pdf';
+    if (!window.fetch) { saveResume(RESUME_URL, false); return; }
 
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
+    fetch(RESUME_URL, { credentials: 'same-origin', cache: 'force-cache' })
+      .then((res) => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.blob();
+      })
+      .then((blob) => saveResume(URL.createObjectURL(new Blob([blob], { type: 'application/pdf' })), true))
+      .catch(() => saveResume(RESUME_URL, false));
 
   }
 
@@ -742,11 +735,9 @@
 
       <div class="flex items-center gap-3 shrink-0">
 
-        <div class="container" onclick="downloadResume()">
+        <div class="container">
 
-          <label class="label">
-
-            <input type="checkbox" class="input" />
+          <button type="button" id="resume-download-btn" class="label" onclick="downloadResume()" aria-label="Download Akash Nagapure's resume as a PDF file">
 
             <span class="circle">
 
@@ -756,15 +747,11 @@
 
               </svg>
 
-              <div class="square"></div>
-
             </span>
 
-            <p class="title">Download Resume</p>
+            <span class="title">Download Resume</span>
 
-            <p class="title">Open</p>
-
-          </label>
+          </button>
 
         </div>
 
@@ -834,7 +821,7 @@
 
           <strong class="text-sky-300 font-mono text-sm block">Microsoft Intune</strong>
 
-          <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch – Setup, Connected Cache.</p>
+          <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch � Setup, Connected Cache.</p>
 
         </div>
 
@@ -882,9 +869,9 @@
 
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
 
-            <h3 class="font-bold text-white text-base">Architect – Technical Specialist | Hexaware Technologies</h3>
+            <h3 class="font-bold text-white text-base">Architect � Technical Specialist | Hexaware Technologies</h3>
 
-            <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
+            <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 � Present</span>
 
           </div>
 
@@ -916,11 +903,11 @@
 
             <h3 class="font-bold text-white text-base">Medline Industries India Pvt. Ltd, Pune</h3>
 
-            <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 – 13/02/2026</span>
+            <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 � 13/02/2026</span>
 
           </div>
 
-          <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist – EUC (2024–2026) | Senior Administrator – EUC (2022–2024) | EUC Administrator (2020–2021)</p>
+          <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist � EUC (2024�2026) | Senior Administrator � EUC (2022�2024) | EUC Administrator (2020�2021)</p>
 
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
 
@@ -946,9 +933,9 @@
 
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
 
-            <h3 class="font-bold text-white text-base">Specialist – EUC Administrator (C2R) | Rectitude HR Solutions</h3>
+            <h3 class="font-bold text-white text-base">Specialist � EUC Administrator (C2R) | Rectitude HR Solutions</h3>
 
-            <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 – 30/01/2020</span>
+            <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 � 30/01/2020</span>
 
           </div>
 
@@ -970,7 +957,7 @@
 
             <h3 class="font-bold text-white text-base">Process Associate | Capgemini Technology Services</h3>
 
-            <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 – 23/09/2019</span>
+            <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 � 23/09/2019</span>
 
           </div>
 
@@ -992,7 +979,7 @@
 
             <h3 class="font-bold text-white text-base">Customer Support Engineer | VDA Info Solutions</h3>
 
-            <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 – 14/11/2018</span>
+            <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 � 14/11/2018</span>
 
           </div>
 
@@ -1048,11 +1035,11 @@
 
         <ul class="space-y-2 text-xs font-sans text-slate-300">
 
-          <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) – 63.06%</li>
+          <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) � 63.06%</li>
 
-          <li><strong>HSC</strong> | Brijlal Biyani Science College, Amravati (2010) – 56.33%</li>
+          <li><strong>HSC</strong> | Brijlal Biyani Science College, Amravati (2010) � 56.33%</li>
 
-          <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) – 67.83%</li>
+          <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) � 67.83%</li>
 
         </ul>
 
@@ -1247,6 +1234,30 @@
         <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

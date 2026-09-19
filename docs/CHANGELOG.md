@@ -8,6 +8,78 @@ https://www.akashnagapure.in/changelog.html
 
 ---
 
+## [Unreleased] — v3.6.0
+
+### Summary
+Structure + performance + metadata pass: duplicate folders and files removed,
+the `npm run sync` / `npm run watch` scripts implemented, the randomly wandering
+3D tiles and the pointer-tilt effect removed, the resume button made
+download-only, and complete OG/Twitter coverage added across all 43 pages.
+
+### Added
+- **`scripts/auto-sync.mjs`** — implements the `npm run sync` (`--once`) and
+  `npm run watch` commands `package.json` referenced but that never existed:
+  apply-templates → sitemap → llms.txt → structured-data → SEO meta audit, plus a
+  debounced `fs.watch` loop (node built-in, no extra dependency) that ignores the
+  files the pipeline generates itself.
+- **`tools/audit-seo-meta.mjs`** (`npm run seo:meta`, now also part of
+  `npm run seo:check`): per-page audit of title/description length, canonical,
+  OG/Twitter coverage, duplicated share tags, `<h1>` count and `<img alt>`.
+- **`tools/fix-seo-meta.mjs`** — the bulk repair used for this release (dedupe
+  share tags, fill missing `og:*` / `twitter:*` from the page's own title,
+  description and canonical, apply shortened snippets).
+- **`docs/images/design-reference.png`** — the design reference screenshot, kept
+  next to the docs that describe the design system.
+
+### Changed
+- **Project structure**: removed the duplicate `pages/` and `images/` folders
+  (`pages/DESIGN.md` and `images/DESIGN.md` were byte-identical leftovers of
+  `docs/DESIGN.md`; both `screen.png` copies were unreferenced by any page), and
+  deleted the stale `public/Sub_Pages/footer-template.html` duplicate. The footer
+  template now has exactly two copies: `template/` (source) and `public/template/`
+  (shipped). `template-loader.js`, `robots.txt`, `tools/build-sitemap.mjs` and the
+  docs all point at the single canonical path.
+- **`.gitignore`**: whitelisted `scripts/`, the new tools, `docs/images/`,
+  `llms*.txt`, `site.webmanifest` and `robots.txt`; dropped the stale
+  `public/Sub_Pages/footer-template.html` negation.
+- **`public/assets/js/3d-background.js`**: the particle field is painted once
+  (and on resize) instead of running a 60 fps loop with random rotation, colour
+  cycling and pointer parallax. Particle count 4500 → 1800 (desktop) and
+  1500 → 600 (mobile); the cursor trail's rAF loop parks itself when the pointer
+  stops, and the trail is skipped entirely for `prefers-reduced-motion`.
+- **`public/assets/js/site-effects.js` + `site-effects.css`**: removed the
+  pointer-tilt effect (cards no longer rotate or shift as the cursor moves over
+  them) and the unused `.fx-progress` / `.fx-float` rules; the runtime stylesheet
+  injector now skips pages that already link the CSS, so it is no longer fetched
+  twice per page.
+- **`index.html`**: deleted ~170 lines of dead `__legacy_*_DISABLED` 3D/cursor
+  code, removed the random arrow-nudge/twinkle loop that fired on a 1–4 s timer,
+  bounded the Spline watermark interval (it used to run every 500 ms forever), and
+  deferred the three.js, Lucide and canvas-confetti CDN scripts.
+
+- **`public/Sub_Pages/resume.html`**: the Download/Open toggle is now a single
+  `Download Resume` button. The PDF is fetched as a blob and saved through an
+  object URL, so the browser can only save the file — it never opens the built-in
+  PDF viewer (with an anchor fallback if `fetch` is unavailable). ~60 lines of
+  dead toggle CSS (`.input`, `.square`, `:checked` state) removed.
+- **SEO metadata**: deduplicated repeated OG/Twitter blocks (Food, Game, HomeLab,
+  Projects, Reading and courses each carried 5 duplicates), added the missing
+  `og:title` / `og:description` / `og:image` and Twitter cards on resume,
+  changelog, privacy and terms, and shortened the title/descriptions that search
+  engines would truncate (index, FAQ, HomeLab, Projects, courses).
+- **`package.json`**: `clean` is cross-platform again (Node `fs.rmSync` instead of
+  `rm -rf`), `seo:meta` added, and `seo:check` extended with the meta audit.
+- **Docs**: README and `docs/PROJECT.md` structures rewritten to the real tree;
+  `ARCHITECTURE`, `COMPONENTS`, `CONTENT` and `SEO` updated for the template
+  paths, the removed effects and the new audit tooling.
+
+### Verified
+- `npm run seo:meta` → 0 problems across 43 pages (was 61).
+- `npm run seo:check` green (sitemap drift + llms drift + structured data + meta).
+- `npm run projects:check`, `test:guard` (21/21) and `test:flip` (40/40) green.
+
+---
+
 ## [Unreleased] — v3.5.0
 
 ### Summary

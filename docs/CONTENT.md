@@ -153,4 +153,4 @@ Sub-pages (`public/Sub_Pages/*.html`) share:
 | Blog articles | `public/Blogs/*.html` | Akash Nagapure |
 | Profile photo | `/Main_page_data/akash_profile_*.avif` | Akash Nagapure |
 | Resume | `/Main_page_data/Akash_Resume.pdf` | Akash Nagapure |
-| Design tokens | `pages/DESIGN.md` | Design system reference |
+| Design tokens | `docs/DESIGN.md` | Design system reference |

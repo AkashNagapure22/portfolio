@@ -105,13 +105,14 @@ All API endpoints follow the same pattern:
 - Scroll spy: IntersectionObserver for nav link highlighting
 
 ### Sub-Pages (public/Sub_Pages/*.html)
-- Same 3D engine and cursor trail
+- Static 3D square background + cursor trail (shared `/assets/js/3d-background.js`)
 - Page-specific interactive components (coin filters, cube galleries, etc.)
 - Comment system on some pages
 
 ### Shared Footer (inlined into every page)
 All 42 HTML files embed an identical footer block (source of truth:
-`public/Sub_Pages/footer-template.html`) containing:
+`template/footer-template.html`, shipped as `public/template/footer-template.html`)
+containing:
 - Logo link + copyright + social links (LinkedIn, GitHub, WhatsApp, Email)
 - "Stay Updated" newsletter form (`#footer-subscribe-form`) calling
   `handleFooterSubscribe()` → `POST /api/subscribe`

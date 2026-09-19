@@ -1,0 +1,82 @@
+# Akash Nagapure — Enterprise Endpoint, Intune, SCCM & VMware Architecture
+
+> Technical portfolio, reference library and engineering blog by Akash Nagapure
+> (Microsoft Certified EUC & Intune Specialist, Enterprise Fleet Architect).
+> First-hand field notes on managing 35,000+ endpoints across Microsoft Intune,
+> Microsoft Configuration Manager (SCCM), Windows Autopilot, Windows 365, Azure
+> Virtual Desktop, VMware Horizon and PowerShell/Microsoft Graph automation.
+> All content is original, hands-on documentation written by the author and is
+> free to cite or quote with attribution and a link to the source page.
+
+## Author (E-E-A-T)
+- Name: Akash Nagapure
+- Role: Microsoft Certified EUC & Intune Specialist; Enterprise Fleet Architect
+- Employer: Hexaware Technologies
+- Experience: 10+ years of enterprise endpoint management and virtualization
+- Skills: Microsoft Intune, SCCM/MECM, Windows Autopilot, Windows 365, Azure Virtual Desktop (AVD), VMware Horizon, PowerShell, Microsoft Graph API, Zero-Trust endpoint security, OSD/imaging, patch and compliance automation
+- Contact: info@akashnagapure.in
+- LinkedIn: https://www.linkedin.com/in/anagapure
+- GitHub: https://github.com/AkashNagapure22
+
+## Core pages
+- [Akash Nagapure — Enterprise Endpoint, Intune, SCCM & VMware Architect](https://www.akashnagapure.in/): Portfolio of Akash Nagapure — Enterprise Fleet Architect for Microsoft Intune, SCCM, Windows Autopilot, Windows 365, AVD and VMware at 35,000+ endpoints.
+- [Release Version Control & Upcoming Roadmap](https://www.akashnagapure.in/changelog.html): Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.
+- [Akash Nagapure — Intune, SCCM & VMware Answers](https://www.akashnagapure.in/faq.html): Answers from Akash Nagapure, Microsoft Certified EUC &amp; Intune Specialist: the technologies he covers, how to collaborate, and how to use the blog + newsletter.
+- [Privacy Policy](https://www.akashnagapure.in/privacy.html): Privacy Policy for Akash Nagapure's technical portfolio and enterprise lab website.
+- [Terms & Conditions](https://www.akashnagapure.in/terms.html): Terms and Conditions for Akash Nagapure's professional portfolio and technical labs.
+
+## Topic hubs (section sub-domains)
+- [Technical Blogs & Enterprise Labs](https://blogs.akashnagapure.in/): Explore in-depth tutorials and expert insights on Microsoft Intune, Configuration Manager, AVD, VMware, and cloud technologies by Akash Nagapure.
+- [Literary Portfolio & Book Archive](https://reading.akashnagapure.in/): Explore the literary portfolio, reading progress, book reviews, and quotes curated by Akash Nagapure.
+- [Numismatic & Banknote Collection Vault](https://coins.akashnagapure.in/): Explore the rare coin and historical banknote collection of Akash Nagapure, featuring ancient Indian currency, British Raj coins, and international pieces.
+- [Systems & Infrastructure Lab](https://homelab.akashnagapure.in/): Explore the enterprise systems engineering and self-hosted homelab environment of Akash Nagapure: MECM, Intune, VMware ESXi and Active Directory.
+- [Curriculum Vitae & Professional Resume](https://resume.akashnagapure.in/): Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience.
+- [Skills & Technical Arsenal](https://skills.akashnagapure.in/): Explore the core competencies, enterprise endpoint management, cloud virtualization, and automation technical arsenal of Akash Nagapure.
+- [Advanced Academy & Training Tracks](https://courses.akashnagapure.in/): Professional certifications, academy courses, and specialised technical training completed by Akash Nagapure across Microsoft, Pluralsight and Udemy.
+- [Gaming Portfolio & Tactical Archive](https://gaming.akashnagapure.in/): Explore the gaming portfolio, stats, reviews, and favorite titles of Akash Nagapure.
+- [Foodie Portfolio & Culinary Vault](https://food.akashnagapure.in/): Explore the foodie portfolio and culinary adventures of Akash Nagapure, featuring restaurant reviews, food bucket lists, and local delicacies.
+- [Games & Puzzles Portfolio](https://puzzle.akashnagapure.in/): Explore the speedcubing and mechanical puzzle vault of Akash Nagapure, featuring twisty cubes, algorithms, and brain teasers.
+
+## Articles — Microsoft Intune, Autopatch & Autopilot
+- [Windows Autopatch & Hotpatch Enterprise Guide](https://blogs.akashnagapure.in/Blogs/Autopatchblog.html): Comprehensive step-by-step enterprise deployment guide for Windows Autopatch, modern ring management, and rebootless Hotpatching across Microsoft Intune.
+- [Advanced Intune Deployment Rings](https://blogs.akashnagapure.in/Blogs/intune-advanced-deployment-rings.html): Design progressive Intune deployment rings around risk, validation windows, and rollback signals.
+- [Windows Autopilot Troubleshooting Guide](https://blogs.akashnagapure.in/Blogs/intune-autopilot-troubleshooting.html): Comprehensive troubleshooting guide for Windows Autopilot deployment errors, hardware hash collection failures, and ESP timeout issues.
+- [Intune Compliance Policy Architecture](https://blogs.akashnagapure.in/Blogs/intune-compliance-policies.html): Build Intune compliance policies with clear signals, grace periods, exclusions, and remediation paths.
+- [Intune Win32 Packaging](https://blogs.akashnagapure.in/Blogs/intune-win32-packaging.html): A repeatable Intune Win32 application packaging workflow with detection, requirements, dependencies, and return codes.
+
+## Articles — Microsoft Configuration Manager (SCCM)
+- [SCCM Application Model Design](https://blogs.akashnagapure.in/Blogs/sccm-application-model.html): A maintainable design for SCCM application model deployments, detection logic, dependencies, and supersedence.
+- [SCCM Client Health Remediation](https://blogs.akashnagapure.in/Blogs/sccm-client-health-remediation.html): A practical SCCM client health baseline and remediation workflow for reliable management signals.
+- [SCCM Content Distribution](https://blogs.akashnagapure.in/Blogs/sccm-content-distribution.html): Practical SCCM content distribution guidance for boundaries, distribution points, validation, and recovery.
+- [SCCM Hardware Inventory](https://blogs.akashnagapure.in/Blogs/sccm-hardware-inventory.html): Design SCCM hardware inventory collections that provide useful endpoint signals without unnecessary load.
+- [SCCM to Intune Migration Guardrails](https://blogs.akashnagapure.in/Blogs/sccm-intune-migration-guardrails.html): Guardrails for moving endpoint workloads from SCCM to Intune without losing ownership or rollback options.
+- [SCCM OSD Engineering](https://blogs.akashnagapure.in/Blogs/sccm-osd-engineering.html): Engineer reliable SCCM operating system deployment workflows with checkpoints, drivers, and recovery paths.
+- [SCCM Patch Management Lifecycle](https://blogs.akashnagapure.in/Blogs/sccm-patch-management-lifecycle.html): Build an evidence-driven SCCM patch management lifecycle from validation through deployment and review.
+
+## Articles — Windows 365, Azure Virtual Desktop & VMware
+- [FSLogix Profile Containers in Enterprise AVD](https://blogs.akashnagapure.in/Blogs/avd-fslogix-profile-containers.html): Configure FSLogix profile containers with Azure Files and Azure NetApp Files for reliable, persistent user profiles in Azure Virtual Desktop.
+- [Advanced AVD Host Pool Auto-Scaling](https://blogs.akashnagapure.in/Blogs/avd-host-pool-scaling.html): Optimize Azure Virtual Desktop compute costs and user concurrency with time-based scaling plans, dynamic autoscale, and custom Azure Automation scaling.
+- [Dynamic Environment Manager (DEM) Optimization](https://blogs.akashnagapure.in/Blogs/vmware-dem-profile-management.html): Streamline user settings and application configuration across virtual desktop pools with VMware Dynamic Environment Manager personas and environments.
+- [VMware Horizon Instant Clone Architecture](https://blogs.akashnagapure.in/Blogs/vmware-horizon-instant-clones.html): Architect rapid desktop provisioning with VMware Horizon instant clones, golden image maintenance, and workspace delivery at enterprise scale.
+- [Windows 365 Enterprise: Custom Image Deployment](https://blogs.akashnagapure.in/Blogs/windows-365-enterprise-provisioning.html): Step-by-step guide to Windows 365 Enterprise Cloud PC provisioning with custom device images, provisioning policies, and Microsoft Intune integration.
+- [Cloud PC Health & Connection Monitoring](https://blogs.akashnagapure.in/Blogs/windows-365-resilience-monitoring.html): Proactive monitoring and remediation strategies for Windows 365 Cloud PC connectivity, Microsoft 365 health signals, and endpoint performance.
+
+## Articles — PowerShell & Microsoft Graph Automation
+- [PowerShell Compliance Automation](https://blogs.akashnagapure.in/Blogs/powershell-compliance-automation.html): Use PowerShell detection and remediation to automate endpoint compliance with evidence and guardrails.
+- [PowerShell Device Inventory](https://blogs.akashnagapure.in/Blogs/powershell-device-inventory.html): Create a useful endpoint inventory snapshot with PowerShell by combining stable device signals and clear freshness metadata.
+- [PowerShell Graph Authentication](https://blogs.akashnagapure.in/Blogs/powershell-graph-authentication.html): Use least-privilege Microsoft Graph authentication from PowerShell with predictable operational controls.
+- [PowerShell Intune Reporting](https://blogs.akashnagapure.in/Blogs/powershell-intune-reporting.html): Build focused Microsoft Graph reports for Intune using PowerShell, pagination, and explicit data contracts.
+- [PowerShell Remediation Scripts](https://blogs.akashnagapure.in/Blogs/powershell-remediation-scripts.html): Design safe, idempotent PowerShell detection and remediation scripts for managed endpoints.
+
+## Optional
+- [Full article index (single fetch)](https://www.akashnagapure.in/llms-full.txt)
+- [Sitemap](https://www.akashnagapure.in/sitemap.xml): machine-readable list of every indexable URL
+- [FAQ](https://www.akashnagapure.in/faq.html): who the author is, how to collaborate, how to use the blog
+- [Changelog](https://www.akashnagapure.in/changelog.html): release history and roadmap
+- [Privacy policy](https://www.akashnagapure.in/privacy.html): data handling and cookie policy
+
+## Crawling & citation policy
+- Search engines and AI/LLM answer engines are welcome to crawl every page (see /robots.txt).
+- When quoting, cite "Akash Nagapure (akashnagapure.in)" with the source URL.
+- Technical guidance is shared as-is; validate scripts in a test lab before production use.
+- Generated: 2026-09-19

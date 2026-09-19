@@ -1,4 +1,7 @@
-/* 3d-background.js — canonical 3D square background + mouse effects.
+/* 3d-background.js — canonical STATIC 3D square background.
+   The particle field is painted once (plus a repaint on resize): no rotation,
+   no pointer parallax, no 60 fps animation loop. Only the lightweight cursor
+   trail still animates, and it parks its rAF loop the moment the pointer stops.
    Source: /template/3d-background-template.html | Served: /assets/js/3d-background.js
    Applied to ALL pages via tools/apply-templates.mjs (inline canvases + script tag)
    + runtime self-heal below (creates missing canvases/CSS). Idempotent. */
@@ -46,8 +49,11 @@
   function boot() {
     ensureCss();
     var c = ensureCanvases();
-    initTrail(c.trail);
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
     loadThree(function () { if (window.THREE) initSquares(c.bg); });
+    /* The cursor trail is pure decoration: skip it for reduced-motion users. */
+    if (!reduce) initTrail(c.trail);
   }
   /* ---- 2D cursor trail (spring line) ---- */
   function initTrail(canvas) {
@@ -58,12 +64,16 @@
       var W = canvas.width = window.innerWidth, H = canvas.height = window.innerHeight;
       window.addEventListener('resize', function () { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
       var mx = W / 2, my = H / 2;
-      window.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
-      window.addEventListener('touchmove', function (e) { if (e.touches[0]) { mx = e.touches[0].clientX; my = e.touches[0].clientY; } }, { passive: true });
+      window.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; kick(); }, { passive: true });
+      window.addEventListener('touchmove', function (e) { if (e.touches[0]) { mx = e.touches[0].clientX; my = e.touches[0].clientY; } kick(); }, { passive: true });
       var N = 20, pts = [];
       for (var i = 0; i < N; i++) pts.push({ x: mx, y: my, dx: 0, dy: 0 });
-      (function draw() {
-        requestAnimationFrame(draw);
+      /* Draw only while the trail is still settling. When the pointer stops the
+         points converge, the line collapses to a dot and the rAF loop parks
+         itself until the next pointer move (no idle CPU burn). */
+      var running = false;
+      function draw() {
+        var settled = true;
         ctx.clearRect(0, 0, W, H);
         ctx.beginPath();
         ctx.moveTo(pts[0].x, pts[0].y);
@@ -71,15 +81,22 @@
           var p = pts[i], q = pts[i - 1];
           p.dx += (q.x - p.x) * 0.25; p.dx *= 0.5; p.x += p.dx;
           p.dy += (q.y - p.y) * 0.25; p.dy *= 0.5; p.y += p.dy;
+          if (Math.abs(p.dx) > 0.4 || Math.abs(p.dy) > 0.4) settled = false;
           ctx.lineTo(p.x, p.y);
         }
         var h = pts[0];
         h.dx += (mx - h.x) * 0.25; h.dx *= 0.5; h.x += h.dx;
         h.dy += (my - h.y) * 0.25; h.dy *= 0.5; h.y += h.dy;
+        if (Math.abs(h.dx) > 0.4 || Math.abs(h.dy) > 0.4) settled = false;
         ctx.strokeStyle = 'rgba(56,189,248,0.6)';
         ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
         ctx.stroke();
-      })();
+        if (settled) { running = false; return; }
+        requestAnimationFrame(draw);
+      }
+      function kick() {
+        if (!running) { running = true; requestAnimationFrame(draw); }
+      }
     } catch (e) {}
   }
 
@@ -95,7 +112,7 @@
       var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !isMobile, alpha: true, powerPreference: 'high-performance' });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.75));
-      var count = isMobile ? 1500 : 4500;
+      var count = isMobile ? 600 : 1800;
       var geo = new THREE.BufferGeometry();
       var pos = new Float32Array(count * 3);
       var k;
@@ -118,20 +135,11 @@
       grid.material.transparent = true;
       grid.material.opacity = 0.22;
       scene.add(grid);
-      var mouseX = 0, mouseY = 0, targetX = 0, targetY = 0, visible = true;
-      if (!isMobile) {
-        window.addEventListener('mousemove', function (e) {
-          mouseX = (e.clientX - window.innerWidth / 2) * 0.0006;
-          mouseY = (e.clientY - window.innerHeight / 2) * 0.0006;
-        }, { passive: true });
-      } else {
-        window.addEventListener('touchmove', function (e) {
-          if (e.touches[0]) {
-            mouseX = (e.touches[0].clientX - window.innerWidth / 2) * 0.0006;
-            mouseY = (e.touches[0].clientY - window.innerHeight / 2) * 0.0006;
-          }
-        }, { passive: true });
-      }
+      /* Static field: painted once, then repainted on resize only.
+         The tiles no longer rotate, drift or parallax with the pointer — the
+         old 60 fps loop was pure cost and made the squares wander randomly. */
+      camera.lookAt(scene.position);
+      renderer.render(scene, camera);
       var rt;
       window.addEventListener('resize', function () {
         clearTimeout(rt);
@@ -139,26 +147,9 @@
           camera.aspect = window.innerWidth / window.innerHeight;
           camera.updateProjectionMatrix();
           renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.render(scene, camera);
         }, 150);
       }, { passive: true });
-      document.addEventListener('visibilitychange', function () { visible = !document.hidden; });
-      var clock = new THREE.Clock();
-      (function animate() {
-        requestAnimationFrame(animate);
-        if (!visible) return;
-        var t = clock.getElapsedTime();
-        /* colour effect: particles drift cyan -> violet -> cyan */
-        if (mat) { mat.color.setHSL(0.55 + 0.10 * Math.sin(t * 0.12), 0.85, 0.62); }
-        targetX += (mouseX - targetX) * 0.04;
-        targetY += (mouseY - targetY) * 0.04;
-        points.rotation.y = t * 0.015 + targetX;
-        points.rotation.x = t * 0.008 + targetY;
-        grid.rotation.y = t * 0.003;
-        camera.position.x = targetX * 40;
-        camera.position.y = -targetY * 40;
-        camera.lookAt(scene.position);
-        renderer.render(scene, camera);
-      })();
     } catch (e) {}
   }
   function makeSquareTexture() {

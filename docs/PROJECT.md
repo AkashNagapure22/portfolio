@@ -57,18 +57,21 @@ interests (numismatics, gaming, reading, cooking, homelab).
 .
 ├── api/                    # Serverless API endpoints
 ├── public/                 # Static assets (served as-is by Vercel)
-│   ├── Blogs/              # 24 technical blog articles
-│   ├── Sub_Pages/          # 11 hobby & project sub-pages
+│   ├── Blogs/              # 23 technical blog article pages + hub
+│   ├── Sub_Pages/          # 10 hobby & project sub-pages
+│   ├── assets/             # Runtime css/ + js/ (effects, flip cards, footer)
+│   ├── template/           # Built footer + 3D-background markup
 │   ├── images/             # Icons, photos, cube puzzles, coins, food, etc.
-│   ├── Main_page_data/     # Hero video, profile image, resume, logo
+│   ├── Main_page_data/     # Profile image, logo, resume PDF
+│   ├── llms.txt            # Generated AI answer-engine index
 │   ├── robots.txt
 │   └── sitemap.xml
-├── assets/                 # Vendor build assets (canvas-confetti)
-├── docs/                   # Project documentation
-├── pages/                  # Design system reference (pages/DESIGN.md)
+├── docs/                   # Project documentation (+ docs/images reference shot)
+├── scripts/auto-sync.mjs   # `npm run sync` / `npm run watch` pipeline
+├── template/               # Footer + 3D-background sources inlined by tools/
+├── tools/                  # Build, guard, test and SEO maintenance scripts
 ├── index.html              # Landing page (root entry point for Vite)
 ├── middleware.js           # Subdomain routing
-├── vote-manager.js         # Shared client-side localStorage vote tracker
 ├── vite.config.ts          # Vite build configuration
 ├── vercel.json             # Vercel routing & security headers
 ├── tsconfig.json           # TypeScript checker config (JS allowed)
