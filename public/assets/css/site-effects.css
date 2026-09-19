@@ -1,4 +1,4 @@
-/* site-effects.css — scroll / click / text colour effects.
+/* site-effects.css — scroll / section-transition / click / text colour effects.
    Progressive enhancement only: all rules are scoped to [data-fx] / .fx-*
    classes that site-effects.js adds at runtime. If JS is disabled the site
    looks exactly as before. Respects prefers-reduced-motion. */
@@ -7,7 +7,9 @@
   [data-fx], .fx-shimmer { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
 }
 
-/* ---- scroll reveal ---- */
+/* ---- scroll reveal + section-to-section transitions ----
+   Top-level sections fly/slide in from alternating sides with a slight
+   3D tilt, so moving between sections feels animated like a 3D site. */
 [data-fx] {
   opacity: 0;
   transform: translateY(28px);
@@ -17,7 +19,23 @@
 [data-fx="left"]  { transform: translateX(-34px); }
 [data-fx="right"] { transform: translateX(34px); }
 [data-fx="zoom"]  { transform: scale(.94); }
-[data-fx].fx-in   { opacity: 1; transform: none; }
+/* Even sections: rise + settle with a subtle 3D tilt. */
+[data-fx="section"] {
+  transform: translateY(72px) perspective(1100px) rotateX(7deg) scale(.978);
+  transition-duration: .95s;
+  filter: saturate(.85) brightness(.92);
+}
+/* Odd sections: sweep in from the side with a 3D yaw, alternating the motion. */
+[data-fx="section-alt"] {
+  transform: translateX(84px) perspective(1100px) rotateY(-9deg) scale(.978);
+  transition-duration: .95s;
+  filter: saturate(.85) brightness(.92);
+}
+[data-fx].fx-in   { opacity: 1; transform: none; filter: none; }
+/* Active section in the viewport gently lifts above the 3D field. */
+.fx-active {
+  filter: drop-shadow(0 18px 34px rgba(56, 189, 248, 0.12));
+}
 
 /* ---- text colour effect: shimmering gradient headlines ---- */
 .fx-shimmer {

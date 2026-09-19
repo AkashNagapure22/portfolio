@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
 <html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -12,7 +8,6 @@
   <meta name="title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect Resume">
   <meta name="description" content="Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience." />
   <link rel="canonical" href="https://resume.akashnagapure.in/" />
-<<<<<<< HEAD
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Akash Nagapure" />
   <meta property="og:url" content="https://resume.akashnagapure.in/" />
@@ -26,8 +21,6 @@
   <meta property="twitter:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
 
 
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
   <link rel="icon" href="/Main_page_data/Logo.gif" type="image/gif" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -147,7 +140,6 @@
     .download-btn {
       display: inline-flex;
       align-items: center;
-<<<<<<< HEAD
 
       justify-content: center;
 
@@ -165,8 +157,6 @@
 
       align-items: center;
 
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
       gap: 12px;
       padding: 12px 24px;
       background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(14, 165, 233, 0.25) 100%);
@@ -182,10 +172,6 @@
       border-color: rgba(56, 189, 248, 0.8);
       box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
     .circle {
       width: 32px;
       height: 32px;
@@ -201,10 +187,6 @@
       height: 16px;
       color: #38bdf8;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
     .title {
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
@@ -213,10 +195,6 @@
       letter-spacing: 0.05em;
       white-space: nowrap;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- seo:managed:start -->
@@ -316,48 +294,16 @@
 
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
 
+<!-- Canonical 3D animation background (square effect + mouse effect).
+     Source of truth: /template/3d-background-template.html
+     Behaviour: /assets/js/3d-background.js (auto self-heals if canvases/scripts missing)
+     Applied to ALL pages via tools/apply-templates.mjs + /assets/js/template-loader.js -->
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
-<<<<<<< HEAD
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
 <div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
 
 <script>
@@ -386,7 +332,6 @@
         setTimeout(() => toastEl.remove(), 300);
       }, 3500);
     }
-<<<<<<< HEAD
 
     /* Hard download: the PDF is fetched as a blob and saved through an object
        URL, so the browser can only *save* it. A plain <a href> to a PDF is
@@ -415,15 +360,50 @@
       .then((blob) => saveResume(URL.createObjectURL(new Blob([blob], { type: 'application/pdf' })), true))
       .catch(() => saveResume(RESUME_URL, false));
 
-=======
-    const link = document.createElement('a');
-    link.href = '/Main_page_data/Akash_Resume.pdf';
-    link.download = 'Akash_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
   }
+
+  /* Certification badge confetti — fires from the clicked badge (same
+     celebration used on the home page: bursts from the badge position,
+     lazy-loads canvas-confetti on first click, CSS pulse fallback). */
+  window.triggerBadgeConfetti = function (event, badgeName) {
+    var badge = (event && (event.currentTarget || event.target)) || document.activeElement;
+    if (badge && badge.closest) {
+      var hit = badge.closest('.cert-badge');
+      if (hit) badge = hit;
+    }
+    function burst() {
+      var fn = window.confetti || (typeof confetti === 'function' ? confetti : null);
+      if (!fn) { pulse(); return; }
+      try {
+        var origin = { x: 0.5, y: 0.6 };
+        if (badge && badge.getBoundingClientRect) {
+          var r = badge.getBoundingClientRect();
+          origin = {
+            x: Math.min(0.98, Math.max(0.02, (r.left + r.width / 2) / Math.max(1, window.innerWidth))),
+            y: Math.min(0.98, Math.max(0.02, (r.top + r.height / 2) / Math.max(1, window.innerHeight)))
+          };
+        }
+        var defaults = { origin: origin, zIndex: 100005, disableForReducedMotion: true };
+        fn(Object.assign({}, defaults, { particleCount: 55, spread: 75, startVelocity: 42, scalar: 0.9, ticks: 220 }));
+        setTimeout(function () {
+          fn(Object.assign({}, defaults, { particleCount: 35, spread: 120, startVelocity: 28, scalar: 0.75, ticks: 180 }));
+        }, 160);
+        void badgeName;
+      } catch (err) { pulse(); }
+    }
+    function pulse() {
+      if (!badge || !badge.classList) return;
+      badge.classList.add('animate-pulse');
+      setTimeout(function () { badge.classList.remove('animate-pulse'); }, 650);
+    }
+    if (typeof window.confetti === 'function' || typeof confetti === 'function') { burst(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js';
+    s.async = true;
+    s.onload = burst;
+    s.onerror = pulse;
+    document.head.appendChild(s);
+  };
 </script>
 
 <header>
@@ -489,7 +469,6 @@
         </div>
       </div>
       <div class="flex items-center gap-3 shrink-0">
-<<<<<<< HEAD
 
         <div class="container">
 
@@ -509,15 +488,6 @@
 
           </button>
 
-=======
-        <div onclick="downloadResume()" class="download-btn">
-          <span class="circle">
-            <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19V5m0 14-4-4m4 4 4-4"></path>
-            </svg>
-          </span>
-          <span class="title">Download Resume</span>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
         </div>
       </div>
     </div>
@@ -555,13 +525,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
         <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
           <strong class="text-sky-300 font-mono text-sm block">Microsoft Intune</strong>
-<<<<<<< HEAD
-
-          <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch � Setup, Connected Cache.</p>
-
-=======
           <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch – Setup, Connected Cache.</p>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
         </div>
         <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
           <strong class="text-sky-300 font-mono text-sm block">SCCM / MECM</strong>
@@ -586,18 +550,36 @@
       <div class="space-y-6">
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-<<<<<<< HEAD
-
-            <h3 class="font-bold text-white text-base">Architect � Technical Specialist | Hexaware Technologies</h3>
-
-            <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 � Present</span>
-
-=======
             <h3 class="font-bold text-white text-base">Architect – Technical Specialist | Hexaware Technologies</h3>
             <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
           <p class="font-mono text-xs text-slate-400 italic">Client: Hiscox (EU)</p>
+          <div class="resume-tech-icons flex flex-wrap items-center gap-4 pt-2">
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Microsoft Intune" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Intune</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Microsoft-Azure.png" alt="Microsoft Azure" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Azure</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/SCCM.png" alt="SCCM / MECM" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">SCCM / MECM</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Azure-Dark.svg" alt="Windows 365 Cloud PC" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Windows 365</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Windows-Dark.svg" alt="Windows Autopilot" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Windows Autopilot</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/vmware.png" alt="VMware" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">VMware</span>
+            </div>
+          </div>
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
             <li>Led enterprise-wide migration of user home drives (H: Drive) to Microsoft OneDrive, enabling secure cloud-based file access and collaboration.</li>
             <li>Designed and implemented enterprise-grade endpoint management solutions using Microsoft Intune across distributed environments.</li>
@@ -611,19 +593,31 @@
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
             <h3 class="font-bold text-white text-base">Medline Industries India Pvt. Ltd, Pune</h3>
-<<<<<<< HEAD
-
-            <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 � 13/02/2026</span>
-
-          </div>
-
-          <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist � EUC (2024�2026) | Senior Administrator � EUC (2022�2024) | EUC Administrator (2020�2021)</p>
-
-=======
             <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 – 13/02/2026</span>
           </div>
           <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist – EUC (2024–2026) | Senior Administrator – EUC (2022–2024) | EUC Administrator (2020–2021)</p>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
+          <div class="resume-tech-icons flex flex-wrap items-center gap-4 pt-2">
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Microsoft Intune" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Intune</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/SCCM.png" alt="SCCM / MECM" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">SCCM / MECM</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Microsoft-Edge.png" alt="Windows Servicing" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Windows Servicing</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/microsoft-teams.png" alt="Microsoft Teams" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Teams</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/vmware.png" alt="VMware" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">VMware</span>
+            </div>
+          </div>
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
             <li>Led device lifecycle management for 5000+ endpoints using Intune and SCCM.</li>
             <li>Managed Windows Autopatch setup including ring deployment and Connected Cache configuration.</li>
@@ -636,18 +630,28 @@
         </div>
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-<<<<<<< HEAD
-
-            <h3 class="font-bold text-white text-base">Specialist � EUC Administrator (C2R) | Rectitude HR Solutions</h3>
-
-            <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 � 30/01/2020</span>
-
-=======
             <h3 class="font-bold text-white text-base">Specialist – EUC Administrator (C2R) | Rectitude HR Solutions</h3>
             <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 – 30/01/2020</span>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
           <p class="font-mono text-xs text-slate-400 italic">Client: Medline Industries India Pvt. Ltd, Pune</p>
+          <div class="resume-tech-icons flex flex-wrap items-center gap-4 pt-2">
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Microsoft Intune" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Intune</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/SCCM.png" alt="SCCM / MECM" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">SCCM / MECM</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/microsoft-outlook.png" alt="Microsoft Outlook" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Outlook</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/microsoft-onedrive.png" alt="Microsoft OneDrive" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft OneDrive</span>
+            </div>
+          </div>
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
             <li>Provided dedicated endpoint engineering and support for Medline enterprise systems.</li>
             <li>Assisted in initial configuration of Intune device enrollment pipelines and compliance monitoring.</li>
@@ -656,15 +660,23 @@
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
             <h3 class="font-bold text-white text-base">Process Associate | Capgemini Technology Services</h3>
-<<<<<<< HEAD
-
-            <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 � 23/09/2019</span>
-
-=======
             <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 – 23/09/2019</span>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
           <p class="font-mono text-xs text-slate-400 italic">Client: IBM Merge Healthcare</p>
+          <div class="resume-tech-icons flex flex-wrap items-center gap-4 pt-2">
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Microsoft-Office.png" alt="Microsoft Office" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Office</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/microsoft-teams.png" alt="Microsoft Teams" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Teams</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Citrix-WorkspaceApp2.png" alt="Citrix Workspace" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Citrix Workspace</span>
+            </div>
+          </div>
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
             <li>Supported global clients on DICOM/HL7 and healthcare platforms, delivering L2 support for Windows OS and applications.</li>
             <li>Managed Salesforce CRM for ticketing, executed SQL database queries, and maintained SLA adherence.</li>
@@ -673,15 +685,23 @@
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
             <h3 class="font-bold text-white text-base">Customer Support Engineer | VDA Info Solutions</h3>
-<<<<<<< HEAD
-
-            <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 � 14/11/2018</span>
-
-=======
             <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 – 14/11/2018</span>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
           <p class="font-mono text-xs text-slate-400 italic">Client Location: Cognizant Technology Solutions (I) Pvt. Ltd, Pune</p>
+          <div class="resume-tech-icons flex flex-wrap items-center gap-4 pt-2">
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Windows-Dark.svg" alt="Windows OS" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Windows OS</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/Microsoft-Office.png" alt="Microsoft Office" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Microsoft Office</span>
+            </div>
+            <div class="relative group/tip flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
+              <img src="/images/icons/google-chrome.png" alt="Browser Support" width="32" height="32" loading="lazy" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+              <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-slate-900 border border-sky-500/40 text-white font-mono text-[10px] rounded shadow-xl whitespace-nowrap opacity-0 group-hover/tip:opacity-100 transition-opacity pointer-events-none z-50">Browser Support</span>
+            </div>
+          </div>
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
             <li>Delivered IT infrastructure support for 24K+ users in an ODC environment and managed desktop/laptop refresh for 6000+ endpoints.</li>
             <li>Monitored SCCM, BIOS, boot compliance, and device patch levels while managing ageing tickets.</li>
@@ -697,10 +717,34 @@
           <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Certifications</h2>
         </div>
         <ul class="space-y-2 text-xs font-sans text-slate-300">
-          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
-          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Administrator Associate (AZ-104)</span></li>
-          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>ITIL 4 Foundation (Certificate No: GR671001549AN)</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Fundamentals (AZ-900) — Jul 2025</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Administrator Associate (AZ-104) — Apr 2026</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Endpoint Administrator Associate (MD-102) — Sep 2026</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Virtual Desktop Specialty (AZ-140) — Sep 2026</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>ITIL 4 Foundation (Certificate No: GR671001549AN) — Dec 2021</span></li>
         </ul>
+        <div class="cert-badge-grid grid grid-cols-3 sm:grid-cols-5 gap-2 pt-2">
+          <button type="button" class="cert-badge group flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-slate-950/60 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-emerald-400/50 hover:shadow-[0_10px_25px_rgba(52,211,153,0.25)]" onclick="triggerBadgeConfetti(event, 'AZ-900')" aria-label="Celebrate AZ-900 certification">
+            <img src="/images/Main_Page_Images/AZ-900.avif" alt="AZ-900 badge" width="72" height="72" loading="lazy" class="w-14 h-auto object-contain filter drop-shadow-[0_8px_14px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_10px_20px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <span class="mt-1 font-mono text-[10px] font-bold text-white group-hover:text-emerald-300">AZ-900</span>
+          </button>
+          <button type="button" class="cert-badge group flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-slate-950/60 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-emerald-400/50 hover:shadow-[0_10px_25px_rgba(52,211,153,0.25)]" onclick="triggerBadgeConfetti(event, 'AZ-104')" aria-label="Celebrate AZ-104 certification">
+            <img src="/images/Main_Page_Images/AZ-104.avif" alt="AZ-104 badge" width="72" height="72" loading="lazy" class="w-14 h-auto object-contain filter drop-shadow-[0_8px_14px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_10px_20px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <span class="mt-1 font-mono text-[10px] font-bold text-white group-hover:text-emerald-300">AZ-104</span>
+          </button>
+          <button type="button" class="cert-badge group flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-slate-950/60 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-emerald-400/50 hover:shadow-[0_10px_25px_rgba(52,211,153,0.25)]" onclick="triggerBadgeConfetti(event, 'AZ-140')" aria-label="Celebrate AZ-140 certification">
+            <img src="/images/Main_Page_Images/AZ-140.avif" alt="AZ-140 badge" width="72" height="72" loading="lazy" class="w-14 h-auto object-contain filter drop-shadow-[0_8px_14px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_10px_20px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <span class="mt-1 font-mono text-[10px] font-bold text-white group-hover:text-emerald-300">AZ-140</span>
+          </button>
+          <button type="button" class="cert-badge group flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-slate-950/60 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-emerald-400/50 hover:shadow-[0_10px_25px_rgba(52,211,153,0.25)]" onclick="triggerBadgeConfetti(event, 'MD-102')" aria-label="Celebrate MD-102 certification">
+            <img src="/images/Main_Page_Images/MD-102.avif" alt="MD-102 badge" width="72" height="72" loading="lazy" class="w-14 h-auto object-contain filter drop-shadow-[0_8px_14px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_10px_20px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <span class="mt-1 font-mono text-[10px] font-bold text-white group-hover:text-emerald-300">MD-102</span>
+          </button>
+          <button type="button" class="cert-badge group flex flex-col items-center justify-center p-2 rounded-xl border border-white/10 bg-slate-950/60 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-emerald-400/50 hover:shadow-[0_10px_25px_rgba(52,211,153,0.25)]" onclick="triggerBadgeConfetti(event, 'ITIL-4')" aria-label="Celebrate ITIL 4 certification">
+            <img src="/images/Main_Page_Images/ITIL-V.avif" alt="ITIL 4 badge" width="72" height="72" loading="lazy" class="w-14 h-auto object-contain filter drop-shadow-[0_8px_14px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_10px_20px_rgba(52,211,153,0.5)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
+            <span class="mt-1 font-mono text-[10px] font-bold text-white group-hover:text-emerald-300">ITIL 4</span>
+          </button>
+        </div>
       </div>
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
         <div class="flex items-center space-x-3">
@@ -708,19 +752,9 @@
           <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Academic Profile</h2>
         </div>
         <ul class="space-y-2 text-xs font-sans text-slate-300">
-<<<<<<< HEAD
-
-          <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) � 63.06%</li>
-
-          <li><strong>HSC</strong> | Brijlal Biyani Science College, Amravati (2010) � 56.33%</li>
-
-          <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) � 67.83%</li>
-
-=======
           <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) – 63.06%</li>
           <li><strong>HSC</strong> | Brijlal Biyani Science College, Amravati (2010) – 56.33%</li>
           <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) – 67.83%</li>
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
         </ul>
       </div>
     </div>
@@ -786,6 +820,7 @@
     }, { passive: true });
 </script>
 
+<!-- Canonical footer - source of truth (footer + cookie). Behaviour: /assets/js/footer-common.js. Runtime upgrade: /assets/js/template-loader.js -->
 <footer id="site-footer" class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
@@ -854,6 +889,7 @@
     </div>
 </footer>
 
+<!-- Cookie Consent Banner — compact square card, bottom-right -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
     <div class="cookie-head">
         <span class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></span>
@@ -869,36 +905,9 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
 <style>
   .glass-card-3d { transform-style: preserve-3d; will-change: transform; }
   .tilt-glare {
