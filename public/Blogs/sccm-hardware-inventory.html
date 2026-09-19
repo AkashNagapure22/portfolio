@@ -268,6 +268,10 @@
 
 
 
+
+
+
+
 <header class="fixed top-0 w-full z-50 bg-transparent border-b border-sky-500/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 gap-4">
@@ -690,14 +694,32 @@
     }
   }
 
+  
+  /* FIX: guarantee the discussion actually loads and never sits on
+     "Loading discussion threads..." — if the original DOMContentLoaded boot
+     never ran (an earlier inline script threw) or the first fetch silently
+     failed, retry once. */
+  setTimeout(function () {
+    var c = document.getElementById('comments-container');
+    if (c && /Loading discussion threads/i.test(c.textContent)) {
+      try { loadComments(); } catch (e) {}
+    }
+  }, 3000);
+
   function renderCommentNode(comment) {
     let dateStr = 'Recent';
-    if (comment.created_at) {
-      const parsed = new Date(comment.created_at);
-      if (!isNaN(parsed.getTime())) {
-        dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    try {
+      const raw = comment.created_at || comment.date || comment.dateFormatted;
+      if (raw) {
+        let d = (typeof raw === 'number') ? new Date(raw) : new Date(String(raw));
+        if (isNaN(d.getTime()) && typeof raw === 'string' && !raw.includes('T')) {
+          d = new Date(raw.replace(' ', 'T') + 'Z');
+        }
+        if (!isNaN(d.getTime())) {
+          dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
       }
-    }
+    } catch (e) {}
 
     const repliesHTML = comment.replies && comment.replies.length > 0 
       ? `<div class="mt-4 pl-4 sm:pl-6 border-l-2 border-sky-500/20 space-y-4">
@@ -714,7 +736,7 @@
     return `
       <div class="glass-card-3d p-5 rounded-2xl border border-slate-800 space-y-3" id="comment-${comment.id}">
         <div class="flex items-center justify-between text-xs">
-          <span class="font-bold text-sky-400 font-mono">${escapeHTML(comment.author)}</span>
+          <span class="font-bold text-sky-400 font-mono">${escapeHTML(comment.author || 'Anonymous')}</span>
           <span class="text-slate-500 font-mono text-[10px]">${dateStr}</span>
         </div>
         <p class="text-slate-300 text-xs sm:text-sm whitespace-pre-line leading-relaxed font-light">${escapeHTML(comment.content)}</p>
@@ -923,7 +945,6 @@
             <div class="flex items-center gap-4">
                 <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in text-lg"></i></a>
                 <a href="https://github.com/AkashNagapure22" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="GitHub"><i class="fa-brands fa-github text-lg"></i></a>
-                <a href="https://wa.me/919860457155" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-lg"></i></a>
                 <a href="mailto:info@akashnagapure.in" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="Email"><i class="fa-solid fa-envelope text-lg"></i></a>
             </div>
         </div>
@@ -945,6 +966,9 @@
         <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
+
+
+
 
 
 

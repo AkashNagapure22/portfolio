@@ -23,7 +23,7 @@ export default async function handler(req, res) {
       const targetArticle = article_id || 'default-article';
       
       const comments = await sql`
-        SELECT id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date"
+        SELECT id, article_id as "articleId", author, email, content, parent_id as "parentId", parent_id as "parent_id", likes, dislikes, to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "date", to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "created_at"
         FROM comments 
         WHERE article_id = ${targetArticle} 
         ORDER BY created_at ASC;
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       const newComment = await sql`
         INSERT INTO comments (article_id, author, email, content, parent_id, likes, dislikes)
         VALUES (${finalArticleId}, ${author.trim()}, ${email ? email.trim() : ''}, ${content.trim()}, ${parent_id || null}, 0, 0)
-        RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
+        RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", parent_id as "parent_id", likes, dislikes, to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "date", to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "created_at";
       `;
       return res.status(201).json(newComment[0]);
     }
@@ -62,14 +62,14 @@ export default async function handler(req, res) {
           UPDATE comments 
           SET likes = likes + 1 
           WHERE id = ${id} 
-          RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
+          RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", parent_id as "parent_id", likes, dislikes, to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "date", to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "created_at";
         `;
       } else if (action === 'dislike') {
         updated = await sql`
           UPDATE comments 
           SET dislikes = dislikes + 1 
           WHERE id = ${id} 
-          RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", likes, dislikes, created_at as "date";
+          RETURNING id, article_id as "articleId", author, email, content, parent_id as "parentId", parent_id as "parent_id", likes, dislikes, to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "date", to_char(created_at at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') as "created_at";
         `;
       } else {
         return res.status(400).json({ error: 'Invalid action type.' });

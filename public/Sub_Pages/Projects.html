@@ -394,6 +394,10 @@
 
 
 
+
+
+
+
 <header class="fixed top-0 w-full z-50 bg-transparent border-b border-white/10 py-4 px-6 sm:px-12 shadow-2xl">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 text-sky-400 hover:text-white transition-colors">
@@ -1073,6 +1077,9 @@
             parsed = new Date(rawDate < 1e12 ? rawDate * 1000 : rawDate);
           } else {
             parsed = new Date(rawDate);
+            if (isNaN(parsed.getTime()) && typeof rawDate === 'string' && !rawDate.includes('T')) {
+              parsed = new Date(rawDate.replace(' ', 'T') + 'Z');
+            }
           }
           if (!isNaN(parsed.getTime())) {
             dateStr = parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -1081,10 +1088,10 @@
         return `
         <div class="glass-card-3d p-4 rounded-xl space-y-1">
           <div class="flex justify-between text-xs font-mono text-sky-400">
-            <strong>${c.author}</strong>
+            <strong>${(c.author || 'Anonymous').replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag))}</strong>
             <span class="text-slate-500">${dateStr}</span>
           </div>
-          <p class="text-slate-300 text-xs">${c.content}</p>
+          <p class="text-slate-300 text-xs">${(c.content || '').replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag))}</p>
         </div>
       `;
       }).join('');
@@ -1092,6 +1099,15 @@
       container.innerHTML = '<p class="text-slate-400 text-xs font-mono">Discussion board ready.</p>';
     }
   }
+
+  /* FIX: guarantee the discussion loads — if the boot fetch failed silently
+     (serverless cold start, network hiccup) retry once. */
+  setTimeout(function () {
+    const c = document.getElementById('comments-container');
+    if (c && /Loading discussion\.\.\./i.test(c.textContent)) {
+      try { loadComments(); } catch (e) {}
+    }
+  }, 3000);
 
   async function handleCommentSubmit(e) {
     e.preventDefault();
@@ -1184,7 +1200,6 @@
             <div class="flex items-center gap-4">
                 <a href="https://www.linkedin.com/in/anagapure" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in text-lg"></i></a>
                 <a href="https://github.com/AkashNagapure22" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="GitHub"><i class="fa-brands fa-github text-lg"></i></a>
-                <a href="https://wa.me/919860457155" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-lg"></i></a>
                 <a href="mailto:info@akashnagapure.in" class="text-slate-500 hover:text-sky-400 transition-colors" aria-label="Email"><i class="fa-solid fa-envelope text-lg"></i></a>
             </div>
         </div>
@@ -1206,6 +1221,9 @@
         <button id="accept-cookies-btn" type="button" class="btn btn-accept">Accept all cookies</button>
     </div>
 </div>
+
+
+
 
 
 
