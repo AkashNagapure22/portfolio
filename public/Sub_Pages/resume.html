@@ -1,22 +1,18 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
 <html lang="en" class="dark scroll-smooth">
-
 <head>
-
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   
-
   <title>Akash Nagapure | Curriculum Vitae & Professional Resume</title>
-
   <meta name="title" content="Akash Nagapure | Microsoft Intune, SCCM & VMware Architect Resume">
-
   <meta name="description" content="Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience." />
-
   <link rel="canonical" href="https://resume.akashnagapure.in/" />
+<<<<<<< HEAD
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Akash Nagapure" />
   <meta property="og:url" content="https://resume.akashnagapure.in/" />
@@ -30,245 +26,128 @@
   <meta property="twitter:image" content="https://www.akashnagapure.in/Main_page_data/akash_profile_1781110763642.avif" />
 
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
   <link rel="icon" href="/Main_page_data/Logo.gif" type="image/gif" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-
   <script src="https://cdn.tailwindcss.com"></script>
-
   <script src="https://unpkg.com/lucide@latest"></script>
-
   <script>
-
     tailwind.config = {
-
       darkMode: "class",
-
       theme: {
-
         extend: {
-
           fontFamily: {
-
             sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-
             mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
-
           },
-
           colors: {
-
             slate: {
-
               850: "#0f172a", 
-
               950: "#020617", 
-
             },
-
             "surface-dim": "#0d0b12"
-
           }
-
         }
-
       }
-
     }
-
   </script>
-
   <style>
-
     html {
-
       scroll-behavior: smooth;
-
       scroll-padding-top: 5rem;
-
     }
-
     #portfolio-navbar {
-
       position: relative !important;
-
     }
-
     body {
-
       padding-top: 0 !important;
-
       background-color: #020617;
-
       color: #f8fafc;
-
       overflow-x: hidden;
-
     }
-
     main {
-
       padding-top: 0 !important;
-
     }
-
     #three-bg-canvas {
-
       position: fixed;
-
       top: 0;
-
       left: 0;
-
       width: 100vw;
-
       height: 100vh;
-
       z-index: -10;
-
       pointer-events: none;
-
     }
-
     #cursor-trail-canvas {
-
       position: fixed;
-
       top: 0;
-
       left: 0;
-
       width: 100vw;
-
       height: 100vh;
-
       z-index: 99999;
-
       pointer-events: none;
-
     }
-
     ::-webkit-scrollbar {
-
       width: 8px;
-
       height: 8px;
-
     }
-
     ::-webkit-scrollbar-track {
-
       background: #020617;
-
     }
-
     ::-webkit-scrollbar-thumb {
-
       background: #1e293b;
-
       border-radius: 4px;
-
     }
-
     ::-webkit-scrollbar-thumb:hover {
-
       background: #38bdf8;
-
     }
-
     .glass-card-3d {
-
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.95) 100%);
-
       backdrop-filter: blur(25px);
-
       -webkit-backdrop-filter: blur(25px);
-
       border: 1px solid rgba(56, 189, 248, 0.18);
-
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-
                 inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-
                 0 0 30px rgba(56, 189, 248, 0.05);
-
       transform-style: preserve-3d;
-
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
     }
-
     .glass-card-3d:hover {
-
       border-color: rgba(56, 189, 248, 0.55);
-
       box-shadow: 0 40px 70px -15px rgba(56, 189, 248, 0.25),
-
                 0 0 50px rgba(56, 189, 248, 0.15);
-
     }
-
     .holo-glow {
-
       position: relative;
-
     }
-
     .holo-glow::after {
-
       content: '';
-
       position: absolute;
-
       inset: -2px;
-
       background: linear-gradient(45deg, #38bdf8, transparent, #6366f1, transparent, #38bdf8);
-
       border-radius: inherit;
-
       z-index: -1;
-
       opacity: 0.3;
-
       filter: blur(12px);
-
       transition: opacity 0.3s ease;
-
     }
-
     .holo-glow:hover::after {
-
       opacity: 0.8;
-
     }
-
     @keyframes slideInUp {
-
       from { transform: translateY(100%); opacity: 0; }
-
       to { transform: translateY(0); opacity: 1; }
-
     }
-
     .toast-animate {
-
       animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-
     }
-
-    /* Uiverse Download/Open Button Styles */
-
-    .container {
-
-      --transition: 0.3s cubic-bezier(0.65, 0, 0.35, 1);
-
-      display: flex;
-
+    /* Fixed Non-Shifting Download Button Styles */
+    .download-btn {
+      display: inline-flex;
       align-items: center;
+<<<<<<< HEAD
 
       justify-content: center;
 
@@ -286,208 +165,161 @@
 
       align-items: center;
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
       gap: 12px;
-
       padding: 12px 24px;
-
       background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(14, 165, 233, 0.25) 100%);
-
       border: 1px solid rgba(56, 189, 248, 0.4);
-
       border-radius: 14px;
-
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-
-      transition: var(--transition);
-
+      cursor: pointer;
       user-select: none;
-
       backdrop-filter: blur(12px);
-
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .label:hover {
-
+    .download-btn:hover {
       border-color: rgba(56, 189, 248, 0.8);
-
       box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-
-      transform: translateY(-2px);
-
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
     .circle {
-
-      position: relative;
-
       width: 32px;
-
       height: 32px;
-
       background: #020617;
-
       border: 1px solid rgba(56, 189, 248, 0.5);
-
       border-radius: 50%;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
-      overflow: hidden;
-
-      transition: var(--transition);
-
     }
-
-    .label:hover .circle {
-
-      border-color: #38bdf8;
-
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
-
-    }
-
     .icon {
-
       width: 16px;
-
       height: 16px;
-
       color: #38bdf8;
-
-      transition: var(--transition);
-
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
     .title {
-
-      position: relative;
-
       font-family: 'JetBrains Mono', monospace;
-
       font-size: 13px;
-
       font-weight: 700;
-
       color: #f8fafc;
-
       letter-spacing: 0.05em;
-
-      transition: var(--transition);
-
       white-space: nowrap;
-
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
   </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- seo:managed:start -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "name": "Akash Nagapure | Curriculum Vitae & Professional Resume",
-    "description": "Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience.",
-    "url": "https://resume.akashnagapure.in/",
-    "inLanguage": "en",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Akash Nagapure",
-      "url": "https://www.akashnagapure.in/"
-    },
-    "about": {
-      "@type": "Thing",
-      "name": "Professional curriculum vitae"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Akash Nagapure",
-      "jobTitle": "Microsoft Certified EUC & Intune Specialist",
-      "url": "https://www.akashnagapure.in/",
-      "sameAs": [
-        "https://www.linkedin.com/in/anagapure",
-        "https://github.com/AkashNagapure22"
-      ],
-      "knowsAbout": [
-        "Microsoft Intune",
-        "Microsoft Configuration Manager (SCCM)",
-        "Windows Autopilot",
-        "Windows 365",
-        "Azure Virtual Desktop",
-        "VMware Horizon",
-        "PowerShell automation",
-        "Microsoft Graph API",
-        "Zero-Trust endpoint security"
-      ]
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Akash Nagapure",
-      "url": "https://www.akashnagapure.in/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.akashnagapure.in/Main_page_data/Logo.gif"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- seo:managed:start -->
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "name": "Akash Nagapure | Curriculum Vitae & Professional Resume",
+      "description": "Curriculum Vitae of Akash Nagapure - Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience.",
+      "url": "https://resume.akashnagapure.in/",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Akash Nagapure",
+        "url": "https://www.akashnagapure.in/"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Professional curriculum vitae"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Akash Nagapure",
+        "jobTitle": "Microsoft Certified EUC & Intune Specialist",
+        "url": "https://www.akashnagapure.in/",
+        "sameAs": [
+          "https://www.linkedin.com/in/anagapure",
+          "https://github.com/AkashNagapure22"
+        ],
+        "knowsAbout": [
+          "Microsoft Intune",
+          "Microsoft Configuration Manager (SCCM)",
+          "Windows Autopilot",
+          "Windows 365",
+          "Azure Virtual Desktop",
+          "VMware Horizon",
+          "PowerShell automation",
+          "Microsoft Graph API",
+          "Zero-Trust endpoint security"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Akash Nagapure",
+        "url": "https://www.akashnagapure.in/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.akashnagapure.in/Main_page_data/Logo.gif"
+        }
+      },
+      "dateModified": "2026-09-18",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Akash Nagapure",
+        "jobTitle": "Microsoft Certified EUC & Intune Specialist",
+        "url": "https://www.akashnagapure.in/",
+        "sameAs": [
+          "https://www.linkedin.com/in/anagapure",
+          "https://github.com/AkashNagapure22"
+        ],
+        "knowsAbout": [
+          "Microsoft Intune",
+          "Microsoft Configuration Manager (SCCM)",
+          "Windows Autopilot",
+          "Windows 365",
+          "Azure Virtual Desktop",
+          "VMware Horizon",
+          "PowerShell automation",
+          "Microsoft Graph API",
+          "Zero-Trust endpoint security"
+        ]
       }
-    },
-    "dateModified": "2026-09-18",
-    "mainEntity": {
-      "@type": "Person",
-      "name": "Akash Nagapure",
-      "jobTitle": "Microsoft Certified EUC & Intune Specialist",
-      "url": "https://www.akashnagapure.in/",
-      "sameAs": [
-        "https://www.linkedin.com/in/anagapure",
-        "https://github.com/AkashNagapure22"
-      ],
-      "knowsAbout": [
-        "Microsoft Intune",
-        "Microsoft Configuration Manager (SCCM)",
-        "Windows Autopilot",
-        "Windows 365",
-        "Azure Virtual Desktop",
-        "VMware Horizon",
-        "PowerShell automation",
-        "Microsoft Graph API",
-        "Zero-Trust endpoint security"
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.akashnagapure.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resume / CV",
+          "item": "https://resume.akashnagapure.in/"
+        }
       ]
     }
-  }
-</script>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.akashnagapure.in/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Resume / CV",
-        "item": "https://resume.akashnagapure.in/"
-      }
-    ]
-  }
-</script>
-<!-- seo:managed:end -->
+  </script>
+  <!-- seo:managed:end -->
 </head>
 
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-sky-500/20 selection:text-sky-300">
 
-<!-- Canonical 3D animation background (square effect + mouse effect).
-     Source of truth: /template/3d-background-template.html
-     Behaviour: /assets/js/3d-background.js (auto self-heals if canvases/scripts missing)
-     Applied to ALL pages via tools/apply-templates.mjs + /assets/js/template-loader.js -->
 <canvas id="three-bg-canvas" aria-hidden="true"></canvas>
 <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
+<<<<<<< HEAD
 
 
 
@@ -524,59 +356,37 @@
 
 
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
 <div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 pointer-events-none"></div>
 
 <script>
-
-  // Guaranteed Toast Trigger & Download Function
-
+  // Clean, non-shifting file download function
   function downloadResume() {
-
     const container = document.getElementById('toast-container');
-
     if (container) {
-
       const toastEl = document.createElement('div');
-
       toastEl.className = "pointer-events-auto toast-animate flex items-center gap-3 px-4 py-3 bg-slate-900/95 border border-emerald-500/50 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.9)] backdrop-blur-xl text-white";
-
       toastEl.innerHTML = `
-
         <div class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
-
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
-
           </svg>
-
         </div>
-
         <div class="flex flex-col">
-
           <span class="text-[11px] font-bold text-emerald-400 font-mono tracking-wider">SUCCESS!</span>
-
           <span class="text-xs text-slate-200">Success! Resume is Downloaded successfully</span>
-
         </div>
-
       `;
-
       container.appendChild(toastEl);
-
       setTimeout(() => {
-
         toastEl.style.opacity = '0';
-
         toastEl.style.transform = 'translateY(10px)';
-
         toastEl.style.transition = 'all 0.3s ease';
-
         setTimeout(() => toastEl.remove(), 300);
-
       }, 3500);
-
     }
+<<<<<<< HEAD
 
     /* Hard download: the PDF is fetched as a blob and saved through an object
        URL, so the browser can only *save* it. A plain <a href> to a PDF is
@@ -605,135 +415,81 @@
       .then((blob) => saveResume(URL.createObjectURL(new Blob([blob], { type: 'application/pdf' })), true))
       .catch(() => saveResume(RESUME_URL, false));
 
+=======
+    const link = document.createElement('a');
+    link.href = '/Main_page_data/Akash_Resume.pdf';
+    link.download = 'Akash_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
   }
-
-   window.addEventListener('DOMContentLoaded', () => {
-
-
-
-
-  });
-
 </script>
 
 <header>
-
 <nav id="portfolio-navbar" class="relative w-full z-50 transition-all duration-300 bg-transparent py-3 border-b border-sky-500/20">
-
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
     <div class="flex items-center justify-between h-12">
-
       <div class="flex items-center gap-3 shrink-0">
         <button onclick="goBack()" id="go-back-btn" aria-label="Go back" class="w-11 h-11 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center text-sky-400 hover:text-white hover:border-sky-400/60 transition-colors shadow-md shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
         </button>
       <a href="https://www.akashnagapure.in" class="flex items-center space-x-3 group cursor-pointer">
-
         <div class="h-10 w-auto flex items-center justify-center shrink-0 bg-transparent overflow-hidden filter drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">
-
           <img src="/Main_page_data/Logo.gif" alt="Akash Nagapure Logo" width="40" height="40" loading="eager" class="h-full w-auto object-contain logo-vibrant" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-
         </div>
-
         <div class="flex flex-col">
-
           <span class="font-sans font-bold text-lg text-white tracking-tight leading-none drop-shadow">
-
             Akash Nagapure
-
           </span>
-
           <span class="font-mono text-[10px] text-sky-400 font-medium tracking-widest mt-1">
-
             Fleet Architect
-
           </span>
-
         </div>
-
       </a>
       </div>
-
       <div class="hidden lg:flex items-center space-x-2">
-
         <a href="https://www.akashnagapure.in" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
-
           <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
-
         </a>
-
         <a href="https://blogs.akashnagapure.in" class="nav-item-link px-4 py-2 rounded-md font-sans text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 border border-transparent transition-all flex items-center gap-1.5">
-
           <span class="material-symbols-outlined text-sm">article</span> Blogs
-
         </a>
-
       </div>
-
       <div class="flex items-center lg:hidden">
-
         <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Toggle Menu">
-
           <i data-lucide="menu" class="w-6 h-6"></i>
-
         </button>
-
       </div>
-
     </div>
-
   </div>
-
   <div id="mobile-menu-drawer" class="hidden lg:hidden bg-slate-900/98 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-1">
-
     <a href="https://www.akashnagapure.in" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
-
       <span class="material-symbols-outlined text-sm">home</span> Main Hub / Home
-
     </a>
-
     <a href="https://blogs.akashnagapure.in" class="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
-
       <span class="material-symbols-outlined text-sm">article</span> Blogs
-
     </a>
-
   </div>
-
 </nav>
-
 </header>
 
 <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
-
   <div class="max-w-4xl mx-auto space-y-8">
-
     
-
     <div class="flex flex-col sm:flex-row items-center justify-between gap-6 glass-card-3d p-6 rounded-2xl holo-glow">
-
       <div class="flex items-center space-x-5 text-center sm:text-left">
-
         <div class="relative shrink-0">
-
           <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 opacity-40 blur-sm"></div>
-
           <img src="/Main_page_data/akash_profile_1781110763642.avif" alt="Akash Nagapure Profile" width="85" height="85" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-sky-400/50 shadow-inner grayscale hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
-
         </div>
-
         <div>
-
           <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Akash S. Nagapure</h1>
-
           <p class="font-mono text-xs text-sky-400 font-semibold uppercase tracking-wider mt-1">Microsoft Certified EUC & Intune Specialist</p>
-
         </div>
-
       </div>
-
       <div class="flex items-center gap-3 shrink-0">
+<<<<<<< HEAD
 
         <div class="container">
 
@@ -753,155 +509,109 @@
 
           </button>
 
+=======
+        <div onclick="downloadResume()" class="download-btn">
+          <span class="circle">
+            <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19V5m0 14-4-4m4 4 4-4"></path>
+            </svg>
+          </span>
+          <span class="title">Download Resume</span>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
         </div>
-
       </div>
-
     </div>
 
     <div class="glass-card-3d p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-
       <div class="flex items-center space-x-2 text-slate-300">
-
         <i data-lucide="phone" class="w-4 h-4 text-sky-400"></i>
-
         <span>+91 9860457155</span>
-
       </div>
-
       <div class="flex items-center space-x-2 text-slate-300">
-
         <i data-lucide="mail" class="w-4 h-4 text-sky-400"></i>
-
         <span>akashnagapure@live.com</span>
-
       </div>
-
       <div class="flex items-center space-x-2 text-slate-300">
-
         <i data-lucide="linkedin" class="w-4 h-4 text-sky-400"></i>
-
         <a href="https://www.linkedin.com/in/anagapure" target="_blank" class="hover:text-sky-300 underline">linkedin.com/in/anagapure</a>
-
       </div>
-
     </div>
 
     <div class="glass-card-3d p-7 rounded-2xl space-y-3">
-
       <div class="flex items-center space-x-3">
-
         <i data-lucide="user-check" class="w-5 h-5 text-sky-400"></i>
-
         <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Professional Summary</h2>
-
       </div>
-
       <p class="font-sans text-slate-300 text-sm leading-relaxed text-justify">
-
         Microsoft Certified EUC & Intune Specialist with 10+ years of progressive experience architecting secure, scalable modern endpoint management environments. Proven expertise in zero-touch provisioning (Autopilot/Autopatch), GPO migration, cloud infrastructure transitions, and enterprise automation via PowerShell. Adept at driving global device lifecycle management, compliance enforcement, and virtualization across hybrid enterprise architectures.
-
       </p>
-
     </div>
 
     <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-
       <div class="flex items-center space-x-3">
-
         <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
-
         <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Core Competencies</h2>
-
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-
         <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-
           <strong class="text-sky-300 font-mono text-sm block">Microsoft Intune</strong>
+<<<<<<< HEAD
 
           <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch � Setup, Connected Cache.</p>
 
+=======
+          <p class="text-slate-300">Device Enrollment, Compliance & Configuration Policies, App Deployment, Update Rings, Windows Autopilot & Autopatch – Setup, Connected Cache.</p>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
         </div>
-
         <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-
           <strong class="text-sky-300 font-mono text-sm block">SCCM / MECM</strong>
-
           <p class="text-slate-300">Task Sequence Management, OSD, Driver Import, Patch Deployment, DP Configuration, Maintenance.</p>
-
         </div>
-
         <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-
           <strong class="text-sky-300 font-mono text-sm block">Cloud & Virtualization</strong>
-
           <p class="text-slate-300">Co-Management (SCCM + Intune), Azure AD, Conditional Access, Defender for Endpoint, AVD, Windows 365, Citrix, FSLogix, Workspace ONE, VMware Horizon.</p>
-
         </div>
-
         <div class="bg-slate-900/80 p-4 rounded-xl border border-white/10 space-y-1">
-
           <strong class="text-sky-300 font-mono text-sm block">Automation & Security</strong>
-
           <p class="text-slate-300">PowerShell Automation, SQL Reporting, GPO Migration to Intune, BitLocker, Disk Encryption, LAPS, ITIL Process Adherence.</p>
-
         </div>
-
       </div>
-
     </div>
 
     <div class="glass-card-3d p-7 rounded-2xl space-y-6">
-
       <div class="flex items-center space-x-3">
-
         <i data-lucide="briefcase" class="w-5 h-5 text-sky-400"></i>
-
         <h2 class="font-sans text-xl font-bold text-white uppercase tracking-wider">Work Experience</h2>
-
       </div>
-
       <div class="space-y-6">
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+<<<<<<< HEAD
 
             <h3 class="font-bold text-white text-base">Architect � Technical Specialist | Hexaware Technologies</h3>
 
             <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 � Present</span>
 
+=======
+            <h3 class="font-bold text-white text-base">Architect – Technical Specialist | Hexaware Technologies</h3>
+            <span class="font-mono text-xs text-sky-400 font-semibold">14/02/2026 – Present</span>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
-
           <p class="font-mono text-xs text-slate-400 italic">Client: Hiscox (EU)</p>
-
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-
             <li>Led enterprise-wide migration of user home drives (H: Drive) to Microsoft OneDrive, enabling secure cloud-based file access and collaboration.</li>
-
             <li>Designed and implemented enterprise-grade endpoint management solutions using Microsoft Intune across distributed environments.</li>
-
             <li>Architected and deployed Modern Workplace solutions leveraging Intune, Autopilot, and Azure AD, improving device provisioning time.</li>
-
             <li>Led design and integration of virtual desktop infrastructure (VDI) using Azure Virtual Desktop, Windows 365, and Citrix for secure remote access.</li>
-
             <li>Implemented profile management and optimization using FSLogix, enhancing login performance in VDI environments.</li>
-
             <li>Built and maintained gold images using Microsoft Deployment Toolkit, ensuring standardized and scalable image deployment.</li>
-
             <li>Defined and enforced device compliance policies, security baselines, and conditional access aligned with enterprise standards.</li>
-
           </ul>
-
         </div>
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-
             <h3 class="font-bold text-white text-base">Medline Industries India Pvt. Ltd, Pune</h3>
+<<<<<<< HEAD
 
             <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 � 13/02/2026</span>
 
@@ -909,131 +619,96 @@
 
           <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist � EUC (2024�2026) | Senior Administrator � EUC (2022�2024) | EUC Administrator (2020�2021)</p>
 
+=======
+            <span class="font-mono text-xs text-sky-400 font-semibold">31/01/2020 – 13/02/2026</span>
+          </div>
+          <p class="font-mono text-xs text-slate-400 italic">Progressive Roles: Specialist – EUC (2024–2026) | Senior Administrator – EUC (2022–2024) | EUC Administrator (2020–2021)</p>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-
             <li>Led device lifecycle management for 5000+ endpoints using Intune and SCCM.</li>
-
             <li>Managed Windows Autopatch setup including ring deployment and Connected Cache configuration.</li>
-
             <li>Migrated 200+ on-prem GPOs to Intune using custom MDM configuration profiles.</li>
-
             <li>Managed SCCM OSD deployments: image creation, driver import automation, and PXE troubleshooting.</li>
-
             <li>Developed SQL & PowerShell scripts for device health, patch compliance, and SLA dashboards.</li>
-
             <li>Executed monthly patching lifecycles across test, pilot, and production deployment rings.</li>
-
             <li>Managed Azure Virtual Desktop environment including host pools, session hosts, application groups, and workspaces.</li>
-
           </ul>
-
         </div>
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+<<<<<<< HEAD
 
             <h3 class="font-bold text-white text-base">Specialist � EUC Administrator (C2R) | Rectitude HR Solutions</h3>
 
             <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 � 30/01/2020</span>
 
+=======
+            <h3 class="font-bold text-white text-base">Specialist – EUC Administrator (C2R) | Rectitude HR Solutions</h3>
+            <span class="font-mono text-xs text-sky-400 font-semibold">23/09/2019 – 30/01/2020</span>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
-
           <p class="font-mono text-xs text-slate-400 italic">Client: Medline Industries India Pvt. Ltd, Pune</p>
-
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-
             <li>Provided dedicated endpoint engineering and support for Medline enterprise systems.</li>
-
             <li>Assisted in initial configuration of Intune device enrollment pipelines and compliance monitoring.</li>
-
           </ul>
-
         </div>
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-
             <h3 class="font-bold text-white text-base">Process Associate | Capgemini Technology Services</h3>
+<<<<<<< HEAD
 
             <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 � 23/09/2019</span>
 
+=======
+            <span class="font-mono text-xs text-sky-400 font-semibold">19/11/2018 – 23/09/2019</span>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
-
           <p class="font-mono text-xs text-slate-400 italic">Client: IBM Merge Healthcare</p>
-
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-
             <li>Supported global clients on DICOM/HL7 and healthcare platforms, delivering L2 support for Windows OS and applications.</li>
-
             <li>Managed Salesforce CRM for ticketing, executed SQL database queries, and maintained SLA adherence.</li>
-
           </ul>
-
         </div>
-
         <div class="border-l-2 border-sky-400 pl-4 space-y-2">
-
           <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-
             <h3 class="font-bold text-white text-base">Customer Support Engineer | VDA Info Solutions</h3>
+<<<<<<< HEAD
 
             <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 � 14/11/2018</span>
 
+=======
+            <span class="font-mono text-xs text-sky-400 font-semibold">01/02/2016 – 14/11/2018</span>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
           </div>
-
           <p class="font-mono text-xs text-slate-400 italic">Client Location: Cognizant Technology Solutions (I) Pvt. Ltd, Pune</p>
-
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
-
             <li>Delivered IT infrastructure support for 24K+ users in an ODC environment and managed desktop/laptop refresh for 6000+ endpoints.</li>
-
             <li>Monitored SCCM, BIOS, boot compliance, and device patch levels while managing ageing tickets.</li>
-
           </ul>
-
         </div>
-
       </div>
-
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-
         <div class="flex items-center space-x-3">
-
           <i data-lucide="award" class="w-5 h-5 text-sky-400"></i>
-
           <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Certifications</h2>
-
         </div>
-
         <ul class="space-y-2 text-xs font-sans text-slate-300">
-
           <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span></li>
-
           <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Microsoft Certified: Azure Administrator Associate (AZ-104)</span></li>
-
           <li class="flex items-center space-x-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>ITIL 4 Foundation (Certificate No: GR671001549AN)</span></li>
-
         </ul>
-
       </div>
-
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-
         <div class="flex items-center space-x-3">
-
           <i data-lucide="graduation-cap" class="w-5 h-5 text-sky-400"></i>
-
           <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Academic Profile</h2>
-
         </div>
-
         <ul class="space-y-2 text-xs font-sans text-slate-300">
+<<<<<<< HEAD
 
           <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) � 63.06%</li>
 
@@ -1041,88 +716,55 @@
 
           <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) � 67.83%</li>
 
+=======
+          <li><strong>B.E. in Computer Science & Engg.</strong> | IBSS COE, SGBAU Amravati (2014) – 63.06%</li>
+          <li><strong>HSC</strong> | Brijlal Biyani Science College, Amravati (2010) – 56.33%</li>
+          <li><strong>SSC</strong> | Shri Ram Krishan Krida Vidyalaya, Amravati (2008) – 67.83%</li>
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
         </ul>
-
       </div>
-
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-
         <div class="flex items-center space-x-3">
-
           <i data-lucide="compass" class="w-5 h-5 text-sky-400"></i>
-
           <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Hobbies</h2>
-
         </div>
-
         <ul class="space-y-2 text-xs font-sans text-slate-300 list-disc list-inside">
-
           <li>Coin collection & Numismatics</li>
-
           <li>Surfing the Internet & Reading tech/strategy books</li>
-
         </ul>
-
       </div>
-
       <div class="glass-card-3d p-7 rounded-2xl space-y-4">
-
         <div class="flex items-center space-x-3">
-
           <i data-lucide="user" class="w-5 h-5 text-sky-400"></i>
-
           <h2 class="font-sans text-lg font-bold text-white uppercase tracking-wider">Personal Details</h2>
-
         </div>
-
         <ul class="space-y-1.5 text-xs font-sans text-slate-300">
-
           <li><strong>Full Name:</strong> Mr. Akash Subhashrao Nagapure</li>
-
           <li><strong>Date of Birth:</strong> 22 October 1992</li>
-
           <li><strong>Address:</strong> Olark Residency, Moshi Pradhikaran, Sector 9, Pune 412105</li>
-
         </ul>
-
       </div>
-
     </div>
 
     <div class="glass-card-3d p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-4">
-
       <p class="italic">I hereby declare that the information provided above is true to the best of my knowledge and belief.</p>
-
       <div class="text-right shrink-0 font-mono">
-
         <p class="text-sky-400 font-bold">Place: AMRAVATI</p>
-
         <p class="text-white">Akash S. Nagapure</p>
-
       </div>
-
     </div>
-
   </div>
-
 </main>
 
 <script>
-
     if (window.lucide) lucide.createIcons();
-
     function toggleMobileMenu() {
-
         const menu = document.getElementById('mobile-menu-drawer');
-
         menu.classList.toggle('hidden');
-
     }
-
     function goBack() {
         if (window.history.length > 1) {
             window.history.back();
@@ -1130,11 +772,8 @@
             window.location.href = 'https://www.akashnagapure.in';
         }
     }
-
     function scrollToTop() {
-
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
     }
     window.addEventListener("scroll", () => {
         const backToTopBtn = document.getElementById("back-to-top-btn");
@@ -1145,12 +784,8 @@
             backToTopBtn.classList.add("hidden");
         }
     }, { passive: true });
-
-  // Footer Newsletter Subscription Handler
-
 </script>
 
-<!-- Canonical footer - source of truth (footer + cookie). Behaviour: /assets/js/footer-common.js. Runtime upgrade: /assets/js/template-loader.js -->
 <footer id="site-footer" class="w-full bg-transparent border-t border-sky-500/20 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
@@ -1219,7 +854,6 @@
     </div>
 </footer>
 
-<!-- Cookie Consent Banner — compact square card, bottom-right -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
     <div class="cookie-head">
         <span class="cookie-icon" aria-hidden="true"><i class="fa-solid fa-cookie"></i></span>
@@ -1235,6 +869,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 
 
 
@@ -1262,8 +897,9 @@
 
 
 
+=======
+>>>>>>> 888a0ee78605d692e4af4f9a2d0e382ce16df7f2
 <style>
-  /* --- Interactive 3D tilt (mouse-driven) --- */
   .glass-card-3d { transform-style: preserve-3d; will-change: transform; }
   .tilt-glare {
     position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
@@ -1310,16 +946,12 @@
 })();
 </script>
 <script src="/assets/js/footer-common.js" defer></script>
-
 <script src="/assets/js/3d-background.js" defer></script>
-
 <script src="/assets/js/template-loader.js" defer></script>
-
 <link rel="stylesheet" href="/assets/css/site-effects.css">
-
 <script src="/assets/js/site-effects.js" defer></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <div class="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3 pointer-events-auto">
     <div class="flex items-center gap-2">
         <button onclick="scrollToTop()" class="hidden p-3.5 bg-gradient-to-r from-sky-400 to-sky-500 text-slate-950 hover:from-sky-300 hover:to-sky-400 font-bold rounded-full shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all flex items-center justify-center hover:scale-110 cursor-pointer pointer-events-auto" id="back-to-top-btn" aria-label="Scroll to top">
@@ -1330,4 +962,3 @@
 
 </body>
 </html>
-
