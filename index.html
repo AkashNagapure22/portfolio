@@ -121,11 +121,23 @@
     }
     /* — Usability #12: anchor orbit labels to a shared circular path — */
     .orbit-ring { position: relative; }
+    /* Core Value orbit: dotted guide circle hidden — only the rotating text shows. */
     .orbit-ring::before {
       content: ""; position: absolute; inset: 56px; border-radius: 9999px;
-      border: 1px dashed rgba(148, 163, 184, 0.35); pointer-events: none;
+      border: 1px dashed transparent; pointer-events: none;
     }
     @media (max-width: 640px) { .orbit-ring::before { inset: 38px; } }
+    /* Work-history skill icons: boxed hover name (same look as Skills page).
+       The marquee containers get pt-12 so the absolute -top-8 tooltip has
+       room inside overflow-hidden (py-3 = 12px clipped it). */
+    .skills-track-ltr > div > span {
+      background: rgba(2, 6, 23, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 4px 10px;
+      border-radius: 6px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+      font-size: 10px;
+    }
     /* — Usability #13: visible, higher-contrast terminal inputs — */
     .tech-input { border-bottom-color: rgba(148, 163, 184, 0.55); }
     .tech-input:hover { border-bottom-color: rgba(125, 211, 252, 0.8); }
@@ -873,7 +885,7 @@
               </li>
             </ul>
             
-            <div class="w-full overflow-hidden py-3 relative">
+            <div class="w-full overflow-hidden pt-16 pb-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
                   <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='/Main_page_data/placeholder.gif';" />
@@ -933,7 +945,7 @@
               </li>
             </ul>
             
-            <div class="w-full overflow-hidden py-3 relative">
+            <div class="w-full overflow-hidden pt-16 pb-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
                   <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
@@ -985,7 +997,7 @@
               </li>
             </ul>
             
-            <div class="w-full overflow-hidden py-3 relative">
+            <div class="w-full overflow-hidden pt-16 pb-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
                   <img src="/images/icons/Microsoft-IntuneCompanyPortal.png" alt="Intune" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,164,239,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
@@ -1025,7 +1037,7 @@
               </li>
             </ul>
             
-            <div class="w-full overflow-hidden py-3 relative">
+            <div class="w-full overflow-hidden pt-16 pb-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
                   <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
@@ -1061,7 +1073,7 @@
               </li>
             </ul>
             
-            <div class="w-full overflow-hidden py-3 relative">
+            <div class="w-full overflow-hidden pt-16 pb-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
                   <img src="/images/icons/AppVolumes.png" alt="Active Directory" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,176,255,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />
@@ -1097,7 +1109,7 @@
               </li>
             </ul>
             
-            <div class="w-full overflow-hidden py-3 relative">
+            <div class="w-full overflow-hidden pt-16 pb-3 relative">
               <div class="skills-track-ltr flex items-center gap-10">
                 <div class="relative group/skill flex items-center justify-center shrink-0 transition-transform hover:scale-125 cursor-pointer">
                   <img src="/images/icons/SCCM.png" alt="SCCM" class="w-8 h-8 object-contain filter drop-shadow-[0_0_8px_rgba(0,114,198,0.4)]" onerror="this.onerror=null; this.src='images/Main_Page_Images/placeholder.gif';" />

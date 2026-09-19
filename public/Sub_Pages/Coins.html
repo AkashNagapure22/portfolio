@@ -240,6 +240,22 @@
     .holo-glow:hover::after {
         opacity: 0.7;
     }
+
+    /* FIX: align coin images to the tiles — the media well had flex-grow +
+       object-contain, so small coin scans left large empty side space and
+       tiles looked half vacant. Fixed-height well + object-cover fills the
+       tile neatly (all front faces, incl. Wishlist, same structure). */
+    .inventory-flip-front > div:nth-child(2) {
+        height: 150px;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+    .inventory-flip-front > div:nth-child(2) > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding: 0;
+    }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
