@@ -111,6 +111,16 @@
       });
       main.querySelectorAll('[class*="card"], .glass-card-3d').forEach(function (el) {
         if (isFlip(el)) return;
+        // Blog/project grid + pagination own their visibility (6-per-page
+        // paging toggles display:none). A reveal transform/opacity on them
+        // fights paging: tiles pop up/down above the page numbers on every
+        // page change. Leave them static so paging is instant and stable.
+        try {
+          if (el.closest && (el.closest('#blog-grid') || el.closest('#pagination-numbers') ||
+            el.id === 'blog-grid' || el.id === 'pagination-numbers' ||
+            el.id === 'search-empty-state' || el.classList.contains('searchable-card') ||
+            el.classList.contains('blog-card') || el.classList.contains('filter-pill'))) return;
+        } catch (e) {}
         tag(el, 'zoom');
       });
     } catch (e) {}

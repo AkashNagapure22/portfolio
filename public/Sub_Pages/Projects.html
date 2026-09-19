@@ -283,11 +283,14 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 1.25rem;
       overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      /* FIX: transition border/shadow only — no transform. The old
+         translateY(-4px) on hover shifted the tile under the cursor,
+         causing the "tile runs away when I try to click" jitter. */
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }
     .blog-card:hover {
       border-color: rgba(56, 189, 248, 0.4);
-      transform: translateY(-4px);
+      transform: none;
       box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.2);
     }
     .blog-card:hover h2 {
@@ -314,6 +317,26 @@
       font-weight: 700;
       box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
     }
+    /* FIX: stable grid — a fixed row height + fixed image ratio stops tiles
+       "going up and down above the page numbers" when paging/filtering or
+       when images load late. Text clamps keep every tile the same height. */
+    #blog-grid { align-items: stretch; }
+    #blog-grid .blog-card { height: 100%; }
+    #blog-grid .blog-card h2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 3.25rem;
+    }
+    #blog-grid .blog-card p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 3.9rem;
+    }
+    #blog-grid .blog-card img { aspect-ratio: 16 / 10; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #020617; }
     ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
@@ -891,19 +914,38 @@
   </div>
 
   <script>
+    const PAGE_SIZE = 6;
     let currentPage = 1;
-    const totalPages = 5;
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    function matchingCards() {
+      const cards = Array.from(document.querySelectorAll('.searchable-card'));
+      return cards.filter((card) => {
+        const okCat = activeCategory === 'all' || card.getAttribute('data-category') === activeCategory;
+        if (!okCat) return false;
+        if (!searchQuery) return true;
+        const text = (card.innerText || '').toLowerCase();
+        return text.includes(searchQuery);
+      });
+    }
 
     function renderPagination() {
       const container = document.getElementById('pagination-numbers');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
       if (!container) return;
+      const totalPages = Math.max(1, Math.ceil(matchingCards().length / PAGE_SIZE));
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
       container.innerHTML = '';
 
       for (let i = 1; i <= totalPages; i++) {
         const pageBtn = document.createElement('button');
         pageBtn.textContent = i;
-
+        pageBtn.setAttribute('aria-label', 'Go to page ' + i);
         if (i === currentPage) {
+          pageBtn.setAttribute('aria-current', 'page');
           pageBtn.className = "w-10 h-10 flex items-center justify-center rounded-lg bg-[#ccff00] text-slate-950 font-bold shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all";
         } else {
           pageBtn.className = "w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white hover:border-sky-400/50 transition-all";
@@ -913,18 +955,35 @@
         container.appendChild(pageBtn);
       }
 
-      document.getElementById('prev-btn').disabled = currentPage === 1;
-      document.getElementById('next-btn').disabled = currentPage === totalPages;
+      if (prevBtn) prevBtn.disabled = currentPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
     }
 
-    function changePage(page) {
+    function applyPaging() {
+      const cards = Array.from(document.querySelectorAll('.searchable-card'));
+      const matched = matchingCards();
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const visible = new Set(matched.slice(start, start + PAGE_SIZE));
+      cards.forEach((card) => {
+        card.style.display = visible.has(card) ? '' : 'none';
+      });
+      const emptyState = document.getElementById('search-empty-state');
+      if (emptyState) emptyState.classList.toggle('hidden', matched.length > 0);
+      renderPagination();
+    }
+
+    function changePage(page, scroll = true) {
+      const totalPages = Math.max(1, Math.ceil(matchingCards().length / PAGE_SIZE));
       if (page < 1 || page > totalPages) return;
       currentPage = page;
-      renderPagination();
-      console.log("Switched to page:", currentPage);
+      applyPaging();
+      if (scroll) {
+        const grid = document.getElementById('blog-grid');
+        if (grid && grid.scrollIntoView) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
-    document.addEventListener('DOMContentLoaded', renderPagination);
+    document.addEventListener('DOMContentLoaded', applyPaging);
   </script>
 
 </main>
@@ -966,14 +1025,10 @@
 </div>
 
 <script>
-  let scene, camera, renderer, particlesMesh, gridHelper;
-
-  function animate3D() {
-    requestAnimationFrame(animate3D);
-    if (particlesMesh) particlesMesh.rotation.y += 0.001;
-    if (renderer && scene && camera) renderer.render(scene, camera);
-  }
-
+  /* FIX: dead legacy 3D loop removed. It ran requestAnimationFrame forever
+     rendering an empty scene (particlesMesh was always undefined) — pure CPU
+     burn that made the Projects tab lag. The real background lives in
+     /assets/js/3d-background.js (pauses when the tab is hidden). */
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -989,24 +1044,15 @@
     document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
 
-    const cards = document.querySelectorAll('.searchable-card');
-    const emptyState = document.getElementById('search-empty-state');
-    let visibleCount = 0;
+    activeCategory = category;
+    currentPage = 1;
+    applyPaging();
+  }
 
-    cards.forEach(card => {
-      const cardCat = card.getAttribute('data-category');
-      if (category === 'all' || cardCat === category) {
-        card.style.display = '';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    if (emptyState) {
-      if (visibleCount === 0) emptyState.classList.remove('hidden');
-      else emptyState.classList.add('hidden');
-    }
+  function filterBlogs(query) {
+    searchQuery = (query || '').toLowerCase().trim();
+    currentPage = 1;
+    applyPaging();
   }
 
   async function loadComments() {
@@ -1072,11 +1118,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) lucide.createIcons();
-    void 0
-    animate3D();
-    void 0
     loadComments();
-    
   });
 </script>
 
