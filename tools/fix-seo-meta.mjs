@@ -15,14 +15,9 @@ const SKIP = /(^|\/)(404|access-denied|maintenance)\.html$|(^|\/)(footer|3d-back
 
 /* Over-long snippets Google truncates in the SERP. */
 const REWRITES = {
-  'index.html': {
+  'public/changelog.html': {
     description:
-      'Portfolio of Akash Nagapure — Enterprise Fleet Architect for Microsoft Intune, SCCM, Windows Autopilot, Windows 365, AVD and VMware at 35,000+ endpoints.',
-  },
-  'public/faq.html': {
-    title: 'FAQ | Akash Nagapure — Intune, SCCM &amp; VMware Answers',
-    description:
-      'Answers from Akash Nagapure, Microsoft Certified EUC &amp; Intune Specialist: the technologies he covers, how to collaborate, and how to use the blog + newsletter.',
+      'Official changelog for all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.',
   },
   'public/Sub_Pages/HomeLab.html': {
     description:
@@ -109,7 +104,7 @@ const html = lines.join('\n');
     if (lines.join('\n') !== before) {
       ['og:title', 'twitter:title'].forEach((k) => {
         const idx = lines.findIndex((l) => new RegExp('(?:property|name)\\s*=\\s*["\']' + k + '["\']', 'i').test(l));
-        if (idx >= 0) lines[idx] = lines[idx].replace(/content\s*=\s*["'][^"']*["']/i, `content="${escapeAttr(rw.title)}"`);
+        if (idx >= 0) lines[idx] = lines[idx].replace(/content\s*=\s*(?:"[^"]*"|'[^']*')/i, `content="${escapeAttr(rw.title)}"`);
       });
     }
   }
@@ -118,13 +113,13 @@ const html = lines.join('\n');
     lines = lines.map((l) => {
       if (!done && /<meta\b[^>]*\bname\s*=\s*["']description["']/i.test(l)) {
         done = true;
-        return l.replace(/content\s*=\s*["'][^"']*["']/i, `content="${escapeAttr(rw.description)}"`);
+        return l.replace(/content\s*=\s*(?:"[^"]*"|'[^']*')/i, `content="${escapeAttr(rw.description)}"`);
       }
       return l;
     });
     ['og:description', 'twitter:description'].forEach((k) => {
       const idx = lines.findIndex((l) => new RegExp('(?:property|name)\\s*=\\s*["\']' + k + '["\']', 'i').test(l));
-      if (idx >= 0) lines[idx] = lines[idx].replace(/content\s*=\s*["'][^"']*["']/i, `content="${escapeAttr(rw.description)}"`);
+      if (idx >= 0) lines[idx] = lines[idx].replace(/content\s*=\s*(?:"[^"]*"|'[^']*')/i, `content="${escapeAttr(rw.description)}"`);
     });
   }
 

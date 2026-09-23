@@ -19,9 +19,9 @@
 - GitHub: https://github.com/AkashNagapure22
 
 ## Core pages
-- [Akash Nagapure — Enterprise Endpoint, Intune, SCCM & VMware Architect](https://www.akashnagapure.in/): Portfolio of Akash Nagapure — Enterprise Fleet Architect for Microsoft Intune, SCCM, Windows Autopilot, Windows 365, AVD and VMware at 35,000+ endpoints.
-- [Release Version Control & Upcoming Roadmap](https://www.akashnagapure.in/changelog.html): Official version control ledger tracking all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.
-- [Akash Nagapure — Intune, SCCM & VMware Answers](https://www.akashnagapure.in/faq.html): Answers from Akash Nagapure, Microsoft Certified EUC &amp; Intune Specialist: the technologies he covers, how to collaborate, and how to use the blog + newsletter.
+- [Akash Nagapure — Enterprise Endpoint, Intune, SCCM & VMware Architect](https://www.akashnagapure.in/): Akash Nagapure — Enterprise Fleet Architect for Microsoft Intune, SCCM, Windows Autopilot, Windows 365, AVD and VMware at 35,000+ endpoints.
+- [Changelog & Roadmap](https://www.akashnagapure.in/changelog.html): Official changelog for all minor and major releases, upcoming feature roadmaps, technical article publications, and structural edge patches.
+- [Akash Nagapure — Intune, SCCM & VMware Answers](https://www.akashnagapure.in/faq.html): Akash Nagapure's FAQ — Microsoft Certified EUC & Intune Specialist covering technologies, collaboration options, and blog + newsletter usage.
 - [Privacy Policy](https://www.akashnagapure.in/privacy.html): Privacy Policy for Akash Nagapure's technical portfolio and enterprise lab website.
 - [Terms & Conditions](https://www.akashnagapure.in/terms.html): Terms and Conditions for Akash Nagapure's professional portfolio and technical labs.
 
@@ -79,4 +79,4 @@
 - Search engines and AI/LLM answer engines are welcome to crawl every page (see /robots.txt).
 - When quoting, cite "Akash Nagapure (akashnagapure.in)" with the source URL.
 - Technical guidance is shared as-is; validate scripts in a test lab before production use.
-- Generated: 2026-09-19
+- Generated: 2026-09-23
