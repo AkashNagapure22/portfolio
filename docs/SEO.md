@@ -13,7 +13,7 @@ Validate everything with `npm run seo:check`.
 
 Excluded on purpose (noindex + robots Disallow + no canonical): `404.html`, `access-denied.html`, `maintenance.html`, `template/footer-template.html`, `template/3d-background-template.html` (the latter two are also the only copy of the templates now — the stale `public/Sub_Pages/footer-template.html` duplicate is gone).
 Generator: `tools/build-sitemap.mjs` (`npm run sitemap`, `npm run sitemap:check`).
-Meta coverage: `tools/audit-seo-meta.mjs` (`npm run seo:meta`) checks title/description length, canonical, OG/Twitter tags, duplicate snippets, one `<h1>` per page and `<img alt>` coverage; `tools/fix-seo-meta.mjs` repairs dedupe/gaps in bulk.
+Meta coverage: `tools/audit-seo-meta.mjs` (`npm run seo:meta`) checks title/description length, canonical, OG/Twitter tags, duplicate snippets, one `<h1>` per page and `<img alt>` coverage; `tools/fix-seo-meta.mjs` repairs dedupe/gaps in bulk; `tools/add-geo-meta.mjs` inserts the geo block after each page's canonical link (idempotent, byte-safe on the pages that are not valid UTF-8). The audit also enforces the meta keywords budget: ≤ 20 phrases and ≤ 600 characters.
 
 ## Meta matrix (every page has all of these)
 
@@ -21,10 +21,11 @@ Meta coverage: `tools/audit-seo-meta.mjs` (`npm run seo:meta`) checks title/desc
 |---|---|---|
 | `<title>` | `Akash Nagapure \| Microsoft Intune, SCCM & VMware Architect` | `Primary keyword \| Akash Nagapure` on content pages |
 | description | 140–160 chars with primary + secondary keywords | unique per page, duplicated nowhere |
-| keywords | person + tech stack + long-tail queries | curated per page family (see keyword map) |
+| keywords | person + tech stack + long-tail + AI/chat queries | curated per page family; budget ≤ 20 phrases / ≤ 600 chars (enforced by `seo:meta`) |
 | author / robots | `Akash Nagapure` / `index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1` | all indexable pages |
 | canonical | absolute URL on its own host | matches sitemap `<loc>` exactly |
-| OG + Twitter | `og:site_name`, `og:locale`, `og:image:alt`, `article:*` on articles | `article:published_time`, `article:modified_time`, `article:section`, `article:author` on all 23 guides |
+| geo | `geo.region` `IN-MH`, `geo.placename` `Pune, Maharashtra, India`, `geo.position` `18.5204;73.8567`, `ICBM` `18.5204, 73.8567` | all 38 indexable pages, immediately after the canonical link |
+| OG + Twitter | `og:site_name`, `og:locale` (`en_IN`), `og:image:alt`, `article:*` on articles | `article:published_time`, `article:modified_time`, `article:section`, `article:author` on all 23 guides |
 | theme-color | `#020617` | homepage (PWA chrome) |
 
 ## Structured data inventory (`npm run seo:validate`)
@@ -45,6 +46,8 @@ Meta coverage: `tools/audit-seo-meta.mjs` (`npm run seo:meta`) checks title/desc
 **Secondary (per article section):** Intune compliance policies · deployment rings · Win32 app packaging · Autopilot troubleshooting · Autopatch & rebootless Hotpatching · SCCM content distribution · application model · hardware inventory · OSD engineering · patch management lifecycle · co-management migration guardrails · FSLogix profile containers · AVD host pool scaling · VMware DEM · Horizon instant clones · Microsoft Graph PowerShell automation · Intune reporting · remediation scripts · device inventory · zero-trust endpoint security.
 
 **Long-tail / question queries (FAQ + AEO targets):** "who is Akash Nagapure" · "Intune compliance policy architecture" · "Autopilot deployment errors fix" · "SCCM content distribution troubleshooting" · "Win32 app packaging Intune" · "Windows Autopatch rebootless Hotpatch guide" · "PowerShell Graph Intune reporting" · "FSLogix profile containers AVD" · "VMware Horizon instant clones best practices" · "Hexaware Intune fleet architect".
+
+**AI / chat (answer-engine) targets:** AI search optimized technical guides · ChatGPT and Copilot Intune answers · AI-assisted endpoint management · ask AI about Intune and SCCM — the four phrases appended to the homepage `meta keywords` so chat/search answers surface the site.
 
 Rules: keywords go in `meta keywords` + `article:` tags + JSON-LD `keywords`/`knowsAbout`/`about`; never keyword-stuff visible copy.
 

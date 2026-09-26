@@ -24,12 +24,16 @@ download-only, and complete OG/Twitter coverage added across all 43 pages.
   files the pipeline generates itself.
 - **`tools/audit-seo-meta.mjs`** (`npm run seo:meta`, now also part of
   `npm run seo:check`): per-page audit of title/description length, canonical,
-  OG/Twitter coverage, duplicated share tags, `<h1>` count and `<img alt>`.
+  OG/Twitter coverage, duplicated share tags, `<h1>` count, `<img alt>` and the meta keywords budget (≤ 20 phrases / ≤ 600 chars).
 - **`tools/fix-seo-meta.mjs`** — the bulk repair used for this release (dedupe
   share tags, fill missing `og:*` / `twitter:*` from the page's own title,
   description and canonical, apply shortened snippets).
 - **`docs/images/design-reference.png`** — the design reference screenshot, kept
   next to the docs that describe the design system.
+- **`tools/add-geo-meta.mjs`** — idempotent inserter of the site geo block
+  (`geo.region` IN-MH, `geo.placename` Pune, `geo.position`, `ICBM`) after each
+  indexable page's canonical link. Byte-safe (raw Buffer + ASCII-only insert),
+  so the pages that are not valid UTF-8 round-trip without corruption.
 
 ### Changed
 - **Project structure**: removed the duplicate `pages/` and `images/` folders
@@ -72,11 +76,18 @@ download-only, and complete OG/Twitter coverage added across all 43 pages.
 - **Docs**: README and `docs/PROJECT.md` structures rewritten to the real tree;
   `ARCHITECTURE`, `COMPONENTS`, `CONTENT` and `SEO` updated for the template
   paths, the removed effects and the new audit tooling.
+- **SEO geo + AI keywords**: geo block (`geo.region`/`geo.placename`/
+  `geo.position`/`ICBM`, Pune 18.5204;73.8567) added to all 38 indexable pages,
+  `og:locale` `en_US` → `en_IN` on index + FAQ, and four answer-engine phrases
+  appended to the homepage `meta keywords` (20 phrases / 549 chars — inside the
+  budget the audit now enforces). `public/sitemap.xml` regenerated (38 URLs,
+  `lastmod` refreshed).
 
 ### Verified
 - `npm run seo:meta` → 0 problems across 43 pages (was 61).
 - `npm run seo:check` green (sitemap drift + llms drift + structured data + meta).
 - `npm run projects:check`, `test:guard` (21/21) and `test:flip` (40/40) green.
+- Geo block present on 38/38 indexable pages; `npm run seo:meta` still 0 problems with the keywords budget active.
 
 ---
 

@@ -53,6 +53,16 @@ for (const file of files) {
   if (!desc) problems.push(`${rel}: missing meta description`);
   else if (decode(desc).length > 160) problems.push(`${rel}: meta description is ${decode(desc).length} chars (aim <= 160)`);
 
+  /* meta keywords is optional, but when present it must stay curated:
+     <= 20 phrases and <= 600 characters (the AI/chat + primary keyword budget). */
+  const kwTag = (html.match(/<meta\b[^>]*\bname\s*=\s*["']keywords["'][^>]*>/i) || [])[0] || '';
+  const kw = (kwTag.match(/\bcontent\s*=\s*["']([^"']*)/i) || [])[1] || '';
+  if (kw) {
+    const phrases = kw.split(',').map((s) => s.trim()).filter(Boolean).length;
+    if (decode(kw).length > 600) problems.push(`${rel}: meta keywords is ${decode(kw).length} chars (aim <= 600)`);
+    if (phrases > 20) problems.push(`${rel}: meta keywords has ${phrases} phrases (aim <= 20)`);
+  }
+
   if (!/<link[^>]+rel=["']canonical["']/i.test(html)) problems.push(`${rel}: missing rel=canonical`);
   if (!/<meta[^>]+property=["']og:title["']/i.test(html)) problems.push(`${rel}: missing og:title`);
   if (!/<meta[^>]+property=["']og:description["']/i.test(html)) problems.push(`${rel}: missing og:description`);
